@@ -1,0 +1,4 @@
+# tells the browser which links to not index
+
+User-agent: *
+Disallow: /admin/
