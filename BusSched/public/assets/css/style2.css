@@ -1,18 +1,15 @@
 body{
-    color: 24315E;
-    /* background-image: url("../images/bg-signin.png"); */
+    color: #24315E;
     font-family: 'Outfit';
     
-    padding: 20px;
-    margin: 20px;
+    /* padding: 20px; */
+    margin: 0px;
 }
 
 div{
-    /* color: black;
-    background-color: white; */
     border-radius: 10px;
     padding: 20px;
-    /* margin: 20px; */
+    margin: 20px;
     align-items: center;
 }
 
@@ -54,7 +51,12 @@ div{
 }
 
 #logo_blue{
-    color: 24315E;
+    color: #24315E;
+    text-decoration: none;
+}
+
+#logo_bwhite{
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -76,17 +78,53 @@ a{
     margin: auto;
     width: 50%;
 }
-
+/* 
 .form-control{
     box-sizing: border-box;
     
     position: relative;
     width: 596.56px;
     height: 59.32px;
-    /* left: 662.41px;
-    top: 441px; */
 
     background: #FFFFFF;
     border: 1px solid #EEEDF1;
     border-radius: 5px;
+} */
+
+.styled-table {
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 100%;
+    border-color: #ffffff;
+    border-collapse: collapse;
+}
+
+.styled-table thead tr {
+    background-color: #f9f9f9;
+    color: #24315E;
+    text-align: left;
+    border-color: #ffffff;
+}
+
+.styled-table th {
+    padding: 12px 15px;
+    border-color: #ffffff;
+    text-align: left;
+}
+
+.styled-table td {
+    padding: 12px 15px;
+    border-color: #f9f9f9;
+    background-color: #f9f9f9;
+}
+
+.div-black {
+    background-color: #000000;
+    color: #ffffff;
+    /* text-align: center; */
+    padding: 2px;
+    margin: 0;
+    width: 100%;
+    border-radius: 0px;
+
 }

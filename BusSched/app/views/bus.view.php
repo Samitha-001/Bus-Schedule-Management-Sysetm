@@ -13,20 +13,22 @@
     <meta name="generator" content="Hugo 0.88.1">
     <title>Buses</title>
 
-
     <link href="<?=ROOT?>/assets/css/style2.css" rel="stylesheet">
 </head>
 <body>
-    <h2><a href="<?=ROOT?>" id="logo_blue">BusSched</a></h2>
+    <div class="div-black"><h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2></div>
+    
 
     <h1 style="text-align:center" class="center">Buses</h1>
 
-    <form method="post">
+    <button id="btn">Add Bus</button>
+
+    <form method="post" id="view_bus" style="display:none">
 
     <?php if(!empty($errors)):?>
     <?= implode("<br>", $errors)?>
     <?php endif;?>
-    <div class="center">
+    <!-- <div class="center"> -->
 
     <label for="bus_no">Bus No. </label>
     <input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..."><br>
@@ -49,15 +51,15 @@
     
     
     <label for="start">Start </label>
-    <input name="start" type="text" class="form-control" id="start" placeholder="Starting halt...">
+    <input name="start" type="text" class="form-control" id="start" placeholder="Starting halt..."><br>
     
-    <button class="center" type="submit">Create</button>
-    </div>
-    </form>
+    <button class="center" type="submit">Add New Bus</button>
+<!-- </div> -->
+</form>
 
 
 
-    <table border='1'>
+<table border='1' class="styled-table">
     <tr>
     <th>#</th>
     <th>Bus No.</th>
@@ -66,7 +68,7 @@
     <th>Available?</th>
     <th>Bus Route</th>
     <th>Start</th>
-    </tr>
+</tr>
 
     <?php
     foreach($buses as $bus) {
@@ -82,6 +84,7 @@
     }?>
 
     </table>
-
+    
+    <script src="<?=ROOT?>/assets/js/bus.js"></script>
 </body>
 </html>
