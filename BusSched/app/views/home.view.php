@@ -30,7 +30,8 @@
         echo "Not logged in."?>
     
     <br><br><a href="<?=ROOT?>/login">LOGIN</a>
-    <br><a href="<?=ROOT?>/signup">SIGNUP</a>
+    <br><a href="<?=ROOT?>/signup">PASSENGER - SIGNUP</a>
+    <br><a href="<?=ROOT?>/signup">ADMIN - SIGNUP</a>
 
     <?php } ?>
     </div>

@@ -31,8 +31,9 @@
   <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..." required><br><br>
   
   <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Repeat Password..." required>
-  
-  <button class="center" type="submit">Create</button>
+  <br>
+  <br>
+  <button class="button-orange" type="submit">Create</button>
   </div>
 
   </div>
