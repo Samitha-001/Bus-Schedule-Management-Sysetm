@@ -11,6 +11,7 @@
   <link href="<?=ROOT?>/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
+  
   <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
 
   <h3 class="center">User</h3>
@@ -18,20 +19,20 @@
 
   <!-- LOGIN FORM FOR ALL USERS -->
   <form method="post">
-
-  <?php if(!empty($errors)):?>
-  <?= implode("<br>", $errors)?>
-  <?php endif;?>
-
-
-  <div id="form_bg_login" class="center">
+    
+    
+    <div id="form_bg" class="center">
+    
+      <?php if(!empty($errors)):?>
+      <?= implode("<br>", $errors)?>
+      <?php endif;?>
 
   <div>
   <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..." required><br><br>
 
   <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..." required><br><br>
 
-  <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+  <button class="button-orange" type="submit">Login</button>
   </div>
 
   </div>
