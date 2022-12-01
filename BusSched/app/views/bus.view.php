@@ -27,8 +27,8 @@
 <!-- NAVIGATION MENUS -->
 <div class="menu">
 <li><a href="<?=ROOT?>">Home</a></li>
-<li><a href="<?=ROOT?>">About</a></li>
-<li><a href="<?=ROOT?>">Services</a></li>
+<li><a href="<?=ROOT?>/buses"><b>Buses</b></a></li>
+<li><a href="<?=ROOT?>/halts">Halts</a></li>
 
 <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
 </div>
@@ -41,52 +41,61 @@
     <div><button id="btn" class="button-grey">Add New</button></div>    
 </div>
 
-    <!-- <button id="btn" class="button-green">Add Bus</button> -->
+<form method="post" id="view_bus" style="display:none">
 
-    <form method="post" id="view_bus" style="display:none">
+<?php if(!empty($errors)):?>
+<?= implode("<br>", $errors)?>
+<?php endif;?>
 
-    <?php if(!empty($errors)):?>
-    <?= implode("<br>", $errors)?>
-    <?php endif;?>
-    <div>
-    <label for="bus_no">Bus No. </label>
-    <input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..."><br>
-    </div>
-    
-    <div>
-    <label for="type">Bus Type </label>
-    <select name="type" id="type" class="form-control">
-        <option value="L">Luxury</option>
-        <option value="S">Semi-Luxury</option>
-    </select><br>
-    </div>
-    
-    <div>
-    <label for="seats_no">Seats No. </label>
-    <input name="seats_no" type="number" id="seats_no" class="form-control" placeholder="Available no. of seats..."><br>
-    </div>
-    
-    <div>
-    <label for="availability">Available? </label>
-    <input type="checkbox" id="availability" name="availability" value="1"><br>
-    </div>
-    
-    <div>
-    <label for="route">Route </label>
-    <input name="route" type="text" class="form-control" id="route" placeholder="Bus route..."><br>
-    </div>
-    
-    <div>
-    <label for="start">Start </label>
-    <input name="start" type="text" class="form-control" id="start" placeholder="Starting halt..."><br>
-    </div>
+<div>
+<table class="styled-table">
+    <tr>
+        <td><label for="bus_no">Bus No. </label></td>
+        <td><input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
+    </tr>
 
-    <button class="button-green" type="submit">Add New Bus</button>
-<!-- </div> -->
+    <tr>
+        <td><label for="type">Bus Type </label></td>
+        <td>
+            <select name="type" id="type" class="form-control" required>
+            <option disabled selected value>--select an option--</option>
+            <option value="L">Luxury</option>
+            <option value="S">Semi-Luxury</option>
+            </select>
+        </td>
+    </tr> 
+
+    <tr>
+        <td><label for="seats_no">Capacity </label></td>
+        <td><input name="seats_no" type="number" class="form-control" id="seats_no" placeholder="Available no. of seats..." required></td>
+    </tr>
+
+    <tr>
+        <td><label for="availability">Available? </label></td>
+        <td>
+            <label class="switch">
+            <input type="checkbox" id="availability" name="availability" value="1">
+            <span class="slider round"></span>
+            </label> 
+        </td>
+    </tr>
+
+    <tr>
+        <td><label for="route">Route </label></td>
+        <td><input name="route" type="text" class="form-control" id="route" placeholder="Bus route..." required></td>
+    </tr>
+
+    <tr>
+        <td><label for="start">Start </label></td>
+        <td><input name="start" type="text" class="form-control" id="start" placeholder="Starting halt..." required></td>
+    </tr>
+    <tr><td colspan="2"><button class="button-green" type="submit">Add New Bus</button></td></tr>
+    
+</table>
+</div>
 </form>
 
-
-
+<div>
 <table border='1' class="styled-table">
     <tr>
     <th>#</th>
@@ -112,6 +121,7 @@
     }?>
 
 </table>
+</div>
     
 <script src="<?=ROOT?>/assets/js/bus.js"></script>
 

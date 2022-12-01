@@ -18,22 +18,19 @@
 <!-- SIGN UP FORM - PASSENGER -->
   <form method="post">
 
-  <?php if(!empty($errors)):?>
-  <?= implode("<br>", $errors)?>
-  <?php endif;?>
-  <div id="form_bg" class="center">
-
-  <div>
-  <input name="username" type="text" class="form-control" id="username" placeholder="Username..." required><br><br>
-  
-  <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..." required><br><br>
-
-  <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..." required><br><br>
-  
-  <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Repeat Password..." required>
-  <br>
-  <br>
-  <button class="button-orange" type="submit">Create</button>
+    <div id="form_bg" class="center">
+      
+      <div>
+        <input name="username" type="text" class="form-control" id="username" placeholder="Username..."><br><br>
+        <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."><br><br>
+        <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..."><br><br>
+        <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Repeat Password...">
+        <br>
+        <br>
+        <button class="button-orange" type="submit">Create</button><br><br>
+        <?php if(!empty($errors)):?>
+        <?= implode("<br>", $errors)?>
+        <?php endif;?>
   </div>
 
   </div>
