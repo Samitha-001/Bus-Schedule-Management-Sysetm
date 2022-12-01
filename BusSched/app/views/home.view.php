@@ -10,7 +10,6 @@
     <title>Home page view</title>
 </head>
 <body>
-    </div>
     <h1>Home page view</h1>
     <div>
         
@@ -23,6 +22,7 @@
     ?><br>
     <br>
     <a href="<?=ROOT?>/buses">BUSES</a><br>
+    <a href="<?=ROOT?>/halts">HALTS</a><br><br>
     <a href="<?=ROOT?>/logout">LOGOUT</a>
 
     <?php }
