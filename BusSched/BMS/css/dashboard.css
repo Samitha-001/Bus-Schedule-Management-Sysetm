@@ -1,0 +1,145 @@
+.dashboard{
+    
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: blueviolet;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.sec img{
+    width: 30px;
+    height: 30px;
+}
+
+.tabs{
+    position: fixed;
+    top: 91px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.tabs .tab-header{
+    width: 200px;
+    height: 100%;
+     background: #24315E;
+
+}
+
+.tabs .tab-header div{
+    position: relative;
+    height: 10%;
+    border-right: 1px solid #222;
+    border-bottom: 1px solid #222;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tabs .tab-header div::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.tabs .tab-header div::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    left: -100px;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.tabs .tab-header div.active{
+    color: rgb(216, 216, 216);
+}
+
+.tabs .tab-header div.active::before{
+    left: 0px;
+    width: 100%;
+    transition: all 300ms ease-in-out;
+}
+
+.tabs .tab-header div.active::after{
+    left: calc(100% - 15px);
+    transition: all 200ms ;
+}
+
+.tabs .tab-body{
+    margin: 0 auto;
+    transition: all 500ms ;
+}
+
+.tabs .tab-body > div{
+    width: 100%;
+    height: 100vh;
+    padding: 0px;
+    
+}
+
+.tabs .tab-body div h2{
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+/* * {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;
+  min-height: 100vh;
+
+}
+ 
+.container{
+  padding: 30px 40px;
+  height: 100%;
+}
+ 
+/*style the dashboard*/
+
+.wrapper{
+  height: 100vh;
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 35% 60%;
+  gap: 20px 20px;
+  background-color: #ffffff;
+  grid-auto-rows: 200px;
+}
+
+.wrapper > div{
+  padding: 20px 0;
+  font-size: 20px;
+  background-color: #24315E;
+  margin: 50px 30px;
+  
+}
+
+.profile_pic{
+  width: 300px;
+  height: 150px;
+  margin-top: 1000px;
+  
+}
+
+.options{
+  grid-column: 1/ span 2;
+  width: 95%;
+  height: 200px;
+}
