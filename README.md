@@ -1,1 +1,1 @@
-# Bus-Schedule-Management-Sysetm
+# Bus-Schedule-Management-System
