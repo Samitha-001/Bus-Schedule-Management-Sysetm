@@ -29,8 +29,10 @@
     else{
         echo "Not logged in."?>
     
-    <br><br><a href="<?=ROOT?>/login">LOGIN</a>
+    <br><br><a href="<?=ROOT?>/login">PASSENGER - LOGIN</a>
     <br><a href="<?=ROOT?>/signup">PASSENGER - SIGNUP</a>
+    <br><br><a href="<?=ROOT?>/ownerlogin">BUS OWNER - LOGIN</a>
+    <br><a href="<?=ROOT?>/ownersignup">BUS OWNER - SIGNUP</a>
 
     <?php } ?>
     </div>
