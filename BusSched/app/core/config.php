@@ -8,7 +8,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBUSER', 'root');
     define('DBPWD', '');
     
-    define('ROOT', 'http://localhost/bussched/public');
+    define('ROOT', 'http://localhost/Bus-Schedule-Management-System/bussched/public');
 } else {
     // database configuration
     define('DBNAME', 'bussched');
