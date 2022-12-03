@@ -10,26 +10,47 @@
     <title>Home page view</title>
 </head>
 <body>
+    <nav class="navbar">
+    <div><h2><a href="<?=ROOT?>/home" id="logo_white">BusSched</a></h2></div>
+    
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+    <div class="menu">
+    <?php
+        if(isset($_SESSION['USER'])){
+    ?> 
+    <li><a href="<?=ROOT?>/buses">Buses</a></li>
+    <li><a href="<?=ROOT?>/halts">Halts</a></li>
+    <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
+    </div>
+    </ul>
+
+    </nav>
+    
+    <?php
+        echo "Welcome ".$_SESSION['USER']->username."!";
+    ?>
+
     <h1>Home page view</h1>
     <div>
         
     <h2>
-    
-    <?php
-        if(isset($_SESSION['USER'])){
-            
-            echo "Welcome ".$_SESSION['USER']->username."!";
-    ?><br>
     <br>
     <a href="<?=ROOT?>/buses">BUSES</a><br>
-    <a href="<?=ROOT?>/halts">HALTS</a><br><br>
-    <a href="<?=ROOT?>/logout">LOGOUT</a>
+    <a href="<?=ROOT?>/halts">HALTS</a><br>
 
     <?php }
     else{
-        echo "Not logged in."?>
+    ?>
     
-    <br><br><a href="<?=ROOT?>/login">PASSENGER - LOGIN</a>
+    <li class="button-orange"><a href="<?=ROOT?>/login">Login</a></li>
+    </nav>
+
+    <?php
+        echo "Not logged in.";
+    ?>
+    
+    <br><br><a href="<?=ROOT?>/login">ADMIN - LOGIN</a>
     <br><a href="<?=ROOT?>/signup">PASSENGER - SIGNUP</a>
     <br><br><a href="<?=ROOT?>/ownerlogin">BUS OWNER - LOGIN</a>
     <br><a href="<?=ROOT?>/ownersignup">BUS OWNER - SIGNUP</a>

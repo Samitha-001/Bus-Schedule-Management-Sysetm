@@ -18,17 +18,15 @@
 <body>
     
     <nav class="navbar">
-        
-    <!-- LOGO -->
     <div><h2><a href="<?=ROOT?>/adminhome" id="logo_white">BusSched</a></h2></div>
     
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">    
     <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
     </div>
-</ul>
+    </ul>
 
-</nav>
+    </nav>
 
     <div>
     <h2>
@@ -65,11 +63,6 @@
                 <td><?=$_SESSION['USER']->address?></td>
             </tr>
         </table>
-        <!-- <li>Username</li>
-        <li>Name</li>
-        <li>Email</li>
-        <li>Mobile</li>
-        <li>Address</li> -->
     </ul>
 </body>
 </html>

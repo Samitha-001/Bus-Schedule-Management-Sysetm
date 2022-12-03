@@ -82,7 +82,7 @@ class Model
         return false;
     }
 
-    public function update($id, $data, $id_column = 'users_id') {
+    public function update($id, $data, $id_column = 'id') {
         
         // removes unwanted data
         if(!empty($this->allowedColumns)) {
@@ -108,7 +108,7 @@ class Model
         return false;
     }
 
-    public function delete($id, $id_column = 'users_id') {
+    public function delete($id, $id_column = 'id') {
         $data[$id_column] = $id;
         $query = "DELETE FROM $this->table WHERE $id_column = :$id_column";
         
