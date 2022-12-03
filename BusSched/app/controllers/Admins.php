@@ -8,6 +8,6 @@ class Admins {
         $admin = new Admin();
         $personalinfo = $admin->adminInfo();
 		
-        $this->view('adminhome', $personalinfo);
+        $this->view('adminhome', ['admins' => $personalinfo]);
     }
 }

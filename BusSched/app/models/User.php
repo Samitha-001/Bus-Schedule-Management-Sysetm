@@ -21,34 +21,28 @@ class User extends Model{
 		if($this->where(['username' => $data['username']]))
 		{
 			$this->errors['username'] = "Username already exists";
-		}else
-		
-		
+		} else		
 		if(empty($data['email']))
 		{
 			$this->errors['email'] = "Email is required";
-		} else
-		
+		} else		
 		if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
 		{
 			$this->errors['email'] = "Email is not valid";
-		} else	
-		
+		} else		
 		if($this->where(['email' => $data['email']]))
 		{
 			$this->errors['email'] = "Email already exists";
-		}else
-
+		} else
 		if(empty($data['password']))
 		{
 			$this->errors['password'] = "Password is required";
 		} else
-
 		if($data['password'] != $data['pwdRepeat'])
 		{
 			$this->errors['pwdRepeat'] = "Passwords do not match";
 		}
-
+		
 		if(empty($this->errors))
 		{
 			return true;
