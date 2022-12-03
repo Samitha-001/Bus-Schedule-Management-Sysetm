@@ -101,3 +101,9 @@ button:hover {opacity: 0.6}
     text-decoration: none;
     width: 100%;
 }
+
+.errors {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}

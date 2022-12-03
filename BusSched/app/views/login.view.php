@@ -1,3 +1,9 @@
+<?php
+    if(isset($_SESSION['USER'])){
+        redirect('home');
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,9 +27,9 @@
   <form method="post">    
   <div id="form_bg" class="center">    
     <div>
-      <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..." required><br><br>
+      <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."><br><br>
       
-      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..." required><br><br>
+      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..."><br><br>
       
       <button class="button-orange" type="submit">Login</button>
     </div>
