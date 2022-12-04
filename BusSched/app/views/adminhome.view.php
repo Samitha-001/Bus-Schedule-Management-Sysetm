@@ -18,7 +18,7 @@
 <body>
     
     <nav class="navbar">
-    <div><h2><a href="<?=ROOT?>/adminhome" id="logo_white">BusSched</a></h2></div>
+    <div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
     
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">    
@@ -28,41 +28,123 @@
 
     </nav>
 
-    <div>
     <h2>
+    <div>
     <?php
         echo "Welcome ".$_SESSION['USER']->username."!";
     ?>
     </div>
     </h2>
+    <main class="dashboard-grid">
+        <div class="container dashboard" id="users-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Users</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p>Passengers, Drivers,</p>
+                    <p>Conductors, Schedulers,</p>
+                    <p>Bus Owners</p>
+                </div>
+            </div>
+        </div>
 
-    <h3>Personal Info</h3>
-    <ul>    
-        <table>
-            <?php
-            show(get_defined_vars());
-            ?>
+        <div class="container dashboard" id="schedules-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Schedules</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p>Bus Schedules</p>
+                </div>
+            </div>
+        </div>
 
-            <tr>
-                <th>Username: </th>
-                <td><?=$_SESSION['USER']->username?></td>
-            </tr>
-            <tr>
-                <th>Name: </th>
-                <td><?=$_SESSION['USER']->name?></td>
-            <tr>
-                <th>Email: </th>
-                <td><?=$_SESSION['USER']->email?></td>
-            </tr>
-            <tr>
-                <th>Phone: </th>
-                <td><?=$_SESSION['USER']->phone?></td>
-            </tr>
-            <tr>
-                <th>Address: </th>
-                <td><?=$_SESSION['USER']->address?></td>
-            </tr>
-        </table>
-    </ul>
+        <div class="container dashboard">
+            <h4>Personal Info</h4>
+            <ul>    
+                <table class="styled-table">
+                    <tr>
+                        <th>Username: </th>
+                        <td><?=$_SESSION['USER']->username?></td>
+                    </tr>
+                    <tr>
+                        <th>Name: </th>
+                        <td><?= $data[0]->name?></td>
+                    <tr>
+                        <th>Email: </th>
+                        <td><?=$_SESSION['USER']->email?></td>
+                    </tr>
+                    <tr>
+                        <th>Phone: </th>
+                        <td><?= $data[0]->phone?></td>
+                    </tr>
+                    <tr>
+                        <th>Address: </th>
+                        <td><?= $data[0]->address?></td>
+                    </tr>
+                </table>
+            </ul>
+        </div>
+
+        <div class="container dashboard" id="buses-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Buses</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p>View bus details</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container dashboard" id="buses-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Ratings</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p>View ratings</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container dashboard" id="buses-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Tickets</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p>Bus tickets</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container dashboard" id="buses-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Routes & Halts</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p><a href="#">Bus routes</a><br></p>
+                    <p><a href="<?=ROOT?>/halts">Bus halts</a><br></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
 </body>
 </html>

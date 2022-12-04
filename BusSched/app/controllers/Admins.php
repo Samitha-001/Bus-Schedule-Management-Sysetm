@@ -8,9 +8,9 @@ class Admins {
         $data = [];
 
         $admin = new Admin();
-        $personalinfo = $admin->adminInfo();
-        $data['personalinfo'] = $personalinfo;
+        $arr['username'] = $_SESSION['USER']->username;
+        $row = $admin->first($arr);
 
-        $this->view('adminhome', $data);
+        $this->view('adminhome', [$row]);
     }
 }

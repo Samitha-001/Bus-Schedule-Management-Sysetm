@@ -26,7 +26,11 @@ h3{
 
 a{
     text-decoration: none;
-    color: #FD6002;
+    color: #ffffff;
+}
+
+a.hover{
+    text-decoration: underline;
 }
 
 li{
@@ -86,6 +90,11 @@ form {
     gap: 2rem;
 }
 
+nav {
+    top: 0;
+    position: sticky;
+    z-index: 1;
+}
 
 .navbar {
     display: flex;
@@ -109,13 +118,7 @@ form {
     gap: 1em;
     font-size: 18px;
 }
-/*     
-.menu li:hover {
-    background-color: #8a8a8a;
-    border-radius: 5px;
-    transition: 0.3s ease;
-} */
-    
+
 .menu li {
     padding: 5px 14px;
 }
@@ -309,3 +312,118 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 } 
+
+
+/* For the cards */
+.container {
+    width: 350px;
+    height: 260px;
+    
+    position: relative;
+    top:0; right: 0; left: 0; bottom: 0;
+    margin: auto;
+    
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: contain;
+    /* cursor: pointer; */
+
+    border-color: #E1EBF7;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+#users-card{
+    background: url("../images/users-card.png");
+    cursor: pointer;
+}
+
+#schedules-card{
+    background: url("../images/schedules-card.png");
+    cursor: pointer;
+}
+
+#buses-card{
+    background: url("../images/buses-card.png");
+    cursor: pointer;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 2fr 1fr;
+    
+    background: #f4511e;
+    border-radius: 5px;
+    color: #FEF5DF;
+    opacity: 0;
+    transition: all 0.5s;
+
+    -webkit-box-shadow: 0 0 5px #000;
+        box-shadow: 0 0 5px #000;
+    
+}
+
+.items {
+    padding-left: 30px;
+    letter-spacing: 3px;
+}
+
+.head {
+    font-size: 30px;
+    line-height: 40px;
+    
+    transform: translateY(40px);
+    transition: all 0.7s;
+}
+
+hr {
+    display: block;
+    width: 0;
+    
+    border: none;
+    border-bottom: solid 2px #FEF5DF;
+    
+    position: absolute;
+    bottom: 0; left:20px;
+    
+    transition: all .5s;
+}
+
+.users {
+    font-size: 22px;
+    line-height: 10px;
+    font-weight: bold;  
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s;
+}
+
+.container:hover .overlay {
+    opacity: 1;}
+
+.container:hover .overlay,.container:hover .overlay .head {
+    transform: translateY(0px);
+}
+
+.container:hover .overlay  hr {
+    width: 75px;
+    transition-delay: 0.4s;
+}
+
+.container:hover .overlay  .users {
+    transform: translateY(0px);
+    transition-delay: 0.3s;
+    opacity: 1;
+}
+
+.container:hover .overlay  .cart {
+    transform: translateY(0px);
+    transition-delay: 0.6s;
+    opacity: 1;
+}
