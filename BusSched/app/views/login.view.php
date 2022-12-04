@@ -20,7 +20,7 @@
   
   <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
 
-  <h3 class="center">Passenger</h3>
+  <h3 class="center">Admin</h3>
   <h1 style="text-align:center" class="center">Login</h1><br>
 
   <!-- LOGIN FORM FOR ALL USERS -->
