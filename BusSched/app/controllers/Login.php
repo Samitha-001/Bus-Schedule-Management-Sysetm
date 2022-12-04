@@ -27,7 +27,7 @@ class Login {
 				if(password_verify($_POST['password'],$row->password))
 				{
 					$_SESSION['USER'] = $row;
-					redirect('adminhome');
+					redirect('admins');
 				}
 			}
 			$user->errors['email'] = "Wrong email or password";
