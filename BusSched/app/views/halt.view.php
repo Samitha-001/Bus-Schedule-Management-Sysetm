@@ -18,7 +18,7 @@
 <body>
 <nav class="navbar">
 
-<div><h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2></div>
+<div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
 
 <ul class="nav-links">
 

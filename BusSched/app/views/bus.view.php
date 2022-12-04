@@ -19,7 +19,7 @@
 <nav class="navbar">
 
 <!-- LOGO -->
-<div><h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2></div>
+<div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
 
 <!-- NAVIGATION MENU -->
 <ul class="nav-links">
