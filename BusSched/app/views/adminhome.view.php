@@ -28,8 +28,8 @@
 
     </nav>
 
-    <div>
     <h2>
+    <div>
     <?php
         echo "Welcome ".$_SESSION['USER']->username."!";
     ?>
@@ -38,9 +38,9 @@
 
     <h3>Personal Info</h3>
     <ul>    
-        <table>
+        <table class="styled-table">
             <?php
-            show(get_defined_vars());
+            // show(get_defined_vars());
             ?>
 
             <tr>
@@ -49,18 +49,18 @@
             </tr>
             <tr>
                 <th>Name: </th>
-                <td><?=$_SESSION['USER']->name?></td>
+                <td><?= $data[0]->name?></td>
             <tr>
                 <th>Email: </th>
                 <td><?=$_SESSION['USER']->email?></td>
             </tr>
             <tr>
                 <th>Phone: </th>
-                <td><?=$_SESSION['USER']->phone?></td>
+                <td><?= $data[0]->phone?></td>
             </tr>
             <tr>
                 <th>Address: </th>
-                <td><?=$_SESSION['USER']->address?></td>
+                <td><?= $data[0]->address?></td>
             </tr>
         </table>
     </ul>
