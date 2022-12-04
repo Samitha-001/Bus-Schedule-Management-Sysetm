@@ -5,9 +5,12 @@ class Admins {
     use Controller;
 
     public function index() {
+        $data = [];
+
         $admin = new Admin();
         $personalinfo = $admin->adminInfo();
-		
-        $this->view('adminhome', $personalinfo);
+        $data['personalinfo'] = $personalinfo;
+
+        $this->view('adminhome', $data);
     }
 }

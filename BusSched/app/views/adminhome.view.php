@@ -40,7 +40,7 @@
     <ul>    
         <table>
             <?php
-            show($_SESSION['USER']);
+            show(get_defined_vars());
             ?>
 
             <tr>
