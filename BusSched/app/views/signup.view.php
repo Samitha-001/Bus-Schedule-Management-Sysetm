@@ -10,10 +10,26 @@
   <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
 </head>
 <body>
-  <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
+  
+<nav class="navbar">
+    <div><h2><a href="<?=ROOT?>/home" class="logo_white">BusSched</a></h2></div>
+    
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+    <div class="menu">
+    
+    
+    <li class="button-orange"><a href="<?=ROOT?>/login">Login</a></li>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
   
     <h3>Passenger</h3>
     <h1 style="text-align:center">Create Account</h1>
+    
+    <br>
 
 <!-- SIGN UP FORM - PASSENGER -->
   <form method="post">
