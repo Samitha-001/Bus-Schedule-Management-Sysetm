@@ -17,12 +17,27 @@
   <link href="<?=ROOT?>/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-  
-  <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
+  <nav class="navbar">
+    <div><h2><a href="<?=ROOT?>/home" class="logo_white">BusSched</a></h2></div>
+    
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+    <div class="menu">
+    
+    
+    <li class="button-orange"><a href="<?=ROOT?>/login">Login</a></li>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
   <h3 class="center">Admin</h3>
+  
   <h1 style="text-align:center" class="center">Login</h1><br>
-
+  
+  <br>
   <!-- LOGIN FORM FOR ALL USERS -->
   <form method="post">    
   <div id="form_bg" class="center">    

@@ -31,7 +31,7 @@ body{
     align-items: center;
 }
 
-#logo_white{
+.logo_white{
     color: white;
     text-decoration: none;
 }
@@ -105,13 +105,15 @@ button:hover {opacity: 0.6}
     margin-top: 5px;
 }
 
-
+/* nav bar */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     background-color: black;
     color: #fff;
     height: 90px;    
@@ -129,4 +131,13 @@ button:hover {opacity: 0.6}
     
 .menu li {
     padding: 5px 14px;
+}
+
+/* grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
 }
