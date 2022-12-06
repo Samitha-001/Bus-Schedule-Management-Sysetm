@@ -35,8 +35,8 @@
     ?>
     </div>
     </h2>
-    <main class="dashboard-grid">
-        <div class="container dashboard" id="users-card">
+    <main class="container">
+        <div class="card-container dashboard" id="users-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="container dashboard" id="schedules-card">
+        <div class="card-container dashboard" id="schedules-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="container dashboard">
+        <div class="card-container dashboard" id="info-card">
             <h4>Personal Info</h4>
             <ul>    
                 <table class="styled-table">
@@ -91,7 +91,8 @@
             </ul>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container dashboard" id="buses-card">
+            <a href="<?=ROOT?>/buses">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -102,9 +103,10 @@
                     <p>View bus details</p>
                 </div>
             </div>
+            </a>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container dashboard" id="ratings-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -117,7 +119,7 @@
             </div>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container dashboard" id="tickets-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -130,7 +132,7 @@
             </div>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container dashboard" id="halts-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
