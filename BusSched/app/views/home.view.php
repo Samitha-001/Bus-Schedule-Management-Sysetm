@@ -43,7 +43,10 @@
     else{
     ?>
     
-    <li class="button-orange"><a href="<?=ROOT?>/login">Login</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <a href="<?=ROOT?>/login"><li class="button-orange">Login</li></a>
+    <a href="<?=ROOT?>/signup"><li class="button-orange">Sign Up</li></a>
     </nav>
 <!--     
     <br><br><a href="<?=ROOT?>/login">ADMIN - LOGIN</a>
@@ -54,7 +57,7 @@
     <?php } ?>
 
     </h2>
-    <div class="landing-bg">
+    <!-- <div class="landing-bg"> -->
         <div class="grid-container">
             <div class="grid-item grid-item-1">
                 <h1 style="padding: 0px;">Find a Bus</h1><br>
@@ -65,7 +68,7 @@
                 <button id="btn" class="button-orange" onclick="#" style="width: 140px; align:right;">Find</button>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
     <div>
     <!-- <h3>Our Services</h3>
     <h1>What we can do for you</h1> -->
