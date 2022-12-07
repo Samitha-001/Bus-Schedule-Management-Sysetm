@@ -2,6 +2,7 @@ body{
     color: #24315E;
     font-family: 'Outfit';
     margin: 0px;
+    line-height: normal;
 }
 
 #logo_blue{
@@ -9,7 +10,7 @@ body{
     text-decoration: none;
 }
 
-#logo_white{
+#logo-white{
     color: #ffffff;
     text-decoration: none;
 }
@@ -60,7 +61,6 @@ input{
 }
 
 .styled-table thead tr {
-    background-color: #f9f9f9;
     color: #24315E;
     text-align: left;
     border-color: #ffffff;
@@ -70,12 +70,16 @@ input{
     padding: 12px 15px;
     border-color: #ffffff;
     text-align: left;
+    font-size: 16px;
+    color: #7c839e;
 }
 
 .styled-table td {
     padding: 12px 15px;
-    border-color: #f9f9f9;
-    background-color: #f9f9f9;
+    /* border-color: #f9f9f9;
+    background-color: #f9f9f9; */
+    font-size: 20px;
+    color: #7c839e;
 }
 
 
@@ -316,18 +320,21 @@ input:checked + .slider:before {
 
 /* For the cards */
 .container {
-    width: 350px;
-    height: 260px;
-    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 4fr 4fr;
+}
+
+.card-container {
     position: relative;
     top:0; right: 0; left: 0; bottom: 0;
     margin: auto;
+
     
-    background-position: center; 
-    background-repeat: no-repeat;
-    background-color: white;
-    background-size: contain;
-    /* cursor: pointer; */
+    width: 80%;
+    height: 80%;
+    
+    align-items: center;
 
     border-color: #E1EBF7;
     border-style: solid;
@@ -335,19 +342,66 @@ input:checked + .slider:before {
     border-radius: 5px;
 }
 
+#greeting-card{
+    grid-column: span 2;
+    width: 90%;
+    border-style: none;
+    padding-top: 20px;
+}
+
+#info-card{
+    grid-column: span 2;
+    grid-row: span 2;
+    width: 90%;
+    height: 85%;
+}
+
 #users-card{
     background: url("../images/users-card.png");
     cursor: pointer;
+    background-size:     cover; 
+    background-repeat:   no-repeat;
+    background-position: center center; 
 }
 
 #schedules-card{
     background: url("../images/schedules-card.png");
     cursor: pointer;
+    background-size:     cover; 
+    background-repeat:   no-repeat;
+    background-position: center center;
 }
 
 #buses-card{
     background: url("../images/buses-card.png");
     cursor: pointer;
+    background-size:     cover; 
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#ratings-card{
+    background: url("../images/ratings-card.png");
+    cursor: pointer;
+    background-size:     cover; 
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#tickets-card{
+    background: url("../images/tickets-card.png");
+    cursor: pointer;
+    background-size:     cover; 
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#halts-card{
+    background: url("../images/halts-card.png");
+    cursor: pointer;
+    background-size:     cover; 
+    background-repeat:   no-repeat;
+    background-position: center center;
 }
 
 .overlay {
@@ -390,9 +444,9 @@ hr {
     border-bottom: solid 2px #FEF5DF;
     
     position: absolute;
-    bottom: 0; left:20px;
+    bottom: 0; left:30px;
     
-    transition: all .5s;
+    transition: all .4s;
 }
 
 .users {
@@ -404,26 +458,26 @@ hr {
     transition: all 0.7s;
 }
 
-.container:hover .overlay {
+.card-container:hover .overlay {
     opacity: 1;}
 
-.container:hover .overlay,.container:hover .overlay .head {
+.card-container:hover .overlay,.container:hover .overlay .head {
     transform: translateY(0px);
 }
 
-.container:hover .overlay  hr {
+.card-container:hover .overlay  hr {
     width: 75px;
-    transition-delay: 0.4s;
+    transition-delay: 0.3s;
 }
 
-.container:hover .overlay  .users {
+.card-container:hover .overlay  .users {
     transform: translateY(0px);
-    transition-delay: 0.3s;
+    transition-delay: 0.2s;
     opacity: 1;
 }
 
-.container:hover .overlay  .cart {
+.card-container:hover .overlay  .cart {
     transform: translateY(0px);
-    transition-delay: 0.6s;
+    transition-delay: 0.5s;
     opacity: 1;
 }

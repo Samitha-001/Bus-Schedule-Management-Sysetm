@@ -18,29 +18,30 @@
 </head>
 <body>
   <nav class="navbar">
-    <div><h2><a href="<?=ROOT?>/home" class="logo_white">BusSched</a></h2></div>
+    <div><h2><a href="<?=ROOT?>/home" id="logo_white">BusSched</a></h2></div>
     
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
     <div class="menu">
     
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <a href="<?=ROOT?>/login"><li class="button-orange">Login</li></a>
+    <a href="<?=ROOT?>/signup"><li class="button-orange">Sign Up</li></a>
     
-    <li class="button-orange"><a href="<?=ROOT?>/login">Login</a></li>
     </nav>
     <br>
     <br>
     <br>
     <br>
-    <br>
 
-  <h3 class="center">Admin</h3>
-  
-  <h1 style="text-align:center" class="center">Login</h1><br>
+    <h3>Admin</h3>
+    <h1 style="text-align:center" class="center">Login</h1><br>
   
   <br>
-  <!-- LOGIN FORM FOR ALL USERS -->
+  <!-- LOGIN FORM FOR ADMIN -->
   <form method="post">    
-  <div id="form_bg" class="center">    
+  <div class="form-bg center">    
     <div>
       <input name="email" type="text" class="form-control" id="floatingInput" placeholder="Username or email..." required><br><br>
       <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..." required><br><br>
@@ -49,6 +50,7 @@
     </div>
 
     <div class="errors">
+      <br>
       <?php if(!empty($errors)):?>
       <?= implode("<br>", $errors)?>
       <?php endif;?>
@@ -56,7 +58,7 @@
 
   </div>
 
-  <div id="form_footer" class="center">Don't have an account? <a href="<?=ROOT?>/signup">Register</a></div>
+  <div class="form-footer center">Don't have an account? <a href="<?=ROOT?>/signup">Register</a></div>
 
   </form>
 

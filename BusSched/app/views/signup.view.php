@@ -1,3 +1,9 @@
+<?php
+    if(isset($_SESSION['USER'])){
+        redirect('adminhome');
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,14 +18,16 @@
 <body>
   
 <nav class="navbar">
-    <div><h2><a href="<?=ROOT?>/home" class="logo_white">BusSched</a></h2></div>
+    <div><h2><a href="<?=ROOT?>/home" id="logo_white">BusSched</a></h2></div>
     
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
     <div class="menu">
     
-    
-    <li class="button-orange"><a href="<?=ROOT?>/login">Login</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <a href="<?=ROOT?>/login"><li class="button-orange">Login</li></a>
+    <a href="<?=ROOT?>/signup"><li class="button-orange">Sign Up</li></a>
     </nav>
     <br>
     <br>
@@ -34,7 +42,7 @@
 <!-- SIGN UP FORM - PASSENGER -->
   <form method="post">
 
-    <div id="form_bg" class="center">
+    <div class="form-bg center">
       
       <div>
         <input name="username" type="text" class="form-control" id="username" placeholder="Username..."><br><br>
@@ -44,14 +52,18 @@
         <br>
         <br>
         <button class="button-orange" type="submit">Create</button><br><br>
-        <?php if(!empty($errors)):?>
-        <?= implode("<br>", $errors)?>
-        <?php endif;?>
+        
+        <div class="errors">
+          <?php if(!empty($errors)):?>
+          <?= implode("<br>", $errors)?>
+          <?php endif;?>
+      </div>
+
   </div>
 
   </div>
   
-  <div id="form_footer" class="center">Already have an account? <a href="<?=ROOT?>/login">Login</a></div>
+  <div class="form-footer center">Already have an account? <a href="<?=ROOT?>/login">Login</a></div>
   </form>
 
 </body>
