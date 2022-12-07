@@ -21,7 +21,6 @@ class Buses {
             $data['errors'] = $bus->errors;
         }
 
-
 		$this->view('bus', ['buses' => $buses]);
     }
 }

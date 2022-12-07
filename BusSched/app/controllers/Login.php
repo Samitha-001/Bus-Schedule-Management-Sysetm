@@ -11,8 +11,15 @@ class Login {
 		if($_SERVER['REQUEST_METHOD'] == "POST")
 		{
 			$user = new User;
-			$arr['email'] = $_POST['email'];
-
+			if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+			{
+				$arr['email'] = $_POST['email'];
+			}
+			else
+			{
+				$arr['username'] = $_POST['email'];
+			}
+			
 			$row = $user->first($arr);
 			
 			if($row)
@@ -20,11 +27,10 @@ class Login {
 				if(password_verify($_POST['password'],$row->password))
 				{
 					$_SESSION['USER'] = $row;
-					redirect('home');
+					redirect('admins');
 				}
 			}
 			$user->errors['email'] = "Wrong email or password";
-			
 
 			$data['errors'] = $user->errors;
 		}

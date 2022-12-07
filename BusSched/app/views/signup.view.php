@@ -1,3 +1,9 @@
+<?php
+    if(isset($_SESSION['USER'])){
+        redirect('adminhome');
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,32 +16,54 @@
   <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
 </head>
 <body>
-  <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
   
-    <h3>Create Account</h3>
-    <h1 style="text-align:center">Passenger</h1>
+<nav class="navbar">
+    <div><h2><a href="<?=ROOT?>/home" id="logo_white">BusSched</a></h2></div>
+    
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+    <div class="menu">
+    
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <a href="<?=ROOT?>/login"><li class="button-orange">Login</li></a>
+    <a href="<?=ROOT?>/signup"><li class="button-orange">Sign Up</li></a>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+  
+    <h3>Passenger</h3>
+    <h1 style="text-align:center">Create Account</h1>
+    
+    <br>
 
 <!-- SIGN UP FORM - PASSENGER -->
   <form method="post">
 
-    <div id="form_bg" class="center">
+    <div class="form-bg center">
       
       <div>
         <input name="username" type="text" class="form-control" id="username" placeholder="Username..."><br><br>
         <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."><br><br>
         <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..."><br><br>
-        <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Repeat Password...">
+        <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Confirm Password...">
         <br>
         <br>
         <button class="button-orange" type="submit">Create</button><br><br>
-        <?php if(!empty($errors)):?>
-        <?= implode("<br>", $errors)?>
-        <?php endif;?>
+        
+        <div class="errors">
+          <?php if(!empty($errors)):?>
+          <?= implode("<br>", $errors)?>
+          <?php endif;?>
+      </div>
+
   </div>
 
   </div>
   
-  <div id="form_footer" class="center">Already have an account? <a href="<?=ROOT?>/login">Login</a></div>
+  <div class="form-footer center">Already have an account? <a href="<?=ROOT?>/login">Login</a></div>
   </form>
 
 </body>

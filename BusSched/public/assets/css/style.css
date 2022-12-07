@@ -1,23 +1,13 @@
 body{
     color: white;
-    /* background-image: url("../images/bg-signin.png"); */
-    background: linear-gradient(rgba(36,49,94,0.5), rgba(36,49,94,0.5)), url("../images/bg-signin.png");
+    background: url("../images/bg-signin.png");
+    /* background: linear-gradient(rgba(36,49,94,0.5), rgba(36,49,94,0.5)), url("../images/bg-signin.png"); */
     font-family: 'Outfit';
     
-    padding: 20px;
-    margin: 20px;
+    margin: 0px;
 }
 
-div{
-    color: black;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
-    /* margin: 20px; */
-    align-items: center;
-}
-
-#form_footer{
+.form-footer{
     position: relative;
     left: 0%;
     right: -0.03%;
@@ -25,11 +15,12 @@ div{
     margin-top: 0;
     padding: 20px;
 
+    color: #24315E;
     background: #FBF9FF;
     border-radius: 0px 0px 10px 10px;
 }
 
-#form_bg{
+.form-bg{
     position: relative;
     width: 727.19px;
     height: fit-content;
@@ -41,7 +32,7 @@ div{
     align-items: center;
 }
 
-#logo_white{
+#logo-white{
     color: white;
     text-decoration: none;
 }
@@ -61,6 +52,28 @@ a{
     color: #FD6002;
 }
 
+li{
+    list-style: none;
+}
+
+input{
+    width: 100%;
+    height: 59.32px;
+    padding-left: 20px;
+    border-radius: 5px;
+    font-family: 'Outfit';
+    font-size: 16px;
+    color: #24315E;
+    background: #FFFFFF;
+    border: 1px solid #EEEDF1;
+}
+
+input::placeholder {
+    color: #555555;
+    font-family: 'Outfit';
+    font-size: 16px;
+}
+
 .center {
     margin: auto;
     width: 50%;
@@ -68,18 +81,16 @@ a{
 
 .form-control{
     box-sizing: border-box;
-    
-    position: relative;
+    align-items: center;
+    align-content: center;
+    position: center;
     width: 100%;
     height: 59.32px;
-    /* left: 662.41px;
-    top: 441px; */
 
     background: #FFFFFF;
     border: 1px solid #EEEDF1;
     border-radius: 5px;
 }
-
 
 button:hover {opacity: 0.6}
 
@@ -104,6 +115,44 @@ button:hover {opacity: 0.6}
 
 .errors {
     color: red;
-    font-size: 12px;
+    font-size: 15px;
     margin-top: 5px;
+}
+
+/* nav bar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: black;
+    color: #fff;
+    height: 90px;    
+}
+
+.nav-links a {
+    color: #fff;
+}
+
+.menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+}
+    
+.menu li {
+    padding: 5px 14px;
+    width: max-content;
+}
+
+/* grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
 }

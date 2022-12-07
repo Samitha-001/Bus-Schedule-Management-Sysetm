@@ -18,15 +18,11 @@
 <body>
 <nav class="navbar">
 
-<!-- LOGO -->
-<div><h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2></div>
+<div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
 
-<!-- NAVIGATION MENU -->
 <ul class="nav-links">
 
-<!-- NAVIGATION MENUS -->
 <div class="menu">
-<li><a href="<?=ROOT?>">Home</a></li>
 <li><a href="<?=ROOT?>/buses">Buses</a></li>
 <li><a href="<?=ROOT?>/halts"><b>Halts</b></a></li>
 

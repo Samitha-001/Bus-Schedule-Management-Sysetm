@@ -19,14 +19,13 @@
 <nav class="navbar">
 
 <!-- LOGO -->
-<div><h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2></div>
+<div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
 
 <!-- NAVIGATION MENU -->
 <ul class="nav-links">
 
 <!-- NAVIGATION MENUS -->
 <div class="menu">
-<li><a href="<?=ROOT?>">Home</a></li>
 <li><a href="<?=ROOT?>/buses"><b>Buses</b></a></li>
 <li><a href="<?=ROOT?>/halts">Halts</a></li>
 
@@ -71,7 +70,7 @@
     </tr>
 
     <tr>
-        <td><label for="availability">Available? </label></td>
+        <td><label for="availability">Bus Available? </label></td>
         <td>
             <label class="switch">
             <input type="checkbox" id="availability" name="availability" value="1">
@@ -102,7 +101,7 @@
     <th>Bus No.</th>
     <th>Bus Type</th>
     <th>No. of Seats</th>
-    <th>Available?</th>
+    <th>Bus Available?</th>
     <th>Bus Route</th>
     <th>Start</th>
 </tr>
