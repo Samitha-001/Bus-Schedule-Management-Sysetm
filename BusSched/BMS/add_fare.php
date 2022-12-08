@@ -1,6 +1,5 @@
 <?php 
     require_once('includes/connection.php');
-    session_start();
 
     if(!isset($_SESSION['user_id']))
     header('Location: login.php');
@@ -34,7 +33,8 @@
         $type = mysqli_real_escape_string($connction, $_POST['type']);
         $route = mysqli_real_escape_string($connction, $_POST['route']);
         $amount = mysqli_real_escape_string($connction, $_POST['amount']);
-        $dt2=date("Y-m-d H:i:s");
+        date_default_timezone_set('Asia/Kolkata');
+        $dt2=date("Y-m-d h:i:sa");
 
         $check_duplicate = mysqli_num_rows(mysqli_query($connction, "SELECT * FROM fare WHERE source='$src' AND dest = '$dest' AND route_bus='$route'"));
 
@@ -50,7 +50,7 @@
 
             if($result){
                 echo "<script>alert('registered successfully');</script>";
-                header("Location: scheduler_dashboard.php");
+                header("Location: fare_table.php");
             }else{
                 echo "<script>alert('registration failed');</script>";
             }
@@ -61,9 +61,14 @@
         
 ?>
 
+<style>
+    <?php 
+        include("css/add_fare.css");
+        
+    ?>
+</style>
 
-
-<div id="t-header" class="table-header" style="display: flex;
+<!-- <div id="t-header" class="table-header" style="display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
@@ -73,12 +78,12 @@
             
             <a href="scheduler_dashboard.php"><button class="back" onclick="Change()">Back</button></a>
         </div>
-    </div>
+    </div> -->
 
     <?php 
         if(!empty($errors)){
             echo '<div class="errmsg">';
-            echo 'There was empty fileds'.'</br>';
+            echo 'There was empty fileds '.'</br>';
             foreach($errors as $error){
                 echo $error .'</br>';
             }
@@ -95,29 +100,4 @@
         
     ?>  
 
-    <form action="add_fare.php" class="add-form" method="post" id="addForm">
-                <p>
-                    <label for="">From</label>
-                    <input type="text" name="src" <?php echo 'value="' .$src . '"';?>>
-                </p>
-                <p>
-                    <label for="">To</label>
-                    <input type="text" name="dest" <?php echo 'value="' .$dest . '"';?>>
-                </p>
-                <p>
-                    <label for="">Route</label>
-                    <input type="text" name="route" <?php echo 'value="' .$route . '"';?>>
-                </p>
-                <p>
-                    <label for="">Type</label>
-                    <input type="text" name="type" <?php echo 'value="' .$type . '"';?>>
-                </p>
-                <p>
-                    <label for="">Amount</label>
-                    <input type="text" name="amount" <?php echo 'value="' .$amount . '"';?>>
-                </p>    
-                <p>
-                    <label for="">&nbsp;</label>
-                    <input type="submit" name="add_new">
-                </p>    
-            </form>
+    
