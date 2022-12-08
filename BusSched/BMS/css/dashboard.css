@@ -83,6 +83,7 @@
 .tabs .tab-body{
     margin: 0 auto;
     transition: all 500ms ;
+    width: 100%;
 }
 
 .tabs .tab-body > div{
@@ -112,6 +113,7 @@ body {font-family: "Lato", sans-serif;
 /*style the dashboard*/
 
 .wrapper{
+  width: 100%;
   height: 100vh;
   position: relative;
   display: grid;

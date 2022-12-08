@@ -1,0 +1,148 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #000000;
+    line-height: 80px;
+    position: fixed;
+    width: 100%;
+}
+
+label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 80px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+nav ul{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li{
+    line-height: 80px;
+    margin: 0 10px;
+    font-size: 20px;
+}
+
+
+
+nav ul li:nth-child(3) a{
+    padding: 10px;
+    margin-top: 5px;
+}
+
+nav ul li:nth-child(5) a{
+    color: #fff;
+    font-size: 20px;
+    padding: 6px 15px;
+    font-weight: 600;
+    background-color: #FD6002;
+    border-radius: 3px;
+}
+
+nav ul li:nth-child(1) a:hover, nav ul li:nth-child(2) a:hover{
+    background-color: rgba(83, 40, 200);
+    color: white;
+    transition: 0.5s;
+}
+nav ul li:nth-child(1) a, nav ul li:nth-child(2) a{
+    color: white;
+}
+
+nav ul li:nth-child(3), nav ul li:nth-child(4) a img{
+    align-items: center;
+}
+
+.side-menu{
+    position: fixed;
+    background-color: #1D2951;
+    margin-top: 80px;
+    width: 125px;
+    height: 100%;
+}
+
+.side-menu a{
+    display: block;
+    line-height: 60px;
+    transition: 0.5s;
+    color: white;
+}
+
+.side-menu a:hover{
+    background: rgba(20, 54, 165);
+    padding-left: 20px;
+}
+
+.side-menu span img{
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.side-menu a span img{
+    width: 60px;
+    height: 60px;
+}
+
+nav .menu-bar{
+    float: right;
+    margin-top: 20px;
+    display: none;
+    
+}
+
+#menu{
+    display: none;
+}
+
+.side-menu .Logout{
+    display: none;
+}
+
+.data{
+    position: absolute;
+    left: 125px;
+    top: 80px;
+    width: calc(100% - 125px);
+    height: calc(100vh - 80px);
+    padding: 0px;
+}
+
+
+@media(max-width:850px){
+    .side-menu a span{
+        display: none;
+    }
+
+    .side-menu{
+        width: 100px;
+    }
+    .side-menu a img{
+        display: block;
+        line-height: 80px;
+        text-align: center;
+        margin-left: 10px;
+        font-size: 35px;        
+    }
+
+    .data{
+        margin-left: 100px;
+        
+    }
+}

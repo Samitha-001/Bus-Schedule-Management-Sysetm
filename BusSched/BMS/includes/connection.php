@@ -3,7 +3,7 @@
     $host_name = 'localhost';
     $dbuser = 'root';
     $password = '';
-    $dbname = 'login_register_scheduler';
+    $dbname = 'bussched';
     $connction = mysqli_connect($host_name,$dbuser, $password, $dbname);
 
     //check error

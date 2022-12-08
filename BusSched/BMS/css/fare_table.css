@@ -2,12 +2,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: beige;
+    padding: 15px;
+    background-color: #24315E;
 }
 
 .table-header p{
-    color: black;
+    color: whitesmoke;
+    font-size: x-large;
+    font-weight: 900;
 }
 
 button{
@@ -35,8 +37,16 @@ button{
 } */
 
 .table-section{
-    height: 450px;
+    height: calc(100vh - 145px);
     overflow-y: auto;
+    z-index: 999;
+}
+
+.wrapper_div{
+    
+    height: calc(100vh - 145px);
+    z-index: 1000;
+    background-color: #20C23A;
 }
 
 table{
@@ -47,7 +57,7 @@ table{
 }
 
 thead th{
-    background-color: antiquewhite;
+    background-color: rgb(255, 255, 255);
     color: #24315E;
     font-size: 15px;
 }
@@ -57,11 +67,16 @@ th{
     top: 0;
 }
 
+tr, th, td{
+    z-index: 999;
+}
+
 th, td{
     border-bottom: 1px solid #dddddd;
     padding: 10px 20px;
     word-break: break-all;
     text-align: center;
+    background-color: #F9F9F9;
 }
 
 tr:hover td{
@@ -75,3 +90,68 @@ td button:nth-child(1){
 td button:nth-child(2){
     background-color: rgb(247, 0, 0);
 }
+
+.popup{
+    z-index: 2000;
+    display: block;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px 30px;
+}
+
+.popup .form h2{
+    text-align: center;
+    margin: 10px 0px 20px;
+    font-size: 25px;
+}
+
+.form-element {
+    margin-bottom: 15px;
+    height: 40px;
+  }
+
+.form-element input[type="text"]{
+   height: 35px;
+   width: 250px;
+   background-color: #DEF2F1;
+   border: none;
+   border-radius: 10px;
+}
+
+  label {
+    font-weight: bold;
+    font-size: 20px;
+    color: #24315E;
+    display: inline-block;
+    width: 75px;
+  }
+
+  .add_cancel{
+    width: 100px;
+    height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  input[type="button"]{
+    background-color: #ffffff;
+    color: #20C23A;
+    border: solid 2px #20C23A;
+  }
+  
+  input[type="submit"]{
+    background-color: #20C23A;
+    color: #fff;
+    border: none;
+  }
+
+  .errmsg{
+    background-color: #ff0022;
+  }
+
+

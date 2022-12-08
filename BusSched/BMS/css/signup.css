@@ -123,7 +123,7 @@ form{
 } */
 
 body{
-    background: url("../img/InsideBus.png");
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(36, 49, 94, 0.5)), url("img/InsideBus.png");
     background-position: center;
     background-size: cover;
 }
@@ -153,24 +153,28 @@ form{
     font-size: 1.1rem;
     color: #333;
     border:0;
-    background: #DEF2F1;
+    background: #ffffff;
     display: block;
     margin: 3px auto;
     text-align: left;
     padding: 14px 10px;
     width: 400px;
+    border: 2px solid #EEEDF1;
     border-radius: 15px;
     transition: 0.25px;
 }
 
 .btn{
+    color: #fff;
+    font-size: medium;
+    font-weight: 600;
     border:0;
-    background: #24315E;
+    background: #F15F22;
     display: inline-block;
     margin: 20px auto;
     text-align: center;
     padding: 14px 10px;
-    width: 200px;
+    width: 400px;
     outline: none;
     border-radius: 15px;
     transition: 0.25s;
@@ -185,7 +189,7 @@ form{
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255);
     border-radius: 35px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

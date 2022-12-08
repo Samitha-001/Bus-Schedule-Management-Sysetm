@@ -1,5 +1,9 @@
 <?php
     require 'includes/header.php';
+
+    if(isset($_SESSION["user_id"])){
+        header("Location: landing.php");
+    }
 ?>
 <style>
     <?php 
