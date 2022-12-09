@@ -1,0 +1,40 @@
+body{
+    box-sizing: border-box;
+    background-image: url("img/landing.png");
+    background-position: top;
+    background-size: cover;
+}
+
+.find_bus{
+    position: absolute;
+    top: 91px;
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    float: left;
+}
+
+.find_bus input, h1{
+    padding: 10px;
+    margin: 5px;
+}
+
+h1{
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+
+label{
+    color: aliceblue;
+}
+
+input[type="text"]{
+    width:300px;
+}
+
+input[type="button"]{
+    float: right;
+    width: 120px;
+    background-color: #FD6002;
+    border: none;
+}
