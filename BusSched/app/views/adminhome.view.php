@@ -128,7 +128,7 @@
                     </div>
                 <div class = "items users">
                     <p>Bus tickets</p>
-                    <p>Bus fare</p>
+                    <p><a href="<?=ROOT?>/fares">Bus fare</a></p>
                 </div>
             </div>
         </div>
