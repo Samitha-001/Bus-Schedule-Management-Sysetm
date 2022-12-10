@@ -28,6 +28,7 @@
 <div class="menu">
 <li><a href="<?=ROOT?>/buses"><b>Buses</b></a></li>
 <li><a href="<?=ROOT?>/halts">Halts</a></li>
+<li><a href="<?=ROOT?>/fares">Fare</a></li>
 
 <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
 </div>
