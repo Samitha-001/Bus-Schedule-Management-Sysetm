@@ -19,7 +19,7 @@
 
   <!-- LOGIN FORM FOR ALL USERS -->
   <form method="post">    
-  <div id="form_bg" class="center">    
+  <div class="form-bg center">    
     <div>
       <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..." required><br><br>
       
@@ -32,9 +32,10 @@
       <?= implode("<br>", $errors)?>
       <?php endif;?>
     </div>
+    <div class="center form-footer">Don't have an account? <a href="<?=ROOT?>/schedulersignup">Register</a></div>
   </div>
 
-  <div id="form_footer" class="center">Don't have an account? <a href="<?=ROOT?>/schedulersignup">Register</a></div>
+  
 
   </form>
 
