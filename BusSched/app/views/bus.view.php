@@ -36,7 +36,23 @@
 
 </nav>
 
-<div class="header">
+<div  class="wrapper">
+    <div class="sidebar">
+        <li><a href="<?=ROOT?>/admins" style="color:#f4511e;">Dashboard</a></li>
+        <li><a href="#" style="color:#f4511e;">Users</a></li>
+        <li><a href="#" style="color:#f4511e;">Schedules</a></li>
+        <li><a href="<?=ROOT?>/buses" style="color:white;"><b>Buses</b></a></li>
+        <li><a href="#" style="color:#f4511e;">Ratings</a></li>
+        <li><a href="#" style="color:#f4511e;">Tickets</a></li>
+        <li><a href="<?=ROOT?>/fares" style="color:#f4511e;">Bus Fares</a></li>
+        <li><a href="#" style="color:#f4511e;">Routes</a></li>
+        <li><a href="<?=ROOT?>/halts" style="color:#f4511e;">Halts</a></li>
+    </div>
+</div>
+
+<main class="container">
+
+<div class="header orange-header">
     <div><h3>Buses</h3></div>
     <div><button id="btn" class="button-grey">Add New</button></div>    
 </div>
@@ -47,8 +63,8 @@
 <?= implode("<br>", $errors)?>
 <?php endif;?>
 
-<div>
-<table class="styled-table">
+<div class="data-table">
+<table class="styled-table data-table">
     <tr>
         <td><label for="bus_no">Bus No. </label></td>
         <td><input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
@@ -95,7 +111,7 @@
 </div>
 </form>
 
-<div>
+<div class="data-table">
 <table border='1' class="styled-table">
     <tr>
     <th>#</th>
@@ -124,7 +140,7 @@
 </div>
     
 <script src="<?=ROOT?>/assets/js/bus.js"></script>
-
+</main>
 
 </body>
 </html>
