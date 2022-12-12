@@ -31,7 +31,7 @@
     <h1 style="text-align:center">Scheduler</h1>
 
 <!-- SIGN UP FORM - SCHEDULER -->
-  <form method="post">
+  
 
     <!-- <div id="form_bg" class="center">
       
@@ -60,19 +60,22 @@
       <form action="" class="sign-up-form" method="post" >
             <h2 class="title">Sign up</h2>
             <div class="input-field">
-              <input type="email" placeholder="Email Address" name="signup_email"required >
+              <input type="email" placeholder="Email Address" name="email"required >
             </div>
             <div class="input-field">
-              <input type="text" placeholder="User Name" name="signup_username" required >
+              <input type="text" placeholder="User Name" name="username" required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Password" name="signup_password"  required >
+              <input type="password" placeholder="Password" name="password"  required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Confirm Password" name="signup_cpassword" required >
+              <input type="password" placeholder="Confirm Password" name="pwdRepeat" required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
-            <div style="display: flex; justify-content: space-between;">
+              <?php if(!empty($errors)):?>
+              <?= implode("<br>", $errors)?>
+              <?php endif;?>
+              <div style="display: flex; justify-content: space-between;">
               <p>Already have an account</p>
               <p><a href="#">Log in</a></p>
             </div>
@@ -84,16 +87,16 @@
       <form action="" class="sign-up-form" method="post" >
             <h2 class="title">Sign up</h2>
             <div class="input-field">
-              <input type="email" placeholder="Email Address" name="signup_email"required >
+              <input type="email" placeholder="Email Address" name="email"required >
             </div>
             <div class="input-field">
-              <input type="text" placeholder="User Name" name="signup_username" required >
+              <input type="text" placeholder="User Name" name="username" required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Password" name="signup_password"  required >
+              <input type="password" placeholder="Password" name="password"  required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Confirm Password" name="signup_cpassword"  required >
+              <input type="password" placeholder="Confirm Password" name="pwdRepeat"  required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
               <div style="display: flex; justify-content: space-between;">
@@ -108,16 +111,16 @@
       <form action="" class="sign-up-form" method="post" >
             <h2 class="title">Sign up</h2>
             <div class="input-field">
-              <input type="email" placeholder="Email Address" name="signup_email"required >
+              <input type="email" placeholder="Email Address" name="email"required >
             </div>
             <div class="input-field">
-              <input type="text" placeholder="User Name" name="signup_username" required >
+              <input type="text" placeholder="User Name" name="username" required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Password" name="signup_password"  required >
+              <input type="password" placeholder="Password" name="password"  required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Confirm Password" name="signup_cpassword"  required >
+              <input type="password" placeholder="Confirm Password" name="pwdRepeat"  required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
               <div style="display: flex; justify-content: space-between;">
@@ -132,16 +135,16 @@
       <form action="" class="sign-up-form" method="post" >
             <h2 class="title">Sign up</h2>
             <div class="input-field">
-              <input type="email" placeholder="Email Address" name="signup_email"required >
+              <input type="email" placeholder="Email Address" name="email"required >
             </div>
             <div class="input-field">
-              <input type="text" placeholder="User Name" name="signup_username" required >
+              <input type="text" placeholder="User Name" name="username" required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Password" name="signup_password"  required >
+              <input type="password" placeholder="Password" name="password"  required >
             </div>
             <div class="input-field">
-              <input type="password" placeholder="Confirm Password" name="signup_cpassword"  required >
+              <input type="password" placeholder="Confirm Password" name="pwdRepeat"  required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
               <div style="display: flex; justify-content: space-between;">
@@ -178,7 +181,6 @@
   </div>
 </main>
 
-  </form>
 
 </body>
 </html>
