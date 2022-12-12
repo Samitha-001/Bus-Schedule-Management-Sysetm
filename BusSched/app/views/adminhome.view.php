@@ -44,8 +44,22 @@
 
     </nav>
 
+    <div  class="wrapper">
+        <div class="sidebar">
+            <li><a href="<?=ROOT?>/admins" style="color:white;"><b>Dashboard</b></a></li>
+            <li><a href="#" style="color:#f4511e;">Users</a></li>
+            <li><a href="#" style="color:#f4511e;">Schedules</a></li>
+            <li><a href="<?=ROOT?>/buses" style="color:#f4511e;">Buses</a></li>
+            <li><a href="#" style="color:#f4511e;">Ratings</a></li>
+            <li><a href="#" style="color:#f4511e;">Tickets</a></li>
+            <li><a href="<?=ROOT?>/fares" style="color:#f4511e;">Bus Fares</a></li>
+            <li><a href="#" style="color:#f4511e;">Routes</a></li>
+            <li><a href="<?=ROOT?>/halts" style="color:#f4511e;">Halts</a></li>
+        </div>
+    </div>
     
     <main class="container">
+
         <div class="card-container" id="greeting-card"><h2>
         <?php
             echo "Welcome ".$_SESSION['USER']->username."!";
@@ -88,7 +102,8 @@
                     </div>
                 <div class = "items users">
                     <p>Passengers, Drivers,</p>
-                    <p>Conductors, Schedulers,</p>
+                    <p>Conductors,</p>
+                    <p>Schedulers,</p>
                     <p>Bus Owners</p>
                 </div>
             </div>
