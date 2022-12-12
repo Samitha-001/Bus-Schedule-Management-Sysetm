@@ -15,7 +15,7 @@ class Signup
 			if($user->validate($_POST))
 			{
 				$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-				$_POST['role'] = 'passenger';
+				$_POST['role'] = 'admin';
 				$user->insert($_POST);
 				redirect('login');
 			}

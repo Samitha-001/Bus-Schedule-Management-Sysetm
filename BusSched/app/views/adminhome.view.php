@@ -2,6 +2,22 @@
     if(!isset($_SESSION['USER'])){
         redirect('home');
     }
+    // show($_SESSION['USER']->role)
+    if($_SESSION['USER']->role == 'passenger'){
+        redirect('home');
+    }
+    else if($_SESSION['USER']->role == 'driver'){
+        redirect('driverhome');
+    }
+    else if($_SESSION['USER']->role == 'conductor'){
+        redirect('conductorhome');
+    }
+    else if($_SESSION['USER']->role == 'scheduler'){
+        redirect('schedulerhome');
+    }
+    else if($_SESSION['USER']->role == 'owner'){
+        redirect('ownerhome');
+    }
 ?>
 
 <!DOCTYPE html>

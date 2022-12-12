@@ -2,13 +2,7 @@
     if(!isset($_SESSION['USER'])){
         redirect('home');
     }
-
-            $src = $_POST['src'];
-            $dest = $_POST['dest'];
-            $route = $_POST['route'];
-            $amount = $_POST['amount'];
-    
-            show($_POST);
+    // show($_POST);
 ?>
 
 <!doctype html>
@@ -60,20 +54,20 @@
 <table class="styled-table">
     
 <div class="form-element">
-                    <label for="">From</label>
-                    <input type="text" name="src" <?php echo 'value="' .$src. '"';?> >
+                    <label for="source">From</label>
+                    <input type="text" name="source" id="source">
                 </div>
                 <div class="form-element">
-                    <label for="">To</label>
-                    <input type="text" name="dest" <?php echo 'value="' .$dest. '"';?>>
+                    <label for="dest">To</label>
+                    <input type="text" name="dest" id="dest">
                 </div>
                 <div class="form-element">
-                    <label for="">Route</label>
-                    <input type="text" name="route" <?php echo 'value="' .$route . '"';?> >
+                    <label for="route_bus">Route</label>
+                    <input type="text" name="route_bus" id="route_bus">
                 </div>
                 <div class="form-element">
-                    <label for="type">Type  </label>
-                    <select name="type" id="type" class="form-control">
+                    <label for="type_bus">Type  </label>
+                    <select name="type_bus" id="type_bus" class="form-control">
             <option disabled selected value>--select an option--</option>
             <option value="L">Luxury</option>
             <option value="S">Semi-Luxury</option>
@@ -82,12 +76,15 @@
                     
                 </div>
                 <div class="form-element">
-                    <label for="">Amount</label>
-                    <input type="number" name="amount" <?php echo 'value="' .$amount. '"';?> >
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" id="amount">
     	        </div>    
-                    <label for="">&nbsp;</label>
-                    <input class="add_cancel" type="submit" name="add_new">   
-                    <input class="add_cancel" type="button" value="Cancel" onclick="cancel()">   
+                <label for="">&nbsp;</label>
+
+            <tr><td colspan="2"><button class="button-green" type="submit">Add New Fare</button></td></tr>
+
+                <!-- <input class="add_cancel" type="submit" name="add_new">   
+                <input class="add_cancel" type="button" value="Cancel" onclick="cancel()">    -->
 
     
 
