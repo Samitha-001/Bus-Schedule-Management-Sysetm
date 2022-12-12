@@ -21,6 +21,7 @@
     ?> 
     <li><a href="<?=ROOT?>/buses">Buses</a></li>
     <li><a href="<?=ROOT?>/halts">Halts</a></li>
+    <li><a href="<?=ROOT?>/fares">Fare</a></li>
     <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
     </div>
     </ul>
@@ -28,16 +29,8 @@
     </nav>
     
     <?php
-        echo "Welcome ".$_SESSION['USER']->username."!";
+        // echo "Welcome ".$_SESSION['USER']->username."!";
     ?>
-
-    <h1>Home page view</h1>
-    <div>
-        
-    <h2>
-    <br>
-    <a href="<?=ROOT?>/buses">BUSES</a><br>
-    <a href="<?=ROOT?>/halts">HALTS</a><br>
 
     <?php }
     else{

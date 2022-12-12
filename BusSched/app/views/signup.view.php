@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>Passenger - Sign Up</title>
+  <title>Admin - Sign Up</title>
 
   <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
 </head>
@@ -34,12 +34,12 @@
     <br>
     <br>
   
-    <h3>Passenger</h3>
+    <h3>Admin</h3>
     <h1 style="text-align:center">Create Account</h1>
     
     <br>
 
-<!-- SIGN UP FORM - PASSENGER -->
+<!-- SIGN UP FORM - ADMIN -->
   <form method="post">
 
     <div class="form-bg center">
