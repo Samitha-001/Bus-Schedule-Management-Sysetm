@@ -15,7 +15,6 @@ class Fares {
 
             if($fare->validate($_POST)) {
                 $fare->insert($_POST);
-
                 redirect('fares');
             }
 
