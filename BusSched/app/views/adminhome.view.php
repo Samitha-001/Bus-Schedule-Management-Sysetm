@@ -2,6 +2,22 @@
     if(!isset($_SESSION['USER'])){
         redirect('home');
     }
+    // show($_SESSION['USER']->role)
+    if($_SESSION['USER']->role == 'passenger'){
+        redirect('home');
+    }
+    else if($_SESSION['USER']->role == 'driver'){
+        redirect('driverhome');
+    }
+    else if($_SESSION['USER']->role == 'conductor'){
+        redirect('conductorhome');
+    }
+    else if($_SESSION['USER']->role == 'scheduler'){
+        redirect('schedulerhome');
+    }
+    else if($_SESSION['USER']->role == 'owner'){
+        redirect('ownerhome');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,55 +34,42 @@
 <body>
     
     <nav class="navbar">
-    <div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
+    <div><h2><a href="<?=ROOT?>/admins" id="logo-white">BusSched</a></h2></div>
     
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">    
-    <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
+    <ul class="nav-links">
+    <div class="menu">
+    <a href="<?=ROOT?>/admins"><li><img src="<?=ROOT?>/assets/images/profile-icon.png" class="nav-bar-img"></li></a>
+    <a href="<?=ROOT?>/logout"><li class="button-orange">Logout</li></a>
     </div>
     </ul>
 
     </nav>
 
-    <h2>
-    <div>
-    <?php
-        echo "Welcome ".$_SESSION['USER']->username."!";
-    ?>
+    <div  class="wrapper">
+        <div class="sidebar">
+            <li><a href="<?=ROOT?>/admins" style="color:white;"><b>Dashboard</b></a></li>
+            <li><a href="#" style="color:#f4511e;">Users</a></li>
+            <li><a href="#" style="color:#f4511e;">Schedules</a></li>
+            <li><a href="<?=ROOT?>/buses" style="color:#f4511e;">Buses</a></li>
+            <li><a href="#" style="color:#f4511e;">Ratings</a></li>
+            <li><a href="#" style="color:#f4511e;">Tickets</a></li>
+            <li><a href="<?=ROOT?>/fares" style="color:#f4511e;">Bus Fares</a></li>
+            <li><a href="#" style="color:#f4511e;">Routes</a></li>
+            <li><a href="<?=ROOT?>/halts" style="color:#f4511e;">Halts</a></li>
+        </div>
     </div>
-    </h2>
-    <main class="dashboard-grid">
-        <div class="container dashboard" id="users-card">
-            <div class="overlay">
-                <div class = "items"></div>
-                    <div class = "items head">
-                        <p>Users</p>
-                        <hr>
-                    </div>
-                <div class = "items users">
-                    <p>Passengers, Drivers,</p>
-                    <p>Conductors, Schedulers,</p>
-                    <p>Bus Owners</p>
-                </div>
-            </div>
-        </div>
+    
+    <main class="container">
 
-        <div class="container dashboard" id="schedules-card">
-            <div class="overlay">
-                <div class = "items"></div>
-                    <div class = "items head">
-                        <p>Schedules</p>
-                        <hr>
-                    </div>
-                <div class = "items users">
-                    <p>Bus Schedules</p>
-                </div>
-            </div>
-        </div>
+        <div class="card-container" id="greeting-card"><h2>
+        <?php
+            echo "Welcome ".$_SESSION['USER']->username."!";
+        ?>
+        </h2></div>
 
-        <div class="container dashboard">
-            <h4>Personal Info</h4>
+        <div class="card-container" id="info-card">
             <ul>    
+                <p style="font-size: 32px;">Personal Info</p>
                 <table class="styled-table">
                     <tr>
                         <th>Username: </th>
@@ -91,7 +94,34 @@
             </ul>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container" id="users-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Users</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p>All user profiles</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container" id="schedules-card">
+            <div class="overlay">
+                <div class = "items"></div>
+                    <div class = "items head">
+                        <p>Schedules</p>
+                        <hr>
+                    </div>
+                <div class = "items users">
+                    <p>Bus Schedules</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container" id="buses-card">
+            <a href="<?=ROOT?>/buses">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -99,12 +129,13 @@
                         <hr>
                     </div>
                 <div class = "items users">
-                    <p>View bus details</p>
+                    <p>Bus details</p>
                 </div>
             </div>
+            </a>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container" id="ratings-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -112,12 +143,12 @@
                         <hr>
                     </div>
                 <div class = "items users">
-                    <p>View ratings</p>
+                    <p>User ratings</p>
                 </div>
             </div>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container" id="tickets-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">
@@ -126,11 +157,12 @@
                     </div>
                 <div class = "items users">
                     <p>Bus tickets</p>
+                    <p><a href="<?=ROOT?>/fares">Bus fare</a></p>
                 </div>
             </div>
         </div>
 
-        <div class="container dashboard" id="buses-card">
+        <div class="card-container" id="halts-card">
             <div class="overlay">
                 <div class = "items"></div>
                     <div class = "items head">

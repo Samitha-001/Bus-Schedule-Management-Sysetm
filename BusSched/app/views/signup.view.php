@@ -1,3 +1,9 @@
+<?php
+    if(isset($_SESSION['USER'])){
+        redirect('adminhome');
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,36 +11,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>Passenger - Sign Up</title>
+  <title>Admin - Sign Up</title>
 
   <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
 </head>
 <body>
   
 <nav class="navbar">
-    <div><h2><a href="<?=ROOT?>/home" class="logo_white">BusSched</a></h2></div>
+    <div><h2><a href="<?=ROOT?>/home" id="logo_white">BusSched</a></h2></div>
     
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
     <div class="menu">
     
-    
-    <li class="button-orange"><a href="<?=ROOT?>/login">Login</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">About</a></li>
+    <a href="<?=ROOT?>/login"><li class="button-orange">Login</li></a>
+    <a href="<?=ROOT?>/signup"><li class="button-orange">Sign Up</li></a>
     </nav>
     <br>
     <br>
     <br>
     <br>
   
-    <h3>Passenger</h3>
+    <h3>Admin</h3>
     <h1 style="text-align:center">Create Account</h1>
     
     <br>
 
-<!-- SIGN UP FORM - PASSENGER -->
+<!-- SIGN UP FORM - ADMIN -->
   <form method="post">
 
-    <div id="form_bg" class="center">
+    <div class="form-bg center">
       
       <div>
         <input name="username" type="text" class="form-control" id="username" placeholder="Username..."><br><br>
@@ -44,14 +52,18 @@
         <br>
         <br>
         <button class="button-orange" type="submit">Create</button><br><br>
-        <?php if(!empty($errors)):?>
-        <?= implode("<br>", $errors)?>
-        <?php endif;?>
-  </div>
+        
+        <div class="errors">
+          <?php if(!empty($errors)):?>
+          <?= implode("<br>", $errors)?>
+          <?php endif;?>
+        </div>
 
-  </div>
+      </div>
+
+     </div>
   
-  <div id="form_footer" class="center">Already have an account? <a href="<?=ROOT?>/login">Login</a></div>
+  <div class="form-footer center">Already have an account? <a href="<?=ROOT?>/login">Login</a></div>
   </form>
 
 </body>
