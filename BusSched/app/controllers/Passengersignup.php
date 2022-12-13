@@ -1,7 +1,7 @@
 <?php 
 
 
-class Signup
+class Passengersignup
 {
 	use Controller;
 

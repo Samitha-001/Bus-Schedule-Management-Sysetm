@@ -38,15 +38,10 @@
     
     <li><a href="#">Services</a></li>
     <li><a href="#">About</a></li>
-    <a href="<?=ROOT?>/login"><li class="button-orange">Login</li></a>
-    <a href="<?=ROOT?>/signup"><li class="button-orange">Sign Up</li></a>
+    <a href="<?=ROOT?>/login"><li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li></a>
+    <a href="<?=ROOT?>/signup"><li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li></a>
     </nav>
-<!--     
-    <br><br><a href="<?=ROOT?>/login">ADMIN - LOGIN</a>
-    <br><a href="<?=ROOT?>/signup">PASSENGER - SIGNUP</a>
-    <br><br><a href="<?=ROOT?>/ownerlogin">BUS OWNER - LOGIN</a>
-    <br><a href="<?=ROOT?>/ownersignup">BUS OWNER - SIGNUP</a> -->
-
+    
     <?php } ?>
 
     </h2>
