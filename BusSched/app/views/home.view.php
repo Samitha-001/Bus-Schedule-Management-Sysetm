@@ -21,6 +21,7 @@
     ?> 
     <li><a href="<?=ROOT?>/buses">Buses</a></li>
     <li><a href="<?=ROOT?>/halts">Halts</a></li>
+    <li><a href="<?=ROOT?>/fares">Fare</a></li>
     <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
     </div>
     </ul>
@@ -28,16 +29,8 @@
     </nav>
     
     <?php
-        echo "Welcome ".$_SESSION['USER']->username."!";
+        // echo "Welcome ".$_SESSION['USER']->username."!";
     ?>
-
-    <h1>Home page view</h1>
-    <div>
-        
-    <h2>
-    <br>
-    <a href="<?=ROOT?>/buses">BUSES</a><br>
-    <a href="<?=ROOT?>/halts">HALTS</a><br>
 
     <?php }
     else{
@@ -45,15 +38,10 @@
     
     <li><a href="#">Services</a></li>
     <li><a href="#">About</a></li>
-    <a href="<?=ROOT?>/login"><li class="button-orange">Login</li></a>
-    <a href="<?=ROOT?>/signup"><li class="button-orange">Sign Up</li></a>
+    <a href="<?=ROOT?>/login"><li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li></a>
+    <a href="<?=ROOT?>/signup"><li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li></a>
     </nav>
-<!--     
-    <br><br><a href="<?=ROOT?>/login">ADMIN - LOGIN</a>
-    <br><a href="<?=ROOT?>/signup">PASSENGER - SIGNUP</a>
-    <br><br><a href="<?=ROOT?>/ownerlogin">BUS OWNER - LOGIN</a>
-    <br><a href="<?=ROOT?>/ownersignup">BUS OWNER - SIGNUP</a> -->
-
+    
     <?php } ?>
 
     </h2>
