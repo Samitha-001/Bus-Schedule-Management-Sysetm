@@ -75,8 +75,15 @@ input::placeholder {
 }
 
 .create_account {
+  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 200px 200px;
   color: #24315e;
 }
+
+
 
 .center {
   margin: auto;
@@ -225,10 +232,13 @@ form {
   width: 100%;
   padding: 20px;
   background: #fff;
+  height: fit-content;
+  margin-bottom: 0;
   order: 1;
   display: none;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  align-items: center;
 }
 
 label:hover {

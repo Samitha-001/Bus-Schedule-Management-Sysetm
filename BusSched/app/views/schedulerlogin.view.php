@@ -1,3 +1,9 @@
+<?php
+    if(isset($_SESSION['USER'])){
+        redirect('adminhome');
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
