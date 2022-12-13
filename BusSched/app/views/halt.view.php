@@ -16,21 +16,15 @@
     <link href="<?=ROOT?>/assets/css/style2.css" rel="stylesheet">
 </head>
 <body>
+
 <nav class="navbar">
-
-<div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
-
-<ul class="nav-links">
-
-<div class="menu">
-<li><a href="<?=ROOT?>/buses">Buses</a></li>
-<li><a href="<?=ROOT?>/halts"><b>Halts</a></b></li>
-<li><a href="<?=ROOT?>/fares">Fare</a></li>
-
-<li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
-</div>
-</ul>
-
+    <div><h2><a href="<?=ROOT?>/admins" id="logo-white">BusSched</a></h2></div>
+    <ul class="nav-links">
+    <div class="menu">
+    <a href="<?=ROOT?>/admins"><li><img src="<?=ROOT?>/assets/images/profile-icon.png" class="nav-bar-img"></li></a>
+    <a href="<?=ROOT?>/logout"><li class="button-orange">Logout</li></a>
+    </div>
+    </ul>
 </nav>
 
 <div class="wrapper">
@@ -89,7 +83,7 @@
         <th>#</th>
         <th>Bus Halt</th>
         <th>Distance from source</th>
-    </tr>
+        </tr>
         
         <?php
         foreach($halts as $halt) {

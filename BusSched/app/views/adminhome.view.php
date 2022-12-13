@@ -36,9 +36,10 @@
     <nav class="navbar">
     <div><h2><a href="<?=ROOT?>/admins" id="logo-white">BusSched</a></h2></div>
     
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">    
-    <li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
+    <ul class="nav-links">
+    <div class="menu">
+    <a href="<?=ROOT?>/admins"><li><img src="<?=ROOT?>/assets/images/profile-icon.png" class="nav-bar-img"></li></a>
+    <a href="<?=ROOT?>/logout"><li class="button-orange">Logout</li></a>
     </div>
     </ul>
 
@@ -101,10 +102,7 @@
                         <hr>
                     </div>
                 <div class = "items users">
-                    <p>Passengers, Drivers,</p>
-                    <p>Conductors,</p>
-                    <p>Schedulers,</p>
-                    <p>Bus Owners</p>
+                    <p>All user profiles</p>
                 </div>
             </div>
         </div>
@@ -131,7 +129,7 @@
                         <hr>
                     </div>
                 <div class = "items users">
-                    <p>View bus details</p>
+                    <p>Bus details</p>
                 </div>
             </div>
             </a>
@@ -145,7 +143,7 @@
                         <hr>
                     </div>
                 <div class = "items users">
-                    <p>View ratings</p>
+                    <p>User ratings</p>
                 </div>
             </div>
         </div>

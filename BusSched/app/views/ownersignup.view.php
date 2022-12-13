@@ -12,30 +12,33 @@
 <body>
   <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
   
-    <h3>Create Account</h3>
-    <h1 style="text-align:center">Bus Owner</h1>
+    <h3>Bus Owner</h3>
+    <h1 style="text-align:center">Create Account</h1>
 
-<!-- SIGN UP FORM - PASSENGER -->
+<!-- SIGN UP FORM - BUS OWNER -->
   <form method="post">
 
-    <div id="form_bg" class="center">
+    <div class="form_bg center">
       
       <div>
         <input name="username" type="text" class="form-control" id="username" placeholder="Username..."><br><br>
         <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."><br><br>
         <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..."><br><br>
-        <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Repeat Password...">
+        <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Confirm Password...">
         <br>
         <br>
         <button class="button-orange" type="submit">Create</button><br><br>
+
+        <div class="errors">
         <?php if(!empty($errors)):?>
         <?= implode("<br>", $errors)?>
         <?php endif;?>
-  </div>
+        </div>
+      </div>
 
-  </div>
+    </div>
   
-  <div id="form_footer" class="center">Already have an account? <a href="<?=ROOT?>/ownerlogin">Login</a></div>
+  <div class="form_footer center">Already have an account? <a href="<?=ROOT?>/ownerlogin">Login</a></div>
   </form>
 
 </body>
