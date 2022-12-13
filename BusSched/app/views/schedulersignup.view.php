@@ -60,9 +60,11 @@
               <input type="password" placeholder="Confirm Password" name="pwdRepeat" required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
-              <?php if(!empty($errors)):?>
+              <div class="errors">
+                <?php if(!empty($errors)):?>
               <?= implode("<br>", $errors)?>
               <?php endif;?>
+              </div>
               <div class="create_account">
               <p>Already have an account</p>
               <p><a href="#">Log in</a></p>
@@ -87,6 +89,11 @@
               <input type="password" placeholder="Confirm Password" name="pwdRepeat"  required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
+              <div class="errors">
+                <?php if(!empty($errors)):?>
+              <?= implode("<br>", $errors)?>
+              <?php endif;?>
+              </div>
               <div class="create_account">
               <p>Already have an account</p>
               <p><a href="#">Log in</a></p>
@@ -111,6 +118,11 @@
               <input type="password" placeholder="Confirm Password" name="pwdRepeat"  required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
+              <div class="errors">
+                <?php if(!empty($errors)):?>
+              <?= implode("<br>", $errors)?>
+              <?php endif;?>
+              </div>
               <div class="create_account">
               <p>Already have an account</p>
               <p><a href="#">Log in</a></p>
@@ -135,9 +147,11 @@
               <input type="password" placeholder="Confirm Password" name="pwdRepeat"  required >
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
-              <?php if(!empty($errors)):?>
+              <div class="errors">
+                <?php if(!empty($errors)):?>
               <?= implode("<br>", $errors)?>
               <?php endif;?>
+              </div>
               <div class="create_account">
               <p>Already have an account</p>
               <p><a href="#">Log in</a></p>
@@ -163,7 +177,7 @@
             </div>
               <input type="submit" class="btn" name="signup" value="Sign Up">
               <div class="errors">
-              <?php if(!empty($errors)):?>
+                <?php if(!empty($errors)):?>
               <?= implode("<br>", $errors)?>
               <?php endif;?>
               </div>
