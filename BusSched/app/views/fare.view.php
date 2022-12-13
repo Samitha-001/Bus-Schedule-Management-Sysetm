@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<main class="container">
+<main class="container1">
 
 <div class="header orange-header">
     <div><h3>Bus Fare</h3></div>
