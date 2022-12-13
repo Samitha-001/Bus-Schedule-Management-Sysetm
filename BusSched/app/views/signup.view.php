@@ -57,11 +57,11 @@
           <?php if(!empty($errors)):?>
           <?= implode("<br>", $errors)?>
           <?php endif;?>
+        </div>
+
       </div>
 
-  </div>
-
-  </div>
+     </div>
   
   <div class="form-footer center">Already have an account? <a href="<?=ROOT?>/login">Login</a></div>
   </form>

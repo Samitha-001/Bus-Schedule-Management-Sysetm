@@ -17,26 +17,15 @@
     <link href="<?=ROOT?>/assets/css/style2.css" rel="stylesheet">
 </head>
 <body>
+
 <nav class="navbar">
-
-<!-- LOGO -->
-<div><h2><a href="<?=ROOT?>/admins" id="logo_white">BusSched</a></h2></div>
-
-<!-- NAVIGATION MENU -->
-<ul class="nav-links">
-
-<!-- NAVIGATION MENUS -->
-<div class="menu">
-<li><a href="<?=ROOT?>/buses">Buses</a></li>
-<li><a href="<?=ROOT?>/halts">Halts</a></li>
-<li><a href="<?=ROOT?>/fares"><b>Fare</b></a></li>
-
-
-
-<li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
-</div>
-</ul>
-
+    <div><h2><a href="<?=ROOT?>/admins" id="logo-white">BusSched</a></h2></div>
+    <ul class="nav-links">
+    <div class="menu">
+    <a href="<?=ROOT?>/admins"><li><img src="<?=ROOT?>/assets/images/profile-icon.png" class="nav-bar-img"></li></a>
+    <a href="<?=ROOT?>/logout"><li class="button-orange">Logout</li></a>
+    </div>
+    </ul>
 </nav>
 
 <div  class="wrapper">
@@ -67,45 +56,29 @@
 <?php endif;?>
 
 <div class="data-table">
-<table class="styled-table data-table">
-    
-<!-- <div class="form-element"> -->
-                    <label for="source">From</label>
-                    <input type="text" name="source" id="source">
-                <!-- </div> -->
-                <!-- <div class="form-element"> -->
-                    <label for="dest">To</label>
-                    <input type="text" name="dest" id="dest">
-                <!-- </div> -->
-                <!-- <div class="form-element"> -->
-                    <label for="route_bus">Route</label>
-                    <input type="text" name="route_bus" id="route_bus">
-                <!-- </div> -->
-                <!-- <div class="form-element"> -->
-                    <label for="type_bus">Type  </label>
-                    <select name="type_bus" id="type_bus" class="form-control">
-            <option disabled selected value>--select an option--</option>
-            <option value="L">Luxury</option>
-            <option value="S">Semi-Luxury</option>
-            </select>
-                  
-                    
-                <!-- </div> -->
-                <!-- <div class="form-element"> -->
-                    <label for="amount">Amount</label>
-                    <input type="number" name="amount" id="amount">
-    	        <!-- </div>     -->
-                <label for="">&nbsp;</label>
+    <table class="styled-table data-table">
+        <label for="source">From</label>
+        <input type="text" name="source" id="source">
 
-            <tr><td colspan="2"><button class="button-green" type="submit">Add New Fare</button></td></tr>
+        <label for="dest">To</label>
+        <input type="text" name="dest" id="dest">
 
-                <!-- <input class="add_cancel" type="submit" name="add_new">   
-                <input class="add_cancel" type="button" value="Cancel" onclick="cancel()">    -->
+        <label for="route_bus">Route</label>
+        <input type="text" name="route_bus" id="route_bus">
 
-    
+        <label for="type_bus">Type  </label>
+        <select name="type_bus" id="type_bus" class="form-control">
+        <option disabled selected value>--select an option--</option>
+        <option value="L">Luxury</option>
+        <option value="S">Semi-Luxury</option>
+        </select>
 
-    
-</table>
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" id="amount">
+
+        <tr><td colspan="2"><button class="button-green" type="submit">Add New Fare</button></td></tr>
+
+    </table>
 </div>
 </form>
 
