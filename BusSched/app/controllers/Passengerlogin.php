@@ -1,6 +1,6 @@
 <?php
 
-class Login {
+class Passengerlogin {
 
     use Controller;
 
