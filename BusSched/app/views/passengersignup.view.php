@@ -60,7 +60,7 @@ if (isset($_SESSION['USER'])) {
           </div>
 
           <div class="input-field">
-            <input type="text" placeholder="User Name" name="username">
+            <input type="text" placeholder="U969+3ser Name" name="username">
           </div>
 
           <div class="input-field">
