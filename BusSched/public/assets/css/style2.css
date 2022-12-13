@@ -324,6 +324,13 @@ input:checked + .slider:before {
   grid-template-rows: 1fr 4fr 4fr;
 }
 
+.container1 {
+  margin-left: 230px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* grid-template-rows: 1fr 4fr 4fr; */
+}
+
 .card-container {
   position: relative;
   top: 0;
