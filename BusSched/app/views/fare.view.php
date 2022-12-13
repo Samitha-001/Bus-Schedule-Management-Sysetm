@@ -2,13 +2,7 @@
     if(!isset($_SESSION['USER'])){
         redirect('home');
     }
-
-            $src = $_POST['src'];
-            $dest = $_POST['dest'];
-            $route = $_POST['route'];
-            $amount = $_POST['amount'];
-    
-            show($_POST);
+    // show($_POST);
 ?>
 
 <!doctype html>
@@ -45,7 +39,23 @@
 
 </nav>
 
-<div class="header">
+<div  class="wrapper">
+    <div class="sidebar">
+        <li><a href="<?=ROOT?>/admins" style="color:#f4511e;">Dashboard</a></li>
+        <li><a href="#" style="color:#f4511e;">Users</a></li>
+        <li><a href="#" style="color:#f4511e;">Schedules</a></li>
+        <li><a href="<?=ROOT?>/buses" style="color:#f4511e;">Buses</a></li>
+        <li><a href="#" style="color:#f4511e;">Ratings</a></li>
+        <li><a href="#" style="color:#f4511e;">Tickets</a></li>
+        <li><a href="<?=ROOT?>/fares" style="color:white;"><b>Bus Fares</b></a></li>
+        <li><a href="#" style="color:#f4511e;">Routes</a></li>
+        <li><a href="<?=ROOT?>/halts" style="color:#f4511e;">Halts</a></li>
+    </div>
+</div>
+
+<main class="container">
+
+<div class="header orange-header">
     <div><h3>Bus Fare</h3></div>
     <div><button id="btn" class="button-grey">Add New</button></div>    
 </div>
@@ -56,38 +66,41 @@
 <?= implode("<br>", $errors)?>
 <?php endif;?>
 
-<div>
-<table class="styled-table">
+<div class="data-table">
+<table class="styled-table data-table">
     
-<div class="form-element">
-                    <label for="">From</label>
-                    <input type="text" name="src" <?php echo 'value="' .$src. '"';?> >
-                </div>
-                <div class="form-element">
-                    <label for="">To</label>
-                    <input type="text" name="dest" <?php echo 'value="' .$dest. '"';?>>
-                </div>
-                <div class="form-element">
-                    <label for="">Route</label>
-                    <input type="text" name="route" <?php echo 'value="' .$route . '"';?> >
-                </div>
-                <div class="form-element">
-                    <label for="type">Type  </label>
-                    <select name="type" id="type" class="form-control">
+<!-- <div class="form-element"> -->
+                    <label for="source">From</label>
+                    <input type="text" name="source" id="source">
+                <!-- </div> -->
+                <!-- <div class="form-element"> -->
+                    <label for="dest">To</label>
+                    <input type="text" name="dest" id="dest">
+                <!-- </div> -->
+                <!-- <div class="form-element"> -->
+                    <label for="route_bus">Route</label>
+                    <input type="text" name="route_bus" id="route_bus">
+                <!-- </div> -->
+                <!-- <div class="form-element"> -->
+                    <label for="type_bus">Type  </label>
+                    <select name="type_bus" id="type_bus" class="form-control">
             <option disabled selected value>--select an option--</option>
             <option value="L">Luxury</option>
             <option value="S">Semi-Luxury</option>
             </select>
                   
                     
-                </div>
-                <div class="form-element">
-                    <label for="">Amount</label>
-                    <input type="number" name="amount" <?php echo 'value="' .$amount. '"';?> >
-    	        </div>    
-                    <label for="">&nbsp;</label>
-                    <input class="add_cancel" type="submit" name="add_new">   
-                    <input class="add_cancel" type="button" value="Cancel" onclick="cancel()">   
+                <!-- </div> -->
+                <!-- <div class="form-element"> -->
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" id="amount">
+    	        <!-- </div>     -->
+                <label for="">&nbsp;</label>
+
+            <tr><td colspan="2"><button class="button-green" type="submit">Add New Fare</button></td></tr>
+
+                <!-- <input class="add_cancel" type="submit" name="add_new">   
+                <input class="add_cancel" type="button" value="Cancel" onclick="cancel()">    -->
 
     
 
@@ -96,7 +109,7 @@
 </div>
 </form>
 
-<div>
+<div class="data-table">
 <table border='1' class="styled-table">
     <tr>
     <th>#</th>
@@ -107,7 +120,6 @@
     <th>Type</th>
     <th>Last Updated</th>
     <th>Action</th>
-    
 </tr>
 
     <?php
@@ -127,7 +139,7 @@
 </div>
     
 <script src="<?=ROOT?>/assets/js/bus.js"></script>
-
+</main>
 
 </body>
 </html>
