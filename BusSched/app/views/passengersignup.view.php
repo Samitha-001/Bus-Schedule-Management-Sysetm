@@ -42,7 +42,6 @@ if (isset($_SESSION['USER'])) {
   <h3>Passenger</h3>
   <h1 style="text-align:center">Create Account</h1>
 
-
   <!-- SIGN UP FORM - PASSENGER -->
   <main class="sec1">
     <div class="mytabs">
@@ -75,7 +74,7 @@ if (isset($_SESSION['USER'])) {
 
           <div class="create_account">
             <p>Already have an account?</p>
-            <p><a href="<?= ROOT ?>/passengerlogin"> Login</a></p>
+            <p><a href="<?= ROOT ?>/passengerlogin">Login</a></p>
           </div>
 
         </form>
