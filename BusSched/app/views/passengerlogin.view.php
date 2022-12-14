@@ -21,7 +21,7 @@ if (isset($_SESSION['USER'])) {
 <body>
   <nav class="navbar">
     <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo_white">BusSched</a></h2>
+      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
     </div>
 
     <!-- NAVIGATION MENU -->
@@ -30,11 +30,11 @@ if (isset($_SESSION['USER'])) {
 
         <li><a href="#">Services</a></li>
         <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/login">
-          <li class="button-orange">Login</li>
+        <a href="<?= ROOT ?>/passengerlogin">
+          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
         </a>
-        <a href="<?= ROOT ?>/signup">
-          <li class="button-orange">Sign Up</li>
+        <a href="<?= ROOT ?>/passengersignup">
+          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
         </a>
 
   </nav>
