@@ -1,14 +1,13 @@
 <?php
 
-class Breakdown extends Model
-{
+class Breakdown extends Model{
     protected $table = 'breakdown';
 
     // editable columns
     protected $allowedColumns = [
-        'bus_no',
+		'bus_no',
         'description',
-        'date',
+		'date',
         'time',
         'timetorepair'
     ];
