@@ -26,7 +26,7 @@ if (isset($_SESSION['USER'])) {
   <!-- SIGN UP FORM - BUS OWNER -->
   <main class="sec1">
     <div class="mytabs">
-      <input type="radio" id="passenger" name="mytabs" checked="checked">
+      <input type="radio" id="passenger" name="mytabs">
       <label for="passenger"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
       <div class="tab form-bg center">
         <form action="" class=" sign-up-form" method="post">
@@ -62,7 +62,7 @@ if (isset($_SESSION['USER'])) {
 
         </form>
       </div>
-      <input type="radio" id="driver" name="mytabs" checked="checked">
+      <input type="radio" id="driver" name="mytabs">
       <label for="driver"><a href="<?= ROOT ?>/driversignup">Driver</a></label>
       <div class="tab">
         <form action="" class="sign-up-form" method="post">
@@ -91,7 +91,7 @@ if (isset($_SESSION['USER'])) {
           </div>
         </form>
       </div>
-      <input type="radio" id="conductor" name="mytabs" checked="checked">
+      <input type="radio" id="conductor" name="mytabs">
       <label for="conductor"><a href="<?= ROOT ?>/conductorsignup">Conductor</a></label>
       <div class="tab">
         <form action="" class="sign-up-form" method="post">
@@ -149,7 +149,7 @@ if (isset($_SESSION['USER'])) {
           </div>
         </form>
       </div>
-      <input type="radio" id="scheduler" name="mytabs" checked="checked">
+      <input type="radio" id="scheduler" name="mytabs">
       <label for="scheduler"><a href="<?= ROOT ?>/schedulersignup">Scheduler</a></label>
       <div class="tab">
         <form action="" class="sign-up-form" method="post">
