@@ -1,3 +1,9 @@
+<?php
+if (isset($_SESSION['USER'])) {
+  redirect('adminhome');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,16 +13,43 @@
   <meta name="generator" content="Hugo 0.88.1">
   <title>Conductor - Sign Up</title>
 
-  <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
-</head>
-<body>
-  <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
   
-    <h3>Create Account</h3>
-    <h1 style="text-align:center">Conductor</h1>
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
+</head>
 
-<!-- SIGN UP FORM - Conductor -->
-<main class="sec1">
+<body>
+
+  <nav class="navbar">
+    <div>
+      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
+    </div>
+
+    <!-- NAVIGATION MENU -->
+    <ul class="nav-links">
+      <div class="menu">
+
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+        <a href="<?= ROOT ?>/login">
+          <li class="button-orange">Login</li>
+        </a>
+        <a href="<?= ROOT ?>/signup">
+          <li class="button-orange">Sign Up</li>
+        </a>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <h3>Conductor</h3>
+  <h1 style="text-align:center">Create Account</h1>
+
+  <br>
+
+  <!-- SIGN UP FORM - PASSENGER -->
+  <main class="sec1">
+    
     <div class="mytabs">
       <input type="radio" id="passenger" name="mytabs" checked="checked">
       <label for="passenger"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
@@ -39,8 +72,10 @@
             <input type="password" placeholder="Confirm Password" name="pwdRepeat">
           </div>
 
-          <input type="submit" class="btn" name="signup" value="Sign Up">
-
+          <!-- <input type="submit" class="btn" name="signup" value="Sign Up"> -->
+          <br>
+          <br>
+          <button class="button-orange" type="submit">Create</button><br><br>
           <div class="errors">
             <?php if (!empty($errors)): ?>
             <?= implode("<br>", $errors) ?>
@@ -49,7 +84,8 @@
 
           <div class="create_account">
             <p>Already have an account?</p>
-            <p><a href="#">Login</a></p>
+            
+            <p><a href="#"> Login</a></p>
           </div>
 
         </form>
@@ -108,7 +144,8 @@
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
-            <p><a href="#">Login</a></p>
+            
+            <p><a href="<?= ROOT ?>/conductorlogin">Login</a></p>
           </div>
         </form>
       </div>
@@ -166,12 +203,42 @@
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
-            <p><a href="<?= ROOT ?>/schedulerlogin">Login</a></p>
+            
+            <p><a href="<?= ROOT ?>/conductorlogin">Login</a></p>
+            
           </div>
         </form>
       </div>
     </div>
-  </main>
+
+    </div>
+    <!-- <form method="post">
+
+      <div class="form-bg center">
+
+        <div>
+          <input name="username" type="text" class="form-control" id="username" placeholder="Username..."><br><br>
+          <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."><br><br>
+          <input name="password" type="password" class="form-control" id="floatingPassword"
+            placeholder="Password..."><br><br>
+          <input name="pwdRepeat" type="password" class="form-control" id="pwdRepeat" placeholder="Confirm Password...">
+          <br>
+          <br>
+          <button class="button-orange" type="submit">Create</button><br><br>
+
+          <div class="errors">
+            <?php if (!empty($errors)): ?>
+            <?= implode("<br>", $errors) ?>
+              <?php endif; ?>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="form-footer center">Already have an account? <a href="<?= ROOT ?>/passengerlogin">Login</a></div>
+    </form> -->
 
 </body>
+
 </html>

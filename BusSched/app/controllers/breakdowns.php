@@ -7,10 +7,11 @@ class Breakdowns {
 
     public function index() {
         $breakdown = new Breakdown();
-        $breakdowns = $breakdown->getBreakdown();
+        $breakdowns = $breakdown->getBreakdowns();
 
         $data = [];
         if($_SERVER['REQUEST_METHOD'] == "POST") {
+          
             if($breakdown->validate($_POST)) {
                 $breakdown->insert($_POST);
 
@@ -19,7 +20,6 @@ class Breakdowns {
 
             $data['errors'] = $breakdown->errors;
         }
-
-		$this->view('bus', ['buses' => $breakdowns]);
+		$this->view('breakdown', ['breakdowns' => $breakdowns]);
     }
 }
