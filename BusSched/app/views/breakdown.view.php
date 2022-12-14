@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
+  
     <title>Breakdowns</title>
 
     <link href="<?=ROOT?>/assets/css/style2.css" rel="stylesheet">
@@ -46,6 +47,7 @@
 
 <div class="header orange-header">
     <div><h3>Buses</h3></div>
+  
     <div><button id="btn" class="button-grey">Add New</button></div>    
 </div>
 
@@ -63,6 +65,7 @@
     </tr>
 
     <tr>
+      
         <td><label for="description">Description </label></td>
         <td><input name="description" type="text" class="form-control" id="description" placeholder="Description..." required></td>
     </tr> 
@@ -73,6 +76,7 @@
     </tr>
 
     <tr>
+      
         <td><label for="time">Time </label></td>
         <td><input name="time" type="time" class="form-control" id="time" placeholder="Time..." required></td>
     </tr>
@@ -84,12 +88,13 @@
     </tr>
 
     <tr><td colspan="2"><button class="button-green" type="submit">Add Breakdown</button></td></tr>
-    
+  
 </table>
 </div>
 </form>
 
 <div class="data-table">
+
 <table border='1' class="styled-table">
     <tr>
     <th>#</th>
@@ -97,6 +102,7 @@
     <th>Description</th>
     <th>Date</th>
     <th>Time</th>
+      
     <th>Time to repair</th>
 </tr>
 
@@ -105,6 +111,7 @@
         echo "<tr>";
         echo "<td> $breakdown->id </td>";
         echo "<td> $breakdown->bus_no </td>";
+      
         echo "<td> $breakdown->description </td>";
         echo "<td> $breakdown->date </td>";
         echo "<td> $breakdown->time </td>";
@@ -116,6 +123,7 @@
 </div>
     
 <script src="<?=ROOT?>/assets/js/bus.js"></script>
+
 </main>
 
 </body>
