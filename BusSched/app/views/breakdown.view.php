@@ -29,15 +29,16 @@
 
 <div  class="wrapper">
     <div class="sidebar">
-        <li><a href="<?=ROOT?>/admins" style="color:#f4511e;">Dashboard</a></li>
-        <li><a href="#" style="color:#f4511e;">Users</a></li>
-        <li><a href="#" style="color:#f4511e;">Schedules</a></li>
-        <li><a href="<?=ROOT?>/buses" style="color:white;"><b>Buses</b></a></li>
+
+        <li><a href="#" style="color:#f4511e;">Account</a></li>
+        <li><a href="#" style="color:#f4511e;">Schedule</a></li>
+        <li><a href="#"><b>Bus</b></a></li>
         <li><a href="#" style="color:#f4511e;">Ratings</a></li>
         <li><a href="#" style="color:#f4511e;">Tickets</a></li>
-        <li><a href="<?=ROOT?>/fares" style="color:#f4511e;">Bus Fares</a></li>
-        <li><a href="#" style="color:#f4511e;">Routes</a></li>
-        <li><a href="<?=ROOT?>/halts" style="color:#f4511e;">Halts</a></li>
+        <li><a href="#">Bus Fare</a></li>
+        <li><a href="#" style="color:#f4511e;">Location</a></li>
+        <li><a href="#" style="color:#f4511e;">Contacts</a></li>
+        <li><a href="<?=ROOT?>/breakdown" style="color:#f4511e;">Breakdowns</a></li>
     </div>
 </div>
 
