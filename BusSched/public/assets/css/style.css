@@ -172,7 +172,7 @@ form {
   font-size: medium;
   font-weight: 600;
   border: 0;
-  background: #f15f22;
+  background: #fd6002;
   display: inline-block;
   margin: 20px auto;
   text-align: center;
@@ -240,7 +240,7 @@ form {
 }
 
 label:hover {
-  background-color: #f4511e;
+  background-color: #fd6002;
 }
 
 lablel {
@@ -252,7 +252,7 @@ lablel {
 }
 
 .mytabs input[type="radio"]:checked + label {
-  background-color: #f4511e;
+  background-color: #fd6002;
 }
 
 /* nav bar */
