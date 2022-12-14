@@ -1,11 +1,12 @@
 <?php
 if (isset($_SESSION['USER'])) {
-  redirect('adminhome');
+  redirect('admins');
 }
 ?>
 
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +14,7 @@ if (isset($_SESSION['USER'])) {
   <meta name="generator" content="Hugo 0.88.1">
   <title>Conductor - Sign Up</title>
 
-  
+
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
 </head>
 
@@ -49,7 +50,7 @@ if (isset($_SESSION['USER'])) {
 
   <!-- SIGN UP FORM - PASSENGER -->
   <main class="sec1">
-    
+
     <div class="mytabs">
       <input type="radio" id="passenger" name="mytabs" checked="checked">
       <label for="passenger"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
@@ -84,7 +85,7 @@ if (isset($_SESSION['USER'])) {
 
           <div class="create_account">
             <p>Already have an account?</p>
-            
+
             <p><a href="#"> Login</a></p>
           </div>
 
@@ -144,7 +145,7 @@ if (isset($_SESSION['USER'])) {
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
-            
+
             <p><a href="<?= ROOT ?>/conductorlogin">Login</a></p>
           </div>
         </form>
@@ -203,9 +204,9 @@ if (isset($_SESSION['USER'])) {
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
-            
+
             <p><a href="<?= ROOT ?>/conductorlogin">Login</a></p>
-            
+
           </div>
         </form>
       </div>

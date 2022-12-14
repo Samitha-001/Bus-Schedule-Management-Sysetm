@@ -1,5 +1,12 @@
+<?php
+if (isset($_SESSION['USER'])) {
+  redirect('admins');
+}
+?>
+
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,15 +14,16 @@
   <meta name="generator" content="Hugo 0.88.1">
   <title>Bus Owner- Sign Up</title>
 
-  <link rel="stylesheet" href="<?=ROOT?>/assets/css/style.css">
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
 </head>
-<body>
-  <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
-  
-    <h3>Bus Owner</h3>
-    <h1 style="text-align:center">Create Account</h1>
 
-<!-- SIGN UP FORM - BUS OWNER -->
+<body>
+  <h2><a href="<?= ROOT ?>" id="logo_white">BusSched</a></h2>
+
+  <h3>Bus Owner</h3>
+  <h1 style="text-align:center">Create Account</h1>
+
+  <!-- SIGN UP FORM - BUS OWNER -->
   <main class="sec1">
     <div class="mytabs">
       <input type="radio" id="passenger" name="mytabs" checked="checked">
@@ -177,4 +185,5 @@
 
 
 </body>
+
 </html>

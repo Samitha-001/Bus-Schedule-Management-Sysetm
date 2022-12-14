@@ -45,7 +45,7 @@ class Breakdown extends Model{
 		return false;
     }
 
-    public function getBreakdown(){
+    public function getBreakdowns(){
         return $this->findAll();
     }
 }

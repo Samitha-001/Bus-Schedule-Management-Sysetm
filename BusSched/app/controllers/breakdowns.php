@@ -1,18 +1,20 @@
 <?php
 
 
-class Breakdowns {
+class Breakdowns
+{
 
     use Controller;
 
-    public function index() {
+    public function index()
+    {
         $breakdown = new Breakdown();
         $breakdowns = $breakdown->getBreakdowns();
 
         $data = [];
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-          
-            if($breakdown->validate($_POST)) {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            if ($breakdown->validate($_POST)) {
                 $breakdown->insert($_POST);
 
                 redirect('breakdowns');
@@ -20,6 +22,6 @@ class Breakdowns {
 
             $data['errors'] = $breakdown->errors;
         }
-		$this->view('breakdown', ['breakdowns' => $breakdowns]);
+        $this->view('breakdown', ['breakdowns' => $breakdowns]);
     }
 }
