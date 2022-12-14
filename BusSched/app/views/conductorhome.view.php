@@ -110,28 +110,28 @@ if ($_SESSION['USER']->role == 'passenger') {
             </ul>
         </div>
 
-        <div class="card-container" id="users-card">
+        <div class="card-container" id="">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Users</p>
-                    <hr>
+                    <!-- <p>Users</p> -->
+                    <!-- <hr> -->
                 </div>
                 <div class="items users">
-                    <p>All user profiles</p>
+                    <!-- <p>All user profiles</p> -->
                 </div>
             </div>
         </div>
 
-        <div class="card-container" id="schedules-card">
+        <div class="card-container" id="">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Schedules</p>
-                    <hr>
+                    <!-- <p>Schedules</p> -->
+                    <!-- <hr> -->
                 </div>
                 <div class="items users">
-                    <p>Bus Schedules</p>
+                    <!-- <p>Bus Schedules</p> -->
                 </div>
             </div>
         </div>

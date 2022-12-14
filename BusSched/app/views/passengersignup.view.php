@@ -53,14 +53,14 @@ if (isset($_SESSION['USER'])) {
       <input type="radio" id="passenger" name="mytabs" checked="checked">
       <label for="passenger"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
       <div class="tab form-bg center">
-        <form action="" class=" sign-up-form" method="post">
+        <form action="" class="sign-up-form" method="post">
           <h2 class="title">Sign up</h2>
           <div class="input-field">
             <input type="email" placeholder="Email Address" name="email">
           </div>
 
           <div class="input-field">
-            <input type="text" placeholder="U969+3ser Name" name="username">
+            <input type="text" placeholder="User Name" name="username">
           </div>
 
           <div class="input-field">
@@ -83,12 +83,12 @@ if (isset($_SESSION['USER'])) {
 
           <div class="create_account">
             <p>Already have an account?</p>
-            <p><a href="#"> Login</a></p>
+            <p><a href="/passengerlogin"> Login</a></p>
           </div>
 
         </form>
       </div>
-      <input type="radio" id="driver" name="mytabs" checked="checked">
+      <input type="radio" id="driver" name="mytabs">
       <label for="driver"><a href="<?= ROOT ?>/driversignup">Driver</a></label>
       <div class="tab">
         <form action="" class="sign-up-form" method="post">
@@ -117,7 +117,7 @@ if (isset($_SESSION['USER'])) {
           </div>
         </form>
       </div>
-      <input type="radio" id="conductor" name="mytabs" checked="checked">
+      <input type="radio" id="conductor" name="mytabs">
       <label for="conductor"><a href="<?= ROOT ?>/conductorsignup">Conductor</a></label>
       <div class="tab">
         <form action="" class="sign-up-form" method="post">
@@ -146,7 +146,7 @@ if (isset($_SESSION['USER'])) {
           </div>
         </form>
       </div>
-      <input type="radio" id="owner" name="mytabs" checked="checked">
+      <input type="radio" id="owner" name="mytabs">
       <label for="owner"><a href="<?= ROOT ?>/ownersignup">Bus Owner</a></label>
       <div class="tab">
         <form action="" class="sign-up-form" method="post">
@@ -175,7 +175,7 @@ if (isset($_SESSION['USER'])) {
           </div>
         </form>
       </div>
-      <input type="radio" id="scheduler" name="mytabs" checked="checked">
+      <input type="radio" id="scheduler" name="mytabs">
       <label for="scheduler"><a href="<?= ROOT ?>/schedulersignup">Scheduler</a></label>
       <div class="tab">
         <form action="" class="sign-up-form" method="post">
