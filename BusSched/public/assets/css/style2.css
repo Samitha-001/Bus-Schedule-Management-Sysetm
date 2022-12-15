@@ -529,3 +529,18 @@ hr {
 .nav-bar-img {
   width: 25px;
 }
+
+.form-control {
+  box-sizing: border-box;
+  align-items: center;
+  align-content: center;
+  position: center;
+  width: 100%;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background: #ffffff;
+  border: 1px solid #eeedf1;
+  border-radius: 5px;
+}
