@@ -42,7 +42,7 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
+                    <li class="button-orange" style="border: 2px solid #f4511e;">Logout</li>
                 </a>
             </div>
         </ul>
@@ -52,13 +52,13 @@ if ($_SESSION['USER']->role == 'passenger') {
     <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/owners" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#f4511e;">Schedules</a></li>
-            <li><a href="#" style="color:#f4511e;">Buses</a></li>
-            <li><a href="#" style="color:#f4511e;">Income</a></li>
-            <li><a href="#" style="color:#f4511e;">Ratings</a></li>
-            <li><a href="#" style="color:#f4511e;">Breakdowns</a></li>
-            <li><a href="#" style="color:#f4511e;">Bus Fare</a></li>
-            <li><a href="#" style="color:#f4511e;">Contacts</a></li>
+            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="#" style="color:#9298AF;">Buses</a></li>
+            <li><a href="#" style="color:#9298AF;">Income</a></li>
+            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
+            <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="#" style="color:#9298AF;">Bus Fare</a></li>
+            <li><a href="#" style="color:#9298AF;">Contacts</a></li>
         </div>
     </div>
 

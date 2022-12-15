@@ -20,7 +20,7 @@ if (isset($_SESSION['USER'])) {
 
 <body>
 
-<nav class="navbar">
+  <nav class="navbar">
     <div>
       <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
     </div>
@@ -64,7 +64,7 @@ if (isset($_SESSION['USER'])) {
         <form action="" class="sign-up-form" method="post">
           <div class="input-field">
             <div>
-              <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."
+              <input name="email" type="text" class="form-control" id="floatingInput" placeholder="Username or Email..."
                 required><br><br>
               <input name="password" type="password" class="form-control" id="floatingPassword"
                 placeholder="Password..." required><br><br>
