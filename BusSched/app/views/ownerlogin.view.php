@@ -70,8 +70,8 @@ if (isset($_SESSION['USER'])) {
         <form action="" class="sign-up-form" method="post">
           <div class="input-field">
             <div>
-              <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."
-                required><br><br>
+              <input name="email" type="text" class="form-control" id="floatingInput"
+                placeholder="Username or Email..." required><br><br>
               <input name="password" type="password" class="form-control" id="floatingPassword"
                 placeholder="Password..." required><br><br>
               <button class="button-orange" type="submit">Login</button>
@@ -84,14 +84,14 @@ if (isset($_SESSION['USER'])) {
             </div>
           </div>
 
-         <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/schedulersignup">Register</a>
+          <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/ownersignup">Register</a>
           </div>
         </form>
       </div>
       <input type="radio" id="scheduler" name="mytabs">
       <label for="scheduler"><a href="<?= ROOT ?>/schedulerlogin">Scheduler</a></label>
       <div class="tab center">
-      
+
       </div>
     </div>
   </main>

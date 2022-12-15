@@ -5,15 +5,16 @@ if (!isset($_SESSION['USER'])) {
 // show($_SESSION['USER']->role)
 if ($_SESSION['USER']->role == 'passenger') {
     redirect('home');
-} else if ($_SESSION['USER']->role == 'driver') {
-    redirect('drivers');
 } else if ($_SESSION['USER']->role == 'admin') {
     redirect('admins');
 } else if ($_SESSION['USER']->role == 'scheduler') {
     redirect('schedulers');
 } else if ($_SESSION['USER']->role == 'owner') {
     redirect('owners');
+} else if ($_SESSION['USER']->role == 'driver') {
+    redirect('drivers');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
+                    <li class="button-orange" style="border: 2px solid #f4511e;">Logout</li>
                 </a>
             </div>
         </ul>
@@ -52,14 +53,14 @@ if ($_SESSION['USER']->role == 'passenger') {
     <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/conductors" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#f4511e;">Location</a></li>
-            <li><a href="#" style="color:#f4511e;">Ratings</a></li>
-            <li><a href="#" style="color:#f4511e;">Schedules</a></li>
-            <li><a href="#" style="color:#f4511e;">Buses</a></li>
-            <li><a href="#" style="color:#f4511e;">Breakdowns</a></li>
-            <li><a href="#" style="color:#f4511e;">Bus Fares</a></li>
-            <li><a href="#" style="color:#f4511e;">Contacts</a></li>
-            <li><a href="#" style="color:#f4511e;">Tickets</a></li>
+            <li><a href="#" style="color:#9298AF;">Location</a></li>
+            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
+            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="#" style="color:#9298AF;">Buses</a></li>
+            <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="#" style="color:#9298AF;">Bus Fares</a></li>
+            <li><a href="#" style="color:#9298AF;">Contacts</a></li>
+            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
         </div>
     </div>
 
