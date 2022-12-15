@@ -4,7 +4,9 @@ class Halt extends Model{
     protected $table = 'halt';
 
     // editable columns
+
     protected $allowedColumns = [
+        'id',
         'route_id',
 		'name',
         'distance_from_source'
@@ -36,5 +38,13 @@ class Halt extends Model{
 
     public function getHalts(){
         return $this->findAll();
+    }
+
+    public function addHalt($data){
+        $this->insert([
+            'route_id' => $data['route_id'],
+            'name' => $data['halt_name'],
+            'distance_from_source' => $data['distance']
+        ]);
     }
 }
