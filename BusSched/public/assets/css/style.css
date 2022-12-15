@@ -59,7 +59,8 @@ li {
 input {
   width: 100%;
   height: 59.32px;
-  padding-left: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   border-radius: 5px;
   font-family: "Outfit";
   font-size: 16px;
@@ -69,7 +70,7 @@ input {
 }
 
 input::placeholder {
-  color: #555555;
+  color: #666666;
   font-family: "Outfit";
   font-size: 16px;
 }
@@ -79,7 +80,7 @@ input::placeholder {
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 200px 200px;
+  grid-template-columns: 200px 60px;
   color: #24315e;
 }
 
@@ -143,10 +144,11 @@ form {
 }
 
 .input-field {
-  margin: 5px;
+  margin: 8px;
+  width: 100%;
 }
 
-.input-field input {
+/* .input-field input {
   width: 100%;
   background: none;
   outline: none;
@@ -164,8 +166,8 @@ form {
   width: 400px;
   border: 2px solid #eeedf1;
   border-radius: 15px;
-  transition: 0.25px;
-}
+  transition: 0.25px; */
+/* } */
 
 .btn {
   color: #fff;
@@ -193,7 +195,7 @@ form {
   transform: translate(-50%, -50%);
   text-align: center;
   background: rgba(255, 255, 255);
-  border-radius: 35px;
+  border-radius: 35px 35px 0 0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -218,10 +220,6 @@ form {
   background: #fff;
 }
 
-.mytabs label:nth-child(1) {
-  background-color: #24315e;
-}
-
 .mytabs label a {
   color: #444855;
 }
@@ -229,6 +227,7 @@ form {
 .mytabs .tab {
   width: 100%;
   padding: 20px;
+  padding-bottom: 0px;
   background: #fff;
   height: fit-content;
   margin-bottom: 0;
@@ -241,10 +240,6 @@ form {
 
 label:hover {
   background-color: #fd6002;
-}
-
-lablel {
-  border-top-left-radius: 20px;
 }
 
 .mytabs input[type="radio"]:checked + label + .tab {
@@ -291,4 +286,14 @@ lablel {
   grid-gap: 10px;
   background-color: #2196f3;
   padding: 10px;
+}
+
+.sign-up-form {
+  padding: 30px;
+}
+
+.input-fields-set {
+  padding: 0%;
+  margin-bottom: 20px;
+  align-content: center;
 }
