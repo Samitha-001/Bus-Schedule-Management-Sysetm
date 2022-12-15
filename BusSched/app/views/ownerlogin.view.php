@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['USER'])) {
-  redirect('home');
+  redirect('admins');
 }
 ?>
 
@@ -31,10 +31,10 @@ if (isset($_SESSION['USER'])) {
 
         <li><a href="#">Services</a></li>
         <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/ownererlogin">
+        <a href="<?= ROOT ?>/passengerlogin">
           <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
         </a>
-        <a href="<?= ROOT ?>/ownersignup">
+        <a href="<?= ROOT ?>/passengersignup">
           <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
         </a>
 
@@ -54,20 +54,21 @@ if (isset($_SESSION['USER'])) {
       <label for="passenger"><a href="<?= ROOT ?>/passengerlogin">Passenger</a></label>
       <div class="tab form-bg center">
       </div>
+
       <input type="radio" id="driver" name="mytabs">
       <label for="driver"><a href="<?= ROOT ?>/driverlogin">Driver</a></label>
       <div class="tab">
       </div>
+
       <input type="radio" id="conductor" name="mytabs">
       <label for="conductor"><a href="<?= ROOT ?>/conductorlogin">Conductor</a></label>
       <div class="tab">
       </div>
-      <input type="radio" id="owner" name="mytabs">
-      <label for="owner"><a href="<?= ROOT ?>/ownerlogin">Bus Owner</a></label>
-      <div class="tab">
-      </div>
-      <input type="radio" id="scheduler" name="mytabs" checked="checked">
-      <label for="scheduler"><a href="<?= ROOT ?>/schedulerlogin">Scheduler</a></label>
+
+      
+
+      <input type="radio" id="owner" name="mytabs" checked="checked">
+      <label for="owner"><a href="<?= ROOT ?>/ownerlogin">Owner</a></label>
       <div class="tab center">
         <form action="" class="sign-up-form" method="post">
           <div class="input-field">
@@ -78,15 +79,22 @@ if (isset($_SESSION['USER'])) {
                 placeholder="Password..." required><br><br>
               <button class="button-orange" type="submit">Login</button>
             </div>
+
             <div class="errors">
               <?php if (!empty($errors)): ?>
               <?= implode("<br>", $errors) ?>
                 <?php endif; ?>
             </div>
           </div>
-          <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/schedulersignup">Register</a>
+
+         <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/schedulersignup">Register</a>
           </div>
         </form>
+      </div>
+
+      <input type="radio" id="scheduler" name="mytabs">
+      <label for="scheduler"><a href="<?= ROOT ?>/schedulerlogin">Scheduler</a></label>
+      <div class="tab">
       </div>
     </div>
   </main>
