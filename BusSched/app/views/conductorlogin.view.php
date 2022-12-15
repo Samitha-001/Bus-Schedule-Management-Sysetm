@@ -19,9 +19,10 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
+
   <nav class="navbar">
     <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo_white">BusSched</a></h2>
+      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
     </div>
 
     <!-- NAVIGATION MENU -->
@@ -30,49 +31,65 @@ if (isset($_SESSION['USER'])) {
 
         <li><a href="#">Services</a></li>
         <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/login">
-          <li class="button-orange">Login</li>
+        <a href="<?= ROOT ?>/passengerlogin">
+          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
         </a>
-        <a href="<?= ROOT ?>/signup">
-          <li class="button-orange">Sign Up</li>
+        <a href="<?= ROOT ?>/passengersignup">
+          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
         </a>
 
   </nav>
   <br>
   <br>
   <br>
-  <br>
 
-  <h3>Conductor</h3>
+  <h3 class="center">Conductor</h3>
   <h1 style="text-align:center" class="center">Login</h1><br>
 
-  <br>
-  <!-- LOGIN FORM FOR ADMIN -->
+  <!-- LOGIN FORM FOR SCHEDULER -->
 
-
-  <form method="post">
-    <div class="form-bg center">
-      <div>
-        <input name="email" type="text" class="form-control" id="floatingInput" placeholder="Username or email..."
-          required><br><br>
-        <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..."
-          required><br><br>
-
-        <button class="button-orange" type="submit">Login</button>
+  <main class="sec1">
+    <div class="mytabs">
+      <input type="radio" id="passenger" name="mytabs">
+      <label for="passenger"><a href="<?= ROOT ?>/passengerlogin">Passenger</a></label>
+      <div class="tab form-bg center">
       </div>
-
-      <div class="errors">
-        <br>
-        <?php if (!empty($errors)): ?>
-        <?= implode("<br>", $errors) ?>
-          <?php endif; ?>
+      <input type="radio" id="driver" name="mytabs">
+      <label for="driver"><a href="<?= ROOT ?>/driverlogin">Driver</a></label>
+      <div class="tab">
       </div>
-
+      <input type="radio" id="scheduler" name="mytabs" checked="checked">
+      <label for="scheduler"><a href="<?= ROOT ?>/schedulerlogin">Conductor</a></label>
+      <div class="tab center">
+        <form action="" class="sign-up-form" method="post">
+          <div class="input-field">
+            <div>
+              <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."
+                required><br><br>
+              <input name="password" type="password" class="form-control" id="floatingPassword"
+                placeholder="Password..." required><br><br>
+              <button class="button-orange" type="submit">Login</button>
+            </div>
+            <div class="errors">
+              <?php if (!empty($errors)): ?>
+              <?= implode("<br>", $errors) ?>
+                <?php endif; ?>
+            </div>
+          </div>
+          <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/conductorsignup">Register</a>
+          </div>
+        </form>
+      </div>
+      <input type="radio" id="conductor" name="mytabs">
+      <label for="conductor"><a href="<?= ROOT ?>/conductorlogin">Bus Owner</a></label>
+      <div class="tab">
+      </div>
+      <input type="radio" id="owner" name="mytabs">
+      <label for="owner"><a href="<?= ROOT ?>/ownerlogin">Scheduler</a></label>
+      <div class="tab">
+      </div>
     </div>
-
-    <div class="form-footer center">Don't have an account? <a href="<?= ROOT ?>/conductorsignup">Register</a></div>
-
-  </form>
+  </main>
 
 </body>
 
