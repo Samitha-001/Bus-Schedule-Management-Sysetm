@@ -5,15 +5,16 @@ if (!isset($_SESSION['USER'])) {
 // show($_SESSION['USER']->role)
 if ($_SESSION['USER']->role == 'passenger') {
     redirect('home');
-} else if ($_SESSION['USER']->role == 'driver') {
-    redirect('drivers');
 } else if ($_SESSION['USER']->role == 'admin') {
     redirect('admins');
 } else if ($_SESSION['USER']->role == 'scheduler') {
     redirect('schedulers');
 } else if ($_SESSION['USER']->role == 'owner') {
     redirect('owners');
+} else if ($_SESSION['USER']->role == 'driver') {
+    redirect('drivers');
 }
+
 ?>
 
 <!DOCTYPE html>

@@ -41,6 +41,7 @@ if (!isset($_SESSION['USER'])) {
             <li><a href="#" style="color:#9298AF;">Users</a></li>
             <li><a href="#" style="color:#9298AF;">Schedules</a></li>
             <li><a href="<?= ROOT ?>/buses" style="color:white;"><b>Buses</b></a></li>
+            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
             <li><a href="#" style="color:#9298AF;">Ratings</a></li>
             <li><a href="#" style="color:#9298AF;">Tickets</a></li>
             <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
