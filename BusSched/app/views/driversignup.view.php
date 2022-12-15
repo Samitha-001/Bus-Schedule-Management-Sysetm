@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['USER'])) {
-  redirect('admins');
+  redirect('adminhome');
 }
 ?>
 
@@ -50,13 +50,10 @@ if (isset($_SESSION['USER'])) {
       <div class="tab center">
       </div>
 
-      <input type="radio" id="driver" name="mytabs" >
-      <label for="driver"><a href="<?= ROOT ?>/driversignup">Driver</a></label>
-      <div class="tab">
-      </div>
+    
 
-      <input type="radio" id="conductor" name="mytabs" checked="checked">
-      <label for="conductor"><a href="<?= ROOT ?>/conductorsignup">Conductor</a></label>
+      <input type="radio" id="driver" name="mytabs" checked="checked">
+      <label for="conductor"><a href="<?= ROOT ?>/driversignup">Driver</a></label>
       <div class="tab">
       <form action="" class="sign-up-form" method="post">
           <div class="input-field">
@@ -83,12 +80,17 @@ if (isset($_SESSION['USER'])) {
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
-
-            <p><a href="<?= ROOT ?>/conductorlogin">Login</a></p>
+            <p><a href="<?= ROOT ?>/driverlogin">Login</a></p>
           </div>
         </form>
       </div>
-      <input type="radio" id="owner" name="mytabs">
+    
+      <input type="radio" id="conductor" name="mytabs" >
+      <label for="conductor"><a href="<?= ROOT ?>/conductorsignup">Conductor</a></label>
+      <div class="tab">
+      </div>
+
+      <input type="radio" id="owner" name="mytabs" >
       <label for="owner"><a href="<?= ROOT ?>/ownersignup">Bus Owner</a></label>
       <div class="tab">
       </div>
@@ -96,7 +98,6 @@ if (isset($_SESSION['USER'])) {
       <input type="radio" id="scheduler" name="mytabs" >
       <label for="scheduler"><a href="<?= ROOT ?>/schedulersignup">Scheduler</a></label>
       <div class="tab">
-
       </div>
     </div>
   </main>
