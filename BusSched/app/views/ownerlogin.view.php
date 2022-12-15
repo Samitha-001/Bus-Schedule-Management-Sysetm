@@ -84,7 +84,7 @@ if (isset($_SESSION['USER'])) {
             </div>
           </div>
 
-         <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/schedulersignup">Register</a>
+         <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/ownersignup">Register</a>
           </div>
         </form>
       </div>
