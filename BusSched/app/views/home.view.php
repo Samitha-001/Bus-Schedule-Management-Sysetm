@@ -2,13 +2,13 @@
 
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
-        redirect('driverhome');
+        redirect('drivers');
     } else if ($_SESSION['USER']->role == 'conductor') {
         redirect('conductors');
     } else if ($_SESSION['USER']->role == 'scheduler') {
-        redirect('schedulerhome');
+        redirect('schedulers');
     } else if ($_SESSION['USER']->role == 'owner') {
-        redirect('ownerhome');
+        redirect('owners');
     } else if ($_SESSION['USER']->role == 'admin') {
         redirect('admins');
     }
@@ -49,42 +49,46 @@ if (isset($_SESSION['USER'])) {
 
     </nav>
 
-    <?php
-                    // echo "Welcome ".$_SESSION['USER']->username."!";
-                ?>
-
-    <?php } else {
-                ?>
-
-    <li><a href="#">Services</a></li>
-    <li><a href="#">About</a></li>
-    <a href="<?= ROOT ?>/passengerlogin">
-        <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-    </a>
-    <a href="<?= ROOT ?>/passengersignup">
-        <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
-    </a>
-    </nav>
-
-    <?php } ?>
-
-    </h2>
-    <!-- <div class="landing-bg"> -->
     <div class="grid-container">
         <div class="grid-item grid-item-1">
-            <h1 style="padding: 0px;">Find a Bus</h1><br>
-            <label for="from">From</label>
-            <input type="text" name="from" id="from" placeholder="Choose city"><br><br>
-            <label for="to">To</label>
-            <input type="text" name="to" id="to" placeholder="Choose city"><br><br><br>
-            <button id="btn" class="button-orange" onclick="#" style="width: 140px; align:right;">Find</button>
-        </div>
-    </div>
-    <!-- </div> -->
-    <div>
-        <!-- <h3>Our Services</h3>
+            <p style="color: #f4511e;">
+                <?php
+                    echo "Welcome " . $_SESSION['USER']->username . "!";
+                ?>
+            </p>
+            <?php } else {
+                ?>
+
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About</a></li>
+            <a href="<?= ROOT ?>/passengerlogin">
+                <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
+            </a>
+            <a href="<?= ROOT ?>/passengersignup">
+                <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
+            </a>
+            </nav>
+            <div class="grid-container">
+                <div class="grid-item grid-item-1">
+                    <?php } ?>
+
+                    </h2>
+                    <!-- <div class="landing-bg"> -->
+                    <!-- <div class="grid-container">
+        <div class="grid-item grid-item-1"> -->
+                    <h1 style="padding: 0px;">Find a Bus</h1><br>
+                    <label for="from">From</label>
+                    <input type="text" name="from" id="from" placeholder="Choose city"><br><br>
+                    <label for="to">To</label>
+                    <input type="text" name="to" id="to" placeholder="Choose city"><br><br><br>
+                    <button id="btn" class="button-orange" style="width: 140px;">Find</button>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div>
+                <!-- <h3>Our Services</h3>
     <h1>What we can do for you</h1> -->
-    </div>
+            </div>
 </body>
 
 </html>

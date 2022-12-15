@@ -6,13 +6,13 @@ if (!isset($_SESSION['USER'])) {
 if ($_SESSION['USER']->role == 'passenger') {
     redirect('home');
 } else if ($_SESSION['USER']->role == 'driver') {
-    redirect('driverhome');
+    redirect('drivers');
 } else if ($_SESSION['USER']->role == 'conductor') {
     redirect('conductors');
 } else if ($_SESSION['USER']->role == 'scheduler') {
-    redirect('schedulerhome');
+    redirect('schedulers');
 } else if ($_SESSION['USER']->role == 'owner') {
-    redirect('ownerhome');
+    redirect('owners');
 }
 ?>
 
