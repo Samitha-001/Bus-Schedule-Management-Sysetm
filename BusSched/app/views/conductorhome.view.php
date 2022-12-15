@@ -110,42 +110,20 @@ if ($_SESSION['USER']->role == 'passenger') {
             </ul>
         </div>
 
-        <div class="card-container" id="">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <!-- <p>Users</p> -->
-                    <!-- <hr> -->
-                </div>
-                <div class="items users">
-                    <!-- <p>All user profiles</p> -->
-                </div>
-            </div>
+        <div class="card-container span-col-2">
+
         </div>
 
-        <div class="card-container" id="">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <!-- <p>Schedules</p> -->
-                    <!-- <hr> -->
-                </div>
-                <div class="items users">
-                    <!-- <p>Bus Schedules</p> -->
-                </div>
-            </div>
-        </div>
-
-        <div class="card-container" id="buses-card">
-            <a href="<?= ROOT ?>/buses">
+        <div class="card-container" id="location-card">
+            <a href="#">
                 <div class="overlay">
                     <div class="items"></div>
                     <div class="items head">
-                        <p>Buses</p>
+                        <p>Location</p>
                         <hr>
                     </div>
                     <div class="items users">
-                        <p>Bus details</p>
+                        <!-- <p>Bus details</p> -->
                     </div>
                 </div>
             </a>
@@ -164,58 +142,56 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </div>
 
-        <div class="card-container" id="tickets-card">
+        <div class="card-container" id="schedules-card">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Tickets</p>
+                    <p>Schedules</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p>Bus tickets</p>
-                    <p><a href="<?= ROOT ?>/fares">Bus fare</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-container" id="halts-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Routes & Halts</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p><a href="#">Bus routes</a><br></p>
-                    <p><a href="<?= ROOT ?>/halts">Bus halts</a><br></p>
+                    <p>Bus schedules</p>
                 </div>
             </div>
         </div>
 
         <div class="card-container" id="buses-card">
-            <a href="<?= ROOT ?>/buses">
+            <div class="overlay">
+                <div class="items"></div>
+                <div class="items head">
+                    <p>Buses</p>
+                    <hr>
+                </div>
+                <div class="items users">
+                    <p>Bus details</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container" id="breakdowns-card">
+            <a href="#">
                 <div class="overlay">
                     <div class="items"></div>
                     <div class="items head">
-                        <p>Buses</p>
+                        <p>Breakdowns</p>
                         <hr>
                     </div>
                     <div class="items users">
-                        <p>Bus details</p>
+                        <!-- <p>Bus details</p> -->
                     </div>
                 </div>
             </a>
         </div>
 
-        <div class="card-container" id="ratings-card">
+        <div class="card-container" id="fare-card">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Ratings</p>
+                    <p>Bus Fare</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p>User ratings</p>
+                    <!-- <p>User ratings</p> -->
                 </div>
             </div>
         </div>
@@ -224,26 +200,24 @@ if ($_SESSION['USER']->role == 'passenger') {
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Tickets</p>
+                    <p>Contacts</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p>Bus tickets</p>
-                    <p><a href="<?= ROOT ?>/fares">Bus fare</a></p>
+                    <p>Contact details of drivers, conductors</p>
                 </div>
             </div>
         </div>
 
-        <div class="card-container" id="halts-card">
+        <div class="card-container" id="tickets-card">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Routes & Halts</p>
+                    <p>Bus Tickets</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p><a href="#">Bus routes</a><br></p>
-                    <p><a href="<?= ROOT ?>/halts">Bus halts</a><br></p>
+                    <p><a href="#">Tickets sold</a><br></p>
                 </div>
             </div>
         </div>
