@@ -1,3 +1,20 @@
+<?php
+
+if (isset($_SESSION['USER'])) {
+    if ($_SESSION['USER']->role == 'driver') {
+        redirect('driverhome');
+    } else if ($_SESSION['USER']->role == 'conductor') {
+        redirect('conductors');
+    } else if ($_SESSION['USER']->role == 'scheduler') {
+        redirect('schedulerhome');
+    } else if ($_SESSION['USER']->role == 'owner') {
+        redirect('ownerhome');
+    } else if ($_SESSION['USER']->role == 'admin') {
+        redirect('admins');
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +38,8 @@
         <ul class="nav-links">
             <div class="menu">
                 <?php
-    if (isset($_SESSION['USER'])) {
-    ?>
+                if (isset($_SESSION['USER'])) {
+                ?>
                 <li><a href="<?= ROOT ?>/buses">Buses</a></li>
                 <li><a href="<?= ROOT ?>/halts">Halts</a></li>
                 <li><a href="<?= ROOT ?>/fares">Fare</a></li>
@@ -33,11 +50,11 @@
     </nav>
 
     <?php
-        // echo "Welcome ".$_SESSION['USER']->username."!";
-    ?>
+                    // echo "Welcome ".$_SESSION['USER']->username."!";
+                ?>
 
     <?php } else {
-    ?>
+                ?>
 
     <li><a href="#">Services</a></li>
     <li><a href="#">About</a></li>

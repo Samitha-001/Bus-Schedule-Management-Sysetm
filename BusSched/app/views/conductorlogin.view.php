@@ -20,24 +20,26 @@ if (isset($_SESSION['USER'])) {
 
 <body>
 
-  <nav class="navbar">
-    <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
+  <!-- LOGIN FORM FOR ALL USERS -->
+  <form method="post">
+    <div id="form_bg" class="center">
+      <div>
+        <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."
+          required><br><br>
+
+        <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..."
+          required><br><br>
+
+        <button class="button-orange" type="submit">Login</button>
+      </div>
+      <div class="errors">
+        <?php if (!empty($errors)): ?>
+        <?= implode("<br>", $errors) ?>
+          <?php endif; ?>
+      </div>
     </div>
 
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <div class="menu">
-
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/passengerlogin">
-          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-        </a>
-        <a href="<?= ROOT ?>/passengersignup">
-          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
-        </a>
-
+    <div id="form_footer" class="center">Don't have an account? <a href="<?= ROOT ?>/conductorsignup">Register</a></div>
   </nav>
   <br>
   <br>

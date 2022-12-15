@@ -357,6 +357,11 @@ input:checked + .slider:before {
   padding-top: 20px;
 }
 
+.span-col-2 {
+  grid-column: span 2;
+  width: 90%;
+}
+
 #info-card {
   grid-column: span 2;
   grid-row: span 2;
@@ -365,7 +370,7 @@ input:checked + .slider:before {
 }
 
 #users-card {
-  background: url("../images/users-card.png");
+  background: url("../images/dashboard-cards/users-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -373,7 +378,7 @@ input:checked + .slider:before {
 }
 
 #schedules-card {
-  background: url("../images/schedules-card.png");
+  background: url("../images/dashboard-cards/schedules-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -381,7 +386,7 @@ input:checked + .slider:before {
 }
 
 #buses-card {
-  background: url("../images/buses-card.png");
+  background: url("../images/dashboard-cards/buses-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -389,7 +394,7 @@ input:checked + .slider:before {
 }
 
 #ratings-card {
-  background: url("../images/ratings-card.png");
+  background: url("../images/dashboard-cards/ratings-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -397,7 +402,7 @@ input:checked + .slider:before {
 }
 
 #tickets-card {
-  background: url("../images/tickets-card.png");
+  background: url("../images/dashboard-cards/tickets-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -405,7 +410,39 @@ input:checked + .slider:before {
 }
 
 #halts-card {
-  background: url("../images/halts-card.png");
+  background: url("../images/dashboard-cards/halts-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#breakdowns-card {
+  background: url("../images/dashboard-cards/breakdowns-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#contacts-card {
+  background: url("../images/dashboard-cards/contacts-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#fare-card {
+  background: url("../images/dashboard-cards/fare-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#location-card {
+  background: url("../images/dashboard-cards/location-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -528,4 +565,19 @@ hr {
 
 .nav-bar-img {
   width: 25px;
+}
+
+.form-control {
+  box-sizing: border-box;
+  align-items: center;
+  align-content: center;
+  position: center;
+  width: 100%;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background: #ffffff;
+  border: 1px solid #eeedf1;
+  border-radius: 5px;
 }

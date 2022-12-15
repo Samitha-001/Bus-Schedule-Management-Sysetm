@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['USER'])) {
-  redirect('home');
+  redirect('admins');
 }
 ?>
 
@@ -54,18 +54,22 @@ if (isset($_SESSION['USER'])) {
       <label for="passenger"><a href="<?= ROOT ?>/passengerlogin">Passenger</a></label>
       <div class="tab form-bg center">
       </div>
+
       <input type="radio" id="driver" name="mytabs">
       <label for="driver"><a href="<?= ROOT ?>/driverlogin">Driver</a></label>
       <div class="tab">
       </div>
+
       <input type="radio" id="conductor" name="mytabs">
       <label for="conductor"><a href="<?= ROOT ?>/conductorlogin">Conductor</a></label>
       <div class="tab">
       </div>
+
       <input type="radio" id="owner" name="mytabs">
       <label for="owner"><a href="<?= ROOT ?>/ownerlogin">Bus Owner</a></label>
       <div class="tab">
       </div>
+
       <input type="radio" id="scheduler" name="mytabs" checked="checked">
       <label for="scheduler"><a href="<?= ROOT ?>/schedulerlogin">Scheduler</a></label>
       <div class="tab center">
