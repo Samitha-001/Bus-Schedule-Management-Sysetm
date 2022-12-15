@@ -31,10 +31,10 @@ if (isset($_SESSION['USER'])) {
 
         <li><a href="#">Services</a></li>
         <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/ownererlogin">
+        <a href="<?= ROOT ?>/passengerlogin">
           <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
         </a>
-        <a href="<?= ROOT ?>/ownersignup">
+        <a href="<?= ROOT ?>/passengersignup">
           <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
         </a>
 
@@ -62,13 +62,9 @@ if (isset($_SESSION['USER'])) {
       <label for="conductor"><a href="<?= ROOT ?>/conductorlogin">Conductor</a></label>
       <div class="tab">
       </div>
-      <input type="radio" id="owner" name="mytabs">
+      <input type="radio" id="owner" name="mytabs" checked="checked">
       <label for="owner"><a href="<?= ROOT ?>/ownerlogin">Bus Owner</a></label>
       <div class="tab">
-      </div>
-      <input type="radio" id="scheduler" name="mytabs" checked="checked">
-      <label for="scheduler"><a href="<?= ROOT ?>/schedulerlogin">Scheduler</a></label>
-      <div class="tab center">
         <form action="" class="sign-up-form" method="post">
           <div class="input-field">
             <div>
@@ -87,6 +83,10 @@ if (isset($_SESSION['USER'])) {
           <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/schedulersignup">Register</a>
           </div>
         </form>
+      </div>
+      <input type="radio" id="scheduler" name="mytabs">
+      <label for="scheduler"><a href="<?= ROOT ?>/schedulerlogin">Scheduler</a></label>
+      <div class="tab center">
       </div>
     </div>
   </main>
