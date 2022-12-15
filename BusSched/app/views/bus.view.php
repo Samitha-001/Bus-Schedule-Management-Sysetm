@@ -37,15 +37,15 @@ if (!isset($_SESSION['USER'])) {
 
     <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/admins" style="color:#f4511e;">Dashboard</a></li>
-            <li><a href="#" style="color:#f4511e;">Users</a></li>
-            <li><a href="#" style="color:#f4511e;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
+            <li><a href="#" style="color:#9298AF;">Users</a></li>
+            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
             <li><a href="<?= ROOT ?>/buses" style="color:white;"><b>Buses</b></a></li>
-            <li><a href="#" style="color:#f4511e;">Ratings</a></li>
-            <li><a href="#" style="color:#f4511e;">Tickets</a></li>
-            <li><a href="<?= ROOT ?>/fares" style="color:#f4511e;">Bus Fares</a></li>
-            <li><a href="#" style="color:#f4511e;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#f4511e;">Halts</a></li>
+            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
+            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
+            <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
+            <li><a href="#" style="color:#9298AF;">Routes</a></li>
+            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
         </div>
     </div>
 
@@ -64,16 +64,16 @@ if (!isset($_SESSION['USER'])) {
             <?= implode("<br>", $errors) ?>
                 <?php endif; ?>
 
-                <div class="data-table">
-                    <table class="styled-table data-table">
+                <div>
+                    <table class="styled-table">
                         <tr>
-                            <td><label for="bus_no">Bus No. </label></td>
+                            <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
                             <td><input name="bus_no" type="text" class="form-control" id="bus_no"
                                     placeholder="Bus No..." required></td>
                         </tr>
 
                         <tr>
-                            <td><label for="type">Bus Type </label></td>
+                            <td style="color:#24315e;"><label for="type">Bus Type </label></td>
                             <td>
                                 <select name="type" id="type" class="form-control" required>
                                     <option disabled selected value>--select an option--</option>
@@ -84,13 +84,13 @@ if (!isset($_SESSION['USER'])) {
                         </tr>
 
                         <tr>
-                            <td><label for="seats_no">Capacity </label></td>
+                            <td style="color:#24315e;"><label for="seats_no">Capacity </label></td>
                             <td><input name="seats_no" type="number" class="form-control" id="seats_no"
                                     placeholder="Available no. of seats..." required></td>
                         </tr>
 
                         <tr>
-                            <td><label for="availability">Bus Available? </label></td>
+                            <td style="color:#24315e;"><label for="availability">Bus Available? </label></td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" id="availability" name="availability" value="1">
@@ -100,25 +100,30 @@ if (!isset($_SESSION['USER'])) {
                         </tr>
 
                         <tr>
-                            <td><label for="route">Route </label></td>
+                            <td style="color:#24315e;"><label for="route">Route </label></td>
                             <td><input name="route" type="text" class="form-control" id="route"
                                     placeholder="Bus route..." required></td>
                         </tr>
 
                         <tr>
-                            <td><label for="start">Start </label></td>
+                            <td style="color:#24315e;"><label for="start">Start </label></td>
                             <td><input name="start" type="text" class="form-control" id="start"
                                     placeholder="Starting halt..." required></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><button class="button-green" type="submit">Add New Bus</button></td>
+                            <td></td>
+                            <td>
+                                <button class="button-green" type="submit">Save</button>
+                                <button class="button-cancel">Cancel</button>
+                            </td>
                         </tr>
 
                     </table>
                 </div>
         </form>
 
-        <div class="data-table">
+        <div>
+            <br>
             <table border='1' class="styled-table">
                 <tr>
                     <th>#</th>
@@ -131,17 +136,17 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
 
                 <?php
-    foreach ($buses as $bus) {
-        echo "<tr>";
-        echo "<td> $bus->id </td>";
-        echo "<td> $bus->bus_no </td>";
-        echo "<td> $bus->type </td>";
-        echo "<td> $bus->seats_no </td>";
-        echo "<td> $bus->availability </td>";
-        echo "<td> $bus->route </td>";
-        echo "<td> $bus->start </td>";
-        echo "</tr>";
-    } ?>
+                foreach ($buses as $bus) {
+                    echo "<tr>";
+                    echo "<td> $bus->id </td>";
+                    echo "<td> $bus->bus_no </td>";
+                    echo "<td> $bus->type </td>";
+                    echo "<td> $bus->seats_no </td>";
+                    echo "<td> $bus->availability </td>";
+                    echo "<td> $bus->route </td>";
+                    echo "<td> $bus->start </td>";
+                    echo "</tr>";
+                } ?>
 
             </table>
         </div>

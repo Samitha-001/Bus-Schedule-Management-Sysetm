@@ -37,14 +37,14 @@ if (!isset($_SESSION['USER'])) {
 
     <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/admins" style="color:#f4511e;">Dashboard</a></li>
-            <li><a href="#" style="color:#f4511e;">Users</a></li>
-            <li><a href="#" style="color:#f4511e;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/buses" style="color:#f4511e;">Buses</a></li>
-            <li><a href="#" style="color:#f4511e;">Ratings</a></li>
-            <li><a href="#" style="color:#f4511e;">Tickets</a></li>
-            <li><a href="<?= ROOT ?>/fares" style="color:#f4511e;">Bus Fares</a></li>
-            <li><a href="#" style="color:#f4511e;">Routes</a></li>
+            <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
+            <li><a href="#" style="color:#9298AF;">Users</a></li>
+            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
+            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
+            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
+            <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
+            <li><a href="#" style="color:#9298AF;">Routes</a></li>
             <li><a href="<?= ROOT ?>/halts" style="color:white;"><b>Halts</b></a></li>
         </div>
     </div>
@@ -68,8 +68,8 @@ if (!isset($_SESSION['USER'])) {
         <form method="post" id="view_route" style="display:none">
 
 
-            <div class="data-table">
-                <table class="styled-table data-table">
+            <div>
+                <table class="styled-table">
                     <tr>
                         <td><label for="route_id">Route</label></td>
                         <td><input name="route_id" type="text" class="form-control" id="route_id"
@@ -96,7 +96,8 @@ if (!isset($_SESSION['USER'])) {
             </div>
         </form>
 
-        <div class="data-table">
+        <div>
+            <br>
             <table border='1' class="styled-table">
                 <tr>
                     <th>#</th>
@@ -105,13 +106,13 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
 
                 <?php
-        foreach ($halts as $halt) {
-            echo "<tr>";
-            echo "<td> $halt->id </td>";
-            echo "<td> $halt->name </td>";
-            echo "<td> $halt->distance_from_source </td>";
-            echo "</tr>";
-        } ?>
+                foreach ($halts as $halt) {
+                    echo "<tr>";
+                    echo "<td> $halt->id </td>";
+                    echo "<td> $halt->name </td>";
+                    echo "<td> $halt->distance_from_source </td>";
+                    echo "</tr>";
+                } ?>
 
             </table>
         </div>
