@@ -44,9 +44,6 @@
 </div>
 
 <main class="container1">
-
-<div class="header orange-header">
-    <div><h3>Buses</h3></div>
   
     <div><button id="btn" class="button-grey">Add New</button></div>    
 </div>
@@ -63,27 +60,21 @@
         <td><label for="bus_no">Bus No. </label></td>
         <td><input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
     </tr>
-
-    <tr>
-      
+    <tr>  
         <td><label for="description">Description </label></td>
         <td><input name="description" type="text" class="form-control" id="description" placeholder="Description..." required></td>
     </tr> 
-
-    <tr>
-        <td><label for="date">Date </label></td>
+    <tr>  
+        <td><label for="date">Date</label></td>
         <td><input name="date" type="date" class="form-control" id="date" placeholder="Date..." required></td>
-    </tr>
+    </tr> 
 
     <tr>
-      
         <td><label for="time">Time </label></td>
-        <td><input name="time" type="time" class="form-control" id="time" placeholder="Time..." required></td>
+        <td><input name="time" type="text" class="form-control" id="time" placeholder="Time..." required></td>
     </tr>
-
-
     <tr>
-        <td><label for="route">Time To Repair </label></td>
+        <td><label for="time_to_repair">Time To Repair </label></td>
         <td><input name="timetorepair" type="text" class="form-control" id="timetorepair" placeholder="Time to repair..." required></td>
     </tr>
 
@@ -101,17 +92,15 @@
     <th>Bus No.</th>
     <th>Description</th>
     <th>Date</th>
-    <th>Time</th>
-      
+    <th>Time</th>  
     <th>Time to repair</th>
 </tr>
 
     <?php
     foreach($breakdowns as $breakdown) {
         echo "<tr>";
-        echo "<td> $breakdown->id </td>";
+        echo "<td> $breakdown->breakdown_id </td>";
         echo "<td> $breakdown->bus_no </td>";
-      
         echo "<td> $breakdown->description </td>";
         echo "<td> $breakdown->date </td>";
         echo "<td> $breakdown->time </td>";
