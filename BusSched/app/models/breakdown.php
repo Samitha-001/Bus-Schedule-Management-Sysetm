@@ -12,36 +12,40 @@ class Breakdown extends Model{
         'timetorepair'
     ];
 
-    public function validate($data)
-    {
+    public function validate($data) {
         $this->errors = [];
 
-        if (empty($data['bus_no'])) {
+		if(empty($data['bus_no']))
+        {
             $this->errors['bus_no'] = "Bus number is required";
         } else
-            if (empty($data['description'])) {
-                $this->errors['description'] = "Enter Description";
-            } else
-                if (empty($data['date'])) {
-                    $this->errors['date'] = "Enter Date";
-                } else
-                    if (empty($data['time'])) {
-                        $this->errors['time'] = "Enter Time";
-                    } else
-                        if (empty($data['timetorepair'])) {
-                            $this->errors['timetorepair'] = "Enter estimate time to repair";
-                        }
+        if(empty($data['description']))
+		{
+			$this->errors['description'] = "Enter Description";
+		} else
+        if(empty($data['date']))
+		{
+			$this->errors['date'] = "Enter Date";
+		} else
+        if(empty($data['time']))
+		{
+			$this->errors['time'] = "Enter Time";
+		} else
+        if(empty($data['timetorepair']))
+		{
+			$this->errors['timetorepair'] = "Enter estimate time to repair";
+		}
+		
 
+		if(empty($this->errors))
+		{
+			return true;
+		}
 
-        if (empty($this->errors)) {
-            return true;
-        }
-
-        return false;
+		return false;
     }
 
-    public function getBreakdown()
-    {
+    public function getBreakdown(){
         return $this->findAll();
     }
 }
