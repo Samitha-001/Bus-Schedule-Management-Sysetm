@@ -65,26 +65,31 @@ if (!isset($_SESSION['USER'])) {
             <?= implode("<br>", $errors) ?>
                 <?php endif; ?>
 
-                <div class="data-table">
-                    <table class="styled-table data-table">
+                <div>
+                    <table class="styled-table">
                         <tr>
-                            <td><label for="bus_no">Bus No. </label></td>
+                            <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
                             <td><input name="bus_no" type="text" class="form-control" id="bus_no"
                                     placeholder="Bus No..." required></td>
                         </tr>
+
                         <tr>
-                            <td><label for="description">Description </label></td>
+                            <td style="color:#24315e;"><label for="description">Description </label></td>
                             <td><input name="description" type="text" class="form-control" id="description"
                                     placeholder="Description..." required></td>
                         </tr>
                         <tr>
-                            <td><label for="time_to_repair">Time To Repair </label></td>
+                            <td style="color:#24315e;"><label for="time_to_repair">Time to Repair </label></td>
                             <td><input name="time_to_repair" type="text" class="form-control" id="time_to_repair"
                                     placeholder="Time to repair..." required></td>
                         </tr>
 
                         <tr>
-                            <td colspan="2"><button class="button-green" type="submit">Add Breakdown</button></td>
+                            <td></td>
+                            <td align="right">
+                                <button class="button-green" type="submit">Save</button>
+                                <button class="button-cancel" onclick="cancel()">Cancel</button>
+                            </td>
                         </tr>
 
                     </table>
