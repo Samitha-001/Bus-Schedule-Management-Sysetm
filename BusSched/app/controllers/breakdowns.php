@@ -7,7 +7,7 @@ class Breakdowns {
 
     public function index() {
         $breakdown = new Breakdown();
-        $breakdowns = $breakdown->getBreakdowns();
+        $breakdowns = $breakdown->getBreakdown();
 
         $data = [];
         if($_SERVER['REQUEST_METHOD'] == "POST") {
