@@ -27,7 +27,7 @@ class Conductorlogin {
 				if(password_verify($_POST['password'],$row->password))
 				{
 					$_SESSION['USER'] = $row;
-					redirect('home');
+					redirect('admins');
 				}
 			}
 			$user->errors['email'] = "Wrong email or password";

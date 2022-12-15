@@ -68,8 +68,8 @@ if ($_SESSION['USER']->role == 'passenger') {
         <div class="card-container" id="greeting-card">
             <h2>
                 <?php
-        echo "Welcome " . $_SESSION['USER']->username . "!";
-        ?>
+                echo "Welcome " . $_SESSION['USER']->username . "!";
+                ?>
             </h2>
         </div>
 
@@ -79,7 +79,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 <table class="styled-table">
                     <tr>
                         <th>Username: </th>
-                        <td><?= $_SESSION['USER']->username ?></td>
+                        <td>
+                            <?= $_SESSION['USER']->username ?>
+                        </td>
                     </tr>
                     <tr>
                         <th>Name: </th>
@@ -88,7 +90,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                         </td>
                     <tr>
                         <th>Email: </th>
-                        <td><?= $_SESSION['USER']->email ?></td>
+                        <td>
+                            <?= $_SESSION['USER']->email ?>
+                        </td>
                     </tr>
                     <tr>
                         <th>Phone: </th>
