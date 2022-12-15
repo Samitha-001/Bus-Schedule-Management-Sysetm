@@ -57,13 +57,13 @@ if (isset($_SESSION['USER'])) {
 
       <input type="radio" id="driver" name="mytabs" checked="checked">
       <label for="driver"><a href="<?= ROOT ?>/driverlogin">Driver</a></label>
-    
+
       <div class="tab center">
         <form action="" class="sign-up-form" method="post">
           <div class="input-field">
             <div>
-              <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email..."
-                required><br><br>
+              <input name="email" type="text" class="form-control" id="floatingInput"
+                placeholder="Username or Email..." required><br><br>
               <input name="password" type="password" class="form-control" id="floatingPassword"
                 placeholder="Password..." required><br><br>
               <button class="button-orange" type="submit">Login</button>
@@ -80,7 +80,7 @@ if (isset($_SESSION['USER'])) {
       </div>
       <div class="tab">
       </div>
-      <input type="radio" id="conductor" name="mytabs" >
+      <input type="radio" id="conductor" name="mytabs">
       <label for="scheduler"><a href="<?= ROOT ?>/conductorlogin">Conductor</a></label>
       <div class="tab">
       </div>
