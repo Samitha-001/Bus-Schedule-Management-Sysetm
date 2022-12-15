@@ -12,7 +12,7 @@ if (isset($_SESSION['USER'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>Conductor - Login</title>
+  <title>Driver - Login</title>
 
 
   <link href="<?= ROOT ?>/assets/css/style.css" rel="stylesheet">
@@ -43,7 +43,7 @@ if (isset($_SESSION['USER'])) {
   <br>
   <br>
 
-  <h3 class="center">Conductor</h3>
+  <h3 class="center">Driver</h3>
   <h1 style="text-align:center" class="center">Login</h1><br>
 
   <!-- LOGIN FORM FOR SCHEDULER -->
@@ -54,12 +54,10 @@ if (isset($_SESSION['USER'])) {
       <label for="passenger"><a href="<?= ROOT ?>/passengerlogin">Passenger</a></label>
       <div class="tab form-bg center">
       </div>
-      <input type="radio" id="driver" name="mytabs">
+
+      <input type="radio" id="driver" name="mytabs" checked="checked">
       <label for="driver"><a href="<?= ROOT ?>/driverlogin">Driver</a></label>
-      <div class="tab">
-      </div>
-      <input type="radio" id="conductor" name="mytabs" checked="checked">
-      <label for="conductor"><a href="<?= ROOT ?>/conductorlogin">Conductor</a></label>
+    
       <div class="tab center">
         <form action="" class="sign-up-form" method="post">
           <div class="input-field">
@@ -76,9 +74,15 @@ if (isset($_SESSION['USER'])) {
                 <?php endif; ?>
             </div>
           </div>
-          <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/conductorsignup">Register</a>
+          <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/driversignup">Register</a>
           </div>
         </form>
+      </div>
+      <div class="tab">
+      </div>
+      <input type="radio" id="conductor" name="mytabs" >
+      <label for="scheduler"><a href="<?= ROOT ?>/conductorlogin">Conductor</a></label>
+      <div class="tab">
       </div>
       <input type="radio" id="owner" name="mytabs">
       <label for="conductor"><a href="<?= ROOT ?>/ownerlogin">Bus Owner</a></label>
