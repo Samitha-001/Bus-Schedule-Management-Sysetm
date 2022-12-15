@@ -1,33 +1,28 @@
 <?php
 
-class Conductorlogin {
+class Conductorlogin
+{
 
-    use Controller;
+	use Controller;
 
 	public function index()
 	{
 		$data = [];
-		
-		if($_SERVER['REQUEST_METHOD'] == "POST")
-		{
+
+		if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$user = new User;
-			if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-			{
+			if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 				$arr['email'] = $_POST['email'];
-			}
-			else
-			{
+			} else {
 				$arr['username'] = $_POST['email'];
 			}
-			
+
 			$row = $user->first($arr);
-			
-			if($row)
-			{
-				if(password_verify($_POST['password'],$row->password))
-				{
+
+			if ($row) {
+				if (password_verify($_POST['password'], $row->password)) {
 					$_SESSION['USER'] = $row;
-					redirect('admins');
+					redirect('conductors');
 				}
 			}
 			$user->errors['email'] = "Wrong email or password";
@@ -36,5 +31,5 @@ class Conductorlogin {
 		}
 
 		$this->view('conductorlogin', $data);
-    }
+	}
 }
