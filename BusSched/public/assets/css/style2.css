@@ -101,6 +101,24 @@ input {
   vertical-align: middle;
 }
 
+.styled-table option {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table input {
+  color: black;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table select {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
 form {
   box-sizing: border-box;
   position: relative;
@@ -231,7 +249,7 @@ button:hover {
 
 .button-cancel {
   font-family: "Outfit";
-  background: #ffffff;
+  background: white;
   font-size: 16px;
   width: 15%;
   border: 1px solid red;
