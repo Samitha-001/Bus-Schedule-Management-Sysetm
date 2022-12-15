@@ -6,7 +6,6 @@ if (isset($_SESSION['USER'])) {
 
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +13,7 @@ if (isset($_SESSION['USER'])) {
   <meta name="generator" content="Hugo 0.88.1">
   <title>Conductor - Sign Up</title>
 
+  
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
 </head>
 
@@ -49,11 +49,11 @@ if (isset($_SESSION['USER'])) {
 
   <!-- SIGN UP FORM - PASSENGER -->
   <main class="sec1">
+    
     <div class="mytabs">
       <input type="radio" id="passenger" name="mytabs" >
       <label for="passenger"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
       <div class="tab form-bg center">
-        
       </div>
       <input type="radio" id="driver" name="mytabs" >
       <label for="driver"><a href="<?= ROOT ?>/driversignup">Driver</a></label>
@@ -85,6 +85,7 @@ if (isset($_SESSION['USER'])) {
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
+            
             <p><a href="<?= ROOT ?>/conductorlogin">Login</a></p>
           </div>
         </form>
@@ -99,6 +100,7 @@ if (isset($_SESSION['USER'])) {
       <div class="tab">
       </div>
     </div>
+
     </div>
     <!-- <form method="post">
 
