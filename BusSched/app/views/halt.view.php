@@ -90,7 +90,11 @@ if (!isset($_SESSION['USER'])) {
                     </tr>
 
                     <tr>
-                        <td colspan="2"><button class="button-green" type="submit">Add New Halt</button></td>
+                        <td></td>
+                        <td align="right">
+                            <button class="button-green" type="submit">Save</button>
+                            <button class="button-cancel" onclick="cancel()">Cancel</button>
+                        </td>
                     </tr>
 
                 </table>

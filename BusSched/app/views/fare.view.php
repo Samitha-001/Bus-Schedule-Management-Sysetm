@@ -66,29 +66,51 @@ if (!isset($_SESSION['USER'])) {
             <?= implode("<br>", $errors) ?>
                 <?php endif; ?>
 
-                <div class="data-table">
+                <div>
                     <table class="styled-table">
-                        <label for="source">From</label>
-                        <input type="text" name="source" id="source">
-
-                        <label for="dest">To</label>
-                        <input type="text" name="dest" id="dest">
-
-                        <label for="route_bus">Route</label>
-                        <input type="text" name="route_bus" id="route_bus">
-
-                        <label for="type_bus">Type </label>
-                        <select name="type_bus" id="type_bus" class="form-control">
-                            <option disabled selected value>--select an option--</option>
-                            <option value="L">Luxury</option>
-                            <option value="S">Semi-Luxury</option>
-                        </select>
-
-                        <label for="amount">Amount</label>
-                        <input type="number" name="amount" id="amount">
+                        <tr>
+                            <td><label for="source">From</label></td>
+                            <td><input type="text" class="form-control" name="source" id="source"
+                                    placeholder="Starting halt..."></td>
+                        </tr>
 
                         <tr>
-                            <td colspan="2"><button class="button-green" type="submit">Add New Fare</button></td>
+                            <td><label for="dest">To</label></td>
+                            <td>
+                                <input type="text" name="dest" class="form-control" id="dest"
+                                    placeholder="Destination halt...">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="route_bus">Route</label></td>
+                            <td><input type="text" name="route_bus" class="form-control" id="route_bus"
+                                    placeholder="Bus route..."></td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="type_bus">Type </label></td>
+                            <td>
+                                <select name="type_bus" id="type_bus" class="form-control">
+                                    <option disabled selected value>--select an option--</option>
+                                    <option value="L">Luxury</option>
+                                    <option value="S">Semi-Luxury</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><label for="amount">Amount</label></td>
+                            <td><input type="number" name="amount" class="form-control" id="amount"
+                                    placeholder="Bus fare..."></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                <button class="button-green" type="submit">Save</button>
+                                <button class="button-cancel" onclick="cancel()">Cancel</button>
+                            </td>
                         </tr>
 
                     </table>
