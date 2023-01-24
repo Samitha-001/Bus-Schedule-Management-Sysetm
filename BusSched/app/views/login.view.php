@@ -35,11 +35,11 @@
     <br>
     <br>
 
-    <h3>Admin</h3>
+    <h3>User</h3>
     <h1 style="text-align:center" class="center">Login</h1><br>
   
   <br>
-  <!-- LOGIN FORM FOR ADMIN -->
+  
   <form method="post">    
   <div class="form-bg center">    
     <div>
@@ -56,7 +56,7 @@
       <?php endif;?>
     </div>
 
-    <p style="color: #24315e; text-align:center;">Don't have an account? <a href="<?=ROOT?>/signup">Register</a></p>
+    <p style="color: #24315e; text-align:center;">Don't have an account? <a href="<?=ROOT?>/passengersignup">Register</a></p>
   </div>
 
   </form>
