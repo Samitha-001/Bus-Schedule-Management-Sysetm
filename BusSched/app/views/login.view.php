@@ -56,9 +56,8 @@
       <?php endif;?>
     </div>
 
+    <p style="color: #24315e; text-align:center;">Don't have an account? <a href="<?=ROOT?>/signup">Register</a></p>
   </div>
-
-  <div class="form-footer center">Don't have an account? <a href="<?=ROOT?>/signup">Register</a></div>
 
   </form>
 

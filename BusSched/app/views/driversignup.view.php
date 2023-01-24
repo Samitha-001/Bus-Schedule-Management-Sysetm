@@ -39,7 +39,7 @@ if (isset($_SESSION['USER'])) {
   <br>
   <br>
 
-  <h3>Conductor</h3>
+  <h3>Driver</h3>
   <h1 style="text-align:center">Create Account</h1>
 
   <!-- SIGN UP FORM - SCHEDULER -->
