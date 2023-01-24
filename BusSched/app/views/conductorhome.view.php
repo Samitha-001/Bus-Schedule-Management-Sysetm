@@ -40,7 +40,7 @@ if ($_SESSION['USER']->role == 'passenger') {
         <ul class="nav-links">
             <div class="menu">
                 <a href="<?= ROOT ?>/conductors">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
+                    <li><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
                     <li class="button-orange" style="border: 2px solid #f4511e;">Logout</li>
