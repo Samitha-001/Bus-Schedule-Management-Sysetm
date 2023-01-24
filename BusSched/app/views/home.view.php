@@ -1,5 +1,5 @@
 <?php
-
+include 'components/navbar.php';
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
         redirect('drivers');
@@ -29,12 +29,11 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <div>
-            <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
+            <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
         </div>
 
-        <!-- NAVIGATION MENU -->
         <ul class="nav-links">
             <div class="menu">
                 <?php
@@ -68,7 +67,7 @@ if (isset($_SESSION['USER'])) {
                 <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
             </a>
             </div></ul>
-            </nav>
+            </nav> -->
             <div class="grid-container">
                 <div class="grid-item grid-item-1">
                     <?php } ?>
