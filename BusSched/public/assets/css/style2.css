@@ -53,10 +53,6 @@ input {
 }
 
 .styled-table {
-  /* margin: 25px 0;
-  font-size: 0.9em;
-  width: 100%;
-  border-color: #ffffff; */
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #ffffff;
@@ -99,6 +95,24 @@ input {
   font-size: 15px;
   color: #7c839e;
   vertical-align: middle;
+}
+
+.styled-table option {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table input {
+  color: black;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table select {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
 }
 
 form {
@@ -231,7 +245,7 @@ button:hover {
 
 .button-cancel {
   font-family: "Outfit";
-  background: #ffffff;
+  background: white;
   font-size: 16px;
   width: 15%;
   border: 1px solid red;

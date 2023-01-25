@@ -1,5 +1,5 @@
 <?php
-
+include 'components/navbar.php';
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
         redirect('drivers');
@@ -29,12 +29,11 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <div>
-            <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
+            <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
         </div>
 
-        <!-- NAVIGATION MENU -->
         <ul class="nav-links">
             <div class="menu">
                 <?php
@@ -61,21 +60,19 @@ if (isset($_SESSION['USER'])) {
 
             <li><a href="#">Services</a></li>
             <li><a href="#">About</a></li>
-            <a href="<?= ROOT ?>/passengerlogin">
+            <a href="<?= ROOT ?>/login">
                 <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
             </a>
             <a href="<?= ROOT ?>/passengersignup">
                 <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
             </a>
-            </nav>
+            </div></ul>
+            </nav> -->
             <div class="grid-container">
                 <div class="grid-item grid-item-1">
                     <?php } ?>
 
                     </h2>
-                    <!-- <div class="landing-bg"> -->
-                    <!-- <div class="grid-container">
-        <div class="grid-item grid-item-1"> -->
                     <h1 style="padding: 0px;">Find a Bus</h1><br>
                     <label for="from">From</label>
                     <input type="text" name="from" id="from" placeholder="Choose city"><br><br>
@@ -84,10 +81,15 @@ if (isset($_SESSION['USER'])) {
                     <button id="btn" class="button-orange" style="width: 140px;">Find</button>
                 </div>
             </div>
-            <!-- </div> -->
             <div>
-                <!-- <h3>Our Services</h3>
-    <h1>What we can do for you</h1> -->
+                <h3>Our Services</h3>
+                <h1>What we can do for you</h1>
+                <h3>Our Services</h3>
+                <h1>What we can do for you</h1><h3>Our Services</h3>
+                <h1>What we can do for you</h1><h3>Our Services</h3>
+                <h1>What we can do for you</h1><h3>Our Services</h3>
+                <h1>What we can do for you</h1><h3>Our Services</h3>
+                <h1>What we can do for you</h1>
             </div>
 </body>
 

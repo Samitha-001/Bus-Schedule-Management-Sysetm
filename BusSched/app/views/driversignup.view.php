@@ -29,7 +29,7 @@ if (isset($_SESSION['USER'])) {
 
         <li><a href="#">Services</a></li>
         <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/passengerlogin">
+        <a href="<?= ROOT ?>/login">
           <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
         </a>
         <a href="<?= ROOT ?>/passengersignup">
@@ -39,7 +39,7 @@ if (isset($_SESSION['USER'])) {
   <br>
   <br>
 
-  <h3>Conductor</h3>
+  <h3>Driver</h3>
   <h1 style="text-align:center">Create Account</h1>
 
   <!-- SIGN UP FORM - SCHEDULER -->
@@ -80,7 +80,7 @@ if (isset($_SESSION['USER'])) {
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
-            <p><a href="<?= ROOT ?>/driverlogin">Login</a></p>
+            <p><a href="<?= ROOT ?>/login">Login</a></p>
           </div>
         </form>
       </div>

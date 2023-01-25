@@ -30,7 +30,7 @@ if (isset($_SESSION['USER'])) {
 
         <li><a href="#">Services</a></li>
         <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/passengerlogin">
+        <a href="<?= ROOT ?>/login">
           <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
         </a>
         <a href="<?= ROOT ?>/passengersignup">
@@ -74,7 +74,7 @@ if (isset($_SESSION['USER'])) {
 
           <div class="create_account">
             <p>Already have an account?</p>
-            <p><a href="<?= ROOT ?>/passengerlogin">Login</a></p>
+            <p><a href="<?= ROOT ?>/login">Login</a></p>
           </div>
 
         </form>

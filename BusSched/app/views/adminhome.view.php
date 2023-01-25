@@ -33,13 +33,13 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <nav class="navbar">
         <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
+            <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
         </div>
 
         <ul class="nav-links">
             <div class="menu">
                 <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
+                    <li><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
                     <li class="button-orange">Logout</li>
