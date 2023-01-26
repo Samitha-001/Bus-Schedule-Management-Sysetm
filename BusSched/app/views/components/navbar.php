@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
 <nav class="navbar">
         <div>
             <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
@@ -28,8 +29,9 @@
             <?php } else {
                 ?>
 
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="#services" onclick="goToSection()">Services</a></li>
+            <li><a href="#about" onclick="goToSection()">About</a></li>
+            <li><a href="#contact" onclick="goToSection()">Contact</a></li>
             <a href="<?= ROOT ?>/login">
                 <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
             </a>
