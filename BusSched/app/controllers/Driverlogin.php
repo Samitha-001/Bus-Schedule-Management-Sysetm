@@ -1,6 +1,6 @@
 <?php
 
-class Schedulerlogin
+class Driverlogin
 {
 
 	use Controller;
@@ -27,10 +27,9 @@ class Schedulerlogin
 			}
 			$user->errors['email'] = "Wrong email or password";
 
-
 			$data['errors'] = $user->errors;
 		}
 
-		$this->view('schedulerlogin', $data);
+		$this->view('driverlogin', $data);
 	}
 }

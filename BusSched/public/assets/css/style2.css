@@ -53,17 +53,30 @@ input {
 }
 
 .styled-table {
-  margin: 25px 0;
-  font-size: 0.9em;
-  width: 100%;
-  border-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #ffffff;
   border-collapse: collapse;
+  width: 95%;
+}
+
+.styled-table ::placeholder {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
 }
 
 .styled-table thead tr {
   color: #24315e;
   text-align: left;
-  border-color: #ffffff;
+}
+
+.styled-table tr {
+  margin: 10px;
+  background-color: #f9f9f9;
+}
+.styled-table tr:hover {
+  background-color: #f5f5f5;
 }
 
 .styled-table th {
@@ -71,15 +84,35 @@ input {
   border-color: #ffffff;
   text-align: left;
   font-size: 16px;
-  color: #7c839e;
+  color: #24315e;
 }
 
 .styled-table td {
   padding: 12px 15px;
   /* border-color: #f9f9f9;
     background-color: #f9f9f9; */
-  font-size: 20px;
+  border-color: #ffffff;
+  font-size: 15px;
   color: #7c839e;
+  vertical-align: middle;
+}
+
+.styled-table option {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table input {
+  color: black;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table select {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
 }
 
 form {
@@ -192,12 +225,32 @@ button:hover {
 }
 
 .button-green {
+  font-family: "Outfit";
   background: #20c23a;
   font-size: 16px;
-  width: 100%;
-  border: none;
+  width: 15%;
+  border: 1px solid #20c23a;
   border-radius: 5px;
   color: white;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0px;
+  opacity: 1;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.button-cancel {
+  font-family: "Outfit";
+  background: white;
+  font-size: 16px;
+  width: 15%;
+  border: 1px solid red;
+  border-radius: 5px;
+  color: red;
   padding: 10px 10px;
   text-align: center;
   font-size: 14px;
@@ -257,8 +310,8 @@ button:hover {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 30px;
+  height: 17px;
 }
 
 /* Hide default HTML checkbox */
@@ -284,10 +337,10 @@ button:hover {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 13px;
+  width: 13px;
+  /* left: 4px;
+  bottom: 4px; */
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -302,9 +355,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(18px);
 }
 
 /* Rounded sliders */
@@ -326,8 +379,8 @@ input:checked + .slider:before {
 
 .container1 {
   margin-left: 230px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; */
   /* grid-template-rows: 1fr 4fr 4fr; */
 }
 
@@ -357,6 +410,11 @@ input:checked + .slider:before {
   padding-top: 20px;
 }
 
+.span-col-2 {
+  grid-column: span 2;
+  width: 90%;
+}
+
 #info-card {
   grid-column: span 2;
   grid-row: span 2;
@@ -365,7 +423,7 @@ input:checked + .slider:before {
 }
 
 #users-card {
-  background: url("../images/users-card.png");
+  background: url("../images/dashboard-cards/users-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -373,7 +431,7 @@ input:checked + .slider:before {
 }
 
 #schedules-card {
-  background: url("../images/schedules-card.png");
+  background: url("../images/dashboard-cards/schedules-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -381,7 +439,7 @@ input:checked + .slider:before {
 }
 
 #buses-card {
-  background: url("../images/buses-card.png");
+  background: url("../images/dashboard-cards/buses-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -389,7 +447,7 @@ input:checked + .slider:before {
 }
 
 #ratings-card {
-  background: url("../images/ratings-card.png");
+  background: url("../images/dashboard-cards/ratings-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -397,7 +455,7 @@ input:checked + .slider:before {
 }
 
 #tickets-card {
-  background: url("../images/tickets-card.png");
+  background: url("../images/dashboard-cards/tickets-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -405,7 +463,47 @@ input:checked + .slider:before {
 }
 
 #halts-card {
-  background: url("../images/halts-card.png");
+  background: url("../images/dashboard-cards/halts-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#breakdowns-card {
+  background: url("../images/dashboard-cards/breakdowns-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#contacts-card {
+  background: url("../images/dashboard-cards/contacts-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#fare-card {
+  background: url("../images/dashboard-cards/fare-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#location-card {
+  background: url("../images/dashboard-cards/location-card.png");
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#income-card {
+  background: url("../images/dashboard-cards/income-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
@@ -528,4 +626,19 @@ hr {
 
 .nav-bar-img {
   width: 25px;
+}
+
+.form-control {
+  box-sizing: border-box;
+  align-items: center;
+  align-content: center;
+  position: center;
+  width: 100%;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  background: #ffffff;
+  border: 1px solid #eeedf1;
+  border-radius: 5px;
 }

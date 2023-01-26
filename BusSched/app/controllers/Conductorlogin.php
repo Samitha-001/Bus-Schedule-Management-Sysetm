@@ -1,6 +1,6 @@
 <?php
 
-class Schedulerlogin
+class Conductorlogin
 {
 
 	use Controller;
@@ -22,15 +22,14 @@ class Schedulerlogin
 			if ($row) {
 				if (password_verify($_POST['password'], $row->password)) {
 					$_SESSION['USER'] = $row;
-					redirect('home');
+					redirect('conductors');
 				}
 			}
 			$user->errors['email'] = "Wrong email or password";
 
-
 			$data['errors'] = $user->errors;
 		}
 
-		$this->view('schedulerlogin', $data);
+		$this->view('conductorlogin', $data);
 	}
 }
