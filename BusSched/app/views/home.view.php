@@ -39,6 +39,7 @@ if (isset($_SESSION['USER'])) {
                     <label for="to">To</label>
                     <input type="text" name="to" id="to" placeholder="Choose city"><br><br><br>
                     <button id="btn" class="button-orange" style="width: 140px;">Find</button>
+                    
                 </div>
             </div>
             <div>
@@ -56,6 +57,12 @@ if (isset($_SESSION['USER'])) {
                 </section>
                 
             </div>
+
+            <script>
+                document.getElementById("btn").onclick = function () {
+                    location.href = "<?= ROOT ?>/buses";
+                };
+            </script>
 
 <script src="<?= ROOT ?>/assets/js/script.js"></script>
 </body>

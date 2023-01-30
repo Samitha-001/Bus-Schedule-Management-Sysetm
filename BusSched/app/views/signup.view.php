@@ -1,7 +1,8 @@
 <?php
-    if(isset($_SESSION['USER'])){
-        redirect('adminhome');
-    }
+  include 'components/navbar.php';
+  if(isset($_SESSION['USER'])){
+    redirect('adminhome');
+  }
 ?>
 
 <!doctype html>

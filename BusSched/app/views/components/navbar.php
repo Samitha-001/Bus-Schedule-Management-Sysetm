@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
 <nav class="navbar">
         <div>
             <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>

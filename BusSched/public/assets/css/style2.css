@@ -379,9 +379,6 @@ input:checked + .slider:before {
 
 .container1 {
   margin-left: 230px;
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; */
-  /* grid-template-rows: 1fr 4fr 4fr; */
 }
 
 .card-container {
@@ -616,7 +613,7 @@ hr {
 
 .orange-header {
   grid-column: span 4;
-  width: 100;
+  width: auto;
 }
 
 .data-table {

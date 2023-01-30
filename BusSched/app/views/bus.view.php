@@ -1,7 +1,6 @@
 <?php
-if (!isset($_SESSION['USER'])) {
-    redirect('home');
-}
+    include 'components/navbar.php';
+    include 'components/adminsidebar.php';
 ?>
 
 <!doctype html>
@@ -18,38 +17,7 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
-
-    <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-    </nav>
-
-    <div class="wrapper">
-        <div class="sidebar">
-            <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
-            <li><a href="#" style="color:#9298AF;">Users</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/buses" style="color:white;"><b>Buses</b></a></li>
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
-            <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
-        </div>
-    </div>
-
+    
     <main class="container1">
 
         <div class="header orange-header">
