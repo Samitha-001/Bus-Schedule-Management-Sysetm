@@ -26,7 +26,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <title>Passenger - Profile</title>
+    <title>Admin - Home</title>
 </head>
 
 <body>
@@ -39,7 +39,7 @@ if ($_SESSION['USER']->role == 'passenger') {
         <ul class="nav-links">
             <div class="menu">
                 <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" class="nav-bar-img"></li>
+                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
                     <li class="button-orange">Logout</li>
@@ -52,14 +52,15 @@ if ($_SESSION['USER']->role == 'passenger') {
     <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/admins" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#f4511e;">Users</a></li>
-            <li><a href="#" style="color:#f4511e;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/buses" style="color:#f4511e;">Buses</a></li>
-            <li><a href="#" style="color:#f4511e;">Ratings</a></li>
-            <li><a href="#" style="color:#f4511e;">Tickets</a></li>
-            <li><a href="<?= ROOT ?>/fares" style="color:#f4511e;">Bus Fares</a></li>
-            <li><a href="#" style="color:#f4511e;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#f4511e;">Halts</a></li>
+            <li><a href="#" style="color:#9298AF;">Users</a></li>
+            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
+            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
+            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
+            <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
+            <li><a href="#" style="color:#9298AF;">Routes</a></li>
+            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
         </div>
     </div>
 
@@ -79,7 +80,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 <table class="styled-table">
                     <tr>
                         <th>Username: </th>
-                        <td><?= $_SESSION['USER']->username ?></td>
+                        <td>
+                            <?= $_SESSION['USER']->username ?>
+                        </td>
                     </tr>
                     <tr>
                         <th>Name: </th>
@@ -88,7 +91,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                         </td>
                     <tr>
                         <th>Email: </th>
-                        <td><?= $_SESSION['USER']->email ?></td>
+                        <td>
+                            <?= $_SESSION['USER']->email ?>
+                        </td>
                     </tr>
                     <tr>
                         <th>Phone: </th>
@@ -133,17 +138,17 @@ if ($_SESSION['USER']->role == 'passenger') {
         </div>
 
         <div class="card-container" id="buses-card">
-            <a href="<?= ROOT ?>/buses">
-                <div class="overlay">
-                    <div class="items"></div>
-                    <div class="items head">
-                        <p>Buses</p>
-                        <hr>
-                    </div>
-                    <div class="items users">
-                        <p>Bus details</p>
-                    </div>
+            <div class="overlay">
+                <div class="items"></div>
+                <div class="items head">
+                    <p>Buses & Breakdowns</p>
+                    <hr>
                 </div>
+                <div class="items users">
+                    <p><a href="<?= ROOT ?>/buses">Bus details</a><br></p>
+                    <p><a href="<?= ROOT ?>/breakdowns">Breakdowns</a><br></p>
+                </div>
+            </div>
             </a>
         </div>
 

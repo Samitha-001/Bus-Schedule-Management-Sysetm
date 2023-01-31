@@ -1,8 +1,8 @@
 <?php
 
-class Owner extends Model
+class Scheduler extends Model
 {
-    protected $table = 'owner';
+    protected $table = 'scheduler';
 
     // editable columns
     protected $allowedColumns = [
@@ -12,7 +12,7 @@ class Owner extends Model
         'address'
     ];
 
-    public function ownerInfo()
+    public function schedulerInfo()
     {
         return $this->findAll();
     }

@@ -1,6 +1,6 @@
 <?php
 
-class Conductors
+class Schedulers
 {
 
     use Controller;
@@ -9,10 +9,10 @@ class Conductors
     {
         $data = [];
 
-        $conductor = new Conductor();
+        $scheduler = new Scheduler();
         $arr['username'] = $_SESSION['USER']->username;
-        $row = $conductor->first($arr);
+        $row = $scheduler->first($arr);
 
-        $this->view('conductorhome', [$row]);
+        $this->view('schedulerhome', [$row]);
     }
 }

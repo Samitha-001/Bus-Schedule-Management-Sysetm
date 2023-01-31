@@ -1,4 +1,5 @@
 <?php
+include 'components/navbar.php';
 if (isset($_SESSION['USER'])) {
   redirect('admins');
 }
@@ -18,24 +19,6 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-  <nav class="navbar">
-    <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
-    </div>
-
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <div class="menu">
-
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/login">
-          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-        </a>
-        <a href="<?= ROOT ?>/passengersignup">
-          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
-        </a>
-  </nav>
   <br>
   <br>
 
@@ -45,12 +28,12 @@ if (isset($_SESSION['USER'])) {
   <!-- SIGN UP FORM - SCHEDULER -->
   <main class="sec1">
     <div class="mytabs">
-      <input type="radio" id="passenger" name="mytabs" >
+      <input type="radio" id="passenger" name="mytabs">
       <label for="passenger"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
       <div class="tab center">
       </div>
 
-      <input type="radio" id="driver" name="mytabs" >
+      <input type="radio" id="driver" name="mytabs">
       <label for="driver"><a href="<?= ROOT ?>/driversignup">Driver</a></label>
       <div class="tab">
       </div>
@@ -58,7 +41,7 @@ if (isset($_SESSION['USER'])) {
       <input type="radio" id="conductor" name="mytabs" checked="checked">
       <label for="conductor"><a href="<?= ROOT ?>/conductorsignup">Conductor</a></label>
       <div class="tab">
-      <form action="" class="sign-up-form" method="post">
+        <form action="" class="sign-up-form" method="post">
           <div class="input-field">
             <input type="email" placeholder="Email Address..." name="email" class="form-control">
           </div>
@@ -77,9 +60,9 @@ if (isset($_SESSION['USER'])) {
 
           <button class="button-orange" type="submit">Create</button><br><br>
           <div class="errors">
-            <?php if (!empty($errors)): ?>
-            <?= implode("<br>", $errors) ?>
-              <?php endif; ?>
+            <?php if (!empty($errors)) : ?>
+              <?= implode("<br>", $errors) ?>
+            <?php endif; ?>
           </div>
           <div class="create_account">
             <p>Already have an account?</p>
@@ -93,7 +76,7 @@ if (isset($_SESSION['USER'])) {
       <div class="tab">
       </div>
 
-      <input type="radio" id="scheduler" name="mytabs" >
+      <input type="radio" id="scheduler" name="mytabs">
       <label for="scheduler"><a href="<?= ROOT ?>/schedulersignup">Scheduler</a></label>
       <div class="tab">
 

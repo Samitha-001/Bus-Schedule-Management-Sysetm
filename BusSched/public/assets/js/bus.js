@@ -59,3 +59,4 @@ function cancel() {
   const form = document.getElementById("view_route");
   form.style.display = "none";
 }
+
