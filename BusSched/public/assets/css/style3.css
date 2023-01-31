@@ -1,0 +1,166 @@
+body {
+  color: #24315e;
+  /* background: url("../images/backgrounds/bg-signin.png"); */
+  font-family: "Outfit";
+  margin: 0px;
+}
+
+/* nav bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: black;
+  color: #fff;
+  height: 90px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  gap: 1em;
+  font-size: 18px;
+}
+
+.menu li {
+  padding: 5px 14px;
+  width: max-content;
+  list-style: none;
+}
+
+button:hover {
+  opacity: 0.6;
+}
+
+.button-orange {
+  background-color: #f4511e;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-family: "Outfit";
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin: 0px;
+  opacity: 1;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+  background-color: transparent;
+  width: 80%;
+}
+
+th,
+td {
+  padding: 20px;
+  background-color: white;
+  text-align: left;
+}
+
+td {
+  background-color: #f9f9f9;
+  height: 30px;
+}
+
+th:last-child,
+td:last-child {
+  border-radius: 0 5px 5px 0;
+  border-color: white;
+}
+
+th:first-child,
+td:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.card {
+  background-color: white;
+  width: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  /* border: 1px solid #ddd; */
+}
+
+.ticket-table td {
+  background-color: white;
+}
+
+.ticket-table td:first-child {
+  text-align: right;
+}
+
+h3 {
+  color: #f4511e;
+  text-align: center;
+  font-size: 25px;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 64px;
+  padding: 0;
+  margin: 0;
+}
+.bus-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 0 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: #f4511e;
+}

@@ -1,9 +1,11 @@
 <?php
 
-class _404 {
+class _404
+{
     use Controller;
-    
-    public function index() {
+
+    public function index()
+    {
         echo "404 Page controller not found";
     }
 }

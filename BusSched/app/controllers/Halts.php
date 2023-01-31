@@ -16,11 +16,11 @@ class Halts
             if ($halt->validate($_POST)) {
                 $halt->addHalt($_POST);
                 redirect('halts');
-            } 
+            }
         }
-        
+
         $data['errors'] = $halt->errors;
-        $data['halts'] = $halts; 
+        $data['halts'] = $halts;
         $this->view('halt', $data);
     }
 }

@@ -1,19 +1,21 @@
 <?php
 
 
-class Fares {
+class Fares
+{
 
     use Controller;
 
-    public function index() {
+    public function index()
+    {
         $fare = new Fare();
         $fares = $fare->getFares();
         $data = [];
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
-            
-            
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            if($fare->validate($_POST)) {
+
+
+            if ($fare->validate($_POST)) {
                 $fare->insert($_POST);
                 redirect('fares');
             }
@@ -21,6 +23,6 @@ class Fares {
             $data['errors'] = $fare->errors;
         }
 
-		$this->view('fare', ['fares' => $fares]);
+        $this->view('fare', ['fares' => $fares]);
     }
 }
