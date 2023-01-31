@@ -83,25 +83,6 @@ include 'components/navbar.php';
                 <td>Seats Available</td>
                 <td><a href=#><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
             </tr>
-
-
-            <?php
-            // foreach ($data as $row) {
-            //     echo "<tr>";
-            //     echo "<td>" . $row['bus_id'] . "</td>";
-            //     echo "<td>" . $row['bus_name'] . "</td>";
-            //     echo "<td>" . $row['bus_type'] . "</td>";
-            //     echo "<td>" . $row['departure_time'] . "</td>";
-            //     echo "<td>" . $row['arrival_time'] . "</td>";
-            //     echo "<td>" . $row['departure_date'] . "</td>";
-            //     echo "<td>" . $row['arrival_date'] . "</td>";
-            //     echo "<td>" . $row['departure_location'] . "</td>";
-            //     echo "<td>" . $row['arrival_location'] . "</td>";
-            //     echo "<td>" . $row['price'] . "</td>";
-            //     echo "<td>" . $row['seats_available'] . "</td>";
-            //     echo "</tr>";
-            // }
-            ?>
         </table>
     </div>
 

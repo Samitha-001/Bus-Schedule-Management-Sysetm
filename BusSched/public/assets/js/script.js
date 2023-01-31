@@ -52,3 +52,11 @@ rightArrow.addEventListener("click", function() {
     }
   }
 });
+
+const seats = document.querySelectorAll(".seat");
+
+seats.forEach(seat => {
+  seat.addEventListener("click", e => {
+    seat.classList.toggle("selected");
+  });
+});
