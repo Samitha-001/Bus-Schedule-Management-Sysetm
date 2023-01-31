@@ -1,8 +1,8 @@
 <?php
-  include 'components/navbar.php';
-  if (isset($_SESSION['USER'])) {
-    redirect('admins');
-  }
+include 'components/navbar.php';
+if (isset($_SESSION['USER'])) {
+  redirect('admins');
+}
 ?>
 
 <!doctype html>
@@ -70,9 +70,9 @@
 
           <button class="button-orange" type="submit">Create</button><br><br>
           <div class="errors">
-            <?php if (!empty($errors)): ?>
-            <?= implode("<br>", $errors) ?>
-              <?php endif; ?>
+            <?php if (!empty($errors)) : ?>
+              <?= implode("<br>", $errors) ?>
+            <?php endif; ?>
           </div>
           <div class="create_account">
             <p>Already have an account?</p>

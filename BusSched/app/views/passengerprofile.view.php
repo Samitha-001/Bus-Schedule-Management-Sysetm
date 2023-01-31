@@ -68,8 +68,8 @@ if ($_SESSION['USER']->role == 'passenger') {
         <div class="card-container" id="greeting-card">
             <h2>
                 <?php
-        echo "Welcome " . $_SESSION['USER']->username . "!";
-        ?>
+                echo "Welcome " . $_SESSION['USER']->username . "!";
+                ?>
             </h2>
         </div>
 

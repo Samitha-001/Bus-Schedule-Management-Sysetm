@@ -29,42 +29,42 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-            <div class="grid-container">
-                <div class="grid-item grid-item-1">
+    <div class="grid-container">
+        <div class="grid-item grid-item-1">
 
-                    </h2>
-                    <h1 style="padding: 0px;">Find a Bus</h1><br>
-                    <label for="from">From</label>
-                    <input type="text" name="from" id="from" placeholder="Choose city"><br><br>
-                    <label for="to">To</label>
-                    <input type="text" name="to" id="to" placeholder="Choose city"><br><br><br>
-                    <button id="btn" class="button-orange" style="width: 140px;">Find</button>
-                    
-                </div>
-            </div>
-            <div>
-                <section id="services">
-                    <h3>Our Services</h3>
-                    <h1>What we can do for you</h1>
-                </section>
-                <section id="about">
-                    <h3>About Us</h3>
-                    <h1>What we can do for you</h1>
-                </section>
-                <section id="contact">
-                    <h3>Contact Us</h3>
-                    <h1>What we can do for you</h1>
-                </section>
-                
-            </div>
+            </h2>
+            <h1 style="padding: 0px;">Find a Bus</h1><br>
+            <label for="from">From</label>
+            <input type="text" name="from" id="from" placeholder="Choose city"><br><br>
+            <label for="to">To</label>
+            <input type="text" name="to" id="to" placeholder="Choose city"><br><br><br>
+            <button id="btn" class="button-orange" style="width: 140px;">Find</button>
 
-            <script>
-                document.getElementById("btn").onclick = function () {
-                    location.href = "<?= ROOT ?>/buses";
-                };
-            </script>
+        </div>
+    </div>
+    <div>
+        <section id="services">
+            <h3>Our Services</h3>
+            <h1>What we can do for you</h1>
+        </section>
+        <section id="about">
+            <h3>About Us</h3>
+            <h1>What we can do for you</h1>
+        </section>
+        <section id="contact">
+            <h3>Contact Us</h3>
+            <h1>What we can do for you</h1>
+        </section>
 
-<script src="<?= ROOT ?>/assets/js/script.js"></script>
+    </div>
+
+    <script>
+        document.getElementById("btn").onclick = function() {
+            location.href = "<?= ROOT ?>/buses";
+        };
+    </script>
+
+    <script src="<?= ROOT ?>/assets/js/script.js"></script>
 </body>
 
 </html>

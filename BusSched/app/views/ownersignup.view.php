@@ -1,8 +1,8 @@
 <?php
-  include 'components/navbar.php';
-  if (isset($_SESSION['USER'])) {
-    redirect('admins');
-  }
+include 'components/navbar.php';
+if (isset($_SESSION['USER'])) {
+  redirect('admins');
+}
 ?>
 
 <!doctype html>
@@ -28,7 +28,7 @@
   <main class="sec1">
     <div class="mytabs">
 
-    <input type="radio" id="owner" name="mytabs">
+      <input type="radio" id="owner" name="mytabs">
       <label for="owner"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
 
       <input type="radio" id="driver" name="mytabs">
@@ -36,7 +36,7 @@
 
       <input type="radio" id="conductor" name="mytabs">
       <label for="conductor"><a href="<?= ROOT ?>/conductorsignup">Conductor</a></label>
-              
+
       <input type="radio" id="owner" name="mytabs" checked="checked">
       <label for="owner"><a href="<?= ROOT ?>/ownersignup">Bus Owner</a></label>
       <div class="tab center">
@@ -59,9 +59,9 @@
 
           <button class="button-orange" type="submit">Create</button><br><br>
           <div class="errors">
-            <?php if (!empty($errors)): ?>
-            <?= implode("<br>", $errors) ?>
-              <?php endif; ?>
+            <?php if (!empty($errors)) : ?>
+              <?= implode("<br>", $errors) ?>
+            <?php endif; ?>
           </div>
 
           <div class="create_account">
