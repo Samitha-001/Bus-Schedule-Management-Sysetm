@@ -60,7 +60,7 @@ if (isset($_SESSION['USER'])) {
 
     <script>
         document.getElementById("btn").onclick = function() {
-            location.href = "<?= ROOT ?>/buses";
+            location.href = "<?= ROOT ?>/passengerschedule";
         };
     </script>
 

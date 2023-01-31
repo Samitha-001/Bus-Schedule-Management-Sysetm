@@ -42,7 +42,7 @@ include 'components/navbar.php';
                 <td>Arrival Location</td>
                 <td>Price</td>
                 <td>Seats Available</td>
-                <td><a href=#><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
+                <td><a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
             </tr>
             <tr>
                 <td>Bus ID</td>
@@ -55,7 +55,7 @@ include 'components/navbar.php';
                 <td>Arrival Location</td>
                 <td>Price</td>
                 <td>Seats Available</td>
-                <td><a href=#><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
+                <td><a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
             </tr>
             <tr>
                 <td>Bus ID</td>
@@ -68,7 +68,7 @@ include 'components/navbar.php';
                 <td>Arrival Location</td>
                 <td>Price</td>
                 <td>Seats Available</td>
-                <td><a href=#><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
+                <td><a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
             </tr>
             <tr>
                 <td>Bus ID</td>
@@ -81,7 +81,7 @@ include 'components/navbar.php';
                 <td>Arrival Location</td>
                 <td>Price</td>
                 <td>Seats Available</td>
-                <td><a href=#><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
+                <td><a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:50px"></a></td>
             </tr>
         </table>
     </div>
