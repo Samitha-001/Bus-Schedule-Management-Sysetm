@@ -1,11 +1,11 @@
 <?php
 
-class Location
+class Passengerschedule
 {
     use Controller;
 
     public function index()
     {
-        $this->view('locationupdate');
+        $this->view('passengerschedule');
     }
 }
