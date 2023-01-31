@@ -2,7 +2,6 @@
 if (!isset($_SESSION['USER'])) {
     redirect('home');
 }
-// show($_SESSION['USER']->role)
 if ($_SESSION['USER']->role == 'passenger') {
     redirect('home');
 } else if ($_SESSION['USER']->role == 'driver') {
@@ -67,131 +66,131 @@ if ($_SESSION['USER']->role == 'passenger') {
     <main class="container">
 
         <div class="card-container" id="greeting-card">
-            <h2>
+            <!-- <h2>
                 <?php
-                echo "Welcome " . $_SESSION['USER']->username . "!";
+                // echo "Welcome " . $_SESSION['USER']->username . "!";
                 ?>
             </h2>
-        </div>
+        </div> -->
 
-        <div class="card-container" id="info-card">
-            <ul>
-                <p style="font-size: 32px;">Personal Info</p>
-                <table class="styled-table">
-                    <tr>
-                        <th>Username: </th>
-                        <td>
-                            <?= $_SESSION['USER']->username ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Name: </th>
-                        <td>
-                            <?= $data[0]->name ?>
-                        </td>
-                    <tr>
-                        <th>Email: </th>
-                        <td>
-                            <?= $_SESSION['USER']->email ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Phone: </th>
-                        <td>
-                            <?= $data[0]->phone ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Address: </th>
-                        <td>
-                            <?= $data[0]->address ?>
-                        </td>
-                    </tr>
-                </table>
-            </ul>
-        </div>
+            <div class="card-container" id="info-card">
+                <ul>
+                    <p style="font-size: 32px;">Personal Info</p>
+                    <table class="styled-table">
+                        <tr>
+                            <th>Username: </th>
+                            <td>
+                                <?= $_SESSION['USER']->username ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Name: </th>
+                            <td>
+                                <?= $data[0]->name ?>
+                            </td>
+                        <tr>
+                            <th>Email: </th>
+                            <td>
+                                <?= $_SESSION['USER']->email ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Phone: </th>
+                            <td>
+                                <?= $data[0]->phone ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Address: </th>
+                            <td>
+                                <?= $data[0]->address ?>
+                            </td>
+                        </tr>
+                    </table>
+                </ul>
+            </div>
 
-        <div class="card-container" id="users-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Users</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p>All user profiles</p>
+            <div class="card-container" id="users-card">
+                <div class="overlay">
+                    <div class="items"></div>
+                    <div class="items head">
+                        <p>Users</p>
+                        <hr>
+                    </div>
+                    <div class="items users">
+                        <p>All user profiles</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card-container" id="schedules-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Schedules</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p>Bus Schedules</p>
+            <div class="card-container" id="schedules-card">
+                <div class="overlay">
+                    <div class="items"></div>
+                    <div class="items head">
+                        <p>Schedules</p>
+                        <hr>
+                    </div>
+                    <div class="items users">
+                        <p>Bus Schedules</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card-container" id="buses-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Buses & Breakdowns</p>
-                    <hr>
+            <div class="card-container" id="buses-card">
+                <div class="overlay">
+                    <div class="items"></div>
+                    <div class="items head">
+                        <p>Buses & Breakdowns</p>
+                        <hr>
+                    </div>
+                    <div class="items users">
+                        <p><a href="<?= ROOT ?>/buses">Bus details</a><br></p>
+                        <p><a href="<?= ROOT ?>/breakdowns">Breakdowns</a><br></p>
+                    </div>
                 </div>
-                <div class="items users">
-                    <p><a href="<?= ROOT ?>/buses">Bus details</a><br></p>
-                    <p><a href="<?= ROOT ?>/breakdowns">Breakdowns</a><br></p>
+                </a>
+            </div>
+
+            <div class="card-container" id="ratings-card">
+                <div class="overlay">
+                    <div class="items"></div>
+                    <div class="items head">
+                        <p>Ratings</p>
+                        <hr>
+                    </div>
+                    <div class="items users">
+                        <p>User ratings</p>
+                    </div>
                 </div>
             </div>
-            </a>
-        </div>
 
-        <div class="card-container" id="ratings-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Ratings</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p>User ratings</p>
+            <div class="card-container" id="tickets-card">
+                <div class="overlay">
+                    <div class="items"></div>
+                    <div class="items head">
+                        <p>Tickets</p>
+                        <hr>
+                    </div>
+                    <div class="items users">
+                        <p>Bus tickets</p>
+                        <p><a href="<?= ROOT ?>/fares">Bus fare</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card-container" id="tickets-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Tickets</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p>Bus tickets</p>
-                    <p><a href="<?= ROOT ?>/fares">Bus fare</a></p>
+            <div class="card-container" id="halts-card">
+                <div class="overlay">
+                    <div class="items"></div>
+                    <div class="items head">
+                        <p>Routes & Halts</p>
+                        <hr>
+                    </div>
+                    <div class="items users">
+                        <p><a href="#">Bus routes</a><br></p>
+                        <p><a href="<?= ROOT ?>/halts">Bus halts</a><br></p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="card-container" id="halts-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Routes & Halts</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p><a href="#">Bus routes</a><br></p>
-                    <p><a href="<?= ROOT ?>/halts">Bus halts</a><br></p>
-                </div>
-            </div>
-        </div>
     </main>
 
 

@@ -1,4 +1,5 @@
 <?php
+include 'components/navbar.php';
 if (isset($_SESSION['USER'])) {
   redirect('admins');
 }
@@ -18,25 +19,6 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-
-  <nav class="navbar">
-    <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
-    </div>
-
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <div class="menu">
-
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/login">
-          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-        </a>
-        <a href="<?= ROOT ?>/passengersignup">
-          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
-        </a>
-  </nav>
   <br>
   <br>
   <h3>Passenger</h3>
@@ -67,9 +49,9 @@ if (isset($_SESSION['USER'])) {
 
           <button class="button-orange" type="submit">Create</button><br><br>
           <div class="errors">
-            <?php if (!empty($errors)): ?>
-            <?= implode("<br>", $errors) ?>
-              <?php endif; ?>
+            <?php if (!empty($errors)) : ?>
+              <?= implode("<br>", $errors) ?>
+            <?php endif; ?>
           </div>
 
           <div class="create_account">
