@@ -20,7 +20,7 @@ include 'components/navbar.php';
 </head>
 
 <body>
-    <div class="buy-tickets">
+    <div id="buy-tickets">
         <br><br><br>
         <h3>Buy</h3>
         <h1>Tickets</h1>
@@ -46,7 +46,7 @@ include 'components/navbar.php';
                         <td style="font-size: 25px;">0.00 LKR</td>
                     </tr>
                     <tr>
-                        <td colspan="3" style="text-align: center;"><a href="#">Reserve seats?</a></td>
+                        <td colspan="3" style="text-align: center;"><a href="#" id="reserve-seats">Reserve seats?</a></td>
                     </tr>
                     <tr>
                         <td>Pay with</td>
@@ -57,8 +57,8 @@ include 'components/navbar.php';
         </div>
     </div>
 
-    <!-- <div class="reserve-seats">
-        <br><br><br>
+    <div>
+        <br><br>
         <h3>Reserve</h3>
         <h1>Seats</h1>
         <div class="card">
@@ -66,32 +66,53 @@ include 'components/navbar.php';
                 <div class="bus-container">
                     <table class="seating-grid">
                         <tr>
-                            <td class="seat" data-seat="A1"></td>
-                            <td class="seat" data-seat="A2"></td>
-                            <td class="seat" data-seat="A3"></td>
-                            <td class="seat" data-seat="A4"></td>
-                            <td class="seat" data-seat="A5"></td>
+                            <td class="seat" data-seat="A1">A1</td>
+                            <td class="no-seat"></td>
+                            <td class="no-seat"></td>
+                            <td class="unavailable" data-seat="A3">A2</td>
                         </tr>
                         <tr>
-                            <td class="seat" data-seat="B1"></td>
-                            <td class="seat" data-seat="B2"></td>
-                            <td class="seat" data-seat="B3"></td>
-                            <td class="seat" data-seat="B4"></td>
-                            <td class="seat" data-seat="B5"></td>
+                            <td class="no-seat"></td>
+                            <td class="no-seat"></td>
+                            <td class="unavailable" data-seat="A2">B1</td>
+                            <td class="unavailable" data-seat="A3">B2</td>
                         </tr>
                         <tr>
-                            <td class="seat" data-seat="C1"></td>
-                            <td class="seat" data-seat="C2"></td>
-                            <td class="seat" data-seat="C3"></td>
-                            <td class="seat" data-seat="C4"></td>
-                            <td class="seat" data-seat="C5"></td>
+                            <td class="unavailable" data-seat="B1">C1</td>
+                            <td class="no-seat"></td>
+                            <td class="unavailable" data-seat="B2">C2</td>
+                            <td class="unavailable" data-seat="B3">C3</td>
+                        </tr>
+                        <tr>
+                            <td class="seat" data-seat="D1">D1</td>
+                            <td class="no-seat"></td>
+                            <td class="seat" data-seat="D2">D2</td>
+                            <td class="seat" data-seat="D3">D3</td>
+                        </tr>
+                        <tr>
+                            <td class="booked" data-seat="E1">E1</td>
+                            <td class="no-seat"></td>
+                            <td class="seat" data-seat="E2">E2</td>
+                            <td class="seat" data-seat="E3">E3</td>
+                        </tr>
+                        <tr>
+                            <td class="unavailable" data-seat="F1">F1</td>
+                            <td class="no-seat"></td>
+                            <td class="unavailable" data-seat="F2">B2</td>
+                            <td class="unavailable" data-seat="F3">F3</td>
+                        </tr>
+                        <tr>
+                            <td class="unavailable" data-seat="G1">G1</td>
+                            <td class="unavailable" data-seat="G2">G2</td>
+                            <td class="unavailable" data-seat="G3">G3</td>
+                            <td class="unavailable" data-seat="G4">G4</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
-        <script src="<?= ROOT ?>/assets/js/script.js"></script>
-    </div> -->
+        <script src="<?= ROOT ?>/assets/js/seat.js"></script>
+    </div>
 
 </body>
 
