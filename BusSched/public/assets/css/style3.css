@@ -78,30 +78,30 @@ td {
   height: 30px;
 }
 
-th:last-child,
-td:last-child {
+#buy-tickets th:last-child,
+#buy-tickets td:last-child {
   border-radius: 0 5px 5px 0;
   border-color: white;
 }
 
-th:first-child,
-td:first-child {
+#buy-tickets th:first-child,
+#buy-tickets td:first-child {
   border-radius: 5px 0 0 5px;
 }
 
 .card {
   background-color: white;
-  width: 50%;
+  width: 40%;
   max-width: 500px;
   margin: 0 auto;
   position: absolute;
-  top: 55%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 5px;
   padding: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .card-content {
@@ -135,9 +135,9 @@ h3 {
 h1 {
   color: white;
   text-align: center;
-  font-size: 64px;
+  font-size: 50px;
   padding: 0;
-  margin: 0;
+  margin: -20px;
 }
 .bus-container {
   display: flex;
@@ -148,19 +148,52 @@ h1 {
 .row {
   display: flex;
   flex-direction: row;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
-.seat {
+.seat,
+.unavailable, .booked {
   width: 40px;
   height: 40px;
-  border: 1px solid gray;
+  border: 3px solid white;
   border-radius: 5px;
   margin: 0 10px;
-  background-color: white;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #74ffab;
+  color: black;
+}
+
+.unavailable {
+  background-color: #bec2cf;
+  color: white;
+  border: 3px solid white;
+  cursor: not-allowed;
 }
 
 .selected {
   background-color: #f4511e;
+  color: white;
+  font-weight: bold;
+}
+
+.booked {
+  background-color: #fd0202;
+  color: white;
+  cursor: not-allowed;
+}
+
+.seating-grid {
+  table-layout: fixed;
+}
+
+.seating-grid td {
+  width: 10%;
+}
+
+.no-seat {
+  background-color: white;
+  border: white;
 }
