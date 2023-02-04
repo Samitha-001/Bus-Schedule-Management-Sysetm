@@ -64,8 +64,6 @@ if (isset($_SESSION['USER'])) {
             location.href = "<?= ROOT ?>/passengerschedule";
         };
     </script>
-
-    <script src="<?= ROOT ?>/assets/js/script.js"></script>
 </body>
 
 </html>
