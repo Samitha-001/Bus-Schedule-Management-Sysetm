@@ -30,6 +30,6 @@ class Passengerlogin
 			$data['errors'] = $user->errors;
 		}
 
-		$this->view('passengerlogin', $data);
+		$this->view('login', $data);
 	}
 }

@@ -9,8 +9,6 @@ if ($_SESSION['USER']->role == 'passenger') {
     redirect('drivers');
 } else if ($_SESSION['USER']->role == 'conductor') {
     redirect('conductors');
-} else if ($_SESSION['USER']->role == 'scheduler') {
-    redirect('schedulers');
 } else if ($_SESSION['USER']->role == 'owner') {
     redirect('owners');
 }
