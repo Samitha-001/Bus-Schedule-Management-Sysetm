@@ -1,3 +1,6 @@
+@import "navbar.css";
+@import "general.css";
+
 body {
   color: #24315e;
   font-family: "Outfit";

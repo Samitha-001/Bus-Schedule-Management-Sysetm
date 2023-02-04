@@ -16,25 +16,70 @@
 }
 
 .nav-links {
-    height: 30;
+  height: 30;
 }
-.menu {
+.nav-menu {
   display: none;
   gap: 1em;
   font-size: 18px;
   font-weight: normal;
 }
 
-.menu li {
+.nav-menu li {
   padding: 5px 14px;
   width: max-content;
 }
 
+/* for desktop */
 @media only screen and (min-width: 768px) {
-  div.menu {
+  div.nav-menu {
     display: flex;
   }
   div.burger {
     display: none;
   }
+}
+
+
+/* for tablet & desktop */
+@media only screen and (min-width: 600px) {
+  nav.mobile-navbar {
+    display: none;
+  }
+}
+
+.mobile-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: white;
+  color: black;
+}
+
+.mobile-navbar .nav-links {
+  height: 20;
+  color: black;
+}
+
+.signup-button {
+  background-color: #f15f22;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-family: "Outfit";
+  font-size: 16px;
+  margin-top: 10px;
+  margin: 0px;
+  opacity: 1;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  cursor: pointer;
 }

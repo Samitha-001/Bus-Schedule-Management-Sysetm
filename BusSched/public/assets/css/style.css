@@ -1,43 +1,36 @@
+@import "general.css";
+
 body {
   color: white;
   background: url("../images/backgrounds/bg-signin.png");
-  /* background: linear-gradient(rgba(36,49,94,0.5), rgba(36,49,94,0.5)), url("../images/bg-signin.png"); */
-  font-family: "Outfit";
-
-  margin: 0px;
-}
-
-.form-footer {
-  position: relative;
-  left: 0%;
-  right: -0.03%;
-  width: 727.19px;
-  margin-top: 0;
-  padding: 20px;
-
-  color: #24315e;
-  border-radius: 0px 0px 10px 10px;
+  font-size: 12px;
 }
 
 .form-bg {
-  position: relative;
-  width: 727.19px;
-  height: fit-content;
-  margin-bottom: 0;
-  padding: 20px;
-
   background: #ffffff;
-  border-radius: 10px 10px 0px 0px;
-  align-items: center;
+  border-radius: 10px 10px 10px 10px;
+  padding: 15px;
+  width: auto;
+  /* center vertically */
+  margin: 0 auto;
+  /* center horizontally */
+  margin-top: 15%;
 }
 
-#logo-white {
-  color: white;
-  text-decoration: none;
+/* for tablet & desktop */
+@media only screen and (min-width: 600px) {
+  div.form-bg {
+    padding-left: 130px;
+    /* padding-top : 50px; */
+    padding-right: 130px;
+    /* padding-bottom: 50px; */
+    margin-top: 10%;
+  }
 }
 
 h1 {
   margin-top: 0;
+  color: #24315e;
 }
 
 h3 {
@@ -57,7 +50,7 @@ li {
 
 input {
   width: 100%;
-  height: 59.32px;
+  height: 40px;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 5px;
@@ -65,22 +58,7 @@ input {
   font-size: 16px;
   color: #24315e;
   background: #ffffff;
-  border: 1px solid #eeedf1;
-}
-
-input::placeholder {
-  color: #666666;
-  font-family: "Outfit";
-  font-size: 16px;
-}
-
-.create_account {
-  text-align: center;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 200px 60px;
-  color: #24315e;
+  border: 0.5px solid #EEEDF1;
 }
 
 .update-location-grid {
@@ -90,53 +68,6 @@ input::placeholder {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   color: #24315e;
   grid-auto-rows: 40px;
-}
-
-.center {
-  margin: auto;
-  width: 40%;
-}
-
-.form-control {
-  box-sizing: border-box;
-  align-items: center;
-  align-content: center;
-  position: center;
-  width: 100%;
-  height: 59.32px;
-
-  background: #ffffff;
-  border: 1px solid #eeedf1;
-  border-radius: 5px;
-}
-
-button:hover {
-  opacity: 0.6;
-}
-
-.button-orange {
-  background-color: #f4511e;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-family: "Outfit";
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
-  margin: 0px;
-  opacity: 1;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  width: 100%;
-}
-
-.errors {
-  color: red;
-  font-size: 15px;
-  margin-top: 5px;
 }
 
 main {
@@ -161,7 +92,7 @@ form {
   font-size: medium;
   font-weight: 600;
   border: 0;
-  background: #fd6002;
+  background: #de4a0d;
   display: inline-block;
   margin: 20px auto;
   text-align: center;
@@ -311,7 +242,6 @@ section {
   width: 90%;
 }
 
-
 .container {
   width: 100%;
   display: flex;
@@ -371,4 +301,38 @@ section {
 
 .right {
   right: 250;
+}
+
+.user-button {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  background-color: white;
+  width: max-content;
+  margin:0px;
+  padding: 20;
+  padding-left: 25;
+  padding-right: 25;
+  border-radius: 0px;
+  transition: 0.4s;
+  border: 0px;
+}
+
+.checked {
+  color: white;
+  background-color: #fd6002;
+  font-weight: bold;
+}
+
+.form-register {
+  background: #ffffff;
+  border-radius: 10px 10px 10px 10px;
+  padding: 15px;
+  width: 40%;
+  /* center vertically */
+  margin: 0 auto;
+  /* center horizontally */
+  margin-top: 4%;
+  margin-bottom: 4%;
 }

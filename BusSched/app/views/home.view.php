@@ -1,5 +1,6 @@
 <?php
 include 'components/navbar.php';
+
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
         redirect('drivers');
@@ -25,20 +26,31 @@ if (isset($_SESSION['USER'])) {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <title>Home page view</title>
+    <title>Home Page</title>
 </head>
 
 <body>
-    <div class="grid-container">
-        <div class="grid-item grid-item-1">
+    <!-- <div class="grid-container">
+        <div class="grid-item grid-item-1"> -->
+    <div class="row">
+        <div class="col-5 menu">
 
-            </h2>
-            <h1 style="padding: 0px;">Find a Bus</h1><br>
-            <label for="from">From</label>
-            <input type="text" name="from" id="from" placeholder="Choose city"><br><br>
-            <label for="to">To</label>
-            <input type="text" name="to" id="to" placeholder="Choose city"><br><br><br>
-            <button id="btn" class="button-orange" style="width: 140px;">Find</button>
+            <ul>
+                <li>
+                    <h1 style="padding: 0px;">Find a bus</h1>
+                </li>
+                <li>
+                    <label for="from">From</label>
+                    <input type="text" name="from" id="from" placeholder="Choose city">
+                </li>
+                <li>
+                    <label for="to">To</label>
+                    <input type="text" name="to" id="to" placeholder="Choose city">
+                </li>
+                <li>
+                    <button id="btn" class="button-orange" style="width: 140px;">Find</button>
+                </li>
+            </ul>
 
         </div>
     </div>
