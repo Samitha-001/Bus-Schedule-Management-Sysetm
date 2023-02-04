@@ -15,7 +15,7 @@ class Conductorsignup
 				$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 				$_POST['role'] = 'conductor';
 				$user->insert($_POST);
-				redirect('conductorlogin');
+				redirect('login');
 			}
 			$data['errors'] = $user->errors;
 		}

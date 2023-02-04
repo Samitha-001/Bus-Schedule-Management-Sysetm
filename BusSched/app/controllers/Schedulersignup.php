@@ -16,7 +16,7 @@ class Schedulersignup
 				$_POST['role'] = 'scheduler';
 				$user->insert($_POST);
 				// show($_POST);
-				redirect('schedulerlogin');
+				redirect('login');
 			}
 
 			$data['errors'] = $user->errors;

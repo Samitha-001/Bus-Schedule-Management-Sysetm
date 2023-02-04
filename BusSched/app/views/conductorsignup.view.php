@@ -14,7 +14,7 @@ if (isset($_SESSION['USER'])) {
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.88.1">
   <title>Conductor - Sign Up</title>
-  <script src="<?= ROOT ?>/assets/js/menu.js"></script>
+  <!-- <script src="<?= ROOT ?>/assets/js/menu.js"></script> -->
   
 
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/mobilenav.css">

@@ -1,3 +1,6 @@
+@import "navbar.css";
+@import "general.css";
+
 body {
   color: #24315e;
   /* background: url("../images/backgrounds/bg-signin.png"); */
