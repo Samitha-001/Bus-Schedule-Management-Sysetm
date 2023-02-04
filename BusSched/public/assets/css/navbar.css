@@ -1,0 +1,40 @@
+/* nav bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: black;
+  color: #fff;
+}
+
+.nav-links a {
+  color: #fff;
+}
+
+.nav-links {
+    height: 30;
+}
+.menu {
+  display: none;
+  gap: 1em;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.menu li {
+  padding: 5px 14px;
+  width: max-content;
+}
+
+@media only screen and (min-width: 768px) {
+  div.menu {
+    display: flex;
+  }
+  div.burger {
+    display: none;
+  }
+}

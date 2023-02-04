@@ -15,8 +15,29 @@ include 'components/navbar.php';
 </head>
 
 <body>
+    <nav class="search-bar">
+
+        <div>
+            <p style="font-size:40px"><b>Bus Schedule</b></p>
+        </div>
+        <ul class="nav-links">
+            <div class="menu">
+                <li>
+                    <label for="from">From</label>
+                    <input type="text" name="from" id="from" placeholder="Choose city">
+                </li>
+                <li>
+                    <label for="to">To</label>
+                    <input type="text" name="to" id="to" placeholder="Choose city">
+
+                </li>
+                <li class="button-orange" id="find-button">Find</li>
+            </div>
+        </ul>
+    </nav>
+
+
     <div style="margin: auto; justify-content:center">
-        <h1>Bus Schedule</h1>
         <table>
             <tr>
                 <th>From</th>
