@@ -30,8 +30,6 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-    <!-- <div class="grid-container">
-        <div class="grid-item grid-item-1"> -->
     <div class="row">
         <div class="col-5 menu">
 
