@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div>
-        <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
+        <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="150"></a>
     </div>
 
     <!-- NAVIGATION MENU -->
@@ -15,8 +15,6 @@
                 <li class="button-orange"><a href="<?= ROOT ?>/logout">Logout</a></li>
         </div>
     </ul>
-
-</nav>
 <?php } else {
 ?>
 
@@ -31,5 +29,9 @@
     </a>
     </div>
     </ul>
-    </nav>
 <?php } ?>
+
+<div class="burger">
+    <div><a href=#><img src="<?= ROOT ?>/assets/images/hamburger.png" height="15"></a></div>
+</div>
+</nav>
