@@ -44,7 +44,7 @@ if (isset($_SESSION['USER'])) {
     include 'components/conductorregister.php';
     ?>
   </div>
-  
+
 
   <div class="form-register driver-signup" style="display: none;">
     <h3>Driver</h3>
@@ -58,7 +58,7 @@ if (isset($_SESSION['USER'])) {
     include 'components/driverregister.php';
     ?>
   </div>
-  
+
 
   <div class="form-register owner-signup" style="display: none;">
     <h3>Owner</h3>
@@ -73,7 +73,7 @@ if (isset($_SESSION['USER'])) {
     ?>
   </div>
 
-  
+
   <div class="form-register scheduler-signup" style="display: none;">
     <h3>Scheduler</h3>
     <h1 style="text-align:center">Create Account</h1>
@@ -86,7 +86,7 @@ if (isset($_SESSION['USER'])) {
     include 'components/schedulerregister.php';
     ?>
   </div>
-
+  
   <script src="<?= ROOT ?>/assets/js/signup.js"></script>
 
 </body>

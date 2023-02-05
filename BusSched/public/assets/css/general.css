@@ -10,6 +10,11 @@ body {
   margin: 0;
 }
 
+li {
+  list-style: none;
+}
+
+
 /* RESPONSIVE */
 
 /* For mobile phones: */
@@ -155,7 +160,6 @@ input[type="email"]::placeholder {
   margin-top: 10px;
   margin: 0px;
   opacity: 1;
-  transition: 0.3s;
   display: inline-block;
   text-decoration: none;
   width: 100%;
@@ -163,7 +167,7 @@ input[type="email"]::placeholder {
   cursor: pointer;
 }
 
-button:hover {
+.button-orange :hover {
   background-color: #de4a0d;
 }
 

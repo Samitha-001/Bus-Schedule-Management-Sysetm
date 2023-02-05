@@ -29,6 +29,7 @@ if (isset($_SESSION['USER'])) {
         <input name="password" type="password" placeholder="Password..." required><br><br>
 
         <button class="button-orange" type="submit">Login</button>
+        <p style="color: #24315e; text-align:center;">Don't have an account? <a href="<?= ROOT ?>/passengersignup">Register</a></p>
       </div>
 
       <div class="errors">
@@ -38,7 +39,6 @@ if (isset($_SESSION['USER'])) {
         <?php endif; ?>
       </div>
 
-      <p style="color: #24315e; text-align:center;">Don't have an account? <a href="<?= ROOT ?>/passengersignup">Register</a></p>
     </div>
 
   </form>

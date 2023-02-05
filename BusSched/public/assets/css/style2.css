@@ -201,7 +201,6 @@ button {
   text-align: center;
   margin: 0px;
   opacity: 1;
-  transition: 0.3s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
@@ -222,7 +221,6 @@ button:hover {
   font-weight: bold;
   margin: 0px;
   opacity: 1;
-  transition: 0.3s;
   display: inline-block;
   text-decoration: none;
 }

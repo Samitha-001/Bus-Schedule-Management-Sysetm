@@ -1,41 +1,52 @@
-// document.addEventListener("DOMContentLoaded", () => {
-document.querySelector(".conductor-button").addEventListener("click", () => {
-  document.querySelector(".passenger-signup").style.display = "none";
-  document.querySelector(".conductor-signup").style.display = "block";
-  document.querySelector(".driver-signup").style.display = "none";
-  document.querySelector(".owner-signup").style.display = "none";
-  document.querySelector(".scheduler-signup").style.display = "none";
-});
+document.addEventListener("DOMContentLoaded", () => {
+  var pdiv = document.querySelector(".passenger-signup");
+  var cdiv = document.querySelector(".conductor-signup");
+  var ddiv = document.querySelector(".driver-signup");
+  var odiv = document.querySelector(".owner-signup");
+  var sdiv = document.querySelector(".scheduler-signup");
 
-document.querySelector(".driver-button").addEventListener("click", () => {
-  document.querySelector(".passenger-signup").style.display = "none";
-  document.querySelector(".conductor-signup").style.display = "none";
-  document.querySelector(".driver-signup").style.display = "block";
-  document.querySelector(".owner-signup").style.display = "none";
-  document.querySelector(".scheduler-signup").style.display = "none";
-});
+  // create array of all divs
+  var divs = [pdiv, cdiv, ddiv, odiv, sdiv];
 
-document.querySelector(".owner-button").addEventListener("click", () => {
-  document.querySelector(".passenger-signup").style.display = "none";
-  document.querySelector(".conductor-signup").style.display = "none";
-  document.querySelector(".driver-signup").style.display = "none";
-  document.querySelector(".owner-signup").style.display = "block";
-  document.querySelector(".scheduler-signup").style.display = "none";
-});
+  // function to hide all divs
+  function hideAll() {
+    divs.forEach((div) => {
+      div.style.display = "none";
+    });
+  }
 
-document.querySelector(".scheduler-button").addEventListener("click", () => {
-  document.querySelector(".passenger-signup").style.display = "none";
-  document.querySelector(".conductor-signup").style.display = "none";
-  document.querySelector(".driver-signup").style.display = "none";
-  document.querySelector(".owner-signup").style.display = "none";
-  document.querySelector(".scheduler-signup").style.display = "block";
-});
+  document.querySelectorAll(".conductor-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      hideAll();
+      cdiv.style.display = "block";
+    });
+  });
 
-document.querySelector(".passenger-button").addEventListener("click", () => {
-  document.querySelector(".passenger-signup").style.display = "block";
-  document.querySelector(".conductor-signup").style.display = "none";
-  document.querySelector(".driver-signup").style.display = "none";
-  document.querySelector(".owner-signup").style.display = "none";
-  document.querySelector(".scheduler-signup").style.display = "none";
+  document.querySelectorAll(".driver-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      hideAll();
+      ddiv.style.display = "block";
+    });
+  });
+
+  document.querySelectorAll(".owner-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      hideAll();
+      odiv.style.display = "block";
+    });
+  });
+
+  document.querySelectorAll(".scheduler-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      hideAll();
+      sdiv.style.display = "block";
+    });
+  });
+
+  document.querySelectorAll(".passenger-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      hideAll();
+      pdiv.style.display = "block";
+    });
+  });
 });
-// });
