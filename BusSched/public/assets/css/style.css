@@ -168,24 +168,6 @@ label:hover {
   background-color: #fd6002;
 }
 
-/* nav bar */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  background-color: black;
-  color: #fff;
-  height: 90px;
-}
-
-.nav-links a {
-  color: #fff;
-}
-
 .menu {
   display: flex;
   gap: 1em;
@@ -305,18 +287,19 @@ section {
 
 .user-button {
   /* display: flex; */
-  justify-content: center;
+  /* justify-content: center;
   align-items: center;
-  align-self: center;
+  align-self: center; */
   background-color: white;
   width: max-content;
-  margin: 0px;
-  padding: 15;
-  padding-top: 20;
-  padding-bottom: 20;
+  margin: 4px;
+  padding: 10;
+  padding-top: 10;
+  padding-bottom: 10;
   border-radius: 100px;
   transition: 0.4s;
   border: 0px;
+  font-family: "Outfit";
 }
 
 .checked {
@@ -325,13 +308,10 @@ section {
   font-weight: bold;
 }
 
-/* .form-register {
-  display: none;
-} */
-
 .signup-cards {
   display: none;
 }
+
 .form-register {
   display: block;
   background: #ffffff;
@@ -344,14 +324,22 @@ section {
   /* center horizontally */
   margin-top: 4%;
   margin-bottom: 4%;
-  padding-left: 80px;
-  padding-right: 80px;
 }
 
 /* for desktop */
 @media only screen and (min-width: 768px) {
-
   .signup-cards {
     display: none;
+  }
+  div.form-register {
+    padding-left: 130px;
+    padding-right: 130px;
+    margin-top: 10%;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+
+    margin-top: 4%;
+    margin-bottom: 4%;
   }
 }

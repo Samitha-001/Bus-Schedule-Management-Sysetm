@@ -3,28 +3,8 @@
 
 body {
   color: #24315e;
-  /* background: url("../images/backgrounds/bg-signin.png"); */
   font-family: "Outfit";
   margin: 0px;
-}
-
-/* nav bar */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  background-color: black;
-  color: #fff;
-  height: 90px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
 }
 
 .menu {
@@ -41,25 +21,6 @@ body {
 
 button:hover {
   opacity: 0.6;
-}
-
-.button-orange {
-  background-color: #f4511e;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-family: "Outfit";
-  font-size: 16px;
-  font-weight: bold;
-  margin-top: 10px;
-  margin: 0px;
-  opacity: 1;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  width: 100%;
 }
 
 table {
@@ -128,7 +89,7 @@ td {
 }
 
 h3 {
-  color: #f4511e;
+  /* color: #f4511e; */
   text-align: center;
   font-size: 25px;
   padding: 0;
@@ -235,4 +196,57 @@ h1 {
   align-self: center;
   align-content: center;
   justify-content: center;
+}
+
+.ticket {
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* for desktop */
+@media only screen and (min-width: 768px) {
+  div.ticket {
+    width: 70%;
+  }
+}
+
+.ticket-header {
+  background-color: #24315e;
+  color: white;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.ticket-body {
+  display: block;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+  padding: 15px;
+  padding-bottom: 30px;
+  /* center vertically */
+  margin: 0 auto;
+  /* add spacing between elements in the div */
+  line-height: 2.5;
+  /* center elements in the div */
+  text-align: center;
+}
+
+.ticket-body input[type="text"] {
+  width: 80%;
+  height: 30px;
+  font-size: 20px;
+  padding: 20px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+.ticket-button {
+  font-size: 12;
+  width: 20%;
+  margin-left: 5px;
+  margin-right: 5px;
 }

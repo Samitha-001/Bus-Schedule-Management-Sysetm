@@ -31,22 +31,23 @@ if (isset($_SESSION['USER'])) {
 
 <body>
     <div class="row">
-        <div class="col-5 menu">
+        <div class="col-5 col-s-5 menu">
 
             <ul>
                 <li>
                     <h1 style="padding: 0px;">Find a bus</h1>
                 </li>
                 <li>
-                    <label for="from">From</label>
+                    <label for="from" style="font-size: medium;">From</label>
                     <input type="text" name="from" id="from" placeholder="Choose city">
                 </li>
                 <li>
-                    <label for="to">To</label>
+                    <label for="to" style="font-size: medium;">To</label>
                     <input type="text" name="to" id="to" placeholder="Choose city">
                 </li>
+                <br>
                 <li>
-                    <button id="btn" class="button-orange" style="width: 140px;">Find</button>
+                    <button id="btn" class="button-orange">Find</button>
                 </li>
             </ul>
 
