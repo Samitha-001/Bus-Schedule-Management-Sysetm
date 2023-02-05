@@ -10,6 +10,9 @@
   background-color: black;
   color: #fff;
   height: 70px;
+  /* position: fixed;
+  width: 100%;
+  z-index: 1; */
 }
 
 .nav-links a {
