@@ -6,7 +6,18 @@
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
         <div class="nav-menu">
-            <li><a href="#services">Services</a></li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Services
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
+                        <a href="<?= ROOT ?>/passengerticket">Buy tickets</a>
+                        <a href="<?= ROOT ?>/passengerticket">Bus fares</a>
+                    </div>
+                </div>
+            </li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <?php

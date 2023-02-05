@@ -27,7 +27,6 @@ table {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
 
   margin-top: 20px;
   border-collapse: separate;
@@ -35,6 +34,11 @@ table {
   background-color: transparent;
   /* center align table */
   margin-left: auto;
+}
+
+table tbody {
+  display: table;
+  width: 100%;
 }
 
 th,
@@ -244,6 +248,9 @@ h1 {
   .ticket-button {
     width: 20%;
   }
+  .ticket-button-2 {
+    width: 20%;
+  }
 }
 
 .ticket-header {
@@ -282,14 +289,14 @@ ul {
 
 .ticket-button {
   font-size: 14px;
-  width: 60px;
+  width: 80px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
 .ticket-button-2 {
   font-size: 14px;
-  width: 20%;
+  width: 80px;
   margin-left: 5px;
   margin-right: 5px;
   background-color: white;

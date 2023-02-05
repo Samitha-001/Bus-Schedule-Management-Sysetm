@@ -22,7 +22,7 @@ include 'components/navbar.php';
                 <h1 style="font-size:25px">Bus schedule</h1>
             </div>
             <!-- <div class="col-6 col-s-9"> -->
-                <!-- <p> </p> -->
+            <!-- <p> </p> -->
             <!-- </div> -->
             <div class="col-3 col-s-12">
                 <label for="from">From</label>
@@ -33,7 +33,7 @@ include 'components/navbar.php';
                 <input type="text" name="to" id="to" placeholder="Choose city">
             </div>
             <div class="col-3 col-s-12">
-                    <button class="button-orange ticket-button" id="find-button">Find</button>
+                <button class="button-orange ticket-button" id="find-button">Find</button>
             </div>
         </div>
     </div>
@@ -142,7 +142,6 @@ include 'components/navbar.php';
                             <?php } ?>
                     </td>
                 </tr>
-
             </table>
         </div>
     </div>

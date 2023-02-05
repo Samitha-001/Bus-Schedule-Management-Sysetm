@@ -1,5 +1,8 @@
 <?php
 include 'components/navbar.php';
+if (!isset($_SESSION['USER'])) {
+    redirect('login');
+}
 ?>
 
 <!DOCTYPE html>
