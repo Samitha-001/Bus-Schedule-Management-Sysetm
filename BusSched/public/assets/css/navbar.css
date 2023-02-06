@@ -10,9 +10,9 @@
   background-color: black;
   color: #fff;
   height: 70px;
-  /* position: fixed;
+  position: fixed;
   width: 100%;
-  z-index: 1; */
+  z-index: 1;
 }
 
 .nav-links a {
@@ -43,10 +43,13 @@
   div.burger {
     display: none;
   }
+  div.sidenav {
+    display: none;
+  }
 }
 
 /* for tablet & desktop */
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
   nav.mobile-navbar {
     display: none;
   }
@@ -67,7 +70,7 @@
 .mobile-navbar .nav-links {
   height: 20;
   color: black;
-}
+} */
 
 .signup-button {
   background-color: #f15f22;
@@ -87,11 +90,6 @@
   cursor: pointer;
 }
 
-/* .dropdown { */
-  /* float: left; */
-  /* overflow: hidden; */
-/* } */
-
 .dropdown .dropbtn {
   font-size: inherit;
   border: none;
@@ -102,11 +100,6 @@
   font-family: inherit;
   margin: 0;
 }
-
-/* .navbar a:hover, */
-/* .dropdown:hover .dropbtn { */
-  /* background-color: red; */
-/* } */
 
 .dropdown-content {
   font-family: inherit;
@@ -136,4 +129,47 @@
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

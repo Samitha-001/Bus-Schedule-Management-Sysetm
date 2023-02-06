@@ -1,13 +1,15 @@
 @import "navbar.css";
+/* @import "sidenav.css"; */
 @import "general.css";
 
-div.row {
+div.landing-main {
   background-image: url("../images/backgrounds/bg-home-mobile.png");
   background-size: cover;
+  height: 660px;
 }
 
 @media only screen and (min-device-width: 768px) {
-  div.row {
+  div.landing-main {
     background-image: url("../images/backgrounds/bg-home-1.png");
     background-size: cover;
   }
@@ -97,12 +99,20 @@ section {
   justify-content: center;
   align-items: center;
   background-color: white;
-  padding: 10px;
+  /* padding: 10px; */
   margin: 10px;
 }
 
 section h1 {
-  color: black;
+  color: #24315e;
+  padding: 10;
+  font-size: 30px;
+  margin-top: 0px;
+}
+section h3 {
+  margin-bottom: 0px;
+  color: #f4511e;
+  font-size: 15px;
 }
 
 /* for mobile */
@@ -113,6 +123,10 @@ section h1 {
 
   div.button-orange {
     width: 100%;
+  }
+
+  div.card-container {
+    flex-direction: column;
   }
 }
 
@@ -147,7 +161,7 @@ table#busfare-table td.halt-name:hover {
 }
 
 table#busfare-table td.halt-name {
-  color: #24315e;
+  color: #7c839e;
   background-color: white;
   text-align: right;
   width: max-content;
@@ -155,7 +169,7 @@ table#busfare-table td.halt-name {
 }
 
 table#busfare-table td.halt-name-top {
-  color: #24315e;
+  color: #7c839e;
   background-color: transparent;
   text-align: left;
   max-width: 20px;
@@ -163,7 +177,10 @@ table#busfare-table td.halt-name-top {
   transform: rotate(-90deg);
 }
 
-/* for desktop */
+#busfare {
+  padding-top: 50px;
+}
+/* for desktop & tablet*/
 @media only screen and (min-width: 600px) {
   table#busfare-table td {
     padding: 10px;
@@ -181,6 +198,84 @@ table#busfare-table td.halt-name-top {
 
   table#busfare-table {
     margin: 0 auto;
-    padding-top: 40px;
+    padding-top: 30px;
   }
+
+  section#about {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  div.card {
+    position: relative;
+    width: 40%;
+    height: 200px;
+    perspective: 1000px;
+    text-align: center;
+  }
+}
+
+/* for desktop*/
+/* @media only screen and (min-width: 782px) {
+} */
+section#about {
+  background-color: #f9f9f9;
+  color: #24315e;
+  padding: 50px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  position: relative;
+  width: 70%;
+  height: 100px;
+  perspective: 1000px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.front,
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  color: #24315e;
+  border-radius: 5px;
+  border: solid 2px #e1ebf7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  transition: transform 0.5s ease;
+}
+
+.front {
+  transform: rotateY(0);
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: #f4511e;
+  color: white;
+}
+
+.back p {
+  color: white;
+}
+
+.card:hover .front {
+  transform: rotateY(180deg);
+}
+
+.card:hover .back {
+  transform: rotateY(0);
 }
