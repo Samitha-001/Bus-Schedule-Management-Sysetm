@@ -56,11 +56,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             <li><a href="#" style="color:#9298AF;">Schedules</a></li>
             <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
             <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
         </div>
     </div>
 
@@ -157,19 +153,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </div>
 
-        <div class="card-container" id="halts-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Routes & Halts</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p><a href="#">Bus routes</a><br></p>
-                    <p><a href="<?= ROOT ?>/halts">Bus halts</a><br></p>
-                </div>
-            </div>
-        </div>
+        
     </main>
 
 
