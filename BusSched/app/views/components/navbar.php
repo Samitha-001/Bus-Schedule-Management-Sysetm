@@ -14,7 +14,7 @@
                     <div class="dropdown-content">
                         <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
                         <a href="<?= ROOT ?>/passengerticket">Buy tickets</a>
-                        <a href="<?= ROOT ?>/passengerticket">Bus fares</a>
+                        <a href="#busfare">Bus fares</a>
                     </div>
                 </div>
             </li>

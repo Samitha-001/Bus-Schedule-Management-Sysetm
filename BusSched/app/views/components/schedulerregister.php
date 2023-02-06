@@ -6,7 +6,7 @@
     <br>
     <input type="password" id="password" name="password" placeholder="Password..." required>
     <br>
-    <input type="password" id="pwdRepeat" name="pwdRepeat" placeholder="Confirm password..." required><br>
+    <input type="password" id="pwdRepeat" name="pwdRepeat" placeholder="Confirm password..." required>
     <button class="button-orange" type="submit">Sign Up</button>
     <div class="errors">
         <?php if (!empty($errors)) : ?>

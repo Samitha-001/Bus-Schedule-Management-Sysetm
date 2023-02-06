@@ -21,9 +21,6 @@ include 'components/navbar.php';
             <div class="col-3 col-s-3 menu">
                 <h1 style="font-size:25px">Bus schedule</h1>
             </div>
-            <!-- <div class="col-6 col-s-9"> -->
-            <!-- <p> </p> -->
-            <!-- </div> -->
             <div class="col-3 col-s-12">
                 <label for="from">From</label>
                 <input type="text" name="from" id="from" placeholder="Choose city">
