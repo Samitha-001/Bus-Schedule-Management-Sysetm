@@ -22,7 +22,7 @@ if (!isset($_SESSION['USER'])) {
 
     <nav class="navbar">
         <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
+            <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
         </div>
         <ul class="nav-links">
             <div class="menu">

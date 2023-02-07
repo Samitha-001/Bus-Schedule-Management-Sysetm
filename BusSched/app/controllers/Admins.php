@@ -1,10 +1,12 @@
 <?php
 
-class Admins {
+class Admins
+{
 
     use Controller;
 
-    public function index() {
+    public function index()
+    {
         $data = [];
 
         $admin = new Admin();

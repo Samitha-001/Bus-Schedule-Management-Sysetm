@@ -60,9 +60,9 @@ if (!isset($_SESSION['USER'])) {
         </div>
         <div class="errors">
 
-            <?php if (!empty($errors)): ?>
-            <?= is_array($errors) ? implode("<br>", $errors) : $errors ?>
-                <?php endif; ?>
+            <?php if (!empty($errors)) : ?>
+                <?= is_array($errors) ? implode("<br>", $errors) : $errors ?>
+            <?php endif; ?>
         </div>
 
 
@@ -73,20 +73,17 @@ if (!isset($_SESSION['USER'])) {
                 <table class="styled-table">
                     <tr>
                         <td><label for="route_id">Route</label></td>
-                        <td><input name="route_id" type="text" class="form-control" id="route_id"
-                                placeholder="Bus route..." required></td>
+                        <td><input name="route_id" type="text" class="form-control" id="route_id" placeholder="Bus route..." required></td>
                     </tr>
 
                     <tr>
                         <td><label for="halt_name">Bus Halt</label></td>
-                        <td><input name="halt_name" type="text" class="form-control" id="halt_name"
-                                placeholder="Halt name..." required></td>
+                        <td><input name="halt_name" type="text" class="form-control" id="halt_name" placeholder="Halt name..." required></td>
                     </tr>
 
                     <tr>
                         <td><label for="distance">Distance from Source (km) </label></td>
-                        <td><input name="distance" type="float" class="form-control" id="distance"
-                                placeholder="Distance from source..." required></td>
+                        <td><input name="distance" type="float" class="form-control" id="distance" placeholder="Distance from source..." required></td>
                     </tr>
 
                     <tr>
@@ -124,9 +121,7 @@ if (!isset($_SESSION['USER'])) {
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
 
-
     </main>
-
 
 </body>
 
