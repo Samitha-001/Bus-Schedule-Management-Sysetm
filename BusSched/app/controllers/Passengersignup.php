@@ -15,11 +15,10 @@ class Passengersignup
 				$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
 				$_POST['role'] = 'passenger';
 				$user->insert($_POST);
-				redirect('passengerlogin');
+				redirect('login');
 			}
 			$data['errors'] = $user->errors;
 		}
-
 
 		$this->view('passengersignup', $data);
 	}

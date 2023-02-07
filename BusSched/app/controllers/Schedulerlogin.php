@@ -31,6 +31,6 @@ class Schedulerlogin
 			$data['errors'] = $user->errors;
 		}
 
-		$this->view('schedulerlogin', $data);
+		$this->view('login', $data);
 	}
 }

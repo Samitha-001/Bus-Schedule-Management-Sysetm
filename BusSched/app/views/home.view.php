@@ -1,5 +1,6 @@
 <?php
 include 'components/navbar.php';
+
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
         redirect('drivers');
@@ -25,20 +26,30 @@ if (isset($_SESSION['USER'])) {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <title>Home page view</title>
+    <title>Home Page</title>
 </head>
 
 <body>
-    <div class="grid-container">
-        <div class="grid-item grid-item-1">
+    <div class="row">
+        <div class="col-5 col-s-5 menu">
 
-            </h2>
-            <h1 style="padding: 0px;">Find a Bus</h1><br>
-            <label for="from">From</label>
-            <input type="text" name="from" id="from" placeholder="Choose city"><br><br>
-            <label for="to">To</label>
-            <input type="text" name="to" id="to" placeholder="Choose city"><br><br><br>
-            <button id="btn" class="button-orange" style="width: 140px;">Find</button>
+            <ul>
+                <li>
+                    <h1 style="padding: 0px;">Find a bus</h1>
+                </li>
+                <li>
+                    <label for="from" style="font-size: medium;">From</label>
+                    <input type="text" name="from" id="from" placeholder="Choose city">
+                </li>
+                <li>
+                    <label for="to" style="font-size: medium;">To</label>
+                    <input type="text" name="to" id="to" placeholder="Choose city">
+                </li>
+                <br>
+                <li>
+                    <button id="btn" class="button-orange">Find</button>
+                </li>
+            </ul>
 
         </div>
     </div>
@@ -50,6 +61,7 @@ if (isset($_SESSION['USER'])) {
         <section id="about">
             <h3>About Us</h3>
             <h1>What we can do for you</h1>
+            <p>Welcome to our bus schedule management system website. We are dedicated to providing you with the most accurate and up-to-date bus schedules and routes. Our easy-to-use platform allows you to quickly and easily plan your trip, track your bus in real-time, and receive notifications of any schedule changes or delays. Thank you for choosing our system for your transportation needs.</p>
         </section>
         <section id="contact">
             <h3>Contact Us</h3>
@@ -63,8 +75,6 @@ if (isset($_SESSION['USER'])) {
             location.href = "<?= ROOT ?>/passengerschedule";
         };
     </script>
-
-    <script src="<?= ROOT ?>/assets/js/script.js"></script>
 </body>
 
 </html>

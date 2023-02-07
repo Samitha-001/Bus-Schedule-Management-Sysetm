@@ -20,36 +20,9 @@ if (isset($_SESSION['USER'])) {
 
 <body>
 
-  <nav class="navbar">
-    <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
-    </div>
-
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <div class="menu">
-
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/login">
-          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-        </a>
-        <a href="<?= ROOT ?>/signup">
-          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
-        </a>
-  </nav>
-  <br>
-  <br>
-  <br>
-  <br>
-
-  <h3>Admin</h3>
-  <h1 style="text-align:center">Create Account</h1>
-
-  <br>
 
   <!-- SIGN UP FORM - ADMIN -->
-  <form method="post">
+  <!-- <form method="post">
 
     <div class="form-bg center">
 
@@ -73,8 +46,7 @@ if (isset($_SESSION['USER'])) {
     </div>
 
     <div class="form-footer center">Already have an account? <a href="<?= ROOT ?>/login">Login</a></div>
-  </form>
-
+  </form> -->
 </body>
 
 </html>
