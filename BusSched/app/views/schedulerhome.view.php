@@ -7,6 +7,8 @@ if ($_SESSION['USER']->role == 'passenger') {
     redirect('home');
 } else if ($_SESSION['USER']->role == 'driver') {
     redirect('drivers');
+} else if ($_SESSION['USER']->role == 'admin') {
+    redirect('admins');
 } else if ($_SESSION['USER']->role == 'conductor') {
     redirect('conductors');
 } else if ($_SESSION['USER']->role == 'owner') {
@@ -50,15 +52,10 @@ if ($_SESSION['USER']->role == 'passenger') {
     <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/admins" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Users</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/schedules" style="color:#9298AF;">Schedules</a></li>
             <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
             <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
         </div>
     </div>
 
@@ -109,18 +106,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             </ul>
         </div>
 
-        <div class="card-container" id="users-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Users</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p>All user profiles</p>
-                </div>
-            </div>
-        </div>
+        
 
         <div class="card-container" id="schedules-card">
             <div class="overlay">
@@ -150,18 +136,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             </a>
         </div>
 
-        <div class="card-container" id="ratings-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Ratings</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p>User ratings</p>
-                </div>
-            </div>
-        </div>
+       
 
         <div class="card-container" id="tickets-card">
             <div class="overlay">
@@ -177,19 +152,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </div>
 
-        <div class="card-container" id="halts-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Routes & Halts</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p><a href="#">Bus routes</a><br></p>
-                    <p><a href="<?= ROOT ?>/halts">Bus halts</a><br></p>
-                </div>
-            </div>
-        </div>
+        
     </main>
 
 
