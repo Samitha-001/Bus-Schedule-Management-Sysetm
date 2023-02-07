@@ -1,13 +1,18 @@
 <?php
 
-class Admins {
+class Admins
+{
 
     use Controller;
 
-    public function index() {
+    public function index()
+    {
+        $data = [];
+
         $admin = new Admin();
-        $personalinfo = $admin->adminInfo();
-		
-        $this->view('adminhome', $personalinfo);
+        $arr['username'] = $_SESSION['USER']->username;
+        $row = $admin->first($arr);
+
+        $this->view('adminhome', [$row]);
     }
 }

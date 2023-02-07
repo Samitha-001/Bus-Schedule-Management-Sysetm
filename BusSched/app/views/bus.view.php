@@ -1,11 +1,11 @@
 <?php
-    if(!isset($_SESSION['USER'])){
-        redirect('home');
-    }
+include 'components/navbar.php';
+include 'components/adminsidebar.php';
 ?>
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,117 +13,112 @@
     <meta name="generator" content="Hugo 0.88.1">
     <title>Buses</title>
 
-    <link href="<?=ROOT?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
 </head>
+
 <body>
-<nav class="navbar">
 
-<!-- LOGO -->
-<div><h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2></div>
+    <main class="container1">
 
-<!-- NAVIGATION MENU -->
-<ul class="nav-links">
+        <div class="header orange-header">
+            <div>
+                <h3>Buses</h3>
+            </div>
+            <div><button id="btn" class="button-grey">Add New</button></div>
+        </div>
 
-<!-- NAVIGATION MENUS -->
-<div class="menu">
-<li><a href="<?=ROOT?>/buses"><b>Buses</b></a></li>
-<li><a href="<?=ROOT?>/halts">Halts</a></li>
+        <form method="post" id="view_bus" style="display:none">
 
-<li class="button-orange"><a href="<?=ROOT?>/logout">Logout</a></li>
-</div>
-</ul>
+            <?php if (!empty($errors)) : ?>
+                <?= implode("<br>", $errors) ?>
+            <?php endif; ?>
 
-</nav>
+            <div>
+                <table class="styled-table">
+                    <tr>
+                        <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
+                        <td><input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
+                    </tr>
 
-<div class="header">
-    <div><h3>Buses</h3></div>
-    <div><button id="btn" class="button-grey">Add New</button></div>    
-</div>
+                    <tr>
+                        <td style="color:#24315e;"><label for="type">Bus Type </label></td>
+                        <td>
+                            <select name="type" id="type" class="form-control" required>
+                                <option disabled selected value>--select an option--</option>
+                                <option value="L">Luxury</option>
+                                <option value="S">Semi-Luxury</option>
+                            </select>
+                        </td>
+                    </tr>
 
-<form method="post" id="view_bus" style="display:none">
+                    <tr>
+                        <td style="color:#24315e;"><label for="seats_no">Capacity </label></td>
+                        <td><input name="seats_no" type="number" class="form-control" id="seats_no" placeholder="Available no. of seats..." required></td>
+                    </tr>
 
-<?php if(!empty($errors)):?>
-<?= implode("<br>", $errors)?>
-<?php endif;?>
+                    <tr>
+                        <td style="color:#24315e;"><label for="availability">Bus Available? </label></td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" id="availability" name="availability" value="1">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
 
-<div>
-<table class="styled-table">
-    <tr>
-        <td><label for="bus_no">Bus No. </label></td>
-        <td><input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
-    </tr>
+                    <tr>
+                        <td style="color:#24315e;"><label for="route">Route </label></td>
+                        <td><input name="route" type="text" class="form-control" id="route" placeholder="Bus route..." required></td>
+                    </tr>
 
-    <tr>
-        <td><label for="type">Bus Type </label></td>
-        <td>
-            <select name="type" id="type" class="form-control" required>
-            <option disabled selected value>--select an option--</option>
-            <option value="L">Luxury</option>
-            <option value="S">Semi-Luxury</option>
-            </select>
-        </td>
-    </tr> 
+                    <tr>
+                        <td style="color:#24315e;"><label for="start">Start </label></td>
+                        <td><input name="start" type="text" class="form-control" id="start" placeholder="Starting halt..." required></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="right">
+                            <button class="button-green" type="submit">Save</button>
+                            <button class="button-cancel" onclick="cancel()">Cancel</button>
+                        </td>
+                    </tr>
 
-    <tr>
-        <td><label for="seats_no">Capacity </label></td>
-        <td><input name="seats_no" type="number" class="form-control" id="seats_no" placeholder="Available no. of seats..." required></td>
-    </tr>
+                </table>
+            </div>
+        </form>
 
-    <tr>
-        <td><label for="availability">Bus Available? </label></td>
-        <td>
-            <label class="switch">
-            <input type="checkbox" id="availability" name="availability" value="1">
-            <span class="slider round"></span>
-            </label> 
-        </td>
-    </tr>
+        <div>
+            <br>
+            <table border='1' class="styled-table">
+                <tr>
+                    <th>#</th>
+                    <th>Bus No.</th>
+                    <th>Bus Type</th>
+                    <th>No. of Seats</th>
+                    <th>Bus Available?</th>
+                    <th>Bus Route</th>
+                    <th>Start</th>
+                </tr>
 
-    <tr>
-        <td><label for="route">Route </label></td>
-        <td><input name="route" type="text" class="form-control" id="route" placeholder="Bus route..." required></td>
-    </tr>
+                <?php
+                foreach ($buses as $bus) {
+                    echo "<tr>";
+                    echo "<td> $bus->id </td>";
+                    echo "<td> $bus->bus_no </td>";
+                    echo "<td> $bus->type </td>";
+                    echo "<td> $bus->seats_no </td>";
+                    echo "<td> $bus->availability </td>";
+                    echo "<td> $bus->route </td>";
+                    echo "<td> $bus->start </td>";
+                    echo "</tr>";
+                } ?>
 
-    <tr>
-        <td><label for="start">Start </label></td>
-        <td><input name="start" type="text" class="form-control" id="start" placeholder="Starting halt..." required></td>
-    </tr>
-    <tr><td colspan="2"><button class="button-green" type="submit">Add New Bus</button></td></tr>
-    
-</table>
-</div>
-</form>
+            </table>
+        </div>
 
-<div>
-<table border='1' class="styled-table">
-    <tr>
-    <th>#</th>
-    <th>Bus No.</th>
-    <th>Bus Type</th>
-    <th>No. of Seats</th>
-    <th>Bus Available?</th>
-    <th>Bus Route</th>
-    <th>Start</th>
-</tr>
-
-    <?php
-    foreach($buses as $bus) {
-        echo "<tr>";
-        echo "<td> $bus->id </td>";
-        echo "<td> $bus->bus_no </td>";
-        echo "<td> $bus->type </td>";
-        echo "<td> $bus->seats_no </td>";
-        echo "<td> $bus->availability </td>";
-        echo "<td> $bus->route </td>";
-        echo "<td> $bus->start </td>";
-        echo "</tr>";
-    }?>
-
-</table>
-</div>
-    
-<script src="<?=ROOT?>/assets/js/bus.js"></script>
-
+        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+    </main>
 
 </body>
+
 </html>

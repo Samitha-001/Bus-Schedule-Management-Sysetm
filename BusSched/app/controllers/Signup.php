@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 class Signup
@@ -8,22 +8,19 @@ class Signup
 	public function index()
 	{
 		$data = [];
-		
-		if($_SERVER['REQUEST_METHOD'] == "POST")
-		{
+
+		if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$user = new User;
-			if($user->validate($_POST))
-			{
+			if ($user->validate($_POST)) {
 				$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-				$_POST['role'] = 'passenger';
+				$_POST['role'] = 'admin';
 				$user->insert($_POST);
 				redirect('login');
 			}
-			$data['errors'] = $user->errors;		
+			$data['errors'] = $user->errors;
 		}
 
 
 		$this->view('signup', $data);
 	}
-
 }

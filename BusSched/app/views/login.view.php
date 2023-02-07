@@ -1,11 +1,13 @@
 <?php
-    if(isset($_SESSION['USER'])){
-        redirect('adminhome');
-    }
+include 'components/navbar.php';
+if (isset($_SESSION['USER'])) {
+  redirect('adminhome');
+}
 ?>
 
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,37 +15,35 @@
   <meta name="generator" content="Hugo 0.88.1">
   <title>Login</title>
 
-
-  <link href="<?=ROOT?>/assets/css/style.css" rel="stylesheet">
+  <link href="<?= ROOT ?>/assets/css/style.css" rel="stylesheet">
 </head>
+
 <body>
-  
-  <h2><a href="<?=ROOT?>" id="logo_white">BusSched</a></h2>
+  <form method="post">
+    <div class="form-bg">
+      <br>
+      <h1 style="text-align:center" class="center">User Login</h1>
+      <br>
+      <div class="login-input">
+        <input name="email" type="text" placeholder="Username or email..." required><br><br>
+        <input name="password" type="password" placeholder="Password..." required><br><br>
 
-  <h3 class="center">Passenger</h3>
-  <h1 style="text-align:center" class="center">Login</h1><br>
+        <button class="button-orange" type="submit">Login</button>
+        <p style="color: #24315e; text-align:center;">Don't have an account? <a href="<?= ROOT ?>/passengersignup">Register</a></p>
+      </div>
 
-  <!-- LOGIN FORM FOR ALL USERS -->
-  <form method="post">    
-  <div id="form_bg" class="center">    
-    <div>
-      <input name="email" type="text" class="form-control" id="floatingInput" placeholder="Username or email..." required><br><br>
-      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..." required><br><br>
-      
-      <button class="button-orange" type="submit">Login</button>
+      <div class="errors">
+        <br>
+        <?php if (!empty($errors)) : ?>
+          <?= implode("<br>", $errors) ?>
+        <?php endif; ?>
+      </div>
+
     </div>
-
-    <div class="errors">
-      <?php if(!empty($errors)):?>
-      <?= implode("<br>", $errors)?>
-      <?php endif;?>
-    </div>
-
-  </div>
-
-  <div id="form_footer" class="center">Don't have an account? <a href="<?=ROOT?>/signup">Register</a></div>
 
   </form>
 
+
 </body>
+
 </html>

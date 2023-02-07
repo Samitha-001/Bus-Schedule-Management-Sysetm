@@ -11,8 +11,7 @@ class Model
     protected $order_type       = "ASC";
     protected $order_column     = "id";
     public $errors           = [];
-    
-    public function findAll() {
+        public function findAll() {
         $query = "SELECT * FROM $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
         return $this->query($query);
     }
