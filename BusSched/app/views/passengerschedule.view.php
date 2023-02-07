@@ -15,131 +15,134 @@ include 'components/navbar.php';
 </head>
 
 <body>
-    <nav class="search-bar">
-
-        <div>
-            <p style="font-size:40px"><b>Bus Schedule</b></p>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <li>
-                    <label for="from">From</label>
-                    <input type="text" name="from" id="from" placeholder="Choose city">
-                </li>
-                <li>
-                    <label for="to">To</label>
-                    <input type="text" name="to" id="to" placeholder="Choose city">
-
-                </li>
-                <li class="button-orange" id="find-button">Find</li>
+    <div class="search-bar" style="margin: auto;">
+        <div class="row">
+        <div class="col-1 col-s-1 menu"></div>
+            <div class="col-3 col-s-3 menu">
+                <h1 style="font-size:25px; text-align:left;">Bus schedule</h1>
             </div>
-        </ul>
-    </nav>
-
-
-    <div style="margin: auto; justify-content:center">
-        <table>
-            <tr>
-                <th>From</th>
-                <th>To</th>
-                <th>Bus Route</th>
-                <th>Bus No</th>
-                <th>Bus Type</th>
-                <th>Date</th>
-                <th>Departure Time</th>
-                <th>Arrival Time</th>
-                <th>Price</th>
-                <th>Seats Available</th>
-                <th>Book</th>
-            </tr>
-            <tr>
-                <td>Kohuwala</td>
-                <td>Horana</td>
-                <td>120</td>
-                <td>NC 1111</td>
-                <td>Semi-Luxury</td>
-                <td>2021-09-01</td>
-                <td>10:00 AM</td>
-                <td>12:00 PM</td>
-                <td>Rs. 500</td>
-                <td>10</td>
-                <td>
-                    <?php if (isset($_SESSION['USER'])) { ?>
-                        <a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } else { ?>
-                        <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Kohuwala</td>
-                <td>Horana</td>
-                <td>120</td>
-                <td>NC 2222</td>
-                <td>Semi-Luxury</td>
-                <td>2021-09-01</td>
-                <td>10:00 AM</td>
-                <td>12:00 PM</td>
-                <td>Rs. 500</td>
-                <td>10</td>
-                <td>
-                    <?php if (isset($_SESSION['USER'])) { ?>
-                        <a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } else { ?>
-                        <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Kohuwala</td>
-                <td>Horana</td>
-                <td>120</td>
-                <td>NC 3333</td>
-                <td>Semi-Luxury</td>
-                <td>2021-09-01</td>
-                <td>10:00 AM</td>
-                <td>12:00 PM</td>
-                <td>Rs. 500</td>
-                <td>10</td>
-                <td>
-                    <?php if (isset($_SESSION['USER'])) { ?>
-                        <a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } else { ?>
-                        <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Kohuwala</td>
-                <td>Horana</td>
-                <td>120</td>
-                <td>NC 4444</td>
-                <td>Semi-Luxury</td>
-                <td>2021-09-01</td>
-                <td>10:00 AM</td>
-                <td>12:00 PM</td>
-                <td>Rs. 500</td>
-                <td>10</td>
-                <td>
-                    <?php if (isset($_SESSION['USER'])) { ?>
-                        <a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } else { ?>
-                        <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                alt="Buy Ticket" style="height:50px"></a>
-                        <?php } ?>
-                </td>
-            </tr>
-            
-        </table>
+        <div class="col-4 col-s-4 menu"></div>
+            <div class="col-3">
+                <label for="from">From</label>
+                <input type="text" name="from" id="from" placeholder="Choose city">
+            </div>
+            <div class="col-3">
+                <label for="to">To</label>
+                <input type="text" name="to" id="to" placeholder="Choose city">
+            </div>
+            <div class="col-3 col-s-12" style="margin:auto;">
+                <button class="button-orange ticket-button" id="find-button">Find</button>
+            </div>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-10 col-s-10" style="margin: auto;">
+            <table style="width: 100%; font-size: 12px;">
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Bus Route</th>
+                    <th>Bus No</th>
+                    <th>Bus Type</th>
+                    <th>Date</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                    <th>Price</th>
+                    <th>Seats Available</th>
+                    <th>Book</th>
+                </tr>
+                <tr>
+                    <td>Kohuwala</td>
+                    <td>Horana</td>
+                    <td>120</td>
+                    <td>NC 1111</td>
+                    <td>Semi-Luxury</td>
+                    <td>2021-09-01</td>
+                    <td>10:00 AM</td>
+                    <td>12:00 PM</td>
+                    <td>Rs. 500</td>
+                    <td>10</td>
+                    <td>
+                        <?php if (isset($_SESSION['USER'])) { ?>
+                                    <a href="<?= ROOT ?>/passengerticket"><img
+                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                            style="height:50px"></a>
+                            <?php } else { ?>
+                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                            alt="Buy Ticket" style="height:50px"></a>
+                            <?php } ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kohuwala</td>
+                    <td>Horana</td>
+                    <td>120</td>
+                    <td>NC 2222</td>
+                    <td>Semi-Luxury</td>
+                    <td>2021-09-01</td>
+                    <td>10:00 AM</td>
+                    <td>12:00 PM</td>
+                    <td>Rs. 500</td>
+                    <td>10</td>
+                    <td>
+                        <?php if (isset($_SESSION['USER'])) { ?>
+                                    <a href="<?= ROOT ?>/passengerticket"><img
+                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                            style="height:50px"></a>
+                            <?php } else { ?>
+                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                            alt="Buy Ticket" style="height:50px"></a>
+                            <?php } ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kohuwala</td>
+                    <td>Horana</td>
+                    <td>120</td>
+                    <td>NC 3333</td>
+                    <td>Semi-Luxury</td>
+                    <td>2021-09-01</td>
+                    <td>10:00 AM</td>
+                    <td>12:00 PM</td>
+                    <td>Rs. 500</td>
+                    <td>10</td>
+                    <td>
+                        <?php if (isset($_SESSION['USER'])) { ?>
+                                    <a href="<?= ROOT ?>/passengerticket"><img
+                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                            style="height:50px"></a>
+                            <?php } else { ?>
+                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                            alt="Buy Ticket" style="height:50px"></a>
+                            <?php } ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Kohuwala</td>
+                    <td>Horana</td>
+                    <td>120</td>
+                    <td>NC 4444</td>
+                    <td>Semi-Luxury</td>
+                    <td>2021-09-01</td>
+                    <td>10:00 AM</td>
+                    <td>12:00 PM</td>
+                    <td>Rs. 500</td>
+                    <td>10</td>
+                    <td>
+                        <?php if (isset($_SESSION['USER'])) { ?>
+                                    <a href="<?= ROOT ?>/passengerticket"><img
+                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                            style="height:50px"></a>
+                            <?php } else { ?>
+                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                            alt="Buy Ticket" style="height:50px"></a>
+                            <?php } ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

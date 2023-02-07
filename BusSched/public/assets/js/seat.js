@@ -9,8 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // show reserve seats
-  document.querySelector("#reserve-seats").addEventListener("click", () => {
-    // make div invisible
-    document.querySelector("#buy-tickets").style.display = "none";
+  document.querySelector("#reserve-seats-q").addEventListener("click", () => {
+    document.querySelector("#book-ticket").style.display = "none";
+    document.querySelector("#reserve-seats").style.display = "block";
+  });
+
+  // show book ticket
+  document.querySelector("#book-ticket-q").addEventListener("click", () => {
+    document.querySelector("#reserve-seats").style.display = "none";
+    document.querySelector("#book-ticket").style.display = "block";
   });
 });
