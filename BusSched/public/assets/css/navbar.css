@@ -3,14 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   padding-top: 0px;
   padding-bottom: 0px;
   background-color: black;
   color: #fff;
-  height: 70px;
-  position: fixed;
+  height: 60px;
+  position: sticky;
+  top: 0;
   width: 100%;
   z-index: 1;
 }
@@ -26,7 +27,7 @@
 .nav-menu {
   display: none;
   gap: 1em;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
 }
 
@@ -47,30 +48,6 @@
     display: none;
   }
 }
-
-/* for tablet & desktop */
-/* @media only screen and (min-width: 600px) {
-  nav.mobile-navbar {
-    display: none;
-  }
-}
-
-.mobile-navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  background-color: white;
-  color: black;
-}
-
-.mobile-navbar .nav-links {
-  height: 20;
-  color: black;
-} */
 
 .signup-button {
   background-color: #f15f22;
@@ -138,7 +115,7 @@
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: #111;
+  background-color: #24315e;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;

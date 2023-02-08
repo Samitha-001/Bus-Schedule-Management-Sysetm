@@ -1,0 +1,64 @@
+@import "navbar.css";
+@import "general.css";
+
+/* for tablet and desktop */
+@media only screen and (min-width: 600px) {
+  body {
+    color: white;
+    background: url("../images/backgrounds/bg-passenger-profile.png");
+    font-size: 12px;
+    font-family: "Outfit";
+  }
+}
+
+.passenger-sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  /* transition: 0.5s; */
+  padding-top: 60px;
+  font-size: 16px;
+}
+
+.passenger-sidenav a {
+  color: #7a819c;
+  display: block;
+  transition: 0.3s;
+}
+
+a.li {
+  padding-left: 30px;
+}
+
+.passenger-sidenav a:hover {
+  color: white;
+}
+
+.passenger-sidenav {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+ul.passenger-sidenav-links {
+  padding-top: 5px;
+  margin: 0px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+}
+
+.passenger-sidenav .services {
+  cursor: default;
+  padding-left: 30px;
+}
+
+.passenger-sidenav .services:hover {
+  color: #7a819c;
+}
