@@ -1,0 +1,88 @@
+@import "navbar.css";
+@import "general.css";
+
+/* for tablet and desktop */
+@media only screen and (min-width: 600px) {
+  body {
+    color: white;
+    background: url("../images/backgrounds/bg-passenger-profile.png");
+    font-size: 12px;
+    font-family: "Outfit";
+  }
+}
+
+.passenger-sidenav {
+  display: none;
+  height: 100%;
+  width: 250;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  /* transition: 0.5s; */
+  padding-top: 80px;
+  font-size: 16px;
+}
+
+.passenger-sidenav-mobile {
+  height: 100%;
+  width: 250;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  /* transition: 0.5s; */
+  padding-top: 80px;
+  font-size: 16px;
+
+  display: block;
+}
+
+.passenger-sidenav a, .passenger-sidenav-mobile a {
+  color: #7a819c;
+  display: block;
+  /* transition: 0.3s; */
+}
+
+.passenger-sidenav a.li {
+  padding-left: 0px;
+  padding-right: 30px;
+}
+
+.passenger-sidenav .li {
+  display: flex;
+  /* align-items: center; */
+  text-decoration: none;
+  text-align: left;
+  color: black;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.li img {
+  /* margin-left: 10px; */
+  margin-right: 10px;
+}
+
+img:hover {
+  opacity: 1;
+}
+
+.li:hover {
+  background-color: #24315e;
+}
+
+/* for tablet & desktop */
+@media only screen and (min-width: 600px) {
+  div.passenger-sidenav-mobile {
+    display: none;
+  }
+
+  div.passenger-sidenav {
+    display: block;
+  }
+}

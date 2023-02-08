@@ -1,9 +1,3 @@
-<?php
-include 'components/navbar.php';
-if (isset($_SESSION['USER'])) {
-  redirect('admins');
-}
-?>
 
 <!doctype html>
 <html lang="en">
@@ -19,6 +13,13 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
+  <?php
+  include 'components/navbar.php';
+  if (isset($_SESSION['USER'])) {
+    redirect('admins');
+  }
+  ?>
+  
   <div class="form-register passenger-signup">
     <h3>Passenger</h3>
     <h1 style="text-align:center">Create Account</h1>
