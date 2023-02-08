@@ -26,7 +26,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <title>Admin - Home</title>
+    <title>Schedule - Home</title>
 </head>
 
 <body>
