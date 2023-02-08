@@ -1,6 +1,3 @@
-<?php
-include 'components/navbar.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +12,10 @@ include 'components/navbar.php';
 </head>
 
 <body>
+    <?php
+    include 'components/navbar.php';
+    
+    ?>
     <section>
         <div class="update-location-grid">
             <div class="grid-item span-col-4">
