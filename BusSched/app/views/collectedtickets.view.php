@@ -46,7 +46,7 @@ if (!isset($_SESSION['USER'])) {
             <li><a href="#" style="color:#9298AF;">Bus Tickets</a></li>
             <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
             <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">onntats</a></li>
+            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">contacts</a></li>
         </div>
     </div>
 
