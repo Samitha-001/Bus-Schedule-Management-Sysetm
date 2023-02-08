@@ -20,23 +20,10 @@ if (!isset($_SESSION['USER'])) {
 
 <body>
 
-    <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-    </nav>
-
-    <?php include "components/schedulersidebar.php"?>
+    <?php 
+        include "components/navbar_new.php";
+        include "components/schedulersidebar.php";
+    ?>
 
     <main class="container1">
 
@@ -106,27 +93,24 @@ if (!isset($_SESSION['USER'])) {
                 <tr>
                     <th>#</th>
                     <th>From</th>
-                    <th>To</th>
                     <th>Route</th>
-                    <th>Bus No</th>
+                    <th>To</th>
+                    <th>Amount</th>
                     <th>Type</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
+                    <th>Last Updated</th>
                     <!-- <th>Action</th> -->
                 </tr>
 
                 <?php
-                
-                foreach ($schedules as $schedule) {
+                foreach ($fares as $fare) {
                     echo "<tr>";
-                    echo "<td> $schedule->id </td>";
-                    echo "<td> $schedule->from </td>";
-                    echo "<td> $schedule->to </td>";
-                    echo "<td> $schedule->bus_route</td>";
-                    echo "<td> $schedule->bus_No</td>";
-                    echo "<td> $schedule->bus_type</td>";
-                    echo "<td> $schedule->departure</td>";
-                    echo "<td> $schedule->arrival</td>";
+                    echo "<td> $fare->id </td>";
+                    echo "<td> $fare->source </td>";
+                    echo "<td> $fare->dest </td>";
+                    echo "<td> $fare->route_bus </td>";
+                    echo "<td> $fare->type_bus </td>";
+                    echo "<td> $fare->amount</td>";
+                    echo "<td> $fare->last_updated </td>";
                     echo "</tr>";
                 } ?>
 
