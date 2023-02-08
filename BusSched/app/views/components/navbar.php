@@ -76,6 +76,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 <!-- side navigation bar for smaller screens -->
 <div id="Sidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="services" href="<?= ROOT ?>/passengerprofile">My profile</a>
 
     <a class="services">Services</a>
     <ul class="sidenav-links">
@@ -95,7 +96,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     </ul>
 
     <?php if (strpos($current_url, '/home') == true) { ?>
-        <a class="li" href="#about">About</a>
+        <a class="services" href="#about">About</a>
     <?php } else { ?>
         <a class="li" href="<?= ROOT ?>/home#about">About</a>
     <?php } ?>

@@ -29,9 +29,13 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-<?php include 'components/navbar.php'; ?>
+<?php
+    include 'components/navbar.php';
+    include 'components/passengersidebar.php';
+?>
+
     <div class="landing-main row">
-        
+
     </div>
 </body>
 

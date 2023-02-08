@@ -1,6 +1,3 @@
-<?php
-include 'components/navbar.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +12,9 @@ include 'components/navbar.php';
 </head>
 
 <body>
+    <?php
+    include 'components/navbar.php';
+    ?>
     <div class="search-bar" style="margin: auto;">
         <div class="row">
         <div class="col-1 col-s-1 menu"></div>

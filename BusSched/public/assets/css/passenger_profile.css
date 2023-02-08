@@ -12,53 +12,77 @@
 }
 
 .passenger-sidenav {
+  display: none;
   height: 100%;
-  width: 0;
+  width: 250;
   position: fixed;
-  z-index: 1;
+  z-index: -1;
   top: 0;
   left: 0;
   background-color: black;
   overflow-x: hidden;
   /* transition: 0.5s; */
-  padding-top: 60px;
+  padding-top: 80px;
   font-size: 16px;
 }
 
-.passenger-sidenav a {
+.passenger-sidenav-mobile {
+  height: 100%;
+  width: 250;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  /* transition: 0.5s; */
+  padding-top: 80px;
+  font-size: 16px;
+
+  display: block;
+}
+
+.passenger-sidenav a, .passenger-sidenav-mobile a {
   color: #7a819c;
   display: block;
-  transition: 0.3s;
+  /* transition: 0.3s; */
 }
 
-a.li {
-  padding-left: 30px;
+.passenger-sidenav a.li {
+  padding-left: 0px;
+  padding-right: 30px;
 }
 
-.passenger-sidenav a:hover {
-  color: white;
+.passenger-sidenav .li {
+  display: flex;
+  /* align-items: center; */
+  text-decoration: none;
+  text-align: left;
+  color: black;
+  font-size: 14px;
+  margin: 10px 0;
 }
 
-.passenger-sidenav {
-  position: absolute;
-  top: 0;
-  right: 30px;
-  font-size: 36px;
-  margin-left: 50px;
+.li img {
+  /* margin-left: 10px; */
+  margin-right: 10px;
 }
 
-ul.passenger-sidenav-links {
-  padding-top: 5px;
-  margin: 0px;
-  padding-left: 5px;
-  padding-bottom: 10px;
+img:hover {
+  opacity: 1;
 }
 
-.passenger-sidenav .services {
-  cursor: default;
-  padding-left: 30px;
+.li:hover {
+  background-color: #24315e;
 }
 
-.passenger-sidenav .services:hover {
-  color: #7a819c;
+/* for tablet & desktop */
+@media only screen and (min-width: 600px) {
+  div.passenger-sidenav-mobile {
+    display: none;
+  }
+
+  div.passenger-sidenav {
+    display: block;
+  }
 }
