@@ -1,0 +1,137 @@
+.row1{
+    height: 40px; 
+    background-color: #f4511e;
+  color: #fff;
+  font-size: 20px;
+  }
+
+  .row2{
+    height: 34%;
+    background-color: #dcdce4;
+    margin-left: 15%;
+    margin-top: 2%;
+    margin-right: 15%;
+    padding-top: 2%;
+   
+  }
+  .row3{
+    height: 30%; 
+    background-color:#dcdce4;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-bottom: 70px;
+
+  }
+
+  .column {
+    float: left;
+   
+    height: 60%; 
+  }
+  
+  .left{
+    padding-top: 15px;
+    background-color: #fff;
+    margin-left: 5%;
+    margin-top: 2%;
+    line-height: 2.5em;
+    width: 75%;
+   
+  }
+
+  .right{
+    padding-top: 15px;
+    background-color: #fff;
+    margin-right: 2%;
+    margin-top: 2%;
+    line-height: 2.5em;
+    width: 15%;
+   
+  }
+
+  .li1{
+    padding-top: 15px; 
+  }
+
+  .left1{
+    padding-top: 15px;
+    background-color: #fde0d8;
+    margin-left: 5%;
+    margin-top: 2%;
+    line-height: 2.5em;
+    width: 75%;
+  
+   
+  }
+
+  .right1{
+    padding-top: 15px;
+    background-color: #fde0d8;
+    margin-right: 2%;
+    margin-top: 2%;
+    line-height: 2.5em;
+    width: 15%;
+   
+  }
+
+  .left2{
+    padding-top: 15px;
+    background-color: #fbf5f3;
+    margin-left: 5%;
+    margin-top: 2%;
+    line-height: 2.5em;
+    width: 40%;
+   height: 25%;
+   
+  }
+
+  .right2{
+    padding-top: 15px;
+    background-color: #fde0d8;
+    margin-right: 2%;
+    margin-top: 2%;
+    line-height: 2.5em;
+    width: 50%;
+    height: 75%; 
+  }
+
+  .time{
+    padding-left: 25%;
+  }
+
+  .income{
+    padding-left: 20%;
+  }
+  .top{
+    height: 10%;
+    margin-bottom: 1%;
+    margin-top: 5%;
+    padding-bottom: 15%;
+    padding-left: 10%;
+    margin-left: 10%;
+    margin-right: 15%;
+    background-color: #fff;
+  }
+   .bottom{
+    height: 1%;
+    margin-bottom: 1%;
+   }
+
+  .leftright{
+    padding-left: 15%; 
+  }
+  .leftleft{
+    padding-left: 20%;
+  }
+  .imag{
+   
+    padding-left: 10%;
+    padding-top:4% ;
+    margin-left: 5px;
+   
+    
+  }
+
+  .image{
+    height:60% ;
+  }

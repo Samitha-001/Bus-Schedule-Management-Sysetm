@@ -109,6 +109,12 @@ input {
   font-family: "Outfit";
 }
 
+.styled-tablerow {
+  color: rgb(188, 48, 48);
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
 .styled-table select {
   color: #7c839e;
   font-size: 15px;
@@ -639,3 +645,5 @@ hr {
   border: 1px solid #eeedf1;
   border-radius: 5px;
 }
+
+
