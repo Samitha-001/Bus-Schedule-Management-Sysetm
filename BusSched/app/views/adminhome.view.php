@@ -66,12 +66,6 @@ if ($_SESSION['USER']->role == 'passenger') {
     <main class="container">
 
         <div class="card-container" id="greeting-card">
-            <!-- <h2>
-                <?php
-                // echo "Welcome " . $_SESSION['USER']->username . "!";
-                ?>
-            </h2>
-        </div> -->
 
             <div class="card-container" id="info-card">
                 <ul>

@@ -16,7 +16,7 @@ class Ownersignup
 				$_POST['role'] = 'owner';
 				$user->insert($_POST);
 				// show($_POST);
-				redirect('ownerlogin');
+				redirect('login');
 			}
 
 			$data['errors'] = $user->errors;
