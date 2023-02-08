@@ -1,5 +1,4 @@
 <?php
-include 'components/navbar.php';
 
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
@@ -30,12 +29,13 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
+<?php include 'components/navbar.php'; ?>
     <div class="landing-main row">
         <div class="col-6 menu">
 
             <ul>
                 <li>
-                    <h1 style="padding: 0px; padding-top: 50px;">Find a bus</h1>
+                    <h1 style="padding: 0px;">Find a bus</h1>
                 </li>
                 <li>
                     <label for="from" style="font-size: medium;">From</label>
@@ -58,34 +58,34 @@ if (isset($_SESSION['USER'])) {
             <h3>Our Services</h3>
             <h1>What we can do for you</h1>
         </section>
-    
-            <div class="card-container">
-                <div class="card">
-                    <div class="front">
+
+        <div class="card-container">
+            <div class="card">
+                <div class="front">
                     <h2>Bus Schedules</h2>
-                    </div>
-                    <div class="back">
+                </div>
+                <div class="back">
                     <p>Back 1</p>
-                    </div>
                 </div>
-                <div class="card">
-                    <div class="front">
+            </div>
+            <div class="card">
+                <div class="front">
                     <h2>Tickets</h2>
-                    </div>
-                    <div class="back">
+                </div>
+                <div class="back">
                     <p>Back 2</p>
-                    </div>
                 </div>
-                <div class="card">
-                    <div class="front">
+            </div>
+            <div class="card">
+                <div class="front">
                     <h2>Bus Fare</h2>
-                    </div>
-                    <div class="back">
+                </div>
+                <div class="back">
                     <p>Back 3</p>
-                    </div>
                 </div>
-                </div>
-    
+            </div>
+        </div>
+
 
         <section id="busfare">
             <div style="margin: auto;">
@@ -144,9 +144,9 @@ if (isset($_SESSION['USER'])) {
     </div>
 
     <script>
-        document.getElementById("btn").onclick = function () {
-            location.href = "<?= ROOT ?>/passengerschedule";
-        };
+    document.getElementById("btn").onclick = function() {
+        location.href = "<?= ROOT ?>/passengerschedule";
+    };
     </script>
 </body>
 
