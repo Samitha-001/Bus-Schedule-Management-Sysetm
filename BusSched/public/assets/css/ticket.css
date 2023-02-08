@@ -5,6 +5,7 @@ body {
   color: #24315e;
   font-family: "Outfit";
   margin: 0px;
+  background: url("../images/backgrounds/bg-ticket.png");
 }
 
 .menu {
@@ -31,7 +32,7 @@ table {
   margin-top: 20px;
   border-collapse: separate;
   border-spacing: 0px 10px;
-  background-color: transparent;
+  background-color: white;
   /* center align table */
   margin-left: auto;
 }

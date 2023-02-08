@@ -1,8 +1,7 @@
 <?php
-include 'components/navbar.php';
-if (!isset($_SESSION['USER'])) {
-    redirect('login');
-}
+    if (!isset($_SESSION['USER'])) {
+        redirect('login');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,17 +12,13 @@ if (!isset($_SESSION['USER'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Tickets</title>
-    <style>
-        body {
-            background-size: auto;
-            background-image: url('<?= ROOT ?>/assets/images/backgrounds/bg-ticket.png');
-        }
-    </style>
     <link href="<?= ROOT ?>/assets/css/ticket.css" rel="stylesheet">
 </head>
 
 <body>
-
+    <?php
+    include 'components/navbar.php';
+    ?>
     <div class="row">
         <div class="col-6 col-s-9 ticket" id="book-ticket">
             <div class="ticket-header">

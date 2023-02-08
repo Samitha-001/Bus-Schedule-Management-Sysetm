@@ -1,16 +1,16 @@
 <form action="" method="post">
     <br>
-    <input type="email" id="email" name="email" placeholder="Email address..." required>
+    <input class="signup-input" type="email" id="email" name="email" placeholder="Email address..." required>
     <br>
-    <input type="text" id="username" name="username" placeholder="Username..." required>
+    <input class="signup-input" type="text" id="username" name="username" placeholder="Username..." required>
     <br>
-    <input type="password" id="password" name="password" placeholder="Password..." required>
+    <input class="signup-input" type="password" id="password" name="password" placeholder="Password..." required>
     <br>
-    <input type="password" id="pwdRepeat" name="pwdRepeat" placeholder="Confirm password..." required>
+    <input class="signup-input" type="password" id="pwdRepeat" name="pwdRepeat" placeholder="Confirm password..." required><br>
     <button class="button-orange" type="submit">Sign Up</button>
     <div class="errors">
         <?php if (!empty($errors)) : ?>
-            <?= implode("<br>", $errors) ?>
+        <?= implode("<br>", $errors) ?>
         <?php endif; ?>
     </div>
 </form>

@@ -1,9 +1,3 @@
-<?php
-include 'components/navbar.php';
-if (isset($_SESSION['USER'])) {
-  redirect('adminhome');
-}
-?>
 
 <!doctype html>
 <html lang="en">
@@ -19,6 +13,12 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
+  <?php
+  include 'components/navbar.php';
+  if (isset($_SESSION['USER'])) {
+    redirect('adminhome');
+  }
+  ?>
   <form method="post">
     <div class="form-bg">
       <br>
