@@ -31,7 +31,7 @@ if (isset($_SESSION['USER'])) {
 
 <body>
     <div class="landing-main row">
-        <div class="col-6 col-s-5 menu">
+        <div class="col-6 menu">
 
             <ul>
                 <li>
