@@ -1,4 +1,5 @@
 <?php
+include 'components/navbar.php';
 if (isset($_SESSION['USER'])) {
   redirect('admins');
 }
@@ -12,87 +13,81 @@ if (isset($_SESSION['USER'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>Passenger - Sign Up</title>
+  <title>Sign Up</title>
 
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style.css">
 </head>
 
 <body>
+  <div class="form-register passenger-signup">
+    <h3>Passenger</h3>
+    <h1 style="text-align:center">Create Account</h1>
+    <button class="user-button checked passenger-button">Passenger</button>
+    <button class="user-button conductor-button">Conductor</button>
+    <button class="user-button driver-button">Driver</button>
+    <button class="user-button owner-button">Owner</button>
+    <button class="user-button scheduler-button">Scheduler</button>
+    <?php
+    include 'components/passengerregister.php';
+    ?>
+  </div>
 
-  <nav class="navbar">
-    <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
-    </div>
+  <div class="form-register conductor-signup" style="display: none;">
+    <h3>Conductor</h3>
+    <h1 style="text-align:center">Create Account</h1>
+    <button class="user-button passenger-button">Passenger</button>
+    <button class="user-button checked conductor-button">Conductor</button>
+    <button class="user-button driver-button">Driver</button>
+    <button class="user-button owner-button">Owner</button>
+    <button class="user-button scheduler-button">Scheduler</button>
+    <?php
+    include 'components/conductorregister.php';
+    ?>
+  </div>
 
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <div class="menu">
 
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/passengerlogin">
-          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-        </a>
-        <a href="<?= ROOT ?>/passengersignup">
-          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
-        </a>
-  </nav>
-  <br>
-  <br>
-  <h3>Passenger</h3>
-  <h1 style="text-align:center">Create Account</h1>
+  <div class="form-register driver-signup" style="display: none;">
+    <h3>Driver</h3>
+    <h1 style="text-align:center">Create Account</h1>
+    <button class="user-button passenger-button">Passenger</button>
+    <button class="user-button conductor-button">Conductor</button>
+    <button class="user-button checked driver-button">Driver</button>
+    <button class="user-button owner-button">Owner</button>
+    <button class="user-button scheduler-button">Scheduler</button>
+    <?php
+    include 'components/driverregister.php';
+    ?>
+  </div>
 
-  <!-- SIGN UP FORM - PASSENGER -->
-  <main class="sec1">
-    <div class="mytabs">
-      <input type="radio" id="passenger" name="mytabs" checked="checked">
-      <label for="passenger"><a href="<?= ROOT ?>/passengersignup">Passenger</a></label>
-      <div class="tab center">
-        <form action="" class="sign-up-form" method="post">
-          <div class="input-field">
-            <input type="email" placeholder="Email Address..." name="email" class="form-control">
-          </div>
 
-          <div class="input-field">
-            <input type="text" placeholder="Username..." name="username" class="form-control">
-          </div>
+  <div class="form-register owner-signup" style="display: none;">
+    <h3>Owner</h3>
+    <h1 style="text-align:center">Create Account</h1>
+    <button class="user-button passenger-button">Passenger</button>
+    <button class="user-button conductor-button">Conductor</button>
+    <button class="user-button driver-button">Driver</button>
+    <button class="user-button checked owner-button">Owner</button>
+    <button class="user-button scheduler-button">Scheduler</button>
+    <?php
+    include 'components/ownerregister.php';
+    ?>
+  </div>
 
-          <div class="input-field">
-            <input type="password" placeholder="Password..." name="password" class="form-control">
-          </div>
 
-          <div class="input-field">
-            <input type="password" placeholder="Confirm Password..." name="pwdRepeat" class="form-control">
-          </div>
-
-          <button class="button-orange" type="submit">Create</button><br><br>
-          <div class="errors">
-            <?php if (!empty($errors)): ?>
-            <?= implode("<br>", $errors) ?>
-              <?php endif; ?>
-          </div>
-
-          <div class="create_account">
-            <p>Already have an account?</p>
-            <p><a href="<?= ROOT ?>/passengerlogin">Login</a></p>
-          </div>
-
-        </form>
-      </div>
-      <input type="radio" id="driver" name="mytabs">
-      <label for="driver"><a href="<?= ROOT ?>/driversignup">Driver</a></label>
-
-      <input type="radio" id="conductor" name="mytabs">
-      <label for="conductor"><a href="<?= ROOT ?>/conductorsignup">Conductor</a></label>
-
-      <input type="radio" id="owner" name="mytabs">
-      <label for="owner"><a href="<?= ROOT ?>/ownersignup">Bus Owner</a></label>
-
-      <input type="radio" id="scheduler" name="mytabs">
-      <label for="scheduler"><a href="<?= ROOT ?>/schedulersignup">Scheduler</a></label>
-
-    </div>
-    </div>
+  <div class="form-register scheduler-signup" style="display: none;">
+    <h3>Scheduler</h3>
+    <h1 style="text-align:center">Create Account</h1>
+    <button class="user-button passenger-button">Passenger</button>
+    <button class="user-button conductor-button">Conductor</button>
+    <button class="user-button driver-button">Driver</button>
+    <button class="user-button owner-button">Owner</button>
+    <button class="user-button checked scheduler-button">Scheduler</button>
+    <?php
+    include 'components/schedulerregister.php';
+    ?>
+  </div>
+  
+  <script src="<?= ROOT ?>/assets/js/signup.js"></script>
 
 </body>
 

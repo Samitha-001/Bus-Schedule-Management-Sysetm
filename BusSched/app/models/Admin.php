@@ -1,17 +1,19 @@
 <?php
 
-class Admin extends Model{
+class Admin extends Model
+{
     protected $table = 'admin';
 
     // editable columns
     protected $allowedColumns = [
         'username',
-		'name',
+        'name',
         'phone',
-		'address'
+        'address'
     ];
 
-    public function adminInfo(){
+    public function adminInfo()
+    {
         return $this->findAll();
     }
 }

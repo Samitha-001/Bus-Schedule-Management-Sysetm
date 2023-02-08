@@ -1,10 +1,10 @@
 <?php
 if (isset($_SESSION['USER'])) {
-  redirect('home');
+  redirect('adminhome');
 }
 ?>
 
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 
 <head>
@@ -12,84 +12,71 @@ if (isset($_SESSION['USER'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.88.1">
-  <title>Conductor - Login</title>
+  <title>Login</title>
 
-
-  <link href="<?= ROOT ?>/assets/css/style.css" rel="stylesheet">
+    <script src="<?= ROOT ?>/assets/js/menu.js"></script>
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/mobilenav.css">
 </head>
-
 <body>
-
-  <nav class="navbar">
-    <div>
-      <h2><a href="<?= ROOT ?>/home" id="logo-white">BusSched</a></h2>
+  <header>
+    <nav>
+      <div onclick="toggleMenu()">
+        <button class="menu-toggle" ></button>
+      </div>
+      <div class="logo">
+      <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
+      </div>
+      <div class="log-in"></div>
+      <button class="log-in-btn">Log in</button>
+      </div>
+      <div class="sign-up"></div>
+      <button class="sign-up-btn">Sign up</button>
+      </div>
+    </nav>
+    <div class="menu">
+    <ul>
+      <li><a href="<?= ROOT ?>/dashboard">Dashboard</a></li>
+      <li><a href="<?= ROOT ?>/location">Location</a></li>
+      <li><a href="<?= ROOT ?>/schedule">Schedules</a></li>
+      <li><a href="<?= ROOT ?>/ratings">Ratings</a></li>
+      <li><a href="<?= ROOT ?>/buses">Buses</a></li>
+      <li><a href="<?= ROOT ?>/breakdowns">Breakdowns</a></li>
+      <li><a href="<?= ROOT ?>/fare">Bus Fare</a></li>
+      <li><a href="<?= ROOT ?>/bustickets">Bus Tickets</a></li>
+      <li><a href="<?= ROOT ?>/contacts">Contacts</a></li>
+    </ul>
     </div>
-
-    <!-- NAVIGATION MENU -->
-    <ul class="nav-links">
-      <div class="menu">
-
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About</a></li>
-        <a href="<?= ROOT ?>/passengerlogin">
-          <li class="button-orange" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-        </a>
-        <a href="<?= ROOT ?>/passengersignup">
-          <li class="button-orange" style="border: 2px solid #f4511e;">Sign Up</li>
-        </a>
-
-  </nav>
+  </header>
   <br>
   <br>
   <br>
+ 
 
-  <h3 class="center">Conductor</h3>
+  <h3>User</h3>
   <h1 style="text-align:center" class="center">Login</h1><br>
 
-  <!-- LOGIN FORM FOR Conductor-->
+  <br>
 
-  <main class="sec1">
-    <div class="mytabs">
-      <input type="radio" id="passenger" name="mytabs">
-      <label for="passenger"><a href="<?= ROOT ?>/passengerlogin">Passenger</a></label>
-      <div class="tab form-bg center">
+  <form method="post">
+    <div class="form-bg center">
+      <div>
+        <input name="email" type="text" class="form-control" id="floatingInput" placeholder="Username or email..." required><br><br>
+        <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password..." required><br><br>
+
+        <button class="button-orange" type="submit">Login</button>
       </div>
-      <input type="radio" id="driver" name="mytabs">
-      <label for="driver"><a href="<?= ROOT ?>/driverlogin">Driver</a></label>
-      <div class="tab">
+
+      <div class="errors">
+        <br>
+        <?php if (!empty($errors)) : ?>
+          <?= implode("<br>", $errors) ?>
+        <?php endif; ?>
       </div>
-      <input type="radio" id="conductor" name="mytabs" checked="checked">
-      <label for="conductor"><a href="<?= ROOT ?>/conductorlogin">Conductor</a></label>
-      <div class="tab center">
-        <form action="" class="sign-up-form" method="post">
-          <div class="input-field">
-            <div>
-              <input name="email" type="text" class="form-control" id="floatingInput" placeholder="Username or Email..."
-                required><br><br>
-              <input name="password" type="password" class="form-control" id="floatingPassword"
-                placeholder="Password..." required><br><br>
-              <button class="button-orange" type="submit">Login</button>
-            </div>
-            <div class="errors">
-              <?php if (!empty($errors)): ?>
-              <?= implode("<br>", $errors) ?>
-                <?php endif; ?>
-            </div>
-          </div>
-          <div class="center form-footer">Don't have an account? <a href="<?= ROOT ?>/conductorsignup">Register</a>
-          </div>
-        </form>
-      </div>
-      <input type="radio" id="owner" name="mytabs">
-      <label for="conductor"><a href="<?= ROOT ?>/ownerlogin">Bus Owner</a></label>
-      <div class="tab">
-      </div>
-      <input type="radio" id="scheduler" name="mytabs">
-      <label for="owner"><a href="<?= ROOT ?>/schedulerlogin">Scheduler</a></label>
-      <div class="tab">
-      </div>
+
+      <p style="color: #24315e; text-align:center;">Don't have an account? <a href="<?= ROOT ?>/conductorsignup">Register</a></p>
     </div>
-  </main>
+
+  </form>
 
 </body>
 

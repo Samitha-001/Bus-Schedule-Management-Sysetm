@@ -1,3 +1,6 @@
+@import "navbar.css";
+@import "general.css";
+
 body {
   color: #24315e;
   font-family: "Outfit";
@@ -53,10 +56,6 @@ input {
 }
 
 .styled-table {
-  /* margin: 25px 0;
-  font-size: 0.9em;
-  width: 100%;
-  border-color: #ffffff; */
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #ffffff;
@@ -99,6 +98,24 @@ input {
   font-size: 15px;
   color: #7c839e;
   vertical-align: middle;
+}
+
+.styled-table option {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table input {
+  color: black;
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
+.styled-table select {
+  color: #7c839e;
+  font-size: 15px;
+  font-family: "Outfit";
 }
 
 form {
@@ -184,7 +201,6 @@ button {
   text-align: center;
   margin: 0px;
   opacity: 1;
-  transition: 0.3s;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;
@@ -205,7 +221,6 @@ button:hover {
   font-weight: bold;
   margin: 0px;
   opacity: 1;
-  transition: 0.3s;
   display: inline-block;
   text-decoration: none;
 }
@@ -231,7 +246,7 @@ button:hover {
 
 .button-cancel {
   font-family: "Outfit";
-  background: #ffffff;
+  background: white;
   font-size: 16px;
   width: 15%;
   border: 1px solid red;
@@ -365,9 +380,6 @@ input:checked + .slider:before {
 
 .container1 {
   margin-left: 230px;
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; */
-  /* grid-template-rows: 1fr 4fr 4fr; */
 }
 
 .card-container {
@@ -602,7 +614,7 @@ hr {
 
 .orange-header {
   grid-column: span 4;
-  width: 100;
+  width: auto;
 }
 
 .data-table {

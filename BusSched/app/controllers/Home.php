@@ -1,12 +1,17 @@
 <?php
 
-class Home {
+class Home
+{
 
-    use Controller;
+  use Controller;
 
-    public function index() {
-        
-		$data['username'] = empty($_SESSION['USER']) ? 'User':$_SESSION['USER']->email;
-		$this->view('home', $data);
-    }
+  public function index()
+  {
+    $halt = new Halt();
+    $halts = $halt->getHalts();
+    $data['halts'] = $halts;
+
+    $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
+    $this->view('home', $data);
+  }
 }

@@ -26,7 +26,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <title>Admin - Home</title>
+    <title>Passenger - Profile</title>
 </head>
 
 <body>
@@ -39,7 +39,7 @@ if ($_SESSION['USER']->role == 'passenger') {
         <ul class="nav-links">
             <div class="menu">
                 <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
+                    <li><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
                     <li class="button-orange">Logout</li>
@@ -68,8 +68,8 @@ if ($_SESSION['USER']->role == 'passenger') {
         <div class="card-container" id="greeting-card">
             <h2>
                 <?php
-        echo "Welcome " . $_SESSION['USER']->username . "!";
-        ?>
+                echo "Welcome " . $_SESSION['USER']->username . "!";
+                ?>
             </h2>
         </div>
 
