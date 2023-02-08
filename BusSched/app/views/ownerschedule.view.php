@@ -43,7 +43,7 @@ include 'components/navbar.php';
 <div class="styled-tablerow" color="red">
      
 
-            </table>
+</table>
 
         </div>
 

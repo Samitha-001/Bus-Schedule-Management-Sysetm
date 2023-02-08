@@ -14,7 +14,7 @@ include 'components/ownersidebar.php';
     <title>Register New Bus</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
-    <link href="<?= ROOT ?>/assets/css/style4.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
 </head>
 
 <body>

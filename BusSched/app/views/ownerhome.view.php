@@ -30,8 +30,12 @@ if ($_SESSION['USER']->role == 'passenger') {
 </head>
 
 <body>
+<?php
+include 'components/navbar.php';
+include 'components/ownersidebar.php';
 
-    <nav class="navbar">
+?>
+    <!-- <nav class="navbar">
         <div>
             <h2><a href="<?= ROOT ?>/owners" id="logo-white">BusSched</a></h2>
         </div>
@@ -47,9 +51,9 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </ul>
 
-    </nav>
+    </nav> -->
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/owners" style="color:white;"><b>Dashboard</b></a></li>
             <li><a href="#" style="color:#9298AF;">Schedules</a></li>
@@ -60,7 +64,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             <li><a href="#" style="color:#9298AF;">Bus Fare</a></li>
             <li><a href="#" style="color:#9298AF;">Contacts</a></li>
         </div>
-    </div>
+    </div> -->
 
     <main class="container">
 

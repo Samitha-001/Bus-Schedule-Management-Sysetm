@@ -614,7 +614,7 @@ hr {
 }
 
 .wrapper .sidebar li:hover {
-  opacity: 80%;
+  color: white;
 }
 
 .orange-header {
@@ -646,4 +646,7 @@ hr {
   border-radius: 5px;
 }
 
+.owner-sidebar-li {
+  color:#9298AF;
+}
 

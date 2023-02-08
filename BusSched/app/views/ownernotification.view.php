@@ -13,7 +13,7 @@ include 'components/navbar.php';
     <title>Notifications</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
-    <link href="<?= ROOT ?>/assets/css/style5.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner_view.css" rel="stylesheet">
 </head>
 
 <body>
