@@ -91,3 +91,14 @@
     width: auto;
     color: aquamarine;
   }
+
+  #active-card {
+    background: url("../images/dashboard-cards/tickets-card.png");
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+  }
+
+  

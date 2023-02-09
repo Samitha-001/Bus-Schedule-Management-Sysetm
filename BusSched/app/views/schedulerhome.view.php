@@ -48,7 +48,7 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <hr>
                 </div>
                 <div class="items users">
-                    <p>Bus Schedules</p>
+                    <p><a href="<?= ROOT ?>/schedules">Schedule</a></p>
                 </div>
             </div>
         </div>
@@ -61,8 +61,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <hr>
                 </div>
                 <div class="items users">
-                    <p><a href="<?= ROOT ?>/buses">Bus details</a><br></p>
-                    <p><a href="<?= ROOT ?>/breakdowns">Breakdowns</a><br></p>
+                    <p><a href="<?= ROOT ?>/schedbuses">Bus details</a><br></p>
+                    <p><a href="<?= ROOT ?>/schedbreakdowns">Breakdowns</a><br></p>
                 </div>
             </div>
             </a>
@@ -74,12 +74,29 @@ if ($_SESSION['USER']->role == 'passenger') {
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Tickets</p>
+                    <p>Bus Fares</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p>Bus tickets</p>
-                    <p><a href="<?= ROOT ?>/fares">Bus fare</a></p>
+                    <p><a href="<?= ROOT ?>/schedfares">Bus Fare</a></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-container" id="fare-card">
+            <div class="overlay">
+                <div class="items"></div>
+                <div class="items head">
+                    <p>Ticket List</p>
+                    <hr>
+                </div>
+                <div class="items users">
+                    <p><a href="<?= ROOT ?>/schedactiveticket">Active</a> </p>
+                    <p><a href="<?= ROOT ?>/schedcollectedticket">Collected</a> </p>
+                    <p><a href="<?= ROOT ?>/schedpendingticket">Pending</a>
+                     </p>
+                    <p><a href="<?= ROOT ?>/schedexpiredticket">Expired</a>
+                     </p>
                 </div>
             </div>
         </div>
