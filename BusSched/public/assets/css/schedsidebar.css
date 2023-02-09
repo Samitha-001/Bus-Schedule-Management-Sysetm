@@ -27,7 +27,8 @@
   }
   
   .orange-header-sched {
-    grid-column: span 4;
+    width: 1125px;
+    grid-column: span 3;
     width: auto;
   }
 
@@ -51,7 +52,7 @@
   }
   
   #greeting-card-sched {
-    grid-column: span 2;
+    grid-column: span 4;
     width: 90%;
     border-style: none;
     padding-top: 20px;
@@ -101,4 +102,7 @@
 
   }
 
+  .card-container-sched h2{
+    margin-left: 20px;
+  }
   
