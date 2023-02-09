@@ -54,39 +54,6 @@ if (isset($_SESSION['USER'])) {
         </div>
     </div>
     <div class="row">
-        <section id="services">
-            <h3>Our Services</h3>
-            <h1>What we can do for you</h1>
-        </section>
-
-        <div class="card-container">
-            <div class="card">
-                <div class="front">
-                    <h2>Bus Schedules</h2>
-                </div>
-                <div class="back">
-                    <p>Back 1</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="front">
-                    <h2>Tickets</h2>
-                </div>
-                <div class="back">
-                    <p>Back 2</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="front">
-                    <h2>Bus Fare</h2>
-                </div>
-                <div class="back">
-                    <p>Back 3</p>
-                </div>
-            </div>
-        </div>
-
-
         <section id="busfare">
             <div style="margin: auto;">
                 <h1 style="font-size: 30px; margin:20px; color:#24315e;">Bus fares</h1>
@@ -127,9 +94,39 @@ if (isset($_SESSION['USER'])) {
                 </table>
             </div>
         </section>
+        <section id="services">
+            <h3>Our Services</h3>
+            <h1>What we can do for you</h1>
+        </section>
 
+        <div class="card-container">
+            <div class="card">
+                <div class="front">
+                    <h2>Bus Schedules</h2>
+                </div>
+                <div class="back">
+                    <p>BusSched allows users to view and generate bus schedules, taking into account bus availability and any breakdowns. This helps to ensure that schedules are accurate and up-to-date, providing users with reliable information for their bus trips.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="front">
+                    <h2>Tickets</h2>
+                </div>
+                <div class="back">
+                    <p>Makes it easy for users to purchase tickets for A/C buses. Passengers can choose from a variety times, reserve seats and find the perfect trip. BusSched provides a convenient solution for A/C bus travel.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="front">
+                    <h2>Bus Fare</h2>
+                </div>
+                <div class="back">
+                    <p>BusSched provides users with access to the latest and most up-to-date bus fare information</p>
+                </div>
+            </div>
+        </div>
+        
         <section id="about">
-            <!-- <h3>About Us</h3> -->
             <h1>About Us</h1>
             <p>Welcome to our bus schedule management system website. We are dedicated to providing you with the most
                 accurate and up-to-date bus schedules and routes. Our easy-to-use platform allows you to quickly and
@@ -138,8 +135,16 @@ if (isset($_SESSION['USER'])) {
         </section>
 
         <section id="contact">
-            <h3>Contact Us</h3>
-            <h1>What we can do for you</h1>
+            <h1>Contact Us</h1>
+            <p style="text-align: center;">
+            Phone number: +94 (11) 111 1111 &emsp; | &emsp; Email address: support@bussched.com <br>
+            <ul style="text-align: center;">
+                Social media links:&emsp;
+                <a href="https://www.facebook.com" style="color:#f4511e">Facebook</a>&emsp;
+                <a href="https://www.twitter.com" style="color:#f4511e">Twitter</a>&emsp;
+                <a href="https://www.instagram.com" style="color:#f4511e">Instagram</a>
+            </ul>
+            </p>
         </section>
     </div>
 
