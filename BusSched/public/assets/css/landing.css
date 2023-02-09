@@ -215,9 +215,10 @@ table#busfare-table td.halt-name-top {
   div.card {
     position: relative;
     width: 40%;
-    height: 200px;
+    min-height: 200px;
     perspective: 1000px;
     text-align: center;
+    align-self: center;
   }
 }
 
@@ -247,6 +248,7 @@ section#contact {
   perspective: 1000px;
   text-align: center;
   margin: 0 auto;
+  align-self: center;
 }
 
 .front,
@@ -265,6 +267,8 @@ section#contact {
   align-items: center;
   backface-visibility: hidden;
   transition: transform 0.5s ease;
+  align-self: center;
+  padding: 5px;
 }
 
 .front {
