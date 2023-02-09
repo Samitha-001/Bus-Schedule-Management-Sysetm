@@ -16,27 +16,17 @@ if (!isset($_SESSION['USER'])) {
     <title>Fares</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
+
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-    </nav>
 
-    <?php include "components/schedulersidebar.php"?>
+    <?php 
+        include "components/navbar_new.php";
+        include "components/schedulersidebar.php";
+    ?>
 
     <main class="container1">
 
