@@ -4,7 +4,7 @@
 .column {
   float: left;
  
-  height: 80%; /* Should be removed. Only for demonstration */
+  height: 70%; /* Should be removed. Only for demonstration */
 }
 
 .left{
@@ -14,10 +14,11 @@
 .image
 {
   width: 700px;
-  height: 50%;
-  padding-top: 190px;
+  height: 30%;
+  padding-top: 130px;
   background-color: rgb(81, 88, 88);
-  padding-bottom: 190px;
+  padding-bottom: 120px;
+  margin-top: 60px;
 }
 
 
@@ -25,47 +26,32 @@
   width: 15%;
 }
 
-.middle {
-  width: 45%;
-  line-height: 2em;
-  font-size: 20px;
-  color: black;
-}
+
+
 
 .content{
   text-align: center;
 }
 
-.middle_right{
+/* .middle_right{
   padding-top: 23px;
-  padding-left: 100px;
- 
-}
+} */
 
 .button{
   background-color: rgb(90, 221, 96);
   font-size: 20px;
   margin-left: 100px;
-  margin-top: 150px;
+  margin-top: 250px;
+  margin-left: 600px;
   
 }
 
 .content{
   padding-top: 20px;
 }
-.icon{
- width: 40px;
- padding-top: 2.5px;
- padding-bottom: 2px;
- height: 31.5px;
- padding-left: 150px;
- margin-top: 1px;
-}
 
-.icon1{
-  width: 40px;
-  height: 31.5px;
-  padding-top: 110px;
-  padding-left: 150px;
- }
+.form{
+  line-height: 3em;
+  font-size:18px
+}
 

@@ -25,51 +25,19 @@ include 'components/ownersidebar.php';
   </div>
   <div class="column middle">
    <h1 class="content">Add New Bus</h1>
-   <div class="row">
-    <div class="column middle_left">
-    <ul>
-                
-                <li>Bus No.</li>
-                <li>Source</li>
-                <li>Destination</li>
-                <li>Owner</li>
-                <li>License No.</li>
-                <li>Assigned Conductor</li>
-                <li>Conductor Contact Number</li>
-                <li>Assigned Driver</li>
-                <li>Driver Contact Number</li>
-                
-
-    </div>
-
-    <div class="column middle_right">
    
-                <li>NW-2123</li>
-                <li>Piliyandala</li>
-                <li>Fort</li>
-                <li>P.W. Nanayakkara</li>
-                <li>204561250</li>
-                <li>W.P. Silva</li>
-                <li>0772345612</li>
-                <li>A.K.Ananda</li>
-                <li>0714325678</li>   
-            
-    </div>
-    </ul>
-   </div>
-  </div>
-  <div class="column right">
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon1"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    <li><img src="<?= ROOT ?>/assets/images/icons/pencil.jpg" class="icon"></li>
-    
-     <button type="submit" class="Button">Register</button>
+                <form style="margin-left: 150px;background-color:white;margin-bottom:100px" class="form">
+                 Bus No. <input placeholder="NW-2123" style="width:40%;font-size:18px;margin-left:180px"><br>
+                 Source<input placeholder="Piliyandala" style="width:40%;font-size:18px;margin-left:190px"><br>
+                 Destination<input placeholder="Fort" style="width:40%;font-size:18px;margin-left:155px"><br>
+                 Owner<input placeholder="P.W. Nanayakkara" style="width:40%;font-size:18px;margin-left:190px"><br>
+                 License No.<input placeholder="204561250" style="width:40%;font-size:18px;margin-left:155px"><br> 
+                 Assigned Conductor<input placeholder="W.P. Silva" style="width:40%;font-size:18px;margin-left:85px"><br>
+                 Conductor Contact Number<input placeholder="0772345612" style="width:40%;font-size:18px;margin-left:20px"><br>
+                 Assigned Driver<input placeholder="A.K.Ananda" style="width:40%;font-size:18px;margin-left:115px"><br>
+                 Driver Contact Number<input placeholder="0714325678" style="width:40%;font-size:18px;margin-left:55px"><br>
+                 <button type="submit" class="Button" style="margin-left: 450px;background-color: rgb(90, 221, 96)">Register</button>
+                </form>
   </div>
 </div> 
 </main>

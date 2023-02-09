@@ -20,7 +20,7 @@ if (!isset($_SESSION['USER'])) {
 
 <body>
 <?php
-include 'components/navbar.php';
+include 'components/ownernavbar.php';
 include 'components/ownersidebar.php';
 ?>
 
@@ -81,7 +81,7 @@ include 'components/ownersidebar.php';
                     <th>Time to repair</th>
                 </tr>
 
-                <?php
+                <!-- <?php
                 foreach ($breakdowns as $breakdown) {
                     echo "<tr>";
                     echo "<td> $breakdown->id </td>";
@@ -91,7 +91,7 @@ include 'components/ownersidebar.php';
                     // echo "<td> $breakdown->time </td>";
                     echo "<td> $breakdown->time_to_repair </td>";
                     echo "</tr>";
-                } ?>
+                } ?> -->
 
             </table>
         </div>

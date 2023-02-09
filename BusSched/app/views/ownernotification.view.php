@@ -17,10 +17,10 @@
 <body>
 
 <?php
-include 'components/navbar.php';
+include 'components/ownernavbar.php';
 ?>
 
-    <div class="row1">&emsp;&emsp;&emsp; Notifications</div>
+    <div class="row1" >&emsp;&emsp;&emsp; Notifications</div>
     <div class="row2">
     
         <div class="row">

@@ -31,7 +31,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
 <body>
 <?php
-include 'components/navbar.php';
+include 'components/ownernavbar.php';
 include 'components/ownersidebar.php';
 
 ?>
@@ -103,6 +103,7 @@ include 'components/ownersidebar.php';
         </div>
 
         <div class="card-container" id="buses-card">
+        <a href="<?= ROOT ?>/registernew">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -113,9 +114,11 @@ include 'components/ownersidebar.php';
                     <!-- <p>User ratings</p> -->
                 </div>
             </div>
+            </a>   
         </div>
 
         <div class="card-container" id="income-card">
+        <a href="<?= ROOT ?>/ownerincome">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -126,6 +129,7 @@ include 'components/ownersidebar.php';
                     <!-- <p>Bus details</p> -->
                 </div>
             </div>
+            </a>
         </div>
 
         <div class="card-container" id="ratings-card">
@@ -144,6 +148,7 @@ include 'components/ownersidebar.php';
         </div>
 
         <div class="card-container" id="breakdowns-card">
+        <a href="<?= ROOT ?>/ownerbreakdowns">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -154,6 +159,7 @@ include 'components/ownersidebar.php';
                     <!-- <p>User ratings</p> -->
                 </div>
             </div>
+        </a>
         </div>
 
         <div class="card-container" id="fare-card">
@@ -170,6 +176,7 @@ include 'components/ownersidebar.php';
         </div>
 
         <div class="card-container" id="contacts-card">
+        <a href="<?= ROOT ?>/ownercontactowners">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -180,6 +187,7 @@ include 'components/ownersidebar.php';
                     <!-- <p><a href="#">Tickets sold</a><br></p> -->
                 </div>
             </div>
+        </a>
         </div>
     </main>
 

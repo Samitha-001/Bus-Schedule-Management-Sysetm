@@ -14,7 +14,7 @@
 
 <body>
 <?php
-include 'components/navbar.php';
+include 'components/ownernavbar.php';
 include 'components/ownersidebar.php';
 ?>
 
