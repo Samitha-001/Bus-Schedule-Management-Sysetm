@@ -6,6 +6,7 @@ class Schedule extends Model
 
     // editable columns
     protected $allowedColumns = [
+        'id',
         'from',
         'to',
         'bus_route',
@@ -26,6 +27,9 @@ class Schedule extends Model
             $this->errors['to'] = "Destination is required";
         } else
         if (empty($data['bus_route'])) {
+            $this->errors['bus_route'] = "Bus route is required";
+        } else
+        if (empty($data['bus_No'])) {
             $this->errors['bus_route'] = "Bus route is required";
         } else
         if (empty($data['bus_type'])) {
