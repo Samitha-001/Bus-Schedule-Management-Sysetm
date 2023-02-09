@@ -20,7 +20,7 @@
 include 'components/navbar.php';
 ?>
 
-    <div class="row1">Notifications</div>
+    <div class="row1">&emsp;&emsp;&emsp; Notifications</div>
     <div class="row2">
     
         <div class="row">
