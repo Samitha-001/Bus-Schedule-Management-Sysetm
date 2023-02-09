@@ -1,7 +1,7 @@
 <?php
-    if (!isset($_SESSION['USER'])) {
-        redirect('login');
-    }
+if (!isset($_SESSION['USER'])) {
+    redirect('login');
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,12 +33,10 @@
                         <input type="text" name="to" id="to" placeholder="Enter destination halt">
                     </li>
                     <li>
-                        <input type="date" name="date" id="date" placeholder="Choose date" style="margin:15px">
-                        <select name="bus-type" id="bus-type" placeholder="Bus type" style="margin:15px">
-                            <option disabled selected value>Bus type</option>
-                            <option value="L">Luxury</option>
-                            <option value="SL">Semi-Luxury</option>
-                        </select>
+                        <input type="date" id="dateInput">
+                        <text id="selectedDate"></text>
+                    </li>
+                    <li>
                         <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="No. of passengers">
                     </li>
                     <div id="reserve-seats-q">Reserve seats?</div>
@@ -55,14 +53,16 @@
                         <input type="radio" id="points" name="payment" value="points">
                         <label for="points">Points</label>
                     </li>
-                    <li>
-                        <text>Redeemable points: </text><text>150</text>
-                    </li>
+                    <div id="pointsBalance" style="display: none;">
+                        Redeemable Points Balance: <span id="balance">100 (=100LKR)</span>
+                    </div>
                     <li>
                         <a href="<?= ROOT ?>/passengerschedule"><button class="button-orange ticket-button-2">Cancel</button></a>
                         <button class="button-orange ticket-button">Confirm</button>
                     </li>
                 </ul>
+                <script src="<?= ROOT ?>/assets/js/ticket.js"></script>
+
             </div>
         </div>
 
@@ -70,7 +70,7 @@
             <div class="ticket-header">
                 <h3>Reserve seats</h3>
             </div>
-            <div class="ticket-body">
+            <div class="ticket-body  col-6">
                 <div class="card-content">
                     <!-- <div class="bus-container"> -->
                     <table class="seating-grid">
@@ -118,9 +118,9 @@
                         </tr>
                     </table>
                     <!-- </div> -->
+                    <div id="book-ticket-q"><button class="button-orange ticket-button">Done</button></div>
                 </div>
 
-                <div id="book-ticket-q"><button class="button-orange ticket-button">Done</button></div>
             </div>
         </div>
         <script src="<?= ROOT ?>/assets/js/seat.js"></script>
