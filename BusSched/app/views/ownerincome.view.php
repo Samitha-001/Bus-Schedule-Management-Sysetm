@@ -1,9 +1,3 @@
-<?php
-include 'components/navbar.php';
-include 'components/ownersidebar.php';
-
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -19,7 +13,10 @@ include 'components/ownersidebar.php';
 </head>
 
 <body>
-
+<?php
+include 'components/navbar.php';
+include 'components/ownersidebar.php';
+?>
 <main class="container1">
 
         <div class="header orange-header">
@@ -75,8 +72,9 @@ include 'components/ownersidebar.php';
               
               </div>
 
-    <div class="column ">
-        
+    <div class="money">
+       
+    
     </div>
     
    </div>

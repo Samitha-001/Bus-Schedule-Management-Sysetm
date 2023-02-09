@@ -1,7 +1,3 @@
-<?php
-include 'components/navbar.php';
-
-?>
 
 <!doctype html>
 <html lang="en">
@@ -17,6 +13,10 @@ include 'components/navbar.php';
 </head>
 
 <body>
+<?php
+include 'components/navbar.php';
+include 'components/ownersidebar.php';
+?>
 
     <main class="container1">
 

@@ -1,6 +1,4 @@
-<?php
-include 'components/navbar.php';
-?>
+
 
 <!doctype html>
 <html lang="en">
@@ -18,7 +16,9 @@ include 'components/navbar.php';
 
 <body>
 
-    
+<?php
+include 'components/navbar.php';
+?>
 
     <div class="row1">Notifications</div>
     <div class="row2">

@@ -35,36 +35,6 @@ include 'components/navbar.php';
 include 'components/ownersidebar.php';
 
 ?>
-    <!-- <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/owners" id="logo-white">BusSched</a></h2>
-        </div>
-
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/owners">
-                    <li><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange" style="border: 2px solid #f4511e;">Logout</li>
-                </a>
-            </div>
-        </ul>
-
-    </nav> -->
-
-    <!-- <div class="wrapper">
-        <div class="sidebar">
-            <li><a href="<?= ROOT ?>/owners" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="#" style="color:#9298AF;">Buses</a></li>
-            <li><a href="#" style="color:#9298AF;">Income</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Bus Fare</a></li>
-            <li><a href="#" style="color:#9298AF;">Contacts</a></li>
-        </div>
-    </div> -->
 
     <main class="container">
 
@@ -118,7 +88,7 @@ include 'components/ownersidebar.php';
         </div>
 
         <div class="card-container" id="schedules-card">
-            <a href="#">
+            <a href="<?= ROOT ?>/ownerschedule">
                 <div class="overlay">
                     <div class="items"></div>
                     <div class="items head">
