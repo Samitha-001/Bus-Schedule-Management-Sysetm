@@ -30,16 +30,7 @@ if (!isset($_SESSION['USER'])) {
     <main class="container1">
     <div class="header orange-header-ticket">
             <div>
-                <h3>Active</h3>
-            </div>
-            <div>
                 <h3>Pending</h3>
-            </div>
-            <div>
-                <h3>Collected</h3>
-            </div>
-            <div>
-                <h3>Expired</h3>
             </div>
         </div>
     </main>

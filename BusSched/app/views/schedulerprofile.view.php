@@ -26,6 +26,7 @@
             </h2>
         </div>
 
+        <div class="row">
         <div class="card-container-sched" id="info-card-sched">
             <ul>
                 <p style="font-size: 32px;">Personal Info</p>
@@ -61,6 +62,7 @@
                     </tr>
                 </table>
             </ul>
+        </div>
         </div>
 
 </body>
