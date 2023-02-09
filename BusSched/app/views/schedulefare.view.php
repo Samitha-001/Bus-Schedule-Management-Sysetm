@@ -116,8 +116,8 @@ if (!isset($_SESSION['USER'])) {
                     echo "<td> $fare->last_updated </td>";
                     echo "<td>
                                 <div class='edit_delete'> 
-                                <i class='fa fa-pencil-square-o'></i>
-                                <i class='fa fa-trash-o'></i>
+                                <img src='ROOT/assets/images/Edit.png'>
+                                <img src=' ROOT/assets/images/Delete.png'>
                                 </div>      
                           </td>";
                     echo "</tr>";
