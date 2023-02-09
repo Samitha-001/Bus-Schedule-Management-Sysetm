@@ -25,31 +25,17 @@ if ($_SESSION['USER']->role == 'passenger') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <title>Schedule - Home</title>
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-
-    </nav>
-
-    <?php include "components/schedulersidebar.php"?>
+<?php 
+        include "components/navbar_new.php";
+        include "components/schedulersidebar.php";
+    ?>
 
     <main class="container">
 

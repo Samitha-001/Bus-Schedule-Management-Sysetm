@@ -14,8 +14,10 @@ if (!isset($_SESSION['USER'])) {
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
     <title>Fares</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
+    <link href="<?= ROOT ?>/assets/css/schedfare.css" rel="stylesheet">
 </head>
 
 <body>
@@ -98,6 +100,7 @@ if (!isset($_SESSION['USER'])) {
                     <th>Amount</th>
                     <th>Type</th>
                     <th>Last Updated</th>
+                    <th>Action</th>
                     <!-- <th>Action</th> -->
                 </tr>
 
@@ -111,6 +114,12 @@ if (!isset($_SESSION['USER'])) {
                     echo "<td> $fare->type_bus </td>";
                     echo "<td> $fare->amount</td>";
                     echo "<td> $fare->last_updated </td>";
+                    echo "<td>
+                                <div class='edit_delete'> 
+                                <i class='fa fa-pencil-square-o'></i>
+                                <i class='fa fa-trash-o'></i>
+                                </div>      
+                          </td>";
                     echo "</tr>";
                 } ?>
 
