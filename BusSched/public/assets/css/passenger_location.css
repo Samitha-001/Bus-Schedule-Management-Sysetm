@@ -1,0 +1,26 @@
+@import "navbar.css";
+@import "general.css";
+@import "passenger_profile.css";
+
+.update-location-grid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: #24315e;
+  grid-auto-rows: 40px;
+}
+
+.span-col-4 {
+  grid-column: span 4;
+  width: 90%;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  position: relative;
+}

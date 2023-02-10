@@ -76,11 +76,11 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 <!-- side navigation bar for smaller screens -->
 <div id="Sidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a class="services" href="<?= ROOT ?>/passengerprofile">My profile</a>
+    <a class="li" href="<?= ROOT ?>/passengerprofile">My profile</a>
 
     <a class="services">Services</a>
     <ul class="sidenav-links">
-        <ul>
+        <ul style="padding-left: 40px;">
             <li><a href="<?= ROOT ?>/passengerschedule">Bus schedule</a></li>
             <li><a href="<?= ROOT ?>/passengerticket">Buy tickets</a></li>
             <li>

@@ -8,15 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location</title>
 
-    <link href="<?= ROOT ?>/assets/css/style.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/passenger_location.css" rel="stylesheet">
 </head>
 
 <body>
     <?php
     include 'components/navbar.php';
-    
+    include 'components/passengersidebar.php';
     ?>
-    <section>
+
+<div class="row main-content">
         <div class="update-location-grid">
             <div class="grid-item span-col-4">
                 <h1 style="text-align:left;">Update Location</h1>
@@ -65,6 +66,7 @@
             <div class="card">10</div>
         </div>
         <div class="arrow right">&gt;</div>
+    </div>
     </div>
 
     <script src="<?= ROOT ?>/assets/js/script.js"></script>
