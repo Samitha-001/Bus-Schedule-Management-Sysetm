@@ -13,7 +13,7 @@ if (!isset($_SESSION['USER'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landinng.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <title>Conductor - Home</title>
 </head>
@@ -40,15 +40,15 @@ if (!isset($_SESSION['USER'])) {
 
     <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/conductors" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Location</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="#" style="color:#9298AF;">Buses</a></li>
-            <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Contacts</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
+        <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
+            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
+            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
+            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
+            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
     </div>
 
@@ -60,7 +60,7 @@ if (!isset($_SESSION['USER'])) {
                 echo "NB1234";
                 ?>
             </h2>
-            <img src="" alt="">
+            
         </div>
 
         <div class="card-container" id="info-card">
@@ -125,7 +125,7 @@ if (!isset($_SESSION['USER'])) {
             </ul>
         </div>
         <div class="card-container span-col-2">
-
+        <img src="<?= ROOT ?>/assets/images/backgrounds/busimage.jpg" alt="">
         </div>
 
         
