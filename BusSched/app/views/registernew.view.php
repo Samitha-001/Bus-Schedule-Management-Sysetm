@@ -27,15 +27,15 @@ include 'components/ownersidebar.php';
    <h1 class="content">Add New Bus</h1>
    
                 <form style="margin-left: 150px;background-color:white;margin-bottom:100px" class="form">
-                 Bus No. <input placeholder="NW-2123" style="width:40%;font-size:18px;margin-left:180px"><br>
-                 Source<input placeholder="Piliyandala" style="width:40%;font-size:18px;margin-left:190px"><br>
-                 Destination<input placeholder="Fort" style="width:40%;font-size:18px;margin-left:155px"><br>
-                 Owner<input placeholder="P.W. Nanayakkara" style="width:40%;font-size:18px;margin-left:190px"><br>
-                 License No.<input placeholder="204561250" style="width:40%;font-size:18px;margin-left:155px"><br> 
-                 Assigned Conductor<input placeholder="W.P. Silva" style="width:40%;font-size:18px;margin-left:85px"><br>
-                 Conductor Contact Number<input placeholder="0772345612" style="width:40%;font-size:18px;margin-left:20px"><br>
-                 Assigned Driver<input placeholder="A.K.Ananda" style="width:40%;font-size:18px;margin-left:115px"><br>
-                 Driver Contact Number<input placeholder="0714325678" style="width:40%;font-size:18px;margin-left:55px"><br>
+                 Bus No. <input  style="width:40%;font-size:18px;margin-left:180px"><br>
+                 Source<input  style="width:40%;font-size:18px;margin-left:190px"><br>
+                 Destination<input  style="width:40%;font-size:18px;margin-left:155px"><br>
+                 Owner<input style="width:40%;font-size:18px;margin-left:190px"><br>
+                 License No.<input style="width:40%;font-size:18px;margin-left:155px"><br> 
+                 Assigned Conductor<input  style="width:40%;font-size:18px;margin-left:85px"><br>
+                 Conductor Contact Number<input style="width:40%;font-size:18px;margin-left:20px"><br>
+                 Assigned Driver<input  style="width:40%;font-size:18px;margin-left:115px"><br>
+                 Driver Contact Number<input  style="width:40%;font-size:18px;margin-left:55px"><br>
                  <button type="submit" class="Button" style="margin-left: 450px;background-color: rgb(90, 221, 96)">Register</button>
                 </form>
   </div>
