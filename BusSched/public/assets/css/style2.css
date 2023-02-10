@@ -112,6 +112,12 @@ input {
   font-family: "Outfit";
 }
 
+.styled-tablerow {
+  color: rgb(188, 48, 48);
+  font-size: 15px;
+  font-family: "Outfit";
+}
+
 .styled-table select {
   color: #7c839e;
   font-size: 15px;
@@ -260,6 +266,7 @@ button:hover {
   height: fit-content;
   margin: 0;
 }
+
 
 .header h3 {
   font-weight: 700;
@@ -568,7 +575,7 @@ hr {
 }
 
 .wrapper .sidebar li:hover {
-  opacity: 80%;
+  color: white;
 }
 
 .orange-header {
@@ -599,4 +606,9 @@ hr {
   border: 1px solid #eeedf1;
   border-radius: 5px;
 }
+
+.owner-sidebar-li {
+  color:#9298AF;
+}
+
 
