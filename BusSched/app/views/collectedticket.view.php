@@ -21,16 +21,16 @@ if (!isset($_SESSION['USER'])) {
 <body>
 
     <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
+    <div>
+        <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
+    </div>
         <ul class="nav-links">
             <div class="menu">
-                <a href="<?= ROOT ?>/admins">
+           <a href="<?= ROOT ?>/admins">
                     <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
+                <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/login">Logout</a></li>
                 </a>
             </div>
         </ul>
@@ -38,35 +38,32 @@ if (!isset($_SESSION['USER'])) {
 
     <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
-            <li><a href="#" style="color:#9298AF;">Location</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Bus Tickets</a></li>
+            <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
+            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
+            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
+            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
             <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">onntats</a></li>
+            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
     </div>
 
     <main class="container1">
-        <div class="header orange-header">
-            <div>
-                <h3>Bus Tickets</h3>
-            </div>
-            
+        <div class="header orange-header" style="width:100%">
+        <table >
+                <tr>
+                    <th style="padding-left:60px;"><a href="<?= ROOT ?>/activetickets" >Active Tickets</a></th>
+                    <th style="padding-left:60px;"><a href="<?= ROOT ?>/collectedtickets" >Collected Tickets</a></th>
+                </tr>
+                
+            </table> 
         </div>
 
         <div class="data-table">
         <div class="selection">
-                <table >
-                <tr>
-                    <th><button id="btn" class="button-grey">Active Tickets</button></th>
-                    <th><button id="btn" class="button-grey">Collected Tickets</button></th>
-                </tr>
-                
-            </table>   
+                  
         </div>
 
             <table border='1' class="styled-table">

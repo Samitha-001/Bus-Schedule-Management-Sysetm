@@ -30,7 +30,7 @@ if (!isset($_SESSION['USER'])) {
                     <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
+                <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/login">Logout</a></li>
                 </a>
             </div>
         </ul>
@@ -38,16 +38,15 @@ if (!isset($_SESSION['USER'])) {
 
     <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
-            <li><a href="#" style="color:#9298AF;">Users</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
+        <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
+            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
+            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
+            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
-            <li><a href="<?= ROOT ?>/fares" style="color:white;"><b>Bus Fares</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
+            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
     </div>
 
