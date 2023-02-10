@@ -103,7 +103,7 @@ if (!isset($_SESSION['USER'])) {
             </table>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
 
     </main>
 
