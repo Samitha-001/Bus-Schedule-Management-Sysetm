@@ -19,22 +19,9 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
-
-    <nav class="navbar">
-        <div>
-            <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-    </nav>
+    <?php
+    include 'components/navbar.php';
+    ?>
 
     <div class="wrapper">
         <div class="sidebar">
