@@ -18,14 +18,10 @@
         include "components/schedulersidebar.php";
     ?>
 
-    <div class="card-container-sched" id="greeting-card-sched">
-            <h2>
-                <?php
-                echo "Welcome " . $_SESSION['USER']->username . "!";
-                ?>
-            </h2>
-        </div>
+    
 
+        <div class="row">
+        
         <div class="card-container-sched" id="info-card-sched">
             <ul>
                 <p style="font-size: 32px;">Personal Info</p>
@@ -39,7 +35,7 @@
                     <tr>
                         <th>Name: </th>
                         <td>
-                            <?= $data[0]->name ?>
+                            Scheduler
                         </td>
                     <tr>
                         <th>Email: </th>
@@ -50,17 +46,18 @@
                     <tr>
                         <th>Phone: </th>
                         <td>
-                            <?= $data[0]->phone ?>
+                             Enter the phone number
                         </td>
                     </tr>
                     <tr>
                         <th>Address: </th>
                         <td>
-                            <?= $data[0]->address ?>
+                            Enter the address
                         </td>
                     </tr>
                 </table>
             </ul>
+        </div>
         </div>
 
 </body>

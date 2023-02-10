@@ -34,7 +34,7 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Breakdowns</h3>
             </div>
-            <div><button id="btn" class="button-grey">Add New</button></div>
+            <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
         <form method="post" id="view_breakdown" style="display:none">
@@ -84,6 +84,7 @@ if (!isset($_SESSION['USER'])) {
                     <!-- <th>Date</th>
     <th>Time</th>   -->
                     <th>Time to repair</th>
+                    <th></th>
                 </tr>
 
                 <?php
@@ -95,13 +96,14 @@ if (!isset($_SESSION['USER'])) {
                     // echo "<td> $breakdown->date </td>";
                     // echo "<td> $breakdown->time </td>";
                     echo "<td> $breakdown->time_to_repair </td>";
+                    echo "<td><img src='ROOT/assests/images/Delete.png'></td>";
                     echo "</tr>";
                 } ?>
 
             </table>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
 
     </main>
 

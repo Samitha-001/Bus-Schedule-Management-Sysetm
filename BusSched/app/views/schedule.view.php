@@ -32,9 +32,9 @@ if (!isset($_SESSION['USER'])) {
 
         <div class="header orange-header">
             <div>
-                <h3>Bus Fares</h3>
+                <h3>Schedule</h3>
             </div>
-            <div><button id="btn" class="button-grey">Add New</button></div>
+            <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
         <form method="post" id="view_fare" style="display:none">
@@ -110,10 +110,10 @@ if (!isset($_SESSION['USER'])) {
                 foreach ($schedules as $schedule) {
                     echo "<tr>";
                     echo "<td> $schedule->id </td>";
-                    echo "<td> $schedule->from </td>";
-                    echo "<td> $schedule->to </td>";
+                    echo "<td> $schedule->from_start</td>";
+                    echo "<td> $schedule->to_end </td>";
                     echo "<td> $schedule->bus_route</td>";
-                    echo "<td> $schedule->bus_No</td>";
+                    echo "<td> $schedule->bus_no</td>";
                     echo "<td> $schedule->bus_type</td>";
                     echo "<td> $schedule->departure</td>";
                     echo "<td> $schedule->arrival</td>";
@@ -123,7 +123,7 @@ if (!isset($_SESSION['USER'])) {
             </table>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
     </main>
 
 </body>

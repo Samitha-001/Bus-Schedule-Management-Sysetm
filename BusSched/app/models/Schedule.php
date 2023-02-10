@@ -7,10 +7,10 @@ class Schedule extends Model
     // editable columns
     protected $allowedColumns = [
         'id',
-        'from',
-        'to',
+        'from_start',
+        'to_end',
         'bus_route',
-        'bus_No',
+        'bus_no',
         'bus_type',
         'departure',
         'arrival'

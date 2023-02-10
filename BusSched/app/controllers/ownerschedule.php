@@ -1,11 +1,11 @@
 <?php
 
-class Schedticket
+class ownerschedule
 {
     use Controller;
 
     public function index()
     {
-        $this->view('busticketsscheduler');
+        $this->view('ownerschedule');
     }
 }

@@ -13,7 +13,7 @@ class Passengersignup
 			$user = new User;
 			if ($user->validate($_POST)) {
 				$_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-				$_POST['role'] = 'passenger';
+				// $_POST['role'] = 'passenger';
 				$user->insert($_POST);
 				redirect('login');
 			}
