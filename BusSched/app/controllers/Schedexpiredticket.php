@@ -6,6 +6,6 @@ class Schedexpiredticket
 
     public function index()
     {
-        $this->view('expiredticketsscheduler');
+        $this->view('schedepiredticket');
     }
 }

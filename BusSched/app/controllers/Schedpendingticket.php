@@ -6,6 +6,6 @@ class Schedpendingticket
 
     public function index()
     {
-        $this->view('pendingticketsscheduler');
+        $this->view('schedpendingticket');
     }
 }

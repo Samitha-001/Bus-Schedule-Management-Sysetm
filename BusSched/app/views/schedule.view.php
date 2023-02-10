@@ -34,7 +34,7 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Schedule</h3>
             </div>
-            <div><button id="btn" class="button-grey">Add New</button></div>
+            <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
         <form method="post" id="view_fare" style="display:none">
@@ -123,7 +123,7 @@ if (!isset($_SESSION['USER'])) {
             </table>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
     </main>
 
 </body>
