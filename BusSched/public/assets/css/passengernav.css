@@ -7,7 +7,7 @@
   padding-bottom: 0px;
   background-color: white;
   color: black;
-  height: 60px;
+  height: 80px;
   position: sticky;
   top: 60px;
   width: 100%;
@@ -37,4 +37,12 @@
 
 .passenger-nav-menu li {
   width: max-content;
+}
+
+a.li {
+  height: 60px;
+}
+
+.li img {
+  height: 60px;
 }

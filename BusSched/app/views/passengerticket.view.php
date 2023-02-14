@@ -18,6 +18,7 @@ if (!isset($_SESSION['USER'])) {
 <body>
     <?php
     include 'components/navbar.php';
+    include 'components/passengernavbar.php';
     ?>
     <div class="row">
         <div class="col-6 col-s-9 ticket" id="book-ticket">

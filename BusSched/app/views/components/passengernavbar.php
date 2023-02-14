@@ -9,9 +9,6 @@
             <li>
                 <a class="li" href="<?= ROOT ?>/passengerschedule"><img id="busfare" src="<?= ROOT ?>/assets/images/buttons/fare-button-w.png"></a>
             </li>
-            <!-- <li>
-                <a class="li" href="<?= ROOT ?>/passengerprofile"><img id="profile" src="<?= ROOT ?>/assets/images/buttons/profile-icon-b.png"></a>
-            </li> -->
             <li>
                 <a class="li" href="<?= ROOT ?>/passengertickets"><img id="ticket" src="<?= ROOT ?>/assets/images/buttons/ticket-button-w.png"></a>
             </li>

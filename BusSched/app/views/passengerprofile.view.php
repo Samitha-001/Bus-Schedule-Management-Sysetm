@@ -34,7 +34,7 @@ if (isset($_SESSION['USER'])) {
     include 'components/passengernavbar.php';
 ?>
 
-    <div class="row main-content">
+    <div class="row">
         <div class="col-3 col-s-3">
             <div class="passenger-profile-card" id="profile-header">
                 <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="ptofile pic" width="50px" height="50px">
