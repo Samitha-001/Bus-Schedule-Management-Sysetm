@@ -2,6 +2,9 @@
 @import "general.css";
 @import "passenger_profile.css";
 
+body {
+  background-color: #FD6002;
+}
 .update-location-grid {
   display: grid;
   justify-content: center;

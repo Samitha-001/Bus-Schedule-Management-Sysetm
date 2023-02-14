@@ -62,17 +62,8 @@
   margin: 10px 0;
 }
 
-.li img {
-  /* margin-left: 10px; */
-  margin-right: 10px;
-}
-
 img:hover {
   opacity: 1;
-}
-
-.li:hover {
-  background-color: #24315e;
 }
 
 
