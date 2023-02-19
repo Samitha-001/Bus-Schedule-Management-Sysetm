@@ -38,7 +38,7 @@ if (!isset($_SESSION['USER'])) {
 
     <div class="wrapper">
         <div class="sidebar">
-        <li><a href="<?= ROOT ?>/conductorhomes" style="color:#9298AF;">Dashboard</a></li>
+        <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
             <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
             <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
             <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
