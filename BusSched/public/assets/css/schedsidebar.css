@@ -1,0 +1,108 @@
+.wrapper-sched {
+    display: flex;
+    position: relative;
+    color: rgb(165, 7, 7);
+  }
+  
+.item:focus{
+    color:antiquewhite ;
+}
+
+  .wrapper-sched .sidebar-sched {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #000000;
+    padding: 30px 0 0 30px;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .wrapper-sched .sidebar-sched li {
+    padding-bottom: 15px;
+  }
+  
+  .wrapper-sched .sidebar-sched li:hover {
+    opacity: 80%;
+  }
+  
+  .orange-header-sched {
+    width: 1125px;
+    grid-column: span 3;
+    width: auto;
+  }
+
+.card-container-sched {
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+  
+    width: 80%;
+    height: 80%;
+  
+    align-items: center;
+  
+    border-color: #e1ebf7;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+  }
+  
+  #greeting-card-sched {
+    grid-column: span 4;
+    width: 90%;
+    border-style: none;
+    padding-top: 20px;
+  }
+
+  #info-card-sched {
+    margin-left: 200px;
+    grid-column: span 2;
+    grid-row: span 2;
+    width: 90%;
+    height: 85%;
+  }
+
+
+  .header h3 {
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .header {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #f4511e;
+    color: #fff;
+    height: fit-content;
+    margin: 0;
+  }
+
+  .orange-header-ticket {
+    grid-column: span 4;
+    width: auto;
+    color: aquamarine;
+  }
+
+  #active-card {
+    background: url("../images/dashboard-cards/tickets-card.png");
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+  }
+
+  .card-container-sched h2{
+    margin-left: 20px;
+  }
+  

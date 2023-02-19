@@ -1,5 +1,5 @@
 <?php
-
+$username = $_SESSION['USER']->username;
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
         redirect('drivers');
@@ -34,8 +34,36 @@ if (isset($_SESSION['USER'])) {
     include 'components/passengersidebar.php';
 ?>
 
-    <div class="landing-main row">
+    <div class="row main-content">
+        <div class="col-3 col-s-3">
+            <div class="passenger-profile-card" id="profile-header">
+                <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="ptofile pic" width="50px" height="50px">
+                <h1 id="username"><?= $username ?></h1>
+            </div>
+            <div class="nav-cards">
+                <div class="passenger-profile-card">
+                    <h1 style="margin-bottom: 0px;">My points</h1>
+                    <ul style="padding-left:5px;">
+                        <li>Points: &emsp;</li>
+                        <li>Value: &emsp;</li>
+                        <li>Exp. date: &emsp;</li>
+                    </ul>
+                    <button class="button-orange" style="background-color:#24315e; width:100;">Gift points</button>
+                </div>
+                <div class="passenger-profile-card">
+                    <h1>Tickets</h1>
+                </div>
+                </div>
+            <div class="nav-cards">
 
+                <div class="passenger-profile-card">
+                    <h1>Trips</h1>
+                </div>
+                <div class="passenger-profile-card">
+                    <h1>Ratings</h1>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

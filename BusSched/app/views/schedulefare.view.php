@@ -13,15 +13,14 @@ if (!isset($_SESSION['USER'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Schedules</title>
-
+    <title>Fares</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
-
+    <link href="<?= ROOT ?>/assets/css/schedfare.css" rel="stylesheet">
 </head>
 
 <body>
-
 
     <?php 
         include "components/navbar_new.php";
@@ -32,9 +31,9 @@ if (!isset($_SESSION['USER'])) {
 
         <div class="header orange-header">
             <div>
-                <h3>Schedule</h3>
+                <h3>Bus Fares</h3>
             </div>
-            <div><button id="btn" class="button-grey">Download</button></div>
+            <div><button id="btn" class="button-grey">Add New</button></div>
         </div>
 
         <form method="post" id="view_fare" style="display:none">
@@ -96,34 +95,38 @@ if (!isset($_SESSION['USER'])) {
                 <tr>
                     <th>#</th>
                     <th>From</th>
-                    <th>To</th>
                     <th>Route</th>
-                    <th>Bus No</th>
+                    <th>To</th>
+                    <th>Amount</th>
                     <th>Type</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
+                    <th>Last Updated</th>
+                    <th>Action</th>
                     <!-- <th>Action</th> -->
                 </tr>
 
                 <?php
-                
-                foreach ($schedules as $schedule) {
+                foreach ($fares as $fare) {
                     echo "<tr>";
-                    echo "<td> $schedule->id </td>";
-                    echo "<td> $schedule->from_start</td>";
-                    echo "<td> $schedule->to_end </td>";
-                    echo "<td> $schedule->bus_route</td>";
-                    echo "<td> $schedule->bus_no</td>";
-                    echo "<td> $schedule->bus_type</td>";
-                    echo "<td> $schedule->departure</td>";
-                    echo "<td> $schedule->arrival</td>";
+                    echo "<td> $fare->id </td>";
+                    echo "<td> $fare->source </td>";
+                    echo "<td> $fare->dest </td>";
+                    echo "<td> $fare->route_bus </td>";
+                    echo "<td> $fare->type_bus </td>";
+                    echo "<td> $fare->amount</td>";
+                    echo "<td> $fare->last_updated </td>";
+                    echo "<td>
+                                <div class='edit_delete'> 
+                                <img src='ROOT/assets/images/Edit.png'>
+                                <img src=' ROOT/assets/images/Delete.png'>
+                                </div>      
+                          </td>";
                     echo "</tr>";
                 } ?>
 
             </table>
         </div>
 
-        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
+        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
     </main>
 
 </body>
