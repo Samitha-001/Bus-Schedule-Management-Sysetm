@@ -52,15 +52,15 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/conductors" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Location</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="#" style="color:#9298AF;">Buses</a></li>
-            <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Contacts</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
+        <li><a href="<?= ROOT ?>/conductorhomes" style="color:#9298AF;">Dashboard</a></li>
+            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
+            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
+            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
+            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
     </div>
 
