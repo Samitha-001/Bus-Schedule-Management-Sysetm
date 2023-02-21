@@ -18,10 +18,6 @@
     ?>
     <div class="search-bar" style="margin: auto;">
         <div class="row">
-        <!-- <div class="col-1 col-s-1 menu"></div> -->
-            <div class="col-3 col-s-3 menu">
-                <h1 style="font-size:25px; text-align:left;">Bus schedule</h1>
-            </div>
             <div id="from-to" class="col-5 col-s-5 menu">
                 <div><input type="text" name="from" id="from" placeholder="From"></div>
                 <div><input type="text" name="to" id="to" placeholder="To"></div>

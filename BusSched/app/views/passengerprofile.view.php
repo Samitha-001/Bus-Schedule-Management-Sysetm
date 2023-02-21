@@ -50,19 +50,7 @@ if (isset($_SESSION['USER'])) {
                     </ul>
                     <button class="button-orange" style="background-color:#24315e; width:100;">Gift points</button>
                 </div>
-                <div class="passenger-profile-card">
-                    <h1>Tickets</h1>
                 </div>
-                </div>
-            <div class="nav-cards">
-
-                <div class="passenger-profile-card">
-                    <h1>Trips</h1>
-                </div>
-                <div class="passenger-profile-card">
-                    <h1>Ratings</h1>
-                </div>
-            </div>
         </div>
     </div>
 </body>
