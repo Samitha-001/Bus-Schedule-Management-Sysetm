@@ -13,7 +13,7 @@ if (!isset($_SESSION['USER'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Schedule</title>
+    <title>Fares</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
 </head>
@@ -30,7 +30,7 @@ if (!isset($_SESSION['USER'])) {
                     <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
-                <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/login">Logout</a></li>
+                    <li class="button-orange">Logout</li>
                 </a>
             </div>
         </ul>
@@ -54,24 +54,19 @@ if (!isset($_SESSION['USER'])) {
 
         <div class="header orange-header">
             <div>
-                <h3>Schedule</h3>
+                <h3>Bus Fares</h3>
             </div>
+            <div><button id="btn" class="button-grey">Add New</button></div>
         </div>
 
-        <!-- <form method="post" id="view_fare" style="display:none">
+        <form method="post" id="view_fare" style="display:none">
 
-            <!--  <?php if (!empty($errors)) : ?> 
+            <?php if (!empty($errors)) : ?>
                 <?= implode("<br>", $errors) ?>
-            <?php endif; ?> -->
+            <?php endif; ?>
 
-            
-                    <div>
-                    <script>
-                    date = new Date().toLocaleDateString();
-                    document.write(date);
-                    </script>
-                    </div>
-                <!-- <table class="styled-table">
+            <div>
+                <table class="styled-table">
                     <tr>
                         <td><label for="source">From</label></td>
                         <td><input type="text" class="form-control" name="source" id="source" placeholder="Starting halt..."></td>
@@ -113,29 +108,34 @@ if (!isset($_SESSION['USER'])) {
                         </td>
                     </tr>
 
-                </table> -->
-            
-    
+                </table>
+            </div>
+        </form>
 
         <div>
             <br>
             <table border='1' class="styled-table">
                 <tr>
-                    <th>Trip ID</th>
+                    <th>#</th>
                     <th>From</th>
+                    <th>Route</th>
                     <th>To</th>
-                    <th>Time</th>
-                    <th>Bus No</th>
+                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Last Updated</th>
+                    <!-- <th>Action</th> -->
                 </tr>
 
                 <?php
-                foreach ($conductorschedules as $schedule) {
+                foreach ($conductorfares as $fare) {
                     echo "<tr>";
-                    echo "<td> $schedule->id </td>";
-                    echo "<td> $schedule->from </td>";
-                    echo "<td> $schedule->to </td>";
-                    echo "<td> $schedule->time </td>";
-                    echo "<td> $schedule->bus_no</td>";
+                    echo "<td> $fare->id </td>";
+                    echo "<td> $fare->source </td>";
+                    echo "<td> $fare->dest </td>";
+                    echo "<td> $fare->route_bus </td>";
+                    echo "<td> $fare->type_bus </td>";
+                    echo "<td> $fare->amount</td>";
+                    echo "<td> $fare->last_updated </td>";
                     echo "</tr>";
                 } ?>
 
