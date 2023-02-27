@@ -17,7 +17,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <!-- <i class="fa fa-caret-down"></i> -->
                     </button>
                     <div class="dropdown-content">
-                        <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
+                        <a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a>
                         <a href="<?= ROOT ?>/passengerticket">Buy tickets</a>
 
                         <?php

@@ -31,8 +31,10 @@ if ($_SESSION['USER']->role == 'passenger') {
 </head>
 
 <body>
-
-    <nav class="navbar">
+        <?php include 'components/navbarcon.php'; 
+        // include 'components/conductorsidebar.php';
+        ?>
+    <!-- <nav class="navbar">
         <div>
             <h2><a href="<?= ROOT ?>/conductors" id="logo-white">BusSched</a></h2>
         </div>
@@ -48,20 +50,20 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </ul>
 
-    </nav>
-
+    </nav> -->
+<!-- 
     <div class="wrapper">
         <div class="sidebar">
-        <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
+        <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li> -->
             <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
-            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
             <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
             <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
             <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
             <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
-    </div>
+    </div>  -->
 
     <main class="container">
 
@@ -72,7 +74,7 @@ if ($_SESSION['USER']->role == 'passenger') {
                 ?>
             </h2>
         </div>
-
+<div class="col-1">
         <div class="card-container" id="info-card">
             <ul>
                 <p style="font-size: 32px;">Personal Info</p>
@@ -109,10 +111,13 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </table>
             </ul>
         </div>
-
-        <div class="card-container span-col-2">
-
         </div>
+        <div class="col-2">
+        <div class="card-container span-col-2">
+        </div>
+        </div>
+
+
 
         <div class="card-container" id="location-card">
             <a href="#">
