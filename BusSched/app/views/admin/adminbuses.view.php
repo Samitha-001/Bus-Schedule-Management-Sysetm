@@ -30,8 +30,8 @@ if ($_SESSION['USER']->role == 'passenger') {
 
 <body>
 <?php
-  // include '../app/views/components/navbar.php';
-  // include '../app/views/components/adminsidebar.php';
+  include '../app/views/components/navbar.php';
+  include '../app/views/components/adminsidebar.php';
 ?>
 
   <section>
