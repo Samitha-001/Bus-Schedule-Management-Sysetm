@@ -6,13 +6,15 @@ class Model
     use Database;       // use the trait Database
     protected $table            = "";
     protected $allowedColumns   = ["id"];
-    protected $limit            = 10;
+    protected $limit            = 15;
     protected $offset           = 0;
     protected $order_type       = "ASC";
     protected $order_column     = "id";
     public $errors           = [];
-        public function findAll() {
-        $query = "SELECT * FROM $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+    public function findAll() {
+        // $query = "SELECT * FROM $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset"; // commented until pagination is implemented
+
+        $query = "SELECT * FROM $this->table order by $this->order_column $this->order_type";
         return $this->query($query);
     }
 

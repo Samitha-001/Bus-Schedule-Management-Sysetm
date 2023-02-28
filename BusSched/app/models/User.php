@@ -44,4 +44,15 @@ class User extends Model
 
 		return false;
 	}
+
+    public function getUsers()
+    {
+        return $this->findAll();
+    }
+
+    public function deleteUser($id)
+    {
+        return $this->delete($id);
+    }
+
 }

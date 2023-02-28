@@ -11,10 +11,13 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
         <div class="nav-menu">
+        <?php
+        if (isset($_SESSION['USER'])) {
+            if ($_SESSION['USER']->role == 'passenger') {
+                ?>
             <li>
                 <div class="dropdown">
                     <button class="dropbtn">Services
-                        <!-- <i class="fa fa-caret-down"></i> -->
                     </button>
                     <div class="dropdown-content">
                         <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
@@ -38,7 +41,6 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     <a href="<?= ROOT ?>/home#about">About</a>
                 <?php } ?>
             </li>
-
             <li>
                 <!-- checks if current URL is home page -->
                 <?php if (strpos($current_url, '/home') == true) { ?>
@@ -47,6 +49,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     <a href="<?= ROOT ?>/home#contact">Contact</a>
                 <?php } ?>
             </li>
+            
+            <?php }} ?>
 
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
@@ -110,7 +114,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <div class="login-buttons">
         <!-- if user is logged in -->
         <?php if (isset($_SESSION['USER'])) { ?>
-            <a class="sidenav-signup-button" href="<?= ROOT ?>/logout">Logout</a>
+            <a class="signup-button" style="background-color:black; border: 2px solid #f4511e;" href="<?= ROOT ?>/logout">Logout</a>
 
             <!-- if user is logged out -->
         <?php } else { ?>
