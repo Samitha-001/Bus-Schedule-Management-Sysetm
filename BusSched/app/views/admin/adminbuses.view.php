@@ -25,27 +25,29 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <title>Admin Dashboard</title>
+    <title>Buses</title>
 </head>
 
 <body>
 <?php
-    include 'components/navbar.php';
-    include 'components/adminsidebar.php';
+  include '../app/views/components/navbar.php';
+  include '../app/views/components/adminsidebar.php';
 ?>
 
   <section>
-  <!--for demo wrap-->
-  <h1>Fixed Table header</h1>
+  <h1>Buses</h1>
   <div class="tbl-header">
     <table cellpadding="0" cellspacing="0" border="0">
       <thead>
         <tr>
-          <th>Code</th>
-          <th>Company</th>
-          <th>Price</th>
-          <th>Change</th>
-          <th>Change %</th>
+          <th>#</th>
+          <th>Bus No.</th>
+          <th>Bus Type</th>
+          <th>No. of Seats</th>
+          <th>Bus Available?</th>
+          <th>Bus Route</th>
+          <th>Start</th>
+          <th></th>
         </tr>
       </thead>
     </table>
@@ -53,230 +55,32 @@ if ($_SESSION['USER']->role == 'passenger') {
   <div class="tbl-content">
     <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          <td>-0.36%</td>
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          <td>-1.36%</td>
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          <td>+1.36%</td>
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          <td>+2.36%</td>
-        </tr>
+      <?php
+        static $i = 1;
+        foreach ($buses as $bus) {
+            echo "<tr>";
+            // bus counter
+            echo "<td> $i </td>";
+            $i++;
+            // echo "<td> $bus->id </td>";
+            echo "<td> $bus->bus_no </td>";
+            echo "<td> $bus->type </td>";
+            echo "<td> $bus->seats_no </td>";
+            // if bus is available
+            if ($bus->availability) {
+                echo "<td> Yes </td>";
+            } else {
+                echo "<td> No </td>";
+            }
+            echo "<td> $bus->route </td>";
+            echo "<td> $bus->start </td>";
+            
+            // edit icon
+            echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+            // delete icon
+            echo "<a href=#> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
+            echo "</tr>";
+        } ?>
       </tbody>
     </table>
   </div>
