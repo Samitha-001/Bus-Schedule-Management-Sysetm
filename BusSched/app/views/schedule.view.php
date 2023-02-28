@@ -13,51 +13,28 @@ if (!isset($_SESSION['USER'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Fares</title>
+    <title>Schedules</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
+
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-    </nav>
 
-    <div class="wrapper">
-        <div class="sidebar">
-            <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
-            <li><a href="#" style="color:#9298AF;">Users</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
-            <li><a href="<?= ROOT ?>/fares" style="color:white;"><b>Bus Fares</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
-        </div>
-    </div>
+    <?php 
+        include "components/navbar_new.php";
+        include "components/schedulersidebar.php";
+    ?>
 
     <main class="container1">
 
         <div class="header orange-header">
             <div>
-                <h3>Bus Fares</h3>
+                <h3>Schedule</h3>
             </div>
-            <div><button id="btn" class="button-grey">Add New</button></div>
+            <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
         <form method="post" id="view_fare" style="display:none">
@@ -129,13 +106,14 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
 
                 <?php
+                
                 foreach ($schedules as $schedule) {
                     echo "<tr>";
                     echo "<td> $schedule->id </td>";
-                    echo "<td> $schedule->from </td>";
-                    echo "<td> $schedule->to </td>";
+                    echo "<td> $schedule->from_start</td>";
+                    echo "<td> $schedule->to_end </td>";
                     echo "<td> $schedule->bus_route</td>";
-                    echo "<td> $schedule->bus_No</td>";
+                    echo "<td> $schedule->bus_no</td>";
                     echo "<td> $schedule->bus_type</td>";
                     echo "<td> $schedule->departure</td>";
                     echo "<td> $schedule->arrival</td>";
@@ -145,7 +123,7 @@ if (!isset($_SESSION['USER'])) {
             </table>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
     </main>
 
 </body>

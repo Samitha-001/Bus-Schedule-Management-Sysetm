@@ -1,5 +1,4 @@
 <?php
-include 'components/navbar.php';
 if (!isset($_SESSION['USER'])) {
     redirect('login');
 }
@@ -13,17 +12,14 @@ if (!isset($_SESSION['USER'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Tickets</title>
-    <style>
-        body {
-            background-size: auto;
-            background-image: url('<?= ROOT ?>/assets/images/backgrounds/bg-ticket.png');
-        }
-    </style>
     <link href="<?= ROOT ?>/assets/css/ticket.css" rel="stylesheet">
 </head>
 
 <body>
-
+    <?php
+    include 'components/navbar.php';
+    include 'components/passengernavbar.php';
+    ?>
     <div class="row">
         <div class="col-6 col-s-9 ticket" id="book-ticket">
             <div class="ticket-header">
@@ -38,12 +34,10 @@ if (!isset($_SESSION['USER'])) {
                         <input type="text" name="to" id="to" placeholder="Enter destination halt">
                     </li>
                     <li>
-                        <input type="date" name="date" id="date" placeholder="Choose date" style="margin:15px">
-                        <select name="bus-type" id="bus-type" placeholder="Bus type" style="margin:15px">
-                            <option disabled selected value>Bus type</option>
-                            <option value="L">Luxury</option>
-                            <option value="SL">Semi-Luxury</option>
-                        </select>
+                        <input type="date" id="dateInput">
+                        <text id="selectedDate"></text>
+                    </li>
+                    <li>
                         <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="No. of passengers">
                     </li>
                     <div id="reserve-seats-q">Reserve seats?</div>
@@ -60,14 +54,16 @@ if (!isset($_SESSION['USER'])) {
                         <input type="radio" id="points" name="payment" value="points">
                         <label for="points">Points</label>
                     </li>
-                    <li>
-                        <text>Redeemable points: </text><text>150</text>
-                    </li>
+                    <div id="pointsBalance" style="display: none;">
+                        Redeemable Points Balance: <span id="balance">100 (=100LKR)</span>
+                    </div>
                     <li>
                         <a href="<?= ROOT ?>/passengerschedule"><button class="button-orange ticket-button-2">Cancel</button></a>
                         <button class="button-orange ticket-button">Confirm</button>
                     </li>
                 </ul>
+                <script src="<?= ROOT ?>/assets/js/ticket.js"></script>
+
             </div>
         </div>
 
@@ -75,7 +71,7 @@ if (!isset($_SESSION['USER'])) {
             <div class="ticket-header">
                 <h3>Reserve seats</h3>
             </div>
-            <div class="ticket-body">
+            <div class="ticket-body  col-6">
                 <div class="card-content">
                     <!-- <div class="bus-container"> -->
                     <table class="seating-grid">
@@ -123,9 +119,9 @@ if (!isset($_SESSION['USER'])) {
                         </tr>
                     </table>
                     <!-- </div> -->
+                    <div id="book-ticket-q"><button class="button-orange ticket-button">Done</button></div>
                 </div>
 
-                <div id="book-ticket-q"><button class="button-orange ticket-button">Done</button></div>
             </div>
         </div>
         <script src="<?= ROOT ?>/assets/js/seat.js"></script>

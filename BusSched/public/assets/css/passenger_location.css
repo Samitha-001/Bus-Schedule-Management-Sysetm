@@ -1,0 +1,69 @@
+@import "navbar.css";
+@import "general.css";
+@import "passenger_profile.css";
+
+body {
+  background-color: #FD6002;
+}
+.update-location-grid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: #24315e;
+  grid-auto-rows: 40px;
+}
+
+.span-col-4 {
+  grid-column: span 4;
+  width: 90%;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  position: relative;
+}
+
+table {
+  width: 100%;
+  border-color: transparent;
+}
+
+.location-table {
+  border-collapse: collapse;
+  overflow-x: scroll;
+  background-color: #24315E;
+  color: white;
+  text-align: center;
+}
+
+th, td {
+  /* text-align: left; */
+  padding: 8px;
+}
+
+.location-table tr:first-child td {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tick {
+  background: url("../images/icons/location-updated.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.passed td {
+  color: #A7ADBF;
+}
+
+.upcoming input[type="radio"] {
+  margin-right: 10px;
+}

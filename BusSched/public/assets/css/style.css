@@ -1,3 +1,4 @@
+@import "navbar.css";
 @import "general.css";
 
 body {
@@ -59,15 +60,6 @@ input {
   color: #24315e;
   background: #ffffff;
   border: 0.5px solid #eeedf1;
-}
-
-.update-location-grid {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  color: #24315e;
-  grid-auto-rows: 40px;
 }
 
 main {
@@ -342,4 +334,9 @@ section {
     margin-top: 4%;
     margin-bottom: 4%;
   }
+}
+
+input.signup-input {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

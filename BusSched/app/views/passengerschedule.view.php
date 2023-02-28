@@ -1,6 +1,3 @@
-<?php
-include 'components/navbar.php';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,25 +12,42 @@ include 'components/navbar.php';
 </head>
 
 <body>
+    <?php
+    include 'components/navbar.php';
+    include 'components/passengernavbar.php';
+    ?>
     <div class="search-bar" style="margin: auto;">
         <div class="row">
-        <div class="col-1 col-s-1 menu"></div>
-            <div class="col-3 col-s-3 menu">
-                <h1 style="font-size:25px; text-align:left;">Bus schedule</h1>
+            <div id="from-to" class="col-5 col-s-5 menu">
+                <div><input type="text" name="from" id="from" placeholder="From"></div>
+                <div><input type="text" name="to" id="to" placeholder="To"></div>
+                <div style="margin:auto;"><button class="button-orange ticket-button" id="find-button">Find</button></div>
             </div>
-        <div class="col-4 col-s-4 menu"></div>
-            <div class="col-3">
-                <label for="from">From</label>
-                <input type="text" name="from" id="from" placeholder="Choose city">
-            </div>
-            <div class="col-3">
-                <label for="to">To</label>
-                <input type="text" name="to" id="to" placeholder="Choose city">
-            </div>
-            <div class="col-3 col-s-12" style="margin:auto;">
-                <button class="button-orange ticket-button" id="find-button">Find</button>
+        
+            <div id="tab-from-to" class="col-5 col-s-5 menu">
+                <table>
+                    <tr>
+                        <td><div><input type="text" name="from" id="from" placeholder="From"></div></td>
+                        <td><div><input type="text" name="to" id="to" placeholder="To"></div></td>
+                        <td><div style="margin:auto;"><button class="button-orange ticket-button" id="find-button">Find</button></div></td>
+                    </tr>
+                </table>
             </div>
         </div>
+    </div>
+    
+    <div id="mobile-from-to" class="col-5 col-s-5 menu">
+        <table>
+            <tr>
+                <td>
+                    <div><input type="text" name="from" id="from" placeholder="From"></div>
+                    <div><input type="text" name="to" id="to" placeholder="To"></div>
+                </td>
+                <td>
+                    <div style="margin:auto;"><button class="button-orange ticket-button" id="find-button">Find</button></div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="row">
@@ -65,12 +79,12 @@ include 'components/navbar.php';
                     <td>10</td>
                     <td>
                         <?php if (isset($_SESSION['USER'])) { ?>
-                                    <a href="<?= ROOT ?>/passengerticket"><img
-                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                            style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/passengerticket"><img
+                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                                    style="height:30px"></a>
                             <?php } else { ?>
-                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                            alt="Buy Ticket" style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                                    alt="Buy Ticket" style="height:30px"></a>
                             <?php } ?>
                     </td>
                 </tr>
@@ -87,12 +101,12 @@ include 'components/navbar.php';
                     <td>10</td>
                     <td>
                         <?php if (isset($_SESSION['USER'])) { ?>
-                                    <a href="<?= ROOT ?>/passengerticket"><img
-                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                            style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/passengerticket"><img
+                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                                    style="height:30px"></a>
                             <?php } else { ?>
-                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                            alt="Buy Ticket" style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                                    alt="Buy Ticket" style="height:30px"></a>
                             <?php } ?>
                     </td>
                 </tr>
@@ -109,12 +123,12 @@ include 'components/navbar.php';
                     <td>10</td>
                     <td>
                         <?php if (isset($_SESSION['USER'])) { ?>
-                                    <a href="<?= ROOT ?>/passengerticket"><img
-                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                            style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/passengerticket"><img
+                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                                    style="height:30px"></a>
                             <?php } else { ?>
-                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                            alt="Buy Ticket" style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                                    alt="Buy Ticket" style="height:30px"></a>
                             <?php } ?>
                     </td>
                 </tr>
@@ -131,12 +145,12 @@ include 'components/navbar.php';
                     <td>10</td>
                     <td>
                         <?php if (isset($_SESSION['USER'])) { ?>
-                                    <a href="<?= ROOT ?>/passengerticket"><img
-                                            src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                            style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/passengerticket"><img
+                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
+                                                    style="height:30px"></a>
                             <?php } else { ?>
-                                    <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                            alt="Buy Ticket" style="height:50px"></a>
+                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
+                                                    alt="Buy Ticket" style="height:30px"></a>
                             <?php } ?>
                     </td>
                 </tr>
