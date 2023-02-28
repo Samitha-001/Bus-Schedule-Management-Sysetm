@@ -30,61 +30,62 @@ if ($_SESSION['USER']->role == 'passenger') {
 
 <body>
 <?php
-  include '../app/views/components/navbar.php';
-  include '../app/views/components/adminsidebar.php';
+  // include '../app/views/components/navbar.php';
+  // include '../app/views/components/adminsidebar.php';
 ?>
 
   <section>
-  <h1>Buses</h1>
-  <div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Bus No.</th>
-          <th>Bus Type</th>
-          <th>No. of Seats</th>
-          <th>Bus Available?</th>
-          <th>Bus Route</th>
-          <th>Start</th>
-          <th></th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-      <?php
-        static $i = 1;
-        foreach ($buses as $bus) {
-            echo "<tr>";
-            // bus counter
-            echo "<td> $i </td>";
-            $i++;
-            // echo "<td> $bus->id </td>";
-            echo "<td> $bus->bus_no </td>";
-            echo "<td> $bus->type </td>";
-            echo "<td> $bus->seats_no </td>";
-            // if bus is available
-            if ($bus->availability) {
-                echo "<td> Yes </td>";
-            } else {
-                echo "<td> No </td>";
-            }
-            echo "<td> $bus->route </td>";
-            echo "<td> $bus->start </td>";
-            
-            // edit icon
-            echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
-            // delete icon
-            echo "<a href=#> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
-            echo "</tr>";
-        } ?>
-      </tbody>
-    </table>
-  </div>
-</section>
+    <h1>Buses</h1>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Bus No.</th>
+            <th>Bus Type</th>
+            <th>No. of Seats</th>
+            <th>Bus Available?</th>
+            <th>Bus Route</th>
+            <th>Start</th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+        <?php
+          static $i = 1;
+          foreach ($buses as $bus) {
+              echo "<tr>";
+              // bus counter
+              echo "<td> $i </td>";
+              $i++;
+              // echo "<td> $bus->id </td>";
+              echo "<td> $bus->bus_no </td>";
+              echo "<td> $bus->type </td>";
+              echo "<td> $bus->seats_no </td>";
+              // if bus is available
+              if ($bus->availability) {
+                  echo "<td> Yes </td>";
+              } else {
+                  echo "<td> No </td>";
+              }
+              echo "<td> $bus->route </td>";
+              echo "<td> $bus->start </td>";
+              
+              // edit icon
+              echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+              // delete icon
+              echo "<a href='" . ROOT . "/adminbuses?delete=$bus->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
+
+              echo "</tr>";
+          } ?>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
 </body>
 

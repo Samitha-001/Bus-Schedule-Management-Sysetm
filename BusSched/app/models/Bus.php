@@ -47,4 +47,10 @@ class Bus extends Model
     {
         return $this->findAll();
     }
+
+    public function deleteBus($id)
+    {
+        return $this->delete($id);
+    }
+
 }
