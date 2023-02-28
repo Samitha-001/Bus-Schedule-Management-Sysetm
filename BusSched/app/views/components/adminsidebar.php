@@ -1,6 +1,6 @@
 <div class="admin-sidebar">
     <li><a href="<?= ROOT ?>/admins">Dashboard</a></li>
-    <li><a href="#">Users</a></li>
+    <li><a href="<?= ROOT ?>/adminusers">Users</a></li>
     <li><a href="#">Schedules</a></li>
     <li><a href="<?= ROOT ?>/adminbuses">Buses</a></li>
     <li><a href="<?= ROOT ?>/breakdowns">Breakdowns</a></li>

@@ -25,7 +25,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <title>Buses</title>
+    <title>Users</title>
 </head>
 
 <body>
@@ -34,19 +34,17 @@ if ($_SESSION['USER']->role == 'passenger') {
   include '../app/views/components/adminsidebar.php';
 ?>
 
-<h1 class="section-header">Buses</h1>
+<h1 class="section-header">All Users</h1>
   <section>
     <div class="tbl-header">
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
           <tr>
             <th>#</th>
-            <th>Bus No.</th>
-            <th>Bus Type</th>
-            <th>No. of Seats</th>
-            <th>Bus Available?</th>
-            <th>Bus Route</th>
-            <th>Start</th>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>User Role</th>
             <th></th>
           </tr>
         </thead>
@@ -56,31 +54,23 @@ if ($_SESSION['USER']->role == 'passenger') {
       <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
         <?php
-          static $i = 1;
-          foreach ($buses as $bus) {
-              echo "<tr>";
-              echo "<td> $i </td>";
-              $i++;
-              // echo "<td> $bus->id </td>";
-              echo "<td> $bus->bus_no </td>";
-              echo "<td> $bus->type </td>";
-              echo "<td> $bus->seats_no </td>";
-              // if bus is available
-              if ($bus->availability) {
-                  echo "<td> Yes </td>";
-              } else {
-                  echo "<td> No </td>";
-              }
-              echo "<td> $bus->route </td>";
-              echo "<td> $bus->start </td>";
+            static $i = 1;
+            foreach ($users as $user) {
+                echo "<tr>";
+                echo "<td> $i </td>";
+                $i++;
+                echo "<td> $user->id </td>";
+                echo "<td> $user->username </td>";
+                echo "<td> $user->email </td>";
+                echo "<td> $user->role </td>";
               
-              // edit icon
-              echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
-              // delete icon
-              echo "<a href='" . ROOT . "/adminbuses?delete=$bus->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
+                // edit icon
+                echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+                // delete icon
+                echo "<a href='" . ROOT . "/adminbuses?delete=$user->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
 
-              echo "</tr>";
-          } ?>
+                echo "</tr>";
+            } ?>
         </tbody>
       </table>
     </div>
