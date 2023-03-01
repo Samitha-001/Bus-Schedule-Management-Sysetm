@@ -75,7 +75,8 @@ if ($_SESSION['USER']->role == 'passenger') {
               echo "<td> $bus->start </td>";
               
               // edit icon
-              echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+              echo "<td> <a href=# class='edit-btn'> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+              
               // delete icon
               echo "<a href='" . ROOT . "/adminbuses?delete=$bus->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
 
@@ -85,6 +86,12 @@ if ($_SESSION['USER']->role == 'passenger') {
       </table>
     </div>
   </section>
+
+  <script src="<?= ROOT ?>/assets/js/adminbuses.js">
+    function saveEdit() {
+      console.log("saveEdit");
+    }
+  </script>
 
 </body>
 

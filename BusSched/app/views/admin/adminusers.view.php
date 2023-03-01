@@ -77,7 +77,7 @@ if ($_SESSION['USER']->role == 'passenger') {
     </div>
   </section>
 
-  <script src="<?= ROOT ?>/assets/js/admintable.js"></script>
+  <script src="<?= ROOT ?>/assets/js/adminusers.js"></script>
 
 </body>
 

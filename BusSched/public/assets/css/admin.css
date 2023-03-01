@@ -58,6 +58,7 @@ table {
 .tbl-content {
   height: 510px;
   overflow-x: auto;
+  overflow-y: auto;
   margin-top: 0px;
   border: 1px solid white;
 }
