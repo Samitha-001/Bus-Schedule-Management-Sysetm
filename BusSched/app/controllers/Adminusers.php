@@ -14,7 +14,7 @@ class Adminusers
             $user->deleteUser($_GET['delete']);
             redirect('adminusers');
         }
-        
+
         $this->userview('admin', 'adminusers', ['users' => $users]);
     }
 }

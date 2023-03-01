@@ -66,7 +66,7 @@ if ($_SESSION['USER']->role == 'passenger') {
                 // edit icon
                 echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
                 // delete icon
-                echo "<a href='" . ROOT . "/adminbuses?delete=$breakdown->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
+                echo "<a href='" . ROOT . "/adminbreakdowns?delete=$breakdown->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
 
                 echo "</tr>";
             } ?>

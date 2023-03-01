@@ -54,11 +54,9 @@ if (isset($_SESSION['USER'])) {
         </div>
     </div>
     <div class="row">
+        <h1 style="font-size: 30px; margin-top:40px; color:#24315e; text-align:center;">Bus fares</h1>
         <section id="busfare">
-            <div style="margin: auto;">
-                <h1 style="font-size: 30px; margin:20px; color:#24315e;">Bus fares</h1>
-            </div>
-            <div class="col-10 col-s-10" style="margin: auto;">
+            <div style="width:100%">
                 <table id="busfare-table">
                     <?php
                     $len = count($halts);
