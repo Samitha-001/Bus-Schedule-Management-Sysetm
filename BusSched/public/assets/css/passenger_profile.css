@@ -6,7 +6,6 @@
   body {
     color: white;
     background: url("../images/backgrounds/bg-passenger-profile.png");
-    font-size: 12px;
     font-family: "Outfit";
   }
 }
@@ -16,7 +15,7 @@
   height: 100%;
   width: 250;
   position: fixed;
-  z-index: -1;
+  z-index: 2;
   top: 0;
   left: 0;
   background-color: black;
@@ -63,18 +62,10 @@
   margin: 10px 0;
 }
 
-.li img {
-  /* margin-left: 10px; */
-  margin-right: 10px;
-}
-
 img:hover {
   opacity: 1;
 }
 
-.li:hover {
-  background-color: #24315e;
-}
 
 /* for tablet & desktop */
 @media only screen and (min-width: 600px) {
@@ -85,4 +76,64 @@ img:hover {
   div.passenger-sidenav {
     display: block;
   }
+  h1 {
+    font-size: 20px;
+  }
+  
+  img#profile-picture {
+    height: 80px;
+    width: 80px;
+    border-radius: 25px;
+  }
+
+  div.passenger-profile-card {
+    width: max-content;
+    height: fit-content;
+  }
+
+  div.nav-cards {
+    display: flex;
+  }
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #24315e;
+  display: inline-block;
+  /* vertical alignment center */
+  vertical-align: middle;
+}
+
+#profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#username {
+  float: right;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+#profile-picture {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}
+
+.passenger-profile-card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  margin: 5px;
+  color: #7c839e;
+}
+
+.nav-cards {
+  display: fixed;
 }

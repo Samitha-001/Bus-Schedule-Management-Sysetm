@@ -9,11 +9,11 @@
   padding-bottom: 0px;
   background-color: black;
   color: #fff;
-  height: 60px;
+  height: 70px;
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 4;
 }
 
 .nav-links a {
@@ -50,7 +50,7 @@
 }
 
 .signup-button {
-  background-color: #f15f22;
+  background-color: #FD6002;
   border: none;
   border-radius: 5px;
   color: white;
@@ -114,7 +114,7 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 0;
   right: 0;
   background-color: #24315e;
@@ -125,7 +125,7 @@
 }
 
 .sidenav a {
-  color: #7a819c;
+  color: #7c839e;
   display: block;
   transition: 0.3s;
 }
@@ -159,7 +159,7 @@ ul.sidenav-links {
 }
 
 .sidenav .services:hover {
-  color: #7a819c;
+  color: #7c839e;
 }
 
 .sidenav-signup,

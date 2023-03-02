@@ -19,24 +19,11 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
+    <?php
+    include 'components/navbar.php';
+    ?>
 
-    <nav class="navbar">
-        <div>
-            <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png"></a>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-    </nav>
-
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
             <li><a href="#" style="color:#9298AF;">Users</a></li>
@@ -49,7 +36,7 @@ if (!isset($_SESSION['USER'])) {
             <li><a href="#" style="color:#9298AF;">Routes</a></li>
             <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
         </div>
-    </div>
+    </div> -->
 
     <main class="container1">
         <div class="header orange-header">

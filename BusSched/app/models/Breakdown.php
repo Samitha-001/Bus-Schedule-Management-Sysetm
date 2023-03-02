@@ -21,12 +21,12 @@ class Breakdown extends Model
         if (empty($data['bus_no'])) {
             $this->errors['bus_no'] = "Bus number is required";
         } else
-        if (empty($data['description'])) {
-            $this->errors['description'] = "Enter Description";
-        } else
-        if (empty($data['time_to_repair'])) {
-            $this->errors['time_to_repair'] = "Enter estimate time to repair";
-        }
+            if (empty($data['description'])) {
+                $this->errors['description'] = "Enter Description";
+            } else
+                if (empty($data['time_to_repair'])) {
+                    $this->errors['time_to_repair'] = "Enter estimate time to repair";
+                }
 
 
         if (empty($this->errors)) {
@@ -40,4 +40,10 @@ class Breakdown extends Model
     {
         return $this->findAll();
     }
+
+    public function deleteBreakdown($id)
+    {
+        return $this->delete($id);
+    }
+
 }
