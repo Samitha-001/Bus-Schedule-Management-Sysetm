@@ -130,3 +130,15 @@ th:first-child {
 #confirm-popup p {
   margin-bottom: 10px;
 }
+
+#save-cancel {
+  display: none;
+}
+
+#edit-delete {
+  display: inline-block;
+}
+
+td input {
+  width: 50px;
+}

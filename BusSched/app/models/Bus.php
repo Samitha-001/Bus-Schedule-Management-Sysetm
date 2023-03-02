@@ -52,5 +52,9 @@ class Bus extends Model
     {
         return $this->delete($id);
     }
+    public function updateBus($id, $data)
+    {
+        return $this->update($id, $data);
+    }
 
 }
