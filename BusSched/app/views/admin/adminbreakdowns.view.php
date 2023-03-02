@@ -64,9 +64,10 @@ if ($_SESSION['USER']->role == 'passenger') {
                 echo "<td> $breakdown->time_to_repair </td>";
 
                 // edit icon
-                echo "<td> <a href=#> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+                echo "<td> <a href=# class='edit-btn'> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+                
                 // delete icon
-                echo "<a href='" . ROOT . "/adminbuses?delete=$breakdown->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
+                echo "<a href='" . ROOT . "/adminbreakdowns?delete=$breakdown->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
 
                 echo "</tr>";
             } ?>
@@ -74,6 +75,8 @@ if ($_SESSION['USER']->role == 'passenger') {
       </table>
     </div>
   </section>
+
+  <script src="<?= ROOT ?>/assets/js/adminbreakdowns.js"></script>
 
 </body>
 

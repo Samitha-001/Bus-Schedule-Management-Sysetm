@@ -131,9 +131,13 @@ section h3 {
   }
 }
 
+table#busfare-table {
+  overflow-x: auto;
+}
+
 table#busfare-table tbody {
   display: table;
-  width: 100%;
+  width: 600px;
   overflow-x: auto;
   /* center align */
   margin: 0 auto;
@@ -179,7 +183,10 @@ table#busfare-table td.halt-name-top {
 }
 
 #busfare {
-  padding-top: 50px;
+  padding-top: 0px;
+  overflow-y: auto;
+  margin: 50px;
+  /* height: 100%; */
 }
 /* for desktop & tablet*/
 @media only screen and (min-width: 600px) {
