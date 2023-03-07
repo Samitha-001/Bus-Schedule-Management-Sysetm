@@ -25,6 +25,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <script src="<?= ROOT ?>/assets/js/adminusers.js"></script>
     <title>Users</title>
 </head>
 
@@ -53,31 +54,40 @@ if ($_SESSION['USER']->role == 'passenger') {
     <div class="tbl-content">
       <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
-        <?php
-            static $i = 1;
-            foreach ($users as $user) {
-                echo "<tr>";
-                echo "<td> $i </td>";
-                $i++;
-                echo "<td> $user->id </td>";
-                echo "<td> $user->username </td>";
-                echo "<td> $user->email </td>";
-                echo "<td> $user->role </td>";
-              
-                // edit icon
-                echo "<td> <a href=# class='edit-btn'> <img src='" . ROOT . "/assets/images/icons/edit.png' alt='edit' width='20px' height='20px'> </a>";
+        <?php static $i = 1; ?>
+        <?php foreach ($users as $user): ?>
+          <tr>
+            <td><?= $i++ ?></td>
+            <td><?= $user->id ?></td>
+            <td><?= $user->username ?></td>
+            <td><?= $user->email ?></td>
+            <td><?= $user->role ?></td>
+          
+            <td id="edit-delete"> 
+              <!-- edit icon -->
+              <a href=# class="edit-btn"> 
+                <img src="<?= ROOT ?>/assets/images/icons/edit.png" alt="edit" width="20px" height="20px">
+              </a>
 
-                // delete icon
-                echo "<a href='" . ROOT . "/adminusers?delete=$user->id'> <img src='" . ROOT . "/assets/images/icons/delete.png' alt='delete' width='20px' height='20px'> </a> </td>";
-
-                echo "</tr>";
-            } ?>
+              <!-- delete icon -->
+              <a href="<?= ROOT ?>/adminusers?delete=<?= $user->id ?>"> 
+                <img src="<?= ROOT ?>/assets/images/icons/delete.png" alt="delete" width="20px" height="20px"> 
+              </a>
+            </td>
+            <td id="save-cancel">
+              <a href='#' class='save-btn'>
+                <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon" width='20px' height='20px'>
+              </a>
+              <a href='#' class='cancel-btn'>
+                <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon" width='20px' height='20px'>
+              </a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
         </tbody>
       </table>
     </div>
   </section>
-
-  <script src="<?= ROOT ?>/assets/js/adminusers.js"></script>
 
 </body>
 

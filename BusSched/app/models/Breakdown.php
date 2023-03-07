@@ -46,4 +46,13 @@ class Breakdown extends Model
         return $this->delete($id);
     }
 
+    public function updateBreakdown($id, $data)
+    {
+        // validate and update
+        if ($this->validate($data)) {
+            return $this->update($id, $data);
+        }
+        return false;
+    }
+
 }
