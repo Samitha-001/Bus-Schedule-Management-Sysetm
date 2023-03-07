@@ -47,4 +47,19 @@ class Halt extends Model
             'distance_from_source' => $data['distance']
         ]);
     }
+
+    public function deleteHalt($id)
+    {
+        $this->delete($id);
+    }
+
+    // update halt
+    public function updateHalt($id, $data)
+    {
+        $this->update($id, [
+            'route_id' => $data['route_id'],
+            'name' => $data['halt_name'],
+            'distance_from_source' => $data['distance']
+        ]);
+    }
 }

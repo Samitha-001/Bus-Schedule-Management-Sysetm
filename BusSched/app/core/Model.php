@@ -116,5 +116,16 @@ class Model
         $this->query($query, $data);
         return false;
     }
+
+    public function join($tables,$column1s,$column2s){
+        $query = "SELECT * FROM $this->table ";
+        $i = 0;
+        foreach ($tables as $table) {
+            $query .= "INNER JOIN $table ON $this->table.$column1s[$i] = $table.$column2s[$i] ";
+            $i++;
+        }
+        $query .= "order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
+        return $this->query($query);
+    }
     
 }

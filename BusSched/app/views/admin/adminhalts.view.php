@@ -25,8 +25,8 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <script src="<?= ROOT ?>/assets/js/adminbuses.js"></script>
-    <title>Buses</title>
+    <!-- <script src="<?= ROOT ?>/assets/js/adminhalts.js"></script> -->
+    <title>Halts</title>
 </head>
 
 <body>
@@ -35,19 +35,24 @@ include '../app/views/components/navbar.php';
 include '../app/views/components/adminsidebar.php';
 ?>
 
-<h1 class="section-header">Buses</h1>
+<h1 class="section-header">Bus Halts</h1>
   <section>
     <div class="tbl-header">
       <table cellpadding="0" cellspacing="0" border="0">
-        <thead>
+        <!-- halts table
+            `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            `route_id` varchar(6) NOT NULL,
+            `name` varchar(50) NOT NULL UNIQUE,
+            `distance_from_source` float NOT NULL,
+            `fare_from_source` float NOT NULL,
+        -->
+      <thead>
           <tr>
             <th>#</th>
-            <th>Bus No.</th>
-            <th>Bus Type</th>
-            <th>No. of Seats</th>
-            <th>Bus Available?</th>
-            <th>Bus Route</th>
-            <th>Start</th>
+            <th>Route ID</th>
+            <th>Name</th>
+            <th>Distance from Source</th>
+            <th>Fare from Source</th>
             <th></th>
           </tr>
         </thead>
@@ -57,38 +62,35 @@ include '../app/views/components/adminsidebar.php';
       <table cellpadding="0" cellspacing="0" border="0">
         <tbody>
           <?php static $i = 1; ?>
-          <?php foreach ($buses as $bus): ?>
-                <tr data-busid= <?= $bus->id ?>>
-                  <td> <?= $i ?> </td>
-                  <?php $i++; ?>
-                  <td data-fieldname="bus_no"><?= $bus->bus_no ?></td>
-                  <td data-fieldname="type"><?= $bus->type ?></td>
-                  <td data-fieldname="seats_no"><?= $bus->seats_no ?></td>
-
-                    <td data-fieldname="availability">
-                       <?php echo $bus->availability ? "Yes" : "No" ?>
-                    </td>
-
-                  <td data-fieldname="route"><?= $bus->route ?></td>
-                  <td data-fieldname="start"><?= $bus->start ?></td>
-                  <td id="edit-delete">
+          <?php if ($halts): foreach ($halts as $halt): ?>
+            <tr>
+                <td><?= $i++ ?></td>
+                <td><?= $halt->route_id ?></td>
+                <td><?= $halt->name ?></td>
+                <td><?= $halt->distance_from_source ?></td>
+                <td><?= $halt->fare_from_source ?></td>
+                <td id="edit-delete">
                     <a href=# class='edit-btn'>
-                      <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon" width='20px' height='20px'>
+                        <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon" width='20px' height='20px'>
                     </a>
-                    <a href='<?= ROOT ?>/adminbuses?delete=<?= $bus->id ?>'>
-                      <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon" width='20px' height='20px'>
+                    <a href='<?= ROOT ?>/adminhalts?delete=<?= $halt->id ?>'>
+                        <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon" width='20px' height='20px'>
                     </a>
-                  </td>
-                  <td id="save-cancel">
+                </td>
+                <td id="save-cancel">
                     <a href='#' class='save-btn'>
                       <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon" width='20px' height='20px'>
                     </a>
                     <a href='#' class='cancel-btn'>
                       <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon" width='20px' height='20px'>
                     </a>
-                  </td>
-                </tr>
-          <?php endforeach; ?>
+                </td>
+            </tr>
+          <?php endforeach; else: ?>
+            <tr>
+              <td colspan="9" style="text-align:center;color:#999999;"><i>No ratings found.</i></td>
+            </tr>
+          <?php endif; ?>
 
         </tbody>
       </table>

@@ -1,21 +1,20 @@
 <?php
 
-class Adminbreakdowns
+class Adminhalts
 {
-
     use Controller;
 
     public function index()
     {
-        $breakdown = new Breakdown();
-        $breakdowns = $breakdown->getBreakdowns();
+        $halt = new Halt();
+        $halts = $halt->getHalts();
 
         if (isset($_GET['delete'])) {
-            $breakdown->deleteBreakdown($_GET['delete']);
-            redirect('adminbreakdowns');
+            $halt->deleteHalt($_GET['delete']);
+            redirect('adminhalts');
         }
-        
-        $this->userview('admin', 'adminbreakdowns', ['breakdowns' => $breakdowns]);
+
+        $this->userview('admin', 'adminhalts', ['halts' => $halts]);
     }
 
     // api edit function
@@ -27,7 +26,7 @@ class Adminbreakdowns
 
             // Process the request data and perform the update
             // ...
-            $breakdown = new Breakdown();
+            $halt = new Halt();
             // remove field availability from the array
             $id = $postData['id'];
             unset($postData['id']);
@@ -35,7 +34,7 @@ class Adminbreakdowns
             foreach($postData as $key => $value){
                     $data[$key] = $value;
             }
-            $breakdown->updateBreakdown($id, $data);
+            $halt->updateHalt($id, $data);
         
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
