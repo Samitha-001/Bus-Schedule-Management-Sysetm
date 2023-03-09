@@ -85,10 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // ask confirmation from user
     let confirm = window.confirm("Are you sure you want to delete this halt?");
     if (confirm) {
-      console.log("delete halt with id: " + haltid);
+      // console.log("deleting halt with id: " + haltid);
+      deleteRecord(haltid);
+      row.remove();
     }
 
-    row.remove();
   }
 
   // add new row
@@ -127,8 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
       data[fieldName] = inputs[i].value;
     }
 
-    // console.log(data);
-    // console.log("insertRow is called");
     insertRow(data);
     // append at end
     document.querySelector("tbody").appendChild(clone);
@@ -208,6 +207,24 @@ document.addEventListener("DOMContentLoaded", function () {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  // function to delete row from database
+  function deleteRecord(id) {
+    fetch(`${ROOT}/adminhalts/api_delete`, {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({ id: id }),
     })
       .then((res) => res.json())
       .catch((error) => console.log(error))
