@@ -117,7 +117,19 @@ document.addEventListener("DOMContentLoaded", function () {
     tds[2].textContent = haltname;
     tds[3].textContent = distance;
     tds[4].textContent = fare;
+    
+    data = {
+    };
 
+    for (let i = 0; i < inputs.length; i++) {
+      // get the data-fieldname of the field
+      let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
+      data[fieldName] = inputs[i].value;
+    }
+
+    // console.log(data);
+    // console.log("insertRow is called");
+    insertRow(data);
     // append at end
     document.querySelector("tbody").appendChild(clone);
     dummyinput.remove();
@@ -138,10 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // check if new data is same as old data
     let prevVal = originalrow.querySelectorAll("td");
-    let oldroute = prevVal[1].textContent.trim();
-    let oldhaltname = prevVal[2].textContent.trim();
-    let olddistance = prevVal[3].textContent.trim();
-    let oldfare = prevVal[4].textContent.trim();
 
     originalrow.classList.remove("being-edited");
     let haltid = originalrow.getAttribute("data-id");
@@ -175,6 +183,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // function to send ajax request to server
   function update(data) {
     fetch(`${ROOT}/adminhalts/api_edit`, {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  // function to insert new row in database
+  function insertRow(data) {
+    fetch(`${ROOT}/adminhalts/api_add`, {
       method: "POST",
       credentials: "same-origin",
       mode: "same-origin",
