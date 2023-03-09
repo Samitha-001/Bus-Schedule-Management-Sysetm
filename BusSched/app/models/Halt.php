@@ -10,7 +10,8 @@ class Halt extends Model
         'id',
         'route_id',
         'name',
-        'distance_from_source'
+        'distance_from_source',
+        'fare_from_source'
     ];
 
     public function validate($data)
@@ -44,7 +45,8 @@ class Halt extends Model
         $this->insert([
             'route_id' => $data['route_id'],
             'name' => $data['halt_name'],
-            'distance_from_source' => $data['distance']
+            'distance_from_source' => $data['distance'],
+            'fare_from_source' => $data['fare']
         ]);
     }
 
@@ -56,10 +58,6 @@ class Halt extends Model
     // update halt
     public function updateHalt($id, $data)
     {
-        $this->update($id, [
-            'route_id' => $data['route_id'],
-            'name' => $data['halt_name'],
-            'distance_from_source' => $data['distance']
-        ]);
+        return $this->update($id, $data);
     }
 }

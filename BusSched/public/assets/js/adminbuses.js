@@ -193,11 +193,11 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify(data),
     })
-    .then((res) => res.json())
-    .catch((error) => console.log(error))
-    .then((data) => {
-      console.log(data);
-    });
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
+      });
   }
 
   // function to save the inputs

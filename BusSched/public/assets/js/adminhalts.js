@@ -82,6 +82,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function deleteRow(e) {
     let row = e.target.parentElement.parentElement;
     let haltid = row.getAttribute("data-id");
+    // ask confirmation from user
+    let confirm = window.confirm("Are you sure you want to delete this halt?");
+    if (confirm) {
+      console.log("delete halt with id: " + haltid);
+    }
+
     row.remove();
   }
 
@@ -117,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dummyinput.remove();
   }
 
-  // save edited row
+  // save edited row (updated)
   function saveRow(e) {
     let row = e.target.parentElement.parentElement;
     // get data from input fields
@@ -126,18 +132,61 @@ document.addEventListener("DOMContentLoaded", function () {
     let haltname = inputs[1].value;
     let distance = inputs[2].value;
     let fare = inputs[3].value;
-    
+
     let originalrow = document.querySelector(".being-edited");
     originalrow.style.display = "table-row";
+
+    // check if new data is same as old data
+    let prevVal = originalrow.querySelectorAll("td");
+    let oldroute = prevVal[1].textContent.trim();
+    let oldhaltname = prevVal[2].textContent.trim();
+    let olddistance = prevVal[3].textContent.trim();
+    let oldfare = prevVal[4].textContent.trim();
+
     originalrow.classList.remove("being-edited");
     let haltid = originalrow.getAttribute("data-id");
     let td2s = originalrow.querySelectorAll("td");
 
+    let data = {
+      id: haltid,
+    };
+
+    for (let i = 0; i < inputs.length; i++) {
+      // get the data-fieldname of the field
+      let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
+
+      // check if the value is same as old value
+      if (inputs[i].value != prevVal[i + 1].textContent.trim()) {
+        // if not same, add it to data object
+        data[fieldName] = inputs[i].value;
+      }
+    }
+
+    console.log(data);
+    update(data);
     td2s[1].textContent = route;
     td2s[2].textContent = haltname;
     td2s[3].textContent = distance;
     td2s[4].textContent = fare;
 
     row.remove();
+  }
+
+  // function to send ajax request to server
+  function update(data) {
+    fetch(`${ROOT}/adminhalts/api_edit`, {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
+      });
   }
 });

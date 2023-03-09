@@ -25,14 +25,12 @@ class Adminhalts
             $postData = json_decode(file_get_contents('php://input'), true);
 
             // Process the request data and perform the update
-            // ...
             $halt = new Halt();
-            // remove field availability from the array
             $id = $postData['id'];
             unset($postData['id']);
             $data = [];
             foreach($postData as $key => $value){
-                    $data[$key] = $value;
+                $data[$key] = $value;
             }
             $halt->updateHalt($id, $data);
         

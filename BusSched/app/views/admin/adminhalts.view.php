@@ -80,60 +80,60 @@ include '../app/views/components/adminsidebar.php';
         <!-- <div class="tbl-content"> -->
         <tbody>
           <?php static $i = 1;?>
-          <?php if ($halts):
-            foreach ($halts as $halt): ?>
-                    <tr data-id=<?=$halt->id?>>
-                        <td><?= $i++ ?></td>
-                    <td><?= $halt->route_id ?></td>
-                    <td><?= $halt->name ?></td>
-                    <td><?= $halt->distance_from_source ?></td>
-                    <td><?= $halt->fare_from_source ?></td>
-                    <td id="edit-delete">
-                            <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
-                            <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
-                    </td>
-                    </tr>
-              <?php endforeach; else: ?>
-                <tr>
-                  <td colspan="9" style="text-align:center;color:#999999;"><i>No ratings found.</i></td>
-                </tr>
+          <?php if ($halts): foreach ($halts as $halt): ?>
+            <tr data-id=<?=$halt->id?>>
+              <td><?= $i++ ?></td>
+              <td data-fieldname="route"><?= $halt->route_id ?></td>
+              <td data-fieldname="name"><?= $halt->name ?></td>
+              <td data-fieldname="distance_from_source"><?= $halt->distance_from_source ?></td>
+              <td data-fieldname="fare_from_source"><?= $halt->fare_from_source ?></td>
+              <td id="edit-delete">
+                <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
+                <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
+              </td>
+            </tr>
+          <?php endforeach; else: ?>
+            <tr>
+              <td colspan="9" style="text-align:center;color:#999999;"><i>No ratings found.</i></td>
+            </tr>
           <?php endif; ?>
 
+          <!-- this row is cloned to collect input for editing and adding rows -->
           <tr class='dummy-input'>
-          <td></td>
-                <td>
-                  <input type="text" value="" placeholder="Route ID">
-                </td>
-                <td>
-                  <input type="text" value="" placeholder="Name">
-                  </td>
-                <td>
-                  <input type="number" value="" placeholder="Distance">
-                </td>
-                <td>
-                  <input type="number" value="" placeholder="Fare">
-                </td>
-                <td class='edit-options'>
-                          <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon save-btn" width='20px' height='20px'>
-                          <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-btn" width='20px' height='20px'>
-                    </td>
-                <td class='add-options'>
-                          <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
-                          <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
-                    </td>
+            <td></td>
+            <td data-fieldname="route_id">
+              <input type="text" value="" placeholder="Route ID">
+            </td>
+            <td data-fieldname="name">
+              <input type="text" value="" placeholder="Name">
+              </td>
+            <td data-fieldname="distance_from_source">
+              <input type="number" value="" placeholder="Distance">
+            </td>
+            <td data-fieldname="fare_from_source">
+              <input type="number" value="" placeholder="Fare">
+            </td>
+            <td class='edit-options'>
+              <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon save-btn" width='20px' height='20px'>
+              <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-btn" width='20px' height='20px'>
+            </td>
+            <td class='add-options'>
+              <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
+              <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
+            </td>
           </tr>
 
+          <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
           <tr class='dummy-row'>
-
-          <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="edit-delete">
-                            <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
-                            <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
-                    </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td id="edit-delete">
+              <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
+              <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
+            </td>
 
           </tr>
 
