@@ -31,26 +31,50 @@ if (isset($_SESSION['USER'])) {
 <body>
 <?php include 'components/navbar.php'; ?>
     <div class="landing-main row">
-        <div class="col-6 menu">
-
-            <ul>
-                <li>
-                    <h1 style="padding: 0px;">Find a bus</h1>
-                </li>
-                <li>
-                    <label for="from" style="font-size: medium;">From</label>
-                    <input type="text" name="from" id="from" placeholder="Choose city">
-                </li>
-                <li>
-                    <label for="to" style="font-size: medium;">To</label>
-                    <input type="text" name="to" id="to" placeholder="Choose city">
-                </li>
-                <br>
-                <li>
-                    <button id="btn" class="button-orange">Find</button>
-                </li>
-            </ul>
-
+        <div class="col-10 menu">
+            <div>
+                <h1 style="padding: 0px;">Find a bus for your next trip</h1>
+                <p id="landing-header-desc">EASILY COMPARE AND BOOK YOUR NEXT TRIP WITH BUSSCHED</p>
+            </div>
+        </div>
+        <div class="col-10 menu">
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="from">FROM</label>
+                    <input type="text" name="from" id="from" placeholder="Choose city" list="halt-list">
+                    <datalist id="halt-list">
+                        <?php
+                        $len = count($halts);
+                        for ($i = 0; $i < $len; $i++) {
+                            $halt = $halts[$i];
+                            echo "<option value='" . $halt->name . "'>";
+                        }
+                        ?>
+                    </datalist>
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="to">TO</label>
+                    <input type="text" name="to" id="to" placeholder="Choose city" list="halt-list">
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="date">DATE</label>
+                    <!-- date input today or tomorrow -->
+                    <input type="date" name="date" id="date" min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>">
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="passengers">PASSENGERS</label>
+                    <input type="number" name="passengers" id="passenger" placeholder="No. of passengers" min=0>
+                </div>
+            </div>
+            <div>
+                <button class="find-button-orange" style="margin:0px;">Find</button>
+            </div>
         </div>
     </div>
     <div class="row">

@@ -13,6 +13,6 @@ class Passengerprofile
         $arr['username'] = $_SESSION['USER']->username;
         $row = $passenger->first($arr);
 
-        $this->view('passengerprofile', [$row]);
+        $this->userview('passenger', 'passengerprofile', [$row]);
     }
 }

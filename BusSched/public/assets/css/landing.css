@@ -21,7 +21,7 @@ h1 {
 }
 
 label {
-  color: aliceblue;
+  color: white;
 }
 
 input[type="text"] {
@@ -45,7 +45,8 @@ a {
   text-decoration: none;
 }
 button:hover {
-  opacity: 0.6;
+  /* darken colour */
+  background-color: #f9430b;
 }
 
 .button-orange {
@@ -63,6 +64,24 @@ button:hover {
   opacity: 1;
   display: inline-block;
   text-decoration: none;
+}
+
+.find-button-orange {
+  background-color: #f4511e;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 16px 16px;
+  text-align: center;
+  font-family: "Outfit";
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  opacity: 1;
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  height: 60px;
 }
 
 /* grid */
@@ -115,10 +134,49 @@ section h3 {
   font-size: 15px;
 }
 
+p#landing-header-desc {
+  color: #BBBFCD;
+  font-size: 13px;
+}
+
+.landing-header-li {
+  padding: 0;
+}
+
+.landing-header-li input::placeholder{
+  margin-left: 0px;
+}
+
+.landing-header-li label{
+  color: #24315E;
+  font-size: 12px;
+}
+
+div.white-box {
+  background-color: white;
+  padding: 2px 10px;
+  margin: 0px;
+  margin-top: 3px;
+  border-radius: 5px;
+}
+
+div.white-box input {
+  border: none;
+  border-bottom: 1px solid #24315e;
+  background-color: transparent;
+  width: 100%;
+  height: 30px;
+  font-family: Outfit;
+  font-size: 15px;
+  color: #24315e;
+  padding: 5px;
+}
+
 /* for mobile */
 @media only screen and (max-width: 600px) {
   h1 {
-    font-size: 30px;
+    font-size: 25px;
+    margin-bottom: 0px;
   }
 
   div.button-orange {
@@ -128,6 +186,10 @@ section h3 {
   div.card-container {
     flex-direction: column;
     font-size: 10px;
+  }
+
+  .menu {
+    padding: 30px;
   }
 }
 
@@ -188,6 +250,15 @@ table#busfare-table td.halt-name-top {
   margin: 50px;
   /* height: 100%; */
 }
+
+/* for desktop */
+@media only screen and (min-width: 768px) {
+  .col-10 {
+    padding-bottom: 0px;
+    padding-top: 20px;
+  }
+}
+
 /* for desktop & tablet*/
 @media only screen and (min-width: 600px) {
   table#busfare-table td {
@@ -227,6 +298,11 @@ table#busfare-table td.halt-name-top {
     text-align: center;
     align-self: center;
   }
+
+  .find-button-orange {
+    width: 130px;
+  }
+
 }
 
 section#about {
