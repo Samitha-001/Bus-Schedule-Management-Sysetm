@@ -56,10 +56,18 @@ if (!isset($_SESSION['USER'])) {
 
     <main class="container1">
     <div class="col-1">
-
         <div class="header orange-header">
             <div>
                 <h3>Schedule</h3>
+
+                <div >
+                    <script>
+                    date = new Date().toLocaleDateString();
+                    document.write(date);
+                    </script>
+                    </div>
+
+                    </div>
             </div>
         </div>
 
@@ -70,14 +78,7 @@ if (!isset($_SESSION['USER'])) {
             <?php endif; ?> -->
 
             
-                    <div >
-                    <script>
-                    date = new Date().toLocaleDateString();
-                    document.write(date);
-                    </script>
-                    </div>
-
-                    </div>
+                  
                 <!-- <table class="styled-table">
                     <tr>
                         <td><label for="source">From</label></td>
