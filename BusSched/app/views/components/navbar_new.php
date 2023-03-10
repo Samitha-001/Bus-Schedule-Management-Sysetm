@@ -50,9 +50,9 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         </ul>
     <?php } ?>
 
-    <div class="burger" id="hamburger">
+    <!-- <div class="burger" id="hamburger">
         <div onclick="openNav()"><img src="<?= ROOT ?>/assets/images/hamburger.png" height="15"></div>
-    </div>
+    </div> -->
 
 </nav>
 
