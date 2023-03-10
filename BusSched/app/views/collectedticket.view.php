@@ -15,12 +15,14 @@ if (!isset($_SESSION['USER'])) {
 
     <title>Bus Tickets</title>
 
-    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <nav class="navbar">
+<?php include 'components/navbarcon.php'; 
+        // include 'components/conductorsidebar.php';
+?>
+    <!-- <nav class="navbar">
     <div>
         <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
     </div>
@@ -40,17 +42,18 @@ if (!isset($_SESSION['USER'])) {
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
             <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
-            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li> -->
             <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
-            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <!-- <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
             <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
             <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
-    </div>
+    </div> --> 
 
     <main class="container1">
+        <div class="col-1">
         <div class="header orange-header" style="width:100%">
         <table >
                 <tr>
@@ -61,11 +64,13 @@ if (!isset($_SESSION['USER'])) {
             </table> 
         </div>
 
+        </div>
+
         <div class="data-table">
         <div class="selection">
                   
         </div>
-
+<div class="col-2">
             <table border='1' class="styled-table">
                 <tr>
                     <th>TicketID</th>
@@ -91,6 +96,7 @@ if (!isset($_SESSION['USER'])) {
                 } ?>
 
             </table>
+        </div>
         </div>
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
