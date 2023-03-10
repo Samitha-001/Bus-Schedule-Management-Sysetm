@@ -6,6 +6,7 @@ class User extends Model
 
 	// editable columns
 	protected $allowedColumns = [
+		'id',
 		'username',
 		'email',
 		'password',

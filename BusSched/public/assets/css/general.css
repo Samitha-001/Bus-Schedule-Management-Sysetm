@@ -196,6 +196,29 @@ input[type="email"]::placeholder {
   background-color: #de4a0d;
 }
 
+.button-green {
+  background-color: #20C23A;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-family: "Outfit";
+  font-size: 12px;
+  margin-top: 10px;
+  margin: 0px;
+  opacity: 1;
+  display: inline-block;
+  text-decoration: none;
+  /* width: 100%; */
+  /* height: 40px; */
+  cursor: pointer;
+}
+
+.button-green :hover {
+  background-color: #1daa2a;
+}
+
 .errors {
   color: red;
   font-size: 15px;
