@@ -1,135 +1,177 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // EDIT FUNCTIONALITY
-  // get all the edit buttons
-  const editBtns = document.querySelectorAll(".edit-btn");
-  const cancelBtns = document.querySelectorAll(".cancel-btn");
-  const saveBtns = document.querySelectorAll(".save-btn");
+  const table = document.querySelector("table");
+  let inputrow = document.querySelector(".dummy-input");
+  let dummyrow = document.querySelector(".dummy-row");
+  const adduserbtn = document.querySelector(".add-user");
+  
+  adduserbtn.addEventListener("click", (e) => {
+    // disable add button
+    adduserbtn.disabled = true;
 
-  cancelBtns.forEach((cancelBtn) => {
-    cancelBtn.addEventListener("click", () => {
-      // get the row of the clicked edit button
-      let row = cancelBtn.parentNode.parentNode;
-      let id = row.dataset.busid;
-
-      // hide save-cancel td
-      let saveCancelTd = cancelBtn.parentNode;
-      saveCancelTd.style.display = "none";
-
-      // show edit-delete td
-      let editDeleteTd = cancelBtn.parentNode.previousElementSibling;
-      editDeleteTd.style.display = "inline-block";
-
-      // remove inputs and set text back to original
-      const busnoCell = row.cells[2];
-      const descriptionCell = row.cells[3];
-      const repairtimeCell = row.cells[4];
-
-      busnoCell.innerHTML = busnoCell.getAttribute("prev-val");
-      descriptionCell.innerHTML = descriptionCell.getAttribute("prev-val");
-      repairtimeCell.innerHTML = repairtimeCell.getAttribute("prev-val");
-    });
+    let irow = inputrow.cloneNode(true);
+    irow.classList.remove("dummy-input");
+    irow.querySelector(".add-options").style.display = "block";
+    irow.classList.add("being-added");
+    document.querySelector("tbody").prepend(irow);
   });
 
-  // loop through the edit buttons and add a click event listener
-  editBtns.forEach((editBtn) => {
-    editBtn.addEventListener("click", () => {
-      // get the row of the clicked edit button
-      let row = editBtn.parentNode.parentNode;
-
-      // get the cells
-      const busnoCell = row.cells[2];
-      const descriptionCell = row.cells[3];
-      const repairtimeCell = row.cells[4];
-
-      // create editable fields for the cells
-      const busnoInput = document.createElement("input");
-      busnoInput.type = "text";
-      busnoInput.value = busnoCell.textContent;
-      busnoCell.setAttribute("prev-val", `${busnoCell.textContent}`);
-
-      const repairtimeInput = document.createElement("input");
-      repairtimeInput.type = "text";
-      repairtimeInput.value = repairtimeCell.textContent;
-      repairtimeCell.setAttribute("prev-val", `${repairtimeCell.textContent}`);
-
-      const descriptionInput = document.createElement("input");
-      descriptionInput.type = "text";
-      descriptionInput.value = descriptionCell.textContent;
-      descriptionCell.setAttribute(
-        "prev-val",
-        `${descriptionCell.textContent}`
-      );
-
-      // replace the cells with the editable fields
-      busnoCell.innerHTML = "";
-      busnoCell.appendChild(busnoInput);
-
-      repairtimeCell.innerHTML = "";
-      repairtimeCell.appendChild(repairtimeInput);
-
-      descriptionCell.innerHTML = "";
-      descriptionCell.appendChild(descriptionInput);
-
-      // hide edit-delete td
-      let editDeleteTd = editBtn.parentNode;
-      editDeleteTd.style.display = "none";
-
-      // show save-cancel td
-      let saveCancelTd = editBtn.parentNode.nextElementSibling;
-      saveCancelTd.style.display = "inline-block";
-    });
+  // event delegation for table
+  table.addEventListener("click", function (e) {
+    // if clicked on img with given class
+    if (e.target.classList.contains("edit-btn")) {
+      adduserbtn.disabled = true;
+      editRow(e);
+    } else if (e.target.classList.contains("cancel-btn")) {
+      adduserbtn.disabled = false;
+      cancelEdit(e);
+    } else if (e.target.classList.contains("delete-btn")) {
+      deleteRow(e);
+    } else if (e.target.classList.contains("add-row-btn")) {
+      adduserbtn.disabled = false;
+      addRow(e);
+    } else if (e.target.classList.contains("cancel-add-btn")) {
+      adduserbtn.disabled = false;
+      cancelAdd(e);
+    } else if (e.target.classList.contains("save-btn")) {
+      adduserbtn.disabled = false;
+      saveRow(e);
+    }
   });
 
-  // loop through the save buttons and add a click event listener
-  saveBtns.forEach((saveBtn) => {
-    saveBtn.addEventListener("click", () => {
-      // get the row of the clicked edit button
-      let row = saveBtn.parentNode.parentNode;
-      let id = row.dataset.busid;
-  
-      // get the cells
-      const busnoCell = row.cells[2];
-      const descriptionCell = row.cells[3];
-      const repairtimeCell = row.cells[4];
-  
-      // get the values from the editable fields
-      const busno = busnoCell.children[0].value;
-      const description = descriptionCell.children[0].value;
-      const repairtime = repairtimeCell.children[0].value;
-  
-      // send the data to the server
-      fetch(`/admin/repairs/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          bus_no: busno,
-          description: description,
-          repair_time: repairtime,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "success") {
-            // hide save-cancel td
-            let saveCancelTd = saveBtn.parentNode;
-            saveCancelTd.style.display = "none";
-  
-            // show edit-delete td
-            let editDeleteTd = saveBtn.parentNode.previousElementSibling;
-            editDeleteTd.style.display = "inline-block";
-  
-            // set the text of the cells to the new values
-            busnoCell.innerHTML = busno;
-            descriptionCell.innerHTML = description;
-            repairtimeCell.innerHTML = repairtime;
-          }
-        });
-    });
-  });
+  function editRow(e) {
+    let row = e.target.parentElement.parentElement;
+    let userid = row.getAttribute("data-id");
+    let tds = row.querySelectorAll("td");
+    let rowno = tds[0].textContent.trim();
+    let username = tds[2].textContent.trim();
+    let email = tds[3].textContent.trim();
+    let role = tds[4].textContent.trim();
 
-  // function to send ajax request to server
+    // clone input row and fill it with data
+    let clone = inputrow.cloneNode(true);
+    clone.classList.remove("dummy-input");
+    // get all the inputs and the select
+    let inputs = clone.querySelectorAll("input");
+    let select = clone.querySelector("select");
+
+    // fill the inputs with data
+    inputs[0].value = username;
+    inputs[1].value = email;
+    select.value = role;
+
+    // append right before the row
+    row.parentNode.insertBefore(clone, row);
+    // hide the row
+    row.style.display = "none";
+    row.classList.add("being-edited");
+  }
+
+  function cancelAdd(e) {
+    let row = e.target.parentElement.parentElement;
+    row.remove();
+  }
+
+  function cancelEdit(e) {
+    let row = e.target.parentElement.parentElement;
+    row.remove();
+    let oldrow = document.querySelector(".being-edited");
+    oldrow.style.display = "table-row";
+    oldrow.classList.remove("being-edited");
+  }
+
+  function deleteRow(e) {
+    let row = e.target.parentElement.parentElement;
+    let userid = row.getAttribute("data-id");
+    // ask confirmation from user
+    let confirm = window.confirm("Are you sure you want to delete this user?");
+    if (confirm) {
+      deleteRecord(userid);
+      row.remove();
+    }
+  }
+
+  function addRow(e) {
+    let clone = dummyrow.cloneNode(true);
+    clone.classList.remove("dummy-row");
+
+    // get data from input fields
+    let dummyinput = document.querySelector(".being-added");
+    let inputs = dummyinput.querySelectorAll("input");
+    let select = dummyinput.querySelector("select");
+    let username = inputs[0].value;
+    let email = inputs[1].value;
+    let role = select.value;
+
+    // fill data in dummy row
+    let tds = clone.querySelectorAll("td");
+
+    // get the number of rows in the table
+    let rowcount = document.querySelectorAll("tbody tr").length;
+    rowno = rowcount - 2;
+
+    tds[0].textContent = rowno;
+    tds[2].textContent = username;
+    tds[3].textContent = email;
+    tds[4].textContent = role;
+
+    data = {};
+
+    for (let i = 0; i < inputs.length; i++) {
+      let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
+      data[fieldName] = inputs[i].value;
+    }
+    data["role"] = select.value;
+    data["password"] = username + "1234";
+
+    insertRow(data);
+    // append at the end
+    document.querySelector("tbody").appendChild(clone);
+    dummyinput.remove();
+  }
+
+  function saveRow(e) {
+    let row = e.target.parentElement.parentElement;
+    // get data from input fields
+    let inputs = row.querySelectorAll("input");
+    let select = row.querySelector("select");
+    let username = inputs[0].value;
+    let email = inputs[1].value;
+    let role = select.value;
+
+    let originalrow = document.querySelector(".being-edited");
+    originalrow.style.display = "table-row";
+
+    // check if the data is changed
+    let prevVal = originalrow.querySelectorAll("td");
+
+    originalrow.classList.remove("being-edited");
+    let userid = originalrow.getAttribute("data-id");
+    let td2s = originalrow.querySelectorAll("td");
+
+    let data = {
+      id: userid
+    };
+
+    for (let i = 0; i < inputs.length; i++) {
+      let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
+      data[fieldName] = inputs[i].value;
+
+      if (inputs[i].value != prevVal[i + 2].textContent.trim()) {
+        td2s[i + 2].textContent = inputs[i].value;
+      }
+    }
+    data["role"] = select.value;
+    if (select.value != prevVal[5].textContent.trim()) {
+      td2s[5].textContent = select.value;
+    }
+
+    update(data);
+    td2s[2] = username;
+    td2s[3] = email;
+    td2s[4] = role;
+    row.remove();
+  }
+
   function update(data) {
     fetch(`${ROOT}/adminusers/api_edit`, {
       method: "POST",
@@ -140,36 +182,44 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify(data),
     })
-    .then((res) => res.json())
-    .catch((error) => console.log(error))
-    .then((data) => {
-      console.log(data);
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
     });
   }
 
-  // function to save inputs
-  function saveInputs(row) {
-    // get the cells
-    const busnoCell = row.cells[1];
-    const descriptionCell = row.cells[2];
-    const repairtimeCell = row.cells[3];
+  function insertRow(data) {
+    fetch(`${ROOT}/adminusers/api_add`, {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
+      });
+  }
 
-    // get the values of the inputs
-    const busno = busnoCell.children[0].value;
-    const description = descriptionCell.children[0].value;
-    const repairtime = repairtimeCell.children[0].value;
-
-    // replace the inputs with the text
-    busnoCell.innerHTML = busno;
-    descriptionCell.innerHTML = description;
-    repairtimeCell.innerHTML = repairtime;
-
-    // hide save-cancel td
-    let saveCancelTd = (row.querySelector("#save-cancel").style.display =
-      "none");
-
-    // show edit-delete td
-    let editDeleteTd = (row.querySelector("#edit-delete").style.display =
-      "inline-block");
+  function deleteRecord(id) {
+    fetch(`${ROOT}/adminusers/api_delete`, {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({ id: id }),
+    })
+      .then((res) => res.json())
+      .catch((error) => console.log(error))
+      .then((data) => {
+        console.log(data);
+      });
   }
 });

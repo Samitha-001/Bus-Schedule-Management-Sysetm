@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // append right before the row
     row.parentElement.insertBefore(clone, row);
-    // hide row
+    // hide the row
     row.style.display = "none";
     row.classList.add("being-edited");
   }
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    console.log(data);
+    // console.log(data);
     update(data);
     td2s[1].textContent = route;
     td2s[2].textContent = haltname;

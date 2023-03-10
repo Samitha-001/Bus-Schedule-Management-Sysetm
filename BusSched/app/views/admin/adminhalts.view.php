@@ -19,32 +19,32 @@ if ($_SESSION['USER']->role == 'passenger') {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <script src="<?= ROOT ?>/assets/js/adminhalts.js"></script>
-    <title>Halts</title>
-    <style>
-      td input[disabled] {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  text-align: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  color: inherit;
-  cursor: default;
-}
-.edit-options, .dummy-row, .dummy-input, .add-options{
-  display: none;
-}
-    </style>
+  <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
+  <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+  <script src="<?= ROOT ?>/assets/js/adminhalts.js"></script>
+  <title>Halts</title>
+  <style>
+    td input[disabled] {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      text-align: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
+      cursor: default;
+    }
+    .edit-options, .dummy-row, .dummy-input, .add-options{
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
