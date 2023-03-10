@@ -28,7 +28,6 @@ class Breakdown extends Model
                     $this->errors['time_to_repair'] = "Enter estimate time to repair";
                 }
 
-
         if (empty($this->errors)) {
             return true;
         }
@@ -41,6 +40,15 @@ class Breakdown extends Model
         return $this->findAll();
     }
 
+    public function addBreakdown($data)
+    {
+        // validate and add
+        // if ($this->validate($data)) {
+            return $this->insert($data);
+        // }
+        // return false;
+    }
+
     public function deleteBreakdown($id)
     {
         return $this->delete($id);
@@ -49,10 +57,10 @@ class Breakdown extends Model
     public function updateBreakdown($id, $data)
     {
         // validate and update
-        if ($this->validate($data)) {
+        // if ($this->validate($data)) {
             return $this->update($id, $data);
-        }
-        return false;
+        // }
+        // return false;
     }
 
 }

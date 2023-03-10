@@ -48,7 +48,8 @@ include '../app/views/components/adminsidebar.php';
             <th>Bus Available?</th>
             <th>Bus Route</th>
             <th>Start</th>
-            <th></th>
+            <th><button class="add-bus button-green">Add Bus</button></th>
+            <!-- implement add bus functionality -->
           </tr>
         </thead>
       </table>

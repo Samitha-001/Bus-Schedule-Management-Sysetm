@@ -1,17 +1,17 @@
 <?php
 if (!isset($_SESSION['USER'])) {
-    redirect('home');
+  redirect('home');
 }
 if ($_SESSION['USER']->role == 'passenger') {
-    redirect('home');
+  redirect('home');
 } else if ($_SESSION['USER']->role == 'driver') {
-    redirect('drivers');
+  redirect('drivers');
 } else if ($_SESSION['USER']->role == 'conductor') {
-    redirect('conductors');
+  redirect('conductors');
 } else if ($_SESSION['USER']->role == 'scheduler') {
-    redirect('schedulers');
+  redirect('schedulers');
 } else if ($_SESSION['USER']->role == 'owner') {
-    redirect('owners');
+  redirect('owners');
 }
 ?>
 
@@ -66,33 +66,27 @@ if ($_SESSION['USER']->role == 'passenger') {
             <th>User Role</th>
             <th><button class="add-user button-green">Add User</button></th>
           </tr>
+        </thead>
         <tbody>
         <?php static $i = 1; ?>
-        <?php if($users): foreach ($users as $user): ?>
-          <tr data-id=<?=$user->id?>></tr>
-            <td><?= $i++ ?></td>
-            <td data-fieldname="id"><?= $user->id ?></td>
-            <td data-fieldname="username"><?= $user->username ?></td>
-            <td data-fieldname="email"><?= $user->email ?></td>
-            <td data-fieldname="role"><?= $user->role ?></td>
+        <?php if ($users):
+          foreach ($users as $user): ?>
+              <tr data-id=<?= $user->id ?>>
+                <td><?= $i++ ?></td>
+                <td data-fieldname="id"><?= $user->id ?></td>
+                <td data-fieldname="username"><?= $user->username ?></td>
+                <td data-fieldname="email"><?= $user->email ?></td>
+                <td data-fieldname="role"><?= $user->role ?></td>
           
-            <td id="edit-delete"> 
-              <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
-              <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
-            </td>
-            <!-- <td id="save-cancel">
-              <a href='#' class='save-btn'>
-                <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon" width='20px' height='20px'>
-              </a>
-              <a href='#' class='cancel-btn'>
-                <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon" width='20px' height='20px'>
-              </a>
-            </td> -->
-          </tr>
-        <?php endforeach; else: ?>
-          <tr>
-            <td colspan="9" style="text-align:center;color:#999999;"><i>No ratings found.</i></td>
-          </tr>
+                <td id="edit-delete"> 
+                  <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
+                  <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
+                </td>
+              </tr>
+          <?php endforeach; else: ?>
+            <tr>
+              <td colspan="9" style="text-align:center;color:#999999;"><i>No users found.</i></td>
+            </tr>
         <?php endif; ?>
 
         <!-- this row is cloned to collect input for editing and adding rows -->
@@ -112,12 +106,12 @@ if ($_SESSION['USER']->role == 'passenger') {
             <td data-fieldname="role">
               <!-- select options -->
               <select name="role" id="role">
-                <option value="passenger">Passenger</option>
-                <option value="driver">Driver</option>
-                <option value="conductor">Conductor</option>
-                <option value="scheduler">Scheduler</option>
-                <option value="owner">Owner</option>
-                <option value="admin">Admin</option>
+                <option value="passenger">passenger</option>
+                <option value="driver">driver</option>
+                <option value="conductor">conductor</option>
+                <option value="scheduler">scheduler</option>
+                <option value="owner">owner</option>
+                <option value="admin">admin</option>
               </select>
               <!-- <input type="select" value="" placeholder="Fare"> -->
             </td>
