@@ -15,12 +15,16 @@ if (!isset($_SESSION['USER'])) {
     <meta name="generator" content="Hugo 0.88.1">
     <title>Schedule</title>
 
-    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
 </head>
 
 <body>
+<?php include 'components/navbarcon.php'; 
+        // include 'components/conductorsidebar.php';
+?>
 
-    <nav class="navbar">
+
+    <!-- <nav class="navbar">
         <div>
             <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
         </div>
@@ -34,23 +38,24 @@ if (!isset($_SESSION['USER'])) {
                 </a>
             </div>
         </ul>
-    </nav>
+    </nav> -->
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div class="sidebar">
         <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
             <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
-            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li> -->
             <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
-            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <!-- <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
             <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
             <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
-    </div>
+    </div> --> 
 
     <main class="container1">
+    <div class="col-1">
 
         <div class="header orange-header">
             <div>
@@ -65,11 +70,13 @@ if (!isset($_SESSION['USER'])) {
             <?php endif; ?> -->
 
             
-                    <div>
+                    <div >
                     <script>
                     date = new Date().toLocaleDateString();
                     document.write(date);
                     </script>
+                    </div>
+
                     </div>
                 <!-- <table class="styled-table">
                     <tr>
@@ -119,6 +126,7 @@ if (!isset($_SESSION['USER'])) {
 
         <div>
             <br>
+            <div class="col-2">
             <table border='1' class="styled-table">
                 <tr>
                     <th>Trip ID</th>
@@ -140,6 +148,7 @@ if (!isset($_SESSION['USER'])) {
                 } ?>
 
             </table>
+        </div>
         </div>
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
