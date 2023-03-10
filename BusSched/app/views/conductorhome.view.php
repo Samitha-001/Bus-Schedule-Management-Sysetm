@@ -65,7 +65,7 @@ if ($_SESSION['USER']->role == 'passenger') {
         </div>
     </div>  -->
 
-    <!-- <main class="container"> -->
+    <!-- -->
     <div class="header orange-header">
         <div class="col-1">
             
@@ -122,8 +122,8 @@ if ($_SESSION['USER']->role == 'passenger') {
         </div>
         </div>
 
-
-<!-- <div class="col-4"> -->
+<main class="container"> 
+<!-- <div class="col-4">  -->
         <div class="card-container" id="location-card">
             <a href="#">
                 <div class="overlay">
@@ -137,8 +137,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                     </div>
                 </div>
             </a>
-        <!-- </div> -->
-</div>
+        <!-- </div>  -->
+    </div>
 
 <!-- <div class="col-5"> -->
         <div class="card-container" id="ratings-card">
@@ -183,8 +183,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-    <!-- </div>
-        <div class="col-5"> -->
+     <!-- </div> -->
+     <!-- <div class="col-5">  -->
         <div class="card-container" id="breakdowns-card">
             <a href="#">
                 <div class="overlay">
@@ -243,8 +243,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-        <!-- </div> -->
-    <!-- </main> -->
+     <!-- </div>  -->
+</main> 
 
 
 </body>
