@@ -25,7 +25,7 @@ if ($_SESSION['USER']->role == 'passenger') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
+    <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <title>Conductor - Home</title>
 </head>
@@ -65,7 +65,10 @@ if ($_SESSION['USER']->role == 'passenger') {
         </div>
     </div>  -->
 
-    <main class="container">
+    <!-- <main class="container"> -->
+    <div class="header orange-header">
+        <div class="col-1">
+            
 
         <div class="card-container" id="greeting-card">
             <h2>
@@ -74,7 +77,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 ?>
             </h2>
         </div>
-<div class="col-1">
+</div>
+</div>
+<div class="col-2">
         <div class="card-container" id="info-card">
             <ul>
                 <p style="font-size: 32px;">Personal Info</p>
@@ -112,13 +117,13 @@ if ($_SESSION['USER']->role == 'passenger') {
             </ul>
         </div>
         </div>
-        <div class="col-2">
+        <div class="col-3">
         <div class="card-container span-col-2">
         </div>
         </div>
 
 
-
+<!-- <div class="col-4"> -->
         <div class="card-container" id="location-card">
             <a href="#">
                 <div class="overlay">
@@ -132,8 +137,10 @@ if ($_SESSION['USER']->role == 'passenger') {
                     </div>
                 </div>
             </a>
-        </div>
+        <!-- </div> -->
+</div>
 
+<!-- <div class="col-5"> -->
         <div class="card-container" id="ratings-card">
             <div class="overlay">
                 <div class="items"></div>
@@ -146,6 +153,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
+        <!-- </div> -->
+
+        <!-- <div class="col-6"> -->
 
         <div class="card-container" id="schedules-card">
             <div class="overlay">
@@ -158,8 +168,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <p>Bus schedules</p>
                 </div>
             </div>
+        <!-- </div> -->
         </div>
-
+        <!-- <div class="col-7"> -->
         <div class="card-container" id="buses-card">
             <div class="overlay">
                 <div class="items"></div>
@@ -172,7 +183,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-
+    <!-- </div>
+        <div class="col-5"> -->
         <div class="card-container" id="breakdowns-card">
             <a href="#">
                 <div class="overlay">
@@ -187,7 +199,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </a>
         </div>
+        <!-- </div>' -->
 
+        <!-- <div class="col-9"> -->
         <div class="card-container" id="fare-card">
             <div class="overlay">
                 <div class="items"></div>
@@ -200,7 +214,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-
+        <!-- </div> -->
+        <!-- <div class="col-10"> -->
         <div class="card-container" id="contacts-card">
             <div class="overlay">
                 <div class="items"></div>
@@ -213,6 +228,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
+        <!-- </div> -->
+        <!-- <div class="col-7"> -->
 
         <div class="card-container" id="tickets-card">
             <div class="overlay">
@@ -226,7 +243,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-    </main>
+        <!-- </div> -->
+    <!-- </main> -->
 
 
 </body>

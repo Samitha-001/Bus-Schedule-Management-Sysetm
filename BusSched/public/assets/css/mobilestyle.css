@@ -653,5 +653,8 @@ hr {
         margin: 0;
       }
       
-      
+      .card-container {
+        width: 25%;
+        height: 25%;
+      }
   }
