@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (let i = 0; i < inputs.length; i++) {
       // get the data-fieldname of the field
-      let fieldName = inputs[i].getAttribute("data-fieldname");
+      let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
       data[fieldName] = inputs[i].value;
     }
 
@@ -163,8 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
         data[fieldName] = inputs[i].value;
       }
     }
-
-    console.log(data);
 
     update(data);
     td2s[1].textContent = busno;

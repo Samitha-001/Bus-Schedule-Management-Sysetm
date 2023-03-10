@@ -94,7 +94,7 @@ include '../app/views/components/adminsidebar.php';
             </tr>
           <?php endforeach; else: ?>
             <tr>
-              <td colspan="9" style="text-align:center;color:#999999;"><i>No ratings found.</i></td>
+              <td colspan="9" style="text-align:center;color:#999999;"><i>No halts found.</i></td>
             </tr>
           <?php endif; ?>
 
