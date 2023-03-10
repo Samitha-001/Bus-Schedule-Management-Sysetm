@@ -699,4 +699,17 @@ hr {
         transform: translateY(20px);
         transition: all 0.7s;
       }
+
+
+      .button-green {
+        font-size: 12px;
+        width: 25%;
+        margin-right: 2px;
+      }
+
+      .button-cancel {
+        font-size: 12px;
+        width: 25%;
+      }
+
   }

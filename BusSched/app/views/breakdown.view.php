@@ -15,15 +15,17 @@ if (!isset($_SESSION['USER'])) {
 
     <title>Breakdowns</title>
 
-    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
+    <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
 </head>
 
 <body>
     <?php
-    include 'components/navbar.php';
-    ?>
+    // include 'components/navbar.php';
+    include 'components/navbarcon.php';
+    ?> 
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
             <li><a href="#" style="color:#9298AF;">Users</a></li>
@@ -36,15 +38,19 @@ if (!isset($_SESSION['USER'])) {
             <li><a href="#" style="color:#9298AF;">Routes</a></li>
             <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
         </div>
-    </div>
+    </div> -->
 
     <main class="container1">
+        <div class="col-1">
         <div class="header orange-header">
             <div>
                 <h3>Breakdowns</h3>
             </div>
             <div><button id="btn" class="button-grey">Add New</button></div>
         </div>
+        </div>
+
+        <div class="col-2">
 
         <form method="post" id="view_breakdown" style="display:none">
 
@@ -73,6 +79,7 @@ if (!isset($_SESSION['USER'])) {
 
                         <tr>
                             <td></td>
+
                             <td align="right">
                                 <button class="button-green" type="submit">Save</button>
                                 <button class="button-cancel" onclick="cancel()">Cancel</button>
@@ -81,10 +88,11 @@ if (!isset($_SESSION['USER'])) {
 
                     </table>
                 </div>
+                </div>
         </form>
 
         <div class="data-table">
-
+            <div class="col-3">
             <table border='1' class="styled-table">
                 <tr>
                     <th>#</th>
@@ -108,6 +116,7 @@ if (!isset($_SESSION['USER'])) {
                 } ?>
 
             </table>
+        </div>
         </div>
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
