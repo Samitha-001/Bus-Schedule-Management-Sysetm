@@ -19,6 +19,20 @@ include 'components/ownersidebar.php';
 ?>
 <main class="container1">
 
+        <div class="header orange-header">
+            <div>
+            <table class="header-links">
+                <tr>
+                    <th style="padding-left:60px"><a href="<?= ROOT ?>/registernewbuses" ><h3>Register New Bus</h3></a></th>
+                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactdrivers" ><h3>Edit Bus Profile</h3></a></th>
+                    <th style="padding-left:60px"><a href="<?= ROOT ?>/buses" ><h3>Update Availability</h3></a></th>
+                </tr>
+                
+            </table> 
+            </div>
+            
+        </div>
+
 <div class="row">
   <div class="column left">
   <img src="<?= ROOT ?>/assets/images/backgrounds/bus6.png" class="image">
@@ -34,20 +48,20 @@ include 'components/ownersidebar.php';
 
 <div>
     <table >
-    <tr>
-                        <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
-                        <td><input name="bus_no" type="text" class="form-control" id="bus_no" required></td>
-                    </tr>
+      <tr>
+            <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
+            <td><input name="bus_no" type="text" class="form-control" id="bus_no" required></td>
+      </tr> 
 
-                    <tr>
-                        <td style="color:#24315e;"><label for="source">Source</label></td>
-                        <td ><input name="source" type="text" id="source" class="form-control" required></td>
-                    </tr>
+      <tr>
+            <td style="color:#24315e;"><label for="source">Source</label></td>
+            <td ><input name="source" type="text" id="source" class="form-control" required></td>
+       </tr>
 
-                    <tr>
-                        <td style="color:#24315e;"><label for="dest">Destination </label></td>
-                        <td><input name="dest" type="text" class="form-control" id="dest"  required></td>
-                    </tr>
+       <tr>
+            <td style="color:#24315e;"><label for="dest">Destination </label></td>
+            <td><input name="dest" type="text" class="form-control" id="dest"  required></td>
+       </tr>
 
 
         <tr>
