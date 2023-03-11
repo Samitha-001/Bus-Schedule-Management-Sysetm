@@ -665,7 +665,7 @@ hr {
         display: flex;
         grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
         grid-template-rows: 1fr 2fr 2fr; 
-        width: 10%;
+        width: 30%;
         font-size: 90%;
       }
 

@@ -60,15 +60,43 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
     <!-- <a class="services">Services</a> -->
     <ul class="sidenav-links">
+        <div style="margin-bottom:5%">
+        <hr>
             <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
-            <!-- <li><a href="" style="color:#9298AF;">Location</a></li> -->
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
+            <li><a href="" style="color:#9298AF;">Location</a></li> 
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/logout">Logout</a></li>
+            <hr>
+            </div>
         </div>
   
 
