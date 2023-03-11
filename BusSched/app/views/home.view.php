@@ -25,32 +25,56 @@ if (isset($_SESSION['USER'])) {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <!-- add js script -->
+    <script src="<?= ROOT ?>/assets/js/landing.js"></script>
     <title>Home Page</title>
 </head>
 
 <body>
 <?php include 'components/navbar.php'; ?>
     <div class="landing-main row">
-        <div class="col-6 menu">
-
-            <ul>
-                <li>
-                    <h1 style="padding: 0px;">Find a bus</h1>
-                </li>
-                <li>
-                    <label for="from" style="font-size: medium;">From</label>
-                    <input type="text" name="from" id="from" placeholder="Choose city">
-                </li>
-                <li>
-                    <label for="to" style="font-size: medium;">To</label>
-                    <input type="text" name="to" id="to" placeholder="Choose city">
-                </li>
-                <br>
-                <li>
-                    <button id="btn" class="button-orange">Find</button>
-                </li>
-            </ul>
-
+        <div class="col-6 menu landing-top">
+            <h1 style="padding: 0px;">Find a bus for your next trip</h1>
+            <p id="landing-header-desc">Easily compare and book your next trip with us.</p>
+        </div>
+        <div class="col-6 menu from-to">
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="from">FROM</label>
+                    <input type="text" name="from" id="from" placeholder="Choose city" list="halt-list">
+                    <datalist id="halt-list">
+                        <?php
+                        $len = count($halts);
+                        for ($i = 0; $i < $len; $i++) {
+                            $halt = $halts[$i];
+                            echo "<option value='" . $halt->name . "'>";
+                        }
+                        ?>
+                    </datalist>
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="to">TO</label>
+                    <input type="text" name="to" id="to" placeholder="Choose city" list="halt-list">
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="date">DATE</label>
+                    <!-- date input today or tomorrow -->
+                    <input type="date" name="date" id="date" min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>">
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="passengers">PASSENGERS</label>
+                    <input type="number" name="passengers" id="passengers" placeholder="No. of passengers" min=0 max=5>
+                </div>
+            </div>
+            <div class="find-button-div">
+                <button id="find-bus" class="find-button-orange" style="margin:0px;">Find</button>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -145,12 +169,6 @@ if (isset($_SESSION['USER'])) {
             </p>
         </section>
     </div>
-
-    <script>
-    document.getElementById("btn").onclick = function() {
-        location.href = "<?= ROOT ?>/passengerschedule";
-    };
-    </script>
 </body>
 
 </html>

@@ -91,7 +91,12 @@ thead th {
 
 td:last-child {
   text-align: right;
-  /* width: fit-content; */
+  /* width: 60px; */
+}
+
+td.edit-options {
+  text-align: right;
+  /* width: 60px; */
 }
 
 td:first-child {
@@ -135,7 +140,8 @@ th:first-child {
 
 td input {
   width: 100%;
-  font-family: 'Outfit';
+  font-size: 12px;
+  font-family: "Outfit";
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 0px;
@@ -144,6 +150,7 @@ td input {
 
 select {
   width: fit-content;
-  font-family: 'Outfit';
-  padding: 5px;
+  font-family: "Outfit";
+  padding: 3px;
+  font-size: 12px;
 }

@@ -50,9 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // clone input row and fill it with data
     let clone = inputrow.cloneNode(true);
     clone.classList.remove("dummy-input");
-    // get all the inputs and the select
     let inputs = clone.querySelectorAll("input");
     let select = clone.querySelector("select");
+
+    clone.querySelector(".edit-options").style.display = "block";
+    clone.querySelector("td").textContent = rowno;
 
     // fill the inputs with data
     inputs[0].value = username;
@@ -60,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     select.value = role;
 
     // append right before the row
-    row.parentNode.insertBefore(clone, row);
+    row.parentElement.insertBefore(clone, row);
     // hide the row
     row.style.display = "none";
     row.classList.add("being-edited");
@@ -81,7 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function deleteRow(e) {
     let row = e.target.parentElement.parentElement;
-    let userid = row.getAttribute("data-id");
+    // get value of td with fieldname id
+    let userid = row.querySelector("td[data-fieldname='id']").textContent;
+
+    // get id of the row
+    // let userid = row.getAttribute("data-id");
     // ask confirmation from user
     let confirm = window.confirm("Are you sure you want to delete this user?");
     if (confirm) {

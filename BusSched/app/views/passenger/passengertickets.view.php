@@ -30,8 +30,8 @@ if (isset($_SESSION['USER'])) {
 
 <body>
 <?php
-    include 'components/navbar.php';
-    include 'components/passengernavbar.php';
+    include '../app/views/components/navbar.php';
+    include '../app/views/components/passengernavbar.php';
 ?>
 
     <div class="row main-content">

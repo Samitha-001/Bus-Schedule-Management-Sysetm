@@ -117,11 +117,12 @@
   z-index: 5;
   top: 0;
   right: 0;
-  background-color: #24315e;
+  background-color: black;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
   font-size: 16px;
+  text-align: center;
 }
 
 .sidenav a {
@@ -131,7 +132,7 @@
 }
 
 a.li {
-  padding-left: 30px;
+  padding: 20px;
 }
 
 .sidenav a:hover {
@@ -140,10 +141,18 @@ a.li {
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0;
-  right: 30px;
+  top: 6px;
+  right: 40px;
   font-size: 36px;
   margin-left: 50px;
+  color: white;
+}
+
+.sidenav .sidenav-logo {
+  position: absolute;
+  top: 21px;
+  left: 40px;
+  margin-right: 50px;
 }
 
 ul.sidenav-links {
@@ -210,4 +219,10 @@ ul.sidenav-links {
 .sidenav-signup-button a, .sidenav-login-button a {
   color: white;
   padding: 5px;
+}
+
+.sidenav-header {
+  display:flex;
+  /* wrap */
+  flex-wrap: wrap;
 }

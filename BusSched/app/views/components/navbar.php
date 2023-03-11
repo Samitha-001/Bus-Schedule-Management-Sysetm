@@ -81,6 +81,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 <!-- side navigation bar for smaller screens -->
 <div id="Sidenav" class="sidenav">
+    <a onclick="closeNav()" class="sidenav-logo"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a class="li" href="<?= ROOT ?>/passengerprofile">My profile</a>
 
@@ -130,7 +131,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 <script>
 function openNav() {
-    document.getElementById("Sidenav").style.width = "250px";
+    document.getElementById("Sidenav").style.width = "100%";
 }
 
 function closeNav() {

@@ -6,6 +6,6 @@ class Passengerlocation
 
     public function index()
     {
-        $this->view('passengerlocationupdate');
+        $this->userview('passenger','passengerlocationupdate');
     }
 }
