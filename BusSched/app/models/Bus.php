@@ -35,7 +35,6 @@ class Bus extends Model
             $this->errors['route'] = "Enter bus route";
         }
 
-
         if (empty($this->errors)) {
             return true;
         }
