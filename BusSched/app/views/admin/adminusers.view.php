@@ -55,7 +55,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
 <h1 class="section-header">All Users</h1>
   <section>
-    <div class="tbl-header">
+    <div class="tbl-content">
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
           <tr>
