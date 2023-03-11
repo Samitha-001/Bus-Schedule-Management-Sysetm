@@ -20,8 +20,8 @@ if (!isset($_SESSION['USER'])) {
 
 <body>
 <?php
-include 'components/ownernavbar.php';
-include 'components/ownersidebar.php';
+include '../app/views/components/ownernavbar.php';
+include '../app/views/components/ownersidebar.php';
 ?>
 
     <main class="container1">
@@ -41,7 +41,7 @@ include 'components/ownersidebar.php';
 
         <div class="data-table">
         <div class="selection">
-            
+              
         </div>
 
             <table border='1' class="styled-table">
@@ -49,16 +49,15 @@ include 'components/ownersidebar.php';
                     <th>Name</th>
                     <th>EmailAddress</th>
                     <th>Contact No</th>
-                    <th>Assinged Bus</th>
                 </tr>
 
                 <!-- <?php
-                foreach ($contactdrivers as $driver) {
+                foreach ($contactowners as $owner) {
                     echo "<tr>";
-                    echo "<td> $driver->name </td>";
-                    echo "<td> $driver->email </td>";
-                    echo "<td> $driver->tp </td>";
-                    echo "<td> $driver->bus_no </td>";
+                    echo "<td> $owner->name </td>";
+                    echo "<td> $owner->email </td>";
+                    echo "<td> $owner->tp </td>";
+                    echo "<td> $owner->bus_no </td>";
                     echo "</tr>";
                 } ?> -->
 

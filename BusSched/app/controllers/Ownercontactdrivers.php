@@ -11,7 +11,7 @@ class Ownercontactdrivers
 
         // $data = [];
      
-        $this->view('ownercontactdriver', ['ownercontactdrivers' => $contactdrivers]);
+        $this->userview('owner', 'ownercontactdriver', ['ownercontactdrivers' => $contactdrivers]);
     }
 
 }

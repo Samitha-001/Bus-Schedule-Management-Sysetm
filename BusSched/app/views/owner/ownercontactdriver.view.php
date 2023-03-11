@@ -19,16 +19,15 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
-
 <?php
-include 'components/ownernavbar.php';
-include 'components/ownersidebar.php';
+include '../app/views/components/ownernavbar.php';
+include '../app/views/components/ownersidebar.php';
 ?>
 
     <main class="container1">
         <div class="header orange-header">
             <div>
-            <table>
+            <table class="header-links">
                 <tr>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactowners" ><h3>Bus Owner</h3></a></th>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactdrivers" ><h3>Drivers</h3></a></th>
@@ -42,13 +41,7 @@ include 'components/ownersidebar.php';
 
         <div class="data-table">
         <div class="selection">
-                <table >
-                <tr>
-                    
-                    
-                </tr>
-                
-            </table>   
+            
         </div>
 
             <table border='1' class="styled-table">
@@ -58,14 +51,14 @@ include 'components/ownersidebar.php';
                     <th>Contact No</th>
                     <th>Assinged Bus</th>
                 </tr>
-<!-- 
-                <?php
-                foreach ($contactconductors as $conductor) {
+
+                <!-- <?php
+                foreach ($contactdrivers as $driver) {
                     echo "<tr>";
-                    echo "<td> $conductor->name </td>";
-                    echo "<td> $conductor->email </td>";
-                    echo "<td> $conductor->tp </td>";
-                    echo "<td> $conductor->bus_no </td>";
+                    echo "<td> $driver->name </td>";
+                    echo "<td> $driver->email </td>";
+                    echo "<td> $driver->tp </td>";
+                    echo "<td> $driver->bus_no </td>";
                     echo "</tr>";
                 } ?> -->
 

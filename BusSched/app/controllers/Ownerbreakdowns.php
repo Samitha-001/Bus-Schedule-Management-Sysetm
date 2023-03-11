@@ -22,6 +22,6 @@ class OwnerBreakdowns
 
             $data['errors'] = $breakdown->errors;
         }
-        $this->view('ownerbreakdown', ['ownerbreakdowns' => $breakdowns]);
+        $this->userview('owner', 'ownerbreakdown', ['ownerbreakdowns' => $breakdowns]);
     }
 }

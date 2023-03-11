@@ -6,6 +6,6 @@ class ownernotifications
 
     public function index()
     {
-        $this->view('ownernotification');
+        $this->userview('owner', 'ownernotification');
     }
 }
