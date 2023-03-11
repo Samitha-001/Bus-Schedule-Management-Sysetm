@@ -19,23 +19,6 @@ class Ownerregisterbus
             if ($bus->validate($_POST)) {
                 // add session user id to the POST
                 $_POST['owner'] = $owner;
-
-                // if conductor is empty, remove it from the POST
-                if (empty($_POST['conductor'])) {
-                    unset($_POST['conductor']);
-                }
-                // if driver is empty, remove it from the POST
-                if (empty($_POST['driver'])) {
-                    unset($_POST['driver']);
-                }
-                // if start is empty, remove it from the POST
-                if (empty($_POST['start'])) {
-                    unset($_POST['start']);
-                }
-                // if dest is empty, remove it from the POST
-                if (empty($_POST['dest'])) {
-                    unset($_POST['dest']);
-                }
                 $bus->addBus($_POST);
                 redirect('ownerbuses');
             }

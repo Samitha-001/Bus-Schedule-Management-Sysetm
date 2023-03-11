@@ -6,7 +6,7 @@ class Model
     use Database;       // use the trait Database
     protected $table            = "";
     protected $allowedColumns   = ["id"];
-    protected $limit            = 15;
+    protected $limit            = 100;
     protected $offset           = 0;
     protected $order_type       = "ASC";
     protected $order_column     = "id";
@@ -73,12 +73,17 @@ class Model
                 if(!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);     // deletes item from the list
                 }
+                if ($value == '') {
+                    unset($data[$key]);   // deletes item from the list if it is empty
+                }
             }
+            unset($data['id']);
+
         }
         
         $keys = array_keys($data);
         $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES (:".implode(',:', $keys).")";        // implode returns a string from an array
-
+        // print_r($query);
         $this->query($query, $data);
         return false;
     }
