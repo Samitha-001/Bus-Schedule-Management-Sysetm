@@ -29,7 +29,7 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-<?php include 'components/navbar.php'; ?>
+<?php include '../app/views/components/navbar.php'; ?>
 
 <div class="rating-container">
   <div class="rating-section">

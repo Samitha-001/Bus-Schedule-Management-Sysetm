@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2023 at 11:14 PM
+-- Generation Time: Mar 11, 2023 at 08:32 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -52,10 +52,10 @@ CREATE TABLE `breakdown` (
 --
 
 INSERT INTO `breakdown` (`id`, `bus_no`, `description`, `time_to_repair`) VALUES
-(1, 'NC1112', 'Tyre puncture', '00:10:00'),
+(1, 'NC1112', 'Tyre puncture', '00:15:00'),
 (2, 'NC1113', 'Accident', '00:30:00'),
 (3, 'NC1111', 'Accident', '00:25:00'),
-(6, 'NC1114', 'Accident', '00:50:00');
+(7, 'NC1114', 'Tyre puncture', '00:20:00');
 
 -- --------------------------------------------------------
 
@@ -68,32 +68,35 @@ CREATE TABLE `bus` (
   `bus_no` char(6) NOT NULL,
   `type` varchar(2) NOT NULL,
   `seats_no` int(11) NOT NULL,
-  `availability` int(1) NOT NULL DEFAULT 0,
   `route` varchar(6) NOT NULL,
-  `start` varchar(50) DEFAULT NULL
+  `start` varchar(50) DEFAULT NULL,
+  `dest` varchar(50) DEFAULT NULL,
+  `owner` varchar(50) NOT NULL,
+  `conductor` varchar(50) DEFAULT NULL,
+  `driver` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bus`
 --
 
-INSERT INTO `bus` (`id`, `bus_no`, `type`, `seats_no`, `availability`, `route`, `start`) VALUES
-(1, 'NC1111', 'S', 40, 1, '120', 'Piliyandala'),
-(2, 'NC1112', 'S', 40, 1, '120', 'Pettah'),
-(3, 'NC1113', 'L', 50, 1, '120', 'Piliyandala'),
-(4, 'NC1114', 'S', 40, 1, '120', 'Pettah'),
-(5, 'NC1115', 'L', 50, 1, '120', 'Piliyandala'),
-(6, 'NC1116', 'S', 40, 1, '120', 'Pettah'),
-(7, 'NC1117', 'L', 50, 1, '120', 'Piliyandala'),
-(8, 'NC1118', 'S', 40, 0, '120', 'Pettah'),
-(9, 'NC1119', 'L', 50, 0, '120', 'Piliyandala'),
-(10, 'NC1120', 'S', 40, 1, '120', 'Pettah'),
-(11, 'NC1121', 'L', 50, 1, '120', 'Piliyandala'),
-(12, 'NC1122', 'S', 40, 1, '120', 'Pettah'),
-(14, 'NC1124', 'S', 40, 1, '120', 'Pettah'),
-(15, 'NC1125', 'L', 50, 1, '120', 'Piliyandala'),
-(16, 'NC1126', 'S', 40, 1, '120', 'Pettah'),
-(17, 'NC1127', 'L', 50, 1, '120', 'Piliyandala');
+INSERT INTO `bus` (`id`, `bus_no`, `type`, `seats_no`, `route`, `start`, `dest`, `owner`, `conductor`, `driver`) VALUES
+(1, 'NC1111', 'S', 45, '120', 'Piliyandala', 'Pettah', 'owner2', NULL, NULL),
+(2, 'NC1112', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(3, 'NC1113', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
+(4, 'NC1114', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(5, 'NC1115', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
+(6, 'NC1116', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(7, 'NC1117', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
+(8, 'NC1118', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(9, 'NC1119', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
+(10, 'NC1120', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(11, 'NC1121', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
+(12, 'NC1122', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(14, 'NC1124', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(15, 'NC1125', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
+(16, 'NC1126', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(17, 'NC1127', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -222,7 +225,7 @@ CREATE TABLE `halt` (
 --
 
 INSERT INTO `halt` (`id`, `route_id`, `name`, `distance_from_source`, `fare_from_source`) VALUES
-(1, '120', 'Piliyandala', 0, 0),
+(1, '120', 'Piliyandala', 0, 20),
 (2, '120', 'Werahera', 1, 48),
 (3, '120', 'Boralesgamuwa', 2, 59),
 (4, '120', 'Rattanapitiya', 3, 77),
@@ -264,7 +267,8 @@ CREATE TABLE `owner` (
 --
 
 INSERT INTO `owner` (`username`, `name`, `phone`, `address`) VALUES
-('owner1', 'Gamini Jayasinghe', '0774567891', 'Gampaha, Sri Lanka');
+('owner1', 'Gamini Jayasinghe', '0774567891', 'Gampaha, Sri Lanka'),
+('owner2', 'Owner Perera', '0112444444', 'Colombo, Sri Lanka');
 
 -- --------------------------------------------------------
 
@@ -300,6 +304,21 @@ CREATE TABLE `ratings` (
   `driver_id` int(11) NOT NULL,
   `driver_rating` int(11) DEFAULT NULL
 ) ;
+
+--
+-- Dumping data for table `ratings`
+--
+
+INSERT INTO `ratings` (`id`, `rater`, `trip_id`, `bus_id`, `bus_rating`, `conductor_id`, `conductor_rating`, `driver_id`, `driver_rating`) VALUES
+(1, 5, 1, 1, 5, 9, 5, 8, 5),
+(2, 5, 2, 2, 5, 9, 5, 15, 4),
+(3, 5, 3, 3, 5, 9, 5, 8, 5),
+(4, 5, 4, 4, 5, 9, 5, 15, 5),
+(5, 5, 5, 5, 5, 9, 5, 8, 5),
+(6, 5, 6, 6, 5, 9, 5, 15, 5),
+(7, 5, 7, 7, 5, 9, 5, 8, 5),
+(8, 5, 8, 8, 5, 9, 5, 15, 5),
+(9, 5, 9, 1, 5, 9, 5, 8, 5);
 
 -- --------------------------------------------------------
 
@@ -399,7 +418,9 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 (11, 'scheduler1', 'scheduler1@gmail.com', '$2y$10$1THV3yZOP8/szD6606QR2Obc00IVUWi7QBkHOkPlViYIrJAtwY93e', 'scheduler'),
 (15, 'driver2', 'driver2@gmail.com', '$2y$10$GFbu3C3YgjVuyimriMpdZejHWYzzMluO7X2i.d8MXbuvHC1jrTP.a', 'driver'),
 (17, 'scheduler2', 'scheduler2@gmail.com', '$2y$10$Hn0xWamaVgYhvFLMjEgnVOzNJ8N3UXf6rpEclzQCPy4tydSJfHw7a', 'scheduler'),
-(18, 'admin', 'admin@gmail.com', '$2y$10$uToJ2Z85hvNy7tXoPyI0GOjHXuBoLppw70H3pXIhJcgM38caBRnMW', 'admin');
+(18, 'admin', 'admin@gmail.com', '$2y$10$uToJ2Z85hvNy7tXoPyI0GOjHXuBoLppw70H3pXIhJcgM38caBRnMW', 'admin'),
+(19, 'passenger2', 'passenger2@gmail.com', '$2y$10$cRiVy19KCCaZRwBIjB/VaOm/j6g7STW5r/m736dzyLIpTcsFsbb5W', 'passenger'),
+(22, 'owner2', 'owner2@gmail.com', '$2y$10$gb1e8dxlEbRJICSWRO9Wy.NQYlqAO4z6sE3IZdTnNh/QCLa.1r7N2', 'owner');
 
 --
 -- Indexes for dumped tables
@@ -425,7 +446,11 @@ ALTER TABLE `bus`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `bus_no` (`bus_no`),
   ADD KEY `bus-route` (`route`),
-  ADD KEY `start` (`start`);
+  ADD KEY `start` (`start`),
+  ADD KEY `bus_owner` (`owner`),
+  ADD KEY `buw_dest` (`dest`),
+  ADD KEY `bus_driver` (`driver`),
+  ADD KEY `bus_conductor` (`conductor`);
 
 --
 -- Indexes for table `conductor`
@@ -531,7 +556,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `breakdown`
 --
 ALTER TABLE `breakdown`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `bus`
@@ -561,7 +586,7 @@ ALTER TABLE `fare`
 -- AUTO_INCREMENT for table `halt`
 --
 ALTER TABLE `halt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `ratings`
@@ -585,7 +610,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
@@ -602,7 +627,11 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `bus`
   ADD CONSTRAINT `bus-route` FOREIGN KEY (`route`) REFERENCES `route` (`route_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bus_ibfk_1` FOREIGN KEY (`start`) REFERENCES `halt` (`name`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `bus_conductor` FOREIGN KEY (`conductor`) REFERENCES `conductor` (`username`),
+  ADD CONSTRAINT `bus_driver` FOREIGN KEY (`driver`) REFERENCES `driver` (`username`),
+  ADD CONSTRAINT `bus_ibfk_1` FOREIGN KEY (`start`) REFERENCES `halt` (`name`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `bus_owner` FOREIGN KEY (`owner`) REFERENCES `owner` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `buw_dest` FOREIGN KEY (`dest`) REFERENCES `halt` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `conductor`

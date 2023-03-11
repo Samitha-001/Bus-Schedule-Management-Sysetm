@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function editRow(e) {
     let row = e.target.parentElement.parentElement;
-    let haltid = row.getAttribute("data-id");
+    // let haltid = row.getAttribute("data-id");
     let tds = row.querySelectorAll("td");
     let rowno = tds[0].textContent.trim();
     let route = tds[1].textContent.trim();
@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
     row.classList.add("being-edited");
   }
 
+  // cancel adding new halt
   function cancelAdd(e) {
     let row = e.target.parentElement.parentElement;
     row.remove();
@@ -89,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
       deleteRecord(haltid);
       row.remove();
     }
-
   }
 
   // add new row
@@ -119,8 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     tds[3].textContent = distance;
     tds[4].textContent = fare;
     
-    data = {
-    };
+    data = {};
 
     for (let i = 0; i < inputs.length; i++) {
       // get the data-fieldname of the field

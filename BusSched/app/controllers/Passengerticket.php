@@ -6,6 +6,6 @@ class Passengerticket
 
     public function index()
     {
-        $this->view('passengerticket');
+        $this->userview('passenger', 'passengerticket');
     }
 }
