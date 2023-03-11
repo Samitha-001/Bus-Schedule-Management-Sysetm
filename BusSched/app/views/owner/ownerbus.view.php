@@ -15,16 +15,16 @@
 
 <body>
 <?php
-include 'components/ownernavbar.php';
-include 'components/ownersidebar.php';
+include '../app/views/components/ownernavbar.php';
+include '../app/views/components/ownersidebar.php';
 ?>
   <main class="container1">
 
 <div class="header orange-header">
     <div>
-        <h3>Buses Owned</h3>
+        <h3>My buses</h3>
     </div>
-    <!-- <div><button id="btn" class="button-grey">Update Availability</button></div> -->
+    <div><a href="<?= ROOT ?>/ownerregisterbus" class="button-grey" >Register bus</a></div>
 </div>
 
 
@@ -32,17 +32,6 @@ include 'components/ownersidebar.php';
     <br>
     <table border='1' class="styled-table">
         <tr>
-            <!-- bus table columns
-            'id',
-            'bus_no',
-            'type',
-            'seats_no',
-            'route',
-            'start',
-            'dest',
-            'owner',
-            'conductor',
-            'driver' -->
             <th>#</th>
             <th>Bus No.</th>
             <th>Type</th>

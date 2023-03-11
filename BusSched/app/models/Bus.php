@@ -24,13 +24,13 @@ class Bus extends Model
 
         if (empty($data['bus_no'])) {
             $this->errors['bus_no'] = "Bus number is required";
-        } else
+        }
         if (empty($data['type'])) {
             $this->errors['type'] = "Choose bus type";
-        } else
+        }
         if (empty($data['seats_no'])) {
             $this->errors['seats_no'] = "Enter number of available seats";
-        } else
+        }
         if (empty($data['route'])) {
             $this->errors['route'] = "Enter bus route";
         }
@@ -60,6 +60,14 @@ class Bus extends Model
     public function updateBus($id, $data)
     {
         return $this->update($id, $data);
+    }
+
+    // add new bus
+    public function addBus($data)
+    {
+        // uppercase first 2 letters of bus number in data
+        $data['bus_no'] = strtoupper(substr($data['bus_no'], 0, 2)) . substr($data['bus_no'], 2);
+        echo $this->insert($data);
     }
 
 }

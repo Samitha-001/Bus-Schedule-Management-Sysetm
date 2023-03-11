@@ -24,6 +24,6 @@ class Ownerbuses
             $data['errors'] = $bus->errors;
         }
 
-        $this->view('ownerbus', ['buses' => $buses]);
+        $this->userview('owner', 'ownerbus', ['buses' => $buses]);
     }
 }

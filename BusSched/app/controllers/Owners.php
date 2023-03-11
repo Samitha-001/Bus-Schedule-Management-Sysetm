@@ -13,6 +13,6 @@ class Owners
         $arr['username'] = $_SESSION['USER']->username;
         $row = $owner->first($arr);
 
-        $this->view('ownerhome', [$row]);
+        $this->userview('owner', 'ownerhome', [$row]);
     }
 }
