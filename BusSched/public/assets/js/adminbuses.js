@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // get the row of the clicked edit button
       let row = cancelBtn.parentNode.parentNode;
       let id = row.dataset.busid;
-      // console.log(row);
 
       // hide save-cancel td
       let saveCancelTd = cancelBtn.parentNode;
@@ -41,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     editBtn.addEventListener("click", () => {
       // get the row of the clicked edit button
       let row = editBtn.parentNode.parentNode;
-      // console.log(row);
+
       // 'id','bus_no','type','seats_no','availability','route','start'
       // get the cells
       const busnoCell = row.cells[1];
@@ -57,20 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
       busnoInput.value = busnoCell.textContent;
       busnoCell.setAttribute("prev-val", `${busnoCell.textContent}`);
 
-      // console.log(busnoInput.value);
-
       const typeInput = document.createElement("input");
       typeInput.type = "text";
       typeInput.value = typeCell.textContent;
       typeCell.setAttribute("prev-val", `${typeCell.textContent}`);
 
-      // console.log(typeInput.value);
-
       const seatsnoInput = document.createElement("input");
       seatsnoInput.type = "number";
       seatsnoInput.min = 0;
       // oninput validity valid
-      seatsnoInput.setAttribute('oninput', "validity.valid||(value='');");
+      seatsnoInput.setAttribute("oninput", "validity.valid||(value='');");
       seatsnoInput.style.width = "50px";
       seatsnoInput.value = seatsnoCell.textContent;
       seatsnoCell.setAttribute("prev-val", `${seatsnoCell.textContent}`);
@@ -232,9 +227,11 @@ document.addEventListener("DOMContentLoaded", function () {
     startCell.innerHTML = start;
 
     // hide save-cancel td
-    let saveCancelTd = row.querySelector("#save-cancel").style.display = "none";
+    let saveCancelTd = (row.querySelector("#save-cancel").style.display =
+      "none");
 
     // show edit-delete td
-    let editDeleteTd = row.querySelector("#edit-delete").style.display = "inline-block";
+    let editDeleteTd = (row.querySelector("#edit-delete").style.display =
+      "inline-block");
   }
 });

@@ -1,21 +1,20 @@
 <?php
 
-class Adminusers
+class Adminhalts
 {
-
     use Controller;
 
     public function index()
     {
-        $user = new User();
-        $users = $user->getUsers();
+        $halt = new Halt();
+        $halts = $halt->getHalts();
 
-        // if (isset($_GET['delete'])) {
-        //     $user->deleteUser($_GET['delete']);
-        //     redirect('adminusers');
-        // }
+        if (isset($_GET['delete'])) {
+            $halt->deleteHalt($_GET['delete']);
+            redirect('adminhalts');
+        }
 
-        $this->userview('admin', 'adminusers', ['users' => $users]);
+        $this->userview('admin', 'adminhalts', ['halts' => $halts]);
     }
 
     // api edit function
@@ -26,15 +25,14 @@ class Adminusers
             $postData = json_decode(file_get_contents('php://input'), true);
 
             // Process the request data and perform the update
-            // ...
-            $user = new User();
-            // remove field availability from the array
+            $halt = new Halt();
             $id = $postData['id'];
             unset($postData['id']);
             $data = [];
             foreach($postData as $key => $value){
-                    $data[$key] = $value;
-            }$user->updateUser($id, $data);
+                $data[$key] = $value;
+            }
+            $halt->updateHalt($id, $data);
         
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
@@ -45,7 +43,6 @@ class Adminusers
             header('Content-Type: application/json');
             echo json_encode($response);
         }
-               
     }
 
     // api add function
@@ -56,16 +53,13 @@ class Adminusers
             $postData = json_decode(file_get_contents('php://input'), true);
 
             // Process the request data and perform the update
-            // ...
-            $user = new User();
+            $halt = new Halt();
             $data = [];
             foreach($postData as $key => $value){
-                    $data[$key] = $value;
+                $data[$key] = $value;
             }
-            // hash the password
-            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             
-            $user->insert($data);
+            $halt->addHalt($data);
         
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
@@ -86,9 +80,9 @@ class Adminusers
             $postData = json_decode(file_get_contents('php://input'), true);
 
             // Process the request data and perform the update
-            $user = new User();
+            $halt = new Halt();
             $id = $postData['id'];
-            $user->deleteUser($id);
+            $halt->deleteHalt($id);
         
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);

@@ -80,7 +80,9 @@ include '../app/views/components/adminsidebar.php';
                     </a>
                   </td>
                   <td id="save-cancel">
-                    <a href='#' class='save-btn'><img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon" width='20px' height='20px'></a>
+                    <a href='#' class='save-btn'>
+                      <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon" width='20px' height='20px'>
+                    </a>
                     <a href='#' class='cancel-btn'>
                       <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon" width='20px' height='20px'>
                     </a>
