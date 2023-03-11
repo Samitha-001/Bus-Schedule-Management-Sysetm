@@ -10,9 +10,12 @@ class Bus extends Model
         'bus_no',
         'type',
         'seats_no',
-        'availability',
         'route',
-        'start'
+        'start',
+        'dest',
+        'owner',
+        'conductor',
+        'driver'
     ];
 
     public function validate($data)
@@ -30,9 +33,6 @@ class Bus extends Model
         } else
         if (empty($data['route'])) {
             $this->errors['route'] = "Enter bus route";
-        } else
-        if (empty($data['start'])) {
-            $this->errors['route'] = "Choose starting halt";
         }
 
 
@@ -46,6 +46,11 @@ class Bus extends Model
     public function getBuses()
     {
         return $this->findAll();
+    }
+
+    public function getOwnerBuses($owner)
+    {
+        return $this->where(['owner' => $owner]);
     }
 
     public function deleteBus($id)
