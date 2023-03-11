@@ -17,7 +17,7 @@
 <body>
 
 <?php
-include 'components/ownernavbar.php';
+include '../app/views/components/ownernavbar.php';
 ?>
 
     <div class="row1" >&emsp;&emsp;&emsp; Notifications</div>

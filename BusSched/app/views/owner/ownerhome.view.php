@@ -31,8 +31,8 @@ if ($_SESSION['USER']->role == 'passenger') {
 
 <body>
 <?php
-include 'components/ownernavbar.php';
-include 'components/ownersidebar.php';
+include '../app/views/components/ownernavbar.php';
+include '../app/views/components/ownersidebar.php';
 
 ?>
 
