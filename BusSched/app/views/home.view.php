@@ -31,13 +31,11 @@ if (isset($_SESSION['USER'])) {
 <body>
 <?php include 'components/navbar.php'; ?>
     <div class="landing-main row">
-        <div class="col-10 menu">
-            <div>
-                <h1 style="padding: 0px;">Find a bus for your next trip</h1>
-                <p id="landing-header-desc">EASILY COMPARE AND BOOK YOUR NEXT TRIP WITH BUSSCHED</p>
-            </div>
+        <div class="col-10 menu landing-top">
+            <h1 style="padding: 0px;">Find a bus for your next trip</h1>
+            <p id="landing-header-desc">Easily compare and book your next trip with us.</p>
         </div>
-        <div class="col-10 menu">
+        <div class="col-10 menu from-to">
             <div class="white-box">
                 <div class="landing-header-li">
                     <label for="from">FROM</label>
@@ -69,10 +67,10 @@ if (isset($_SESSION['USER'])) {
             <div class="white-box">
                 <div class="landing-header-li">
                     <label for="passengers">PASSENGERS</label>
-                    <input type="number" name="passengers" id="passenger" placeholder="No. of passengers" min=0>
+                    <input type="number" name="passengers" id="passenger" placeholder="No. of passengers" min=0 max=5>
                 </div>
             </div>
-            <div>
+            <div class="find-button-div">
                 <button class="find-button-orange" style="margin:0px;">Find</button>
             </div>
         </div>

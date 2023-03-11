@@ -8,6 +8,7 @@ div.landing-main {
   height: 660px;
 }
 
+/* for desktop */
 @media only screen and (min-device-width: 768px) {
   div.landing-main {
     background-image: url("../images/backgrounds/bg-home-1.png");
@@ -22,6 +23,8 @@ h1 {
 
 label {
   color: white;
+  position: relative;
+  top: 4px;
 }
 
 input[type="text"] {
@@ -33,7 +36,7 @@ input[type="text"] {
 
 input[type="text"]::placeholder {
   font-family: "Outfit";
-  font-size: 15px;
+  font-size: 13px;
   color: #7c839e;
 }
 
@@ -45,8 +48,8 @@ a {
   text-decoration: none;
 }
 button:hover {
-  /* darken colour */
-  background-color: #f9430b;
+  /* lighten colour */
+  background-color: #f15f22;
 }
 
 .button-orange {
@@ -82,6 +85,10 @@ button:hover {
   text-decoration: none;
   width: 100%;
   height: 60px;
+}
+
+.find-button-div{
+  margin-top: 5px;
 }
 
 /* grid */
@@ -137,6 +144,7 @@ section h3 {
 p#landing-header-desc {
   color: #BBBFCD;
   font-size: 13px;
+  margin-top: 5px;
 }
 
 .landing-header-li {
@@ -145,11 +153,19 @@ p#landing-header-desc {
 
 .landing-header-li input::placeholder{
   margin-left: 0px;
+  font-size: 13px;
 }
 
 .landing-header-li label{
   color: #24315E;
-  font-size: 12px;
+  font-size: 9px;
+}
+
+.landing-header-li input[type="date"]{
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 11px;
 }
 
 div.white-box {
@@ -162,14 +178,18 @@ div.white-box {
 
 div.white-box input {
   border: none;
-  border-bottom: 1px solid #24315e;
   background-color: transparent;
   width: 100%;
   height: 30px;
   font-family: Outfit;
-  font-size: 15px;
+  font-size: 13px;
   color: #24315e;
-  padding: 5px;
+  padding: 0px;
+  margin-bottom: 5px;
+}
+
+div.white-box input:focus {
+  outline: none;
 }
 
 /* for mobile */
@@ -191,6 +211,13 @@ div.white-box input {
   .menu {
     padding: 30px;
   }
+
+  .landing-top {
+    padding-top: 85px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
 }
 
 table#busfare-table {
@@ -251,6 +278,9 @@ table#busfare-table td.halt-name-top {
   /* height: 100%; */
 }
 
+.from-to {
+  padding-top: 0px;
+}
 /* for desktop */
 @media only screen and (min-width: 768px) {
   .col-10 {
