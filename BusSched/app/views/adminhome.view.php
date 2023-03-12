@@ -27,6 +27,7 @@ if ($_SESSION['USER']->role == 'passenger') {
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <script src="<?= ROOT ?>/assets/js/adminhome.js"></script>
     <title>Admin Dashboard</title>
 </head>
 
@@ -39,47 +40,19 @@ include 'components/adminsidebar.php';
 <h1 class="section-header">Admin Dashboard</h1>
 
 <!-- bar chart from chart.js with dummy data -->
-<section>
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
+<section class="charts">
+    <div class="item">
+        <canvas id="usersPieChart"></canvas>
     </div>
-    <div>
-        <h3 class="card-title">Menu Sales</h3>
-        <canvas id="myPieChart" width="1600" height="900"></canvas>
-    </div>
+    <div class="item">
+		<canvas id="scheduleChart"></canvas>
+	</div>
+    <div class="item">
+		<canvas id="ticketSalesChart"></canvas>
+	</div>
 </section>
 
 
 </body>
 
-<script>
-    function drawPieChart() {
-    var ctx = document.getElementById("myPieChart").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ["Buses","Conductors","Owners", "Drivers", "Passengers"],
-            datasets: [{
-                borderColor: "rgba(0,0,0,0.1)",
-                backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745", "#17a2b8"],
-                label: 'My First Dataset',
-                data: [200, 50, 100, 40, 120],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            layout: {
-                padding: {
-                    top: 10,
-                }
-            },
-            legend: {
-                'position': 'right'
-            }
-        }
-    });
-
-}
-drawPieChart();
-</script>
 </html>

@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function deleteRecord(id) {
-    fetch(`${ROOT}/adminhalts/api_delete`, {
+    fetch(`${ROOT}/adminbuses/api_delete`, {
       method: "POST",
       credentials: "same-origin",
       mode: "same-origin",
