@@ -78,7 +78,6 @@ class Model
                 }
             }
             unset($data['id']);
-
         }
         
         $keys = array_keys($data);
@@ -121,5 +120,35 @@ class Model
         $this->query($query, $data);
         return false;
     }
-    
+
+    // findall from a table
+    public function findAllFromTable($table2) {
+        $query = "SELECT * FROM $table2";
+
+        return $this->query($query);
+    }
+
+    // function to join tables
+    public function join($table2, $c1, $c2, $data = [], $data_not = []) {
+        $query = "SELECT * FROM $this->table JOIN $table2 ON $c1 = $c2 WHERE ";
+
+        if (!$data && !$data_not)
+            // remove "where" from the query
+            $query = substr($query, 0, -7);
+
+        foreach ($data as $key) {
+            $query .= $key . " = :". $key . " && ";       // '.' is used to add to query
+        }
+
+        foreach ($data_not as $key) {
+            $query .= $key . " != :". $key . " && ";
+        }
+        $query = trim($query, " && ");
+
+        $query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";       // :id is a placeholder in PDO
+        $data = array_merge($data, $data_not);
+
+        return $this->query($query, $data);
+        // return($query);
+    }
 }
