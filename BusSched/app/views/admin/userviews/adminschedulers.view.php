@@ -25,9 +25,9 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <script src="<?= ROOT ?>/assets/js/adminusers.js"></script>
-    <title>Users</title>
-    <style>
+    <!-- <script src="<?= ROOT ?>/assets/js/adminusers.js"></script> -->
+    <title>Passengers</title>
+    <!-- <style>
       td input[disabled] {
         border: none;
         background-color: transparent;
@@ -44,7 +44,7 @@ if ($_SESSION['USER']->role == 'passenger') {
       .edit-options, .dummy-row, .dummy-input, .add-options{
         display: none;
       }
-    </style>
+    </style> -->
 </head>
 
 <body>
@@ -58,28 +58,29 @@ if ($_SESSION['USER']->role == 'passenger') {
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
           <tr>
+          <!-- `owner`(`username`, `name`, `phone`, `address`) -->
             <th>#</th>
-            <th>User ID</th>
             <th>Username</th>
             <th>Email</th>
-            <th>User Role</th>
-            <th><button class="add-user button-green">Add User</button></th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
           </tr>
         </thead>
         <tbody>
         <?php static $i = 1; ?>
         <?php if ($users):
           foreach ($users as $user): ?>
-              <tr data-id=<?= $user->id ?>>
+              <tr data-username=<?= $user->username ?>>
                 <td><?= $i++ ?></td>
-                <td data-fieldname="id"><?= $user->id ?></td>
                 <td data-fieldname="username"><?= $user->username ?></td>
+                <td data-fieldname="name"><?= $user->name ?></td>
                 <td data-fieldname="email"><?= $user->email ?></td>
-                <td data-fieldname="role"><?= $user->role ?></td>
-          
+                <td data-fieldname="phone"><?= $user->phone ?></td>
+                <td data-fieldname="address"><?= $user->address ?></td>
+
                 <td id="edit-delete"> 
                   <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
-                  <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
                 </td>
               </tr>
           <?php endforeach; else: ?>
@@ -89,31 +90,31 @@ if ($_SESSION['USER']->role == 'passenger') {
         <?php endif; ?>
 
         <!-- this row is cloned to collect input for editing and adding rows -->
-        <tr class='dummy-input'>
+        <!-- <tr class='dummy-input'>
             <td></td>
-            <td></td>
+            <td></td> -->
             <!-- <td data-fieldname="id">
               <input type="text" value="" placeholder="Route ID">
             </td> -->
-            <td data-fieldname="username">
+            <!-- <td data-fieldname="username">
               <input type="text" value="" placeholder="Username">
               </td>
             <td data-fieldname="email">
               <input type="email" value="" placeholder="Email">
-            </td>
+            </td> -->
             <!-- add select dropdown for role -->
-            <td data-fieldname="role">
+            <!-- <td data-fieldname="role"> -->
               <!-- select options -->
-              <select name="role" id="role">
+              <!-- <select name="role" id="role">
                 <option value="passenger">passenger</option>
                 <option value="driver">driver</option>
                 <option value="conductor">conductor</option>
                 <option value="scheduler">scheduler</option>
                 <option value="owner">owner</option>
                 <option value="admin">admin</option>
-              </select>
+              </select> -->
               <!-- <input type="select" value="" placeholder="Fare"> -->
-            </td>
+            <!-- </td>
             <td class='edit-options'>
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon save-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-btn" width='20px' height='20px'>
@@ -122,10 +123,10 @@ if ($_SESSION['USER']->role == 'passenger') {
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
             </td>
-          </tr>
+          </tr> -->
 
           <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
-          <tr class='dummy-row'>
+          <!-- <tr class='dummy-row'>
             <td></td>
             <td></td>
             <td></td>
@@ -134,7 +135,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             <td>
               <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
-            </td>
+            </td> -->
         </tbody>
       </table>
     </div>

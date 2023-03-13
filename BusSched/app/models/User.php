@@ -92,4 +92,9 @@ class User extends Model
 		}
 	}
 
+	public function getUsersDetails($tablename){
+		// call join function
+		$userinfo = $this->join($tablename, 'users.username', $tablename.".username");
+		return $userinfo;
+	}
 }
