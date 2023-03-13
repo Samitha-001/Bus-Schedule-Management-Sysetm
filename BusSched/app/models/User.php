@@ -50,28 +50,28 @@ class User extends Model
 	public function validateEdit($data)
 	{
 		$this->errors = [];
+// TODO 
+		// if (empty($data['username'])) {
+		// 	$this->errors['username'] = "Username cannot be empty";
+		// } else
+		// if (empty($data['email'])) {
+		// 	$this->errors['email'] = "Email cannot be empty";
+		// } else
+		// if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+		// 	$this->errors['email'] = "Email is not valid";
+		// } else
+		// if ($this->where(['username' => $data['username']])) {
+		// 	$this->errors['username'] = "Username already exists";
+		// } else
+		// if ($this->where(['email' => $data['email']])) {
+		// 	$this->errors['email'] = "Email already exists";
+		// }
 
-		if (empty($data['username'])) {
-			$this->errors['username'] = "Username cannot be empty";
-		} else
-		if (empty($data['email'])) {
-			$this->errors['email'] = "Email cannot be empty";
-		} else
-		if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-			$this->errors['email'] = "Email is not valid";
-		} else
-		if ($this->where(['username' => $data['username']])) {
-			$this->errors['username'] = "Username already exists";
-		} else
-		if ($this->where(['email' => $data['email']])) {
-			$this->errors['email'] = "Email already exists";
-		}
+		// if (empty($this->errors)) {
+		// 	return true;
+		// }
 
-		if (empty($this->errors)) {
-			return true;
-		}
-
-		return false;
+		// return false;
 	}
 
     public function getUsers()
@@ -87,9 +87,9 @@ class User extends Model
 	public function updateUser($id, $data)
 	{
 		// validate and update
-		if ($this->validateEdit($data)) {
+		// if ($this->validateEdit($data)) {
 			return $this->update($id, $data);
-		}
+		// }
 	}
 
 	public function getUsersDetails($tablename){
