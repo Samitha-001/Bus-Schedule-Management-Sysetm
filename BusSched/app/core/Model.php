@@ -88,7 +88,6 @@ class Model
     }
 
     public function update($id, $data, $id_column = 'id') {
-        
         // removes unwanted data
         if(!empty($this->allowedColumns)) {
             foreach ($data as $key => $value) {
@@ -109,6 +108,8 @@ class Model
         $query .= " WHERE $id_column = :$id_column";
         
         $data[$id_column] = $id;
+        show($data);
+        show($query);
         $this->query($query, $data);
         return false;
     }
@@ -149,6 +150,5 @@ class Model
         $data = array_merge($data, $data_not);
 
         return $this->query($query, $data);
-        // return($query);
     }
 }

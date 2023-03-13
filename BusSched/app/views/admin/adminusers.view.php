@@ -135,6 +135,7 @@ if ($_SESSION['USER']->role == 'passenger') {
               <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
             </td>
+          </tr>
         </tbody>
       </table>
     </div>

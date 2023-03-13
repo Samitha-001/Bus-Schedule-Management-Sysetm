@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // function to autofill and display editing row
   function editRow(e) {
     let row = e.target.parentElement.parentElement;
-    // let haltid = row.getAttribute("data-id");
     let tds = row.querySelectorAll("td");
     let rowno = tds[0].textContent.trim();
     let route = tds[1].textContent.trim();
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // add new row
+  // add new row filled with data when add button is clicked
   function addRow(e) {
     // clone dummy row and append it to top
     let clone = dummyrow.cloneNode(true);

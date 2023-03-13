@@ -1,4 +1,5 @@
 <?php
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
 
 class Adminusers
 {
@@ -36,40 +37,6 @@ class Adminusers
         }
     }
 
-    // Object
-    //     (
-    //         [id] => 22
-    //         [username] => owner2
-    //         [email] => owner2@gmail.com
-    //         [password] => $2y$10$gb1e8dxlEbRJICSWRO9Wy.NQYlqAO4z6sE3IZdTnNh/QCLa.1r7N2
-    //         [role] => owner
-    //     )
-
-    // [10] => stdClass Object
-    //     (
-    //         [id] => 24
-    //         [username] => passenger3
-    //         [email] => passenger3@gmail.com
-    //         [password] => $2y$10$plgImcQAUY0bbPoZKJdKQu1Zzh3sLA4nugciAgjqtpAQGx7jkUcim
-    //         [role] => passenger
-    //     )
-
-    // [11] => stdClass Object
-    //     (
-    //         [id] => 5
-    //         [username] => passenger1
-    //         [email] => passenger1@gmail.com
-    //         [password] => $2y$10$PCP8OdTRkI1srnomErM.q.2uEOQVYYEfOyscXAdqwW6uEL76djL0e
-    //         [role] => passenger
-    //         [name] => John Doe
-    //         [phone] => 
-    //         [address] => 
-    //         [dob] => 
-    //         [profile_pic] => 
-    //         [points] => 
-    //         [points_expiry] => 
-    //     )
-
     // api edit function
     public function api_edit()
     {
@@ -99,6 +66,38 @@ class Adminusers
                
     }
 
+    public function api_edit_user()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+
+            // Process the request data and perform the update
+            $user = new User();
+            // remove field availability from the array
+            $role = $postData['role'];
+            unset($postData['role']);
+            $id = $postData['username'];
+            unset($postData['username']);
+            $data = [];
+            foreach($postData as $key => $value){
+                    $data[$key] = $value;
+            }
+            if($role == 'passenger'){
+                $user = new Passenger();
+                $user->updatePassenger($id, $data);
+            }
+        
+            // Send a response
+            $response = array('status' => 'success', 'data' => $postData);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid request');
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
     // api add function
     public function api_add()
     {

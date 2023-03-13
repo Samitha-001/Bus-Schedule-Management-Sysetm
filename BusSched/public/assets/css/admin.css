@@ -26,7 +26,6 @@ section {
   font-size: 15px;
   color: white;
   display: block;
-  /* transition: 0.3s; */
 }
 
 .section-header {
@@ -46,14 +45,7 @@ section {
   color: white;
   margin-top: 0px;
   margin-bottom: 0px;
-  /* margin-right: 0px; */
-  /* font-weight: 600; */
   text-align: left;
-  /* flex */
-  /* display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center; */
 }
 
 .section-header a.first {
@@ -68,8 +60,10 @@ section {
 
 table {
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   /* background-color: #F9F9F9; */
+  /* text wrap */
+  /* word-wrap: break-word; */
 }
 
 .tbl-header {
