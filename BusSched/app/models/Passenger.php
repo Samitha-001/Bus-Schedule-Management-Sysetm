@@ -13,7 +13,7 @@ class Passenger extends Model
         'dob',
         'profile_pic',
         'points',
-        'expiry_points'
+        'points_expiry'
     ];
 
     public function passengerInfo()

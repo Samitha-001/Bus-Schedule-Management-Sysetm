@@ -128,4 +128,18 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(data);
       });
   }
+
+  // add class expired to expired points
+  function checkPointsExpiry() {
+    let tds = document.querySelectorAll("td[data-fieldname=points_expiry]");
+    let today = new Date();
+    tds.forEach((td) => {
+      let expiry = new Date(td.textContent.trim());
+      if (expiry < today) {
+        td.classList.add("expired");
+      }
+    });
+  }
+
+  checkPointsExpiry();
 });

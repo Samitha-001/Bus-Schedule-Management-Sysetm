@@ -200,3 +200,7 @@ section.charts .item {
 section.charts .item canvas {
   min-height: 200px;
 }
+
+.expired {
+  color: red;
+}

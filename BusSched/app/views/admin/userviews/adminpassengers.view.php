@@ -118,7 +118,7 @@ if ($_SESSION['USER']->role == 'passenger') {
               <input type="date" value="" placeholder="DOB" min="<?php echo date('Y-m-d', strtotime('-100 years')); ?>" max="<?php echo date('Y-m-d', strtotime('-5 years')); ?>">
             </td>
             <td data-fieldname="points">
-              <input type="number" value="" placeholder="Points">
+              <input type="number" value="" placeholder="Points" min=0>
             </td>
             <td data-fieldname="points_expiry">
               <input type="date" value="" placeholder="Points Expiry">
@@ -128,10 +128,6 @@ if ($_SESSION['USER']->role == 'passenger') {
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon save-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-btn" width='20px' height='20px'>
             </td>
-            <!-- <td class='add-options'>
-              <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
-              <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
-            </td> -->
           </tr>
 
           <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
