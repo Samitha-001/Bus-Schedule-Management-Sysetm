@@ -90,7 +90,11 @@ class Adminusers
             if ($role == 'conductor') {
                 $user = new Conductor();
                 $user->updateConductor($id, $data);
-            } 
+            } else
+            if ($role == 'driver') {
+                $user = new Driver();
+                $user->updateDriver($id, $data);
+            }
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
             header('Content-Type: application/json');

@@ -143,8 +143,6 @@ if ($_SESSION['USER']->role == 'passenger') {
       </table>
     </div>
   </section>
-
-
 </body>
 
 </html>

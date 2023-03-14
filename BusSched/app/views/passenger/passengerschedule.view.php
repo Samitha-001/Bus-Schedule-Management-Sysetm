@@ -9,151 +9,68 @@
     <title>Bus Schedule</title>
 
     <link href="<?= ROOT ?>/assets/css/ticket.css" rel="stylesheet">
+    <script src="<?= ROOT ?>/assets/js/schedule.js"></script>
 </head>
 
 <body>
     <?php
     include '../app/views/components/navbar.php';
-    include '../app/views/components/passengernavbar.php';
+    // include '../app/views/components/passengernavbar.php';
+    // get from and to from link if they exist
+    $from = isset($_GET['from']) ? $_GET['from'] : '';
+    $to = isset($_GET['to']) ? $_GET['to'] : '';
+    echo "<script>console.log('from: $from, to: $to');</script>";
     ?>
-    <div class="search-bar" style="margin: auto;">
+
+    <div class="search-bar" style="padding: 10px;">
         <div class="row">
-            <div id="from-to" class="col-5 col-s-5 menu">
-                <div><input type="text" name="from" id="from" placeholder="From"></div>
-                <div><input type="text" name="to" id="to" placeholder="To"></div>
-                <div style="margin:auto;"><button class="button-orange ticket-button" id="find-button">Find</button></div>
-            </div>
-        
-            <div id="tab-from-to" class="col-5 col-s-5 menu">
-                <table>
-                    <tr>
-                        <td><div><input type="text" name="from" id="from" placeholder="From"></div></td>
-                        <td><div><input type="text" name="to" id="to" placeholder="To"></div></td>
-                        <td><div style="margin:auto;"><button class="button-orange ticket-button" id="find-button">Find</button></div></td>
-                    </tr>
-                </table>
+            <div id="from-to">
+                <div>
+                    <input type="text" name="from" id="from" placeholder="From" <?php if ($from) echo "value=".$from; ?>>                    
+                </div>
+                <div><input type="text" name="to" id="to" placeholder="To" <?php if ($to) echo "value=".$to; ?>></div>
+                <!-- <div style="margin:auto;"><button class="button-orange ticket-button" id="find-button">Find</button></div> -->
             </div>
         </div>
-    </div>
-    
-    <div id="mobile-from-to" class="col-5 col-s-5 menu">
-        <table>
-            <tr>
-                <td>
-                    <div><input type="text" name="from" id="from" placeholder="From"></div>
-                    <div><input type="text" name="to" id="to" placeholder="To"></div>
-                </td>
-                <td>
-                    <div style="margin:auto;"><button class="button-orange ticket-button" id="find-button">Find</button></div>
-                </td>
-            </tr>
-        </table>
     </div>
 
     <div class="row">
         <div class="col-10 col-s-10" style="margin: auto;">
             <table style="width: 100%; font-size: 12px;">
                 <tr>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Bus Route</th>
-                    <th>Bus No</th>
-                    <th>Bus Type</th>
+                    <th>#</th>
                     <th>Date</th>
                     <th>Departure Time</th>
-                    <th>Arrival Time</th>
+                    <th>Starting Halt</th>
+                    <th>Bus No</th>
                     <th>Price</th>
                     <th>Seats Available</th>
                     <th>Book</th>
                 </tr>
-                <tr>
-                    <td>Kohuwala</td>
-                    <td>Horana</td>
-                    <td>120</td>
-                    <td>NC 1111</td>
-                    <td>Semi-Luxury</td>
-                    <td>2021-09-01</td>
-                    <td>10:00 AM</td>
-                    <td>12:00 PM</td>
-                    <td>Rs. 500</td>
-                    <td>10</td>
+                <?php static $i = 1; ?>
+                <?php if($trips): foreach ($trips as $trip): ?>
+                <tr data-id = <?= $trip->id ?> class='data-row'>
+                    <td><?= $i ?></td>
+                    <?php $i++; ?>
+                    <td data-fieldname="trip_date"><?= $trip->trip_date ?></td>
+                    <td data-fieldname="departure_time"><?= $trip->departure_time ?></td>
+                    <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
+                    <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
+                    <td data-fieldname="price"></td>
+                    <td data-fieldname="seats_available"></td>
                     <td>
                         <?php if (isset($_SESSION['USER'])) { ?>
-                                            <a href="<?= ROOT ?>/passengerticket"><img
-                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                                    style="height:30px"></a>
-                            <?php } else { ?>
-                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                                    alt="Buy Ticket" style="height:30px"></a>
-                            <?php } ?>
+                            <a href="<?= ROOT ?>/passengerticket"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:30px"></a>
+                        <?php } else { ?>
+                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:30px"></a>
+                        <?php } ?>
                     </td>
                 </tr>
+                <?php endforeach; else:?>
                 <tr>
-                    <td>Kohuwala</td>
-                    <td>Horana</td>
-                    <td>120</td>
-                    <td>NC 2222</td>
-                    <td>Semi-Luxury</td>
-                    <td>2021-09-01</td>
-                    <td>10:00 AM</td>
-                    <td>12:00 PM</td>
-                    <td>Rs. 500</td>
-                    <td>10</td>
-                    <td>
-                        <?php if (isset($_SESSION['USER'])) { ?>
-                                            <a href="<?= ROOT ?>/passengerticket"><img
-                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                                    style="height:30px"></a>
-                            <?php } else { ?>
-                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                                    alt="Buy Ticket" style="height:30px"></a>
-                            <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kohuwala</td>
-                    <td>Horana</td>
-                    <td>120</td>
-                    <td>NC 3333</td>
-                    <td>Semi-Luxury</td>
-                    <td>2021-09-01</td>
-                    <td>10:00 AM</td>
-                    <td>12:00 PM</td>
-                    <td>Rs. 500</td>
-                    <td>10</td>
-                    <td>
-                        <?php if (isset($_SESSION['USER'])) { ?>
-                                            <a href="<?= ROOT ?>/passengerticket"><img
-                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                                    style="height:30px"></a>
-                            <?php } else { ?>
-                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                                    alt="Buy Ticket" style="height:30px"></a>
-                            <?php } ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kohuwala</td>
-                    <td>Horana</td>
-                    <td>120</td>
-                    <td>NC 4444</td>
-                    <td>Semi-Luxury</td>
-                    <td>2021-09-01</td>
-                    <td>10:00 AM</td>
-                    <td>12:00 PM</td>
-                    <td>Rs. 500</td>
-                    <td>10</td>
-                    <td>
-                        <?php if (isset($_SESSION['USER'])) { ?>
-                                            <a href="<?= ROOT ?>/passengerticket"><img
-                                                    src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket"
-                                                    style="height:30px"></a>
-                            <?php } else { ?>
-                                            <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png"
-                                                    alt="Buy Ticket" style="height:30px"></a>
-                            <?php } ?>
-                    </td>
-                </tr>
+                    <td colspan="9" style="text-align:center;color:#999999;"><i>Sorry! No matches found.</i></td>
+            </tr>
+          <?php endif; ?>
             </table>
         </div>
     </div>

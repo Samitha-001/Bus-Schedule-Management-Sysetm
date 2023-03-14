@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         saveRow(e);
       }
     });
-
+  
     // function to autofill and display editing row
     function editRow(e) {
       let row = e.target.parentElement.parentElement;
@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let td2s = originalrow.querySelectorAll("td");
   
       let data = {
-        role: "driver",
-        username: userid,
+        role: "conductor",
+        username: userid
       };
   
       for (let i = 0; i < inputs.length; i++) {
