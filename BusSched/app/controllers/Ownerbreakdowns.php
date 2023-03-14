@@ -8,7 +8,7 @@ class OwnerBreakdowns
 
     public function index()
     {
-        $breakdown = new OwnerBreakdown();
+        $breakdown = new Breakdown();
         $breakdowns = $breakdown->getBreakdowns();
 
         $data = [];
