@@ -57,13 +57,6 @@ include '../app/views/components/adminsidebar.php';
   <section>
     <div class="tbl-content">
       <table cellpadding="0" cellspacing="0" border="0">
-        <!-- halts table
-            `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-            `route_id` varchar(6) NOT NULL,
-            `name` varchar(50) NOT NULL UNIQUE,
-            `distance_from_source` float NOT NULL,
-            `fare_from_source` float NOT NULL,
-        -->
       <thead>
           <tr>
             <th>#</th>

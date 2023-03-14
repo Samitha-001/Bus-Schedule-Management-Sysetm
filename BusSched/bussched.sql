@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2023 at 08:58 AM
+-- Generation Time: Mar 12, 2023 at 08:36 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -81,8 +81,8 @@ CREATE TABLE `bus` (
 --
 
 INSERT INTO `bus` (`id`, `bus_no`, `type`, `seats_no`, `route`, `start`, `dest`, `owner`, `conductor`, `driver`) VALUES
-(1, 'NC1111', 'S', 45, '120', 'Piliyandala', 'Pettah', 'owner2', NULL, NULL),
-(2, 'NC1112', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
+(1, 'NC1111', 'S', 44, '120', 'Piliyandala', 'Pettah', 'owner2', 'conductor1', 'driver1'),
+(2, 'NC1112', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner2', NULL, NULL),
 (3, 'NC1113', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
 (4, 'NC1114', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
 (5, 'NC1115', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
@@ -96,7 +96,10 @@ INSERT INTO `bus` (`id`, `bus_no`, `type`, `seats_no`, `route`, `start`, `dest`,
 (14, 'NC1124', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
 (15, 'NC1125', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL),
 (16, 'NC1126', 'S', 40, '120', 'Pettah', 'Piliyandala', 'owner1', NULL, NULL),
-(17, 'NC1127', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', NULL, NULL);
+(17, 'NC1127', 'L', 50, '120', 'Piliyandala', 'Pettah', 'owner1', 'conductor1', NULL),
+(41, 'NC4444', 'L', 5, '120', NULL, NULL, 'owner2', NULL, NULL),
+(43, 'NC5555', 'S', 50, '120', 'Pettah', 'Piliyandala', 'owner1', 'conductor1', 'driver1'),
+(46, 'NC9999', 'L', 20, '120', NULL, NULL, 'owner1', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -278,14 +281,21 @@ INSERT INTO `owner` (`username`, `name`, `phone`, `address`) VALUES
 
 CREATE TABLE `passenger` (
   `username` varchar(50) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `phone` char(10) NOT NULL,
-  `address` text NOT NULL,
-  `dob` date NOT NULL,
-  `profile_pic` varchar(200) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `phone` char(10) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `profile_pic` varchar(200) DEFAULT NULL,
   `points` int(11) DEFAULT NULL,
   `points_expiry` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `passenger`
+--
+
+INSERT INTO `passenger` (`username`, `name`, `phone`, `address`, `dob`, `profile_pic`, `points`, `points_expiry`) VALUES
+('passenger3', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -420,7 +430,30 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 (17, 'scheduler2', 'scheduler2@gmail.com', '$2y$10$Hn0xWamaVgYhvFLMjEgnVOzNJ8N3UXf6rpEclzQCPy4tydSJfHw7a', 'scheduler'),
 (18, 'admin', 'admin@gmail.com', '$2y$10$uToJ2Z85hvNy7tXoPyI0GOjHXuBoLppw70H3pXIhJcgM38caBRnMW', 'admin'),
 (19, 'passenger2', 'passenger2@gmail.com', '$2y$10$cRiVy19KCCaZRwBIjB/VaOm/j6g7STW5r/m736dzyLIpTcsFsbb5W', 'passenger'),
-(22, 'owner2', 'owner2@gmail.com', '$2y$10$gb1e8dxlEbRJICSWRO9Wy.NQYlqAO4z6sE3IZdTnNh/QCLa.1r7N2', 'owner');
+(22, 'owner2', 'owner2@gmail.com', '$2y$10$gb1e8dxlEbRJICSWRO9Wy.NQYlqAO4z6sE3IZdTnNh/QCLa.1r7N2', 'owner'),
+(24, 'passenger3', 'passenger3@gmail.com', '$2y$10$plgImcQAUY0bbPoZKJdKQu1Zzh3sLA4nugciAgjqtpAQGx7jkUcim', 'passenger');
+
+--
+-- Triggers `users`
+--
+DELIMITER $$
+CREATE TRIGGER `user_insert_trigger` AFTER INSERT ON `users` FOR EACH ROW BEGIN
+    IF NEW.role = 'conductor' THEN
+        INSERT INTO conductor (username) VALUES (NEW.username);
+    ELSEIF NEW.role = 'passenger' THEN
+        INSERT INTO passenger (username) VALUES (NEW.username);
+    ELSEIF NEW.role = 'scheduler' THEN
+        INSERT INTO scheduler (username) VALUES (NEW.username);
+    ELSEIF NEW.role = 'driver' THEN
+        INSERT INTO driver (username) VALUES (NEW.username);
+    ELSEIF NEW.role = 'admin' THEN
+        INSERT INTO admin (username) VALUES (NEW.username);
+    ELSEIF NEW.role = 'owner' THEN
+        INSERT INTO owner (username) VALUES (NEW.username);
+    END IF;
+END
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -562,7 +595,7 @@ ALTER TABLE `breakdown`
 -- AUTO_INCREMENT for table `bus`
 --
 ALTER TABLE `bus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -610,7 +643,7 @@ ALTER TABLE `trip`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
