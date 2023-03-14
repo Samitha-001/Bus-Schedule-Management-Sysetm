@@ -7,6 +7,6 @@
     <li><a href="<?= ROOT ?>/adminratings">Ratings</a></li>
     <li><a href="#">Tickets</a></li>
     <li><a href="#">Bus Fares</a></li>
-    <li><a href="#">Routes</a></li>
+    <!-- <li><a href="#">Routes</a></li> -->
     <li><a href="<?= ROOT ?>/adminhalts">Halts</a></li>
 </div>

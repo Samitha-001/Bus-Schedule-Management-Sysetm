@@ -53,7 +53,7 @@ include '../app/views/components/navbar.php';
 include '../app/views/components/adminsidebar.php';
 ?>
 
-<h1 class="section-header">Bus Halts</h1>
+<div class="section-header"><p>Bus Halts</p></div>
   <section>
     <div class="tbl-content">
       <table cellpadding="0" cellspacing="0" border="0">

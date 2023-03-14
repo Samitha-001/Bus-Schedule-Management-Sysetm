@@ -93,8 +93,7 @@ if ($_SESSION['USER']->role == 'passenger') {
                   <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
                 </td>
               </tr>
-            <?php endforeach;
-          else : ?>
+            <?php endforeach; else : ?>
             <tr>
               <td colspan="9" style="text-align:center;color:#999999;"><i>No passengers found.</i></td>
             </tr>
@@ -149,7 +148,6 @@ if ($_SESSION['USER']->role == 'passenger') {
       </table>
     </div>
   </section>
-
 
 </body>
 

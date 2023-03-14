@@ -86,8 +86,11 @@ class Adminusers
             if($role == 'passenger'){
                 $user = new Passenger();
                 $user->updatePassenger($id, $data);
-            }
-        
+            } else
+            if ($role == 'conductor') {
+                $user = new Conductor();
+                $user->updateConductor($id, $data);
+            } 
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
             header('Content-Type: application/json');
@@ -114,9 +117,9 @@ class Adminusers
             }
             // hash the password
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-            
+
             $user->insert($data);
-        
+
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
             header('Content-Type: application/json');
