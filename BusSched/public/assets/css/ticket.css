@@ -5,7 +5,7 @@ body {
   color: #24315e;
   font-family: "Outfit";
   margin: 0px;
-  background: url("../images/backgrounds/bg-ticket.png");
+  background: url("../images/backgrounds/bg-ticket-2.png");
 }
 
 .menu {
@@ -23,7 +23,7 @@ body {
 table {
   /* display: flex; */
   display: block;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   white-space: nowrap;
   flex-direction: column;
   align-items: center;
@@ -35,6 +35,11 @@ table {
   background-color: white;
   /* center align table */
   margin-left: auto;
+  border-radius: 5px;
+
+  height: 70vh;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 table tbody {
@@ -49,6 +54,15 @@ td {
   padding-right: 20px;
   background-color: white;
   text-align: center;
+}
+
+/* freeze first row */
+tr:first-child {
+  position: sticky;
+  top: 12px;
+  background-color: #fff;
+  z-index: 4;
+  padding: 10px;
 }
 
 td {
@@ -207,27 +221,6 @@ h1 {
   color: #fff;
 }
 
-#from-to, #tab-from-to {
-  display: none;
-}
-
-
-#mobile-from-to {
-  display: block;
-  width: 100%;
-  margin: auto;
-}
-
-#mobile-from-to table, #mobile-from-to td {
-  background-color: transparent;
-  padding: 0;
-}
-
-.ticket {
-  margin: 0 auto;
-  width: 100%;
-}
-
 #reserve-seats-q {
   text-decoration: none;
   color: #f15f22;
@@ -245,39 +238,40 @@ h1 {
 }
 
 /* for desktop */
-@media only screen and (min-width: 768px) {
-  div.ticket {
-    width: 60%;
-  }
+/* @media only screen and (min-width: 768px) {
+} */
+div.ticket {
+  width: 60%;
+}
 
-  div.search-bar {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+div.search-bar {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
-  div.search-bar input[type="text"] {
-    width: 105px;
-    height: 40px;
-    font-size: 12px;
-    padding: 10px;
-    border-radius: 5px;
-  }
+div.search-bar h3 {
+  margin: 4px;
+}
 
-  div.search-bar input[type="text"]::placeholder {
-    font-family: Outfit;
-    font-size: 12px;
-    color: #7c839e;
-  }
+div.search-bar input[type="text"], div.search-bar input[type="date"], div.search-bar input[type="number"] {
+  width: 150px;
+  height: 40px;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 3px;
+}
 
-  div#from-to {
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-  }
+div.search-bar input[type="text"]::placeholder, div.search-bar input[type="number"]::placeholder {
+  font-family: Outfit;
+  font-size: 12px;
+  color: #7c839e;
+}
 
-  div#mobile-from-to, div#tab-from-to {
-    display: none;
-  }
+div.from-to {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* for desktop & tablets*/
@@ -290,23 +284,6 @@ h1 {
   }
 }
 
-/* for tablet only */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-  div#tab-from-to {
-    display: block;
-    width: 100%;
-    margin: auto;
-  }
-
-  div#tab-from-to table, div#tab-from-to td {
-    background-color: transparent;
-    padding: 0;
-  }
-
-  div#mobile-from-to, div#from-to {
-    display: none;
-  }
-}
 .ticket-header {
   background-color: #24315e;
   color: white;
@@ -314,27 +291,48 @@ h1 {
   margin: 0 auto;
 }
 
+/* for mobile */
+@media only screen and (max-width: 600px) {
+  div.ticket {
+    width: 100%;
+  }
+}
+
 .ticket-body {
   display: block;
   background: #ffffff;
-  border-radius: 0 0 10px 10px;
+  border-radius: 5px;
   padding: 15px;
   padding-bottom: 30px;
-  /* center vertically */
   margin: 0 auto;
-  /* add spacing between elements in the div */
+  margin-top: 0px;
   line-height: 2.5;
-  /* center elements in the div */
+  text-align: center;
+  font-size: 14px;
+}
+
+.ticket-body th, .ticket-body td {
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   text-align: center;
 }
 
-.ticket-body input[type="text"] {
+.ticket-body input[type="text"], .ticket-body input[type="number"]{
   width: 80%;
   height: 30px;
-  font-size: 20px;
-  padding: 20px;
-  margin: 5px;
+  font-size: 15px;
+  padding: 5px;
+  margin: 0px;
   border-radius: 5px;
+}
+
+.ticket-body table tr td:first-child {
+  text-align: right;
+}
+
+.ticket-body table tr td:last-child {
+  text-align: left;
 }
 
 ul {
@@ -342,18 +340,28 @@ ul {
 }
 
 .ticket-button {
+  background-color: #f4511e;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  font-family: "Outfit";
   font-size: 14px;
-  width: 80px;
-  margin-left: 5px;
-  margin-right: 5px;
+  font-weight: bold;
+  margin-top: 20px;
+  opacity: 1;
+  display: inline-block;
+  text-decoration: none;
+  width: 30%;
+  height: 40px;
 }
 
 .ticket-button-2 {
   font-size: 14px;
-  width: 80px;
+  width: 60px;
   margin-left: 5px;
   margin-right: 5px;
   background-color: white;
-  border: solid 1px #f15f22;
-  color: #f15f22;
+  border: solid 1px #f4511e;
+  color: #f4511e;
 }

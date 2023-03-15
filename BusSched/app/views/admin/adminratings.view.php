@@ -35,7 +35,7 @@ include '../app/views/components/navbar.php';
 include '../app/views/components/adminsidebar.php';
 ?>
 
-<h1 class="section-header">User Ratings</h1>
+<div class="section-header"><p>User Ratings</p></div>
   <section>
     <div class="tbl-header">
       <table cellpadding="0" cellspacing="0" border="0">
