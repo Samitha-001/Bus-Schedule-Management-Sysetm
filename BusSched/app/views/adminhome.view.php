@@ -37,7 +37,7 @@ include 'components/navbar.php';
 include 'components/adminsidebar.php';
 ?>
 
-<h1 class="section-header">Admin Dashboard</h1>
+<div class="section-header"><p>Admin Dashboard</p></div>
 
 <!-- bar chart from chart.js with dummy data -->
 <section class="charts">

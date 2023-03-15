@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
             passengers: passengers
         };
 
+        // get current url
+        var currentUrl = window.location.href;
+
         // var to save the url
         var url = "/passengerschedule?";
 
@@ -42,7 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
             url += "&passengers=" + passengers;
         }
         
+        // remove last part word after /
+        currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
         // redirect to passengerschedule page
-        window.location.href = url;
+        window.location.href = currentUrl + url;
     });
 });

@@ -156,7 +156,7 @@ input[type="text"]::placeholder {
 
 input[type="password"]::placeholder {
   font-family: Outfit;
-  font-size: 12px;
+  font-size: 13px;
   color: #9198af;
   font-weight: regular;
   width: 100%;
@@ -164,7 +164,7 @@ input[type="password"]::placeholder {
 
 input[type="number"]::placeholder {
   font-family: Outfit;
-  font-size: 12px;
+  font-size: 13px;
   color: #9198af;
   font-weight: regular;
   width: 100%;
@@ -172,7 +172,7 @@ input[type="number"]::placeholder {
 
 input[type="email"]::placeholder {
   font-family: Outfit;
-  font-size: 12px;
+  font-size: 13px;
   color: #9198af;
   font-weight: regular;
   width: 100%;

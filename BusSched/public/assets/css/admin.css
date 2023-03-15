@@ -26,29 +26,57 @@ section {
   font-size: 15px;
   color: white;
   display: block;
-  /* transition: 0.3s; */
 }
 
-h1.section-header {
-  font-size: 15px;
-  color: white;
+.section-header {
   background-color: #fd6002;
-  font-weight: 600;
-  text-align: left;
+  padding: 15px;
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: left;
+}
+
+.section-header a {
+  padding-left: 35px;
+  padding-left: 35px;
+  font-size: 14px;
+  color: white;
   margin-top: 0px;
   margin-bottom: 0px;
-  margin-right: 0px;
-  margin-left: 120px;
-  padding-left: 35px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  text-align: left;
 }
+
+.section-header a.first {
+  margin-left: 120px;
+}
+
+.section-header a.selected {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.section-header p {
+  padding-left: 35px;
+  padding-left: 35px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 120px;
+  text-align: left;
+}
+
 /* for tables */
 
 table {
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   /* background-color: #F9F9F9; */
+  /* text wrap */
+  /* word-wrap: break-word; */
 }
 
 .tbl-header {
@@ -80,6 +108,7 @@ td {
   color: #24315e;
   border-bottom: solid 4px white;
   background-color: #f9f9f9;
+  width: fit-content;
 }
 
 /* freeze thead th*/
@@ -89,10 +118,10 @@ thead th {
   background-color: white;
 }
 
-td:last-child {
-  text-align: right;
+/* td:last-child { */
+  /* text-align: right; */
   /* width: 60px; */
-}
+/* } */
 
 td.edit-options {
   text-align: right;
@@ -104,10 +133,10 @@ td:first-child {
   background-color: white;
 }
 
-th:last-child {
+/* th:last-child {
   text-align: right;
   width: fit-content;
-}
+} */
 
 th:first-child {
   width: 40px;
@@ -136,6 +165,8 @@ th:first-child {
 
 #edit-delete {
   display: block;
+  text-align: right;
+  width: fit-content;
 }
 
 td input {
@@ -181,4 +212,8 @@ section.charts .item {
 
 section.charts .item canvas {
   min-height: 200px;
+}
+
+.expired {
+  color: red;
 }

@@ -143,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
       data[fieldName] = inputs[i].value;
     }
 
-    console.log(data);
     insertRow(data);
     document.querySelector("tbody").appendChild(clone);
     dummyinput.remove();

@@ -38,11 +38,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // function to autofill and display editing row
   function editRow(e) {
     let row = e.target.parentElement.parentElement;
-    let userid = row.getAttribute("data-id");
+    // let userid = row.getAttribute("data-id");
     let tds = row.querySelectorAll("td");
     let rowno = tds[0].textContent.trim();
+    let userid = tds[1].textContent.trim();
     let username = tds[2].textContent.trim();
     let email = tds[3].textContent.trim();
     let role = tds[4].textContent.trim();
@@ -54,7 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let select = clone.querySelector("select");
 
     clone.querySelector(".edit-options").style.display = "block";
-    clone.querySelector("td").textContent = rowno;
+    let td2s = clone.querySelectorAll("td");
+    td2s[0].textContent = rowno;
+    td2s[1].textContent = userid;
 
     // fill the inputs with data
     inputs[0].value = username;
@@ -96,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // add new row filled with data when add button is clicked
   function addRow(e) {
     let clone = dummyrow.cloneNode(true);
     clone.classList.remove("dummy-row");
@@ -135,14 +140,12 @@ document.addEventListener("DOMContentLoaded", function () {
     dummyinput.remove();
   }
 
+  // save edited row (updated)
   function saveRow(e) {
     let row = e.target.parentElement.parentElement;
     // get data from input fields
     let inputs = row.querySelectorAll("input");
     let select = row.querySelector("select");
-    let username = inputs[0].value;
-    let email = inputs[1].value;
-    let role = select.value;
 
     let originalrow = document.querySelector(".being-edited");
     originalrow.style.display = "table-row";
@@ -167,14 +170,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     data["role"] = select.value;
-    if (select.value != prevVal[5].textContent.trim()) {
-      td2s[5].textContent = select.value;
+    if (select.value != prevVal[4].textContent.trim()) {
+      td2s[4].textContent = select.value;
     }
-
+    
     update(data);
-    td2s[2] = username;
-    td2s[3] = email;
-    td2s[4] = role;
     row.remove();
   }
 
