@@ -15,9 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const fromValue = fromInput.value.toLowerCase();
         const toValue = toInput.value.toLowerCase();
         
-        console.log(fromValue);
-        console.log(toValue);
-
         // Filter the rows
         const filteredRows = [];
         for (let i = 0; i < rows.length; i++) {
@@ -32,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Update the view to show only the filtered rows
         rows.forEach(row => row.style.display = 'none');
         filteredRows.forEach(row => row.style.display = 'table-row');
-        }
-
+    }
+    
+    filterRows();
 });
