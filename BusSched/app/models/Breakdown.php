@@ -40,6 +40,12 @@ class Breakdown extends Model
         return $this->findAll();
     }
 
+    public function getOwnerBreakdowns($owner)
+    {
+        // return $this->findAll();
+        return $this->where(['owner' => $owner]);
+    }
+
     public function addBreakdown($data)
     {
         // validate and add

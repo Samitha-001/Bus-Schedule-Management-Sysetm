@@ -76,12 +76,10 @@ include '../app/views/components/ownersidebar.php';
                     <th>#</th>
                     <th>Bus No.</th>
                     <th>Description</th>
-                    <!-- <th>Date</th>
-    <th>Time</th>   -->
                     <th>Time to repair</th>
                 </tr>
 
-                <!-- <?php
+                <?php
                 foreach ($breakdowns as $breakdown) {
                     echo "<tr>";
                     echo "<td> $breakdown->id </td>";
@@ -91,8 +89,26 @@ include '../app/views/components/ownersidebar.php';
                     // echo "<td> $breakdown->time </td>";
                     echo "<td> $breakdown->time_to_repair </td>";
                     echo "</tr>";
-                } ?> -->
+                } ?>
+<!-- Object
+        (
+            [id] => 1
+            [bus_no] => NC1112
+            [description] => Tyre puncture
+            [time_to_repair] => 00:15:00
+        )
 
+    [1] => stdClass Object
+        (
+            [id] => 2
+            [bus_no] => NC1113
+            [description] => Accident
+            [time_to_repair] => 00:30:00
+        )
+
+    [2] => stdClass Object
+        (
+ -->
             </table>
         </div>
 

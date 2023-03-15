@@ -9,11 +9,13 @@ class OwnerBreakdowns
     public function index()
     {
         $breakdown = new Breakdown();
-        $breakdowns = $breakdown->getBreakdowns();
+          // get username from session
+         $owner = $_SESSION['USER']->username;
+        $breakdowns = $breakdown->getOwnerBreakdowns($owner);
 
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $_POST['bus_no'] = strtoupper($_POST['bus_no']);
+           
             if ($breakdown->validate($_POST)) {
                 $breakdown->insert($_POST);
 
@@ -22,6 +24,6 @@ class OwnerBreakdowns
 
             $data['errors'] = $breakdown->errors;
         }
-        $this->userview('owner', 'ownerbreakdown', ['ownerbreakdowns' => $breakdowns]);
+        $this->userview('owner', 'ownerbreakdown', ['breakdowns' => $breakdowns]);
     }
 }
