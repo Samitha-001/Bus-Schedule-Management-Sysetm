@@ -43,7 +43,10 @@ class Breakdown extends Model
     public function getOwnerBreakdowns($owner)
     {
         // return $this->findAll();
-        return $this->where(['owner' => $owner]);
+        $data['owner'] = $owner;
+        // show($data);
+        $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        return $breakdowns;
     }
 
     public function addBreakdown($data)
