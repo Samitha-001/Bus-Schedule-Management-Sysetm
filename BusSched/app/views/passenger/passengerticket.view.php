@@ -18,29 +18,125 @@ if (!isset($_SESSION['USER'])) {
 <body>
     <?php
     include '../app/views/components/navbar.php';
-    include '../app/views/components/passengernavbar.php';
+    // include '../app/views/components/passengernavbar.php';
+
+    // get trip id from url
+    $trip = new Trip();
+    if(isset($_GET['tripid'])){
+        $tripid = $_GET['tripid'];
+        $data['id'] = $tripid;
+        $trip = $trip->getTrip($data);
+    }
     ?>
+    <!-- get halt list to suggest halt list -->
+    <datalist id="halt-list">
+        <?php
+        $halt = new Halt();
+        $halts = $halt->getHalts();
+        $len = count($halts);
+        for ($i = 0; $i < $len; $i++) {
+            $halt = $halts[$i];
+            echo "<option value='" . $halt->name . "'>";
+        }
+        ?>
+    </datalist>
+    
+    <div class="search-bar" style="padding: 10px;">
+        <h3>Buy ticket</h3>
+    </div>
     <div class="row">
         <div class="col-6 col-s-9 ticket" id="book-ticket">
-            <div class="ticket-header">
-                <h3>Buy ticket</h3>
-            </div>
             <div class="ticket-body">
-                <ul>
+                <table>
+                    <tr>
+                        <th colspan='3' style='text-align:center;'>
+                            e-Ticket
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan='3' style='text-align:center'>
+                            Ticket for trip starting at <?php if ($trip[0]->departure_time) echo $trip[0]->departure_time; ?>
+                            from <?php if ($trip[0]->starting_halt) echo $trip[0]->starting_halt; ?>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>From</td>
+                        <td>
+                            <input type="text" name="from" id="from" placeholder="From" list="halt-list" required>
+                        </td>
+                        <td><a href="#">Change</a></td>
+                    </tr>
+                    <tr>
+                        <td>To</td>
+                        <td>
+                            <input type="text" name="to" id="to" placeholder="Enter destination halt" list="halt-list" required>
+                        </td>
+                        <td><a href="#">Change</a></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>
+                            <input type="date" id="dateInput" required>
+                        </td>
+                        <td><a href="#">Change</a></td>
+                    </tr>
+                    <tr>
+                        <td>No. of passengers</td>
+                        <td>
+                            <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="Passengers">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Amount payable</td>
+                        <td>
+                            <text>500.00 LKR</text>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align:center">
+                            <a href='#' id="reserve-seats-q">Reserve seats?</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pay with:</td>
+                        <td>
+                            <input type="radio" id="cash" name="payment" value="cash">
+                            <label for="cash">Cash</label>
+                            <input type="radio" id="points" name="payment" value="points">
+                            <label for="points">Points</label>
+                        </td>
+                    </tr>
+                    <tr id="pointsBalance" style="display: none;">
+                        <td colspan="3" style="text-align:center">
+                            Redeemable Points Balance: 100 (=100LKR)
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td colspan="3" style="text-align:center">
+                            <button id="confirm-ticket" class="ticket-button" style="margin:0px;">Confirm</button>
+                        </td>
+                            
+                    </tr>
+                </table>
+                
+                <!-- <ul>
+                    <div id="reserve-seats-q">Reserve seats?</div>
                     <li>
                         <input type="text" name="from" id="from" placeholder="Enter starting halt">
                     </li>
                     <li>
                         <input type="text" name="to" id="to" placeholder="Enter destination halt">
                     </li>
-                    <li>
+                    <li id="selectedDate">
                         <input type="date" id="dateInput">
-                        <text id="selectedDate"></text>
                     </li>
                     <li>
                         <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="No. of passengers">
                     </li>
-                    <div id="reserve-seats-q">Reserve seats?</div>
                     <li>
                         <text>Seats reserved: </text><text>2</text>
                     </li>
@@ -54,14 +150,12 @@ if (!isset($_SESSION['USER'])) {
                         <input type="radio" id="points" name="payment" value="points">
                         <label for="points">Points</label>
                     </li>
-                    <div id="pointsBalance" style="display: none;">
-                        Redeemable Points Balance: <span id="balance">100 (=100LKR)</span>
-                    </div>
+                    
                     <li>
                         <a href="<?= ROOT ?>/passengerschedule"><button class="button-orange ticket-button-2">Cancel</button></a>
                         <button class="button-orange ticket-button">Confirm</button>
                     </li>
-                </ul>
+                </ul> -->
                 <script src="<?= ROOT ?>/assets/js/ticket.js"></script>
 
             </div>

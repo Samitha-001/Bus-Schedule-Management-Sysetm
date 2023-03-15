@@ -94,7 +94,6 @@ if (isset($_SESSION['USER'])) {
                     echo "</tr><tr>";
 
                     for ($i = 0; $i < $len; $i++) {
-
                         $halt = $halts[$i];
                         echo "<tr><td class='halt-name'>" . $halt->name . "</td>";
                         for ($j = 0; $j < $len; $j++) {

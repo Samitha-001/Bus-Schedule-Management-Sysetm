@@ -17,4 +17,10 @@ class Trip extends Model
     {
         return $this->findAll();
     }
+
+    // get trip by id
+    public function getTrip($data)
+    {
+        return $this->where($data);
+    }
 }

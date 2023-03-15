@@ -24,7 +24,6 @@ class Adminbuses
             $postData = json_decode(file_get_contents('php://input'), true);
             
             // Process the request data and perform the update
-            // ...
             $bus = new Bus();
             // remove field availability from the array
             $id = $postData['id'];

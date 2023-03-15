@@ -41,4 +41,10 @@ class E_ticket extends Model
     {
         return $this->findAll();
     }
+
+    // add ticket
+    public function addTicket($data)
+    {
+        return $this->insert($data);
+    }
 }
