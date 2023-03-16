@@ -4,6 +4,8 @@ class Passenger extends Model
 {
     protected $table = 'passenger';
 
+    protected $order_column = 'username';
+
     // editable columns
     protected $allowedColumns = [
         'username',
@@ -25,5 +27,12 @@ class Passenger extends Model
     public function updatePassenger($id, $data)
     {
         $this->update($id, $data, 'username');
+    }
+
+    // get passenger
+    public function getPassenger($username)
+    {
+        $data = $this->where(['username'=>$username]);
+        return $data;
     }
 }

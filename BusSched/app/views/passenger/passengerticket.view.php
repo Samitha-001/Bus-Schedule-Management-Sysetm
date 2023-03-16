@@ -21,6 +21,10 @@ if (!isset($_SESSION['USER'])) {
     // include '../app/views/components/passengernavbar.php';
 
     // get trip id from url
+    $user = $_SESSION['USER'];
+    $passenger = new Passenger();
+    $passenger = $passenger->getPassenger($user->username)[0];
+    
     $trip = new Trip();
     if(isset($_GET['tripid'])){
         $tripid = $_GET['tripid'];
@@ -28,6 +32,7 @@ if (!isset($_SESSION['USER'])) {
         $trip = $trip->getTrip($data);
     }
     ?>
+
     <!-- get halt list to suggest halt list -->
     <datalist id="halt-list">
         <?php
@@ -111,7 +116,7 @@ if (!isset($_SESSION['USER'])) {
                     </tr>
                     <tr id="pointsBalance" style="display: none;">
                         <td colspan="3" style="text-align:center">
-                            Redeemable Points Balance: 100 (=100LKR)
+                            Redeemable Points Balance: <?= $passenger->points ?> (= <?= $passenger->points ?> LKR)
                         </td>
                     </tr>
                     <tr></tr>
