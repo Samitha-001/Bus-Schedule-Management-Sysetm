@@ -132,23 +132,23 @@ class Model
     // function to join tables
     public function join($table2, $c1, $c2, $data = [], $data_not = []) {
         $query = "SELECT * FROM $this->table JOIN $table2 ON $c1 = $c2 WHERE ";
-
+        $keys = array_keys($data);
+        $keys_not = array_keys($data_not);
         if (!$data && !$data_not)
             // remove "where" from the query
             $query = substr($query, 0, -7);
 
-        foreach ($data as $key) {
+        foreach ($keys as $key) {
             $query .= $key . " = :". $key . " && ";       // '.' is used to add to query
         }
 
-        foreach ($data_not as $key) {
+        foreach ($keys_not as $key) {
             $query .= $key . " != :". $key . " && ";
         }
         $query = trim($query, " && ");
 
-        $query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";       // :id is a placeholder in PDO
+        $query .= " order by $this->table.$this->order_column $this->order_type limit $this->limit offset $this->offset";       // :id is a placeholder in PDO
         $data = array_merge($data, $data_not);
-
         return $this->query($query, $data);
     }
 }
