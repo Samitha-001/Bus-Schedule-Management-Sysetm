@@ -25,7 +25,26 @@ if (isset($_SESSION['USER'])) {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/passenger_profile.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <script src="<?= ROOT ?>/assets/js/passengerprofile.js"></script>
     <title>Profile</title>
+    <style>
+      td input[disabled] {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        text-align: inherit;
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+        cursor: default;
+      }
+      .dummy-row, .dummy-input {
+        display: none;
+      }
+    </style>
 </head>
 
 <body>
@@ -39,31 +58,76 @@ if (isset($_SESSION['USER'])) {
     <div class="row">
         <div class="col-3 col-s-3">
             <div class="passenger-profile-card" id="profile-header">
-                <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="ptofile pic" width="50px" height="50px">
-                <h1 id="username"><?= $username ?></h1>
+                <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="profile pic" width="50px" height="50px">
+                <h1 id="username">Hi <?= $username ?>!</h1>
             </div>
             <div class="nav-cards">
                 <div class="passenger-profile-card">
-                    <ul style="padding-left:5px;">
+                    <ul class="info-grid" style="padding-left:5px;">
+                        <h1>Name:</h1>
+                        <p>
+                            <?= $passenger->name ?>
+                        </p>
+                        <h1>Phone:</h1>
+                        <p>
+                            <?= $passenger->phone ?>
+                        </p>
+                        <h1>Address:</h1>
+                        <p>
+                            <?= $passenger->address ?>
+                        </p>
+                        <h1>DOB:</h1>
+                        <p>
+                            <?= $passenger->dob ?>
+                        </p>
+                        <!-- TODO -->
+                        <a href=# id='edit-passenger-info'>Edit</a>
+                    </ul>
+
+                    <!-- this row is cloned to collect input for editing rows -->
+                    <ul style="padding-left:5px;" class='dummy-input info-grid'>
+                        <h1>Name:</h1>
+                        <p>
+                            <input type="text" name="name" id="name" value="<?= $passenger->name ?>">
+                        </p>
+                        <h1>Phone:</h1>
+                        <p>
+                            <input type="text" name="phone" id="phone" value="<?= $passenger->phone ?>">
+                        </p>
+                        <h1>Address:</h1>
+                        <p>
+                            <input type="text" name="address" id="address" value="<?= $passenger->address ?>">
+                        </p>
+                        <h1>DOB:</h1>
+                        <p>
+                            <input type="date" name="dob" id="dob" value="<?= $passenger->dob ?>">
+                        </p>
+                        
+                        <!-- TODO -->
+                        <a href=# id='save-passenger-info'>Save</a>
+                        <a href=# id='cancel-passenger-info'>Cancel</a>
+                    </ul>
+
+                    <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
+                    <ul class='dummy-row info-grid'>
                         <li>
                             <h1>Name:</h1>
-                            <?= $passenger->name ?>
+                            <p></p>
                         </li>
                         <li>
                             <h1>Phone:</h1>
-                            <?= $passenger->phone ?>
+                            <p></p>
                         </li>
                         <li>
                             <h1>Address:</h1>
-                            <?= $passenger->address ?>
+                            <p></p>
                         </li>
                         <li>
                             <h1>DOB:</h1>
-                            <?= $passenger->dob ?>
+                            <p></p>
                         </li>
                     </ul>
-                    <!-- TODO -->
-                    <a href=#>Edit</a>
+
                 </div>
                 <div class="passenger-profile-card">
                     <h1 style="margin-bottom: 0px;">My points</h1>
@@ -72,7 +136,7 @@ if (isset($_SESSION['USER'])) {
                         <li><h1>Value:</h1> <?= $passenger->points ?> LKR</li>
                         <li><h1>Exp. date:</h1> <?= $passenger->points_expiry ?></li>
                     </ul>
-                    <button class="button-orange" style="background-color:#24315e; width:100;">Gift points</button>
+                    <button class="button-orange" style="width:100;">Gift points</button>
                 </div>
                 </div>
         </div>
