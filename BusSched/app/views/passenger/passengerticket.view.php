@@ -20,7 +20,7 @@ if (!isset($_SESSION['USER'])) {
     include '../app/views/components/navbar.php';
     // include '../app/views/components/passengernavbar.php';
 
-    // get trip id from url
+
     $user = $_SESSION['USER'];
     $passenger = new Passenger();
     $passenger = $passenger->getPassenger($user->username)[0];
@@ -59,7 +59,7 @@ if (!isset($_SESSION['USER'])) {
                         </th>
                     </tr>
                     <tr>
-                        <td colspan='3' style='text-align:center'>
+                        <td colspan='3' style='text-align:center' data-tripid=<?=$tripid?> id='trip-id'>
                             Ticket for trip starting at <?php if ($trip[0]->departure_time) echo $trip[0]->departure_time; ?>
                             from <?php if ($trip[0]->starting_halt) echo $trip[0]->starting_halt; ?>
                         </td>
@@ -67,14 +67,14 @@ if (!isset($_SESSION['USER'])) {
                     <tr></tr>
                     <tr>
                         <td>From</td>
-                        <td>
+                        <td data-fieldname="source_halt">
                             <input type="text" name="from" id="from" placeholder="From" list="halt-list" required>
                         </td>
                         <td><a href="#">Change</a></td>
                     </tr>
                     <tr>
                         <td>To</td>
-                        <td>
+                        <td data-fieldname="dest_halt">
                             <input type="text" name="to" id="to" placeholder="Enter destination halt" list="halt-list" required>
                         </td>
                         <td><a href="#">Change</a></td>
@@ -124,7 +124,11 @@ if (!isset($_SESSION['USER'])) {
                         <td colspan="3" style="text-align:center">
                             <button id="confirm-ticket" class="ticket-button" style="margin:0px;">Confirm</button>
                         </td>
-                            
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align:center">
+                            <button id="cancel-ticket" class="ticket-button-2" style="margin:0px;" href="<?= ROOT?>./passengerschedule">Cancel</button>
+                        </td>
                     </tr>
                 </table>
                 

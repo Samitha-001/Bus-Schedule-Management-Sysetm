@@ -12,6 +12,9 @@ class E_ticket extends Model
         'seat_number',
         'ticket_number',
         'booking_time',
+        'source_halt',
+        'dest_halt',
+        'booking_time',
         'status'
     ];
 
@@ -45,6 +48,7 @@ class E_ticket extends Model
     // add ticket
     public function addTicket($data)
     {
+        // show($data);
         return $this->insert($data);
     }
 }

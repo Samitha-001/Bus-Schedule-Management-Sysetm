@@ -357,11 +357,18 @@ ul {
 }
 
 .ticket-button-2 {
-  font-size: 14px;
-  width: 60px;
-  margin-left: 5px;
-  margin-right: 5px;
   background-color: white;
   border: solid 1px #f4511e;
+  border-radius: 5px;
   color: #f4511e;
+  text-align: center;
+  font-family: "Outfit";
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+  opacity: 1;
+  display: inline-block;
+  text-decoration: none;
+  width: 30%;
+  height: 40px;
 }
