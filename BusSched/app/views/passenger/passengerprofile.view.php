@@ -31,7 +31,9 @@ if (isset($_SESSION['USER'])) {
 <body>
 <?php
     include '../app/views/components/navbar.php';
-    include '../app/views/components/passengernavbar.php';
+    // include '../app/views/components/passengernavbar.php';
+    $passenger = $data[0];
+    $username = $passenger->username;
 ?>
 
     <div class="row">
@@ -42,11 +44,33 @@ if (isset($_SESSION['USER'])) {
             </div>
             <div class="nav-cards">
                 <div class="passenger-profile-card">
+                    <ul style="padding-left:5px;">
+                        <li>
+                            <h1>Name:</h1>
+                            <?= $passenger->name ?>
+                        </li>
+                        <li>
+                            <h1>Phone:</h1>
+                            <?= $passenger->phone ?>
+                        </li>
+                        <li>
+                            <h1>Address:</h1>
+                            <?= $passenger->address ?>
+                        </li>
+                        <li>
+                            <h1>DOB:</h1>
+                            <?= $passenger->dob ?>
+                        </li>
+                    </ul>
+                    <!-- TODO -->
+                    <a href=#>Edit</a>
+                </div>
+                <div class="passenger-profile-card">
                     <h1 style="margin-bottom: 0px;">My points</h1>
                     <ul style="padding-left:5px;">
-                        <li>Points: &emsp;</li>
-                        <li>Value: &emsp;</li>
-                        <li>Exp. date: &emsp;</li>
+                        <li><h1>Points:</h1> <?= $passenger->points ?></li>
+                        <li><h1>Value:</h1> <?= $passenger->points ?> LKR</li>
+                        <li><h1>Exp. date:</h1> <?= $passenger->points_expiry ?></li>
                     </ul>
                     <button class="button-orange" style="background-color:#24315e; width:100;">Gift points</button>
                 </div>
