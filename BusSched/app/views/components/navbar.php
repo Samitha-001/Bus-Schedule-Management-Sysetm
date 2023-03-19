@@ -23,7 +23,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     </button>
                     <div class="dropdown-content">
                         <a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a>
-                        <a href="<?= ROOT ?>/passengerticket">Buy tickets</a>
+                        <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
 
                         <?php
                         if (strpos($current_url, '/home') == true) { // checks if current URL is home page
@@ -89,7 +89,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <ul class="sidenav-links">
         <ul style="padding-left: 40px;">
             <li><a href="<?= ROOT ?>/passengerschedule">Bus schedule</a></li>
-            <li><a href="<?= ROOT ?>/passengerticket">Buy tickets</a></li>
+            <li><a href="<?= ROOT ?>/passengerschedule">Buy tickets</a></li>
             <li>
                 <?php
                 if (strpos($current_url, '/home') == true) { // checks if current URL is home page

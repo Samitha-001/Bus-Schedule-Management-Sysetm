@@ -35,4 +35,12 @@ class Passenger extends Model
         $data = $this->where(['username'=>$username]);
         return $data;
     }
+
+    // get passenger tickets
+    public function getPassengerTickets()
+    {
+        $tablename = 'e_ticket';
+        $tickets = $this->join($tablename, 'passenger.username', 'e_ticket.passenger', ['username'=>$_SESSION['USER']->username]);
+        return $tickets;
+    }
 }
