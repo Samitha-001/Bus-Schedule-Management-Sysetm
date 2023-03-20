@@ -30,7 +30,7 @@ label {
 input[type="text"] {
   width: 100%;
   height: 51px;
-  padding-left: 15px;
+  padding-left: 10px;
   border-radius: 5px;
 }
 
@@ -131,8 +131,8 @@ button:hover {
 
 section h1 {
   color: #24315e;
-  padding: 10;
-  font-size: 30px;
+  /* padding: 10; */
+  font-size: 25px;
   margin-top: 0px;
 }
 section h3 {
@@ -218,6 +218,13 @@ div.white-box input:focus {
     text-align: center;
   }
 
+  div.fare-from-to-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* gap */
+    grid-gap: 10px;  
+    margin: 20px;
+  }
 }
 
 table#busfare-table {
@@ -291,6 +298,15 @@ table#busfare-table td.halt-name-top {
 
 /* for desktop & tablet*/
 @media only screen and (min-width: 600px) {
+  div.fare-from-to-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* gap */
+    grid-gap: 10px;
+  
+    margin: 50px;
+  }
+
   table#busfare-table td {
     padding: 10px;
     padding-left: 20px;
@@ -332,12 +348,6 @@ table#busfare-table td.halt-name-top {
   .find-button-orange {
     width: 130px;
   }
-
-  div.fare-from-to-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
 }
 
 section#about {
@@ -409,15 +419,6 @@ section#contact {
 
 .card:hover .back {
   transform: rotateY(0);
-}
-
-div.fare-from-to-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  /* gap */
-  grid-gap: 10px;
-
-  margin: 50px;
 }
 
 div.fare-from-to-grid input {

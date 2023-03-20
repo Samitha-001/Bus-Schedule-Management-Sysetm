@@ -78,50 +78,38 @@ if (isset($_SESSION['USER'])) {
         </div>
     </div>
     <div class="row">
-        <h1 style="font-size: 30px; margin-top:40px; color:#24315e; text-align:center;">Bus fares</h1>
+        <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
         <div class="fare-from-to-grid">
             <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list">
-        
             <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list">
+
+            <button id="calculate-fare" class="button-orange">Find fare</button>
+            <div id="fare-result"></div>
         </div>
         <section id="busfare">
             <div style="width:100%">
-
                 <table id="busfare-table">
                     <?php
+
                     $len = count($halts);
                     $fareinstance = new Fareinstance;
                     $instance = $fareinstance->getFareInstances($len);
-                    // show($fare);
-                    // show($fareinstance);
-                    echo "<tr><td class='halt-name-top'></td>";
-                    // for ($i = 0; $i < $len; $i++) {
-                    //     $halt = $halts[$i];
-
-                    //     // First column for the halt name
-                    //     echo "<td class='halt-name-top'>" . $halt->name . "</td>";
-                    // }
-                    echo "</tr><tr>";
                     
                     for ($i = 0; $i < $len; $i++) {
                         $halt = $halts[$i];
-                        echo "<tr><td class='halt-name'>" . $halt->name . "</td>";
-                        for ($j = 0; $j <= $i; $j++) {
-                            if ($i == $j) {
-                                // echo "<td class='halt-name'></td>";
-                                echo "<td class='halt-name-top'>" . $halt->name . "</td>";
-                                
-                            } else {
-
-                                echo "<td>" . $instance[$i-$j]->fare . "</td>";
-
-                            }
-                        }
-                        echo "</tr><tr>";
-                        // show(get_defined_vars());
-                    }
                     ?>
+                        <tr data-haltfrom='<?=$halt->name?>'><td class='halt-name'><?=$halt->name?></td>
+                        <?php
+                        for ($j = 0; $j <= $i; $j++)
+                            { if ($i == $j) {?>
 
+                            <td class='halt-name-top'><?=$halt->name?></td>
+
+                        <?php } else {?>
+
+                            <td data-haltto='<?=$halts[$j]->name?>'><?=$instance[$i-$j]->fare?></td>
+
+                        <?php }}}?>
                 </table>
             </div>
         </section>

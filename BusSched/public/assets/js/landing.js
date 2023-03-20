@@ -1,4 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
+    // bus fare
+    // get div withclass fare-from-to-grid
+    var fareFromToGrid = document.getElementsByClassName("fare-from-to-grid")[0];
+    // console.log(fareFromToGrid);
+    let busfareTable = document.getElementById("busfare-table");
+    
+    inputs = fareFromToGrid.getElementsByTagName("input");
+    let farefromInput = inputs[0];
+    let faretoInput = inputs[1];
+    let calculateFareButton = document.getElementById("calculate-fare");
+
+    calculateFareButton.addEventListener("click", displayFare);
+
+    function displayFare() {
+        const farefrom = farefromInput.value;
+        const fareto = faretoInput.value;
+        
+        // find tr with data-haltfrom equal to farefrom
+        let tr = busfareTable.querySelector(`tr[data-haltfrom="${farefrom}"]`);
+        let td = tr.querySelector(`td[data-haltto="${fareto}"]`);
+        
+        if (!td) {
+            tr = busfareTable.querySelector(`tr[data-haltfrom="${fareto}"]`);
+            td = tr.querySelector(`td[data-haltto="${farefrom}"]`);
+        }
+        
+        let fareResultDiv = document.getElementById("fare-result");
+        fareResultDiv.textContent = "Fare: " + td.textContent;
+    }
     // find bus
     // get button with id find-bus
     var findBusButton = document.getElementById("find-bus");
@@ -50,4 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // redirect to passengerschedule page
         window.location.href = currentUrl + url;
     });
+
+
 });
+
