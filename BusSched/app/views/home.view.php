@@ -90,31 +90,35 @@ if (isset($_SESSION['USER'])) {
                 <table id="busfare-table">
                     <?php
                     $len = count($halts);
+                    $fareinstance = new Fareinstance;
+                    $instance = $fareinstance->getFareInstances($len);
+                    // show($fare);
+                    // show($fareinstance);
                     echo "<tr><td class='halt-name-top'></td>";
-                    for ($i = 0; $i < $len; $i++) {
-                        $halt = $halts[$i];
+                    // for ($i = 0; $i < $len; $i++) {
+                    //     $halt = $halts[$i];
 
-                        // First column for the halt name
-                        echo "<td class='halt-name-top'>" . $halt->name . "</td>";
-                    }
+                    //     // First column for the halt name
+                    //     echo "<td class='halt-name-top'>" . $halt->name . "</td>";
+                    // }
                     echo "</tr><tr>";
-
+                    
                     for ($i = 0; $i < $len; $i++) {
                         $halt = $halts[$i];
                         echo "<tr><td class='halt-name'>" . $halt->name . "</td>";
-                        for ($j = 0; $j < $len; $j++) {
+                        for ($j = 0; $j <= $i; $j++) {
                             if ($i == $j) {
-                                // Current halt and target halt are the same, don't need to display fare
-                                echo "<td class='halt-name'></td>";
+                                // echo "<td class='halt-name'></td>";
+                                echo "<td class='halt-name-top'>" . $halt->name . "</td>";
+                                
                             } else {
-                                $targetHalt = $halts[$j];
-                                $fare = $halt->fare_from_source - $targetHalt->fare_from_source;
-                                $fare = $fare < 0 ? -$fare : $fare;
-                                echo "<td>" . $fare . "</td>";
+
+                                echo "<td>" . $instance[$i-$j]->fare . "</td>";
 
                             }
                         }
                         echo "</tr><tr>";
+                        // show(get_defined_vars());
                     }
                     ?>
 
