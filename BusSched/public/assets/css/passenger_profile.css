@@ -145,3 +145,12 @@ h1 {
   grid-gap: 0px;
   margin: 10px;
 }
+
+input {
+  font-family: Outfit;
+  font-size: 15px;
+}
+
+/* .gift-points-div {
+  display:none;
+} */

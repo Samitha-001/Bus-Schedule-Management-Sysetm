@@ -1,17 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let inputrow = document.querySelector(".dummy-input");
-
     let editbtn = document.getElementById("edit-passenger-info");
+    // console.log("editbtn");
+    // console.log(editbtn);
+    let inputrow = document.querySelector(".dummy-input");
+    
     editbtn.addEventListener("click", function (e) { 
         editRow(e);
     });
 
-    let savebtn = document.getElementById("save-passenger-info");
+    let savebtn = document.getElementById
+    ("save-passenger-info");
     savebtn.addEventListener("click", function (e) {
         saveRow(e);
     });
 
     let cancelbtn = document.getElementById("cancel-passenger-info");
+    // console.log("cancelbtn");
+    // console.log(cancelbtn);
     cancelbtn.addEventListener("click", function (e) {
         console.log("cancel");
         cancelEdit(e);
@@ -52,4 +57,27 @@ document.addEventListener("DOMContentLoaded", function () {
         ticketdiv.classList.remove("being-edited");
         ticketdiv.parentElement.removeChild(ticketdiv.nextElementSibling);
     }
+
+
+    //
+    // save updated row
+    // function saveRow(e) {
+    //     let ticketdiv = e.target.parentElement;
+    //     let inputs = ticketdiv.querySelectorAll("input");
+    //     let name = inputs[0].value;
+    //     let phone = inputs[1].value;
+    //     let address = inputs[2].value;
+    //     let dob = inputs[3].value;
+
+    //     let userdetails = ticketdiv.previousElementSibling.querySelectorAll("p");
+    //     userdetails[0].textContent = name;
+    //     userdetails[1].textContent = phone;
+    //     userdetails[2].textContent = address;
+    //     userdetails[3].textContent = dob;
+
+    //     ticketdiv.style.display = "block";
+    //     ticketdiv.classList.remove("being-edited");
+    //     ticketdiv.parentElement.removeChild(ticketdiv.nextElementSibling);
+    // }
+    
 });

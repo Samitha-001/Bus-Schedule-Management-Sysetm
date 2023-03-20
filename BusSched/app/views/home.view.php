@@ -31,7 +31,16 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-<?php include 'components/navbar.php'; ?>
+    <?php include 'components/navbar.php'; ?>
+    <datalist id="halt-list">
+        <?php
+        $len = count($halts);
+        for ($i = 0; $i < $len; $i++) {
+            $halt = $halts[$i];
+            echo "<option value='" . $halt->name . "'>";
+        }
+        ?>
+    </datalist>
     <div class="landing-main row">
         <div class="col-6 menu landing-top">
             <h1 style="padding: 0px;">Find a bus for your next trip</h1>
@@ -42,15 +51,6 @@ if (isset($_SESSION['USER'])) {
                 <div class="landing-header-li">
                     <label for="from">FROM</label>
                     <input type="text" name="from" id="from" placeholder="Choose city" list="halt-list">
-                    <datalist id="halt-list">
-                        <?php
-                        $len = count($halts);
-                        for ($i = 0; $i < $len; $i++) {
-                            $halt = $halts[$i];
-                            echo "<option value='" . $halt->name . "'>";
-                        }
-                        ?>
-                    </datalist>
                 </div>
             </div>
             <div class="white-box">
@@ -79,8 +79,14 @@ if (isset($_SESSION['USER'])) {
     </div>
     <div class="row">
         <h1 style="font-size: 30px; margin-top:40px; color:#24315e; text-align:center;">Bus fares</h1>
+        <div class="fare-from-to-grid">
+            <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list">
+        
+            <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list">
+        </div>
         <section id="busfare">
             <div style="width:100%">
+
                 <table id="busfare-table">
                     <?php
                     $len = count($halts);
