@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let faretoInput = inputs[1];
     let calculateFareButton = document.getElementById("calculate-fare");
 
+    let fareResultDiv = document.getElementById("fare-result");
+
     calculateFareButton.addEventListener("click", displayFare);
 
     function displayFare() {
@@ -25,10 +27,37 @@ document.addEventListener("DOMContentLoaded", function () {
             tr = busfareTable.querySelector(`tr[data-haltfrom="${fareto}"]`);
             td = tr.querySelector(`td[data-haltto="${farefrom}"]`);
         }
+
+        td.style.backgroundColor = "#f4511e";
         
-        let fareResultDiv = document.getElementById("fare-result");
-        fareResultDiv.textContent = "Fare: " + td.textContent;
+        fareResultDiv.textContent = "Fare from "+farefrom+" to "+fareto+": " + td.textContent;
     }
+
+    // add event listener to busfareTable
+    busfareTable.addEventListener("click", function (e) {
+        // get target
+        tds = busfareTable.getElementsByClassName("fare-td");
+        for (let i = 0; i < tds.length; i++) {
+            tds[i].style.backgroundColor = "#24315e";
+        }
+        let target = e.target;
+        // if target is a td
+        if (target.className == "fare-td") {
+            // get parent tr
+            let td = target;
+            // change color of td to orange
+            td.style.backgroundColor = "#f4511e";
+        }
+        // get parent element of target
+        let tr = target.parentElement;
+        // get data-farefrom
+        let farefrom = tr.dataset.haltfrom;
+        let fareto = target.dataset.haltto;
+        if (target.className == "fare-td") {
+            fareResultDiv.textContent = "Fare from " + farefrom + " to " + fareto + ": " + target.textContent;
+        }
+
+    });
     // find bus
     // get button with id find-bus
     var findBusButton = document.getElementById("find-bus");

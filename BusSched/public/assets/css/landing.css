@@ -119,15 +119,15 @@ button:hover {
   /* margin: 10px; */
 }
 
-/* section { */
-  /* display: flex; */
-  /* flex-direction: column;
+section {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white; */
-  /* padding: 10px; */
-  /* margin: 10px; */
-/* } */
+  background-color: white;
+  padding: 0px;
+  margin: 5px;
+}
 
 section h1 {
   color: #24315e;
@@ -301,7 +301,6 @@ table#busfare-table td.halt-name-top {
   div.fare-from-to-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    /* gap */
     grid-gap: 10px;
   
     margin: 50px;
@@ -423,4 +422,10 @@ section#contact {
 
 div.fare-from-to-grid input {
   justify-self: center;
+}
+
+.span-3 {
+  grid-column: span 3;
+  text-align: center;
+  align-self: center;
 }

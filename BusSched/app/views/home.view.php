@@ -80,11 +80,11 @@ if (isset($_SESSION['USER'])) {
     <div class="row">
         <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
         <div class="fare-from-to-grid">
-            <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list">
-            <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list">
+            <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" required>
+            <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" required>
 
             <button id="calculate-fare" class="button-orange">Find fare</button>
-            <div id="fare-result"></div>
+            <div id="fare-result" class='span-3'></div>
         </div>
         <section id="busfare">
             <div style="width:100%">
@@ -107,7 +107,7 @@ if (isset($_SESSION['USER'])) {
 
                         <?php } else {?>
 
-                            <td data-haltto='<?=$halts[$j]->name?>'><?=$instance[$i-$j]->fare?></td>
+                            <td class='fare-td' data-haltto='<?=$halts[$j]->name?>'><?=$instance[$i-$j]->fare?></td>
 
                         <?php }}}?>
                 </table>
