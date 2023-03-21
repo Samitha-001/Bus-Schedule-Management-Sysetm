@@ -142,15 +142,19 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   /* grid-template-rows: 1fr 1fr; */
-  grid-gap: 0px;
+  grid-gap: 5px;
   margin: 10px;
 }
 
 input {
   font-family: Outfit;
-  font-size: 15px;
+  font-size: 13px;
 }
 
-/* .gift-points-div {
+input[type="text"], input[type="number"], input[type="text"]::placeholder, input[type="number"]::placeholder {
+  font-size: 13px;
+}
+
+#gift-points-div {
   display:none;
-} */
+}

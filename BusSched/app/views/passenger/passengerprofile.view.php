@@ -116,28 +116,20 @@ if (isset($_SESSION['USER'])) {
                         </p>
                         
                         <!-- TODO -->
-                        <a href=# id='save-passenger-info'>Save</a>
-                        <a href=# id='cancel-passenger-info'>Cancel</a>
+                        <button id='save-passenger-info'>Save</button>
+                        <button id='cancel-passenger-info'>Cancel</button>
                     </div>
 
                     <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
                     <div class='dummy-row info-grid'>
-                        <!-- <li> -->
-                            <h1>Name:</h1>
-                            <p></p>
-                        <!-- </li>
-                        <li> -->
-                            <h1>Phone:</h1>
-                            <p></p>
-                        <!-- </li>
-                        <li> -->
-                            <h1>Address:</h1>
-                            <p></p>
-                        <!-- </li>
-                        <li> -->
-                            <h1>DOB:</h1>
-                            <p></p>
-                        <!-- </li> -->
+                        <h1>Name:</h1>
+                        <p></p>
+                        <h1>Phone:</h1>
+                        <p></p>
+                        <h1>Address:</h1>
+                        <p></p>
+                        <h1>DOB:</h1>
+                        <p></p>
                     </div>
 
                 </div>
@@ -151,14 +143,14 @@ if (isset($_SESSION['USER'])) {
 
                     <button id="gift-points-btn" class="button-orange" style="width:100;">Gift points</button>
 
-                    <div class='gift-points-div'>
-                        <input type="text" name="gift-to" id="gift-to" placeholder="Enter username" list="passenger-list">
+                    <div id='gift-points-div'>
+                        <input type="text" name="gift-to" id="gift-to" placeholder="Enter username" list="passenger-list" required>
                         <input type="number" name="points" id="points" placeholder="Enter points" max="<?php if ($passenger->points > 5):
                             echo($passenger->points - 5);
-                        endif;?>" min='0'>
+                        endif;?>" min='0' required>
                         <div class="info-grid">
-                            <button class="button-orange" style="width:100;">Gift</button>
-                            <button class="button-orange" style="width:100;">Cancel</button>
+                            <button id="confirm-gift-btn" class="button-orange" style="width:100;">Gift</button>
+                            <button id="cancel-gift-btn" class="button-orange" style="width:100;">Cancel</button>
                         </div>
                     </div>
                 </div>
