@@ -71,7 +71,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <a class="li" href="<?= ROOT ?>/passengerprofile">My Profile</a>
 
     <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
-    <a href="<?= ROOT ?>/passengerschedule">My tickets</a>
+    <a href="<?= ROOT ?>/passengertickets">My tickets</a>
 
     <?php
     if (strpos($current_url, '/home') == true) { // checks if current URL is home page
