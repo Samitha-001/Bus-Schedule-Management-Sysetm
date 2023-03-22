@@ -2,17 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // restrict date to be selected today and tomorrow
-  let today = new Date();
-  let tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
+  // let today = new Date();
+  // let tomorrow = new Date();
+  // tomorrow.setDate(today.getDate() + 1);
 
-  document.getElementById("dateInput").min = today.toISOString().split("T")[0];
-  document.getElementById("dateInput").value = today.toISOString().split("T")[0];
-  document.getElementById("dateInput").max = tomorrow.toISOString().split("T")[0];
+  // document.getElementById("dateInput").min = today.toISOString().split("T")[0];
+  // document.getElementById("dateInput").value = today.toISOString().split("T")[0];
+  // document.getElementById("dateInput").max = tomorrow.toISOString().split("T")[0];
 
-  document.getElementById("dateInput").addEventListener("change", function () {
-    let selectedDate = new Date(this.value);
-  });
+  // document.getElementById("dateInput").addEventListener("change", function () {
+  //   let selectedDate = new Date(this.value);
+  // });
   
   const radioButtons = document.querySelectorAll("input[name='payment']");
   const pointsBalance = document.getElementById("pointsBalance");
@@ -30,17 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // confirm ticket button
   document.querySelector("#confirm-ticket").addEventListener("click", () => {
     data = {};
+    
     let inputs = document.querySelectorAll("input");
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < 2; i++) {
       if (inputs[i].value === "") {
         alert("Please fill all fields");
         return;
       }
       let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
       data[fieldName] = inputs[i].value;
-
-      insertRow(data);
     }
+    
+    tdtrip = document.getElementById("trip-id");
+    data["trip_id"] = tdtrip.getAttribute("data-tripid");
+    insertRow(data);
   });
 
   function insertRow(data) {
@@ -59,4 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(data);
       });
   }
+
+  // cancel ticket button
+  document.querySelector("#cancel-ticket").addEventListener("click", () => {
+    window.location.href = `${ROOT}/passengerschedule`;
+  });
 });

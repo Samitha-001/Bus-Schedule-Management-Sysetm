@@ -31,7 +31,16 @@ if (isset($_SESSION['USER'])) {
 </head>
 
 <body>
-<?php include 'components/navbar.php'; ?>
+    <?php include 'components/navbar.php'; ?>
+    <datalist id="halt-list">
+        <?php
+        $len = count($halts);
+        for ($i = 0; $i < $len; $i++) {
+            $halt = $halts[$i];
+            echo "<option value='" . $halt->name . "'>";
+        }
+        ?>
+    </datalist>
     <div class="landing-main row">
         <div class="col-6 menu landing-top">
             <h1 style="padding: 0px;">Find a bus for your next trip</h1>
@@ -42,15 +51,6 @@ if (isset($_SESSION['USER'])) {
                 <div class="landing-header-li">
                     <label for="from">FROM</label>
                     <input type="text" name="from" id="from" placeholder="Choose city" list="halt-list">
-                    <datalist id="halt-list">
-                        <?php
-                        $len = count($halts);
-                        for ($i = 0; $i < $len; $i++) {
-                            $halt = $halts[$i];
-                            echo "<option value='" . $halt->name . "'>";
-                        }
-                        ?>
-                    </datalist>
                 </div>
             </div>
             <div class="white-box">
@@ -78,40 +78,38 @@ if (isset($_SESSION['USER'])) {
         </div>
     </div>
     <div class="row">
-        <h1 style="font-size: 30px; margin-top:40px; color:#24315e; text-align:center;">Bus fares</h1>
+        <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
+        <div class="fare-from-to-grid">
+            <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" required>
+            <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" required>
+
+            <button id="calculate-fare" class="button-orange">Find fare</button>
+            <div id="fare-result" class='span-3'></div>
+        </div>
         <section id="busfare">
             <div style="width:100%">
                 <table id="busfare-table">
                     <?php
+
                     $len = count($halts);
-                    echo "<tr><td class='halt-name-top'></td>";
+                    $fareinstance = new Fareinstance;
+                    $instance = $fareinstance->getFareInstances($len);
+                    
                     for ($i = 0; $i < $len; $i++) {
                         $halt = $halts[$i];
-
-                        // First column for the halt name
-                        echo "<td class='halt-name-top'>" . $halt->name . "</td>";
-                    }
-                    echo "</tr><tr>";
-
-                    for ($i = 0; $i < $len; $i++) {
-                        $halt = $halts[$i];
-                        echo "<tr><td class='halt-name'>" . $halt->name . "</td>";
-                        for ($j = 0; $j < $len; $j++) {
-                            if ($i == $j) {
-                                // Current halt and target halt are the same, don't need to display fare
-                                echo "<td class='halt-name'></td>";
-                            } else {
-                                $targetHalt = $halts[$j];
-                                $fare = $halt->fare_from_source - $targetHalt->fare_from_source;
-                                $fare = $fare < 0 ? -$fare : $fare;
-                                echo "<td>" . $fare . "</td>";
-
-                            }
-                        }
-                        echo "</tr><tr>";
-                    }
                     ?>
+                        <tr data-haltfrom='<?=$halt->name?>'><td class='halt-name'><?=$halt->name?></td>
+                        <?php
+                        for ($j = 0; $j <= $i; $j++)
+                            { if ($i == $j) {?>
 
+                            <td class='halt-name-top'><?=$halt->name?></td>
+
+                        <?php } else {?>
+
+                            <td class='fare-td' data-haltto='<?=$halts[$j]->name?>'><?=$instance[$i-$j]->fare?></td>
+
+                        <?php }}}?>
                 </table>
             </div>
         </section>

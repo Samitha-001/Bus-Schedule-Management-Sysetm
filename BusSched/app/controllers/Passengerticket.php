@@ -21,11 +21,13 @@ class Passengerticket
             foreach($postData as $key => $value){
                 $data[$key] = $value;
             }
-            
+            $data['passenger'] = $_SESSION['USER']->username;
+            // booking time is current time
+            $data['booking_time'] = date('Y-m-d H:i:s');
             $ticket->addTicket($data);
             
             // Send a response
-            $response = array('status' => 'success', 'data' => $postData);
+            $response = array('status' => 'success', 'data' => $data);
             header('Content-Type: application/json');
             echo json_encode($response);
         } else {
