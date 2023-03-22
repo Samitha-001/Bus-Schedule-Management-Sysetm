@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayFare() {
         const farefrom = farefromInput.value;
         const fareto = faretoInput.value;
-        
+        let tds = busfareTable.getElementsByClassName("fare-td");
+        for (let i = 0; i < tds.length; i++) {
+            tds[i].style.backgroundColor = "#24315e";
+        }
         // find tr with data-haltfrom equal to farefrom
         let tr = busfareTable.querySelector(`tr[data-haltfrom="${farefrom}"]`);
         let td = tr.querySelector(`td[data-haltto="${fareto}"]`);
@@ -36,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // add event listener to busfareTable
     busfareTable.addEventListener("click", function (e) {
         // get target
-        tds = busfareTable.getElementsByClassName("fare-td");
+        let tds = busfareTable.getElementsByClassName("fare-td");
         for (let i = 0; i < tds.length; i++) {
             tds[i].style.backgroundColor = "#24315e";
         }

@@ -142,15 +142,35 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   /* grid-template-rows: 1fr 1fr; */
-  grid-gap: 0px;
+  grid-gap: 5px;
   margin: 10px;
+}
+
+.info-grid p, .info-grid h1 {
+  margin: 0px;
+  line-height: 20px;
+}
+
+.info-grid-start-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-start: 2;
+  grid-gap: 5px;
 }
 
 input {
   font-family: Outfit;
-  font-size: 15px;
+  font-size: 13px;
 }
 
-/* .gift-points-div {
+input[type="text"], input[type="number"], input[type="text"]::placeholder, input[type="number"]::placeholder {
+  font-size: 13px;
+}
+
+#gift-points-div {
   display:none;
-} */
+}
+
+a#edit-passenger-info {
+  text-align: right;
+}

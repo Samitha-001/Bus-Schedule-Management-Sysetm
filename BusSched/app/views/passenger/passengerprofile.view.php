@@ -33,15 +33,12 @@ if (isset($_SESSION['USER'])) {
         background-color: transparent;
         padding: 0;
         margin: 0;
-        /* width: 100%;
-        height: 100%; */
-        /* text-align: inherit; */
         font-size: inherit;
         font-family: inherit;
         color: inherit;
         cursor: default;
       }
-      .dummy-row, .dummy-input {
+      form.info-grid {
         display: none;
       }
     </style>
@@ -50,7 +47,6 @@ if (isset($_SESSION['USER'])) {
 <body>
 <?php
     include '../app/views/components/navbar.php';
-    // include '../app/views/components/passengernavbar.php';
     $passenger = $data[0];
     $username = $passenger->username;
 ?>
@@ -75,7 +71,7 @@ if (isset($_SESSION['USER'])) {
 
             <div class="nav-cards">
                 <div class="passenger-profile-card">
-                    <ul class="info-grid" style="padding-left:5px;">
+                    <div class="info-grid" style="padding-left:5px;">
                         <h1>Name:</h1>
                         <p>
                             <?= $passenger->name ?>
@@ -92,12 +88,12 @@ if (isset($_SESSION['USER'])) {
                         <p>
                             <?= $passenger->dob ?>
                         </p>
-                        <!-- TODO -->
-                        <a href=# id='edit-passenger-info'>Edit</a>
-                    </ul>
+                        <i></i>
+                        <button href=# id='edit-passenger-info'>Edit</button>
+                    </div>
 
-                    <!-- this row is cloned to collect input for editing rows -->
-                    <div style="padding-left:5px;" class='dummy-input info-grid'>
+                    <!-- edit form for passenger info -->
+                    <form style="padding-left:5px;" class='edit-info-form info-grid'>
                         <h1>Name:</h1>
                         <p>
                             <input type="text" name="name" id="name" value="<?= $passenger->name ?>">
@@ -116,29 +112,11 @@ if (isset($_SESSION['USER'])) {
                         </p>
                         
                         <!-- TODO -->
-                        <a href=# id='save-passenger-info'>Save</a>
-                        <a href=# id='cancel-passenger-info'>Cancel</a>
-                    </div>
-
-                    <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
-                    <div class='dummy-row info-grid'>
-                        <!-- <li> -->
-                            <h1>Name:</h1>
-                            <p></p>
-                        <!-- </li>
-                        <li> -->
-                            <h1>Phone:</h1>
-                            <p></p>
-                        <!-- </li>
-                        <li> -->
-                            <h1>Address:</h1>
-                            <p></p>
-                        <!-- </li>
-                        <li> -->
-                            <h1>DOB:</h1>
-                            <p></p>
-                        <!-- </li> -->
-                    </div>
+                        <div class="info-grid-start-2">
+                            <button id='save-passenger-info'>Save</button>
+                            <button id='cancel-passenger-info'>Cancel</button>
+                        </div>
+                    </form>
 
                 </div>
                 <div class="passenger-profile-card">
@@ -151,14 +129,14 @@ if (isset($_SESSION['USER'])) {
 
                     <button id="gift-points-btn" class="button-orange" style="width:100;">Gift points</button>
 
-                    <div class='gift-points-div'>
-                        <input type="text" name="gift-to" id="gift-to" placeholder="Enter username" list="passenger-list">
+                    <div id='gift-points-div'>
+                        <input type="text" name="gift-to" id="gift-to" placeholder="Enter username" list="passenger-list" required>
                         <input type="number" name="points" id="points" placeholder="Enter points" max="<?php if ($passenger->points > 5):
                             echo($passenger->points - 5);
-                        endif;?>" min='0'>
+                        endif;?>" min='0' required>
                         <div class="info-grid">
-                            <button class="button-orange" style="width:100;">Gift</button>
-                            <button class="button-orange" style="width:100;">Cancel</button>
+                            <button id="confirm-gift-btn" class="button-orange" style="width:100;">Gift</button>
+                            <button id="cancel-gift-btn" class="button-orange" style="width:100;">Cancel</button>
                         </div>
                     </div>
                 </div>
