@@ -77,7 +77,7 @@ include '../app/views/components/ownersidebar.php';
             <td><input type="text" id="driver" name="driver"></td>
             </tr>
         </table>
-        <input id="submit-btn" type="submit" class="button-green" style="margin-left:250px;font-size:18px;" value="Submit">    
+        <input id="submit-btn" type="submit" value="Edit" class="button-green" style="padding-left:10px;margin-left:250px;font-size:18px;">    
     </div>
 </form>
   </div>
