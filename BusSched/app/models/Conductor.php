@@ -19,4 +19,9 @@ class Conductor extends Model
     {
         return $this->findAll();
     }
+
+    public function updateConductor($id, $data)
+    {
+        $this->update($id, $data, 'username');
+    }
 }

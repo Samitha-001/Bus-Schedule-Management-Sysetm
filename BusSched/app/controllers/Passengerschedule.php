@@ -6,6 +6,8 @@ class Passengerschedule
 
     public function index()
     {
-        $this->view('passengerschedule');
+        $trip = new Trip();
+        $trips = $trip->getTrips();
+        $this->userview('passenger', 'passengerschedule', ['trips' => $trips]);
     }
 }

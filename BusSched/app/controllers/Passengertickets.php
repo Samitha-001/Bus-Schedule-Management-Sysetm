@@ -6,6 +6,8 @@ class Passengertickets
 
     public function index()
     {
-        $this->view('passengertickets');
+        $passenger = new Passenger();
+        $tickets = $passenger->getPassengerTickets();
+        $this->userview('passenger', 'passengertickets', ['tickets' => $tickets]);
     }
 }

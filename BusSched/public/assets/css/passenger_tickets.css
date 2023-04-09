@@ -1,0 +1,134 @@
+@import "navbar.css";
+@import "general.css";
+@import "passenger_profile.css";
+
+body {
+  /* background-color: #24315e; */
+  background-color: #f9f9f9;
+  font-size: 12px;
+}
+
+#profile-header {
+  background-color: #24315e;
+  width: 100%;
+  /* center align text */
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  position: sticky;
+  top: 70px;
+  z-index: 1;
+}
+
+#profile-header h1 {
+  color: white;
+  text-align: center;
+}
+
+.ticket-grid {
+  justify-self: center;
+  display: grid;
+  grid-template-columns: auto 2fr auto 2fr;
+  /* grid-template-rows: 1fr 1fr 1fr 1fr; */
+  grid-gap: 13px;
+  padding: 25px;
+  /* grid-auto-rows: minmax(auto, auto); */
+}
+
+.ticket-grid h1 {
+  font-size: 14px;
+  margin: 0px;
+  text-align: right;
+}
+
+.ticket-grid .span-2{
+  grid-column: span 2;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* for tablet */
+@media only screen and (min-width: 600px) {
+  .tickets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* for desktop */
+@media only screen and (min-width: 768px) {
+  .tickets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* buttons */
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+a.ticket-type-btn{
+  display: block;
+  width: 110px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  font-family: Outfit;
+  text-decoration: none;
+  color: white;
+  /* border: 2px solid #24315e; */
+  /* border-radius: 20px; */
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+a.ticket-type-btn span{
+  position: relative;
+  z-index: 2;
+}
+
+a.ticket-type-btn:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: white;
+  transition: all .35s;
+  border-radius: 20px;
+}
+
+a.ticket-type-btn:hover{
+  color: #24315e;
+}
+
+a.ticket-type-btn:hover:after{
+  width: 100%;
+}
+
+.wrapper .selected {
+  background: white;
+  border-radius: 20px;
+  color: #24315e;
+}
+
+.wrapper .selected span {
+  color: #24315e;
+}

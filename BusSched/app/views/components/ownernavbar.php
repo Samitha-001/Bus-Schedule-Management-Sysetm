@@ -11,8 +11,6 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
         <div class="nav-menu">
-            
-
             <li>
                 <?php if (strpos($current_url, '/home') == true) { ?>
                     <a href="#about">About</a>
@@ -26,8 +24,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
-            <a href="<?= ROOT ?>/owners"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" size="15" width="35"  style="align:center;"></a>
-            <a href="<?= ROOT ?>/ownernotification"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="30"  style="align:center;padding-bottom:5px"></a>
+            <a href="<?= ROOT ?>/owners"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" size="15" width="35"></a>
+            <a href="<?= ROOT ?>/ownernotifications"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="30"  style="padding-bottom:5px"></a>
                 <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/logout">Logout</a></li>
             </div>
         </ul>
@@ -44,9 +42,9 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         </ul>
     <?php } ?>
 
-    <div class="burger" id="hamburger">
+    <!-- <div class="burger" id="hamburger">
         <div onclick="openNav()"><img src="<?= ROOT ?>/assets/images/hamburger.png" height="15"></div>
-    </div>
+    </div> -->
 
 </nav>
 

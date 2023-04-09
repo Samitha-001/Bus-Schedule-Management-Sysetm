@@ -19,4 +19,9 @@ class Driver extends Model
     {
         return $this->findAll();
     }
+
+    public function updateDriver($id, $data)
+    {
+        $this->update($id, $data, 'username');
+    }
 }

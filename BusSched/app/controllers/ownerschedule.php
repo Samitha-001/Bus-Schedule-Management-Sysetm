@@ -6,6 +6,6 @@ class ownerschedule
 
     public function index()
     {
-        $this->view('ownerschedule');
+        $this->userview('owner', 'ownerschedule');
     }
 }

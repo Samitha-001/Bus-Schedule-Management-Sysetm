@@ -23,7 +23,7 @@ if (!isset($_SESSION['USER'])) {
     include 'components/navbar.php';
     ?>
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div class="sidebar">
             <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
             <li><a href="#" style="color:#9298AF;">Users</a></li>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['USER'])) {
             <li><a href="#" style="color:#9298AF;">Routes</a></li>
             <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
         </div>
-    </div>
+    </div> -->
 
     <main class="container1">
         <div class="header orange-header">
