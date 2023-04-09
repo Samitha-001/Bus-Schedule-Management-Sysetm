@@ -1,20 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     let editbtn = document.getElementById("edit-passenger-info");
-    
-    editbtn.addEventListener("click", function (e) { 
+
+    editbtn.addEventListener("click", function (e) {
         editRow(e);
     });
-    
+
     // save passenger info edit
     let savebtn = document.getElementById("save-passenger-info");
     // event listener to save button
     savebtn.addEventListener("click", function (e) {
+        e.preventDefault();
         saveRow(e);
     });
 
     // cancel passenger info edit
     let cancelbtn = document.getElementById("cancel-passenger-info");
-    
+
     // add event listener to cancel button
     cancelbtn.addEventListener("click", function (e) {
         cancelEdit(e);
@@ -67,7 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // get div
         let ticketdiv = e.target.parentElement.parentElement.parentElement;
         let prevValues = ticketdiv.querySelectorAll("p");
-        let data = {}
+        let id = document.querySelector('#username').innerHTML;
+        // Hi passenger1!
+        //get username from above
+        id = id.substring(3, id.length - 1);
+        let data = {"id":id}
         let inputs = ticketdiv.querySelectorAll("input");
 
         // check values of inputs against previous values
@@ -81,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // check if data is not empty
         if (Object.keys(data).length !== 0) {
             // send data to server
-            let url = "/passengerprofile/api_edit";
+            let url = `${ROOT}/passengerprofile/api_edit`;
             let options = {
                 method: "POST",
                 headers: {
@@ -89,7 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify(data),
             };
-
+            console.log("Data:")
+            console.log(data);
             fetch(url, options)
                 .then((response) => response.json())
                 .then((data) => {
@@ -137,5 +143,5 @@ document.addEventListener("DOMContentLoaded", function () {
             giftPointsBtn.style.display = "block";
         }
     });
-    
+
 });

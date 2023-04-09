@@ -19,6 +19,7 @@ class Passengerprofile
     public function api_edit()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
 
