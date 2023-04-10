@@ -79,4 +79,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
+    // collected ticket view more
+    let collectedTicketViewMoreBtns = document.querySelectorAll(".ticket-view-more");
+
+    // add event listener to each button
+    collectedTicketViewMoreBtns.forEach(button => {
+        button.addEventListener("click", function () {
+            // get the ticket id
+            // let ticketId = button.getAttribute("data-ticket-id");
+
+            // get the ticket details
+            let ticketDetails = document.getElementById("collected-ticket-details");
+            ticketDetails.style.display = "block";
+            collectedTicketsDiv.style.display = "none";
+        });
+    });
 });
