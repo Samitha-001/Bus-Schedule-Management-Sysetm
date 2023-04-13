@@ -1,15 +1,15 @@
 <?php
 
 
-class Breakdowns
+class Conductorbreakdowns
 {
 
     use Controller;
 
     public function index()
     {
-        $breakdown = new Breakdown();
-        $breakdowns = $breakdown->getBreakdowns();
+        $breakdown = new Conductorbreakdowns();
+        $breakdowns = $breakdown->getConductorbreakdowns();
 
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
