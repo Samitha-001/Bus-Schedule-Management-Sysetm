@@ -1,6 +1,6 @@
 <?php
 
-class Breakdown extends Model
+class Conductorbreakdowns extends Model
 {
     protected $table = 'breakdown';
 
@@ -36,7 +36,7 @@ class Breakdown extends Model
         return false;
     }
 
-    public function getBreakdowns()
+    public function getConductorbreakdowns()
     {
         return $this->findAll();
     }

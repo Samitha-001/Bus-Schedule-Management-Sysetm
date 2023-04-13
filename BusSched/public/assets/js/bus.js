@@ -60,3 +60,13 @@ function cancel() {
   form.style.display = "none";
 }
 
+
+btn.addEventListener("click", () => {
+  const form = document.getElementById("delete_breakdown");
+
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+});
