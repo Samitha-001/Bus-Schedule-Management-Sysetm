@@ -100,19 +100,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
-                    if (data.success) {
-                        // update the values
-                        for (let i = 0; i < inputs.length; i++) {
-                            prevValues[i].textContent = inputs[i].value;
-                        }
-                        // hide form and show info
-                        let infoform = ticketdiv.querySelector("form");
-                        infoform.style.display = "none";
-                        let profileinfo = ticketdiv.querySelector(".info-grid");
-                        profileinfo.style.display = "grid";
-                    } else {
-                        alert(data.message);
+                    for (let i = 0; i < inputs.length; i++) {
+                        prevValues[i].textContent = inputs[i].value;
                     }
+                    // hide form and show info
+                    let infoform = ticketdiv.querySelector("form");
+                    infoform.style.display = "none";
+                    let profileinfo = ticketdiv.querySelector(".info-grid");
+                    profileinfo.style.display = "grid";
+                    // if (data.success) { 
+                    //     // this doesn't get called
+                    //     // update the values
+                    // } else {
+                    //     // alert(data.message);
+                    // }
                 })
                 .catch((err) => {
                     console.log(err);
