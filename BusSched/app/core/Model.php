@@ -66,7 +66,7 @@ class Model
     }
 
     // read n rows
-    public function findN($order_column='id', $limit) {
+    public function findN($limit, $order_column='id') {
         $query = "SELECT * FROM $this->table order by $order_column $this->order_type limit $limit";
 
         return $this->query($query);
