@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     data["points_to"] = select;
 
-    console.log(data);
+    // console.log(data);
 
     // send data to server
     let url = `${ROOT}/passengerprofile/api_gift_points`;
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(err);
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       });
   }
 });
