@@ -124,10 +124,7 @@ if (isset($_SESSION['USER'])) {
             <button id="gift-points-btn" class="button-orange" style="width:100;">Gift points</button>
 
             <div id='gift-points-div'>
-
-                <!-- input dropdown -->
                 <div class="dropdown">
-                    <!-- select tag -->
                     <select name="gift-to" id="gift-to" required>
                         <option value="" disabled selected>Select passenger</option>
                         <?php
@@ -135,7 +132,7 @@ if (isset($_SESSION['USER'])) {
                         $otherpassengers = $otherpassenger->passengerInfo();
                         foreach ($otherpassengers as $otherpassenger) {
                             if ($otherpassenger->username != $username) {
-                                echo "<option value='" . $otherpassenger->username . "'>" . $otherpassenger->name . "</option>";
+                                echo "<option value='" . $otherpassenger->username . "'>" . $otherpassenger->username . "</option>";
                             }
                         }
                         ?>

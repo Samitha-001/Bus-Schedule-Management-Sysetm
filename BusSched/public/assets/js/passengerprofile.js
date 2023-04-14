@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 data[inputs[i].name] = inputs[i].value;
             }
         }
-        console.log(data);
 
         // check if data is not empty
         if (Object.keys(data).length !== 0) {
@@ -94,8 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify(data),
             };
-            // console.log("Data:")
-            // console.log(data);
             fetch(url, options)
                 .then((response) => response.json())
                 .then((data) => {
@@ -174,22 +171,22 @@ document.addEventListener("DOMContentLoaded", function () {
         let url = `${ROOT}/passengerprofile/api_gift_points`;
         let options = {
             method: "POST",
+            credentials: "same-origin",
+            mode: "same-origin",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json;charset=utf-8",
             },
             body: JSON.stringify(data),
         };
 
         fetch(url, options)
-            .then((response) => response.json())
-            .then((data) => {
-                let points = document.getElementById("points");
-                points.textContent = data.points;
-                alert(data.message);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        .then((response) => response.json())
+        .catch((err) => {
+            console.log(err);
+        })
+        .then((data) => {
+            console.log(data);
+        });
     }
     
 });
