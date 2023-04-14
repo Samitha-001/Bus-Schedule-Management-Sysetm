@@ -126,7 +126,7 @@ if (isset($_SESSION['USER'])) {
 
             <div id='gift-points-div'>
                 <div class="dropdown">
-                    <select name="gift-to" id="gift-to" required>
+                    <select name="points_to" id="gift-to" required>
                         <option value="" disabled selected>Select passenger</option>
                         <?php
                         $otherpassenger = new Passenger();
@@ -139,11 +139,11 @@ if (isset($_SESSION['USER'])) {
                         ?>
                     </select>
                 </div>
-                <input type="number" name="points" id="points" placeholder="Enter points" max="<?php if ($passenger->points > 5):
+                <input type="number" name="amount" id="points" placeholder="Enter points" max="<?php if ($passenger->points > 5):
                     echo($passenger->points - 5);
                 endif;?>" min='0' required>
                 <!-- hidden input -->
-                <input type="hidden" name="gift-from" id="gift-from" value="<?= $username ?>">
+                <input type="hidden" name="points_from" id="gift-from" value="<?= $username ?>">
                 
                 <div class="info-grid">
                     <button id="confirm-gift-btn" class="button-orange" style="width:100;">Gift</button>

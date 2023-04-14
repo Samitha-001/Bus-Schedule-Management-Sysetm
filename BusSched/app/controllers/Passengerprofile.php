@@ -57,8 +57,6 @@ class Passengerprofile
                 $data[$key] = $value;
             }
 
-            echo ($data);
-
             $point->giftPoints($data);
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
