@@ -124,6 +124,11 @@ if (isset($_SESSION['USER'])) {
                         <p>xxx</p>
                         <p></p>
                         <p><?= $ticket->status ?></p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                        <!-- orange button -->
+                        <a href="#" class="ticket-view-more ticket-button-orange">View more</a>
                     </div>
                 <?php endif; endforeach; else: ?>
                 <div class="passenger-profile-card">
@@ -162,7 +167,11 @@ if (isset($_SESSION['USER'])) {
             <?php endif; ?>
             </div>
         </div>
-    </div>
+
+        <div id="collected-ticket-details" class="passenger-profile-card" style="display:none">
+            sldknvfdcoldc
+        </div>
+
 </body>
 
 </html>

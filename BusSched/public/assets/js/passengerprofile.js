@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 data[inputs[i].name] = inputs[i].value;
             }
         }
-        console.log(data);
 
         // check if data is not empty
         if (Object.keys(data).length !== 0) {
@@ -94,25 +93,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify(data),
             };
-            console.log("Data:")
-            console.log(data);
             fetch(url, options)
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
-                    if (data.success) {
-                        // update the values
-                        for (let i = 0; i < inputs.length; i++) {
-                            prevValues[i].textContent = inputs[i].value;
-                        }
-                        // hide form and show info
-                        let infoform = ticketdiv.querySelector("form");
-                        infoform.style.display = "none";
-                        let profileinfo = ticketdiv.querySelector(".info-grid");
-                        profileinfo.style.display = "grid";
-                    } else {
-                        alert(data.message);
+                    // console.log(data);
+                    for (let i = 0; i < inputs.length; i++) {
+                        prevValues[i].textContent = inputs[i].value;
                     }
+                    // hide form and show info
+                    let infoform = ticketdiv.querySelector("form");
+                    infoform.style.display = "none";
+                    let profileinfo = ticketdiv.querySelector(".info-grid");
+                    profileinfo.style.display = "grid";
+                    // if (data.success) { 
+                    //     // this doesn't get called
+                    //     // update the values
+                    // } else {
+                    //     // alert(data.message);
+                    // }
                 })
                 .catch((err) => {
                     console.log(err);
@@ -141,7 +139,54 @@ document.addEventListener("DOMContentLoaded", function () {
         if (confirm) {
             giftPointsDiv.style.display = "none";
             giftPointsBtn.style.display = "block";
+            // call function to gift points
+            giftPoints();
         }
     });
 
+    function giftPoints(e) {
+        let inputs = giftPointsDiv.querySelectorAll("input");
+        // option selected from select
+        let select = giftPointsDiv.querySelector("select").value;
+        let data = {};
+
+        // if empty
+        if (select === "") {
+            alert("Please select a passenger to gift points to");
+            return;
+        }
+
+        for (let i = 0; i < inputs.length; i++) {
+            if (!inputs[i].value) {
+                alert("Please enter points to gift");
+                return;
+            }
+            data[inputs[i].name] = inputs[i].value;
+        }
+        data["gift-to"] = select;
+
+        console.log(data);
+
+        // send data to server
+        let url = `${ROOT}/passengerprofile/api_gift_points`;
+        let options = {
+            method: "POST",
+            credentials: "same-origin",
+            mode: "same-origin",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(data),
+        };
+
+        fetch(url, options)
+        .then((response) => response.json())
+        .catch((err) => {
+            console.log(err);
+        })
+        .then((data) => {
+            console.log(data);
+        });
+    }
+    
 });
