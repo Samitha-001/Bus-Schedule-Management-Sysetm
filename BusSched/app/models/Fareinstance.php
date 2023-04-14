@@ -12,6 +12,6 @@ class Fareinstance extends Model
     public function getFareInstances($limit=0)
     {
         if($limit == 0) return $this->findAll();
-        else return $this->findN('instance', $limit);
+        else return $this->findN($limit, 'instance');
     }
 }
