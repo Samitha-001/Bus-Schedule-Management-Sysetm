@@ -66,8 +66,8 @@ if (isset($_SESSION['USER'])) {
         ?>
     </datalist>
 
-    <div class="row">
-        <div class="col-3 col-s-3">
+    <!-- <div class="row"> -->
+        <!-- <div class="col-3 col-s-3"> -->
             <div class="passenger-profile-card" id="profile-header">
                 <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="profile pic" width="50px" height="50px">
                 <h1 id="username">Hi <?= $username ?>!</h1>
@@ -137,8 +137,8 @@ if (isset($_SESSION['USER'])) {
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        <!-- </div> -->
+    <!-- </div> -->
 </body>
 
 </html>
