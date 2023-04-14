@@ -1,4 +1,5 @@
 <?php
+// (new Passenger())->updatePassenger("passenger1", ["name" => "Venudi Hetti", "phone" => "0333333333"]);
 $username = $_SESSION['USER']->username;
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
@@ -49,6 +50,7 @@ if (isset($_SESSION['USER'])) {
     include '../app/views/components/navbar.php';
     $passenger = $data[0];
     $username = $passenger->username;
+    $otherpassenger1 = new Passenger();
 ?>
     <datalist id="passenger-list">
         <?php
@@ -59,6 +61,8 @@ if (isset($_SESSION['USER'])) {
                 echo "<option value='" . $otherpassenger->username . "'>";
             }
         }
+        
+        
         ?>
     </datalist>
 
@@ -73,7 +77,7 @@ if (isset($_SESSION['USER'])) {
                 <div class="passenger-profile-card">
                     <div class="info-grid" style="padding-left:5px;">
                         <h1>Name:</h1>
-                        <p>
+                        <p data-username="<?= $username ?>">
                             <?= $passenger->name ?>
                         </p>
                         <h1>Phone:</h1>
@@ -95,21 +99,13 @@ if (isset($_SESSION['USER'])) {
                     <!-- edit form for passenger info -->
                     <form style="padding-left:5px;" class='edit-info-form info-grid'>
                         <h1>Name:</h1>
-                        <p>
-                            <input type="text" name="name" id="name" value="<?= $passenger->name ?>">
-                        </p>
+                        <input type="text" name="name" id="name" value="<?= $passenger->name ?>">
                         <h1>Phone:</h1>
-                        <p>
-                            <input type="text" name="phone" id="phone" value="<?= $passenger->phone ?>">
-                        </p>
+                        <input type="text" name="phone" id="phone" value="<?= $passenger->phone ?>">
                         <h1>Address:</h1>
-                        <p>
-                            <input type="text" name="address" id="address" value="<?= $passenger->address ?>">
-                        </p>
+                        <input type="text" name="address" id="address" value="<?= $passenger->address ?>">
                         <h1>DOB:</h1>
-                        <p>
-                            <input type="date" name="dob" id="dob" value="<?= $passenger->dob ?>">
-                        </p>
+                        <input type="date" name="dob" id="dob" value="<?= $passenger->dob ?>">
                         
                         <!-- TODO -->
                         <div class="info-grid-start-2">

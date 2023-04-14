@@ -116,8 +116,8 @@ class Model
         $query .= " WHERE $id_column = :$id_column";
         
         $data[$id_column] = $id;
-        show($data);
-        show($query);
+        // show($data);
+        // show($query);
         $this->query($query, $data);
         return false;
     }

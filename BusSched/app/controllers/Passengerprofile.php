@@ -37,7 +37,7 @@ class Passengerprofile
             header('Content-Type: application/json');
             echo json_encode($response);
         } else {
-            $response = array('status' => 'error', 'data' => 'Invalid request');
+            $response = array('status' => 'error', 'data' => 'Invalid requestss');
             header('Content-Type: application/json');
             echo json_encode($response);
         }
