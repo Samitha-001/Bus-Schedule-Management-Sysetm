@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 20, 2023 at 12:09 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 14, 2023 at 06:44 AM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,11 +27,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
   `username` varchar(50) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `phone` char(10) DEFAULT NULL,
-  `address` text DEFAULT NULL
+  `address` text,
+  KEY `admin-users` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -40,12 +42,15 @@ CREATE TABLE `admin` (
 -- Table structure for table `breakdown`
 --
 
-CREATE TABLE `breakdown` (
-  `id` int(255) NOT NULL,
+DROP TABLE IF EXISTS `breakdown`;
+CREATE TABLE IF NOT EXISTS `breakdown` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `bus_no` varchar(255) NOT NULL,
   `description` text NOT NULL,
-  `time_to_repair` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `time_to_repair` time NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `breakdown-bus` (`bus_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `breakdown`
@@ -63,8 +68,9 @@ INSERT INTO `breakdown` (`id`, `bus_no`, `description`, `time_to_repair`) VALUES
 -- Table structure for table `bus`
 --
 
-CREATE TABLE `bus` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `bus`;
+CREATE TABLE IF NOT EXISTS `bus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `bus_no` char(6) NOT NULL,
   `type` varchar(2) NOT NULL,
   `seats_no` int(11) NOT NULL,
@@ -73,8 +79,16 @@ CREATE TABLE `bus` (
   `dest` varchar(50) DEFAULT NULL,
   `owner` varchar(50) NOT NULL,
   `conductor` varchar(50) DEFAULT NULL,
-  `driver` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `driver` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `bus_no` (`bus_no`),
+  KEY `bus-route` (`route`),
+  KEY `start` (`start`),
+  KEY `bus_owner` (`owner`),
+  KEY `buw_dest` (`dest`),
+  KEY `bus_driver` (`driver`),
+  KEY `bus_conductor` (`conductor`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bus`
@@ -107,14 +121,18 @@ INSERT INTO `bus` (`id`, `bus_no`, `type`, `seats_no`, `route`, `start`, `dest`,
 -- Table structure for table `conductor`
 --
 
-CREATE TABLE `conductor` (
+DROP TABLE IF EXISTS `conductor`;
+CREATE TABLE IF NOT EXISTS `conductor` (
   `username` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `phone` char(10) NOT NULL,
   `address` text NOT NULL,
   `licence_no` char(8) NOT NULL,
   `assigned_bus` char(6) DEFAULT NULL,
-  `date_of_birth` date NOT NULL
+  `date_of_birth` date NOT NULL,
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `licence_no` (`licence_no`),
+  KEY `assigned_bus` (`assigned_bus`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -131,13 +149,15 @@ INSERT INTO `conductor` (`username`, `name`, `phone`, `address`, `licence_no`, `
 -- Table structure for table `contact`
 --
 
-CREATE TABLE `contact` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `contact`;
+CREATE TABLE IF NOT EXISTS `contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `tp` int(11) NOT NULL,
-  `bus_no` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `bus_no` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `contact`
@@ -152,14 +172,16 @@ INSERT INTO `contact` (`id`, `name`, `email`, `tp`, `bus_no`) VALUES
 -- Table structure for table `driver`
 --
 
-CREATE TABLE `driver` (
+DROP TABLE IF EXISTS `driver`;
+CREATE TABLE IF NOT EXISTS `driver` (
   `username` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `phone` char(10) NOT NULL,
   `address` text NOT NULL,
   `licence_no` char(8) NOT NULL,
   `assigned_bus` char(6) DEFAULT NULL,
-  `date_of_birth` date NOT NULL
+  `date_of_birth` date NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -175,8 +197,9 @@ INSERT INTO `driver` (`username`, `name`, `phone`, `address`, `licence_no`, `ass
 -- Table structure for table `e_ticket`
 --
 
-CREATE TABLE `e_ticket` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `e_ticket`;
+CREATE TABLE IF NOT EXISTS `e_ticket` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `passenger` varchar(50) NOT NULL,
   `trip_id` int(11) NOT NULL,
   `seat_number` int(11) DEFAULT NULL,
@@ -184,8 +207,13 @@ CREATE TABLE `e_ticket` (
   `source_halt` varchar(50) NOT NULL,
   `dest_halt` varchar(50) NOT NULL,
   `booking_time` datetime NOT NULL,
-  `status` enum('booked','cancelled','used','expired') NOT NULL DEFAULT 'booked'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` enum('booked','cancelled','used','expired') NOT NULL DEFAULT 'booked',
+  PRIMARY KEY (`id`),
+  KEY `ticket-passenger` (`passenger`),
+  KEY `ticket-trip` (`trip_id`),
+  KEY `ticket-source-halt` (`source_halt`),
+  KEY `ticket-dest-halt` (`dest_halt`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `e_ticket`
@@ -204,14 +232,18 @@ INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `seat_number`, `ticket_num
 -- Table structure for table `fare`
 --
 
-CREATE TABLE `fare` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `fare`;
+CREATE TABLE IF NOT EXISTS `fare` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `source` varchar(20) NOT NULL,
   `dest` varchar(20) NOT NULL,
   `bus_route` varchar(6) NOT NULL,
   `amount` float NOT NULL,
-  `last_updated` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `last_updated` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `source` (`source`,`dest`),
+  KEY `fare-dest` (`dest`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `fare`
@@ -229,9 +261,11 @@ INSERT INTO `fare` (`id`, `source`, `dest`, `bus_route`, `amount`, `last_updated
 -- Table structure for table `fare_instances`
 --
 
-CREATE TABLE `fare_instances` (
+DROP TABLE IF EXISTS `fare_instances`;
+CREATE TABLE IF NOT EXISTS `fare_instances` (
   `instance` int(11) NOT NULL,
-  `fare` int(11) NOT NULL
+  `fare` int(11) NOT NULL,
+  PRIMARY KEY (`instance`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -596,13 +630,17 @@ INSERT INTO `fare_instances` (`instance`, `fare`) VALUES
 -- Table structure for table `halt`
 --
 
-CREATE TABLE `halt` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `halt`;
+CREATE TABLE IF NOT EXISTS `halt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `route_id` varchar(6) NOT NULL,
   `name` varchar(50) NOT NULL,
   `distance_from_source` float NOT NULL,
-  `fare_from_source` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `fare_from_source` float NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  KEY `route_id` (`route_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `halt`
@@ -639,11 +677,13 @@ INSERT INTO `halt` (`id`, `route_id`, `name`, `distance_from_source`, `fare_from
 -- Table structure for table `owner`
 --
 
-CREATE TABLE `owner` (
+DROP TABLE IF EXISTS `owner`;
+CREATE TABLE IF NOT EXISTS `owner` (
   `username` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `phone` char(10) NOT NULL,
-  `address` text NOT NULL
+  `address` text NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -660,15 +700,17 @@ INSERT INTO `owner` (`username`, `name`, `phone`, `address`) VALUES
 -- Table structure for table `passenger`
 --
 
-CREATE TABLE `passenger` (
+DROP TABLE IF EXISTS `passenger`;
+CREATE TABLE IF NOT EXISTS `passenger` (
   `username` varchar(50) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `phone` char(10) DEFAULT NULL,
-  `address` text DEFAULT NULL,
+  `address` text,
   `dob` date DEFAULT NULL,
   `profile_pic` varchar(200) DEFAULT NULL,
-  `points` int(11) DEFAULT 0,
-  `points_expiry` date DEFAULT NULL
+  `points` int(11) DEFAULT '0',
+  `points_expiry` date DEFAULT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -676,9 +718,26 @@ CREATE TABLE `passenger` (
 --
 
 INSERT INTO `passenger` (`username`, `name`, `phone`, `address`, `dob`, `profile_pic`, `points`, `points_expiry`) VALUES
-('passenger1', 'John Doe', '0771234568', 'Colombo, Sri Lanka', '2013-03-13', NULL, 200, '2023-03-15'),
+('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-03-13', NULL, 200, '2023-03-15'),
 ('passenger2', 'Jane Doe', '0771234567', 'Colombo, Sri Lanka', '0000-00-00', NULL, 150, '2023-06-22'),
 ('passenger3', 'Kamal Fernando', '', '', '2018-02-27', NULL, 100, '2022-02-02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `points`
+--
+
+DROP TABLE IF EXISTS `points`;
+CREATE TABLE IF NOT EXISTS `points` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `points_from` varchar(50) NOT NULL,
+  `points_to` varchar(50) NOT NULL,
+  `amount` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `points-from` (`points_from`),
+  KEY `points-to` (`points_to`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -686,8 +745,9 @@ INSERT INTO `passenger` (`username`, `name`, `phone`, `address`, `dob`, `profile
 -- Table structure for table `ratings`
 --
 
-CREATE TABLE `ratings` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `ratings`;
+CREATE TABLE IF NOT EXISTS `ratings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `rater` int(11) NOT NULL,
   `trip_id` int(11) NOT NULL,
   `bus_id` int(11) NOT NULL,
@@ -695,8 +755,13 @@ CREATE TABLE `ratings` (
   `conductor_id` int(11) NOT NULL,
   `conductor_rating` int(11) DEFAULT NULL,
   `driver_id` int(11) NOT NULL,
-  `driver_rating` int(11) DEFAULT NULL
-) ;
+  `driver_rating` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rating-bus` (`bus_id`),
+  KEY `rating-driver` (`conductor_id`),
+  KEY `rating-trip` (`trip_id`),
+  KEY `rater-user` (`rater`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ratings`
@@ -719,12 +784,16 @@ INSERT INTO `ratings` (`id`, `rater`, `trip_id`, `bus_id`, `bus_rating`, `conduc
 -- Table structure for table `route`
 --
 
-CREATE TABLE `route` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `route`;
+CREATE TABLE IF NOT EXISTS `route` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `route_id` varchar(6) NOT NULL,
   `source` varchar(50) NOT NULL,
-  `destination` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `destination` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `RouteID` (`route_id`),
+  UNIQUE KEY `route_id` (`route_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `route`
@@ -739,11 +808,13 @@ INSERT INTO `route` (`id`, `route_id`, `source`, `destination`) VALUES
 -- Table structure for table `scheduler`
 --
 
-CREATE TABLE `scheduler` (
+DROP TABLE IF EXISTS `scheduler`;
+CREATE TABLE IF NOT EXISTS `scheduler` (
   `username` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `phone` char(10) NOT NULL,
-  `address` text NOT NULL
+  `address` text NOT NULL,
+  PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -759,13 +830,17 @@ INSERT INTO `scheduler` (`username`, `name`, `phone`, `address`) VALUES
 -- Table structure for table `trip`
 --
 
-CREATE TABLE `trip` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `trip`;
+CREATE TABLE IF NOT EXISTS `trip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `trip_date` date NOT NULL,
   `departure_time` time NOT NULL,
   `starting_halt` varchar(255) NOT NULL,
-  `bus_no` char(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `bus_no` char(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `trip-bus` (`bus_no`),
+  KEY `trip-start` (`starting_halt`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `trip`
@@ -791,13 +866,17 @@ INSERT INTO `trip` (`id`, `trip_date`, `departure_time`, `starting_halt`, `bus_n
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `role` varchar(20) NOT NULL DEFAULT 'admin'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `role` varchar(20) NOT NULL DEFAULT 'admin',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -820,6 +899,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 --
 -- Triggers `users`
 --
+DROP TRIGGER IF EXISTS `user_insert_trigger`;
 DELIMITER $$
 CREATE TRIGGER `user_insert_trigger` AFTER INSERT ON `users` FOR EACH ROW BEGIN
     IF NEW.role = 'conductor' THEN
@@ -838,204 +918,6 @@ CREATE TRIGGER `user_insert_trigger` AFTER INSERT ON `users` FOR EACH ROW BEGIN
 END
 $$
 DELIMITER ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD KEY `admin-users` (`username`);
-
---
--- Indexes for table `breakdown`
---
-ALTER TABLE `breakdown`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `breakdown-bus` (`bus_no`);
-
---
--- Indexes for table `bus`
---
-ALTER TABLE `bus`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `bus_no` (`bus_no`),
-  ADD KEY `bus-route` (`route`),
-  ADD KEY `start` (`start`),
-  ADD KEY `bus_owner` (`owner`),
-  ADD KEY `buw_dest` (`dest`),
-  ADD KEY `bus_driver` (`driver`),
-  ADD KEY `bus_conductor` (`conductor`);
-
---
--- Indexes for table `conductor`
---
-ALTER TABLE `conductor`
-  ADD PRIMARY KEY (`username`),
-  ADD UNIQUE KEY `licence_no` (`licence_no`),
-  ADD KEY `assigned_bus` (`assigned_bus`);
-
---
--- Indexes for table `contact`
---
-ALTER TABLE `contact`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `driver`
---
-ALTER TABLE `driver`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `e_ticket`
---
-ALTER TABLE `e_ticket`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `ticket-passenger` (`passenger`),
-  ADD KEY `ticket-trip` (`trip_id`),
-  ADD KEY `ticket-source-halt` (`source_halt`),
-  ADD KEY `ticket-dest-halt` (`dest_halt`);
-
---
--- Indexes for table `fare`
---
-ALTER TABLE `fare`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `source` (`source`,`dest`),
-  ADD KEY `fare-dest` (`dest`);
-
---
--- Indexes for table `fare_instances`
---
-ALTER TABLE `fare_instances`
-  ADD PRIMARY KEY (`instance`);
-
---
--- Indexes for table `halt`
---
-ALTER TABLE `halt`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `route_id` (`route_id`);
-
---
--- Indexes for table `owner`
---
-ALTER TABLE `owner`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `passenger`
---
-ALTER TABLE `passenger`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `ratings`
---
-ALTER TABLE `ratings`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `rating-bus` (`bus_id`),
-  ADD KEY `rating-driver` (`conductor_id`),
-  ADD KEY `rating-trip` (`trip_id`),
-  ADD KEY `rater-user` (`rater`);
-
---
--- Indexes for table `route`
---
-ALTER TABLE `route`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `RouteID` (`route_id`),
-  ADD UNIQUE KEY `route_id` (`route_id`);
-
---
--- Indexes for table `scheduler`
---
-ALTER TABLE `scheduler`
-  ADD PRIMARY KEY (`username`);
-
---
--- Indexes for table `trip`
---
-ALTER TABLE `trip`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `trip-bus` (`bus_no`),
-  ADD KEY `trip-start` (`starting_halt`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `breakdown`
---
-ALTER TABLE `breakdown`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `bus`
---
-ALTER TABLE `bus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `contact`
---
-ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `e_ticket`
---
-ALTER TABLE `e_ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT for table `fare`
---
-ALTER TABLE `fare`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `halt`
---
-ALTER TABLE `halt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `ratings`
---
-ALTER TABLE `ratings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `route`
---
-ALTER TABLE `route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `trip`
---
-ALTER TABLE `trip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
@@ -1106,14 +988,11 @@ ALTER TABLE `passenger`
   ADD CONSTRAINT `passenger_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ratings`
+-- Constraints for table `points`
 --
-ALTER TABLE `ratings`
-  ADD CONSTRAINT `rater-user` FOREIGN KEY (`Rater`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `rating-bus` FOREIGN KEY (`bus_id`) REFERENCES `bus` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `rating-conductor` FOREIGN KEY (`conductor_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `rating-driver` FOREIGN KEY (`conductor_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `rating-trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `points`
+  ADD CONSTRAINT `points-from` FOREIGN KEY (`points_from`) REFERENCES `passenger` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `points-to` FOREIGN KEY (`points_to`) REFERENCES `passenger` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `scheduler`

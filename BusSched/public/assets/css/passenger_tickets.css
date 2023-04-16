@@ -132,3 +132,10 @@ a.ticket-type-btn:hover:after{
 .wrapper .selected span {
   color: #24315e;
 }
+
+.ticket-button-orange {
+  background-color: #f15f22;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+}

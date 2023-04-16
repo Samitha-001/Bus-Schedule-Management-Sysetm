@@ -228,6 +228,27 @@ button:hover {
   text-decoration: none;
 }
 
+
+.button-delete {
+  font-family: "Outfit";
+  background: green;
+  font-size: 16px;
+  width: 15%;
+  border: 1px solid red;
+  border-radius: 5px;
+  color:white;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0px;
+  opacity: 1;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+}
+
+
 .button-grey {
   font-family: "Outfit";
   background: #f4511e;
@@ -665,7 +686,7 @@ hr {
         display: flex;
         grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr;
         grid-template-rows: 1fr 2fr 2fr; 
-        width: 10%;
+        width: 30%;
         font-size: 90%;
       }
 
@@ -699,4 +720,23 @@ hr {
         transform: translateY(20px);
         transition: all 0.7s;
       }
+
+
+      .button-green {
+        font-size: 12px;
+        width: 25%;
+        margin-right: 2px;
+      }
+
+      .button-cancel {
+        font-size: 12px;
+        width: 25%;
+      }
+
+      .button-delete {
+        font-size: 12px;
+        width: 25%;
+        margin-right: 2px;
+      }
+
   }
