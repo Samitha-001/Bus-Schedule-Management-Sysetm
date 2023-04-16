@@ -20,28 +20,14 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
-    <?php
-    // include 'components/navbar.php';
-    include 'components/navbarcon.php';
-    ?> 
-
-    <!-- <div class="wrapper">
-        <div class="sidebar">
-            <li><a href="<?= ROOT ?>/admins" style="color:#9298AF;">Dashboard</a></li>
-            <li><a href="#" style="color:#9298AF;">Users</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/buses" style="color:#9298AF;">Buses</a></li>
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:white;"><b>Breakdowns</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
-            <li><a href="<?= ROOT ?>/fares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Routes</a></li>
-            <li><a href="<?= ROOT ?>/halts" style="color:#9298AF;">Halts</a></li>
-        </div>
-    </div> -->
+<?php
+// include '../app/views/components/ownernavbar.php';
+// include '../app/views/components/ownersidebar.php';
+include 'components/navbarcon.php';
+?>
 
     <main class="container1">
-        <div class="col-1">
+    <div class="col-1">
         <div class="header orange-header">
             <div>
                 <h3>Breakdowns</h3>
@@ -79,7 +65,6 @@ if (!isset($_SESSION['USER'])) {
 
                         <tr>
                             <td></td>
-
                             <td align="right">
                                 <button class="button-green" type="submit">Save</button>
                                 <button class="button-cancel" onclick="cancel()">Cancel</button>
@@ -88,25 +73,20 @@ if (!isset($_SESSION['USER'])) {
 
                     </table>
                 </div>
-                </div>
+            </div>
         </form>
 
-        
         <div class="data-table">
-            <div class="col-3">
+        <div class="col-3">
+
             <table border='1' class="styled-table">
                 <tr>
                     <th>#</th>
                     <th>Bus No.</th>
                     <th>Description</th>
-                    <!-- <th>Date</th>
-    <th>Time</th>   -->
                     <th>Time to repair</th>
-                    
                 </tr>
-
-               
-
+                
                 <?php
                 foreach ($breakdowns as $breakdown) {
                     echo "<tr>";
@@ -119,7 +99,7 @@ if (!isset($_SESSION['USER'])) {
                     echo "</tr>";
                 } ?>
 
-                    <tr>
+<tr>
                     <td></td>
                     <td></td>
                         <td align="right">
@@ -127,8 +107,8 @@ if (!isset($_SESSION['USER'])) {
                         </td>
                     </tr>
 
+
             </table>
-        </div>
         </div>
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
