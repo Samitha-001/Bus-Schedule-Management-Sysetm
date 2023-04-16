@@ -10,7 +10,8 @@ class Halt extends Model
         'id',
         'route_id',
         'name',
-        'distance_from_source'
+        'distance_from_source',
+        'fare_from_source'
     ];
 
     public function validate($data)
@@ -23,8 +24,12 @@ class Halt extends Model
         if (empty($data['halt_name'])) {
             $this->errors['halt_name'] = "Halt name is required";
         } else
-        if (empty($data['distance'])) {
+        if (empty($data['distance_from_source'])) {
             $this->errors['distance'] = "Enter distance from source";
+        }
+        else
+        if (empty($data['fare_from_source'])) {
+            $this->errors['fare'] = "Enter fare from source";
         }
 
         if (empty($this->errors)) {
@@ -41,10 +46,17 @@ class Halt extends Model
 
     public function addHalt($data)
     {
-        $this->insert([
-            'route_id' => $data['route_id'],
-            'name' => $data['halt_name'],
-            'distance_from_source' => $data['distance']
-        ]);
+        $this->insert($data);
+    }
+
+    public function deleteHalt($id)
+    {
+        $this->delete($id);
+    }
+
+    // update halt
+    public function updateHalt($id, $data)
+    {
+        return $this->update($id, $data);
     }
 }

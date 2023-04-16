@@ -10,9 +10,12 @@ class Bus extends Model
         'bus_no',
         'type',
         'seats_no',
-        'availability',
         'route',
-        'start'
+        'start',
+        'dest',
+        'owner',
+        'conductor',
+        'driver'
     ];
 
     public function validate($data)
@@ -21,20 +24,16 @@ class Bus extends Model
 
         if (empty($data['bus_no'])) {
             $this->errors['bus_no'] = "Bus number is required";
-        } else
+        }
         if (empty($data['type'])) {
             $this->errors['type'] = "Choose bus type";
-        } else
+        }
         if (empty($data['seats_no'])) {
             $this->errors['seats_no'] = "Enter number of available seats";
-        } else
+        }
         if (empty($data['route'])) {
             $this->errors['route'] = "Enter bus route";
-        } else
-        if (empty($data['start'])) {
-            $this->errors['route'] = "Choose starting halt";
         }
-
 
         if (empty($this->errors)) {
             return true;
@@ -47,4 +46,27 @@ class Bus extends Model
     {
         return $this->findAll();
     }
+
+    public function getOwnerBuses($owner)
+    {
+        return $this->where(['owner' => $owner]);
+    }
+
+    public function deleteBus($id)
+    {
+        return $this->delete($id);
+    }
+    public function updateBus($id, $data)
+    {
+        return $this->update($id, $data);
+    }
+
+    // add new bus
+    public function addBus($data)
+    {
+        // uppercase first 2 letters of bus number in data
+        $data['bus_no'] = strtoupper(substr($data['bus_no'], 0, 2)) . substr($data['bus_no'], 2);
+        echo $this->insert($data);
+    }
+
 }

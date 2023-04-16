@@ -11,7 +11,7 @@ class Ownercontactowners
 
         // $data = [];
      
-        $this->view('ownercontactowner', ['ownercontactowners' => $contactowners]);
+        $this->userview('owner', 'ownercontactowner', ['ownercontactowners' => $contactowners]);
     }
 
 }
