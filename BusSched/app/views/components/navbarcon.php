@@ -22,7 +22,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a>
                         <a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a>
                         <a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a>
-                        <a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a>
+                        <a href="<?= ROOT ?>/conductorrating" style="color:#9298AF;">Ratings</a>
+                        <a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">Contacts</a>
                     </div>
                 </div>
             </li>
