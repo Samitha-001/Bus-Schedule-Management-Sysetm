@@ -6,6 +6,6 @@ class ownerincome
 
     public function index()
     {
-        $this->view('ownerincome');
+        $this->userview('owner', 'ownerincome');
     }
 }

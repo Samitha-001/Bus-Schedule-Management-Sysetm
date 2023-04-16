@@ -25,72 +25,91 @@ if (isset($_SESSION['USER'])) {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <!-- add js script -->
+    <script src="<?= ROOT ?>/assets/js/landing.js"></script>
     <title>Home Page</title>
 </head>
 
 <body>
-<?php include 'components/navbar.php'; ?>
+    <?php include 'components/navbar.php'; ?>
+    <datalist id="halt-list">
+        <?php
+        $len = count($halts);
+        for ($i = 0; $i < $len; $i++) {
+            $halt = $halts[$i];
+            echo "<option value='" . $halt->name . "'>";
+        }
+        ?>
+    </datalist>
     <div class="landing-main row">
-        <div class="col-6 menu">
-
-            <ul>
-                <li>
-                    <h1 style="padding: 0px;">Find a bus</h1>
-                </li>
-                <li>
-                    <label for="from" style="font-size: medium;">From</label>
-                    <input type="text" name="from" id="from" placeholder="Choose city">
-                </li>
-                <li>
-                    <label for="to" style="font-size: medium;">To</label>
-                    <input type="text" name="to" id="to" placeholder="Choose city">
-                </li>
-                <br>
-                <li>
-                    <button id="btn" class="button-orange">Find</button>
-                </li>
-            </ul>
-
+        <div class="col-6 menu landing-top">
+            <h1 style="padding: 0px;">Find a bus for your next trip</h1>
+            <p id="landing-header-desc">Easily compare and book your next trip with us.</p>
+        </div>
+        <div class="col-6 menu from-to">
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="from">FROM</label>
+                    <input type="text" name="from" id="from" placeholder="Choose city" list="halt-list">
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="to">TO</label>
+                    <input type="text" name="to" id="to" placeholder="Choose city" list="halt-list">
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="date">DATE</label>
+                    <!-- date input today or tomorrow -->
+                    <input type="date" name="date" id="date" min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>">
+                </div>
+            </div>
+            <div class="white-box">
+                <div class="landing-header-li">
+                    <label for="passengers">PASSENGERS</label>
+                    <input type="number" name="passengers" id="passengers" placeholder="No. of passengers" min=0 max=5>
+                </div>
+            </div>
+            <div class="find-button-div">
+                <button id="find-bus" class="find-button-orange" style="margin:0px;">Find</button>
+            </div>
         </div>
     </div>
     <div class="row">
+        <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
+        <div class="fare-from-to-grid">
+            <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" required>
+            <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" required>
+
+            <button id="calculate-fare" class="button-orange">Find fare</button>
+            <div id="fare-result" class='span-3'></div>
+        </div>
         <section id="busfare">
-            <div style="margin: auto;">
-                <h1 style="font-size: 30px; margin:20px; color:#24315e;">Bus fares</h1>
-            </div>
-            <div class="col-10 col-s-10" style="margin: auto;">
+            <div style="width:100%">
                 <table id="busfare-table">
                     <?php
+
                     $len = count($halts);
-                    echo "<tr><td class='halt-name-top'></td>";
+                    $fareinstance = new Fareinstance;
+                    $instance = $fareinstance->getFareInstances($len);
+                    
                     for ($i = 0; $i < $len; $i++) {
                         $halt = $halts[$i];
-
-                        // First column for the halt name
-                        echo "<td class='halt-name-top'>" . $halt->name . "</td>";
-                    }
-                    echo "</tr><tr>";
-
-                    for ($i = 0; $i < $len; $i++) {
-
-                        $halt = $halts[$i];
-                        echo "<tr><td class='halt-name'>" . $halt->name . "</td>";
-                        for ($j = 0; $j < $len; $j++) {
-                            if ($i == $j) {
-                                // Current halt and target halt are the same, don't need to display fare
-                                echo "<td class='halt-name'></td>";
-                            } else {
-                                $targetHalt = $halts[$j];
-                                $fare = $halt->fare_from_source - $targetHalt->fare_from_source;
-                                $fare = $fare < 0 ? -$fare : $fare;
-                                echo "<td>" . $fare . "</td>";
-
-                            }
-                        }
-                        echo "</tr><tr>";
-                    }
                     ?>
+                        <tr data-haltfrom='<?=$halt->name?>'><td class='halt-name'><?=$halt->name?></td>
+                        <?php
+                        for ($j = 0; $j <= $i; $j++)
+                            { if ($i == $j) {?>
 
+                            <td class='halt-name-top'><?=$halt->name?></td>
+
+                        <?php } else {?>
+
+                            <td class='fare-td' data-haltto='<?=$halts[$j]->name?>'><?=$instance[$i-$j]->fare?></td>
+
+                        <?php }}}?>
                 </table>
             </div>
         </section>
@@ -147,12 +166,6 @@ if (isset($_SESSION['USER'])) {
             </p>
         </section>
     </div>
-
-    <script>
-    document.getElementById("btn").onclick = function() {
-        location.href = "<?= ROOT ?>/passengerschedule";
-    };
-    </script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
     <div class="sidebar">
         <li><a id="dashboard" class="owner-sidebar-li" href="<?= ROOT ?>/owners">Dashboard</a></li>
         <li><a id="schedules" class="owner-sidebar-li" href="<?= ROOT ?>/ownerschedule">Schedules</a></li>
-        <li><a id="buses" class="owner-sidebar-li" href="<?= ROOT ?>/registernew">Buses</a></li>
+        <li><a id="buses" class="owner-sidebar-li" href="<?= ROOT ?>/ownerbuses">Buses</a></li>
         <li><a id="income" class="owner-sidebar-li" href="<?= ROOT ?>/ownerincome">Income</a></li>
         <li><a id="ratings" class="owner-sidebar-li" href="#">Ratings</a></li>
         <li><a id="breakdowns" class="owner-sidebar-li" href="<?= ROOT ?>/ownerbreakdowns">Breakdowns</a></li>

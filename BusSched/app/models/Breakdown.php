@@ -50,16 +50,6 @@ class Breakdown extends Model
     }
 
 
-    public function getConductorBreakdowns($conductor)
-    {
-        // return $this->findAll();
-        $data['conductor'] = $conductor;
-        // show($data);
-        $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
-        return $breakdowns;
-    }
-
-
     public function addBreakdown($data)
     {
         // validate and add
@@ -83,4 +73,4 @@ class Breakdown extends Model
         // return false;
     }
 
-}
+

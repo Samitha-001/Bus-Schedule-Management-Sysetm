@@ -1,0 +1,50 @@
+/* nav bar */
+.passenger-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: white;
+  color: black;
+  height: 80px;
+  position: sticky;
+  top: 60px;
+  width: 100%;
+  z-index: 4;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.passenger-nav-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.passenger-nav-links {
+  height: 30;
+  padding-left: 0px;
+}
+
+.passenger-nav-menu {
+  display: flex;
+  gap: 0em;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.passenger-nav-links a.li {
+    padding-left: 0;
+}
+
+.passenger-nav-menu li {
+  width: max-content;
+}
+
+a.li {
+  height: 60px;
+}
+
+.li img {
+  height: 60px;
+}
+

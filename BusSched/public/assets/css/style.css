@@ -62,15 +62,6 @@ input {
   border: 0.5px solid #eeedf1;
 }
 
-.update-location-grid {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  color: #24315e;
-  grid-auto-rows: 40px;
-}
-
 main {
   display: flex;
   justify-content: center;
