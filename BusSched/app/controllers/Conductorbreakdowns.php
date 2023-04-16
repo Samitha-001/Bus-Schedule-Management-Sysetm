@@ -10,7 +10,7 @@ class Conductorbreakdowns
     {
         $breakdown = new Breakdown();
           // get username from session
-        $conductor = $_SESSION['USER']->username;
+         $conductor = $_SESSION['USER']->username;
         $breakdowns = $breakdown->getConductorBreakdowns($conductor);
 
         $data = [];
@@ -24,6 +24,6 @@ class Conductorbreakdowns
 
             $data['errors'] = $breakdown->errors;
         }
-        $this->userview('conductor', 'conductorbreakdown', ['breakdowns' => $breakdowns]);
+        $this->view('conductor', 'conductorbreakdown', ['breakdowns' => $breakdowns]);
     }
 }
