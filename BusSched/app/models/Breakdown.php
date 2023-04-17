@@ -40,6 +40,15 @@ class Breakdown extends Model
         return $this->findAll();
     }
 
+    public function getConductorBreakdowns($conductor)
+    {
+        // return $this->findAll();
+        $data['conductor'] = $conductor;
+        // show($data);
+        $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        return $breakdowns;
+    }
+
     public function getOwnerBreakdowns($owner)
     {
         // return $this->findAll();
@@ -48,6 +57,8 @@ class Breakdown extends Model
         $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
         return $breakdowns;
     }
+
+
 
     public function addBreakdown($data)
     {
@@ -72,4 +83,4 @@ class Breakdown extends Model
         // return false;
     }
 
-}
+
