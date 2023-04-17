@@ -37,10 +37,10 @@ if (isset($_SESSION['USER'])) {
     <div class="row main-content">
         <div id="profile-header">
             <div class="wrapper">
-            <a id="show-all-tickets" class="ticket-type-btn selected" href="#"><span>All</span></a>
-            <a id="show-booked-tickets" class="ticket-type-btn" href="#"><span>Booked</span></a>
-            <a id="show-collected-tickets" class="ticket-type-btn" href="#"><span>Collected</span></a>
-            <a id="show-expired-tickets" class="ticket-type-btn" href="#"><span>Expired</span></a>
+            <a id="show-all-tickets" class="ticket-type-btn selected"><span>All</span></a>
+            <a id="show-booked-tickets" class="ticket-type-btn"><span>Booked</span></a>
+            <a id="show-collected-tickets" class="ticket-type-btn"><span>Collected</span></a>
+            <a id="show-expired-tickets" class="ticket-type-btn"><span>Expired</span></a>
             </div>
         </div>
         
@@ -127,8 +127,7 @@ if (isset($_SESSION['USER'])) {
                         <p></p>
                         <p></p>
                         <p></p>
-                        <!-- orange button -->
-                        <a href="#" class="ticket-view-more ticket-button-orange">View more</a>
+                        <a class="ticket-view-more ticket-button-orange">View more</a>
                     </div>
                 <?php endif; endforeach; else: ?>
                 <div class="passenger-profile-card">
@@ -168,9 +167,101 @@ if (isset($_SESSION['USER'])) {
             </div>
         </div>
 
-        <div id="collected-ticket-details" class="passenger-profile-card" style="display:none">
-            sldknvfdcoldc
+        <div id="collected-ticket-details" class="ticket-details-card" style="display:none">
+        <span class="close">
+            <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
+        </span>
+        <table>
+            <tr>
+                <th>From: </th>
+                <td><?= $ticket->source_halt ?></td>
+                <th>Ticket ID: </th>
+                <td><?= $ticket->id ?></td>
+            </tr>
+            <tr>
+                <th>To: </th>
+                <td><?= $ticket->dest_halt ?></td>
+                <th>Trip ID: </th>
+                <td><?= $ticket->trip_id ?></td>
+            </tr>
+            <tr>
+                <th>Bus No.: </th>
+                <td>NC1111</td>
+                <th>Date: </th>
+                <td>xxx</td>
+            </tr>
+            <tr>
+                <th>Seat(s): </th>
+                <td>A2, A3</td>
+                <th>Time: </th>
+                <td><?= $ticket->booking_time ?></td>
+            </tr>
+            <tr>
+                <th>Price: </th>
+                <td>150 LKR</td>
+                <th>Collected at: </th>
+                <td>3:23 PM</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a id="a-update-location">Update location and earn points</a>
+                </td>
+                <td colspan="2" style="text-align:center">
+                    <a id="a-got-off">Got off the bus</a>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- pop up div for got off bus-->
+        <div id="gotoff-popup" class="pop-up" style="display:none">
+            <div class="pop-up-content">
+                <!-- TODO -->
+                <span class="close">
+                    <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
+                </span>
+                <br>
+                <p>Did you get off the bus at <?= $ticket->dest_halt ?>?</p>
+                <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
+                <button id="btn-got-off-cancel" class="ticket-button-orange">Cancel</button>
+            </div>
         </div>
+    </div>
+
+    <!-- pop up div to update location -->
+    <div id="update-location-div" class="ticket-details-card" style="display:none">
+        <br>
+        <?php
+            $halt = new Halt();
+            $halts = $halt->getHalts();
+            // find indexes of ticket source and destination
+            $src = array_search($ticket->source_halt, array_column($halts, 'name'));
+            $dest = array_search($ticket->dest_halt, array_column($halts, 'name'));            
+            // get sub array of halts between source and destination
+            if ($src > $dest) $halts = array_reverse($halts);
+            $halts = array_slice($halts, $src, $dest-$src+1);
+            ?>
+            <!-- var ----number-of-options -->
+            
+            
+
+    <div id="form-wrapper" style="--number-of-options: <?= abs($src-$dest)+1?>;">
+        <form action="/p/quote.php" method="POST">
+            <div id="debt-amount-slider">
+                <?php
+                // print halts
+                foreach ($halts as $halt) {?> 
+                <input type="radio" name="debt-amount" id="<?= $halt->name ?>" value="<?= $halt->name ?>" required>
+                <label for="<?= $halt->name ?>" data-debt-amount="<?= $halt->name ?>"></label>
+                <?php } ?>
+                
+                <div id="debt-amount-pos"></div>
+            </div>
+        </form>
+    </div>
+    <br><br><br>
+    <button id="btn-update-location-yes" class="ticket-button-orange">Confirm</button>
+    <button id="btn-update-location-cancel" class="ticket-button-orange">Cancel</button>
+</div>
 
 </body>
 
