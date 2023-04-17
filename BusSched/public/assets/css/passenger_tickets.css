@@ -74,7 +74,7 @@ p {
 /* buttons */
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 a.ticket-type-btn {
@@ -185,6 +185,11 @@ div.ticket-details-card {
 .pop-up-content p {
   text-align: center;
   padding: 10px;
+}
+
+.ticket-details-card td a.disabled {
+  cursor: default;
+  color: #7c839e;
 }
 
 #form-wrapper {

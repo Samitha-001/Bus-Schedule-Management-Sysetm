@@ -79,7 +79,7 @@ p {
 /* buttons */
 .wrapper{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 a.ticket-type-btn{
@@ -192,19 +192,14 @@ div.ticket-details-card {
   padding: 10px;
 }
 
+.ticket-details-card td a.disabled {
+  cursor: default;
+  color: #7c839e;
+}
 
 // FOR THE UPDATE LOCATION RADIO BUTTONS
 $number-of-options: var(--number-of-options);
-// html, body {
-// 	width: 100%;
-// 	height: 100%;
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: center;
-// 	font-family: 'Nunito', sans-serif;
-// 	color: #000;
-// 	user-select: none;
-// }
+
 #form-wrapper {
 	width: 100%;
 	display: flex;

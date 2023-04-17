@@ -41,6 +41,7 @@ if (isset($_SESSION['USER'])) {
             <a id="show-booked-tickets" class="ticket-type-btn"><span>Booked</span></a>
             <a id="show-collected-tickets" class="ticket-type-btn"><span>Collected</span></a>
             <a id="show-expired-tickets" class="ticket-type-btn"><span>Expired</span></a>
+            <a id="show-inactive-tickets" class="ticket-type-btn"><span>Inactive</span></a>
             </div>
         </div>
         
@@ -167,6 +168,36 @@ if (isset($_SESSION['USER'])) {
             </div>
         </div>
 
+        <!-- inactive tickets div -->
+        <div class="tickets-grid" id="inactive-tickets">
+            <?php if ($tickets):
+                foreach ($tickets as $ticket): 
+                    if ($ticket->status == 'inactive'):?>
+                    <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id?>>
+                        <h1>Ticket ID</h1>
+                        <p><?= $ticket->id ?></p>
+                        <h1>Trip ID</h1>
+                        <p><?= $ticket->trip_id ?></p>
+                        <h1>Bus</h1>
+                        <p>bus</p>
+                        <h1>Seat</h1>
+                        <p>xxx</p>
+                        <h1>Price</h1>
+                        <p>xxx</p>
+                        <h1>Date</h1>
+                        <p>xxx</p>
+                        <h1>Time</h1>
+                        <p>xxx</p>
+                        <p></p>
+                        <p><?= $ticket->status ?></p>
+                    </div>
+                <?php endif; endforeach; else: ?>
+                <div class="passenger-profile-card">
+                    <h1>No tickets found</h1>
+                </div>
+            <?php endif; ?>
+        </div>
+
         <div id="collected-ticket-details" class="ticket-details-card" style="display:none">
         <span class="close">
             <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
@@ -259,7 +290,7 @@ if (isset($_SESSION['USER'])) {
         </form>
     </div>
     <br><br><br>
-    <button id="btn-update-location-yes" class="ticket-button-orange">Confirm</button>
+    <button id="btn-update-location-confirm" class="ticket-button-orange">Confirm</button>
     <button id="btn-update-location-cancel" class="ticket-button-orange">Cancel</button>
 </div>
 
