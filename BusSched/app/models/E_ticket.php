@@ -11,7 +11,6 @@ class E_ticket extends Model
         'trip_id',
         'seat_number',
         'ticket_number',
-        'booking_time',
         'source_halt',
         'dest_halt',
         'booking_time',
