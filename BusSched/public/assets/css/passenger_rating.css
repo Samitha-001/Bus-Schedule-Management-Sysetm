@@ -1,0 +1,48 @@
+@import "navbar.css";
+@import "general.css";
+
+th {
+  text-align: right;
+}
+
+td {
+  text-align: left;
+}
+
+th, td {
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #7C839E;
+}
+
+hr {
+  border: 0.5px solid #7C839E;  
+}
+
+.rating-container {
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating-section {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.rating-section table {
+  margin: 0 auto;
+  width: 80%;
+  font-size: small;
+}
+
+.rating {
+  display: inline-block;
+}
+
+.rating img {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+}

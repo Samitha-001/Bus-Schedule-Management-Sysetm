@@ -25,14 +25,16 @@ if ($_SESSION['USER']->role == 'passenger') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
+    <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <title>Conductor - Home</title>
 </head>
 
 <body>
-
-    <nav class="navbar">
+        <?php include 'components/navbarcon.php'; 
+        // include 'components/conductorsidebar.php';
+        ?>
+    <!-- <nav class="navbar">
         <div>
             <h2><a href="<?= ROOT ?>/conductors" id="logo-white">BusSched</a></h2>
         </div>
@@ -48,23 +50,25 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </ul>
 
-    </nav>
-
+    </nav> -->
+<!-- 
     <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/conductors" style="color:white;"><b>Dashboard</b></a></li>
-            <li><a href="#" style="color:#9298AF;">Location</a></li>
-            <li><a href="#" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="#" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="#" style="color:#9298AF;">Buses</a></li>
-            <li><a href="#" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="#" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="#" style="color:#9298AF;">Contacts</a></li>
-            <li><a href="#" style="color:#9298AF;">Tickets</a></li>
+        <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li> -->
+            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
+            <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
+            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
-    </div>
+    </div>  -->
 
-    <main class="container">
+    <!-- -->
+    <div class="header orange-header">
+        <div class="col-1">
+            
 
         <div class="card-container" id="greeting-card">
             <h2>
@@ -73,7 +77,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 ?>
             </h2>
         </div>
-
+</div>
+</div>
+<div class="col-2">
         <div class="card-container" id="info-card">
             <ul>
                 <p style="font-size: 32px;">Personal Info</p>
@@ -110,11 +116,14 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </table>
             </ul>
         </div>
-
+        </div>
+        <div class="col-3">
         <div class="card-container span-col-2">
-
+        </div>
         </div>
 
+<main class="container"> 
+<!-- <div class="col-4">  -->
         <div class="card-container" id="location-card">
             <a href="#">
                 <div class="overlay">
@@ -128,8 +137,10 @@ if ($_SESSION['USER']->role == 'passenger') {
                     </div>
                 </div>
             </a>
-        </div>
+        <!-- </div>  -->
+    </div>
 
+<!-- <div class="col-5"> -->
         <div class="card-container" id="ratings-card">
             <div class="overlay">
                 <div class="items"></div>
@@ -142,6 +153,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
+        <!-- </div> -->
+
+        <!-- <div class="col-6"> -->
 
         <div class="card-container" id="schedules-card">
             <div class="overlay">
@@ -154,8 +168,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <p>Bus schedules</p>
                 </div>
             </div>
+        <!-- </div> -->
         </div>
-
+        <!-- <div class="col-7"> -->
         <div class="card-container" id="buses-card">
             <div class="overlay">
                 <div class="items"></div>
@@ -168,7 +183,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-
+     <!-- </div> -->
+     <!-- <div class="col-5">  -->
         <div class="card-container" id="breakdowns-card">
             <a href="#">
                 <div class="overlay">
@@ -183,7 +199,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </a>
         </div>
+        <!-- </div>' -->
 
+        <!-- <div class="col-9"> -->
         <div class="card-container" id="fare-card">
             <div class="overlay">
                 <div class="items"></div>
@@ -196,8 +214,9 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-
-        <div class="card-container" id="tickets-card">
+        <!-- </div> -->
+        <!-- <div class="col-10"> -->
+        <div class="card-container" id="contacts-card">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -209,6 +228,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
+        <!-- </div> -->
+        <!-- <div class="col-7"> -->
 
         <div class="card-container" id="tickets-card">
             <div class="overlay">
@@ -222,7 +243,8 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </div>
         </div>
-    </main>
+     <!-- </div>  -->
+</main> 
 
 
 </body>

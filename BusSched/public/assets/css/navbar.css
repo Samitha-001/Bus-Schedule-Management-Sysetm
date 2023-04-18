@@ -9,11 +9,11 @@
   padding-bottom: 0px;
   background-color: black;
   color: #fff;
-  height: 60px;
+  height: 70px;
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 4;
 }
 
 .nav-links a {
@@ -50,7 +50,7 @@
 }
 
 .signup-button {
-  background-color: #f15f22;
+  background-color: #FD6002;
   border: none;
   border-radius: 5px;
   color: white;
@@ -114,24 +114,25 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 0;
   right: 0;
-  background-color: #24315e;
+  background-color: black;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
   font-size: 16px;
+  text-align: center;
 }
 
 .sidenav a {
-  color: #7a819c;
+  color: #7c839e;
   display: block;
   transition: 0.3s;
 }
 
 a.li {
-  padding-left: 30px;
+  padding: 20px;
 }
 
 .sidenav a:hover {
@@ -140,10 +141,18 @@ a.li {
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0;
-  right: 30px;
+  top: 6px;
+  right: 40px;
   font-size: 36px;
   margin-left: 50px;
+  color: white;
+}
+
+.sidenav .sidenav-logo {
+  position: absolute;
+  top: 21px;
+  left: 40px;
+  margin-right: 50px;
 }
 
 ul.sidenav-links {
@@ -159,7 +168,7 @@ ul.sidenav-links {
 }
 
 .sidenav .services:hover {
-  color: #7a819c;
+  color: #7c839e;
 }
 
 .sidenav-signup,
@@ -210,4 +219,10 @@ ul.sidenav-links {
 .sidenav-signup-button a, .sidenav-login-button a {
   color: white;
   padding: 5px;
+}
+
+.sidenav-header {
+  display:flex;
+  /* wrap */
+  flex-wrap: wrap;
 }

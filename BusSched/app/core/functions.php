@@ -16,3 +16,8 @@ function redirect($path) {
     header("Location: " . ROOT . "/" . $path);
     die;
 }
+
+function adminredirect($path) {
+    header("Location: " . ROOT . "/admins/" . $path);
+    die;
+}
