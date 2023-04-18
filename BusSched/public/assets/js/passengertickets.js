@@ -121,9 +121,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // add event listeners to each button
     collectedTicketViewMoreBtns.forEach((button) => {
-        button.addEventListener("click", function () {
-        ticketDetails.style.display = "block";
-        collectedTicketsDiv.style.display = "none";
+        button.addEventListener("click", function (e) {
+            ticketDetails.style.display = "block";
+            // get data-id from e.parent
+            let ticketId = e.target.parentElement.getAttribute("data-id");
+            // TODO: write API to get ticket details
+
+            collectedTicketsDiv.style.display = "none";
         });
     });
 
@@ -231,6 +235,27 @@ document.addEventListener("DOMContentLoaded", function () {
     // passenger got off bus update database function
     function passengerGotOffBus() {
         // updating database
-        
+        // get data attribute from updateLocationDiv
+        let ticketId = updateLocationDiv.getAttribute("data-ticket-id");
+        let data = { id: ticketId };
+
+        // send data to server
+        let url = `${ROOT}/passengertickets/api_update_location`;
+        let options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        };
+        fetch(url, options)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            }
+        );
     }
 });

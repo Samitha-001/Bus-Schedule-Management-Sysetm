@@ -261,8 +261,9 @@ if (isset($_SESSION['USER'])) {
         </div>
     </div>
 
+    <?= $id = $ticket->id;?>
     <!-- pop up div to update location -->
-    <div id="update-location-div" style="display:none;">
+    <div id="update-location-div" style="display:none;" data-ticket-id="<?= $id ?>">
         <div style="display:flex; overflow-x: scroll;">
             <?php
                 $halt = new Halt();

@@ -50,4 +50,17 @@ class E_ticket extends Model
         // show($data);
         return $this->insert($data);
     }
+
+    // find ticket
+    public function findTicket($id)
+    {
+        return $this->first($id);
+    }
+
+    // update ticket
+    public function updateTicket($id, $data)
+    {
+        return $this->update($id, $data);
+    }
+
 }
