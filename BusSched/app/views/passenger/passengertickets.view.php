@@ -202,6 +202,7 @@ if (isset($_SESSION['USER'])) {
         <span class="close">
             <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
         </span>
+        <h1 id="update-location-h" style="display:none">Update Location</h1>
         <table>
             <tr>
                 <th>From: </th>
@@ -252,47 +253,39 @@ if (isset($_SESSION['USER'])) {
                 </span>
                 <br>
                 <p>Did you get off the bus at <?= $ticket->dest_halt ?>?</p>
-                <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
-                <button id="btn-got-off-cancel" class="ticket-button-orange">Cancel</button>
+                <div  style="display:flex; align-items:center; justify-content:center;">
+                    <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
+                    <button id="btn-got-off-cancel" class="ticket-button-orange">No</button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- pop up div to update location -->
-    <div id="update-location-div" class="ticket-details-card" style="display:none">
-        <br>
-        <?php
-            $halt = new Halt();
-            $halts = $halt->getHalts();
-            // find indexes of ticket source and destination
-            $src = array_search($ticket->source_halt, array_column($halts, 'name'));
-            $dest = array_search($ticket->dest_halt, array_column($halts, 'name'));            
-            // get sub array of halts between source and destination
-            if ($src > $dest) $halts = array_reverse($halts);
-            $halts = array_slice($halts, $src, $dest-$src+1);
+    <div id="update-location-div" style="display:none;">
+        <div style="display:flex; overflow-x: scroll;">
+            <?php
+                $halt = new Halt();
+                $halts = $halt->getHalts();
+                // find indexes of ticket source and destination
+                $src = array_search($ticket->source_halt, array_column($halts, 'name'));
+                $dest = array_search($ticket->dest_halt, array_column($halts, 'name'));            
+                // get sub array of halts between source and destination
+                if ($src > $dest) $halts = array_reverse($halts);
+                $halts = array_slice($halts, $src, $dest-$src+1);
             ?>
-            <!-- var ----number-of-options -->
-            
-            
-
-    <div id="form-wrapper" style="--number-of-options: <?= abs($src-$dest)+1?>;">
-        <form action="/p/quote.php" method="POST">
-            <div id="debt-amount-slider">
-                <?php
-                // print halts
-                foreach ($halts as $halt) {?> 
-                <input type="radio" name="debt-amount" id="<?= $halt->name ?>" value="<?= $halt->name ?>" required>
-                <label for="<?= $halt->name ?>" data-debt-amount="<?= $halt->name ?>"></label>
-                <?php } ?>
-                
-                <div id="debt-amount-pos"></div>
-            </div>
-        </form>
+            <?php foreach ($halts as $halt) {?> 
+                <div id="location-<?= $halt->name ?>" class="location-update-card">
+                <p></p>
+                <?= $halt->name ?>
+                </div> 
+            <?php } ?>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:center;">
+            <button id="btn-update-location-confirm" class="ticket-button-orange">Confirm</button>
+            <button id="btn-update-location-cancel" class="ticket-button-orange">Cancel</button>
+        </div>
     </div>
-    <br><br><br>
-    <button id="btn-update-location-confirm" class="ticket-button-orange">Confirm</button>
-    <button id="btn-update-location-cancel" class="ticket-button-orange">Cancel</button>
-</div>
 
 </body>
 

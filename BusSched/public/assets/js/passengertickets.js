@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let collectedTicketViewMoreBtns =
         document.querySelectorAll(".ticket-view-more");
 
-    // add event listener to each button
+    // add event listeners to each button
     collectedTicketViewMoreBtns.forEach((button) => {
         button.addEventListener("click", function () {
         ticketDetails.style.display = "block";
@@ -151,8 +151,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("btn-got-off-yes")
         .addEventListener("click", function () {
         // TODO implement yes button
-        showCollectedTicketsFunc();
-        gotOffBusPopup.style.display = "none";
+            showCollectedTicketsFunc();
+            gotOffBusPopup.style.display = "none";
+            passengerGotOffBus();
         });
     // got off from a different halt
     document
@@ -179,10 +180,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // update location and earn points
     let updateLocationBtn = document.getElementById("a-update-location");
     let updateLocationDiv = document.getElementById("update-location-div");
+    let updateLocationH = document.getElementById("update-location-h");
 
     updateLocationBtn.addEventListener("click", function () {
         updateLocationDiv.style.display = "block";
+        updateLocationH.style.display = "block";
         // add class disabled to gotOffBusBtn
+        updateLocationBtn.classList.add("disabled");
         gotOffBusBtn.classList.add("disabled");
     });
     
@@ -192,6 +196,8 @@ document.addEventListener("DOMContentLoaded", function () {
         updateLocationDiv.style.display = "none";
         // remove class disabled from gotOffBusBtn
         gotOffBusBtn.classList.remove("disabled");
+        updateLocationBtn.classList.remove("disabled");
+        updateLocationH.style.display = "none";
     });
 
     // update location confirm button
@@ -201,9 +207,30 @@ document.addEventListener("DOMContentLoaded", function () {
         updateLocationDiv.style.display = "none";
         // remove class disabled from gotOffBusBtn
         gotOffBusBtn.classList.remove("disabled");
+        updateLocationBtn.classList.remove("disabled");
         ticketDetails.style.display = "none";
+        updateLocationH.style.display = "none";
         showCollectedTicketsFunc();
     });
 
-
+    let locationDivs = document.querySelectorAll(".location-update-card");
+    // add event listeners for each locationDivs
+    locationDivs.forEach((div) => {
+        div.addEventListener("click", function (e) {
+            // add class selected
+            locationDivs.forEach((div) => {
+                div.classList.remove("selected-halt");
+                // remove text content in p tag
+                div.getElementsByTagName("p")[0].innerHTML = " ";
+            });
+            div.classList.add("selected-halt");
+            div.getElementsByTagName("p")[0].innerHTML = "Reached";
+        });
+    });
+    
+    // passenger got off bus update database function
+    function passengerGotOffBus() {
+        // updating database
+        
+    }
 });
