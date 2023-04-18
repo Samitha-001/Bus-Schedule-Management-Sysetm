@@ -1,0 +1,27 @@
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: #ff4d4d; /* Red */
+    border-radius: 15px;
+  }
+  
+  .toggle-input {
+    display: none;
+  }
+  
+  .toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #ffffff; /* White */
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .toggle-input:checked + .toggle-label {
+    transform: translateX(30px);
+    background-color: #64dd17; /* Green */
+  }

@@ -15,6 +15,7 @@ include 'components/schedulersidebar.php';
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedbus.css">
 
 </head>
 
@@ -61,12 +62,12 @@ include 'components/schedulersidebar.php';
                     </tr>
 
                     <tr>
-                        <td style="color:#24315e;"><label for="availability">Bus Available? </label></td>
+                        <td style="color:#24315e;"><label for="availability">Bus Available</label></td>
                         <td>
-                            <label class="switch">
-                                <input type="checkbox" id="availability" name="availability" value="1">
-                                <span class="slider round"></span>
-                            </label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="toggle" class="toggle-input">
+                            <label for="toggle" class="toggle-label"></label>
+                        </div>
                         </td>
                     </tr>
 
