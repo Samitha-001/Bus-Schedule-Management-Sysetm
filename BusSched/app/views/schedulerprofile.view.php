@@ -58,6 +58,15 @@
                 </table>
             </ul>
         </div>
+        <div class="profile-picture-container">
+        <div class="profile-picture">
+            
+            <img src="profile_picture.jpg" alt="Profile Picture">
+            <div class="overlay">
+                <span class="plus-icon">+</span>
+            </div>
+        </div>
+    </div>
         </div>
 
 </body>
