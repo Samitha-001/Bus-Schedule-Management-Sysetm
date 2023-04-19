@@ -1,9 +1,6 @@
 <?php
-
-
 class Breakdowns
 {
-
     use Controller;
 
     public function index()

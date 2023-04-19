@@ -122,11 +122,10 @@ if (!isset($_SESSION['USER'])) {
             <table border='1' class="styled-table">
                 <tr>
                     <th>#</th>
-                    <th>From</th>
-                    <th>Route</th>
+                    <th>From</th>  
                     <th>To</th>
+                    <th>Route</th>
                     <th>Amount</th>
-                    <th>Type</th>
                     <th>Last Updated</th>
                     <!-- <th>Action</th> -->
                 </tr>
@@ -137,8 +136,7 @@ if (!isset($_SESSION['USER'])) {
                     echo "<td> $fare->id </td>";
                     echo "<td> $fare->source </td>";
                     echo "<td> $fare->dest </td>";
-                    echo "<td> $fare->route_bus </td>";
-                    echo "<td> $fare->type_bus </td>";
+                    echo "<td> $fare->bus_route </td>";
                     echo "<td> $fare->amount</td>";
                     echo "<td> $fare->last_updated </td>";
                     echo "</tr>";

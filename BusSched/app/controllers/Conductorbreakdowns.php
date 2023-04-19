@@ -1,29 +1,24 @@
 <?php
-
-
 class Conductorbreakdowns
 {
-
     use Controller;
 
     public function index()
     {
         $breakdown = new Breakdown();
-          // get username from session
-         $conductor = $_SESSION['USER']->username;
-        $breakdowns = $breakdown->getConductorBreakdowns($conductor);
+        $breakdowns = $breakdown->getBreakdowns();
 
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-           
+            $_POST['bus_no'] = strtoupper($_POST['bus_no']);
             if ($breakdown->validate($_POST)) {
                 $breakdown->insert($_POST);
 
-                redirect('conductorbreakdowns');
+                redirect('breakdowns');
             }
 
             $data['errors'] = $breakdown->errors;
         }
-        $this->view('conductor', 'conductorbreakdown', ['breakdowns' => $breakdowns]);
+        $this->view('breakdown', ['breakdowns' => $breakdowns]);
     }
 }

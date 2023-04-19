@@ -23,7 +23,7 @@ if (!isset($_SESSION['USER'])) {
 <?php
 // include '../app/views/components/ownernavbar.php';
 // include '../app/views/components/ownersidebar.php';
-include 'components/navbarcon.php';
+    include '../app/views/components/navbarcon.php';
 ?>
 
     <main class="container1">
