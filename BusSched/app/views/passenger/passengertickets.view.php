@@ -128,7 +128,7 @@ if (isset($_SESSION['USER'])) {
                         <p></p>
                         <p></p>
                         <p></p>
-                        <a class="ticket-view-more ticket-button-orange">View more</a>
+                        <a class="ticket-view-more ticket-button-orange" data-ticket-id="<?= $ticket->id ?>">View more</a>
                     </div>
                 <?php endif; endforeach; else: ?>
                 <div class="passenger-profile-card">
@@ -199,69 +199,76 @@ if (isset($_SESSION['USER'])) {
         </div>
 
         <div id="collected-ticket-details" class="ticket-details-card" style="display:none">
-        <span class="close">
-            <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
-        </span>
-        <h1 id="update-location-h" style="display:none">Update Location</h1>
-        <table>
-            <tr>
-                <th>From: </th>
-                <td><?= $ticket->source_halt ?></td>
-                <th>Ticket ID: </th>
-                <td><?= $ticket->id ?></td>
-            </tr>
-            <tr>
-                <th>To: </th>
-                <td><?= $ticket->dest_halt ?></td>
-                <th>Trip ID: </th>
-                <td><?= $ticket->trip_id ?></td>
-            </tr>
-            <tr>
-                <th>Bus No.: </th>
-                <td>NC1111</td>
-                <th>Date: </th>
-                <td>xxx</td>
-            </tr>
-            <tr>
-                <th>Seat(s): </th>
-                <td>A2, A3</td>
-                <th>Time: </th>
-                <td><?= $ticket->booking_time ?></td>
-            </tr>
-            <tr>
-                <th>Price: </th>
-                <td>150 LKR</td>
-                <th>Collected at: </th>
-                <td>3:23 PM</td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align:center">
-                    <a id="a-update-location">Update location and earn points</a>
-                </td>
-                <td colspan="2" style="text-align:center">
-                    <a id="a-got-off">Got off the bus</a>
-                </td>
-            </tr>
-        </table>
-        
-        <!-- pop up div for got off bus-->
-        <div id="gotoff-popup" class="pop-up" style="display:none">
-            <div class="pop-up-content">
-                <!-- TODO -->
-                <span class="close">
-                    <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
-                </span>
-                <br>
-                <p>Did you get off the bus at <?= $ticket->dest_halt ?>?</p>
-                <div  style="display:flex; align-items:center; justify-content:center;">
-                    <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
-                    <button id="btn-got-off-cancel" class="ticket-button-orange">No</button>
+            <span class="close">
+                <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
+            </span>
+            <h1 id="update-location-h" style="display:none">Update Location</h1>
+            <table>
+                <tr>
+                    <th>From: </th>
+                    <td name="source_halt"><?= $ticket->source_halt ?></td>
+                    <th>Ticket ID: </th>
+                    <td name="id"><?= $ticket->id ?></td>
+                </tr>
+                <tr>
+                    <th>To: </th>
+                    <td name="dest_halt"><?= $ticket->dest_halt ?></td>
+                    <th>Trip ID: </th>
+                    <td name="trip_id"><?= $ticket->trip_id ?></td>
+                </tr>
+                <tr>
+                    <th>Bus No.: </th>
+                    <td>NC1111</td>
+                    <th>Date: </th>
+                    <td>xxx</td>
+                </tr>
+                <tr>
+                    <th>Seat(s): </th>
+                    <td>A2, A3</td>
+                    <th>Time: </th>
+                    <td name="booking_time"><?= $ticket->booking_time ?></td>
+                </tr>
+                <tr>
+                    <th>Price: </th>
+                    <td>150 LKR</td>
+                    <th>Collected at: </th>
+                    <td>3:23 PM</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center">
+                        <a id="a-update-location">Update location and earn points</a>
+                    </td>
+                    <td colspan="2" style="text-align:center">
+                        <a id="a-got-off">Got off the bus</a>
+                    </td>
+                    <!-- <td> -->
+                        <?php
+                        // $test = new E_Ticket();
+                        // $testticket = $test->findTicket(array('id' => 32));
+                        // echo ($testticket->source_halt);
+                        ?>
+                    <!-- </td> -->
+                </tr>
+            </table>
+            
+            <!-- pop up div for got off bus-->
+            <div id="gotoff-popup" class="pop-up" style="display:none">
+                <div class="pop-up-content">
+                    <!-- TODO -->
+                    <span class="close">
+                        <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
+                    </span>
+                    <br>
+                    <p>Did you get off the bus at <?= $ticket->dest_halt ?>?</p>
+                    <div  style="display:flex; align-items:center; justify-content:center;">
+                        <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
+                        <button id="btn-got-off-cancel" class="ticket-button-orange">No</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <?= $id = $ticket->id;?>
+    <?php $id = $ticket->id;?>
     <!-- pop up div to update location -->
     <div id="update-location-div" style="display:none;" data-ticket-id="<?= $id ?>">
         <div style="display:flex; overflow-x: scroll;">

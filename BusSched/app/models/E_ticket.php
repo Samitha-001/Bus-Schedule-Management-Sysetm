@@ -54,7 +54,7 @@ class E_ticket extends Model
     // find ticket
     public function findTicket($id)
     {
-        return $this->first($id);
+        return $this->first(['id'=>$id]);
     }
 
     // update ticket

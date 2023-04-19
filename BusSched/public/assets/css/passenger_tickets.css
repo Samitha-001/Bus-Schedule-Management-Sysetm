@@ -2,8 +2,8 @@
 @import "general.css";
 @import "passenger_profile.css";
 body {
-  /* background-color: #24315e; */
-  background-color: #f9f9f9;
+  background: url("../images/backgrounds/bg-location.png");
+  /* background-color: #f9f9f9; */
   font-size: 12px;
 }
 
@@ -74,6 +74,7 @@ a.ticket-type-btn {
   display: inline-block;
   width: 110px;
   height: 40px;
+  margin-bottom: 2px;
   line-height: 40px;
   font-size: 14px;
   font-family: Outfit;
@@ -82,6 +83,7 @@ a.ticket-type-btn {
   text-align: center;
   position: relative;
   transition: all 0.35s;
+  min-width: 60px;
 }
 
 a.ticket-type-btn span {
@@ -97,7 +99,7 @@ a.ticket-type-btn:after {
   width: 0;
   height: 100%;
   background: white;
-  transition: all 0.35s;
+  transition: all 0.2s;
   border-radius: 20px;
 }
 
@@ -126,6 +128,7 @@ a.ticket-type-btn:hover:after {
   color: white;
   padding: 10px;
   margin: 3px;
+  cursor: pointer;
 }
 
 div.ticket-details-card {
@@ -195,8 +198,8 @@ div.ticket-details-card {
 .location-update-card {
   display: inline-block;
   background-color: white;
-  width: 150px;
-  height: 75px;
+  min-width: 140px;
+  height: 140px;
   padding: 10px;
   margin: 5px;
   border-radius: 5px;
@@ -228,4 +231,10 @@ div.ticket-details-card {
   background-color: #7c839e;
   color: white;
   cursor: default;
+}
+
+::-webkit-scrollbar {
+  padding-top: 5px;
+  width: 100%;
+  height: 2px;
 }
