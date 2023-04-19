@@ -132,23 +132,21 @@ a.ticket-type-btn:hover:after {
 }
 
 div.ticket-details-card {
-  width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 100%;
   padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 15px;
-  /* margin: 5px; */
-  color: #7c839e;
+  color: #24315e;
+  display: inline-block;
+  margin: 50px;
+  max-width: 85%;
+  border-radius: 5px;
 }
 
 .ticket-details-card th {
-  text-align: right;
+  text-align: left;
   color: #24315e;
-  width: 25%;
 }
 
 .ticket-details-card td a {
@@ -193,6 +191,14 @@ div.ticket-details-card {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  align-content: center;
+  /* width: 80%; */
+}
+
+#update-location-div h1 {
+  color: white;
+  text-align: center;
+  width: 100%;
 }
 
 .location-update-card {
@@ -210,15 +216,13 @@ div.ticket-details-card {
 }
 
 .selected-halt {
-  scale: 1.1;
+  scale: 1.05;
   background-color: #f15f22;
   color: white;
   font-weight: 400;
-
-}
-
-/* add transition to .selected halt */
-.selected-halt {
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
   transition: all 0.35s;
 }
 
@@ -235,6 +239,37 @@ div.ticket-details-card {
 
 ::-webkit-scrollbar {
   padding-top: 5px;
+  width: 50%;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+#update-location-div ::-webkit-scrollbar-thumb {
+  /* -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+  background: white;
+  border-radius: 10px;
+  height: 3px;
+}
+
+#update-location-div ::-webkit-scrollbar {
+  height: 7px;
+}
+
+#update-location-div ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+#collected-ticket-details table {
   width: 100%;
-  height: 2px;
+  margin: 30px;
 }

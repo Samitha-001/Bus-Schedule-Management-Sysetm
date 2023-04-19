@@ -31,7 +31,7 @@ if (isset($_SESSION['USER'])) {
 
 <body>
 <?php
-    include '../app/views/components/navbar.php';
+include '../app/views/components/navbar.php';
 ?>
 
     <div class="row main-content">
@@ -47,248 +47,222 @@ if (isset($_SESSION['USER'])) {
         
         <div class="tickets-grid" id="all-tickets">
             <?php if ($tickets):
-                foreach ($tickets as $ticket):?>
-                    <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id?>>
-                        <h1>Ticket ID</h1>
-                        <p><?= $ticket->id ?></p>
-                        <h1>Trip ID</h1>
-                        <p><?= $ticket->trip_id ?></p>
-                        <h1>Bus</h1>
-                        <p>bus</p>
-                        <h1>Seat</h1>
-                        <p>xxx</p>
-                        <h1>Price</h1>
-                        <p>xxx</p>
-                        <h1>Date</h1>
-                        <p>xxx</p>
-                        <h1>Time</h1>
-                        <p>xxx</p>
-                        <p></p>
-                        <p><?= $ticket->status ?></p>
+                foreach ($tickets as $ticket): ?>
+                            <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id ?>>
+                                <h1>Ticket ID</h1>
+                                <p><?= $ticket->id ?></p>
+                                <h1>Trip ID</h1>
+                                <p><?= $ticket->trip_id ?></p>
+                                <h1>Bus</h1>
+                                <p>bus</p>
+                                <h1>Seat</h1>
+                                <p>xxx</p>
+                                <h1>Price</h1>
+                                <p>xxx</p>
+                                <h1>Date</h1>
+                                <p>xxx</p>
+                                <h1>Time</h1>
+                                <p>xxx</p>
+                                <p></p>
+                                <p><?= $ticket->status ?></p>
+                            </div>
+                    <?php endforeach; else: ?>
+                    <div class="passenger-profile-card">
+                        <h1>No tickets found</h1>
                     </div>
-                <?php endforeach; else: ?>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="tickets-grid" id="booked-tickets">
+        <?php if ($tickets): foreach ($tickets as $ticket):
+            if ($ticket->status == 'booked'): ?>
+                            <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id ?>>
+                                <h1>Ticket ID</h1>
+                                <p><?= $ticket->id ?></p>
+                                <h1>Trip ID</h1>
+                                <p><?= $ticket->trip_id ?></p>
+                                <h1>Bus</h1>
+                                <p>bus</p>
+                                <h1>Seat</h1>
+                                <p>xxx</p>
+                                <h1>Price</h1>
+                                <p>xxx</p>
+                                <h1>Date</h1>
+                                <p>xxx</p>
+                                <h1>Time</h1>
+                                <p>xxx</p>
+                                <p></p>
+                                <p><?= $ticket->status ?></p>
+                            </div>
+                    <?php endif; endforeach; else: ?>
                 <div class="passenger-profile-card">
                     <h1>No tickets found</h1>
                 </div>
-            <?php endif; ?>
-            </div>
+        <?php endif; ?>
         </div>
+    </div>
 
-        <div class="tickets-grid" id="booked-tickets">
-            <?php if ($tickets):
-                foreach ($tickets as $ticket): 
-                    if ($ticket->status == 'booked'):?>
-                    <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id?>>
-                        <h1>Ticket ID</h1>
-                        <p><?= $ticket->id ?></p>
-                        <h1>Trip ID</h1>
-                        <p><?= $ticket->trip_id ?></p>
-                        <h1>Bus</h1>
-                        <p>bus</p>
-                        <h1>Seat</h1>
-                        <p>xxx</p>
-                        <h1>Price</h1>
-                        <p>xxx</p>
-                        <h1>Date</h1>
-                        <p>xxx</p>
-                        <h1>Time</h1>
-                        <p>xxx</p>
-                        <p></p>
-                        <p><?= $ticket->status ?></p>
-                    </div>
-                <?php endif; endforeach; else: ?>
+    <div class="tickets-grid" id="collected-tickets">
+        <?php if ($tickets): foreach ($tickets as $ticket):
+            if ($ticket->status == 'collected'): ?>
+                            <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id ?>>
+                                <h1>Ticket ID</h1>
+                                <p><?= $ticket->id ?></p>
+                                <h1>Trip ID</h1>
+                                <p><?= $ticket->trip_id ?></p>
+                                <h1>Bus</h1>
+                                <p>bus</p>
+                                <h1>Seat</h1>
+                                <p>xxx</p>
+                                <h1>Price</h1>
+                                <p>xxx</p>
+                                <h1>Date</h1>
+                                <p>xxx</p>
+                                <h1>Time</h1>
+                                <p>xxx</p>
+                                <p></p>
+                                <p><?= $ticket->status ?></p>
+                                <p></p>
+                                <p></p>
+                                <p></p>
+                                <a class="ticket-view-more ticket-button-orange" data-ticket-id="<?= $ticket->id ?>">View more</a>
+                            </div>
+                    <?php endif; endforeach; else: ?>
                 <div class="passenger-profile-card">
                     <h1>No tickets found</h1>
                 </div>
-            <?php endif; ?>
-            </div>
+        <?php endif; ?>
         </div>
+    </div>
 
-        <div class="tickets-grid" id="collected-tickets">
-            <?php if ($tickets):
-                foreach ($tickets as $ticket): 
-                    if ($ticket->status == 'collected'):?>
-                    <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id?>>
-                        <h1>Ticket ID</h1>
-                        <p><?= $ticket->id ?></p>
-                        <h1>Trip ID</h1>
-                        <p><?= $ticket->trip_id ?></p>
-                        <h1>Bus</h1>
-                        <p>bus</p>
-                        <h1>Seat</h1>
-                        <p>xxx</p>
-                        <h1>Price</h1>
-                        <p>xxx</p>
-                        <h1>Date</h1>
-                        <p>xxx</p>
-                        <h1>Time</h1>
-                        <p>xxx</p>
-                        <p></p>
-                        <p><?= $ticket->status ?></p>
-                        <p></p>
-                        <p></p>
-                        <p></p>
-                        <a class="ticket-view-more ticket-button-orange" data-ticket-id="<?= $ticket->id ?>">View more</a>
-                    </div>
-                <?php endif; endforeach; else: ?>
+    <div class="tickets-grid" id="expired-tickets">
+        <?php if ($tickets): foreach ($tickets as $ticket):
+            if ($ticket->status == 'expired'): ?>
+                            <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id ?>>
+                                <h1>Ticket ID</h1>
+                                <p><?= $ticket->id ?></p>
+                                <h1>Trip ID</h1>
+                                <p><?= $ticket->trip_id ?></p>
+                                <h1>Bus</h1>
+                                <p>bus</p>
+                                <h1>Seat</h1>
+                                <p>xxx</p>
+                                <h1>Price</h1>
+                                <p>xxx</p>
+                                <h1>Date</h1>
+                                <p>xxx</p>
+                                <h1>Time</h1>
+                                <p>xxx</p>
+                                <p></p>
+                                <p><?= $ticket->status ?></p>
+                            </div>
+                    <?php endif; endforeach; else: ?>
                 <div class="passenger-profile-card">
                     <h1>No tickets found</h1>
                 </div>
-            <?php endif; ?>
-            </div>
+        <?php endif; ?>
         </div>
+    </div>
 
-        <div class="tickets-grid" id="expired-tickets">
-            <?php if ($tickets):
-                foreach ($tickets as $ticket): 
-                    if ($ticket->status == 'expired'):?>
-                    <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id?>>
-                        <h1>Ticket ID</h1>
-                        <p><?= $ticket->id ?></p>
-                        <h1>Trip ID</h1>
-                        <p><?= $ticket->trip_id ?></p>
-                        <h1>Bus</h1>
-                        <p>bus</p>
-                        <h1>Seat</h1>
-                        <p>xxx</p>
-                        <h1>Price</h1>
-                        <p>xxx</p>
-                        <h1>Date</h1>
-                        <p>xxx</p>
-                        <h1>Time</h1>
-                        <p>xxx</p>
-                        <p></p>
-                        <p><?= $ticket->status ?></p>
-                    </div>
-                <?php endif; endforeach; else: ?>
+    <!-- inactive tickets div -->
+    <div class="tickets-grid" id="inactive-tickets">
+        <?php if ($tickets): foreach ($tickets as $ticket):
+            if ($ticket->status == 'inactive'): ?>
+                            <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id ?>>
+                                <h1>Ticket ID</h1>
+                                <p><?= $ticket->id ?></p>
+                                <h1>Trip ID</h1>
+                                <p><?= $ticket->trip_id ?></p>
+                                <h1>Bus</h1>
+                                <p>bus</p>
+                                <h1>Seat</h1>
+                                <p>xxx</p>
+                                <h1>Price</h1>
+                                <p>xxx</p>
+                                <h1>Date</h1>
+                                <p>xxx</p>
+                                <h1>Time</h1>
+                                <p>xxx</p>
+                                <p></p>
+                                <p><?= $ticket->status ?></p>
+                            </div>
+                    <?php endif; endforeach; else: ?>
                 <div class="passenger-profile-card">
                     <h1>No tickets found</h1>
                 </div>
-            <?php endif; ?>
-            </div>
-        </div>
+        <?php endif; ?>
+    </div>
 
-        <!-- inactive tickets div -->
-        <div class="tickets-grid" id="inactive-tickets">
-            <?php if ($tickets):
-                foreach ($tickets as $ticket): 
-                    if ($ticket->status == 'inactive'):?>
-                    <div class="passenger-profile-card ticket-grid" data-id=<?= $ticket->id?>>
-                        <h1>Ticket ID</h1>
-                        <p><?= $ticket->id ?></p>
-                        <h1>Trip ID</h1>
-                        <p><?= $ticket->trip_id ?></p>
-                        <h1>Bus</h1>
-                        <p>bus</p>
-                        <h1>Seat</h1>
-                        <p>xxx</p>
-                        <h1>Price</h1>
-                        <p>xxx</p>
-                        <h1>Date</h1>
-                        <p>xxx</p>
-                        <h1>Time</h1>
-                        <p>xxx</p>
-                        <p></p>
-                        <p><?= $ticket->status ?></p>
-                    </div>
-                <?php endif; endforeach; else: ?>
-                <div class="passenger-profile-card">
-                    <h1>No tickets found</h1>
-                </div>
-            <?php endif; ?>
-        </div>
-
-        <div id="collected-ticket-details" class="ticket-details-card" style="display:none">
-            <span class="close">
-                <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
-            </span>
-            <h1 id="update-location-h" style="display:none">Update Location</h1>
-            <table>
-                <tr>
-                    <th>From: </th>
-                    <td name="source_halt"><?= $ticket->source_halt ?></td>
-                    <th>Ticket ID: </th>
-                    <td name="id"><?= $ticket->id ?></td>
-                </tr>
-                <tr>
-                    <th>To: </th>
-                    <td name="dest_halt"><?= $ticket->dest_halt ?></td>
-                    <th>Trip ID: </th>
-                    <td name="trip_id"><?= $ticket->trip_id ?></td>
-                </tr>
-                <tr>
-                    <th>Bus No.: </th>
-                    <td>NC1111</td>
-                    <th>Date: </th>
-                    <td>xxx</td>
-                </tr>
-                <tr>
-                    <th>Seat(s): </th>
-                    <td>A2, A3</td>
-                    <th>Time: </th>
-                    <td name="booking_time"><?= $ticket->booking_time ?></td>
-                </tr>
-                <tr>
-                    <th>Price: </th>
-                    <td>150 LKR</td>
-                    <th>Collected at: </th>
-                    <td>3:23 PM</td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align:center">
-                        <a id="a-update-location">Update location and earn points</a>
-                    </td>
-                    <td colspan="2" style="text-align:center">
-                        <a id="a-got-off">Got off the bus</a>
-                    </td>
-                    <!-- <td> -->
-                        <?php
-                        // $test = new E_Ticket();
-                        // $testticket = $test->findTicket(array('id' => 32));
-                        // echo ($testticket->source_halt);
-                        ?>
-                    <!-- </td> -->
-                </tr>
-            </table>
-            
-            <!-- pop up div for got off bus-->
-            <div id="gotoff-popup" class="pop-up" style="display:none">
-                <div class="pop-up-content">
-                    <!-- TODO -->
-                    <span class="close">
-                        <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
-                    </span>
-                    <br>
-                    <p>Did you get off the bus at <?= $ticket->dest_halt ?>?</p>
-                    <div  style="display:flex; align-items:center; justify-content:center;">
-                        <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
-                        <button id="btn-got-off-cancel" class="ticket-button-orange">No</button>
-                    </div>
+    <div id="collected-ticket-details" class="ticket-details-card" style="display:none">
+        <span class="close">
+            <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
+        </span>
+        <h1 id="update-location-h" style="display:none; margin-left: 20px;">Update Location</h1>
+        <table>
+            <tr>
+                <th>From: </th>
+                <td name="source_halt"><?= $ticket->source_halt ?></td>
+                <th>Ticket ID: </th>
+                <td name="id"><?= $ticket->id ?></td>
+            </tr>
+            <tr>
+                <th>To: </th>
+                <td name="dest_halt"><?= $ticket->dest_halt ?></td>
+                <th>Trip ID: </th>
+                <td name="trip_id"><?= $ticket->trip_id ?></td>
+            </tr>
+            <tr>
+                <th>Bus No.: </th>
+                <td>NC1111</td>
+                <th>Date: </th>
+                <td>xxx</td>
+            </tr>
+            <tr>
+                <th>Seat(s): </th>
+                <td>A2, A3</td>
+                <th>Time: </th>
+                <td name="booking_time"><?= $ticket->booking_time ?></td>
+            </tr>
+            <tr>
+                <th>Price: </th>
+                <td>150 LKR</td>
+                <th>Collected at: </th>
+                <td>3:23 PM</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <a id="a-update-location">Update location and earn points</a>
+                </td>
+                <td colspan="2" style="text-align:center">
+                    <a id="a-got-off">Got off the bus</a>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- pop up div for got off bus-->
+        <div id="gotoff-popup" class="pop-up" style="display:none">
+            <div class="pop-up-content">
+                <!-- TODO -->
+                <span class="close">
+                    <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
+                </span>
+                <br>
+                <p>Did you get off the bus at <?= $ticket->dest_halt ?>?</p>
+                <div  style="display:flex; align-items:center; justify-content:center;">
+                    <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
+                    <button id="btn-got-off-cancel" class="ticket-button-orange">No</button>
                 </div>
             </div>
         </div>
+    </div>
 
-    <?php $id = $ticket->id;?>
+    <?php $id = $ticket->id; ?>
     <!-- pop up div to update location -->
-    <div id="update-location-div" style="display:none;" data-ticket-id="<?= $id ?>">
-        <div style="display:flex; overflow-x: scroll;">
-            <?php
-                $halt = new Halt();
-                $halts = $halt->getHalts();
-                // find indexes of ticket source and destination
-                $src = array_search($ticket->source_halt, array_column($halts, 'name'));
-                $dest = array_search($ticket->dest_halt, array_column($halts, 'name'));            
-                // get sub array of halts between source and destination
-                if ($src > $dest) $halts = array_reverse($halts);
-                $halts = array_slice($halts, $src, $dest-$src+1);
-            ?>
-            <?php foreach ($halts as $halt) {?> 
-                <div id="location-<?= $halt->name ?>" class="location-update-card">
-                <p></p>
-                <?= $halt->name ?>
-                </div> 
-            <?php } ?>
+    <div id="update-location-div" style="display:none;">
+        <div id="inside-update-location-div" style="display:flex; overflow-x: scroll;">
         </div>
+        <h1></h1>
         <div style="display:flex; align-items:center; justify-content:center;">
             <button id="btn-update-location-confirm" class="ticket-button-orange">Confirm</button>
             <button id="btn-update-location-cancel" class="ticket-button-orange">Cancel</button>

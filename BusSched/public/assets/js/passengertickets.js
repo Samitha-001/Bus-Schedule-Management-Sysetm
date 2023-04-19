@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let inactiveTicketsDiv = document.getElementById("inactive-tickets");
 
+  // update location and earn points
+  let updateLocationBtn = document.getElementById("a-update-location");
+  let updateLocationDiv = document.getElementById("update-location-div");
+  let updateLocationH = document.getElementById("update-location-h");
+  let insideLocationDiv = document.getElementById("inside-update-location-div");
+
   // add event listener to showAllTickets
   showAllTickets.addEventListener("click", function () {
     // add class selected
@@ -36,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     expiredTicketsDiv.style.display = "none";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
+    updateLocationDiv.style.display = "none";
   });
 
   // add event listener to showBookedTickets
@@ -55,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     expiredTicketsDiv.style.display = "none";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
+    updateLocationDiv.style.display = "none";
   });
 
   // Function to show collected tickets
@@ -74,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     expiredTicketsDiv.style.display = "none";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
+    updateLocationDiv.style.display = "none";
   }
 
   // add event listener to showExpiredTickets
@@ -93,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     expiredTicketsDiv.style.display = "grid";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
+    updateLocationDiv.style.display = "none";
   });
 
   // add event listener to showInactiveTickets
@@ -113,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     expiredTicketsDiv.style.display = "none";
     inactiveTicketsDiv.style.display = "grid";
     ticketDetails.style.display = "none";
+    updateLocationDiv.style.display = "none";
   });
 
   // collected ticket view more
@@ -126,17 +137,31 @@ document.addEventListener("DOMContentLoaded", function () {
       // get data-id from e.parent
       let ticketId = button.getAttribute("data-ticket-id");
 
-      console.log(ticketId);
-
       let ticket = getTicketDetails(ticketId);
-      ticket.then((ticket) => {  
+      ticket.then((ticket) => {
         // updating values of ticket details tds
         let tds = ticketDetails.querySelectorAll("td");
         for (let i = 0; i < 4; i++) {
           let tdName = tds[i].getAttribute("name");
           tds[i].innerHTML = ticket[tdName];
         }
-  
+
+        // get halts for update location div
+        let halts = getHalts(ticket["source_halt"], ticket["dest_halt"]);
+        halts.then((halts) => {
+          halts.forEach((halt) => {
+            //   make new div for each halt
+            let haltDiv = document.createElement("div");
+            insideLocationDiv.appendChild(haltDiv);
+            haltDiv.classList.add("location-update-card");
+            // add id to div
+            haltDiv.setAttribute("id", halt);
+            //   add halt name to div
+            haltDiv.innerHTML = halt;
+            let haltP = document.createElement("p");
+            haltDiv.appendChild(haltP);
+          });
+        });
         collectedTicketsDiv.style.display = "none";
       });
     });
@@ -163,18 +188,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // GOT OFF THE BUS
   // confirm got off
-  document
-    .getElementById("btn-got-off-yes")
-    .addEventListener("click", function () {
+  document.getElementById("btn-got-off-yes").addEventListener("click", function () {
       // TODO implement yes button
       showCollectedTicketsFunc();
       gotOffBusPopup.style.display = "none";
       passengerGotOffBus();
     });
   // got off from a different halt
-  document
-    .getElementById("btn-got-off-cancel")
-    .addEventListener("click", function () {
+  document.getElementById("btn-got-off-cancel").addEventListener("click", function () {
       // TODO implement no button
       gotOffBusPopup.style.display = "none";
     });
@@ -193,10 +214,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // update location and earn points
-  let updateLocationBtn = document.getElementById("a-update-location");
-  let updateLocationDiv = document.getElementById("update-location-div");
-  let updateLocationH = document.getElementById("update-location-h");
-
   updateLocationBtn.addEventListener("click", function () {
     updateLocationDiv.style.display = "block";
     updateLocationH.style.display = "block";
@@ -216,10 +233,26 @@ document.addEventListener("DOMContentLoaded", function () {
     updateLocationH.style.display = "none";
   });
 
+  // add event listeners for each locationDivs
+  insideLocationDiv.addEventListener("click", function (e) {
+    if (e.target.classList.contains("location-update-card")) {
+      // if clicked on a div with class location-update-card
+      let locationDivs = document.querySelectorAll(".location-update-card");
+      // remove class from each location div
+      locationDivs.forEach((div) => {
+        div.classList.remove("selected-halt");
+        div.getElementsByTagName("p")[0].innerHTML = " ";
+      });
+
+      let div = e.target;
+      div.classList.add("selected-halt");
+      div.getElementsByTagName("p")[0].innerHTML = "Reached?";
+      updateLocationDiv.getElementsByTagName("h1")[0].innerHTML = div.getAttribute("id");
+    }
+  });
+  
   // update location confirm button
-  let updateLocationConfirmBtn = document.getElementById(
-    "btn-update-location-confirm"
-  );
+  let updateLocationConfirmBtn = document.getElementById("btn-update-location-confirm");
   updateLocationConfirmBtn.addEventListener("click", function () {
     // TODO implement updating location (make ticket inactive)
     updateLocationDiv.style.display = "none";
@@ -229,21 +262,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ticketDetails.style.display = "none";
     updateLocationH.style.display = "none";
     showCollectedTicketsFunc();
-  });
-
-  let locationDivs = document.querySelectorAll(".location-update-card");
-  // add event listeners for each locationDivs
-  locationDivs.forEach((div) => {
-    div.addEventListener("click", function (e) {
-      // add class selected
-      locationDivs.forEach((div) => {
-        div.classList.remove("selected-halt");
-        // remove text content in p tag
-        div.getElementsByTagName("p")[0].innerHTML = " ";
-      });
-      div.classList.add("selected-halt");
-      div.getElementsByTagName("p")[0].innerHTML = "Reached";
-    });
   });
 
   // passenger got off bus update database function
@@ -278,6 +296,28 @@ document.addEventListener("DOMContentLoaded", function () {
     let data = { id: ticketId };
     // send data to server
     let url = `${ROOT}/passengertickets/api_read_ticket`;
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    return fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        return data.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  // get halts for location update div
+  function getHalts(src, dest) {
+    let data = { src: src, dest: dest };
+    // send data to server
+    let url = `${ROOT}/passengertickets/api_read_halts`;
     let options = {
       method: "POST",
       headers: {
