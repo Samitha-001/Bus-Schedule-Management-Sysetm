@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // function to autofill and display editing row
   function editRow(e) {
-    console.log("Inside editRow");
     let ticketdiv = e.target.parentElement.parentElement;
     let userdetails = ticketdiv.querySelectorAll("p");
     let name = userdetails[0].textContent.trim();
@@ -33,11 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // get the form inside ticketdiv
     let infoform = ticketdiv.querySelector("form");
-    console.log(ticketdiv);
 
     // get element by class
     let profileinfo = ticketdiv.querySelector("div.info-grid");
-    console.log(profileinfo);
 
     // inputs
     let inputs = infoform.querySelectorAll("input");
@@ -57,8 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     infoform.style.display = "none";
 
     let ticketdiv = e.target.parentElement.parentElement.parentElement;
-    console.log("infoform");
-    console.log(infoform);
     let profileinfo = ticketdiv.querySelector(".info-grid");
     profileinfo.style.display = "grid";
   }
@@ -123,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let giftPointsBtn = document.getElementById("gift-points-btn");
   let cancelGiftbtn = document.getElementById("cancel-gift-btn");
   let confirmGiftbtn = document.getElementById("confirm-gift-btn");
+  let pointBalanceDiv = document.getElementById("point-balance-div");
 
   cancelGiftbtn.addEventListener("click", function (e) {
     giftPointsDiv.style.display = "none";
@@ -139,6 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (confirm) {
       giftPointsDiv.style.display = "none";
       giftPointsBtn.style.display = "block";
+      // change points
       // call function to gift points
       giftPoints();
     }
@@ -164,8 +161,12 @@ document.addEventListener("DOMContentLoaded", function () {
       data[inputs[i].name] = inputs[i].value;
     }
     data["points_to"] = select;
-
-    // console.log(data);
+    
+    // update point balance
+    let vals = pointBalanceDiv.querySelectorAll("p");
+    
+    vals[0].textContent = parseInt(vals[0].textContent) - parseInt(data["amount"]);
+    vals[1].textContent = parseInt(vals[1].textContent) - parseInt(data["amount"]);
 
     // send data to server
     let url = `${ROOT}/passengerprofile/api_gift_points`;
