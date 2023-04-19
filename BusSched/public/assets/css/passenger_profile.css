@@ -66,6 +66,10 @@ img:hover {
   opacity: 1;
 }
 
+/* change cursor when hovered over a */
+a:hover {
+  cursor: pointer;
+}
 
 /* for tablet & desktop */
 @media only screen and (min-width: 600px) {
@@ -173,4 +177,9 @@ input[type="text"], input[type="number"], input[type="text"]::placeholder, input
 
 a#edit-passenger-info {
   text-align: right;
+}
+
+/* align span to right */
+span.close{
+  float: right;
 }
