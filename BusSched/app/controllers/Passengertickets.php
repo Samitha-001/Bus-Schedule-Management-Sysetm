@@ -45,19 +45,25 @@ class Passengertickets
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
-
             $id = $postData['id'];
             
-            $ticket = new E_ticket();
             // method to get ticket info
-            $data = $ticket->findTicket($id);
+            $ticket = new E_ticket();
+            $dataticket = $ticket->findTicket($id);
 
-            // Send a response
+            // getting trip details relevant to the ticket
+            $trip = new Trip();
+            $tripData = $trip->getTrip(['id' => $dataticket->trip_id]);
+
+            // trip data and ticket data
+            $data['trip'] = $tripData;
+            $data['ticket'] = $dataticket;
+
             $response = array('status' => 'success', 'data' => $data);
             header('Content-Type: application/json');
             echo json_encode($response);
         } else {
-            $response = array('status' => 'error', 'data' => 'Invalid requestss');
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
             header('Content-Type: application/json');
             echo json_encode($response);
         }

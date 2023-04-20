@@ -21,6 +21,6 @@ class Trip extends Model
     // get trip by id
     public function getTrip($data)
     {
-        return $this->where($data);
+        return $this->first($data);
     }
 }

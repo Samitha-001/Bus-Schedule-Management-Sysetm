@@ -14,7 +14,10 @@ class E_ticket extends Model
         'source_halt',
         'dest_halt',
         'booking_time',
-        'status'
+        'status',
+        'passenger_count',
+        'arrival_time',
+        'departure_time'
     ];
 
     public function validate($data)

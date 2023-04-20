@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   expiredTicketsDiv.style.display = "none";
 
   let inactiveTicketsDiv = document.getElementById("inactive-tickets");
+  inactiveTicketsDiv.style.display = "none";
 
   // update location and earn points
   let updateLocationBtn = document.getElementById("a-update-location");
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showInactiveTickets.classList.remove("selected");
 
     // show all tickets
-    allTicketsDiv.style.display = "grid";
+    allTicketsDiv.style.display = "flex";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // show booked tickets
     allTicketsDiv.style.display = "none";
-    bookedTicketsDiv.style.display = "grid";
+    bookedTicketsDiv.style.display = "flex";
     collectedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
     inactiveTicketsDiv.style.display = "none";
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // show collected tickets
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
-    collectedTicketsDiv.style.display = "grid";
+    collectedTicketsDiv.style.display = "flex";
     expiredTicketsDiv.style.display = "none";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
-    expiredTicketsDiv.style.display = "grid";
+    expiredTicketsDiv.style.display = "flex";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
@@ -121,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
-    inactiveTicketsDiv.style.display = "grid";
+    inactiveTicketsDiv.style.display = "flex";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
   });
@@ -137,17 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // get data-id from e.parent
       let ticketId = button.getAttribute("data-ticket-id");
 
-      let ticket = getTicketDetails(ticketId);
-      ticket.then((ticket) => {
-        // updating values of ticket details tds
-        let tds = ticketDetails.querySelectorAll("td");
-        for (let i = 0; i < 4; i++) {
-          let tdName = tds[i].getAttribute("name");
-          tds[i].innerHTML = ticket[tdName];
-        }
+      let ticketDeets = getTicketDetails(ticketId);
+      ticketDeets.then((ticket) => {
+        console.log(ticket);
+        console.log("Dineth")
+        // TODO: fill ticket details div
 
         // get halts for update location div
-        let halts = getHalts(ticket["source_halt"], ticket["dest_halt"]);
+        let halts = getHalts(ticket['ticket']["source_halt"], ticket['ticket']["dest_halt"]);
         halts.then((halts) => {
           halts.forEach((halt) => {
             //   make new div for each halt
@@ -172,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementsByTagName("img")[0]
     .addEventListener("click", function () {
       ticketDetails.style.display = "none";
-      collectedTicketsDiv.style.display = "grid";
+      collectedTicketsDiv.style.display = "flex";
     });
 
   // got off the bus popup div
@@ -292,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // get ticket details function
   function getTicketDetails(ticketId) {
-    var ticket = {};
+    // var ticket = {};
     let data = { id: ticketId };
     // send data to server
     let url = `${ROOT}/passengertickets/api_read_ticket`;
