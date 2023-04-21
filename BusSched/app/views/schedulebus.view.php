@@ -29,7 +29,11 @@ include 'components/schedulersidebar.php';
             <div>
                 <h3>Buses</h3>
             </div>
-            <div><button id="btn" class="button-grey">Download</button></div>
+            <div>
+            <form method="post" id="btn" class="button-grey">
+                <input type="submit" name="download" value="Download">
+            </form>
+            </div>
         </div>
 
         <form method="post" id="view_bus" style="display:none">
@@ -100,7 +104,7 @@ include 'components/schedulersidebar.php';
                     <th>Bus No.</th>
                     <th>Bus Type</th>
                     <th>No. of Seats</th>
-                    <th>Bus Available?</th>
+                    <!-- <th>Bus Available?</th> -->
                     <th>Bus Route</th>
                     <th>Start</th>
                 </tr>
@@ -112,7 +116,7 @@ include 'components/schedulersidebar.php';
                     echo "<td> $bus->bus_no </td>";
                     echo "<td> $bus->type </td>";
                     echo "<td> $bus->seats_no </td>";
-                    echo "<td> $bus->availability </td>";
+                    // echo "<td> $bus->availability </td>";
                     echo "<td> $bus->route </td>";
                     echo "<td> $bus->start </td>";
                     echo "</tr>";

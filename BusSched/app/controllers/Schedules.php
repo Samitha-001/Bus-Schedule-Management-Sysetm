@@ -9,7 +9,7 @@ class Schedules
     public function index()
     {
         $schedule = new Schedule();
-        $schedules = $schedule->getScheds();
+        $schedules = $schedule->generateScheds();
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
