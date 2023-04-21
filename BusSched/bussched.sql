@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 20, 2023 at 08:14 AM
+-- Generation Time: Apr 21, 2023 at 05:01 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -202,13 +202,17 @@ CREATE TABLE IF NOT EXISTS `e_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `passenger` varchar(50) NOT NULL,
   `trip_id` int(11) NOT NULL,
+  `departure_time` time DEFAULT NULL,
+  `arrival_time` time DEFAULT NULL,
   `seat_number` int(11) DEFAULT NULL,
   `ticket_number` char(10) DEFAULT NULL,
   `source_halt` varchar(50) NOT NULL,
   `dest_halt` varchar(50) NOT NULL,
   `booking_time` datetime NOT NULL,
   `passenger_count` int(11) NOT NULL DEFAULT '1',
+  `price` int(11) NOT NULL,
   `status` enum('booked','cancelled','collected','expired','inactive') NOT NULL DEFAULT 'booked',
+  `collected_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ticket-passenger` (`passenger`),
   KEY `ticket-trip` (`trip_id`),
@@ -220,15 +224,15 @@ CREATE TABLE IF NOT EXISTS `e_ticket` (
 -- Dumping data for table `e_ticket`
 --
 
-INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `seat_number`, `ticket_number`, `source_halt`, `dest_halt`, `booking_time`, `passenger_count`, `status`) VALUES
-(12, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 06:58:15', 1, 'collected'),
-(17, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Kohuwala', '2023-03-19 07:01:40', 1, 'cancelled'),
-(32, 'passenger1', 2, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 07:20:19', 1, 'booked'),
-(33, 'passenger1', 2, NULL, NULL, 'Dutugemunu St.', 'Werahera', '2023-03-19 07:32:37', 1, 'expired'),
-(34, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 14:07:15', 1, 'collected'),
-(35, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Fort', '2023-04-18 03:35:15', 1, 'inactive'),
-(36, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:52', 1, 'booked'),
-(37, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:56', 1, 'inactive');
+INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `departure_time`, `arrival_time`, `seat_number`, `ticket_number`, `source_halt`, `dest_halt`, `booking_time`, `passenger_count`, `price`, `status`, `collected_time`) VALUES
+(12, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 06:58:15', 1, 0, 'inactive', NULL),
+(17, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Kohuwala', '2023-03-19 07:01:40', 1, 0, 'cancelled', NULL),
+(32, 'passenger1', 2, NULL, NULL, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 07:20:19', 1, 0, 'booked', NULL),
+(33, 'passenger1', 2, NULL, NULL, NULL, NULL, 'Dutugemunu St.', 'Werahera', '2023-03-19 07:32:37', 1, 0, 'expired', NULL),
+(34, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 14:07:15', 1, 0, 'collected', NULL),
+(35, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-04-18 03:35:15', 1, 0, 'inactive', NULL),
+(36, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:52', 1, 0, 'booked', NULL),
+(37, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:56', 1, 0, 'collected', NULL);
 
 -- --------------------------------------------------------
 
