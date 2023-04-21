@@ -225,6 +225,8 @@ document.addEventListener("DOMContentLoaded", function () {
       showCollectedTicketsFunc();
       gotOffBusPopup.style.display = "none";
       passengerGotOffBus();
+      window.location.reload();
+
     });
   // got off from a different halt
   document.getElementById("btn-got-off-cancel").addEventListener("click", function () {
