@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // update location and earn points
   let updateLocationBtn = document.getElementById("a-update-location");
   let updateLocationDiv = document.getElementById("update-location-div");
-  let updateLocationH = document.getElementById("update-location-h");
   let insideLocationDiv = document.getElementById("inside-update-location-div");
 
   // add event listener to showAllTickets
@@ -140,10 +139,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let ticketDeets = getTicketDetails(ticketId);
       ticketDeets.then((ticket) => {
-        console.log(ticket);
-        console.log("Dineth")
         // TODO: fill ticket details div
+        console.log(ticket['ticket']);
+        console.log(ticket['trip']);
 
+        // source halt
+        document.getElementById("ticket-details-from").innerHTML = ticket['ticket']["source_halt"];
+        // destination halt
+        document.getElementById("ticket-details-to").innerHTML = ticket['ticket']["dest_halt"];
+
+        // arrival time
+        document.getElementById("ticket-details-arrival").innerHTML = ticket['ticket']["arrival_time"];
+        // departure time
+        document.getElementById("ticket-details-departure").innerHTML = ticket['ticket']["departure_time"];
+
+        // trip ID
+        document.getElementById("ticket-details-trip").innerHTML = ticket['ticket']["trip_id"];
+        // ticket ID
+        document.getElementById("ticket-details-ticket").innerHTML = ticket['ticket']["id"];
+
+        // bus number
+        document.getElementById("ticket-details-bus").innerHTML = ticket['trip']["bus_no"];
+        // number of passengers
+        document.getElementById("ticket-details-passengers").innerHTML = ticket['ticket']["passenger_count"];
+
+        // seats
+        document.getElementById("ticket-details-seats").innerHTML = ticket['ticket']["seat_number"];
+        // booking time
+        document.getElementById("ticket-details-booking-time").innerHTML = ticket['ticket']["booking_time"];
+
+        // price
+        document.getElementById("ticket-details-price").innerHTML = ticket['ticket']["price"];
+        // collected at
+        document.getElementById("ticket-details-collected").innerHTML = ticket['ticket']["collected_time"];
+
+        
+        // update destination of got off popup
+        document.getElementById("got-off-dest").innerHTML = ticket['ticket']["dest_halt"];
+
+        
         // get halts for update location div
         let halts = getHalts(ticket['ticket']["source_halt"], ticket['ticket']["dest_halt"]);
         halts.then((halts) => {
@@ -214,8 +248,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // update location and earn points
   updateLocationBtn.addEventListener("click", function () {
     updateLocationDiv.style.display = "block";
-    updateLocationH.style.display = "block";
-    // add class disabled to gotOffBusBtn
     updateLocationBtn.classList.add("disabled");
     gotOffBusBtn.classList.add("disabled");
   });
@@ -228,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
     updateLocationDiv.style.display = "none";
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
-    updateLocationH.style.display = "none";
+
   });
 
   // add event listeners for each locationDivs
@@ -258,7 +290,6 @@ document.addEventListener("DOMContentLoaded", function () {
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
     ticketDetails.style.display = "none";
-    updateLocationH.style.display = "none";
     showCollectedTicketsFunc();
   });
 

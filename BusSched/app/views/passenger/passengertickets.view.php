@@ -155,13 +155,11 @@ include '../app/views/components/navbar.php';
         <span class="close">
             <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
         </span>
-        <h1 id="update-location-h" style="display:none; margin-left: 20px;">Update Location
-
-    </h1>
+        <h1 style="margin-left: 20px;">Ticket Details</h1>
         <table>
             <tr>
                 <th colspan="2">
-                    <h3><span></span> - <span></span></h3>
+                    <h3><span id="ticket-details-from" name="source_halt"></span> - <span id="ticket-details-to" name="dest_halt"></span></h3>
                 </th>
                 <td>
                     Arrival<span id="ticket-details-arrival" name="arrival_time"></span>
@@ -172,27 +170,31 @@ include '../app/views/components/navbar.php';
             </tr>
             <tr>
                 <th>Trip ID: </th>
-                <td id="ticket-details-name" name="trip_id"><?= $ticket->trip_id ?></td>
+                <td id="ticket-details-trip" name="trip_id"><?= $ticket->trip_id ?></td>
                 <th>Ticket ID: </th>
-                <td id="ticket-details-id" name="id"><?= $ticket->id ?></td>
+                <td id="ticket-details-ticket" name="id"><?= $ticket->id ?></td>
             </tr>
             <tr>
                 <th>Bus No.: </th>
-                <td id="ticket-details-bus" name="bus_no">NC1111</td>
+                <td id="ticket-details-bus" name="bus_no"></td>
                 <th>No. of Passengers: </th>
                 <td id="ticket-details-passengers" name="passenger_count"></td>
             </tr>
             <tr>
                 <th>Seat(s): </th>
-                <td>A2, A3</td>
+                <td id="ticket-details-seats" name="seat_number"></td>
                 <th>Time booked: </th>
                 <td id="ticket-details-booking-time" name="booking_time"><?= $ticket->booking_time ?></td>
             </tr>
             <tr>
                 <th>Price: </th>
-                <td id="ticket-details-price" name="price">150 LKR</td>
-                <th id="ticket-details-collected">Collected at: </th>
-                <td>3:23 PM</td>
+                <td id="ticket-details-price" name="price"></td>
+                <th>Collected at: </th>
+                <td id="ticket-details-collected"></td>
+            </tr>
+            <tr>
+                <th>Last updated: </th>
+                <td id="ticket-details-last-updated" name="last_updated"></td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align:center">
@@ -212,7 +214,7 @@ include '../app/views/components/navbar.php';
                     <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
                 </span>
                 <br>
-                <p>Did you get off the bus at <?= $ticket->dest_halt ?>?</p>
+                <p>Did you get off the bus at <span id="got-off-dest"></span>?</p>
                 <div  style="display:flex; align-items:center; justify-content:center;">
                     <button id="btn-got-off-yes" class="ticket-button-orange">Yes</button>
                     <button id="btn-got-off-cancel" class="ticket-button-orange">No</button>
