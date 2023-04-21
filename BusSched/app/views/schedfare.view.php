@@ -105,23 +105,23 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
 
                 <?php
-                foreach ($schedfares as $fare) {
-                    echo "<tr>";
-                    echo "<td> $fare->id </td>";
-                    echo "<td> $fare->source </td>";
-                    echo "<td> $fare->dest </td>";
-                    echo "<td> $fare->route_bus </td>";
-                    // echo "<td> $fare->type_bus </td>";
-                    echo "<td> $fare->amount</td>";
-                    echo "<td> $fare->last_updated </td>";
-                    echo "<td>
-                                <div class='edit_delete'> 
-                                <img src='ROOT/assets/images/icons/edit.png'>
-                                <img src='ROOT/assets/images/icons/delete.png'>
-                                </div>      
-                          </td>";
-                    echo "</tr>";
-                } ?>
+                foreach ($schedfares as $fare): ?> 
+                    <tr>
+                    <td> <?php echo $fare->id ?></td>
+                    <td> <?php echo $fare->source ?></td>
+                    <td> <?php echo $fare->dest ?></td>
+                    <td> <?php echo $fare->route ?></td>
+                   
+                    <td> <?php echo $fare->amount ?></td>
+                    <td> <?php echo $fare->last_updated ?></td>
+                    <td>
+                        <div class='edit_delete'> 
+                                <img src='<?= ROOT ?>/assets/images/icons/edit.png'>
+                                <img src='<?=ROOT ?>/assets/images/icons/delete.png'>
+                        </div>      
+                    </td>
+                    </tr>
+                <?php endforeach ?>;
 
             </table>
         </div>

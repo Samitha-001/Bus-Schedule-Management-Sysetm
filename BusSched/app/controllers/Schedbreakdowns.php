@@ -13,15 +13,21 @@ class Schedbreakdowns
 
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $_POST['bus_no'] = strtoupper($_POST['bus_no']);
-            if ($breakdown->validate($_POST)) {
-                $breakdown->insert($_POST);
-
-                redirect('breakdowns');
-            }
-
-            $data['errors'] = $breakdown->errors;
+            // Check if a delete button was clicked
+            if (isset($_POST['delete'])) {
+                $id = $_POST['delete'];
+                // Call the delete method to delete the breakdown
+                if ($breakdown->deleteBreakdown($id)) {
+                    redirect('breakdowns');
+                } else {
+                    $data['error'] = 'Error deleting breakdown.';
+                    echo $data['error'];
+                }
+            } 
         }
+    
         $this->view('schedulebreakdown', ['breakdowns' => $breakdowns]);
     }
+
+    
 }

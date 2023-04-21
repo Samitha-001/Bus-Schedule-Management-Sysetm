@@ -106,17 +106,17 @@ include 'components/schedulersidebar.php';
                 </tr>
 
                 <?php
-                foreach ($buses as $bus) {
-                    echo "<tr>";
-                    echo "<td> $bus->id </td>";
-                    echo "<td> $bus->bus_no </td>";
-                    echo "<td> $bus->type </td>";
-                    echo "<td> $bus->seats_no </td>";
-                    // echo "<td> $bus->availability </td>";
-                    echo "<td> $bus->route </td>";
-                    echo "<td> $bus->start </td>";
-                    echo "</tr>";
-                } 
+                foreach ($buses as $bus) :?>
+                    <tr>
+                    <td> <?php echo $bus->id ?> </td>
+                    <td> <?php echo $bus->bus_no ?> </td>
+                    <td> <?php echo $bus->type ?></td>
+                    <td> <?php echo $bus->seats_no ?></td>
+                    <td> <?php echo $bus->route ?></td>
+                    <td> <?php echo $bus->start ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                
                 
                 // if (isset($_POST['data'])) {
                 //     // Retrieve the CSV data from the query parameter

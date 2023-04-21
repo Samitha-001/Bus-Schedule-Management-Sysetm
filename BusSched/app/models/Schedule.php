@@ -1,6 +1,6 @@
 <?php
 
-class Schedule extends Trip
+class Schedule extends Bus
 {
     protected $table = 'schedule';
 
@@ -15,6 +15,8 @@ class Schedule extends Trip
         'departure',
         'arrival'
     ];
+
+    
 
     public function validate($data)
     {
@@ -51,48 +53,51 @@ class Schedule extends Trip
         return false;
     }
 
-    public function generateScheds()
+    public function generateSchedule()
     {
-        $availableBuses = array($this->getTrips());
-        print_r($availableBuses);
-// Calculate the number of buses for each time slot
-// $totalBuses = count($availableBuses);
-// $morningBuses = ceil($totalBuses * 0.5);
-// $dayBuses = ceil($totalBuses * 0.1);
-// $eveningBuses = ceil($totalBuses * 0.4);
+    
+    $registeredBuses = $this->getBuses();
+        
 
-// // Shuffle the available buses randomly
-// shuffle($availableBuses);
+    $morningBuses = ceil(0.4 * count($registeredBuses));
+    $daytimeBuses = ceil(0.2 * count($registeredBuses));
+    $eveningBuses = count($registeredBuses) - $morningBuses - $daytimeBuses;
 
-// // Schedule the buses for morning time
-// $morningSchedule = array_slice($availableBuses, 0, $morningBuses);
+    
+    $schedule = [];
 
-// // Schedule the buses for day time
-// $daySchedule = array_slice($availableBuses, $morningBuses, $dayBuses);
-
-// // Schedule the buses for office evening time
-// $eveningSchedule = array_slice($availableBuses, $morningBuses + $dayBuses, $eveningBuses);
-
-// // Output the bus schedule
-// print_r($availableBuses);
-// echo "Morning Time Schedule:\n";
-// foreach ($morningSchedule as $bus) {
-//     echo $bus . "\n";
-// }
-
-// echo "\nDay Time Schedule:\n";
-// foreach ($daySchedule as $bus) {
-//     echo $bus . "\n";
-// }
-
-// echo "\nOffice Evening Time Schedule:\n";
-// foreach ($eveningSchedule as $bus) {
-//     echo $bus . "\n";
-// }
+    
+    for ($i = 0; $i < $morningBuses; $i++) {
+        $bus = $registeredBuses[array_rand($registeredBuses)];
+        $b = (array)$bus; 
+        $schedule[] = [
+            'bus_no' => $b['bus_no'],
+            'time_slot' => 'morning'
+        ];
     }
 
-    // public function getScheds()
-    // {
-    //     return $this->findAll();
-    // }
+   
+    for ($i = 0; $i < $daytimeBuses; $i++) {
+        $bus = $registeredBuses[array_rand($registeredBuses)]; 
+        $b = (array)$bus;
+        $schedule[] = [
+            'bus_no' => $b['bus_no'],
+            'time_slot' => 'daytime'
+        ];
+    }
+
+    
+    for ($i = 0; $i < $eveningBuses; $i++) {
+        $bus = $registeredBuses[array_rand($registeredBuses)]; 
+        $b = (array)$bus;
+        $schedule[] = [
+            'bus_no' => $b['bus_no'],
+            'time_slot' => 'evening'
+        ];
+    }
+
+    print_r($schedule);
+}
+
+    
 }

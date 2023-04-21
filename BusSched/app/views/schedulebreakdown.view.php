@@ -88,17 +88,16 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
 
                 <?php
-                foreach ($breakdowns as $breakdown) {
-                    echo "<tr>";
-                    echo "<td> $breakdown->id </td>";
-                    echo "<td> $breakdown->bus_no </td>";
-                    echo "<td> $breakdown->description </td>";
-                    // echo "<td> $breakdown->date </td>";
-                    // echo "<td> $breakdown->time </td>";
-                    echo "<td> $breakdown->time_to_repair </td>";
-                    echo "<td><img src='ROOT/assests/images/icons/delete.png' alt='Delete'></td>";
-                    echo "</tr>";
-                } ?>
+                foreach ($breakdowns as $breakdown):?> 
+                    <tr>
+                    <td><?php echo $breakdown->id; ?></td>
+                    <td><?php echo $breakdown->bus_no; ?></td>
+                    <td><?php echo $breakdown->description; ?></td>
+                    <td><?php echo $breakdown->time_to_repair; ?></td>
+                    <td><button type='submit' name='delete' value='<?php echo $breakdown->id; ?>'><img src="<?= ROOT
+                     ?>/assets/images/icons/delete.png" alt=""></button></td>
+                    </tr>
+                 <?php endforeach; ?>
 
             </table>
         </div>
