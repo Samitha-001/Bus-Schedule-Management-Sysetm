@@ -15,7 +15,6 @@ class Passengertickets
     {
         $ticket = new E_ticket();
         $ticket->updateTicket($id, ['status' => $status]);
-        redirect('passengertickets');
     }
 
     public function api_update_location()
@@ -24,9 +23,7 @@ class Passengertickets
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
 
-
             $id = $postData['id'];
-            // $id = 12;
             $this->updateTicketStatus($id, 'inactive');
 
             // Send a response

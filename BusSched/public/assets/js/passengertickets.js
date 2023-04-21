@@ -133,16 +133,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // add event listeners to each button
   collectedTicketViewMoreBtns.forEach((button) => {
     button.addEventListener("click", function () {
-      ticketDetails.style.display = "block";
-      // get data-id from e.parent
       let ticketId = button.getAttribute("data-ticket-id");
+
+      // show ticket details
+      ticketDetails.style.display = "block";
+      // add data-ticket-id to ticket details div
+      ticketDetails.setAttribute("data-ticket-id", ticketId);
 
       let ticketDeets = getTicketDetails(ticketId);
       ticketDeets.then((ticket) => {
-        // TODO: fill ticket details div
-        console.log(ticket['ticket']);
-        console.log(ticket['trip']);
-
+        // filling ticket details div
         // source halt
         document.getElementById("ticket-details-from").innerHTML = ticket['ticket']["source_halt"];
         // destination halt
@@ -173,11 +173,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // collected at
         document.getElementById("ticket-details-collected").innerHTML = ticket['ticket']["collected_time"];
 
-        
+
         // update destination of got off popup
         document.getElementById("got-off-dest").innerHTML = ticket['ticket']["dest_halt"];
 
-        
+
         // get halts for update location div
         let halts = getHalts(ticket['ticket']["source_halt"], ticket['ticket']["dest_halt"]);
         halts.then((halts) => {
@@ -297,7 +297,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function passengerGotOffBus() {
     // updating database
     // get data attribute from updateLocationDiv
-    let ticketId = updateLocationDiv.getAttribute("data-ticket-id");
+    // get value of element
+    let ticketId = ticketDetails.getAttribute("data-ticket-id");
     let data = { id: ticketId };
 
     // send data to server
