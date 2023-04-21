@@ -8,21 +8,18 @@ class Schedfares
 
     public function index()
     {
-        $fare = new Fare();
-        $fares = $fare->getFares();
+        $schedfare = new Schedfare();
+        $schedfares = $schedfare->getFares();
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-
-
-            if ($fare->validate($_POST)) {
-                $fare->insert($_POST);
-                redirect('');
+            if ($schedfare->validate($_POST)) {
+                $schedfare->insert($_POST);
+                redirect('schedfares');
             }
 
-            $data['errors'] = $fare->errors;
+            $data['errors'] = $schedfare->errors;
         }
 
-        $this->view('schedulefare', ['fares' => $fares]);
+        $this->view('schedfare', ['schedfares' => $schedfares]);
     }
 }

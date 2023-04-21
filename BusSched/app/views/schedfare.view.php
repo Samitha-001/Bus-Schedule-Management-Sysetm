@@ -95,29 +95,29 @@ if (!isset($_SESSION['USER'])) {
                 <tr>
                     <th>#</th>
                     <th>From</th>
-                    <th>Route</th>
                     <th>To</th>
+                    <th>Route</th>
+                    <!-- <th>Type</th> -->
                     <th>Amount</th>
-                    <th>Type</th>
                     <th>Last Updated</th>
                     <th>Action</th>
                     <!-- <th>Action</th> -->
                 </tr>
 
                 <?php
-                foreach ($fares as $fare) {
+                foreach ($schedfares as $fare) {
                     echo "<tr>";
                     echo "<td> $fare->id </td>";
                     echo "<td> $fare->source </td>";
                     echo "<td> $fare->dest </td>";
                     echo "<td> $fare->route_bus </td>";
-                    echo "<td> $fare->type_bus </td>";
+                    // echo "<td> $fare->type_bus </td>";
                     echo "<td> $fare->amount</td>";
                     echo "<td> $fare->last_updated </td>";
                     echo "<td>
                                 <div class='edit_delete'> 
-                                <img src='ROOT/assets/images/Edit.png'>
-                                <img src=' ROOT/assets/images/Delete.png'>
+                                <img src='ROOT/assets/images/icons/edit.png'>
+                                <img src='ROOT/assets/images/icons/delete.png'>
                                 </div>      
                           </td>";
                     echo "</tr>";

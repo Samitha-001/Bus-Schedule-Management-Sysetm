@@ -20,8 +20,14 @@ class Schedbuses
             }
 
             $data['errors'] = $bus->errors;
+
+            
         }
 
         $this->view('schedulebus', ['buses' => $buses]);
+
+        
+            
+        
     }
 }

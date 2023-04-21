@@ -62,13 +62,13 @@ if (!isset($_SESSION['USER'])) {
                                     placeholder="Time to repair..." required></td>
                         </tr>
 
-                        <tr>
+                        <!-- <tr>
                             <td></td>
                             <td align="right">
                                 <button class="button-green" type="submit">Save</button>
                                 <button class="button-cancel" onclick="cancel()">Cancel</button>
                             </td>
-                        </tr>
+                        </tr> -->
 
                     </table>
                 </div>
@@ -96,7 +96,7 @@ if (!isset($_SESSION['USER'])) {
                     // echo "<td> $breakdown->date </td>";
                     // echo "<td> $breakdown->time </td>";
                     echo "<td> $breakdown->time_to_repair </td>";
-                    echo "<td><img src='ROOT/assests/images/Delete.png'></td>";
+                    echo "<td><img src='ROOT/assests/images/icons/delete.png' alt='Delete'></td>";
                     echo "</tr>";
                 } ?>
 

@@ -29,11 +29,7 @@ include 'components/schedulersidebar.php';
             <div>
                 <h3>Buses</h3>
             </div>
-            <div>
-            <form method="post" id="btn" class="button-grey">
-                <input type="submit" name="download" value="Download">
-            </form>
-            </div>
+            <div><button id="downloadBtn" class="button-grey">Download</button></div>
         </div>
 
         <form method="post" id="view_bus" style="display:none">
@@ -43,7 +39,7 @@ include 'components/schedulersidebar.php';
             <?php endif; ?>
 
             <div>
-                <table class="styled-table">
+                <table class="styled-table" id="tableData">
                     <tr>
                         <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
                         <td><input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
@@ -120,12 +116,27 @@ include 'components/schedulersidebar.php';
                     echo "<td> $bus->route </td>";
                     echo "<td> $bus->start </td>";
                     echo "</tr>";
-                } ?>
+                } 
+                
+                // if (isset($_POST['data'])) {
+                //     // Retrieve the CSV data from the query parameter
+                //     $csv = $_POST['data'];
+                
+                //     // Set the appropriate headers for a CSV download
+                //     header('Content-Type: text/csv');
+                //     header('Content-Disposition: attachment; filename=table_data.csv');
+                
+                //     // Output the CSV data
+                //     echo $csv;
+                // }
+                ?>
 
             </table>
         </div>
 
         <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
+        <script src="<?= ROOT ?>/assets/js/downloadbus.js"></script>
+
     </main>
 
 </body>

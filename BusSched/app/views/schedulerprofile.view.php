@@ -66,7 +66,7 @@
                 <span class="plus-icon">+</span>
             </div>
         </div>
-    </div>
+    `   </div>
         </div>
 
 </body>
