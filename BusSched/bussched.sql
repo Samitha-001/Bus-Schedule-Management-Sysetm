@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 14, 2023 at 06:44 AM
+-- Generation Time: Apr 21, 2023 at 05:01 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `bus` (
   KEY `buw_dest` (`dest`),
   KEY `bus_driver` (`driver`),
   KEY `bus_conductor` (`conductor`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bus`
@@ -202,29 +202,37 @@ CREATE TABLE IF NOT EXISTS `e_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `passenger` varchar(50) NOT NULL,
   `trip_id` int(11) NOT NULL,
+  `departure_time` time DEFAULT NULL,
+  `arrival_time` time DEFAULT NULL,
   `seat_number` int(11) DEFAULT NULL,
   `ticket_number` char(10) DEFAULT NULL,
   `source_halt` varchar(50) NOT NULL,
   `dest_halt` varchar(50) NOT NULL,
   `booking_time` datetime NOT NULL,
-  `status` enum('booked','cancelled','used','expired') NOT NULL DEFAULT 'booked',
+  `passenger_count` int(11) NOT NULL DEFAULT '1',
+  `price` int(11) NOT NULL,
+  `status` enum('booked','cancelled','collected','expired','inactive') NOT NULL DEFAULT 'booked',
+  `collected_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ticket-passenger` (`passenger`),
   KEY `ticket-trip` (`trip_id`),
   KEY `ticket-source-halt` (`source_halt`),
   KEY `ticket-dest-halt` (`dest_halt`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `e_ticket`
 --
 
-INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `seat_number`, `ticket_number`, `source_halt`, `dest_halt`, `booking_time`, `status`) VALUES
-(12, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 06:58:15', 'booked'),
-(14, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 06:58:27', 'booked'),
-(17, 'passenger1', 1, NULL, NULL, 'Piliyandala', 'Kohuwala', '2023-03-19 07:01:40', 'booked'),
-(32, 'passenger1', 2, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 07:20:19', 'booked'),
-(33, 'passenger1', 2, NULL, NULL, 'Dutugemunu St.', 'Werahera', '2023-03-19 07:32:37', 'booked');
+INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `departure_time`, `arrival_time`, `seat_number`, `ticket_number`, `source_halt`, `dest_halt`, `booking_time`, `passenger_count`, `price`, `status`, `collected_time`) VALUES
+(12, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 06:58:15', 1, 0, 'inactive', NULL),
+(17, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Kohuwala', '2023-03-19 07:01:40', 1, 0, 'cancelled', NULL),
+(32, 'passenger1', 2, NULL, NULL, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 07:20:19', 1, 0, 'booked', NULL),
+(33, 'passenger1', 2, NULL, NULL, NULL, NULL, 'Dutugemunu St.', 'Werahera', '2023-03-19 07:32:37', 1, 0, 'expired', NULL),
+(34, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 14:07:15', 1, 0, 'collected', NULL),
+(35, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-04-18 03:35:15', 1, 0, 'inactive', NULL),
+(36, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:52', 1, 0, 'booked', NULL),
+(37, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:56', 1, 0, 'collected', NULL);
 
 -- --------------------------------------------------------
 
@@ -640,7 +648,7 @@ CREATE TABLE IF NOT EXISTS `halt` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `route_id` (`route_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `halt`
@@ -718,9 +726,9 @@ CREATE TABLE IF NOT EXISTS `passenger` (
 --
 
 INSERT INTO `passenger` (`username`, `name`, `phone`, `address`, `dob`, `profile_pic`, `points`, `points_expiry`) VALUES
-('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-03-13', NULL, 200, '2023-03-15'),
-('passenger2', 'Jane Doe', '0771234567', 'Colombo, Sri Lanka', '0000-00-00', NULL, 150, '2023-06-22'),
-('passenger3', 'Kamal Fernando', '', '', '2018-02-27', NULL, 100, '2022-02-02');
+('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-02-13', NULL, 180, '2023-03-15'),
+('passenger2', 'Jane Doe', '0771234567', 'Colombo, Sri Lanka', '0000-00-00', NULL, 165, '2023-06-22'),
+('passenger3', 'Kamal Fernando', '', '', '2018-02-27', NULL, 104, '2022-02-02');
 
 -- --------------------------------------------------------
 
@@ -737,7 +745,30 @@ CREATE TABLE IF NOT EXISTS `points` (
   PRIMARY KEY (`id`),
   KEY `points-from` (`points_from`),
   KEY `points-to` (`points_to`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `points`
+--
+
+INSERT INTO `points` (`id`, `points_from`, `points_to`, `amount`) VALUES
+(1, 'passenger1', 'passenger2', 1),
+(2, 'passenger1', 'passenger3', 50),
+(3, 'passenger1', 'passenger2', 1),
+(4, 'passenger1', 'passenger2', 1),
+(5, 'passenger1', 'passenger2', 5),
+(6, 'passenger1', 'passenger2', 5),
+(7, 'passenger1', 'passenger2', 1),
+(8, 'passenger1', 'passenger2', 1),
+(9, 'passenger1', 'passenger2', 1),
+(10, 'passenger1', 'passenger3', 1),
+(11, 'passenger1', 'passenger2', 5),
+(12, 'passenger1', 'passenger2', 4),
+(13, 'passenger1', 'passenger3', 1),
+(14, 'passenger1', 'passenger3', 1),
+(15, 'passenger1', 'passenger2', 1),
+(16, 'passenger1', 'passenger2', 5),
+(17, 'passenger1', 'passenger3', 1);
 
 -- --------------------------------------------------------
 

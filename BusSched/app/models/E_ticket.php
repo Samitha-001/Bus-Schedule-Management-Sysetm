@@ -14,7 +14,12 @@ class E_ticket extends Model
         'source_halt',
         'dest_halt',
         'booking_time',
-        'status'
+        'status',
+        'passenger_count',
+        'arrival_time',
+        'departure_time',
+        'collected_time',
+        'price'
     ];
 
     public function validate($data)
@@ -50,4 +55,17 @@ class E_ticket extends Model
         // show($data);
         return $this->insert($data);
     }
+
+    // find ticket
+    public function findTicket($id)
+    {
+        return $this->first(['id'=>$id]);
+    }
+
+    // update ticket
+    public function updateTicket($id, $data)
+    {
+        return $this->update($id, $data);
+    }
+
 }

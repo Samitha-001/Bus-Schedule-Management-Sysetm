@@ -64,7 +64,7 @@ class Breakdown extends Model
     {
         // validate and add
         // if ($this->validate($data)) {
-            return $this->insert($data);
+        return $this->insert($data);
         // }
         // return false;
     }
@@ -78,7 +78,7 @@ class Breakdown extends Model
     {
         // validate and update
         // if ($this->validate($data)) {
-            return $this->update($id, $data);
+        return $this->update($id, $data);
         // }
         // return false;
     }
