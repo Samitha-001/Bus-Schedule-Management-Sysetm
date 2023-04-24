@@ -85,7 +85,7 @@
     background-color: #f4511e;
     color: #fff;
     height: fit-content;
-    margin: 0;
+    margin-left: -30px;
   }
 
   .orange-header-ticket {

@@ -95,9 +95,7 @@ if (!isset($_SESSION['USER'])) {
             <table border='1' class="styled-table">
                 <tr>
                     <th>#</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Route</th>
+                    <th>Starting Halt</th>
                     <th>Bus No</th>
                     <th>Type</th>
                     <th>Departure</th>
@@ -107,18 +105,23 @@ if (!isset($_SESSION['USER'])) {
 
                 <?php
                 
-                foreach ($schedules as $schedule) {
-                    echo "<tr>";
-                    echo "<td> $schedule->id </td>";
-                    echo "<td> $schedule->from_start</td>";
-                    echo "<td> $schedule->to_end </td>";
-                    echo "<td> $schedule->bus_route</td>";
-                    echo "<td> $schedule->bus_no</td>";
-                    echo "<td> $schedule->bus_type</td>";
-                    echo "<td> $schedule->departure</td>";
-                    echo "<td> $schedule->arrival</td>";
-                    echo "</tr>";
-                } ?>
+                // foreach ($schedules as $bus=>$schedule) {
+                //     // echo "<tr>";
+                //     // echo "<td> $schedule->id </td>";
+                //     // echo "<td> $schedule->start</td>";
+                //     // // echo "<td> $schedule->bus_route</td>";
+                //     // echo "<td> $schedule->bus_no</td>";
+                //     // echo "<td> $schedule->type</td>";
+                //     // echo "<td> $schedule->departure</td>";
+                //     // echo "<td> $schedule->arrival</td>";
+                //     // echo "</tr>";
+                //     echo '<pre>';
+                //     print_r($bus['start']);
+                //     echo '<pre>';
+                    
+                // }
+                print_r($schedules);
+                 ?>
 
             </table>
         </div>

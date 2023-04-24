@@ -11,7 +11,8 @@ class Schedules
         $schedule = new Schedule();
         $bus = new Bus();
         $buses = $bus->getBuses();
-        $schedules = $schedule->generateSchedule();
+        $scheds = $schedule->generateSchedule();
+        $schedules = $schedule->generateBusSchedule($scheds, date('1'));
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
 

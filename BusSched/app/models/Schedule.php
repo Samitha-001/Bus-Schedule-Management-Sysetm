@@ -55,48 +55,73 @@ class Schedule extends Bus
 
     public function generateSchedule()
     {
+    $reg_bus = new Bus;
+    $registeredBuses = $reg_bus->getBuses();
+    $registeredBusesArray = json_decode(json_encode($registeredBuses), true);
+    return $registeredBusesArray;
     
-    $registeredBuses = $this->getBuses();
-        
+    }
 
-    $morningBuses = ceil(0.4 * count($registeredBuses));
-    $daytimeBuses = ceil(0.2 * count($registeredBuses));
-    $eveningBuses = count($registeredBuses) - $morningBuses - $daytimeBuses;
+    public function generateBusSchedule($registeredBusesArray, $date)
+{
+    // Initialize time slots and percentages
+    $timeSlots = [
+        '5.30 a.m. - 8.30 a.m.' => 0.4,
+        '8.30 a.m. - 3.00 p.m.' => 0.2,
+        '3.00 p.m. - 5.30 p.m.' => 0.3,
+        '5.30 p.m. - 8.00 p.m.' => 0.1
+    ];
 
-    
+    // Sort registered buses by starting place
+    $startingPlace1Buses = [];
+    $startingPlace2Buses = [];
+    foreach ($registeredBusesArray as $bus) {
+        if ($bus['start'] === 'Starting Place 1') {
+            $startingPlace1Buses[] = $bus;
+        } elseif ($bus['start'] === 'Starting Place 2') {
+            $startingPlace2Buses[] = $bus;
+        }
+    }
+
+    // Calculate the number of buses for each time slot based on percentages
     $schedule = [];
+    foreach ($timeSlots as $timeSlot => $percentage) {
+        $numBuses = ceil(count($registeredBusesArray) * $percentage);
+        for ($i = 0; $i < $numBuses; $i++) {
+            $bus = null;
+            if ($i < $numBuses * 0.5) {
+                // Assign bus from starting place 1
+                $bus = array_shift($startingPlace1Buses);
+            } elseif ($i < $numBuses * 0.7) {
+                // Assign bus from starting place 2
+                $bus = array_shift($startingPlace2Buses);
+            } else {
+                // Assign bus randomly from both starting places
+                $bus = (rand(0, 1) === 0) ? array_shift($startingPlace1Buses) : array_shift($startingPlace2Buses);
+            }
 
-    
-    for ($i = 0; $i < $morningBuses; $i++) {
-        $bus = $registeredBuses[array_rand($registeredBuses)];
-        $b = (array)$bus; 
-        $schedule[] = [
-            'bus_no' => $b['bus_no'],
-            'time_slot' => 'morning'
-        ];
+            if ($bus) {
+                // Get start and destination from registeredBusesArray
+                $start = $bus['start'];
+                $destination = $bus['destination'];
+
+                // Calculate departure and arrival time for the bus
+                $departureTime = strtotime($date . ' ' . $timeSlot);
+                $arrivalTime = strtotime('+1.5 hours', $departureTime);
+
+                // Update bus details with start, destination, departure time, and arrival time
+                $bus['start'] = $start;
+                $bus['destination'] = $destination;
+                $bus['departure_time'] = date('h:i a', $departureTime);
+                $bus['arrival_time'] = date('h:i a', $arrivalTime);
+
+                // Add bus to the schedule
+                $schedule[$timeSlot][] = $bus;
+            }
+        }
     }
 
-   
-    for ($i = 0; $i < $daytimeBuses; $i++) {
-        $bus = $registeredBuses[array_rand($registeredBuses)]; 
-        $b = (array)$bus;
-        $schedule[] = [
-            'bus_no' => $b['bus_no'],
-            'time_slot' => 'daytime'
-        ];
-    }
-
-    
-    for ($i = 0; $i < $eveningBuses; $i++) {
-        $bus = $registeredBuses[array_rand($registeredBuses)]; 
-        $b = (array)$bus;
-        $schedule[] = [
-            'bus_no' => $b['bus_no'],
-            'time_slot' => 'evening'
-        ];
-    }
-
-    print_r($schedule);
+    return $schedule;
 }
 
     
