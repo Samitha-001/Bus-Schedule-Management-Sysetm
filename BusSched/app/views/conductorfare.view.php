@@ -15,13 +15,15 @@ if (!isset($_SESSION['USER'])) {
     <meta name="generator" content="Hugo 0.88.1">
     <title>Fares</title>
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
+    <script src="<?= ROOT ?>/assets/js/landing.js"></script>
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
 </head>
 
 <body>
 <?php include 'components/navbarcon.php'; 
         // include 'components/conductorsidebar.php';?>
-<!-- <datalist id="halt-list">
+
+<datalist id="halt-list">
  <?php
     $len = count($halts);
     for ($i = 0; $i < $len; $i++) {
@@ -30,9 +32,9 @@ if (!isset($_SESSION['USER'])) {
     }
     ?> 
 
-</datalist> -->
+</datalist> 
 
-<div class="row"> 
+<!-- <div class="row">  -->
     <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
     <div class="fare-from-to-grid">
         <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" required>

@@ -8,18 +8,21 @@ class Conductorfares
 
     public function index()
     {
-        $conductorfare = new Conductorfare();
-        $conductorfares = $conductorfare->getFares();
+        $fare = new Fare();
+        $fares = $fare->getFares();
+       
+        $halt = new Halt();
+        $halts = $halt->getHalts();
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            if ($conductorfare->validate($_POST)) {
-                $conductorfare->insert($_POST);
+            if ($fare->validate($_POST)) {
+                $fare->insert($_POST);
                 redirect('conductorfares');
             }
 
-            $data['errors'] = $conductorfare->errors;
+            $data['errors'] = $fare->errors;
         }
 
-        $this->view('conductorfare', ['conductorfares' => $conductorfares]);
+        $this->view('conductorfare', ['fares' => $fares,'halts'=>$halts]);
     }
 }
