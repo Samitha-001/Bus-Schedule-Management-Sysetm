@@ -99,4 +99,25 @@ class Passengertickets
             echo json_encode($response);
         }
     }
+
+    // add passenger rating
+    public function api_add_rating()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+
+            $rating = new Rating();
+            $rating->addRating($postData);
+
+            // Send a response
+            $response = array('status' => 'success', 'data' => $postData);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid requestss');
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
 }

@@ -225,21 +225,26 @@ document.addEventListener("DOMContentLoaded", function () {
   // confirm got off
   gotOffBusYesBtn.addEventListener("click", function () {
     // TODO implement yes button
-    showCollectedTicketsFunc();
+    // showCollectedTicketsFunc();
     ratePopup.style.display = "block";
     // gotOffBusPopup.style.display = "none";
     // passengerGotOffBus();
     // window.location.reload();
-
     
     // filling rating popup
     // get ticket id
     let ticketId = gotOffBusYesBtn.getAttribute("data-ticket-id");
     let ticketDeets = getTicketDetails(ticketId);
-    // console.log(ticketDeets);
     // TICKET DETAILS FOR RATING
     ticketDeets.then((ticket) => {
       console.log(ticket);
+      // add data attributes to ratepopup
+      ratePopup.setAttribute("data-ticket-id", ticket['ticket']["id"]);
+      ratePopup.setAttribute("data-rater", ticket['ticket']["passenger"]);
+      ratePopup.setAttribute("data-trip-id", ticket['ticket']["trip_id"]);
+      ratePopup.setAttribute("data-bus-no", ticket['trip']["bus_no"]);
+      ratePopup.setAttribute("data-conductor-id", ticket['trip']["conductor"]);
+      ratePopup.setAttribute("data-driver-id", ticket['trip']["driver"]);
     });
   });
   // got off from a different halt
@@ -325,10 +330,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let conductorRating = rateForms[1].querySelector("input:checked").value;
     let busRating = rateForms[2].querySelector("input:checked").value;
 
+
+    // get data attributes from ratePopup
+    let ticketId = ratePopup.getAttribute("data-ticket-id");
+    let rater = ratePopup.getAttribute("data-rater");
+    let tripId = ratePopup.getAttribute("data-trip-id");
+    let busNo = ratePopup.getAttribute("data-bus-no");
+    let conductorId = ratePopup.getAttribute("data-conductor-id");
+    let driverId = ratePopup.getAttribute("data-driver-id");
+
     // TODO
     // let data = { trip_id: tripId, bus_rating: busRating, conductor_rating: conductorRating, driver_rating: driverRating };
-    let data = { driver_rating: driverRating, conductor_rating: conductorRating, bus_rating: busRating };
+    let data = { 'ticket_id': ticketId, 'rater': rater, 'trip_id': tripId, 'driver': driverId, 'driver_rating': driverRating, 'conductor': conductorId, 'conductor_rating': conductorRating, 'bus_no': busNo, 'bus_rating': busRating };
 
+    // call function to send data to server
     updateRating(data);
   });
   
@@ -406,7 +421,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // update rating function
   function updateRating(data) {
-    // TODO
+    let url = `${ROOT}/passengertickets/api_add_rating`;
+    
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
     console.log(data);
   }
 });
