@@ -21,17 +21,18 @@ if (!isset($_SESSION['USER'])) {
 <body>
 <?php include 'components/navbarcon.php'; 
         // include 'components/conductorsidebar.php';?>
-<datalist id="halt-list">
-    <?php
+<!-- <datalist id="halt-list">
+ <?php
     $len = count($halts);
     for ($i = 0; $i < $len; $i++) {
         $halt = $halts[$i];
         echo "<option value='" . $halt->name . "'>";
     }
-    ?>
-</datalist>
+    ?> 
 
-<div class="row">
+</datalist> -->
+
+<div class="row"> 
     <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
     <div class="fare-from-to-grid">
         <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" required>
