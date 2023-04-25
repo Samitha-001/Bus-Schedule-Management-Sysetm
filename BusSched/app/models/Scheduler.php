@@ -16,4 +16,5 @@ class Scheduler extends Model
     {
         return $this->findAll();
     }
+    
 }

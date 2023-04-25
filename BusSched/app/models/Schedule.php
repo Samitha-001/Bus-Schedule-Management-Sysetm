@@ -125,99 +125,228 @@ class Schedule extends Bus
     return $schedule;
 }
 
-function generateBusSchedule1($registeredBuses, $date) {
-    // Create an array to store the generated schedule
-    $busSchedule = array();
-    
-    // Get the total number of registered buses
-    $totalBuses = count($registeredBuses);
-    
-    // Calculate the number of buses for each time slot based on percentages
-    $numBusesSlot1 = ceil($totalBuses * 0.4);
-    $numBusesSlot2 = ceil($totalBuses * 0.2);
-    $numBusesSlot3 = ceil($totalBuses * 0.3);
-    $numBusesSlot4 = ceil($totalBuses * 0.1);
-    
-    // Get the start time of the first time slot
-    $startTimeSlot1 = strtotime('5:30 AM', $date);
-    
-    // Loop through the registered buses
-    foreach ($registeredBuses as $bus) {
-      // Get the start and end points of the bus trip
-      $start = $bus['start'];
-      $end = $bus['dest'];
-      
-      // Calculate the time intervals for each time slot
-      $timeSlot1Interval = 5400; // 1.5 hours in seconds
-      $timeSlot2Interval = 21600; // 6 hours in seconds
-      $timeSlot3Interval = 10800; // 3 hours in seconds
-      $timeSlot4Interval = 9300; // 2.58 hours in seconds
-      
-      // Calculate the departure time and arrival time for each time slot
-      for ($i = 0; $i < $numBusesSlot1; $i++) {
-        $departureTime = date('H:i A', $startTimeSlot1);
-        $arrivalTime = date('H:i A', $startTimeSlot1 + $timeSlot1Interval);
-        
-        // Add the bus trip to the bus schedule
-        $busSchedule[] = array(
-          'bus_no' => $bus['bus_no'],
-          'start' => $start,
-          'destination' => $end,
-          'departure_time' => $departureTime,
-          'arrival_time' => $arrivalTime
+function generate_bus_schedule($registered_buses)
+{
+    // Calculate the total number of buses
+    $total_buses = count($registered_buses);
+
+    // Initialize variables for time slots and departure times
+    $slot1_buses = intval($total_buses * 0.2);
+    $slot2_buses = intval($total_buses * 0.3);
+    $slot3_buses = intval($total_buses * 0.3);
+    $slot4_buses = $total_buses - $slot1_buses - $slot2_buses - $slot3_buses;
+    $bus_schedule = array();
+
+    // Generate bus schedule for time slot 1
+    $slot_start_time = DateTime::createFromFormat('H:i a', '8:00 AM');
+    $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+    for ($i = 0; $i < $slot1_buses; $i++) {
+        // Check if departure time exceeds time slot
+        if ($slot_start_time >= DateTime::createFromFormat('H:i a', '10:00 AM')) {
+            // Update the time slot and reset the departure time
+            $slot_start_time = DateTime::createFromFormat('H:i a', '8:00 AM');
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+
+        // Add the current bus to the bus schedule
+        $bus_schedule[] = array(
+            'bus_no' => $registered_buses[$i]['bus_no'],
+            'type' => $registered_buses[$i]['type'],
+            'start_place' => $registered_buses[$i]['start'],
+            'end_place' => $registered_buses[$i]['dest'],
+            'arrival_time' => $slot_start_time->format('H:i a'),
+            'departure_time' => $departure_time
         );
-        
-        // Update the start time for the next bus in the same time slot
-        $startTimeSlot1 += $timeSlot1Interval + 900; // Add 15 minutes (900 seconds)
-      }
-      
-      for ($i = 0; $i < $numBusesSlot2; $i++) {
-        $departureTime = date('H:i A', strtotime('8:30 AM', $date));
-        $arrivalTime = date('H:i A', strtotime('8:30 AM', $date) + $timeSlot2Interval);
-        
-        $busSchedule[] = array(
-          'bus_no' => $bus['bus_no'],
-          'start' => $start,
-          'destination' => $end,
-          'departure_time' => $departureTime,
-          'arrival_time' => $arrivalTime
-        );
-        
-        $date += $timeSlot2Interval + 900; // Add 15 minutes (900 seconds)
-      }
-      
-      for ($i = 0; $i < $numBusesSlot3; $i++) {
-        $departureTime = date('H:i A', strtotime('3:00 PM', $date));
-        $arrivalTime = date('H:i A', strtotime('3:00 PM', $date) + $timeSlot3Interval);
-        
-        $busSchedule[] = array(
-          'bus_no' => $bus['bus_no'],
-          'start' => $start,
-          'destination' => $end,
-          'departure_time' => $departureTime,
-          'arrival_time' => $arrivalTime
-        );
-  
-        $date += $timeSlot3Interval + 900; // Add 15 minutes (900 seconds)
-      }
-  
-      for ($i = 0; $i < $numBusesSlot4; $i++) {
-        $departureTime = date('H:i A', strtotime('5:30 PM', $date));
-        $arrivalTime = date('H:i A', strtotime('5:30 PM', $date) + $timeSlot4Interval);
-        
-        $busSchedule[] = array(
-          'bus_no' => $bus['bus_no'],
-          'start' => $start,
-          'destination' => $end,
-          'departure_time' => $departureTime,
-          'arrival_time' => $arrivalTime
-        );
-  
-        $date += $timeSlot4Interval + 900; // Add 15 minutes (900 seconds)
-      }
+
+        // Update the departure time for the next bus
+        $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
     }
-  
-    return $busSchedule;
-  }
+
+    // Generate bus schedule for time slot 2
+    $slot_start_time = DateTime::createFromFormat('H:i a', '10:00 AM');
+    $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+    for ($i = $slot1_buses; $i < ($slot1_buses + $slot2_buses); $i++) {
+        // Check if departure time exceeds time slot
+        if ($slot_start_time >= DateTime::createFromFormat('H:i a', '12:00 PM')) {
+            // Update the time slot and reset the departure time
+            $slot_start_time = DateTime::createFromFormat('H:i a', '10:00 AM');
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+
+        // Add the current bus to the bus schedule
+        $bus_schedule[] = array(
+            'bus_no' => $registered_buses[$i]['bus_no'],
+            'type' => $registered_buses[$i]['type'],
+            'start_place' => $registered_buses[$i]['start'],
+            'end_place' => $registered_buses[$i]['dest'],
+            'arrival_time' => $slot_start_time->format('H:i a'),
+            'departure_time' => $departure_time
+            );
+    
+            // Update the departure time for the next bus
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+    
+        // Generate bus schedule for time slot 3
+        $slot_start_time = DateTime::createFromFormat('H:i a', '12:00 PM');
+        $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        for ($i = ($slot1_buses + $slot2_buses); $i < ($slot1_buses + $slot2_buses + $slot3_buses); $i++) {
+            // Check if departure time exceeds time slot
+            if ($slot_start_time >= DateTime::createFromFormat('H:i a', '2:00 PM')) {
+                // Update the time slot and reset the departure time
+                $slot_start_time = DateTime::createFromFormat('H:i a', '12:00 PM');
+                $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+            }
+    
+            // Add the current bus to the bus schedule
+            $bus_schedule[] = array(
+                'bus_no' => $registered_buses[$i]['bus_no'],
+                'type' => $registered_buses[$i]['type'],
+                'start_place' => $registered_buses[$i]['start'],
+                'end_place' => $registered_buses[$i]['dest'],
+                'arrival_time' => $slot_start_time->format('H:i a'),
+                'departure_time' => $departure_time
+            );
+    
+            // Update the departure time for the next bus
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+    
+        // Generate bus schedule for time slot 4
+        $slot_start_time = DateTime::createFromFormat('H:i a', '2:00 PM');
+        $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        for ($i = ($slot1_buses + $slot2_buses + $slot3_buses); $i < $total_buses; $i++) {
+            // Check if departure time exceeds time slot
+            if ($slot_start_time >= DateTime::createFromFormat('H:i a', '4:00 PM')) {
+                // Update the time slot and reset the departure time
+                $slot_start_time = DateTime::createFromFormat('H:i a', '2:00 PM');
+                $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+            }
+    
+            // Add the current bus to the bus schedule
+            $bus_schedule[] = array(
+                'bus_no' => $registered_buses[$i]['bus_no'],
+                'type' => $registered_buses[$i]['type'],
+                'start_place' => $registered_buses[$i]['start'],
+                'end_place' => $registered_buses[$i]['dest'],
+                'arrival_time' => $slot_start_time->format('H:i a'),
+                'departure_time' => $departure_time
+            );
+    
+            // Update the departure time for the next bus
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+    
+        return $bus_schedule;
+    }
+
+    function generate_bus_schedule1($registered_buses) {
+        $total_buses = count($registered_buses);
+        $slot1_buses = 0;
+        $slot2_buses = 0;
+        $slot3_buses = 0;
+        $bus_schedule = array();
+    
+        // Count the number of buses registered for each time slot
+        foreach ($registered_buses as $bus) {
+            switch ($bus['time_slot']) {
+                case 'slot1':
+                    $slot1_buses++;
+                    break;
+                case 'slot2':
+                    $slot2_buses++;
+                    break;
+                case 'slot3':
+                    $slot3_buses++;
+                    break;
+                default:
+                    // Handle unknown time slot value
+                    break;
+            }
+        }
+    
+        // Generate bus schedule for time slot 1
+        $slot_start_time = DateTime::createFromFormat('H:i a', '8:00 AM');
+        $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        for ($i = 0; $i < $slot1_buses; $i++) {
+            // Check if departure time exceeds time slot
+            if ($slot_start_time >= DateTime::createFromFormat('H:i a', '10:00 AM')) {
+                // Update the time slot and reset the departure time
+                $slot_start_time = DateTime::createFromFormat('H:i a', '8:00 AM');
+                $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+            }
+    
+            // Add the current bus to the bus schedule
+            $bus_schedule[] = array(
+                'bus_no' => isset($registered_buses[$i]['bus_no']) ? $registered_buses[$i]['bus_no'] : 'N/A',
+                'type' => isset($registered_buses[$i]['type']) ? $registered_buses[$i]['type'] : 'N/A',
+                'start_place' => isset($registered_buses[$i]['start']) ? $registered_buses[$i]['start'] : 'N/A',
+                'end_place' => isset($registered_buses[$i]['dest']) ? $registered_buses[$i]['dest'] : 'N/A',
+                'arrival_time' => $slot_start_time->format('H:i a'),
+                'departure_time' => $departure_time
+            );
+    
+            // Update the departure time for the next bus
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+    
+        // Generate bus schedule for time slot 2
+        $slot_start_time = DateTime::createFromFormat('H:i a', '10:00 AM');
+        $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        for ($i = $slot1_buses; $i < ($slot1_buses + $slot2_buses); $i++) {
+            // Check if departure time exceeds time slot
+            if ($slot_start_time >= DateTime::createFromFormat('H:i a', '12:00 PM')) {
+                // Update the time slot and reset the departure time
+                $slot_start_time = DateTime::createFromFormat('H:i a', '10:00 AM');
+                $departure_time= $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+            }
+    
+            // Add the current bus to the bus schedule
+            $bus_schedule[] = array(
+                'bus_no' => isset($registered_buses[$i]['bus_no']) ? $registered_buses[$i]['bus_no'] : 'N/A',
+                'type' => isset($registered_buses[$i]['type']) ? $registered_buses[$i]['type'] : 'N/A',
+                'start_place' => isset($registered_buses[$i]['start']) ? $registered_buses[$i]['start'] : 'N/A',
+                'end_place' => isset($registered_buses[$i]['dest']) ? $registered_buses[$i]['dest'] : 'N/A',
+                'arrival_time' => $slot_start_time->format('H:i a'),
+                'departure_time' => $departure_time
+            );
+    
+            // Update the departure time for the next bus
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+    
+        // Generate bus schedule for time slot 3
+        $slot_start_time = DateTime::createFromFormat('H:i a', '12:00 PM');
+        $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        for ($i = ($slot1_buses + $slot2_buses); $i < $total_buses; $i++) {
+            // Check if departure time exceeds time slot
+            if ($slot_start_time >= DateTime::createFromFormat('H:i a', '2:00 PM')) {
+                // Update the time slot and reset the departure time
+                $slot_start_time = DateTime::createFromFormat('H:i a', '12:00 PM');
+                $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+            }
+    
+            // Add the current bus to the bus schedule
+            $bus_schedule[] = array(
+                'bus_no' => isset($registered_buses[$i]['bus_no']) ? $registered_buses[$i]['bus_no'] : 'N/A',
+                'type' => isset($registered_buses[$i]['type']) ? $registered_buses[$i]['type'] : 'N/A',
+                'start_place' => isset($registered_buses[$i]['start']) ? $registered_buses[$i]['start'] : 'N/A',
+                'end_place' => isset($registered_buses[$i]['dest']) ? $registered_buses[$i]['dest'] : 'N/A',
+                'arrival_time' => $slot_start_time->format('H:i a'),
+                'departure_time' => $departure_time
+            );
+    
+            // Update the departure time for the next bus
+            $departure_time = $slot_start_time->add(new DateInterval('PT1H15M'))->format('H:i a');
+        }
+    
+        return $bus_schedule;
+    }
+    
+    
+    
+    
+
+
   
 }
