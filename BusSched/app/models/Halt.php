@@ -44,6 +44,21 @@ class Halt extends Model
         return $this->findAll();
     }
 
+    public function getHaltRange($src, $dest)
+    {
+        $halts = $this->findAll();
+        $src = $this->first(['name' => $src])->id;
+        $dest = $this->first(['name' => $dest])->id;
+        $haltRange = [];
+        foreach ($halts as $halt) {
+            if ($halt->id >= $src && $halt->id <= $dest) {
+                $haltRange[] = $halt->name;
+            }
+        }
+        // $haltRange[] = $dest;
+        return $haltRange;
+    }
+
     public function addHalt($data)
     {
         $this->insert($data);
