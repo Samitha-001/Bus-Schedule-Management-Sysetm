@@ -13,7 +13,8 @@ class Rating extends Model
         'conductor_id',
         'conductor_rating',
         'driver_id',
-        'driver_rating'
+        'driver_rating',
+        'time_updated'
     ];
 
     public function validate($data)

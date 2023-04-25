@@ -2,7 +2,7 @@
 
 class Collectedticket extends Model
 {
-    protected $table = 'ticket';
+    protected $table = 'e_ticket';
 
     // editable columns
     protected $allowedColumns = [

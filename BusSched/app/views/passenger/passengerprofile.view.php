@@ -1,5 +1,4 @@
 <?php
-// (new Passenger())->updatePassenger("passenger1", ["name" => "Venudi Hetti", "phone" => "0333333333"]);
 $username = $_SESSION['USER']->username;
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {
@@ -116,10 +115,10 @@ if (isset($_SESSION['USER'])) {
         </div>
         <div class="passenger-profile-card">
             <h1 style="margin-bottom: 0px;">My points</h1>
-            <div class="info-grid" style="padding-left:5px;">
-                <h1>Points:</h1> <?= $passenger->points ?>
-                <h1>Value:</h1> <?= $passenger->points ?> LKR
-                <h1>Exp. date:</h1> <?= $passenger->points_expiry ?>
+            <div id="point-balance-div" class="info-grid" style="padding-left:5px;">
+                <h1>Points:</h1> <p><?= $passenger->points ?></p>
+                <h1>Value:</h1> <p><?= $passenger->points ?> LKR</p>
+                <h1>Exp. date:</h1> <p><?= $passenger->points_expiry ?></p>
             </div>
 
             <button id="gift-points-btn" class="button-orange" style="width:100;">Gift points</button>

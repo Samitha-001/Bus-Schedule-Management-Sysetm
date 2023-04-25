@@ -17,13 +17,13 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <!-- <i class="fa fa-caret-down"></i> -->
                     <!-- </button> -->
                     <div class="dropdown-content">
-                        <a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a>
-                        <a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
-                        <a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a>
-                        <a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a>
-                        <a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a>
-                        <a href="<?= ROOT ?>/conductorrating" style="color:#9298AF;">Ratings</a>
-                        <a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">Contacts</a>
+                        <a href="<?= ROOT ?>/conductor/conductorschedules" style="color:#9298AF;">Schedules</a>
+                        <a href="<?= ROOT ?>/conductor/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+                        <a href="<?= ROOT ?>/conductor/activetickets" style="color:#9298AF;">Bus Tickets</a>
+                        <a href="<?= ROOT ?>/conductor/conductorfares" style="color:#9298AF;">Bus Fares</a>
+                        <a href="<?= ROOT ?>/conductor/conductorbreakdowns" style="color:#9298AF;">Breakdowns</a>
+                        <a href="<?= ROOT ?>/conductor/conductorratings" style="color:#9298AF;">Ratings</a>
+                        <a href="<?= ROOT ?>/conductor/contactowners" style="color:#9298AF;">Contacts</a>
                     </div>
                 </div>
             </li>
@@ -91,7 +91,11 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
             <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
+            <li><a href="<?= ROOT ?>/conductorratings" style="color:#9298AF;">Ratings</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
+            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">Contacts</a></li>
             <hr>
             </div>
             <div style="margin-bottom:5%">

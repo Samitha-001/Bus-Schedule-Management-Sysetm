@@ -1,6 +1,6 @@
 <?php
 
-class Rating extends Model
+class Conductorrating extends Model
 {
     protected $table = 'ratings';
 
@@ -14,25 +14,34 @@ class Rating extends Model
         'conductor_rating',
     ];
 
-    public function validate($data)
-    {
-        $this->errors = [];
-        // bus_rating, conductor_rating, driver_rating from 1 to 5
-        if (empty($data['bus_rating'])) {
-            $this->errors['bus_rating'] = "Bus rating is required";
-        } else
-        if ($data['bus_rating'] < 1 || $data['bus_rating'] > 5) {
-            $this->errors['bus_rating'] = "Bus rating must be between 1 and 5";
-        }
-    }
+    // public function getConductorRatings()
+    // {
+    //     return $this->findAll();
+    // }
 
-    public function getRatings()
-    {
-        return $this->findAll();
-    }
+    // public function validate($data)
+    // {
+    //     $this->errors = [];
 
-    public function deleteRating($id)
+    //     if (empty($this->errors)) {
+    //         return true;
+    //     }
+
+    //     return false;
+    // }
+
+    public function getConductorRatings($conductor)
     {
-        $this->delete($id);
+        // return $this->findAll();
+        // $data['conductor'] = $conductor;
+        // show($data);
+        // $ratings = $this->join('bus', 'ratings.bus_no', '', $data);
+        // return $ratings;
+
+        $ratings=$this->findAll($conductor);
+
+        return $ratings;
+
+        
     }
 }

@@ -40,6 +40,15 @@ class Breakdown extends Model
         return $this->findAll();
     }
 
+    public function getConductorBreakdowns($conductor)
+    {
+        // return $this->findAll();
+        $data['conductor'] = $conductor;
+        // show($data);
+        $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        return $breakdowns;
+    }
+
     public function getOwnerBreakdowns($owner)
     {
         // return $this->findAll();
@@ -50,11 +59,12 @@ class Breakdown extends Model
     }
 
 
+
     public function addBreakdown($data)
     {
         // validate and add
         // if ($this->validate($data)) {
-            return $this->insert($data);
+        return $this->insert($data);
         // }
         // return false;
     }
@@ -68,7 +78,7 @@ class Breakdown extends Model
     {
         // validate and update
         // if ($this->validate($data)) {
-            return $this->update($id, $data);
+        return $this->update($id, $data);
         // }
         // return false;
     }
