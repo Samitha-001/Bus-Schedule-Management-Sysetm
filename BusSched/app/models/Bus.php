@@ -52,15 +52,11 @@ class Bus extends Model
         return $this->where(['owner' => $owner]);
     }
 
-    public function getConductorBuses($conductor)
-    {
-        return $this->where(['conductor' => $conductor]);
-    }
-
     public function deleteBus($id)
     {
         return $this->delete($id);
     }
+
     public function updateBus($id, $data)
     {
         return $this->update($id, $data);
