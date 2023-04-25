@@ -224,12 +224,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // GOT OFF THE BUS
   // confirm got off
   gotOffBusYesBtn.addEventListener("click", function () {
-    // TODO implement yes button
-    // showCollectedTicketsFunc();
+    showCollectedTicketsFunc();
     ratePopup.style.display = "block";
-    // gotOffBusPopup.style.display = "none";
-    // passengerGotOffBus();
-    // window.location.reload();
+    gotOffBusPopup.style.display = "none";
+    passengerGotOffBus();
     
     // filling rating popup
     // get ticket id
@@ -243,8 +241,8 @@ document.addEventListener("DOMContentLoaded", function () {
       ratePopup.setAttribute("data-rater", ticket['ticket']["passenger"]);
       ratePopup.setAttribute("data-trip-id", ticket['ticket']["trip_id"]);
       ratePopup.setAttribute("data-bus-no", ticket['trip']["bus_no"]);
-      ratePopup.setAttribute("data-conductor-id", ticket['trip']["conductor"]);
-      ratePopup.setAttribute("data-driver-id", ticket['trip']["driver"]);
+      ratePopup.setAttribute("data-conductor-id", ticket['bus']["conductor"]);
+      ratePopup.setAttribute("data-driver-id", ticket['bus']["driver"]);
     });
   });
   // got off from a different halt
@@ -305,9 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // update location confirm button
   let updateLocationConfirmBtn = document.getElementById("btn-update-location-confirm");
   updateLocationConfirmBtn.addEventListener("click", function () {
-    // TODO implement updating location (make ticket inactive)
     updateLocationDiv.style.display = "none";
-    // remove class disabled from gotOffBusBtn
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
     ticketDetails.style.display = "none";
@@ -319,6 +315,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let skipRatingBtn = document.getElementById("btn-rate-skip");
   skipRatingBtn.addEventListener("click", function () {
     ratePopup.style.display = "none";
+    gotOffBusPopup.style.display = "none";
+    window.location.reload();
   });
 
   let rateBus = document.getElementById("btn-rate");
@@ -345,6 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // call function to send data to server
     updateRating(data);
+    window.location.reload();
   });
   
   // passenger got off bus update database function
