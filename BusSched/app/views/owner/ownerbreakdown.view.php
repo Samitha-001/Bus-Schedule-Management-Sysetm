@@ -4,6 +4,7 @@ if (!isset($_SESSION['USER'])) {
 }
 ?>
 
+
 <!doctype html>
 <html lang="en">
 
@@ -42,9 +43,23 @@ include '../app/views/components/ownersidebar.php';
                     <table class="styled-table">
                         <tr>
                             <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
-                            <td><input name="bus_no" type="text" class="form-control" id="bus_no"
-                                    placeholder="Bus No..." required></td>
+                            <td>
+                            <select id="bus_no" name="bus_no"   class="form-control" required>
+                              
+                               
+                               <?php 
+                                 foreach ($buses as $bus) {
+                                 ?>
+                                   <option><?php echo $bus->bus_no; ?> </option>
+                                   <?php 
+                                   }
+                                  ?>
+                               
+                            </select>
+                            </td>
                         </tr>
+            
+            
 
                         <tr>
                             <td style="color:#24315e;"><label for="description">Description </label></td>

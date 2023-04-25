@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Register New Bus</title>
+    <title>Edit Bus Profile</title>
 
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
     <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/ownerbuses">
 
-    <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script>
+    <!-- <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script> -->
 
 </head>
 
@@ -41,7 +42,7 @@ include '../app/views/components/ownersidebar.php';
         <table>
             <tr>
             <td><label for="bus_no">Bus Number:</label></td>
-            <td><input type="text" id="bus_no" name="bus_no" required></td>
+            <td><input type="text" id="bus_no" name="bus_no"></td>
             </tr>
             <tr>
             <td><label for="type">Type:</label></td>
@@ -77,6 +78,18 @@ include '../app/views/components/ownersidebar.php';
             <td><input type="text" id="driver" name="driver"></td>
             </tr>
         </table>
+
+
+        <script>
+            var table=document.getElementById('table');
+            for(var i=1; i<table.rows.length; i++){
+               table.rows[i].onclick=function(){
+                document.getElementById("bus_no").value=this.cells[0].innerHTML;
+                console.log(this.cells[0].innerHTML);
+               } 
+            }
+        </script>
+
         <input id="submit-btn" type="submit" value="Edit" class="button-green" style="padding-left:10px;margin-left:250px;font-size:18px;">    
     </div>
 </form>
