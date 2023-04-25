@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var showExpiredTickets = document.getElementById("show-expired-tickets");
   var showInactiveTickets = document.getElementById("show-inactive-tickets");
   let ticketDetails = document.getElementById("collected-ticket-details");
+  let ratePopup = document.getElementById("rate-popup");
+  let gotOffBusYesBtn = document.getElementById("btn-got-off-yes");
 
   let allTicketsDiv = document.getElementById("all-tickets");
 
@@ -181,13 +183,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let halts = getHalts(ticket['ticket']["source_halt"], ticket['ticket']["dest_halt"]);
         halts.then((halts) => {
           halts.forEach((halt) => {
-            //   make new div for each halt
+            // make new div for each halt
             let haltDiv = document.createElement("div");
             insideLocationDiv.appendChild(haltDiv);
             haltDiv.classList.add("location-update-card");
             // add id to div
             haltDiv.setAttribute("id", halt);
-            //   add halt name to div
+            // add halt name to div
             haltDiv.innerHTML = halt;
             let haltP = document.createElement("p");
             haltDiv.appendChild(haltP);
@@ -213,20 +215,33 @@ document.addEventListener("DOMContentLoaded", function () {
   let gotOffBusBtn = document.getElementById("a-got-off");
   gotOffBusBtn.addEventListener("click", function () {
     // if has class disabled, return
-    if (!gotOffBusBtn.classList.contains("disabled"))
+    if (!gotOffBusBtn.classList.contains("disabled")) {
+      gotOffBusYesBtn.setAttribute("data-ticket-id", ticketDetails.getAttribute("data-ticket-id"));
       gotOffBusPopup.style.display = "block";
+    }
   });
 
   // GOT OFF THE BUS
   // confirm got off
-  document.getElementById("btn-got-off-yes").addEventListener("click", function () {
-      // TODO implement yes button
-      showCollectedTicketsFunc();
-      gotOffBusPopup.style.display = "none";
-      passengerGotOffBus();
-      window.location.reload();
+  gotOffBusYesBtn.addEventListener("click", function () {
+    // TODO implement yes button
+    showCollectedTicketsFunc();
+    ratePopup.style.display = "block";
+    // gotOffBusPopup.style.display = "none";
+    // passengerGotOffBus();
+    // window.location.reload();
 
+    
+    // filling rating popup
+    // get ticket id
+    let ticketId = gotOffBusYesBtn.getAttribute("data-ticket-id");
+    let ticketDeets = getTicketDetails(ticketId);
+    // console.log(ticketDeets);
+    // TICKET DETAILS FOR RATING
+    ticketDeets.then((ticket) => {
+      console.log(ticket);
     });
+  });
   // got off from a different halt
   document.getElementById("btn-got-off-cancel").addEventListener("click", function () {
       // TODO implement no button
@@ -296,7 +311,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // rate bus, driver and conductor
-  let ratePopup = document.getElementById("rate-popup");
   let skipRatingBtn = document.getElementById("btn-rate-skip");
   skipRatingBtn.addEventListener("click", function () {
     ratePopup.style.display = "none";

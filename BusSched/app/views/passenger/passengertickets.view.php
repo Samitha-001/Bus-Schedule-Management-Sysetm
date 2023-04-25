@@ -222,7 +222,6 @@ include '../app/views/components/navbar.php';
         </div>
     </div>
 
-    <?php $id = $ticket->id; ?>
     <!-- pop up div to update location -->
     <div id="update-location-div" style="display:none;">
         <div id="inside-update-location-div" style="display:flex; overflow-x: scroll;">
@@ -236,9 +235,8 @@ include '../app/views/components/navbar.php';
 
     
     <!-- pop up div for rate -->
-    <div id="rate-popup" class="pop-up" style="display:block">
+    <div id="rate-popup" class="pop-up" style="display:none">
         <div class="pop-up-content">
-            
             <p style="padding-top:10px;">Rate the driver</p>
             <div class="cont">
                 <div class="stars">
@@ -296,7 +294,6 @@ include '../app/views/components/navbar.php';
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

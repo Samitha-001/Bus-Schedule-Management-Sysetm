@@ -51,10 +51,20 @@ class Passengertickets
             // getting trip details relevant to the ticket
             $trip = new Trip();
             $tripData = $trip->getTrip(['id' => $dataticket->trip_id]);
+            
+            // getting driver ID and conductor ID relevant to the bus
+            $bus = new Bus();
+            $busData = $bus->getBus($tripData->bus_no);
+
+            $driver_id = $busData->driver;
+            $conductor_id = $busData->conductor;
+            // get array with just driver ID and conductor ID
+            $busData = ['driver' => $driver_id, 'conductor' => $conductor_id];
 
             // trip data and ticket data
             $data['trip'] = $tripData;
             $data['ticket'] = $dataticket;
+            $data['bus'] = $busData;
 
             $response = array('status' => 'success', 'data' => $data);
             header('Content-Type: application/json');
