@@ -119,6 +119,7 @@ if (!isset($_SESSION['USER'])) {
                     
                 // }
                 echo "<pre>";
+               
                 print_r($schedules);
                 echo "</pre>";
                  ?>
