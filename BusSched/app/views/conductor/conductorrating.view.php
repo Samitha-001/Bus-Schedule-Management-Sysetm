@@ -33,6 +33,16 @@
 <?php
 include '../app/views/components/navbarcon.php';
 ?>
+
+<?php
+        $conductor_id= $_SESSION['USER']->id;
+        //show($conductor_id);
+        // print id
+        // show($busno);
+        $ratings = new Rating();
+        $ratingsinfo = $ratings->getConductorRatings($conductor_id)[0];
+        //show($ratingsinfo);
+         ?>
 <main class="container1">
     <div class="col-1">
         <div class="header orange-header">
@@ -41,29 +51,25 @@ include '../app/views/components/navbarcon.php';
             </div>
         </div>
         </div>
-
+       
         <div class="data-table">
         <div class="col-3">
 
             <table border='1' class="styled-table">
                 <tr>
-                    <th>#</th>
                     <th>Bus ID.</th>
                     <th>Trip ID.</th>
                     <th>Conductor Ratings</th>
                 </tr>
                 
                 <?php
-                foreach ($ratings as $rating) {
+                
                     echo "<tr>";
-                    echo "<td> $rating->bus_id </td>";
-                    echo "<td> $rating->trip_id </td>";
-                    echo "<td> $rating->conductor_rating </td>";
-                    // echo "<td> $breakdown->date </td>";
-                    // echo "<td> $breakdown->time </td>";
-                    // echo "<td> $breakdown->time_to_repair </td>";
+                    echo "<td> $ratingsinfo->bus_id </td>";
+                    echo "<td> $ratingsinfo->trip_id </td>";
+                    echo "<td> $ratingsinfo->conductor_rating </td>";
                     echo "</tr>";
-                } ?>
+             ?>
 
 
 
