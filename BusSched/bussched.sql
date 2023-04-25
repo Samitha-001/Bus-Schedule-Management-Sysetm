@@ -3,13 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 21, 2023 at 05:01 AM
+-- Generation Time: Apr 25, 2023 at 04:53 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+05:30";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -229,7 +229,7 @@ INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `departure_time`, `arrival
 (17, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Kohuwala', '2023-03-19 07:01:40', 1, 0, 'cancelled', NULL),
 (32, 'passenger1', 2, NULL, NULL, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 07:20:19', 1, 0, 'booked', NULL),
 (33, 'passenger1', 2, NULL, NULL, NULL, NULL, 'Dutugemunu St.', 'Werahera', '2023-03-19 07:32:37', 1, 0, 'expired', NULL),
-(34, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 14:07:15', 1, 0, 'collected', NULL),
+(34, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 14:07:15', 1, 0, 'inactive', NULL),
 (35, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-04-18 03:35:15', 1, 0, 'inactive', NULL),
 (36, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:52', 1, 0, 'booked', NULL),
 (37, 'passenger1', 1, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 22:14:56', 1, 0, 'collected', NULL);
@@ -726,8 +726,8 @@ CREATE TABLE IF NOT EXISTS `passenger` (
 --
 
 INSERT INTO `passenger` (`username`, `name`, `phone`, `address`, `dob`, `profile_pic`, `points`, `points_expiry`) VALUES
-('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-02-13', NULL, 180, '2023-03-15'),
-('passenger2', 'Jane Doe', '0771234567', 'Colombo, Sri Lanka', '0000-00-00', NULL, 165, '2023-06-22'),
+('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-02-13', NULL, 175, '2023-03-15'),
+('passenger2', 'Jane Doe', '0771234567', 'Colombo, Sri Lanka', '0000-00-00', NULL, 170, '2023-06-22'),
 ('passenger3', 'Kamal Fernando', '', '', '2018-02-27', NULL, 104, '2022-02-02');
 
 -- --------------------------------------------------------
@@ -745,7 +745,7 @@ CREATE TABLE IF NOT EXISTS `points` (
   PRIMARY KEY (`id`),
   KEY `points-from` (`points_from`),
   KEY `points-to` (`points_to`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `points`
@@ -768,7 +768,8 @@ INSERT INTO `points` (`id`, `points_from`, `points_to`, `amount`) VALUES
 (14, 'passenger1', 'passenger3', 1),
 (15, 'passenger1', 'passenger2', 1),
 (16, 'passenger1', 'passenger2', 5),
-(17, 'passenger1', 'passenger3', 1);
+(17, 'passenger1', 'passenger3', 1),
+(18, 'passenger1', 'passenger2', 5);
 
 -- --------------------------------------------------------
 
@@ -787,27 +788,28 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   `conductor_rating` int(11) DEFAULT NULL,
   `driver_id` int(11) NOT NULL,
   `driver_rating` int(11) DEFAULT NULL,
+  `time_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `rating-bus` (`bus_id`),
-  KEY `rating-driver` (`conductor_id`),
-  KEY `rating-trip` (`trip_id`),
-  KEY `rater-user` (`rater`)
+  KEY `rater-user` (`rater`),
+  KEY `rating-conductor` (`conductor_id`),
+  KEY `rating-driver` (`driver_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ratings`
 --
 
-INSERT INTO `ratings` (`id`, `rater`, `trip_id`, `bus_id`, `bus_rating`, `conductor_id`, `conductor_rating`, `driver_id`, `driver_rating`) VALUES
-(1, 5, 1, 1, 5, 9, 5, 8, 5),
-(2, 5, 2, 2, 5, 9, 5, 15, 4),
-(3, 5, 3, 3, 5, 9, 5, 8, 5),
-(4, 5, 4, 4, 5, 9, 5, 15, 5),
-(5, 5, 5, 5, 5, 9, 5, 8, 5),
-(6, 5, 6, 6, 5, 9, 5, 15, 5),
-(7, 5, 7, 7, 5, 9, 5, 8, 5),
-(8, 5, 8, 8, 5, 9, 5, 15, 5),
-(9, 5, 9, 1, 5, 9, 5, 8, 5);
+INSERT INTO `ratings` (`id`, `rater`, `trip_id`, `bus_id`, `bus_rating`, `conductor_id`, `conductor_rating`, `driver_id`, `driver_rating`, `time_updated`) VALUES
+(1, 5, 1, 1, 5, 9, 5, 8, 5, '2023-04-25 04:52:32'),
+(2, 5, 2, 2, 5, 9, 5, 15, 4, '2023-04-25 04:52:32'),
+(3, 5, 3, 3, 5, 9, 5, 8, 5, '2023-04-25 04:52:32'),
+(4, 5, 4, 4, 5, 9, 5, 15, 5, '2023-04-25 04:52:32'),
+(5, 5, 5, 5, 5, 9, 5, 8, 5, '2023-04-25 04:52:32'),
+(6, 5, 6, 6, 5, 9, 5, 15, 5, '2023-04-25 04:52:32'),
+(7, 5, 7, 7, 5, 9, 5, 8, 5, '2023-04-25 04:52:32'),
+(8, 5, 8, 8, 5, 9, 5, 15, 5, '2023-04-25 04:52:32'),
+(9, 5, 9, 1, 5, 9, 5, 8, 5, '2023-04-25 04:52:32');
 
 -- --------------------------------------------------------
 
@@ -1024,6 +1026,15 @@ ALTER TABLE `passenger`
 ALTER TABLE `points`
   ADD CONSTRAINT `points-from` FOREIGN KEY (`points_from`) REFERENCES `passenger` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `points-to` FOREIGN KEY (`points_to`) REFERENCES `passenger` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `rating-bus` FOREIGN KEY (`bus_id`) REFERENCES `bus` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `rating-conductor` FOREIGN KEY (`conductor_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `rating-driver` FOREIGN KEY (`driver_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `rating-user` FOREIGN KEY (`rater`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `scheduler`

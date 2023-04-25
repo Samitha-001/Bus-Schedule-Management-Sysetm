@@ -127,8 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // collected ticket view more
-  let collectedTicketViewMoreBtns =
-    document.querySelectorAll(".ticket-view-more");
+  let collectedTicketViewMoreBtns = document.querySelectorAll(".ticket-view-more");
 
   // add event listeners to each button
   collectedTicketViewMoreBtns.forEach((button) => {
@@ -295,6 +294,30 @@ document.addEventListener("DOMContentLoaded", function () {
     showCollectedTicketsFunc();
   });
 
+
+  // rate bus, driver and conductor
+  let ratePopup = document.getElementById("rate-popup");
+  let skipRatingBtn = document.getElementById("btn-rate-skip");
+  skipRatingBtn.addEventListener("click", function () {
+    ratePopup.style.display = "none";
+  });
+
+  let rateBus = document.getElementById("btn-rate");
+  rateBus.addEventListener("click", function () {
+    // get the forms in rate popup
+    let rateForms = ratePopup.querySelectorAll("form");
+    // get value of selected radio input
+    let driverRating = rateForms[0].querySelector("input:checked").value;
+    let conductorRating = rateForms[1].querySelector("input:checked").value;
+    let busRating = rateForms[2].querySelector("input:checked").value;
+
+    // TODO
+    // let data = { trip_id: tripId, bus_rating: busRating, conductor_rating: conductorRating, driver_rating: driverRating };
+    let data = { driver_rating: driverRating, conductor_rating: conductorRating, bus_rating: busRating };
+
+    updateRating(data);
+  });
+  
   // passenger got off bus update database function
   function passengerGotOffBus() {
     // updating database
@@ -365,5 +388,11 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  // update rating function
+  function updateRating(data) {
+    // TODO
+    console.log(data);
   }
 });
