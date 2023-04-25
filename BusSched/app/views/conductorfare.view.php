@@ -1,4 +1,4 @@
-<?php
+ <?php
 if (!isset($_SESSION['USER'])) {
     redirect('home');
 }
@@ -15,140 +15,63 @@ if (!isset($_SESSION['USER'])) {
     <meta name="generator" content="Hugo 0.88.1">
     <title>Fares</title>
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
+    <script src="<?= ROOT ?>/assets/js/landing.js"></script>
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
 </head>
 
 <body>
 <?php include 'components/navbarcon.php'; 
-        // include 'components/conductorsidebar.php';
-?>
+        // include 'components/conductorsidebar.php';?>
 
-    <!-- <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                    <li class="button-orange">Logout</li>
-                </a>
-            </div>
-        </ul>
-    </nav> -->
+<datalist id="halt-list">
+ <?php
+    $len = count($halts);
+    for ($i = 0; $i < $len; $i++) {
+        $halt = $halts[$i];
+        echo "<option value='" . $halt->name . "'>";
+    }
+    ?> 
 
-    <!-- <div class="wrapper">
-        <div class="sidebar">
-        <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li> -->
-            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
-            <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li> -->
-            <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
-            <!-- <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
-            <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
-        </div>
-    </div> -->
+</datalist> 
 
-    <main class="container1">
-        <div class="col-1">
-        <div class="header orange-header">
-            <div>
-                <h3>Bus Fares</h3>
-            </div>
-            <div><button id="btn" class="button-grey">Add New</button></div>
-        </div>
-        </div>
-        <div class="col-1">
-        <form method="post" id="view_fare" style="display:none">
+<!-- <div class="row">  -->
+    <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
+    <div class="fare-from-to-grid">
+        <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" required>
+        <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" required>
 
-            <?php if (!empty($errors)) : ?>
-                <?= implode("<br>", $errors) ?>
-            <?php endif; ?>
-
-            <div>
-                <table class="styled-table">
-                    <tr>
-                        <td><label for="source">From</label></td>
-                        <td><input type="text" class="form-control" name="source" id="source" placeholder="Starting halt..."></td>
-                    </tr>
-
-                    <tr>
-                        <td><label for="dest">To</label></td>
-                        <td>
-                            <input type="text" name="dest" class="form-control" id="dest" placeholder="Destination halt...">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label for="route_bus">Route</label></td>
-                        <td><input type="text" name="route_bus" class="form-control" id="route_bus" placeholder="Bus route..."></td>
-                    </tr>
-
-                    <tr>
-                        <td><label for="type_bus">Type </label></td>
-                        <td>
-                            <select name="type_bus" id="type_bus" class="form-control">
-                                <option disabled selected value>--select an option--</option>
-                                <option value="L">Luxury</option>
-                                <option value="S">Semi-Luxury</option>
-                            </select>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><label for="amount">Amount</label></td>
-                        <td><input type="number" name="amount" class="form-control" id="amount" placeholder="Bus fare..."></td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td align="right">
-                            <button class="button-green" type="submit">Save</button>
-                            <button class="button-cancel" onclick="cancel()">Cancel</button>
-                        </td>
-                    </tr>
-
-                </table>
-            </div>
-        </form>
-        </div>
-        <div>
-            <br>
-            <div class="col-3">
-            <table border='1' class="styled-table">
-                <tr>
-                    <th>#</th>
-                    <th>From</th>  
-                    <th>To</th>
-                    <th>Route</th>
-                    <th>Amount</th>
-                    <th>Last Updated</th>
-                    <!-- <th>Action</th> -->
-                </tr>
-
+        <button id="calculate-fare" class="button-orange">Find fare</button>
+        <div id="fare-result" class='span-3'></div>
+    </div>
+    <section id="busfare">
+        <div style="width:100%">
+            <table id="busfare-table">
                 <?php
-                foreach ($conductorfares as $fare) {
-                    echo "<tr>";
-                    echo "<td> $fare->id </td>";
-                    echo "<td> $fare->source </td>";
-                    echo "<td> $fare->dest </td>";
-                    echo "<td> $fare->bus_route </td>";
-                    echo "<td> $fare->amount</td>";
-                    echo "<td> $fare->last_updated </td>";
-                    echo "</tr>";
-                } ?>
 
+                $len = count($halts);
+                $fareinstance = new Fareinstance;
+                $instance = $fareinstance->getFareInstances($len);
+                
+                for ($i = 0; $i < $len; $i++) {
+                    $halt = $halts[$i];
+                ?>
+                    <tr data-haltfrom='<?=$halt->name?>'><td class='halt-name'><?=$halt->name?></td>
+                    <?php
+                    for ($j = 0; $j <= $i; $j++)
+                        { if ($i == $j) {?>
+
+                        <td class='halt-name-top'><?=$halt->name?></td>
+
+                    <?php } else {?>
+
+                        <td class='fare-td' data-haltto='<?=$halts[$j]->name?>'><?=$instance[$i-$j]->fare?></td>
+
+                    <?php }}}?>
             </table>
         </div>
-        </div>
+    </section>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
-    </main>
-
+</div>
 </body>
 
-</html>
+</html> 
