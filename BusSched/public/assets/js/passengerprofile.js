@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let vals = pointBalanceDiv.querySelectorAll("p");
     
     vals[0].textContent = parseInt(vals[0].textContent) - parseInt(data["amount"]);
-    vals[1].textContent = parseInt(vals[1].textContent) - parseInt(data["amount"]);
+    vals[1].textContent = parseInt(vals[1].textContent) - parseInt(data["amount"]) + " LKR";
 
     // send data to server
     let url = `${ROOT}/passengerprofile/api_gift_points`;
@@ -189,4 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // console.log(data);
       });
   }
+
+  // update location cards
+  
+
 });

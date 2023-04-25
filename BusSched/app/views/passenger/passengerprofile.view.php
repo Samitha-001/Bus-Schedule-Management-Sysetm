@@ -1,5 +1,4 @@
 <?php
-// (new Passenger())->updatePassenger("passenger1", ["name" => "Venudi Hetti", "phone" => "0333333333"]);
 $username = $_SESSION['USER']->username;
 if (isset($_SESSION['USER'])) {
     if ($_SESSION['USER']->role == 'driver') {

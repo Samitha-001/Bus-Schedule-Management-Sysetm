@@ -10,6 +10,13 @@
     <title>Buses Owned</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+
+    <Style>
+         table tr:not(:first-child){
+            cursor:pointer;transition: all.25s ease-in-out;
+         }
+     
+    </Style>
    
 </head>
 
@@ -30,7 +37,7 @@ include '../app/views/components/ownersidebar.php';
 
 <div>
     <br>
-    <table border='1' class="styled-table">
+    <table  border='1' id="table" class="styled-table">
         <tr>
             <th>#</th>
             <th>Bus No.</th>
@@ -44,11 +51,13 @@ include '../app/views/components/ownersidebar.php';
             <th>Driver</th>
         </tr>
 
+        
         <?php
         // if not empty, then display the buses
         if ($buses):
         foreach ($buses as $bus): ?>
-            <tr>
+       
+            <tr data-href="<?= ROOT ?>/ownereditbusprofile">
                 <td><?= $bus->id ?></td>
                 <td><?= $bus->bus_no ?></td>
                 <td><?= $bus->type ?></td>
@@ -60,6 +69,7 @@ include '../app/views/components/ownersidebar.php';
                 <td><?= $bus->conductor ?></td>
                 <td><?= $bus->driver ?></td>
             </tr>
+           
         <?php endforeach;
             else : ?>
             <tr>
@@ -67,6 +77,22 @@ include '../app/views/components/ownersidebar.php';
             </tr>
         <?php endif;?>
     </table>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded",()=>{
+            const rows =document.querySelectorAll("tr[data-href]");
+
+            rows.forEach(row=>{
+                row.addEventListener("click",()=>{
+                    window.location.href=row.dataset.href;
+
+                });
+            });
+        });
+    </script>
+
+    
 </div>
 
 <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
