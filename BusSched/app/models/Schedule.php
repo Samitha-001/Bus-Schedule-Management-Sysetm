@@ -76,9 +76,9 @@ class Schedule extends Bus
     $startingPlace1Buses = [];
     $startingPlace2Buses = [];
     foreach ($registeredBusesArray as $bus) {
-        if ($bus['start'] === 'Starting Place 1') {
+        if ($bus['start'] === 'Piliyandala') {
             $startingPlace1Buses[] = $bus;
-        } elseif ($bus['start'] === 'Starting Place 2') {
+        } elseif ($bus['start'] === 'Pettah') {
             $startingPlace2Buses[] = $bus;
         }
     }
@@ -103,7 +103,7 @@ class Schedule extends Bus
             if ($bus) {
                 // Get start and destination from registeredBusesArray
                 $start = $bus['start'];
-                $destination = $bus['destination'];
+                $destination = $bus['dest'];
 
                 // Calculate departure and arrival time for the bus
                 $departureTime = strtotime($date . ' ' . $timeSlot);
@@ -111,12 +111,13 @@ class Schedule extends Bus
 
                 // Update bus details with start, destination, departure time, and arrival time
                 $bus['start'] = $start;
-                $bus['destination'] = $destination;
+                $bus['dest'] = $destination;
                 $bus['departure_time'] = date('h:i a', $departureTime);
                 $bus['arrival_time'] = date('h:i a', $arrivalTime);
 
                 // Add bus to the schedule
                 $schedule[$timeSlot][] = $bus;
+                $schedule = json_decode(json_encode($schedule), true);
             }
         }
     }
