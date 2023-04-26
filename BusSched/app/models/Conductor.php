@@ -20,6 +20,11 @@ class Conductor extends Model
         return $this->findAll();
     }
 
+    public function getConductorInfo($conductor)
+    {
+        return $this->where(['username' => $conductor]);
+    }
+
     public function updateConductor($id, $data)
     {
         $this->update($id, $data, 'username');

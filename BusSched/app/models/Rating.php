@@ -38,7 +38,7 @@ class Rating extends Model
 
     public function getConductorRatings($conductor)
     {
-        return $this->where(['conductor_id' => $conductor]);
+        return $this->where(['conductor' => $conductor]);
     }
 
     public function deleteRating($id)

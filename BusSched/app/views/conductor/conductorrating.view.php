@@ -35,12 +35,12 @@ include '../app/views/components/navbarcon.php';
 ?>
 
 <?php
-        $conductor_id= $_SESSION['USER']->id;
+        $conductor= $_SESSION['USER']->username;
         //show($conductor_id);
         // print id
         // show($busno);
         $ratings = new Rating();
-        $ratingsinfo = $ratings->getConductorRatings($conductor_id)[0];
+        $ratingsinfo = $ratings->getConductorRatings($conductor)[0];
         //show($ratingsinfo);
          ?>
 <main class="container1">
@@ -57,7 +57,7 @@ include '../app/views/components/navbarcon.php';
 
             <table border='1' class="styled-table">
                 <tr>
-                    <th>Bus ID.</th>
+                    <th>Bus No.</th>
                     <th>Trip ID.</th>
                     <th>Conductor Ratings</th>
                 </tr>
@@ -65,7 +65,7 @@ include '../app/views/components/navbarcon.php';
                 <?php
                 
                     echo "<tr>";
-                    echo "<td> $ratingsinfo->bus_id </td>";
+                    echo "<td> $ratingsinfo->bus_no </td>";
                     echo "<td> $ratingsinfo->trip_id </td>";
                     echo "<td> $ratingsinfo->conductor_rating </td>";
                     echo "</tr>";
