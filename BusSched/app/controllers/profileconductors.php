@@ -1,6 +1,6 @@
 <?php
 
-class profileConductors
+class ProfileConductors
 {
 
     use Controller;
@@ -13,6 +13,7 @@ class profileConductors
         $arr['username'] = $_SESSION['USER']->username;
         $row = $conductor->first($arr);
 
-        $this->view('profileconductor', [$row]);
+        // $this->view('profileconductor', [$row]);
+        $this->view( 'profileconductor',['username' => [$row]]);
     }
 }

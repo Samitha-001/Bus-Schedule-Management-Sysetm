@@ -14,8 +14,16 @@ if (!isset($_SESSION['USER'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
+    <!-- <link rel="stylesheet" href="<?= ROOT ?>/assets/css/passenger_profile.css"> -->
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <script src="<?= ROOT ?>/assets/js/passengerprofile.js"></script>
     <title>Profile</title>
+    <style>
+/*  
+      form.info-grid {
+        display: none;
+      } */
+    </style>
 </head>
 
 <body>
@@ -31,7 +39,17 @@ include '../app/views/components/navbarcon.php';
         $buses = new Bus();
         $bus = $buses->getConductorBuses($conductor)[0];
         //show($ratingsinfo);
+        $conductors = new Conductor();
+        $conductorinfo = $conductors->getConductorInfo($conductor)[0];
+        //show($conductorinfo);
          ?>
+
+<?php
+        //show($conductor_id);
+        // print id
+        // show($busno);
+        
+?>
 <div class="header orange-header">
         <div class="col-1">
             
@@ -56,11 +74,7 @@ include '../app/views/components/navbarcon.php';
                             <?= $_SESSION['USER']->username ?>
                         </td>
                     </tr>
-                    <tr>
-                        <th>Name: </th>
-                        <td>
-                            <?= $data[0]->name ?>
-                        </td>
+
                     <tr>
                         <th>Email: </th>
                         <td>
@@ -68,23 +82,63 @@ include '../app/views/components/navbarcon.php';
                         </td>
                     </tr>
                     <tr>
+                        <th>Name: </th>
+                        <?php
+                            echo "<td> $conductorinfo->name </td>";
+                        ?>
+                   
+                    <tr>
                         <th>Phone: </th>
-                        <td>
-                            <?= $data[0]->phone ?>
-                        </td>
+                        <?php
+                            echo "<td> $conductorinfo->phone </td>";
+                        ?>
                     </tr>
                     <tr>
                         <th>Address: </th>
-                        <td>
-                            <?= $data[0]->address ?>
-                        </td>
+                        <?php
+                            echo "<td> $conductorinfo->address </td>";
+                        ?>
+                    </tr>
+                    <tr>
+                        <th>Licence Number: </th>
+                        <?php
+                            echo "<td> $conductorinfo->licence_no </td>";
+                        ?>
+                    </tr>
+                    <tr>
+                        <th>DOB: </th>
+                        <?php
+                            echo "<td> $conductorinfo->date_of_birth </td>";
+                        ?>
+                    </tr>
+                    <tr>     
+                    <th><button href=# id='edit-passenger-info'>Edit</button></th>
                     </tr>
                 </table>
-            </ul>
+                <!-- <div class="col-3"> -->
+            <!-- edit form for passenger info -->
+            <form style="padding-left:5px;" class='edit-info-form info-grid'>
+                <h1>Name:</h1>
+                <input type="text" name="name" id="name" value="<?= $conductorinfo->name ?>">
+                <h1>Phone:</h1>
+                <input type="text" name="phone" id="phone" value="<?= $conductorinfo->phone ?>">
+                <h1>Address:</h1>
+                <input type="text" name="address" id="address" value="<?= $conductorinfo->address ?>">
+                <h1>DOB:</h1>
+                <input type="date" name="dob" id="dob" value="<?= $conductorinfo->date_of_birth ?>">
+                
+                <!-- TODO -->
+                <div class="info-grid-start-2">
+                    <button id='save-passenger-info'>Save</button>
+                    <button id='cancel-passenger-info'>Cancel</button>
+                </div>
+            </form>
         </div>
+            </div>
+      
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
         <div class="card-container" id="info-card2">
             <ul>
                 <p style="font-size: 32px;">Bus Info</p>
