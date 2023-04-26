@@ -21,6 +21,17 @@
 include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
 ?>
+
+<?php
+$busno=$_GET['bus_no'];
+// print id
+// show($busno);
+$bus = new Bus();
+$businfo = $bus->where(['bus_no' => $busno])[0];
+// show($businfo);
+
+    ?>
+
 <main class="container1">
 
     <div class="header orange-header">
@@ -42,53 +53,56 @@ include '../app/views/components/ownersidebar.php';
         <table>
             <tr>
             <td><label for="bus_no">Bus Number:</label></td>
-            <td><input type="text" id="bus_no" name="bus_no"></td>
+            <td><input type="" id="bus_no" name="bus_no" value="<?php echo $businfo->bus_no?>"></td>
             </tr>
             <tr>
             <td><label for="type">Type:</label></td>
-            <td>
-                <select id="type" name="type" required>
-                <option value="S">Small</option>
-                <option value="L">Large</option>
-                </select>
-            </td>
+            <td><input id="type" name="type" value="<?php echo $businfo->type?>" ></td>
             </tr>
             <tr>
             <td><label for="seats_no">Number of Seats:</label></td>
-            <td><input type="number" id="seats_no" name="seats_no" required></td>
+            <td><input type="number" id="seats_no" name="seats_no" value="<?php echo $businfo->seats_no?>" required></td>
             </tr>
             <tr>
             <td><label for="route">Route:</label></td>
-            <td><input type="text" id="route" name="route" required></td>
+            <td><input type="text" id="route" name="route"value="<?php echo $businfo->route?>" ></td>
             </tr>
             <tr>
             <td><label for="start">Starting Halt:</label></td>
-            <td><input type="text" id="start" name="start" default></td>
+            <td><input type="text" id="start" name="start" default value="<?php echo $businfo->start?>" ></td>
             </tr>
             <tr>
             <td><label for="dest">Destination:</label></td>
-            <td><input type="text" id="dest" name="dest"></td>
+            <td><input type="text" id="dest" name="dest" value="<?php echo $businfo->dest?>" ></td>
             </tr>
             <tr>
             <td><label for="conductor">Conductor:</label></td>
-            <td><input type="text" id="conductor" name="conductor"></td>
+            <td><input type="text" id="conductor" name="conductor" value="<?php echo $businfo->conductor?>" ></td>
             </tr>
             <tr>
             <td><label for="driver">Driver:</label></td>
-            <td><input type="text" id="driver" name="driver"></td>
+            <td><input type="text" id="driver" name="driver" value="<?php echo $businfo->driver?>" ></td>
             </tr>
         </table>
 
 
         <script>
-            var table=document.getElementById('table');
-            for(var i=1; i<table.rows.length; i++){
-               table.rows[i].onclick=function(){
-                document.getElementById("bus_no").value=this.cells[0].innerHTML;
-                console.log(this.cells[0].innerHTML);
-               } 
-            }
+          var table=document.getElementsByTagName('table')[0];
+       
+
+        //   console.log(table)
+
+          
         </script>
+
+        <?php
+        // $busno=$_GET['bus_no'];
+        // // print id
+        // // show($busno);
+        // $bus = new Bus();
+        // $businfo = $bus->where(['bus_no' => $busno])[0];
+        // show($businfo);
+         ?>
 
         <input id="submit-btn" type="submit" value="Edit" class="button-green" style="padding-left:10px;margin-left:250px;font-size:18px;">    
     </div>

@@ -57,7 +57,7 @@ include '../app/views/components/ownersidebar.php';
         if ($buses):
         foreach ($buses as $bus): ?>
        
-            <tr data-href="<?= ROOT ?>/ownereditbusprofile">
+            <tr data-href="<?= ROOT ?>/ownereditbusprofile?bus_no=<?=$bus->bus_no?>">
                 <td><?= $bus->id ?></td>
                 <td><?= $bus->bus_no ?></td>
                 <td><?= $bus->type ?></td>
