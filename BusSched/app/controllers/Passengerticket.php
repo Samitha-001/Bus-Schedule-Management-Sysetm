@@ -24,11 +24,11 @@ class Passengerticket
             $data['passenger'] = $_SESSION['USER']->username;
             // booking time is current time
             $data['booking_time'] = date('Y-m-d H:i:s');
+            $halt = new Halt();
+            $fee = $halt->calculateFare($data['source_halt'], $data['dest_halt']);
+            $data['price'] = $fee;
             $ticket->addTicket($data);
 
-            // print $data
-            // print_r($data);
-            
             // Send a response
             $response = array('status' => 'success', 'data' => $data);
             header('Content-Type: application/json');
