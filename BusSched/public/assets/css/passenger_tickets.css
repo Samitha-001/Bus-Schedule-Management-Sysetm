@@ -2,8 +2,8 @@
 @import "general.css";
 @import "passenger_profile.css";
 body {
-  /* background-color: #24315e; */
-  background-color: #f9f9f9;
+  background: url("../images/backgrounds/bg-location.png");
+  /* background-color: #f9f9f9; */
   font-size: 12px;
 }
 
@@ -18,12 +18,10 @@ body {
   top: 70px;
   z-index: 1;
 }
-
 #profile-header h1 {
   color: white;
   text-align: center;
 }
-
 .ticket-grid {
   justify-self: center;
   display: grid;
@@ -33,31 +31,50 @@ body {
   padding: 25px;
   /* grid-auto-rows: minmax(auto, auto); */
 }
-
 .ticket-grid h1 {
   font-size: 14px;
   margin: 0px;
   text-align: right;
 }
-
 .ticket-grid .span-2 {
   grid-column: span 2;
 }
 
+.ticket-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ticket-card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin: 5px;
+  color: #7c839e;
+  width: max-content;
+  height: fit-content;
+}
+
+.ticket-card h3 {
+  color: #24315e;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
 p {
   margin: 0;
   padding: 0;
 }
-
 /* for tablet */
 @media only screen and (min-width: 600px) {
   .tickets-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-  }
-  .wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 /* for desktop */
@@ -66,38 +83,34 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  .wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
 }
+
 /* buttons */
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  overflow-x: scroll;
 }
 
 a.ticket-type-btn {
-  display: block;
+  display: inline-block;
   width: 110px;
   height: 40px;
+  margin-bottom: 2px;
   line-height: 40px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: Outfit;
   text-decoration: none;
   color: white;
-  /* border: 2px solid #24315e; */
-  /* border-radius: 20px; */
   text-align: center;
   position: relative;
   transition: all 0.35s;
+  min-width: 60px;
 }
 
 a.ticket-type-btn span {
   position: relative;
   z-index: 2;
 }
-
 a.ticket-type-btn:after {
   position: absolute;
   content: "";
@@ -106,16 +119,20 @@ a.ticket-type-btn:after {
   width: 0;
   height: 100%;
   background: white;
-  transition: all 0.35s;
+  transition: all 0.2s;
   border-radius: 20px;
 }
 
 a.ticket-type-btn:hover {
   color: #24315e;
 }
-
 a.ticket-type-btn:hover:after {
   width: 100%;
+}
+
+a.ticket-view-more {
+  text-align: right;
+  margin-left: 130px;
 }
 
 .wrapper .selected {
@@ -123,43 +140,43 @@ a.ticket-type-btn:hover:after {
   border-radius: 20px;
   color: #24315e;
 }
-
 .wrapper .selected span {
   color: #24315e;
 }
-
 .ticket-button-orange {
   background-color: #f15f22;
   border-radius: 10px;
+  border: none;
   color: white;
   padding: 10px;
+  margin: 3px;
+  cursor: pointer;
 }
 
 div.ticket-details-card {
-  width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 100%;
   padding: 20px;
-  margin-bottom: 20px;
+  color: #24315e;
+  display: inline-block;
+  margin-left: 7%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  max-width: 85%;
   border-radius: 15px;
-  /* margin: 5px; */
-  color: #7c839e;
 }
 
 .ticket-details-card th {
-  text-align: right;
+  text-align: left;
   color: #24315e;
-  width: 25%;
 }
 
 .ticket-details-card td a {
   color: #f15f22;
   /* text-align: center; */
 }
-
 .pop-up {
   display: block;
   position: fixed;
@@ -172,7 +189,6 @@ div.ticket-details-card {
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
-
 .pop-up-content {
   background-color: #fefefe;
   margin: 20% auto;
@@ -180,6 +196,14 @@ div.ticket-details-card {
   border: 1px solid #888;
   border-radius: 10px;
   width: 300px;
+  text-align: center;
+}
+
+/* FOR MOBILE */
+@media only screen and (max-width: 600px) {
+  .pop-up-content {
+    margin: 50% auto;
+  }
 }
 
 .pop-up-content p {
@@ -187,127 +211,164 @@ div.ticket-details-card {
   padding: 10px;
 }
 
+.pop-up-content h1 {
+  display: block;
+}
+
 .ticket-details-card td a.disabled {
   cursor: default;
-  color: #7c839e;
-}
-
-#form-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#form-wrapper form {
-  width: 90%;
-  max-width: 500px;
-}
-#form-wrapper form #debt-amount-slider {
-  display: flex;
-  flex-direction: row;
-  align-content: stretch;
-  position: relative;
-  width: 100%;
-  height: 50px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-#form-wrapper form #debt-amount-slider input, #form-wrapper form #debt-amount-slider label {
-  box-sizing: border-box;
-  flex: 1;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  cursor: pointer;
-}
-#form-wrapper form #debt-amount-slider label {
-  display: inline-block;
-  position: relative;
-  width: 20%;
-  height: 100%;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-#form-wrapper form #debt-amount-slider label::before {
-  content: attr(location-value);
-  position: absolute;
-  left: 70%;
-  padding: 10px;
-  transform: translate(-50%, 45px);
-  font-size: 12px;
-  letter-spacing: 0.4px;
-  font-weight: 400;
-  color: #24315e;
-  white-space: nowrap;
-  opacity: 0.85;
-  transition: all 0.15s ease-in-out;
-  z-index: 2;
-}
-#form-wrapper form #debt-amount-slider label::after {
-  content: attr(location-value);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  border: 0px solid white;
-  margin: 20px;
-  background: white;
-  border-radius: 5px;
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  z-index: 1;
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
-}
-#form-wrapper form #debt-amount-slider label:hover::after {
-  transform: translate(-50%, -50%) scale(1.25);
-  background-color: #f15f22;
-  z-index: 3;
-}
-#form-wrapper form #debt-amount-slider input {
-  display: none;
-}
-#form-wrapper form #debt-amount-slider input:checked + label::before {
-  font-weight: 800;
   color: white;
-  opacity: 1;
-}
-#form-wrapper form #debt-amount-slider input:checked + label::after {
-  border-width: 4px;
-  border-radius: 5px;
-  transform: translate(-50%, -50%) scale(1.25);
-  background-color: #f15f22;
-  z-index: 2;
-}
-#form-wrapper form:valid #debt-amount-slider input + label::before {
-  transform: translate(-50%, 45px) scale(0.9);
-  transition: all 0.15s linear;
-}
-#form-wrapper form:valid #debt-amount-slider input:checked + label::before {
-  transform: translate(-50%, 45px) scale(1.1);
-  transition: all 0.15s linear;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-    width: 24px;
-    opacity: 1;
-    margin-right: 12px;
-    margin-left: 12px;
-  }
-  to {
-    transform: rotate(360deg);
-    width: 24px;
-    opacity: 1;
-    margin-right: 12px;
-    margin-left: 12px;
-  }
-}/*# sourceMappingURL=passenger_tickets.css.map */
+#update-location-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  align-content: center;
+  /* width: 80%; */
+}
+
+#update-location-div h1 {
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.location-update-card {
+  display: inline-block;
+  background-color: white;
+  min-width: 140px;
+  height: 140px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #24315e;
+  align-content: center;
+  cursor: pointer;
+}
+
+.selected-halt {
+  scale: 1.05;
+  background-color: #f15f22;
+  color: white;
+  font-weight: 400;
+  border-radius: 10px;
+  margin: 5px;
+  text-align: center;
+  transition: all 0.35s;
+}
+
+.selected-halt p {
+  color: white;
+}
+
+.passed-halt {
+  border: solid 1px white;
+  background-color: #7c839e;
+  color: white;
+  cursor: default;
+}
+
+::-webkit-scrollbar {
+  padding-top: 5px;
+  width: 50%;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+#update-location-div ::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  height: 3px;
+}
+
+#update-location-div ::-webkit-scrollbar {
+  height: 7px;
+}
+
+#update-location-div ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+#collected-ticket-details table {
+  width: 100%;
+  margin: 30px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#collected-ticket-details {
+  transition: all 0.2s;
+}
+
+
+/* rating */
+.cont {
+  width: fit-content;
+  max-width: 350px;
+  text-align: center;
+  padding: 0;
+  color: #EEE;
+  /* overflow: scroll; */
+}
+
+div.stars {
+  width: 270px;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+div#rate-popup p {
+  color:#24315e;
+  font-size: 13px;
+  padding: 0;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 6px 5px 10px;
+  font-size: 20px;
+  color: #82879a;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: rgb(255, 243, 75);
+  /* border: solid white 1px; */
+  text-shadow: 0 0 3px yellow;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
+#btn-rate-skip {
+  color:#f15f22;
+  font-size: 13.5px;
+  padding: 10px;
+}
