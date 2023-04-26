@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var showExpiredTickets = document.getElementById("show-expired-tickets");
   var showInactiveTickets = document.getElementById("show-inactive-tickets");
   let ticketDetails = document.getElementById("collected-ticket-details");
+  let ratePopup = document.getElementById("rate-popup");
+  let gotOffBusYesBtn = document.getElementById("btn-got-off-yes");
 
   let allTicketsDiv = document.getElementById("all-tickets");
 
@@ -181,13 +183,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let halts = getHalts(ticket['ticket']["source_halt"], ticket['ticket']["dest_halt"]);
         halts.then((halts) => {
           halts.forEach((halt) => {
-            //   make new div for each halt
+            // make new div for each halt
             let haltDiv = document.createElement("div");
             insideLocationDiv.appendChild(haltDiv);
             haltDiv.classList.add("location-update-card");
             // add id to div
             haltDiv.setAttribute("id", halt);
-            //   add halt name to div
+            // add halt name to div
             haltDiv.innerHTML = halt;
             let haltP = document.createElement("p");
             haltDiv.appendChild(haltP);
@@ -213,20 +215,36 @@ document.addEventListener("DOMContentLoaded", function () {
   let gotOffBusBtn = document.getElementById("a-got-off");
   gotOffBusBtn.addEventListener("click", function () {
     // if has class disabled, return
-    if (!gotOffBusBtn.classList.contains("disabled"))
+    if (!gotOffBusBtn.classList.contains("disabled")) {
+      gotOffBusYesBtn.setAttribute("data-ticket-id", ticketDetails.getAttribute("data-ticket-id"));
       gotOffBusPopup.style.display = "block";
+    }
   });
 
   // GOT OFF THE BUS
   // confirm got off
-  document.getElementById("btn-got-off-yes").addEventListener("click", function () {
-      // TODO implement yes button
-      showCollectedTicketsFunc();
-      gotOffBusPopup.style.display = "none";
-      passengerGotOffBus();
-      window.location.reload();
-
+  gotOffBusYesBtn.addEventListener("click", function () {
+    showCollectedTicketsFunc();
+    ratePopup.style.display = "block";
+    gotOffBusPopup.style.display = "none";
+    passengerGotOffBus();
+    
+    // filling rating popup
+    // get ticket id
+    let ticketId = gotOffBusYesBtn.getAttribute("data-ticket-id");
+    let ticketDeets = getTicketDetails(ticketId);
+    // TICKET DETAILS FOR RATING
+    ticketDeets.then((ticket) => {
+      console.log(ticket);
+      // add data attributes to ratepopup
+      ratePopup.setAttribute("data-ticket-id", ticket['ticket']["id"]);
+      ratePopup.setAttribute("data-rater", ticket['ticket']["passenger"]);
+      ratePopup.setAttribute("data-trip-id", ticket['ticket']["trip_id"]);
+      ratePopup.setAttribute("data-bus-no", ticket['trip']["bus_no"]);
+      ratePopup.setAttribute("data-conductor-id", ticket['bus']["conductor"]);
+      ratePopup.setAttribute("data-driver-id", ticket['bus']["driver"]);
     });
+  });
   // got off from a different halt
   document.getElementById("btn-got-off-cancel").addEventListener("click", function () {
       // TODO implement no button
@@ -285,9 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // update location confirm button
   let updateLocationConfirmBtn = document.getElementById("btn-update-location-confirm");
   updateLocationConfirmBtn.addEventListener("click", function () {
-    // TODO implement updating location (make ticket inactive)
     updateLocationDiv.style.display = "none";
-    // remove class disabled from gotOffBusBtn
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
     ticketDetails.style.display = "none";
@@ -296,10 +312,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   // rate bus, driver and conductor
-  let ratePopup = document.getElementById("rate-popup");
   let skipRatingBtn = document.getElementById("btn-rate-skip");
   skipRatingBtn.addEventListener("click", function () {
     ratePopup.style.display = "none";
+    gotOffBusPopup.style.display = "none";
+    window.location.reload();
   });
 
   let rateBus = document.getElementById("btn-rate");
@@ -311,11 +328,22 @@ document.addEventListener("DOMContentLoaded", function () {
     let conductorRating = rateForms[1].querySelector("input:checked").value;
     let busRating = rateForms[2].querySelector("input:checked").value;
 
+
+    // get data attributes from ratePopup
+    let ticketId = ratePopup.getAttribute("data-ticket-id");
+    let rater = ratePopup.getAttribute("data-rater");
+    let tripId = ratePopup.getAttribute("data-trip-id");
+    let busNo = ratePopup.getAttribute("data-bus-no");
+    let conductorId = ratePopup.getAttribute("data-conductor-id");
+    let driverId = ratePopup.getAttribute("data-driver-id");
+
     // TODO
     // let data = { trip_id: tripId, bus_rating: busRating, conductor_rating: conductorRating, driver_rating: driverRating };
-    let data = { driver_rating: driverRating, conductor_rating: conductorRating, bus_rating: busRating };
+    let data = { 'ticket_id': ticketId, 'rater': rater, 'trip_id': tripId, 'driver': driverId, 'driver_rating': driverRating, 'conductor': conductorId, 'conductor_rating': conductorRating, 'bus_no': busNo, 'bus_rating': busRating };
 
+    // call function to send data to server
     updateRating(data);
+    window.location.reload();
   });
   
   // passenger got off bus update database function
@@ -392,7 +420,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // update rating function
   function updateRating(data) {
-    // TODO
+    let url = `${ROOT}/passengertickets/api_add_rating`;
+    
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
     console.log(data);
   }
 });

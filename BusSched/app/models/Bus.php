@@ -52,10 +52,16 @@ class Bus extends Model
         return $this->where(['owner' => $owner]);
     }
 
+    public function getBus($busno)
+    {
+        return $this->where(['bus_no' => $busno])[0];
+    }
+
     public function deleteBus($id)
     {
         return $this->delete($id);
     }
+
     public function updateBus($id, $data)
     {
         return $this->update($id, $data);
