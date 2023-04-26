@@ -46,13 +46,20 @@
                     <tr>
                         <th>Phone: </th>
                         <td>
-                             Enter the phone number
+                        <div style="position: relative;">
+  <input type="text" id="number" name="phone" value="Enter the number" style="padding-right: 30px;">
+  <img src="<?= ROOT ?>/assets/images/icons/Edit.png" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); width: 20px">
+</div>
                         </td>
                     </tr>
                     <tr>
                         <th>Address: </th>
                         <td>
-                            Enter the address
+                        <div style="position: relative;">
+  <input type="text" id="addr" name="addr" value="Enter the address" style="padding-right: 30px;">
+  <img src="<?= ROOT ?>/assets/images/icons/Edit.png" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); width: 20px">
+</div>
+
                         </td>
                     </tr>
                 </table>

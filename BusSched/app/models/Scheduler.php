@@ -16,5 +16,11 @@ class Scheduler extends Model
     {
         return $this->findAll();
     }
+
+    public function updateScheduler($id, $data)
+    {
+        $this->update($id, $data, 'username');
+    }
+
     
 }
