@@ -25,6 +25,9 @@ class Passengerticket
             // booking time is current time
             $data['booking_time'] = date('Y-m-d H:i:s');
             $ticket->addTicket($data);
+
+            // print $data
+            // print_r($data);
             
             // Send a response
             $response = array('status' => 'success', 'data' => $data);

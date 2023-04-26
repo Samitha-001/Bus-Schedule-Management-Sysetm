@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     data = {};
     
     let inputs = document.querySelectorAll("input");
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
       if (inputs[i].value === "") {
         alert("Please fill all fields");
         return;
@@ -67,4 +67,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#cancel-ticket").addEventListener("click", () => {
     window.location.href = `${ROOT}/passengerschedule`;
   });
+  
 });

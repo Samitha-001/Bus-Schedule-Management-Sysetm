@@ -49,8 +49,8 @@ if (!isset($_SESSION['USER'])) {
     <div class="search-bar" style="padding: 10px;">
         <h3>Buy ticket</h3>
     </div>
-    <div class="row">
-        <div class="col-6 col-s-9 ticket" id="book-ticket">
+    <div class="row" style="justify-content:center">
+        <div class="ticket" id="book-ticket">
             <div class="ticket-body">
                 <table>
                     <tr>
@@ -60,43 +60,43 @@ if (!isset($_SESSION['USER'])) {
                     </tr>
                     <tr>
                         <td colspan='3' style='text-align:center' data-tripid=<?=$tripid?> id='trip-id'>
-                            Ticket for trip starting at <?php if ($trip[0]->departure_time) echo $trip[0]->departure_time; ?>
-                            from <?php if ($trip[0]->starting_halt) echo $trip[0]->starting_halt; ?>
+                            Ticket for trip starting at <?php if ($trip->departure_time) echo $trip->departure_time; ?>
+                            from <?php if ($trip->starting_halt) echo $trip->starting_halt; ?>
                         </td>
                     </tr>
                     <tr></tr>
                     <tr>
                         <td>From</td>
                         <td data-fieldname="source_halt">
-                            <input type="text" name="from" id="from" placeholder="From" list="halt-list" required>
+                            <input type="text" name="from" id="from" placeholder="From" list="halt-list" oninput="getValue()" required>
                         </td>
                         <td><a href="#">Change</a></td>
                     </tr>
                     <tr>
                         <td>To</td>
                         <td data-fieldname="dest_halt">
-                            <input type="text" name="to" id="to" placeholder="Enter destination halt" list="halt-list" required>
-                        </td>
-                        <td><a href="#">Change</a></td>
-                    </tr>
-                    <tr>
-                        <td>Date</td>
-                        <td>
-                            <input type="date" id="dateInput" required>
+                            <input type="text" name="to" id="to" placeholder="Enter destination halt" list="halt-list" oninput="getValue()" required>
                         </td>
                         <td><a href="#">Change</a></td>
                     </tr>
                     <tr>
                         <td>No. of passengers</td>
-                        <td>
+                        <td data-fieldname="passenger_count">
                             <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="Passengers">
                         </td>
                         <td></td>
                     </tr>
                     <tr>
+                        <td>Date</td>
+                        <td>
+                            trip date
+                        </td>
+                        <td><a href="#">Change</a></td>
+                    </tr>
+                    <tr>
                         <td>Amount payable</td>
                         <td>
-                            <text>500.00 LKR</text>
+                            <text>500 LKR</text>
                         </td>
                         <td></td>
                     </tr>
@@ -119,14 +119,13 @@ if (!isset($_SESSION['USER'])) {
                             Redeemable Points Balance: <?= $passenger->points ?> (= <?= $passenger->points ?> LKR)
                         </td>
                     </tr>
-                    <tr></tr>
+                </table>
+                <table>
                     <tr>
-                        <td colspan="3" style="text-align:center">
+                        <td style="text-align:right">
                             <button id="confirm-ticket" class="ticket-button" style="margin:0px;">Confirm</button>
                         </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="text-align:center">
+                        <td style="text-align:left">
                             <button id="cancel-ticket" class="ticket-button-2" style="margin:0px;" href="<?= ROOT?>./passengerschedule">Cancel</button>
                         </td>
                     </tr>
@@ -228,7 +227,44 @@ if (!isset($_SESSION['USER'])) {
             </div>
         </div>
         <script src="<?= ROOT ?>/assets/js/seat.js"></script>
+        <?php
+        // $halt = new Halt();
+        // $halts = $halt->calculateFare('Piliyandala', 'Kohuwala');
+        ?>
+        <script>
+            function getValue() {
+            let halts = document.getElementById("halt-list");
+            const options = Array.from(halts.options).map(option => option.value);
+            var fromInput = document.getElementById("from");
+            var toInput = document.getElementById("to");
+            var from = document.getElementById("from").value;
+            var to = document.getElementById("to").value;
+            // check if from is an option value in halts
+            if (options.includes(from)) {
+                console.log("from is valid");
+                fromInput.disabled = true;
+                // check if to is an option value in halts
+                if (options.includes(to)) {
+                    console.log("to is valid");
+                    // call php calculate fare
 
+                    // check if from and to are in the same index
+                    if (options.indexOf(from) < options.indexOf(to)) {
+                        console.log("to is after from");
+                        toInput.disabled = true;
+                    // calculate fare
+                    // display fare
+                    } else {
+                        alert("Please select a valid destination");
+                    }
+                } else {
+                    // alert("Please select a valid destination");
+                }
+            } else {
+                // alert("Please select a valid starting halt");
+            }
+            }
+        </script>
 </body>
 
 </html>

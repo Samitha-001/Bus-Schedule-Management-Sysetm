@@ -36,7 +36,6 @@ class E_ticket extends Model
         //     $this->errors['time_to_repair'] = "Enter estimate time to repair";
         // }
 
-
         // if (empty($this->errors)) {
         //     return true;
         // }
@@ -52,7 +51,6 @@ class E_ticket extends Model
     // add ticket
     public function addTicket($data)
     {
-        // show($data);
         return $this->insert($data);
     }
 
