@@ -12,4 +12,16 @@ class Seats extends Model
         'seat_no',
         'availability'
     ];
+
+    // function to get available seats
+    public function getAvailableSeats($trip_id)
+    {
+        return $this->where(['trip_id' => $trip_id, 'availability' => 'available']);
+    }
+
+    // function to get reserved seats
+    public function getBookedSeats($trip_id)
+    {
+        return $this->where(['trip_id' => $trip_id, 'availability' => 'reserved']);
+    }
 }
