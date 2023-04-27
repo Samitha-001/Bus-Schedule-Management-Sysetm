@@ -71,6 +71,10 @@ a:hover {
   cursor: pointer;
 }
 
+form.info-grid{
+    display: none;
+}
+
 /* for tablet & desktop */
 @media only screen and (min-width: 600px) {
   div.passenger-sidenav-mobile {
@@ -171,9 +175,7 @@ input[type="text"], input[type="number"], input[type="text"]::placeholder, input
   font-size: 13px;
 }
 
-#gift-points-div {
-  display:none;
-}
+
 
 a#edit-passenger-info {
   text-align: right;

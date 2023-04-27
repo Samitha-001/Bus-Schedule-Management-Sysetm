@@ -17,7 +17,7 @@ class Schedulerprofile
         
     }
 
-    public function edit()
+    public function api_edit()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

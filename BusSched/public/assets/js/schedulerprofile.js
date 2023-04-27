@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // check if data is not empty
       if (Object.keys(data).length !== 0) {
         // send data to server
-        let url = `${ROOT}/passengerprofile/api_edit`;
+        let url = `${ROOT}/schedulerprofile/api_edit`;
         let options = {
           method: "POST",
           headers: {
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(url, options)
           .then((response) => response.json())
           .then((data) => {
-            // console.log(data);
+            console.log(data);
             for (let i = 0; i < inputs.length; i++) {
               prevValues[i].textContent = inputs[i].value;
             }

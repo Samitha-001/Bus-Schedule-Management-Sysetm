@@ -12,11 +12,14 @@ if (!isset($_SESSION['USER'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
-
+    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <script src="<?= ROOT ?>/assets/js/schedulerbreakdown.js"></script>
     <title>Breakdowns</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
+    
+
 
 </head>
 
@@ -87,17 +90,27 @@ if (!isset($_SESSION['USER'])) {
                     <th></th>
                 </tr>
 
-                <?php
-                foreach ($breakdowns as $breakdown):?> 
-                    <tr>
-                    <td><?php echo $breakdown->id; ?></td>
-                    <td><?php echo $breakdown->bus_no; ?></td>
-                    <td><?php echo $breakdown->description; ?></td>
-                    <td><?php echo $breakdown->time_to_repair; ?></td>
-                    <td><button type='submit' name='delete' value='<?php echo $breakdown->id; ?>'><img src="<?= ROOT
-                     ?>/assets/images/icons/delete.png" alt=""></button></td>
-                    </tr>
-                 <?php endforeach; ?>
+                <?php static $i = 1; ?>
+             <?php if ($breakdowns):
+               foreach ($breakdowns as $breakdown): ?>
+                <tr data-id=<?= $breakdown->id ?>>
+                    <td> <?= $i ?> </td>
+                    <?php $i++; ?>
+                    <td data-fieldname="bus_no"> <?= $breakdown->bus_no ?> </td>
+                    <td data-fieldname="description"> <?= $breakdown->description ?> </td>
+                    <td data-fieldname="time_to_repair"> <?= $breakdown->time_to_repair ?> </td>
+
+                    <td id="edit-delete"> 
+                      
+                      <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
+                    </td>
+                  </tr>
+              <?php endforeach; else: ?>
+                <tr>
+                  <td colspan="9" style="text-align:center;color:#999999;"><i>No breakdowns found.</i></td>
+                </tr>
+        <?php endif; ?>
+        
 
             </table>
         </div>

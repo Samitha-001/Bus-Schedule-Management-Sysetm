@@ -70,7 +70,7 @@ if (isset($_SESSION['USER'])) {
 
             <!-- edit form for passenger info -->
             <form style="padding-left:5px;" class='edit-info-form info-grid'>
-                <h1>Username:</h1>
+            <h1>Username:</h1>
                 <input type="text" name="username" id="username" value="<?= $scheduler->username ?>">
                 <h1>Name:</h1>
                 <input type="text" name="name" id="name" value="<?= $scheduler->name ?>">
