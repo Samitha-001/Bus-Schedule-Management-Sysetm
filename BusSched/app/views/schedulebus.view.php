@@ -118,18 +118,7 @@ include 'components/schedulersidebar.php';
                     <?php endforeach; ?>
                 
                 
-                // if (isset($_POST['data'])) {
-                //     // Retrieve the CSV data from the query parameter
-                //     $csv = $_POST['data'];
-                
-                //     // Set the appropriate headers for a CSV download
-                //     header('Content-Type: text/csv');
-                //     header('Content-Disposition: attachment; filename=table_data.csv');
-                
-                //     // Output the CSV data
-                //     echo $csv;
-                // }
-                ?>
+               
 
             </table>
         </div>

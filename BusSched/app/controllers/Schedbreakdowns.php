@@ -18,7 +18,7 @@ class Schedbreakdowns
                 $id = $_POST['delete'];
                 // Call the delete method to delete the breakdown
                 if ($breakdown->deleteBreakdown($id)) {
-                    redirect('breakdowns');
+                    redirect('schedbreakdowns');
                 } else {
                     $data['error'] = 'Error deleting breakdown.';
                     echo $data['error'];
@@ -29,5 +29,25 @@ class Schedbreakdowns
         $this->view('schedulebreakdown', ['breakdowns' => $breakdowns]);
     }
 
-    
+    public function api_delete()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+
+            // Process the request data and perform the update
+            $bus = new Breakdown();
+            $id = $postData['id'];
+            $bus->deleteBreakdown($id);
+        
+            // Send a response
+            $response = array('status' => 'success', 'data' => $postData);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid request');
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
 }

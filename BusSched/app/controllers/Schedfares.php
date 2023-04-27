@@ -8,7 +8,7 @@ class Schedfares
 
     public function index()
     {
-        $schedfare = new Schedfare();
+        $schedfare = new fare();
         $schedfares = $schedfare->getFares();
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {

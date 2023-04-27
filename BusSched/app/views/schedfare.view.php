@@ -110,8 +110,7 @@ if (!isset($_SESSION['USER'])) {
                     <td> <?php echo $fare->id ?></td>
                     <td> <?php echo $fare->source ?></td>
                     <td> <?php echo $fare->dest ?></td>
-                    <td> <?php echo $fare->route ?></td>
-                   
+                    <td> <?php echo $fare->bus_route ?></td>
                     <td> <?php echo $fare->amount ?></td>
                     <td> <?php echo $fare->last_updated ?></td>
                     <td>
