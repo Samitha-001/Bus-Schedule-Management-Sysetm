@@ -67,6 +67,10 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
             <div style="margin-bottom:5%">
+            <li><a href="<?= ROOT ?>/profileconductors" style="color:#9298AF;">My Profile</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
             <li><a href="" style="color:#9298AF;">Location</a></li> 
             <hr>
             </div>
@@ -74,10 +78,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
             <hr>
             </div>
-            <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li>
-            <hr>
-            </div>
+           
             <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
             <hr>

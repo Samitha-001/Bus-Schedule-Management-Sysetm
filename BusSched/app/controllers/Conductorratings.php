@@ -8,9 +8,10 @@ class Conductorratings
         {
 
             //  $rating= new Conductorratings();\
-             $rating= new Conductorrating();
+             $rating= new Rating();
              $conductor = $_SESSION['USER']->id; 
-             $ratings = $rating->getConductorRatings($conductor);
+            //  $ratings = $rating->getConductorRatings($conductor);
+            $ratings = $rating->getRatings();
 
             //  $data = [];
             // if ($_SERVER['REQUEST_METHOD'] == "POST") {

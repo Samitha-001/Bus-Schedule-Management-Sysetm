@@ -739,4 +739,74 @@ hr {
         margin-right: 2px;
       }
 
+      
+  div.fare-from-to-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* gap */
+    grid-gap: 10px;  
+    margin: 20px;
+    margin-bottom: 0px;
+    margin-top: 10px;
   }
+
+  }table#busfare-table {
+    overflow-x: auto;
+  }
+  
+  table#busfare-table tbody {
+    display: table;
+    width: 600px;
+    overflow-x: auto;
+    /* center align */
+    margin: 0 auto;
+  }
+  
+  table#busfare-table td {
+    background-color: #24315e;
+    border-color: white;
+    color: white;
+    border-spacing: 5px;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+    font-size: 12px;
+    padding: 5px;
+  }
+  
+  table#busfare-table td:hover {
+    background-color: #f4511e;
+    cursor: pointer;
+  }
+  
+  table#busfare-table td.halt-name:hover {
+    transition: none;
+    cursor: default;
+  }
+  
+  table#busfare-table td.halt-name {
+    color: #7c839e;
+    background-color: white;
+    text-align: right;
+    width: max-content;
+    font-size: 8px;
+  }
+  
+  table#busfare-table td.halt-name-top {
+    color: #7c839e;
+    background-color: transparent;
+    text-align: left;
+    max-width: 20px;
+    font-size: 8px;
+    transform: rotate(-90deg);
+  }
+  
+  #busfare {
+    padding-top: 0px;
+    overflow-y: auto;
+    margin: 50px;
+    margin-top: 10px;
+    /* height: 100%; */
+  }
+
+
