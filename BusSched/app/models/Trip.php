@@ -10,7 +10,7 @@ class Trip extends Model
         'trip_date',
         'departure_time',
         'starting_halt',
-        'bus_id'
+        'bus_no'
     ];
 
     public function getTrips()

@@ -10,6 +10,7 @@ class E_ticket extends Model
         'passenger',
         'trip_id',
         'seat_number',
+        'seats_reserved',
         'ticket_number',
         'source_halt',
         'dest_halt',
@@ -19,7 +20,8 @@ class E_ticket extends Model
         'arrival_time',
         'departure_time',
         'collected_time',
-        'price'
+        'price',
+        'payment_method'
     ];
 
     public function validate($data)
@@ -36,7 +38,6 @@ class E_ticket extends Model
         //     $this->errors['time_to_repair'] = "Enter estimate time to repair";
         // }
 
-
         // if (empty($this->errors)) {
         //     return true;
         // }
@@ -52,7 +53,6 @@ class E_ticket extends Model
     // add ticket
     public function addTicket($data)
     {
-        // show($data);
         return $this->insert($data);
     }
 

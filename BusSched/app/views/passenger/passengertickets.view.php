@@ -1,6 +1,6 @@
 <?php
-$username = $_SESSION['USER']->username;
 if (isset($_SESSION['USER'])) {
+    $username = $_SESSION['USER']->username;
     if ($_SESSION['USER']->role == 'driver') {
         redirect('drivers');
     } else if ($_SESSION['USER']->role == 'conductor') {
@@ -12,6 +12,8 @@ if (isset($_SESSION['USER'])) {
     } else if ($_SESSION['USER']->role == 'admin') {
         redirect('admins');
     }
+} else {
+    redirect('login');
 }
 ?>
 

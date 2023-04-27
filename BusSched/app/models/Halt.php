@@ -74,4 +74,12 @@ class Halt extends Model
     {
         return $this->update($id, $data);
     }
+
+    public function calculateFare($src, $dest)
+    {
+        $fi = new Fareinstance();
+        $src = $this->first(['name' => $src]);
+        $dest = $this->first(['name' => $dest]);
+        return ($fi->first(['instance' => abs($src->distance_from_source - $dest->distance_from_source)])->fare);
+    }
 }

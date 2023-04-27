@@ -76,6 +76,7 @@
   background-color: black;
   font-family: inherit;
   margin: 0;
+  vertical-align: middle;
 }
 
 .dropdown-content {

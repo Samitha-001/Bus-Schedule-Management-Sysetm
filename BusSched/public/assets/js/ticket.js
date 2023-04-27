@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-
   // restrict date to be selected today and tomorrow
   // let today = new Date();
   // let tomorrow = new Date();
@@ -14,9 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
   //   let selectedDate = new Date(this.value);
   // });
   
+  // is points balance is insufficient
   const radioButtons = document.querySelectorAll("input[name='payment']");
   const pointsBalance = document.getElementById("pointsBalance");
-  
+  const pointsBalanceSpan = document.getElementById("pointsBalanceSpan");
+  // get value in td inside pointsBalance
+  let points = pointsBalanceSpan.innerHTML;
+  // if (points < fare) { // TODO
+  // }
+  // console.log(points);
+
   for (const button of radioButtons) {
     button.addEventListener("change", function () {
       if (button.value === "points") {
@@ -32,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     data = {};
     
     let inputs = document.querySelectorAll("input");
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
       if (inputs[i].value === "") {
         alert("Please fill all fields");
         return;
@@ -40,10 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
       let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
       data[fieldName] = inputs[i].value;
     }
-    
+
+    // payment method
+    data["payment_method"] = document.querySelector("input[name='payment']:checked").value;
+
+    // reserved seats
+    data["seats_reserved"] = document.getElementById("reserved-seats").innerHTML.split(": ")[1];
+
+    // trip id
     tdtrip = document.getElementById("trip-id");
     data["trip_id"] = tdtrip.getAttribute("data-tripid");
     insertRow(data);
+    window.location.href = `${ROOT}/passengerschedule`;
+
   });
 
   function insertRow(data) {
@@ -67,4 +81,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#cancel-ticket").addEventListener("click", () => {
     window.location.href = `${ROOT}/passengerschedule`;
   });
+  
 });
