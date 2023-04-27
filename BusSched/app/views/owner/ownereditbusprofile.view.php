@@ -12,6 +12,28 @@
     <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
     <link href="<?= ROOT ?>/ownerbuses">
 
+    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+  <script src="<?= ROOT ?>/assets/js/adminbuses.js"></script>
+
+  <style>
+    td input[disabled] {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      text-align: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
+      cursor: default;
+    }
+    .edit-options, .dummy-row, .dummy-input, .add-options{
+      display: none;
+    }
+  </style>
+
     <!-- <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script> -->
 
 </head>
@@ -53,58 +75,48 @@ $businfo = $bus->where(['bus_no' => $busno])[0];
         <table>
             <tr>
             <td><label for="bus_no">Bus Number:</label></td>
-            <td><input type="" id="bus_no" name="bus_no" value="<?php echo $businfo->bus_no?>"></td>
+            <td><input type="" id="bus_no" name="bus_no" value="<?php echo $businfo->bus_no?> " readonly ></td>
             </tr>
             <tr>
             <td><label for="type">Type:</label></td>
-            <td><input id="type" name="type" value="<?php echo $businfo->type?>" ></td>
+            <td><input id="type" name="type" value="<?php echo $businfo->type?>" readonly ></td>
             </tr>
             <tr>
             <td><label for="seats_no">Number of Seats:</label></td>
-            <td><input type="number" id="seats_no" name="seats_no" value="<?php echo $businfo->seats_no?>" required></td>
+            <td><input type="number" id="seats_no" name="seats_no" value="<?php echo $businfo->seats_no?>" readonly ></td>
             </tr>
             <tr>
             <td><label for="route">Route:</label></td>
-            <td><input type="text" id="route" name="route"value="<?php echo $businfo->route?>" ></td>
+            <td><input type="text" id="route" name="route"value="<?php echo $businfo->route?>" readonly ></td>
             </tr>
             <tr>
             <td><label for="start">Starting Halt:</label></td>
-            <td><input type="text" id="start" name="start" default value="<?php echo $businfo->start?>" ></td>
+            <td><input type="text" id="start" name="start" default value="<?php echo $businfo->start?>" readonly  ></td>
             </tr>
             <tr>
             <td><label for="dest">Destination:</label></td>
-            <td><input type="text" id="dest" name="dest" value="<?php echo $businfo->dest?>" ></td>
+            <td><input type="text" id="dest" name="dest" value="<?php echo $businfo->dest?>" readonly ></td>
             </tr>
             <tr>
             <td><label for="conductor">Conductor:</label></td>
-            <td><input type="text" id="conductor" name="conductor" value="<?php echo $businfo->conductor?>" ></td>
+            <td><input type="text" id="conductor" name="conductor" value="<?php echo $businfo->conductor?>" readonly ></td>
             </tr>
             <tr>
             <td><label for="driver">Driver:</label></td>
-            <td><input type="text" id="driver" name="driver" value="<?php echo $businfo->driver?>" ></td>
+            <td><input type="text" id="driver" name="driver" value="<?php echo $businfo->driver?>" readonly  ></td>
             </tr>
         </table>
 
 
         <script>
-          var table=document.getElementsByTagName('table')[0];
+        //   var table=document.getElementsByTagName('table')[0];
        
-
-        //   console.log(table)
-
-          
         </script>
 
-        <?php
-        // $busno=$_GET['bus_no'];
-        // // print id
-        // // show($busno);
-        // $bus = new Bus();
-        // $businfo = $bus->where(['bus_no' => $busno])[0];
-        // show($businfo);
-         ?>
+        
 
-        <input id="submit-btn" type="submit" value="Edit" class="button-green" style="padding-left:10px;margin-left:250px;font-size:18px;">    
+        <input id="submit-btn" type="submit" value="Edit" class="button-green" style="padding-left:10px;margin-left:200px;font-size:18px;">
+        <input id="submit-btn" type="submit" value="Delete" class="button-green" style="color:white;font-size:18px;background-color:red">    
     </div>
 </form>
   </div>

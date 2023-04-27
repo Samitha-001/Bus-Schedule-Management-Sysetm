@@ -23,6 +23,8 @@ if (!isset($_SESSION['USER'])) {
 <?php
 include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
+$bus = new Bus();
+$buses = $bus->getOwnerBuses($_SESSION['USER']->username);
 ?>
 
     <main class="container1">
