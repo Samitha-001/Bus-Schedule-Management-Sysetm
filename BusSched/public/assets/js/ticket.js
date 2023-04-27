@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-
   // restrict date to be selected today and tomorrow
   // let today = new Date();
   // let tomorrow = new Date();
@@ -40,10 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
       let fieldName = inputs[i].parentElement.getAttribute("data-fieldname");
       data[fieldName] = inputs[i].value;
     }
-    
+
+    // payment method
+    data["payment_method"] = document.querySelector("input[name='payment']:checked").value;
+
+    // reserved seats
+    data["seats_reserved"] = document.getElementById("reserved-seats").innerHTML.split(": ")[1];
+
+    // trip id
     tdtrip = document.getElementById("trip-id");
     data["trip_id"] = tdtrip.getAttribute("data-tripid");
     insertRow(data);
+    window.location.href = `${ROOT}/passengerschedule`;
+
   });
 
   function insertRow(data) {

@@ -10,6 +10,7 @@ class E_ticket extends Model
         'passenger',
         'trip_id',
         'seat_number',
+        'seats_reserved',
         'ticket_number',
         'source_halt',
         'dest_halt',
@@ -19,7 +20,8 @@ class E_ticket extends Model
         'arrival_time',
         'departure_time',
         'collected_time',
-        'price'
+        'price',
+        'payment_method'
     ];
 
     public function validate($data)

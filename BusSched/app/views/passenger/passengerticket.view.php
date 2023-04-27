@@ -18,8 +18,6 @@ if (!isset($_SESSION['USER'])) {
 <body>
     <?php
     include '../app/views/components/navbar.php';
-    // include '../app/views/components/passengernavbar.php';
-
 
     $user = $_SESSION['USER'];
     $passenger = new Passenger();
@@ -47,7 +45,7 @@ if (!isset($_SESSION['USER'])) {
     </datalist>
     
     <div class="search-bar" style="padding: 10px;">
-        <h3>Buy ticket</h3>
+        <h3 id="buy-tickets-title">Buy tickets</h3>
     </div>
     <div class="row" style="justify-content:center">
         <div class="ticket" id="book-ticket">
@@ -82,7 +80,7 @@ if (!isset($_SESSION['USER'])) {
                     <tr>
                         <td>No. of passengers</td>
                         <td data-fieldname="passenger_count">
-                            <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="Passengers">
+                            <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="Passengers" value="1">
                         </td>
                         <td></td>
                     </tr>
@@ -102,12 +100,13 @@ if (!isset($_SESSION['USER'])) {
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align:center">
+                            <span id="reserved-seats"></span>
                             <a href='#' id="reserve-seats-q">Reserve seats?</a>
                         </td>
                     </tr>
                     <tr>
                         <td>Pay with:</td>
-                        <td>
+                        <td data-fieldname="payment_method">
                             <input type="radio" id="cash" name="payment" value="cash">
                             <label for="cash">Cash</label>
                             <input type="radio" id="points" name="payment" value="points">
@@ -130,107 +129,168 @@ if (!isset($_SESSION['USER'])) {
                         </td>
                     </tr>
                 </table>
-                
-                <!-- <ul>
-                    <div id="reserve-seats-q">Reserve seats?</div>
-                    <li>
-                        <input type="text" name="from" id="from" placeholder="Enter starting halt">
-                    </li>
-                    <li>
-                        <input type="text" name="to" id="to" placeholder="Enter destination halt">
-                    </li>
-                    <li id="selectedDate">
-                        <input type="date" id="dateInput">
-                    </li>
-                    <li>
-                        <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="No. of passengers">
-                    </li>
-                    <li>
-                        <text>Seats reserved: </text><text>2</text>
-                    </li>
-                    <li>
-                        <text>Amount payable: </text><text>500.00 LKR</text>
-                    </li>
-                    <li>
-                        <text>Pay with:</text>
-                        <input type="radio" id="cash" name="payment" value="cash">
-                        <label for="cash">Cash</label>
-                        <input type="radio" id="points" name="payment" value="points">
-                        <label for="points">Points</label>
-                    </li>
-                    
-                    <li>
-                        <a href="<?= ROOT ?>/passengerschedule"><button class="button-orange ticket-button-2">Cancel</button></a>
-                        <button class="button-orange ticket-button">Confirm</button>
-                    </li>
-                </ul> -->
                 <script src="<?= ROOT ?>/assets/js/ticket.js"></script>
 
             </div>
         </div>
+    </div>
 
-        <div class="col-6 col-s-9 ticket" id="reserve-seats" style="display:none">
-            <div class="ticket-header">
-                <h3>Reserve seats</h3>
-            </div>
-            <div class="ticket-body  col-6">
-                <div class="card-content">
-                    <!-- <div class="bus-container"> -->
-                    <table class="seating-grid">
-                        <tr>
-                            <td class="seat" data-seat="A1">A1</td>
-                            <td class="no-seat"></td>
-                            <td class="no-seat"></td>
-                            <td class="unavailable" data-seat="A3">A2</td>
-                        </tr>
-                        <tr>
-                            <td class="no-seat"></td>
-                            <td class="no-seat"></td>
-                            <td class="unavailable" data-seat="A2">B1</td>
-                            <td class="unavailable" data-seat="A3">B2</td>
-                        </tr>
-                        <tr>
-                            <td class="unavailable" data-seat="B1">C1</td>
-                            <td class="no-seat"></td>
-                            <td class="unavailable" data-seat="B2">C2</td>
-                            <td class="unavailable" data-seat="B3">C3</td>
-                        </tr>
-                        <tr>
-                            <td class="seat" data-seat="D1">D1</td>
-                            <td class="no-seat"></td>
-                            <td class="seat" data-seat="D2">D2</td>
-                            <td class="seat" data-seat="D3">D3</td>
-                        </tr>
-                        <tr>
-                            <td class="booked" data-seat="E1">E1</td>
-                            <td class="no-seat"></td>
-                            <td class="seat" data-seat="E2">E2</td>
-                            <td class="seat" data-seat="E3">E3</td>
-                        </tr>
-                        <tr>
-                            <td class="unavailable" data-seat="F1">F1</td>
-                            <td class="no-seat"></td>
-                            <td class="unavailable" data-seat="F2">B2</td>
-                            <td class="unavailable" data-seat="F3">F3</td>
-                        </tr>
-                        <tr>
-                            <td class="unavailable" data-seat="G1">G1</td>
-                            <td class="unavailable" data-seat="G2">G2</td>
-                            <td class="unavailable" data-seat="G3">G3</td>
-                            <td class="unavailable" data-seat="G4">G4</td>
-                        </tr>
-                    </table>
-                    <!-- </div> -->
-                    <div id="book-ticket-q"><button class="button-orange ticket-button">Done</button></div>
-                </div>
-
-            </div>
+    <!-- <div class="search-bar" style="padding: 10px;">
+        <h3>Reserve seats</h3>
+    </div> -->
+    <div id="reserve-seats-div" class="ticket-body" style="width:fit-content; display:none;">
+        <div id="bus-layout-l" class="card-content" style="padding:0 20px;">
+            <!-- <div class="bus-container"> -->
+            <table class="seating-grid">
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                    <td>E</td>
+                </tr>
+                <tr>
+                    <td class="seat" data-seat="A1">A1</td>
+                    <td class="no-seat"></td>
+                    <td class="no-seat"></td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="DS">DS</td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="no-seat"></td>
+                    <td class="no-seat"></td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="D2">D2</td>
+                    <td class="unavailable" data-seat="E2">E2</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A3">A3</td>
+                    <td class="unavailable" data-seat="B3">B3</td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="D3">D3</td>
+                    <td class="unavailable" data-seat="E3">E3</td>
+                </tr>
+                <tr>
+                    <td class="seat" data-seat="A4">A4</td>
+                    <td class="seat" data-seat="B4">B4</td>
+                    <td class="no-seat"></td>
+                    <td class="seat" data-seat="D4">D4</td>
+                    <td class="seat" data-seat="E4">E4</td>
+                </tr>
+                <tr>
+                    <td class="booked" data-seat="A5">A5</td>
+                    <td class="booked" data-seat="B5">B5</td>
+                    <td class="no-seat"></td>
+                    <td class="seat" data-seat="D5">D5</td>
+                    <td class="seat" data-seat="E5">E5</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A6">A6</td>
+                    <td class="unavailable" data-seat="B6">B6</td>
+                    <td class="no-seat"></td>
+                    <td class="seat" data-seat="D6">D6</td>
+                    <td class="seat" data-seat="E6">E6</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A7">A7</td>
+                    <td class="unavailable" data-seat="B7">B7</td>
+                    <td class="no-seat"></td>
+                    <td class="seat" data-seat="D7">D7</td>
+                    <td class="seat" data-seat="E7">E7</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A8">A8</td>
+                    <td class="unavailable" data-seat="B8">B8</td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="D8">D8</td>
+                    <td class="unavailable" data-seat="E8">E8</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A9">A9</td>
+                    <td class="unavailable" data-seat="B9">B9</td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="D9">D9</td>
+                    <td class="unavailable" data-seat="E9">E9</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A10">A10</td>
+                    <td class="unavailable" data-seat="B10">B10</td>
+                    <td class="unavailable" data-seat="C10">C10</td>
+                    <td class="seat" data-seat="D10">D10</td>
+                    <td class="seat" data-seat="E10">E10</td>
+                </tr>
+            </table>
+            <!-- </div> -->
+            <div><button id="reserve-seats-done" class="button-orange ticket-button">Done</button>
+            <button id="reserve-seats-cancel" class="button-orange ticket-button-2">Cancel</button></div>
         </div>
+
+        <div id="bus-layout-s" class="card-content" style="padding:0 20px; display:none">
+            <!-- <div class="bus-container"> -->
+            <table class="seating-grid">
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                    <td>D</td>
+                </tr>
+                <tr>
+                    <td class="seat" data-seat="A1">A1</td>
+                    <td class="no-seat"></td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="DS">DS</td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="no-seat"></td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="C2">C2</td>
+                    <td class="unavailable" data-seat="D2">D2</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A3">A3</td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="C3">C3</td>
+                    <td class="unavailable" data-seat="D3">D3</td>
+                </tr>
+                <tr>
+                    <td class="seat" data-seat="A4">A4</td>
+                    <td class="no-seat"></td>
+                    <td class="seat" data-seat="C4">C4</td>
+                    <td class="seat" data-seat="D4">D4</td>
+                </tr>
+                <tr>
+                    <td class="booked" data-seat="A5">A5</td>
+                    <td class="no-seat"></td>
+                    <td class="seat" data-seat="C5">C5</td>
+                    <td class="seat" data-seat="D5">D5</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A6">A6</td>
+                    <td class="no-seat"></td>
+                    <td class="unavailable" data-seat="C6">C6</td>
+                    <td class="unavailable" data-seat="D6">D6</td>
+                </tr>
+                <tr>
+                    <td class="unavailable" data-seat="A7">A7</td>
+                    <td class="unavailable" data-seat="B7">B7</td>
+                    <td class="unavailable" data-seat="C7">C7</td>
+                    <td class="unavailable" data-seat="D7">D7</td>
+                </tr>
+            </table>
+            <!-- </div> -->
+            <div><button id="reserve-seats-done" class="button-orange ticket-button">Done</button>
+            <button id="reserve-seats-cancel" class="button-orange ticket-button-2">Cancel</button></div>
+        </div>
+
+    </div>
+        <!-- </div> -->
         <script src="<?= ROOT ?>/assets/js/seat.js"></script>
-        <?php
-        // $halt = new Halt();
-        // $halts = $halt->calculateFare('Piliyandala', 'Kohuwala');
-        ?>
         <script>
             function getValue() {
             let halts = document.getElementById("halt-list");
@@ -246,14 +306,10 @@ if (!isset($_SESSION['USER'])) {
                 // check if to is an option value in halts
                 if (options.includes(to)) {
                     console.log("to is valid");
-                    // call php calculate fare
-
                     // check if from and to are in the same index
                     if (options.indexOf(from) < options.indexOf(to)) {
                         console.log("to is after from");
                         toInput.disabled = true;
-                    // calculate fare
-                    // display fare
                     } else {
                         alert("Please select a valid destination");
                     }

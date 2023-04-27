@@ -98,6 +98,10 @@ td:last-child {
   border-radius: 5px 0 0 5px;
 }
 
+#reserve-seats-div td {
+  text-align: center;
+}
+
 .card {
   background-color: white;
   width: 40%;
@@ -160,13 +164,13 @@ h1 {
   align-items: center;
 }
 
-.seat,
-.unavailable,
-.booked {
+.seating-grid .seat,
+.seating-grid .unavailable,
+.seating-grid .booked {
   /* width: 40px;
   height: 40px; */
   border: 3px solid white;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 0px;
   cursor: pointer;
   /* align-items: center;
@@ -177,20 +181,20 @@ h1 {
   color: black;
 }
 
-.unavailable {
-  background-color: #bec2cf;
+.seating-grid .unavailable {
+  background-color: #BEC2CF;
   color: white;
   border: 3px solid white;
   cursor: not-allowed;
 }
 
-.selected {
-  background-color: #f4511e;
+.seating-grid .selected {
+  background-color: #FD6002;
   color: white;
   font-weight: bold;
 }
 
-.booked {
+.seating-grid .booked {
   background-color: #fd0202;
   color: white;
   cursor: not-allowed;
@@ -203,16 +207,21 @@ h1 {
   margin: 0 auto;
 }
 
-.seating-grid td {
-  width: 60px;
-  padding: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.seating-grid tr:first-child {
+  position: inherit;
 }
 
-.no-seat {
+.seating-grid td {
+  width: 46px;
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.seating-grid .no-seat {
   background-color: white;
-  border: white;
+  border: red;
 }
 
 /* search bar */
@@ -223,7 +232,7 @@ h1 {
 
 #reserve-seats-q {
   text-decoration: none;
-  color: #f15f22;
+  color: #FD6002;
   cursor: pointer;
   font-size: 15px;
   text-align: center;
@@ -235,13 +244,6 @@ h1 {
   padding-top: 25px;
   /* center align elements inside the div */
   text-align: center;
-}
-
-/* for desktop */
-/* @media only screen and (min-width: 768px) {
-} */
-div.ticket {
-  width: 60%;
 }
 
 div.search-bar {
@@ -305,7 +307,7 @@ div.from-to {
   padding: 15px;
   padding-bottom: 30px;
   margin: 0 auto;
-  margin-top: 0px;
+  margin-top: 20px;
   line-height: 2.5;
   text-align: center;
   font-size: 14px;
@@ -335,6 +337,14 @@ div.from-to {
   text-align: center;
 }
 
+.ticket-body table {
+  margin-top: 0px;
+}
+
+.ticket-body th {
+  padding-bottom: 10px;
+}
+
 ul {
   padding-left: 0px;
 }
@@ -354,6 +364,7 @@ ul {
   text-decoration: none;
   width: 30%;
   height: 40px;
+  min-width: fit-content;
 }
 
 .ticket-button-2 {
@@ -371,4 +382,5 @@ ul {
   text-decoration: none;
   width: 30%;
   height: 40px;
+  min-width: fit-content;
 }

@@ -26,7 +26,7 @@ class Passengerticket
             $data['booking_time'] = date('Y-m-d H:i:s');
             $halt = new Halt();
             $fee = $halt->calculateFare($data['source_halt'], $data['dest_halt']);
-            $data['price'] = $fee;
+            $data['price'] = $fee*$data['passenger_count'];
             $ticket->addTicket($data);
 
             // Send a response
