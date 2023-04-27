@@ -75,4 +75,9 @@ class Bus extends Model
         echo $this->insert($data);
     }
 
+    public function getBus($busno)
+    {
+        return $this->where(['bus_no' => $busno])[0];
+    }
+
 }
