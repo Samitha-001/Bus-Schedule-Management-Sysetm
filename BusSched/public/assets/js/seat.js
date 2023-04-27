@@ -43,9 +43,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // show seat reservation div
   document.querySelector("#reserve-seats-q").addEventListener("click", () => {
-    document.querySelector("#reserve-seats-div").style.display = "block";
     document.querySelector("#book-ticket").style.display = "none";
     document.getElementById("buy-tickets-title").innerHTML = "Reserve Seats";
+
+    document.querySelector("#reserve-seats-div").style.display = "block";
+    let busType = document.querySelector("#reserve-seats-div").getAttribute("data-bus-type");
+    if (busType == 'L') {
+      // bus layout 1 for large buses
+      console.log("busType == 'L'");
+      console.log(busType);
+      document.querySelector("#bus-layout-l").style.display = "block";
+      document.querySelector("#bus-layout-s").style.display = "none";
+    } else {
+      // bus layout 2 for small buses
+      document.querySelector("#bus-layout-l").style.display = "none";
+      document.querySelector("#bus-layout-s").style.display = "block";
+    }
+
   });
   
   
@@ -71,10 +85,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
 
-  // cancel seat reservation
+  // cancel seat reservation layout Large
   document.querySelector("#reserve-seats-cancel").addEventListener("click", () => {
     document.querySelector("#reserve-seats-div").style.display = "none";
     document.querySelector("#book-ticket").style.display = "block";
     document.getElementById("buy-tickets-title").innerHTML = "Buy Tickets";
   });
+  // cancel seat reservation layout Small
+  document.querySelector("#reserve-seats-s-cancel").addEventListener("click", () => {
+    document.querySelector("#reserve-seats-div").style.display = "none";
+    document.querySelector("#book-ticket").style.display = "block";
+    document.getElementById("buy-tickets-title").innerHTML = "Buy Tickets";
+  });
+
 });

@@ -87,6 +87,7 @@ p {
 
 /* buttons */
 .wrapper {
+  column-gap: 5px;
   display: flex;
   overflow-x: scroll;
 }

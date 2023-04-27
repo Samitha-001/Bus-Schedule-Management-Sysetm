@@ -49,9 +49,7 @@
             <div>
                 <input type="date" name="date" id="date" placeholder="Date" <?php if ($date) echo "value=".$date; ?> min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>">
             </div>
-            <!-- <div>
-                <input type="number" name="passengercount" id="passengercount" placeholder="Passengers" min="0"<?php if ($passengercount) echo "value=".$passengercount; ?>>
-            </div> -->
+            <?php if ($passengercount) echo "value=".$passengercount; ?>
         </div>
     </div>
 

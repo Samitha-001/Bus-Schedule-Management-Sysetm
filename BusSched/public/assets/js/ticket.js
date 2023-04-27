@@ -12,9 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
   //   let selectedDate = new Date(this.value);
   // });
   
+  // is points balance is insufficient
   const radioButtons = document.querySelectorAll("input[name='payment']");
   const pointsBalance = document.getElementById("pointsBalance");
-  
+  const pointsBalanceSpan = document.getElementById("pointsBalanceSpan");
+  // get value in td inside pointsBalance
+  let points = pointsBalanceSpan.innerHTML;
+  // if (points < fare) { // TODO
+  // }
+  // console.log(points);
+
   for (const button of radioButtons) {
     button.addEventListener("change", function () {
       if (button.value === "points") {

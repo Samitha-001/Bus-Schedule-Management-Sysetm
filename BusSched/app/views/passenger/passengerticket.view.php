@@ -45,11 +45,11 @@ if (!isset($_SESSION['USER'])) {
     </datalist>
     
     <div class="search-bar" style="padding: 10px;">
-        <h3 id="buy-tickets-title">Buy tickets</h3>
+        <h3 id="buy-tickets-title">Buy ticket</h3>
     </div>
     <div class="row" style="justify-content:center">
         <div class="ticket" id="book-ticket">
-            <div class="ticket-body">
+            <div class="ticket-body" style="padding:15px 30px 30px;">
                 <table>
                     <tr>
                         <th colspan='3' style='text-align:center;'>
@@ -57,7 +57,7 @@ if (!isset($_SESSION['USER'])) {
                         </th>
                     </tr>
                     <tr>
-                        <td colspan='3' style='text-align:center' data-tripid=<?=$tripid?> id='trip-id'>
+                        <td colspan='3' style='text-align:center' data-tripid=<?=$tripid?> data-busno=<?=$trip->bus_no?> id='trip-id'>
                             Ticket for trip starting at <?php if ($trip->departure_time) echo $trip->departure_time; ?>
                             from <?php if ($trip->starting_halt) echo $trip->starting_halt; ?>
                         </td>
@@ -66,7 +66,7 @@ if (!isset($_SESSION['USER'])) {
                     <tr>
                         <td>From</td>
                         <td data-fieldname="source_halt">
-                            <input type="text" name="from" id="from" placeholder="From" list="halt-list" oninput="getValue()" required>
+                            <input type="text" name="from" id="from" placeholder="Enter starting halt" list="halt-list" oninput="getValue()" required>
                         </td>
                         <td><a href="#">Change</a></td>
                     </tr>
@@ -87,14 +87,14 @@ if (!isset($_SESSION['USER'])) {
                     <tr>
                         <td>Date</td>
                         <td>
-                            trip date
+                        <?php if ($trip->trip_date) echo $trip->trip_date; ?>
                         </td>
                         <td><a href="#">Change</a></td>
                     </tr>
                     <tr>
                         <td>Amount payable</td>
                         <td>
-                            <text>500 LKR</text>
+                            <text></text>
                         </td>
                         <td></td>
                     </tr>
@@ -115,7 +115,11 @@ if (!isset($_SESSION['USER'])) {
                     </tr>
                     <tr id="pointsBalance" style="display: none;">
                         <td colspan="3" style="text-align:center">
-                            Redeemable Points Balance: <?= $passenger->points ?> (= <?= $passenger->points ?> LKR)
+                            Redeemable Points Balance: 
+                            <span id="pointsBalanceSpan">
+                            <?= $passenger->points ?>
+                            </span>
+                             (= <?= $passenger->points ?> LKR)
                         </td>
                     </tr>
                 </table>
@@ -135,12 +139,12 @@ if (!isset($_SESSION['USER'])) {
         </div>
     </div>
 
-    <!-- <div class="search-bar" style="padding: 10px;">
-        <h3>Reserve seats</h3>
-    </div> -->
-    <div id="reserve-seats-div" class="ticket-body" style="width:fit-content; display:none;">
+    <?php
+    $bus = new Bus();
+    $busType = ($bus->getBus($trip->bus_no))->type;
+    ?>
+    <div id="reserve-seats-div" class="ticket-body" style="width:fit-content; display:none;" data-bus-type="<?=$busType?>">
         <div id="bus-layout-l" class="card-content" style="padding:0 20px;">
-            <!-- <div class="bus-container"> -->
             <table class="seating-grid">
                 <tr>
                     <td>A</td>
@@ -285,7 +289,7 @@ if (!isset($_SESSION['USER'])) {
             </table>
             <!-- </div> -->
             <div><button id="reserve-seats-done" class="button-orange ticket-button">Done</button>
-            <button id="reserve-seats-cancel" class="button-orange ticket-button-2">Cancel</button></div>
+            <button id="reserve-seats-s-cancel" class="button-orange ticket-button-2">Cancel</button></div>
         </div>
 
     </div>
@@ -295,6 +299,13 @@ if (!isset($_SESSION['USER'])) {
             function getValue() {
             let halts = document.getElementById("halt-list");
             const options = Array.from(halts.options).map(option => option.value);
+            // console.log(options);
+            var tripStart = "<?php echo $trip->starting_halt ?>";
+            // console.log(tripStart);
+            if (tripStart='Pettah') {
+                // reverse list
+                options.reverse();
+            }
             var fromInput = document.getElementById("from");
             var toInput = document.getElementById("to");
             var from = document.getElementById("from").value;
