@@ -19,7 +19,7 @@ if (!isset($_SESSION['USER'])) {
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
 </head>
 
-<body>
+<body >
 <?php include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';?>
 
@@ -35,23 +35,23 @@ include '../app/views/components/ownersidebar.php';?>
 </datalist> 
 
 <div class="row" style="margin-left:220px;"> 
-    <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
+    <h1 style="margin-top:40px;margin-bottom:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
     <div class="fare-from-to-grid">
-        <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" style="width:350px;font-size:20px;height:45px;text-align:center" required>
-        <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" style="width:350px;font-size:20px;height:45px;text-align:center" required>
+        <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" style="width:350px;font-size:18px;height:45px;text-align:center" required>
+        <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" style="width:350px;font-size:18px;height:45px;text-align:center" required>
 
-        <button id="calculate-fare" class="button-orange" style="width:350px;font-size:20px;height:45px;text-align:center">Find fare</button>
+        <button id="calculate-fare" class="button-orange" style="width:350px;font-size:20px;height:55px;text-align:center">Find fare</button>
         <div id="fare-result" class='span-3'></div>
     </div>
     <section id="busfare"  style="font-size:75px">
         <div style="width:100%">
-            <table id="busfare-table">
+            <table id="busfare-table" style="font-size:15px;">
                 <?php
 
                 $len = count($halts);
                 $fareinstance = new Fareinstance;
                 $instance = $fareinstance->getFareInstances($len);
-                show($instance);
+                
                 
                 for ($i = 0; $i < $len; $i++) {
                     $halt = $halts[$i];

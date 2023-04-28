@@ -1,6 +1,6 @@
 <?php
 
-class Ownercontactdriver extends Model
+class contact extends Model
 {
     protected $table = 'contact';
 
@@ -35,7 +35,7 @@ class Ownercontactdriver extends Model
     //     return false;
     // }
 
-    public function getContactdrivers()
+    public function getContact()
     {
         return $this->findAll();
     }

@@ -11,28 +11,10 @@
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
     <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
     <link href="<?= ROOT ?>/ownerbuses">
+    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
 
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
   <script src="<?= ROOT ?>/assets/js/adminbuses.js"></script>
-
-  <style>
-    td input[disabled] {
-      border: none;
-      background-color: transparent;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      text-align: inherit;
-      font-size: inherit;
-      font-family: inherit;
-      color: inherit;
-      cursor: default;
-    }
-    .edit-options, .dummy-row, .dummy-input, .add-options{
-      display: none;
-    }
-  </style>
 
     <!-- <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script> -->
 
@@ -60,7 +42,7 @@ $businfo = $bus->where(['bus_no' => $busno])[0];
             <h3 class="header-title">Register New Bus</h3>            
     </div>
 
-<div class="row">
+<div class="row" style="margin-left:250px">
     <div class="column left">
         <img src="<?= ROOT ?>/assets/images/buses/bus6.png" class="image">
     </div>
@@ -105,6 +87,10 @@ $businfo = $bus->where(['bus_no' => $busno])[0];
             <td><label for="driver">Driver:</label></td>
             <td><input type="text" id="driver" name="driver" value="<?php echo $businfo->driver?>" readonly  ></td>
             </tr>
+            <td id="edit-delete">
+                      <button alt='edit' class="icon edit-btn" style="background-color:rgb(90, 221, 96);height:30px;width:80px;margin-left:150px;font-size:18px;">Edit</button>
+                      <button id="delete" alt='edit' class="icon delete-btn"  style="color:white;height:30px;width:80px;font-size:18px;background-color:red"> Delete</button> 
+                  </td>
         </table>
 
 
@@ -114,9 +100,9 @@ $businfo = $bus->where(['bus_no' => $busno])[0];
         </script>
 
         
-
-        <input id="submit-btn" type="submit" value="Edit" class="button-green" style="padding-left:10px;margin-left:200px;font-size:18px;">
-        <input id="submit-btn" type="submit" value="Delete" class="button-green" style="color:white;font-size:18px;background-color:red">    
+<!-- 
+        <input id="edit" type="submit" value="Edit" class="" style="background-color:rgb(90, 221, 96);height:30px;width:80px;margin-left:150px;font-size:18px;">
+        <button id="delete" type="submit" style="color:white;height:30px;width:80px;font-size:18px;background-color:red"> Delete</button>    -->
     </div>
 </form>
   </div>

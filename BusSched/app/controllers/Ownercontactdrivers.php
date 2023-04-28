@@ -6,8 +6,8 @@ class Ownercontactdrivers
 
     public function index()
     {
-        $contactdriver = new Ownercontactdriver();
-        $contactdrivers = $contactdriver->getContactdrivers();
+        $contactdriver = new contact();
+        $contactdrivers = $contactdriver->getContact();
 
         // $data = [];
      
