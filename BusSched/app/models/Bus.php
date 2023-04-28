@@ -52,9 +52,9 @@ class Bus extends Model
         return $this->where(['owner' => $owner]);
     }
 
-    public function getBus($busno)
+    public function getConductorBuses($conductor)
     {
-        return $this->where(['bus_no' => $busno])[0];
+        return $this->where(['conductor' => $conductor]);
     }
 
     public function deleteBus($id)
@@ -73,6 +73,11 @@ class Bus extends Model
         // uppercase first 2 letters of bus number in data
         $data['bus_no'] = strtoupper(substr($data['bus_no'], 0, 2)) . substr($data['bus_no'], 2);
         echo $this->insert($data);
+    }
+
+    public function getBus($busno)
+    {
+        return $this->where(['bus_no' => $busno])[0];
     }
 
 }

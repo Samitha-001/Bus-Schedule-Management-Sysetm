@@ -40,7 +40,12 @@ class Passenger extends Model
     public function getPassengerTickets()
     {
         $tablename = 'e_ticket';
-        $tickets = $this->join($tablename, 'passenger.username', 'e_ticket.passenger', ['username'=>$_SESSION['USER']->username]);
-        return $tickets;
+        if (isset($_SESSION['USER']) && $_SESSION['USER']->role == 'passenger') {
+            $tickets = $this->join($tablename, 'passenger.username', 'e_ticket.passenger', ['username' => $_SESSION['USER']->username]);
+            return $tickets;
+        }
+        else {
+            redirect('login');
+        }
     }
 }

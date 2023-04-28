@@ -23,7 +23,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     </button>
                     <div class="dropdown-content">
                         <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
-                        <a href="<?= ROOT ?>/passengertickets">Tickets</a>
+                        <a href="<?= ROOT ?>/passengertickets">My Tickets</a>
+                        <a href="<?= ROOT ?>/passengerschedule">Buy Tickets</a>
 
                         <?php
                         if (strpos($current_url, '/home') == true) { // checks if current URL is home page
@@ -47,6 +48,22 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
         <!-- if user is logged out -->
     <?php } else { ?>
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-top:6px;">Services
+            </button>
+            <div class="dropdown-content">
+                <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
+                <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
+
+                <?php
+                if (strpos($current_url, '/home') == true) { // checks if current URL is home page
+                    ?>
+                    <a href="#busfare">Bus fares</a>
+                <?php } else { ?>
+                    <a href="<?= ROOT ?>/home#busfare">Bus fares</a>
+                <?php } ?>
+            </div>
+        </div>
         <a href="<?= ROOT ?>/login">
             <li class="signup-button" style="background-color:black; border: 2px solid #f4511e;">Login</li>
         </a>
@@ -68,11 +85,17 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
     <a onclick="closeNav()" class="sidenav-logo"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <?php if (isset($_SESSION['USER'])) { ?>
     <a class="li" href="<?= ROOT ?>/passengerprofile">My Profile</a>
 
     <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
     <a href="<?= ROOT ?>/passengertickets">My tickets</a>
+    <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
 
+    <?php } else { ?>
+    <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
+    <a href="<?= ROOT ?>/login">Bus tickets</a>
+    <?php } ?>
     <?php
     if (strpos($current_url, '/home') == true) { // checks if current URL is home page
         ?>
