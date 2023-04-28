@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // event delegation for table
     table.addEventListener("click", function (e) {
       // if clicked on img with given class
-      if (e.target.classList.contains("delete-btn")) {
+      if (e.target.classList.contains("delete-btn")){
         deleteRow(e);
       }
     });

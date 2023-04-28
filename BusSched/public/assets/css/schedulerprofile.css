@@ -179,6 +179,7 @@ input[type="text"], input[type="number"], input[type="text"]::placeholder, input
 
 a#edit-passenger-info {
   text-align: right;
+  background-color: #FD6002;
 }
 
 /* align span to right */

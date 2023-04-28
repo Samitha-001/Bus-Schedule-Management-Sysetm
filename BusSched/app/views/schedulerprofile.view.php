@@ -37,7 +37,7 @@ if (isset($_SESSION['USER'])) {
 
         $scheduler = $data[0];
         $username = $scheduler->username;
-    
+
     ?>
 
     

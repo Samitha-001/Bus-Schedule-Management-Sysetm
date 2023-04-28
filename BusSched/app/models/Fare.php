@@ -47,4 +47,19 @@ class Fare extends Model
     {
         return $this->findAll();
     }
+
+    public function addFare($data)
+    {
+        // validate and add
+        // if ($this->validate($data)) {
+            return $this->insert($data);
+        // }
+        // return false;
+    }
+
+    public function deleteFares($id)
+    {
+        return $this->delete($id);
+    }
+
 }

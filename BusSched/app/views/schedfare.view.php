@@ -18,6 +18,7 @@ if (!isset($_SESSION['USER'])) {
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
     <link href="<?= ROOT ?>/assets/css/schedfare.css" rel="stylesheet">
+    <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script>
 </head>
 
 <body>
@@ -33,10 +34,10 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Bus Fares</h3>
             </div>
-            <div><button id="btn" class="button-grey">Add New</button></div>
+            <div><button id="add-btn" class="button-grey">Add New</button></div>
         </div>
 
-        <form method="post" id="view_fare" style="display:none">
+        <!-- <form method="post" id="view_fare" style="display:none">
 
             <?php if (!empty($errors)) : ?>
                 <?= implode("<br>", $errors) ?>
@@ -87,7 +88,7 @@ if (!isset($_SESSION['USER'])) {
 
                 </table>
             </div>
-        </form>
+        </form> -->
 
         <div>
             <br>
@@ -104,9 +105,10 @@ if (!isset($_SESSION['USER'])) {
                     <!-- <th>Action</th> -->
                 </tr>
 
-                <?php
+                <!-- <?php
+                
                 foreach ($schedfares as $fare): ?> 
-                    <tr>
+                    <tr data-id=<?= $fare->id ?>>
                     <td> <?php echo $fare->id ?></td>
                     <td> <?php echo $fare->source ?></td>
                     <td> <?php echo $fare->dest ?></td>
@@ -116,11 +118,89 @@ if (!isset($_SESSION['USER'])) {
                     <td>
                         <div class='edit_delete'> 
                                 <img src='<?= ROOT ?>/assets/images/icons/edit.png'>
-                                <img src='<?=ROOT ?>/assets/images/icons/delete.png'>
+                                <img class = "delete-btn" src='<?=ROOT ?>/assets/images/icons/delete.png'>
                         </div>      
                     </td>
                     </tr>
-                <?php endforeach ?>;
+                <?php endforeach ?>; -->
+
+                <?php static $i = 1; ?>
+                <?php if ($schedfares):
+               foreach ($schedfares as $schedfare): ?>
+                <tr data-id=<?= $schedfare->id ?>>
+                    <td> <?= $i ?> </td>
+                    <?php $i++; ?>
+                    <td data-fieldname="source"> <?= $schedfare->source ?> </td>
+                    <td data-fieldname="dest"> <?= $schedfare->dest ?> </td>
+                    <td data-fieldname="bus_route"> <?= $schedfare->bus_route ?> </td>
+                    <td data-fieldname="amount"> <?= $schedfare->amount ?> </td>
+                    <td data-fieldname="last updated"> <?= $schedfare->last_updated ?> </td>
+
+                    <td id="edit-delete"> 
+                    <img src='<?= ROOT ?>/assets/images/icons/edit.png'  width='20px' height='20px'>
+                      <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
+                    </td>
+                  </tr>
+              <?php endforeach; else: ?>
+                <tr>
+                  <td colspan="9" style="text-align:center;color:#999999;"><i>No fares found.</i></td>
+                </tr>
+        <?php endif; ?>
+
+        <tr class='dummy-input'>
+            <td></td>
+            <td data-fieldname="source">
+              <input type="text" value="" placeholder="source">
+            </td>
+            <td data-fieldname="dest">
+              <input type="text" value="" placeholder="dest">
+            </td>
+            <td data-fieldname="bus_route">
+              <input type="number" value="" placeholder="Seats">
+            </td>
+            <td data-fieldname="amount">
+              <input type="text" value="" placeholder="amount">
+            </td>
+            <td data-fieldname="last_updated">
+              <input type="text" value="" placeholder="last_updated">
+            </td>
+            <!-- <td data-fieldname="dest">
+              <input type="text" value="" placeholder="Destination">
+            </td>
+            <td data-fieldname="owner">
+              <input type="text" value="" placeholder="Owner">
+            </td>
+            <td data-fieldname="conductor">
+              <input type="text" value="" placeholder="Conductor">
+            </td>
+            <td data-fieldname="driver">
+              <input type="text" value="" placeholder="Driver">
+            </td> -->
+            <td class='edit-options'>
+              <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon save-btn" width='20px' height='20px'>
+              <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-btn" width='20px' height='20px'>
+            </td>
+            <td class='add-options'>
+              <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
+              <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
+            </td>
+          </tr>
+          <tr class='dummy-row'>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td id="edit-delete">
+              <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
+              <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
+            </td>
+          </tr>
 
             </table>
         </div>
