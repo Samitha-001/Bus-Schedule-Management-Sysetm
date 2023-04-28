@@ -67,7 +67,12 @@ include '../app/views/components/navbarcon.php';
                     echo "<tr>";
                     echo "<td> $ratingsinfo->bus_no </td>";
                     echo "<td> $ratingsinfo->trip_id </td>";
-                    echo "<td> $ratingsinfo->conductor_rating </td>";
+                    $stars_html = '';
+                    for ($i = 1; $i <= $ratingsinfo->conductor_rating; $i++) {
+                        $stars_html .= '<span class="star">&#9733;</span>'; // Use HTML code for star symbol
+                    }
+                    echo "<td> $stars_html </td>";
+                    
                     echo "</tr>";
              ?>
 

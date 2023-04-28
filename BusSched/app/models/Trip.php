@@ -18,6 +18,11 @@ class Trip extends Model
         return $this->findAll();
     }
 
+    public function getBusTrips($bus)
+    {
+        return $this->where(['bus_no' => $bus]);
+    }
+
     // get trip by id
     public function getTrip($data)
     {
