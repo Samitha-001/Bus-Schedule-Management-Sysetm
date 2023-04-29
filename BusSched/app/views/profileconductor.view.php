@@ -34,7 +34,7 @@ include '../app/views/components/navbarcon.php';
         // show($busno);
         $buses = new Bus();
         $bus = $buses->getConductorBuses($conductor)[0];
-        //show($ratingsinfo);
+        // show($bus);
         $conductors = new Conductor();
         $conductorinfo = $conductors->getConductorInfo($conductor)[0];
         //show($conductorinfo);
@@ -106,13 +106,11 @@ include '../app/views/components/navbarcon.php';
                     <?php
                         echo "<td> $conductorinfo->date_of_birth </td>";
                     ?>
-                </tr>
-                <tr>     
-                    <th>
-                        <button href=# id='edit-conductor-info'>Edit</button>
-                    </th>
-                </tr>
+                
             </table>
+
+            <button href=# id='edit-conductor-info'>Edit</button>
+                    
 
             <!-- edit form for conductor info -->
             <div id="edit-form-container" style="display: none;">
@@ -129,7 +127,7 @@ include '../app/views/components/navbarcon.php';
                     
                     <!-- TODO -->
                     <div class="info-grid-start-2">
-                        <input type="submit" value="Save Changes" >
+                        <input type="submit" value="Save Changes" id="form-save" >
                         <button id='cancel-conductor-info'>Cancel</button>
                     </div>
                 </form>
@@ -156,19 +154,15 @@ include '../app/views/components/navbarcon.php';
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the data from the form
-    $name = $_POST["name"];
-    $phone = $_POST["phone"];
-    $address = $_POST["address"];
-    $dob = $_POST["dob"];
-    
-
-    
+    $data['name']=$_POST["name"];
+    $data['phone'] = $_POST["phone"];
+    $data['address'] = $_POST["address"];
+    $data['dob'] = $_POST["dob"];
+    $conductors->updateConductor($conductor,$data);
 }
 
 
 ?>
-
-
 
         <div class="col-4">
         <div class="card-container" id="info-card2">

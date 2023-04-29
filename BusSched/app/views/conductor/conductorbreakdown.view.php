@@ -25,7 +25,7 @@ if (!isset($_SESSION['USER'])) {
 // include '../app/views/components/ownersidebar.php';
     include '../app/views/components/navbarcon.php';
 ?>
-
+<!--  -->
     <main class="container1">
     <div class="col-1">
         <div class="header orange-header">
@@ -100,13 +100,16 @@ if (!isset($_SESSION['USER'])) {
                 } ?>
 
 <tr>
-                    <td></td>
+                    <!-- <td></td>
                     <td></td>
                         <td align="right">
                                 <button class="button-delete" id="delete_breakdown" type="delete">Delete</button>
-                        </td>
+                        </td> -->
                     </tr>
-
+<!-- <tr>
+<input type="submit" value="View My Breakdowns" id="my breakdowns" >
+</tr> -->
+                   
 
             </table>
         </div>

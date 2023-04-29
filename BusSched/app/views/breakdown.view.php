@@ -120,12 +120,12 @@ if (!isset($_SESSION['USER'])) {
                 } ?>
 
                     <tr>
-                    <td></td>
+                    <!-- <td></td>
                     <td></td>
                         <td align="right">
                                 <button class="button-delete" id="delete_breakdown" type="delete">Delete</button>
                         </td>
-                    </tr>
+                    </tr> -->
 
             </table>
         </div>

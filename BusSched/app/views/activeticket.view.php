@@ -217,12 +217,12 @@ if (!isset($_SESSION['USER'])) {
       xhr.send("ticketNo=" +ticketNo );
       // Display data in the popup window
       popupWindow.innerHTML = `
-        <h2>Passenger Details</h2>
+        <h2>Ticket Details</h2>
         <p><strong>Passenger:</strong> ${passenger}</p>
         <p><strong>Trip ID:</strong> ${tripId}</p>
         <p><strong>Seat No:</strong> ${seatNo}</p>
         <p><strong>Ticket No:</strong> ${ticketNo}</p>
-        <button onclick="closePopup()">Close</button>
+        <button onclick="closePopup()" id=>Close</button>
       `;
 
       // Show the popup window
