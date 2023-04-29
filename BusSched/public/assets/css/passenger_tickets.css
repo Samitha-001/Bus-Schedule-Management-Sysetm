@@ -236,13 +236,22 @@ div.ticket-details-card {
   width: 100%;
 }
 
+#inside-update-location-div {
+  display:flex; 
+  overflow-x: scroll; 
+  justify-content:space-between; 
+  margin-left:60px; 
+  margin-right:60px;
+}
+
 .location-update-card {
   display: inline-block;
   background-color: white;
   min-width: 140px;
-  height: 140px;
+  height: 90px;
   padding: 10px;
   margin: 5px;
+  margin-top: 45px;
   border-radius: 5px;
   text-align: center;
   color: #24315e;
@@ -257,6 +266,7 @@ div.ticket-details-card {
   font-weight: 400;
   border-radius: 10px;
   margin: 5px;
+  margin-top: 40px;
   text-align: center;
   transition: all 0.35s;
 }
@@ -274,7 +284,7 @@ div.ticket-details-card {
 
 ::-webkit-scrollbar {
   padding-top: 5px;
-  width: 50%;
+  width: 500%;
   height: 5px;
 }
 ::-webkit-scrollbar-thumb {

@@ -226,7 +226,7 @@ include '../app/views/components/navbar.php';
 
     <!-- pop up div to update location -->
     <div id="update-location-div" style="display:none;">
-        <div id="inside-update-location-div" style="display:flex; overflow-x: scroll;">
+        <div id="inside-update-location-div">
         </div>
         <h1></h1>
         <div style="display:flex; align-items:center; justify-content:center;">

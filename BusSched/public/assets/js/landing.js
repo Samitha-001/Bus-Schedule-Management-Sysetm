@@ -70,14 +70,14 @@ document.addEventListener("DOMContentLoaded", function () {
         var from = document.getElementById("from").value;
         var to = document.getElementById("to").value;
         var date = document.getElementById("date").value;
-        var passengers = document.getElementById("passengers").value;
+        // var passengers = document.getElementById("passengers").value;
         
         // add them to data
         var data = {
             from: from,
             to: to,
             date: date,
-            passengers: passengers
+            // passengers: passengers
         };
 
         // get current url
@@ -101,11 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // add date to url
             url += "&date=" + date;
         }
-        // if passengers is not empty
-        if (passengers) {
-            // add passengers to url
-            url += "&passengers=" + passengers;
-        }
+        // // if passengers is not empty
+        // if (passengers) {
+        //     // add passengers to url
+        //     url += "&passengers=" + passengers;
+        // }
         
         // remove last part word after /
         currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));

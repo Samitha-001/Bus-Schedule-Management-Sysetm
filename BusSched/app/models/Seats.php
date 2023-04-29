@@ -7,7 +7,6 @@ class Seats extends Model
     // editable columns
     protected $allowedColumns = [
         'id',
-        'bus_no',
         'trip_id',
         'seat_no',
         'availability'

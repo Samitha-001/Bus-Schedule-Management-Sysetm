@@ -142,6 +142,11 @@ if (!isset($_SESSION['USER'])) {
     <?php
     $bus = new Bus();
     $busType = ($bus->getBus($trip->bus_no))->type;
+
+    // getting available and booked seats of the bus
+    $seats =  new Seats();
+    $seatsAvailable = $seats->getAvailableSeats($trip->id);
+    $seatsBooked = $seats->getBookedSeats($trip->id);
     ?>
     <div id="reserve-seats-div" class="ticket-body" style="width:fit-content; display:none;" data-bus-type="<?=$busType?>">
         <div id="bus-layout-l" class="card-content" style="padding:0 20px;">
@@ -288,7 +293,7 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
             </table>
             <!-- </div> -->
-            <div><button id="reserve-seats-done" class="button-orange ticket-button">Done</button>
+            <div><button id="reserve-seats-s-done" class="button-orange ticket-button">Done</button>
             <button id="reserve-seats-s-cancel" class="button-orange ticket-button-2">Cancel</button></div>
         </div>
 
@@ -299,13 +304,13 @@ if (!isset($_SESSION['USER'])) {
             function getValue() {
             let halts = document.getElementById("halt-list");
             const options = Array.from(halts.options).map(option => option.value);
-            // console.log(options);
             var tripStart = "<?php echo $trip->starting_halt ?>";
-            // console.log(tripStart);
-            if (tripStart='Pettah') {
+            console.log(tripStart);
+            if (tripStart=='Pettah') {
                 // reverse list
                 options.reverse();
             }
+            console.log(options);
             var fromInput = document.getElementById("from");
             var toInput = document.getElementById("to");
             var from = document.getElementById("from").value;
