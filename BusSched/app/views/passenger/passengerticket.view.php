@@ -66,14 +66,14 @@ if (!isset($_SESSION['USER'])) {
                     <tr>
                         <td>From</td>
                         <td data-fieldname="source_halt">
-                            <input type="text" name="from" id="from" placeholder="Enter starting halt" list="halt-list" oninput="getValue()" required>
+                            <input type="text" name="from" id="from" placeholder="Enter starting halt" list="halt-list" required>
                         </td>
                         <td><a href="#">Change</a></td>
                     </tr>
                     <tr>
                         <td>To</td>
                         <td data-fieldname="dest_halt">
-                            <input type="text" name="to" id="to" placeholder="Enter destination halt" list="halt-list" oninput="getValue()" required>
+                            <input type="text" name="to" id="to" placeholder="Enter destination halt" list="halt-list" required>
                         </td>
                         <td><a href="#">Change</a></td>
                     </tr>
@@ -89,14 +89,6 @@ if (!isset($_SESSION['USER'])) {
                         <td>
                         <?php if ($trip->trip_date) echo $trip->trip_date; ?>
                         </td>
-                        <td><a href="#">Change</a></td>
-                    </tr>
-                    <tr>
-                        <td>Amount payable</td>
-                        <td>
-                            <text></text>
-                        </td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align:center">
@@ -104,6 +96,25 @@ if (!isset($_SESSION['USER'])) {
                             <a href='#' id="reserve-seats-q">Reserve seats?</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <td id="price-breakdown">
+                            <ul>
+                                <li><b>Unit Price: </b>&nbsp&nbsp&nbsp
+                                <span id="base-fare">0</span> LKR
+                                </li>
+                                <li><b>Reservation charge (15%):</b>&nbsp&nbsp&nbsp
+                                <span id="reservation-charge">0</span> LKR
+                                </li>
+                                <li><b>Total fare: </b>&nbsp&nbsp&nbsp
+                                    <span id="total-fare">0</span> LKR
+                                </li>
+                            </ul>
+                            <text id="amount-payable"></text>
+                        </td>
+                        <td></td>
+                    </tr>
+                    
                     <tr>
                         <td>Pay with:</td>
                         <td data-fieldname="payment_method">
@@ -172,15 +183,15 @@ if (!isset($_SESSION['USER'])) {
                     <td class="no-seat"></td>
                     <td class="no-seat"></td>
                     <td class="no-seat"></td>
-                    <td class="unavailable" data-seat="D2">D2</td>
-                    <td class="unavailable" data-seat="E2">E2</td>
+                    <td class="seat" data-seat="D2">D2</td>
+                    <td class="seat" data-seat="E2">E2</td>
                 </tr>
                 <tr>
-                    <td class="unavailable" data-seat="A3">A3</td>
-                    <td class="unavailable" data-seat="B3">B3</td>
+                    <td class="seat" data-seat="A3">A3</td>
+                    <td class="seat" data-seat="B3">B3</td>
                     <td class="no-seat"></td>
-                    <td class="unavailable" data-seat="D3">D3</td>
-                    <td class="unavailable" data-seat="E3">E3</td>
+                    <td class="seat" data-seat="D3">D3</td>
+                    <td class="seat" data-seat="E3">E3</td>
                 </tr>
                 <tr>
                     <td class="seat" data-seat="A4">A4</td>
@@ -190,25 +201,25 @@ if (!isset($_SESSION['USER'])) {
                     <td class="seat" data-seat="E4">E4</td>
                 </tr>
                 <tr>
-                    <td class="booked" data-seat="A5">A5</td>
-                    <td class="booked" data-seat="B5">B5</td>
+                    <td class="unavailable" data-seat="A5">A5</td>
+                    <td class="unavailable" data-seat="B5">B5</td>
                     <td class="no-seat"></td>
-                    <td class="seat" data-seat="D5">D5</td>
-                    <td class="seat" data-seat="E5">E5</td>
+                    <td class="unavailable" data-seat="D5">D5</td>
+                    <td class="unavailable" data-seat="E5">E5</td>
                 </tr>
                 <tr>
                     <td class="unavailable" data-seat="A6">A6</td>
                     <td class="unavailable" data-seat="B6">B6</td>
                     <td class="no-seat"></td>
-                    <td class="seat" data-seat="D6">D6</td>
-                    <td class="seat" data-seat="E6">E6</td>
+                    <td class="unavailable" data-seat="D6">D6</td>
+                    <td class="unavailable" data-seat="E6">E6</td>
                 </tr>
                 <tr>
                     <td class="unavailable" data-seat="A7">A7</td>
                     <td class="unavailable" data-seat="B7">B7</td>
                     <td class="no-seat"></td>
-                    <td class="seat" data-seat="D7">D7</td>
-                    <td class="seat" data-seat="E7">E7</td>
+                    <td class="unavailable" data-seat="D7">D7</td>
+                    <td class="unavailable" data-seat="E7">E7</td>
                 </tr>
                 <tr>
                     <td class="unavailable" data-seat="A8">A8</td>
@@ -228,8 +239,8 @@ if (!isset($_SESSION['USER'])) {
                     <td class="unavailable" data-seat="A10">A10</td>
                     <td class="unavailable" data-seat="B10">B10</td>
                     <td class="unavailable" data-seat="C10">C10</td>
-                    <td class="seat" data-seat="D10">D10</td>
-                    <td class="seat" data-seat="E10">E10</td>
+                    <td class="unavailable" data-seat="D10">D10</td>
+                    <td class="unavailable" data-seat="E10">E10</td>
                 </tr>
             </table>
             <!-- </div> -->
@@ -258,26 +269,26 @@ if (!isset($_SESSION['USER'])) {
                 <tr>
                     <td class="no-seat"></td>
                     <td class="no-seat"></td>
-                    <td class="unavailable" data-seat="C2">C2</td>
-                    <td class="unavailable" data-seat="D2">D2</td>
+                    <td class="seat" data-seat="C2">C2</td>
+                    <td class="seat" data-seat="D2">D2</td>
                 </tr>
                 <tr>
-                    <td class="unavailable" data-seat="A3">A3</td>
+                    <td class="seat" data-seat="A3">A3</td>
                     <td class="no-seat"></td>
-                    <td class="unavailable" data-seat="C3">C3</td>
-                    <td class="unavailable" data-seat="D3">D3</td>
+                    <td class="seat" data-seat="C3">C3</td>
+                    <td class="seat" data-seat="D3">D3</td>
                 </tr>
                 <tr>
                     <td class="seat" data-seat="A4">A4</td>
                     <td class="no-seat"></td>
-                    <td class="seat" data-seat="C4">C4</td>
-                    <td class="seat" data-seat="D4">D4</td>
+                    <td class="unavailable" data-seat="C4">C4</td>
+                    <td class="unavailable" data-seat="D4">D4</td>
                 </tr>
                 <tr>
-                    <td class="booked" data-seat="A5">A5</td>
+                    <td class="unavailable" data-seat="A5">A5</td>
                     <td class="no-seat"></td>
-                    <td class="seat" data-seat="C5">C5</td>
-                    <td class="seat" data-seat="D5">D5</td>
+                    <td class="unavailable" data-seat="C5">C5</td>
+                    <td class="unavailable" data-seat="D5">D5</td>
                 </tr>
                 <tr>
                     <td class="unavailable" data-seat="A6">A6</td>
@@ -300,43 +311,6 @@ if (!isset($_SESSION['USER'])) {
     </div>
         <!-- </div> -->
         <script src="<?= ROOT ?>/assets/js/seat.js"></script>
-        <script>
-            function getValue() {
-            let halts = document.getElementById("halt-list");
-            const options = Array.from(halts.options).map(option => option.value);
-            var tripStart = "<?php echo $trip->starting_halt ?>";
-            console.log(tripStart);
-            if (tripStart=='Pettah') {
-                // reverse list
-                options.reverse();
-            }
-            console.log(options);
-            var fromInput = document.getElementById("from");
-            var toInput = document.getElementById("to");
-            var from = document.getElementById("from").value;
-            var to = document.getElementById("to").value;
-            // check if from is an option value in halts
-            if (options.includes(from)) {
-                console.log("from is valid");
-                fromInput.disabled = true;
-                // check if to is an option value in halts
-                if (options.includes(to)) {
-                    console.log("to is valid");
-                    // check if from and to are in the same index
-                    if (options.indexOf(from) < options.indexOf(to)) {
-                        console.log("to is after from");
-                        toInput.disabled = true;
-                    } else {
-                        alert("Please select a valid destination");
-                    }
-                } else {
-                    // alert("Please select a valid destination");
-                }
-            } else {
-                // alert("Please select a valid starting halt");
-            }
-            }
-        </script>
 </body>
 
 </html>

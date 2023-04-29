@@ -28,19 +28,6 @@ if (isset($_SESSION['USER'])) {
     <script src="<?= ROOT ?>/assets/js/passengerprofile.js"></script>
     <title>Profile</title>
     <style>
-      td input[disabled] {
-        border: none;
-        background-color: transparent;
-        padding: 0;
-        margin: 0;
-        font-size: inherit;
-        font-family: inherit;
-        color: inherit;
-        cursor: default;
-      }
-      form.info-grid {
-        display: none;
-      }
     </style>
 </head>
 
@@ -119,9 +106,9 @@ if (isset($_SESSION['USER'])) {
                 <h1>Points:</h1> <p><?= $passenger->points ?></p>
                 <h1>Value:</h1> <p><?= $passenger->points ?> LKR</p>
                 <h1>Exp. date:</h1> <p><?= $passenger->points_expiry ?></p>
+                <span></span>
+                <button id="gift-points-btn" style="width:100%;">Gift points</button>
             </div>
-
-            <button id="gift-points-btn" class="button-orange" style="width:100;">Gift points</button>
 
             <div id='gift-points-div'>
                 <div class="dropdown">
@@ -138,15 +125,17 @@ if (isset($_SESSION['USER'])) {
                         ?>
                     </select>
                 </div>
-                <input type="number" name="amount" id="points" placeholder="Enter points" max="<?php if ($passenger->points > 5):
-                    echo($passenger->points - 5);
-                endif;?>" min='0' required>
-                <!-- hidden input -->
-                <input type="hidden" name="points_from" id="gift-from" value="<?= $username ?>">
-                
-                <div class="info-grid">
-                    <button id="confirm-gift-btn" class="button-orange" style="width:100;">Gift</button>
-                    <button id="cancel-gift-btn" class="button-orange" style="width:100;">Cancel</button>
+                <div id="gift-points-amount">
+                    <input type="number" name="amount" id="points" placeholder="Enter points" max="<?php if ($passenger->points > 5):
+                        echo($passenger->points - 5);
+                    endif;?>" min='0' required>
+                    <!-- hidden input -->
+                    <input type="hidden" name="points_from" id="gift-from" value="<?= $username ?>">
+                    
+                    <div class="info-grid">
+                        <button id="confirm-gift-btn" style="width:100;">Gift</button>
+                        <button id="cancel-gift-btn" style="width:100;">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -39,4 +39,24 @@ class Passengerticket
             echo json_encode($response);
         }
     }
+
+    // calculate fare from source halt to destination halt
+    public function api_get_fare() 
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+            
+            // Process the request data and perform the update
+            $halt = new Halt();
+            $fee = $halt->calculateFare($postData['from'], $postData['to']);
+            $response = array('status' => 'success', 'data' => $fee);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid request');
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
 }

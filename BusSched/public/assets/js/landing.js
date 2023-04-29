@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         td.style.backgroundColor = "#f4511e";
         
-        fareResultDiv.textContent = "Fare from "+farefrom+" to "+fareto+": " + td.textContent;
+        fareResultDiv.textContent = "Fare from "+farefrom+" to "+fareto+": " + td.textContent + " LKR";
     }
 
     // add event listener to busfareTable
@@ -57,7 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let farefrom = tr.dataset.haltfrom;
         let fareto = target.dataset.haltto;
         if (target.className == "fare-td") {
-            fareResultDiv.textContent = "Fare from " + farefrom + " to " + fareto + ": " + target.textContent;
+            fareResultDiv.textContent = "Fare from " + farefrom + " to " + fareto + ": " + target.textContent + " LKR";
+            // change value on farefrom input tp farefrom
+            farefromInput.value = farefrom;
+            faretoInput.value = fareto;
         }
 
     });

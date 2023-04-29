@@ -60,6 +60,106 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
+  // from to fields when buying ticket
+  
+  let halts = document.getElementById("halt-list");
+  const options = Array.from(halts.options).map(option => option.value);
+
+  var tripStart = "<?php echo $trip->starting_halt ?>";
+  if (tripStart=='Pettah') {
+    // reverse halt list
+    options.reverse();
+  }
+
+  let fromInput = document.getElementById("from");
+  let toInput = document.getElementById("to");
+  let passengerCountInput = document.getElementById("no-of-passengers");
+  let passengerCount = 1;
+  let reservationChargeSpan = document.getElementById("reservation-charge");
+  let fee = document.getElementById("amount-payable");
+  let totFareSpan = document.getElementById("total-fare");
+  
+  let data = {};
+
+  // whenever from is changed
+  fromInput.addEventListener("input", function () {
+    let from = document.getElementById("from").value;
+    
+    // check if from is an option value in halts
+    if (options.includes(from)) {
+      data['from'] = from;
+      console.log("from is valid");
+      fromInput.disabled = true;
+    } else {
+      // alert("Please select a valid starting halt");
+    }
+  });
+
+
+  // whenever to is changed
+  toInput.addEventListener("input", function () {
+    let to = document.getElementById("to").value;
+
+    // check if to is an option value in halts
+    if (options.includes(to)) {
+      console.log("to is valid");
+      // check if from and to are in the same index
+      if (options.indexOf(from) < options.indexOf(to)) {
+        data['to'] = to;
+        console.log("to is after from");
+        toInput.disabled = true;
+        // passengerCount = passengerCountInput.value;
+        getFare(data);
+        // totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML;
+        // calculate fare
+
+      } else {
+        alert("Please select a valid destination");
+      }
+    } else {
+      console.log("to is invalid");
+
+      // alert("Please select a valid destination");
+    }
+  });
+
+  // whenever passenger count is changed
+  passengerCountInput.addEventListener("input", function () {
+    console.log("passenger count changed");
+    passengerCount = passengerCountInput.value;
+    // if to input is disabled
+    if (totFareSpan.innerHTML!="0") {
+      // getFare(data);
+      totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML;
+      console.log("PASSENGER COUNT CHANGED");
+
+    }
+  });
+  
+  let baseFareLi = document.getElementById("base-fare");
+  
+  // api to get calculated fare
+  function getFare(data) {
+    fetch(`${ROOT}/passengerticket/api_get_fare`, {
+      method: "POST",
+    credentials: "same-origin",
+    mode: "same-origin",
+    headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+    .catch((error) => console.log(error))
+    .then((data) => {
+      baseFareLi.innerHTML = `${data['data']}`;
+      passengerCount = passengerCountInput.value;
+      reservationCharge = Number(reservationChargeSpan.innerHTML);
+      totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML + reservationCharge;
+        // return data['data'];
+    });
+}
+
   function insertRow(data) {
     fetch(`${ROOT}/passengerticket/api_add`, {
       method: "POST",

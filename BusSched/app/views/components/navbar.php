@@ -17,7 +17,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         if (isset($_SESSION['USER'])) {
             if ($_SESSION['USER']->role == 'passenger') {
                 ?>
-            <li>
+            <!-- <li>
                 <div class="dropdown">
                     <button class="dropbtn">Services
                     </button>
@@ -35,14 +35,27 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <?php } ?>
                     </div>
                 </div>
-            </li>
+            </li> -->
+            <?php
+                if (strpos($current_url, '/home') == true) { // checks if current URL is home page
+            ?>
+            <a href="#about-scroll">About us</a>
+            <a href="#fare-scroll">Bus fare</a>
+            <?php } else { ?>
+                <a href="<?= ROOT ?>/home#about-scroll">About us</a>
+                <a href="<?= ROOT ?>/home#fare-scroll">Bus fare</a>
+            <?php } ?>
+            <a href="<?= ROOT ?>/passengerschedule">Schedule</a>
+            <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
+            <a href="<?= ROOT ?>/passengertickets">My tickets</a>
+
             
             <?php }} ?>
 
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
             <a href="<?= ROOT ?>/passengerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="30" ></a>
-                <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/logout">Logout</a></li>
+            <a href="<?= ROOT ?>/logout" style="padding-top:5px;"><li class="signup-button" style="border: 2px solid #f4511e;">Logout</li></a>
             </div>
         </ul>
 

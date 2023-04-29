@@ -387,3 +387,7 @@ ul {
   height: 40px;
   min-width: fit-content;
 }
+
+#price-breakdown li{
+  margin-bottom: -9px;
+}

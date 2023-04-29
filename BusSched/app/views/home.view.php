@@ -85,7 +85,7 @@ if (isset($_SESSION['USER'])) {
             <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" required>
 
             <button id="calculate-fare" class="button-orange">Find fare</button>
-            <div id="fare-result" class='span-3'></div>
+            <h3 id="fare-result" class='span-3'></h3>
         </div>
         <section id="busfare">
             <div style="width:100%">
