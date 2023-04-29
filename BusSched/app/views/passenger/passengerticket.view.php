@@ -80,7 +80,7 @@ if (!isset($_SESSION['USER'])) {
                     <tr>
                         <td>No. of passengers</td>
                         <td data-fieldname="passenger_count">
-                            <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="Passengers" value="1">
+                            <input type="number" name="no-of-passengers" id="no-of-passengers" min="1" max="5" placeholder="Passengers" value="1" onkeypress="return event.charCode >= 49 && event.charCode <= 53" oninput="if (this.value < 1) this.value = 1; if (this.value > 5) this.value = 5;">
                         </td>
                         <td></td>
                     </tr>

@@ -11,13 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // document.getElementById("dateInput").addEventListener("change", function () {
   //   let selectedDate = new Date(this.value);
   // });
-  
+  let passengerCount = 1;
+  let reservationCharge = 0;
+  let reservedSeatsCount = 0;
   // is points balance is insufficient
   const radioButtons = document.querySelectorAll("input[name='payment']");
   const pointsBalance = document.getElementById("pointsBalance");
   const pointsBalanceSpan = document.getElementById("pointsBalanceSpan");
   // get value in td inside pointsBalance
   let points = pointsBalanceSpan.innerHTML;
+  let reservedSeatsSpan = document.getElementById("reserved-seats");
+
   // if (points < fare) { // TODO
   // }
   // console.log(points);
@@ -66,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const options = Array.from(halts.options).map(option => option.value);
 
   var tripStart = "<?php echo $trip->starting_halt ?>";
-  if (tripStart=='Pettah') {
+  if (tripStart == 'Pettah') {
     // reverse halt list
     options.reverse();
   }
@@ -74,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let fromInput = document.getElementById("from");
   let toInput = document.getElementById("to");
   let passengerCountInput = document.getElementById("no-of-passengers");
-  let passengerCount = 1;
   let reservationChargeSpan = document.getElementById("reservation-charge");
   let fee = document.getElementById("amount-payable");
   let totFareSpan = document.getElementById("total-fare");
@@ -110,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toInput.disabled = true;
         // passengerCount = passengerCountInput.value;
         getFare(data);
+
         // totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML;
         // calculate fare
 
@@ -128,14 +132,37 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("passenger count changed");
     passengerCount = passengerCountInput.value;
     // if to input is disabled
-    if (totFareSpan.innerHTML!="0") {
-      // getFare(data);
-      totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML;
-      console.log("PASSENGER COUNT CHANGED");
+    if (totFareSpan.innerHTML != "0") {
+      if (reservedSeatsSpan.getAttribute("data-seats-no") != "") {
+        reservedSeatsCount = reservedSeatsSpan.getAttribute("data-seats-no");
+        // console.log("reservedSeatsCount"+reservedSeatsCount);
 
+        reservationChargeSpan.innerHTML = baseFareLi.innerHTML * passengerCount * reservedSeatsCount * 15 / 100;
+      }
+
+      reservationCharge = Number(reservationChargeSpan.innerHTML);
+      totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML + reservationCharge;
+      
     }
   });
   
+  // whenever reserved seats is changed
+  // reservedSeatsSpan
+  // checking if the data attribute is changed
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'data-seats-no') {
+        // change the reservation charge
+        let reservedSeatsCount = reservedSeatsSpan.getAttribute("data-seats-no");
+        reservationChargeSpan.innerHTML = baseFareLi.innerHTML * reservedSeatsCount * 15/100;
+
+        console.log('data-seats-no changed to:', mutation.target.getAttribute('data-seats-no'));
+      }
+    });
+  });
+  observer.observe(reservedSeatsSpan, { attributes: true });
+
+
   let baseFareLi = document.getElementById("base-fare");
   
   // api to get calculated fare
@@ -156,7 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
       passengerCount = passengerCountInput.value;
       reservationCharge = Number(reservationChargeSpan.innerHTML);
       totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML + reservationCharge;
-        // return data['data'];
+      reservedSeatsCount = reservedSeatsSpan.getAttribute("data-seats-no");
+      
+      reservationChargeSpan.innerHTML = baseFareLi.innerHTML * reservedSeatsCount * 15/100;
     });
 }
 
