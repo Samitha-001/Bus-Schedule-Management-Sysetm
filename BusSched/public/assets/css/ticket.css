@@ -341,10 +341,6 @@ div.from-to {
   margin-top: 0px;
 }
 
-.ticket-body th {
-  padding-bottom: 10px;
-}
-
 .ticket-body a {
   color: #FD6002;
 }
@@ -388,6 +384,31 @@ ul {
   min-width: fit-content;
 }
 
-#price-breakdown li{
-  margin-bottom: -9px;
+#price-breakdown th {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 400;
+  color: #7c839e;
+  /* padding-right: 5px; */
+}
+
+#price-breakdown tr td{
+  width: 15%;
+  text-align: right;
+}
+
+/* first child */
+#price-breakdown tr:first-child {
+  top: 0px;
+}
+
+/* last child */
+#price-breakdown tr:last-child td, #price-breakdown tr:last-child th {
+  color: #24315e;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#total-fare-for-tickets-td, #reservation-charge {
+  font-weight: bold;
 }

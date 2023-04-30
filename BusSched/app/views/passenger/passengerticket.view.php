@@ -68,14 +68,14 @@ if (!isset($_SESSION['USER'])) {
                         <td data-fieldname="source_halt">
                             <input type="text" name="from" id="from" placeholder="Enter starting halt" list="halt-list" required>
                         </td>
-                        <td><a href="#">Change</a></td>
+                        <td id="change-src-dest" rowspan=2><a href="#">Change</a></td>
                     </tr>
                     <tr>
                         <td>To</td>
                         <td data-fieldname="dest_halt">
                             <input type="text" name="to" id="to" placeholder="Enter destination halt" list="halt-list" required>
                         </td>
-                        <td><a href="#">Change</a></td>
+                        <!-- <td><a href="#">Change</a></td> -->
                     </tr>
                     <tr>
                         <td>No. of passengers</td>
@@ -97,22 +97,42 @@ if (!isset($_SESSION['USER'])) {
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td id="price-breakdown">
-                            <ul>
-                                <li><b>Unit Price: </b>&nbsp&nbsp&nbsp
-                                <span id="base-fare">0</span> LKR
-                                </li>
-                                <li><b>Reservation charge (15%):</b>&nbsp&nbsp&nbsp
-                                <span id="reservation-charge">0</span> LKR
-                                </li>
-                                <li><b>Total fare: </b>&nbsp&nbsp&nbsp
-                                    <span id="total-fare">0</span> LKR
-                                </li>
-                            </ul>
+                        <td id="price-breakdown" colspan="3">
+                            <table>
+                                <tr>
+                                    <th><i>Number of tickets:</i></th>
+                                    <td id="passenger-count-td">1</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Unit ticket price (LKR):</th>
+                                    <td id="base-fare">0</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Fare for tickets (LKR):</th>
+                                    <td id="total-fare-for-tickets-td">0</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th><i>No. of seats reserved:</i></th>
+                                    <td id="reserved-seats-td">0</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Reservation charge <i>(15% per reserved seat)</i> (LKR): </th>
+                                    <td id="reservation-charge">0</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Total fare (LKR): </th>
+                                    <td id="total-fare">0</td>
+                                    <td></td>
+                                </tr>
+                            </table>
                             <text id="amount-payable"></text>
                         </td>
-                        <td></td>
+                        <!-- <td></td> -->
                     </tr>
                     
                     <tr>
