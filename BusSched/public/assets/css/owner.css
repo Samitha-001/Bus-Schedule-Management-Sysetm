@@ -1,5 +1,6 @@
 /* @import "navbar.css"; */
 @import "general.css";
+@import "style2.css";
 
 /* Create three unequal columns that floats next to each other */
 .column {
@@ -14,11 +15,12 @@
 }
 .image
 {
-  width: 700px;
+  width: 400px;
   height: 30%;
   padding-top: 130px;
   background-color: rgb(81, 88, 88);
   padding-bottom: 120px;
+  margin-left: 70px;
   margin-top: 60px;
 }
 
@@ -58,23 +60,7 @@
   color: white;
 }
 
-.wrapper .sidebar {
-  position: fixed;
-  width: 200px;
-  height: 100%;
-  background: #24315e;
-  padding: 30px 0 0 30px;
-  color: white;
-  font-size: 15px;
-}
 
-.wrapper .sidebar li {
-  padding-bottom: 15px;
-}
-
-.wrapper .sidebar li:hover {
-  color: white;
-}
 
 .orange-header {
   grid-column: span 4;

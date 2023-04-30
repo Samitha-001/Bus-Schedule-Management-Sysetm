@@ -11,10 +11,7 @@
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
     <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
     <link href="<?= ROOT ?>/ownerbuses">
-    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
-
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-  <script src="<?= ROOT ?>/assets/js/adminbuses.js"></script>
+    
 
     <!-- <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script> -->
 
@@ -39,20 +36,16 @@ $businfo = $bus->where(['bus_no' => $busno])[0];
 <main class="container1">
 
     <div class="header orange-header">
-            <h3 class="header-title">Register New Bus</h3>            
+            <h3 class="header-title">Edit Bus Profile</h3>            
     </div>
 
-<div class="row" style="margin-left:250px">
+<div class="row" style="margin-left:50px">
     <div class="column left">
         <img src="<?= ROOT ?>/assets/images/buses/bus6.png" class="image">
     </div>
 
     <div class="column middle">
-   <form method="post" id="register-bus" style="margin-left: 150px;background-color:white;font-size:18px;line-height:3em" >
-    <?php if (!empty($errors)) : ?>
-        <?= implode("<br>", $errors) ?>
-    <?php endif; ?>
-
+   <form style="border:none;" >
     <div>
         <table>
             <tr>
@@ -87,26 +80,91 @@ $businfo = $bus->where(['bus_no' => $busno])[0];
             <td><label for="driver">Driver:</label></td>
             <td><input type="text" id="driver" name="driver" value="<?php echo $businfo->driver?>" readonly  ></td>
             </tr>
-            <td id="edit-delete">
-                      <button alt='edit' class="icon edit-btn" style="background-color:rgb(90, 221, 96);height:30px;width:80px;margin-left:150px;font-size:18px;">Edit</button>
-                      <button id="delete" alt='edit' class="icon delete-btn"  style="color:white;height:30px;width:80px;font-size:18px;background-color:red"> Delete</button> 
-                  </td>
+            <td>
+            <input id="edit" type="submit" value="Edit" class="" style="background-color:rgb(90, 221, 96);height:30px;width:80px;margin-left:150px;font-size:18px;">
+        <input id="delete" type="submit" value="Delete" style="color:white;height:30px;width:80px;font-size:18px;background-color:red">
+        </td>
         </table>
-
-
-        <script>
-        //   var table=document.getElementsByTagName('table')[0];
-       
-        </script>
-
-        
-<!-- 
-        <input id="edit" type="submit" value="Edit" class="" style="background-color:rgb(90, 221, 96);height:30px;width:80px;margin-left:150px;font-size:18px;">
-        <button id="delete" type="submit" style="color:white;height:30px;width:80px;font-size:18px;background-color:red"> Delete</button>    -->
     </div>
 </form>
   </div>
-</div> 
+
+
+<!-- Edit form -->
+
+<div class="column middle"  id="edit-form-container" style="display: none;">
+   <form id="edit-form" method="post">
+    <div>
+        <table>
+            <tr>
+            <td><label for="bus_no">Bus Number:</label></td>
+            <td><input type="" id="bus_no" name="bus_no" value="<?php echo $businfo->bus_no?> " ></td>
+            </tr>
+            <tr>
+            <td><label for="type">Type:</label></td>
+            <td><input id="type" name="type" value="<?php echo $businfo->type?>"  ></td>
+            </tr>
+            <tr>
+            <td><label for="seats_no">Number of Seats:</label></td>
+            <td><input type="number" id="seats_no" name="seats_no" value="<?php echo $businfo->seats_no?>"  ></td>
+            </tr>
+            <tr>
+            <td><label for="route">Route:</label></td>
+            <td><input type="text" id="route" name="route"value="<?php echo $businfo->route?>"></td>
+            </tr>
+            <tr>
+            <td><label for="start">Starting Halt:</label></td>
+            <td><input type="text" id="start" name="start" default value="<?php echo $businfo->start?>" ></td>
+            </tr>
+            <tr>
+            <td><label for="dest">Destination:</label></td>
+            <td><input type="text" id="dest" name="dest" value="<?php echo $businfo->dest?>"></td>
+            </tr>
+            <tr>
+            <td><label for="conductor">Conductor:</label></td>
+            <td><input type="text" id="conductor" name="conductor" value="<?php echo $businfo->conductor?>"></td>
+            </tr>
+            <tr>
+            <td><label for="driver">Driver:</label></td>
+            <td><input type="text" id="driver" name="driver" value="<?php echo $businfo->driver?>" ></td>
+            </tr>
+            <td>
+            <input id="save" type="submit" value="Save Changes" class="" style="background-color:rgb(90, 221, 96);height:30px;width:80px;margin-left:150px;font-size:18px;">
+        <input id="cancel" type="submit" value="Cancel" style="color:white;height:30px;width:80px;font-size:18px;background-color:red">
+        </td>
+        </table>
+    </div>
+</form>
+  </div>
+
+
+</div>
+
+
+
+
+<script>
+        //   var table=document.getElementsByTagName('table')[0];
+        const deleteButton = document.getElementById('delete');
+        const editButton = document.getElementById('edit');
+    const editFormContainer = document.getElementById('edit-form-container');
+    const cancelButton = document.getElementById('cancel');
+    
+    editButton.addEventListener('click', () => {
+        editFormContainer.style.display = 'block';
+    });
+    
+    cancelButton.addEventListener('click', () => {
+        editFormContainer.style.display = 'none';
+    });
+
+        deleteButton.addEventListener('click', () => {
+        editFormContainer.style.display = 'none';
+    });
+
+
+       
+        </script>
 </main>
 </body>
 

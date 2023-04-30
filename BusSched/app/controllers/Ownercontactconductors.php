@@ -6,8 +6,8 @@ class Ownercontactconductors
 
     public function index()
     {
-        $contactconductor = new contact();
-        $contactconductors = $contactconductor->getContact();
+        $contactconductor = new user();
+        $contactconductors = $contactconductor->getContactDetails('conductor');
 
         // $data = [];
      

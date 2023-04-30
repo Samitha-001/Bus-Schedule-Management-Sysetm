@@ -47,23 +47,35 @@ include '../app/views/components/ownersidebar.php';
             <table border='1' class="styled-table">
                 <tr>
                     <th>Name</th>
-                    <th>EmailAddress</th>
+                    <th>Email</th>
+                    <th>Address</th>
                     <th>Contact No</th>
-                    <th>Assinged Bus</th>
+                    <th>Assigned Bus</th>
                 </tr>
 
-                <!-- <?php
-                foreach ($contactdrivers as $driver) {
+                <?php
+                
+                $testuser = new User();
+                $driverContacts = $testuser->getContactDetails('driver');
+                // show($driverContacts);
+                // $i = 0;
+                foreach ($driverContacts as $driverContact) {
                     echo "<tr>";
-                    echo "<td> $driver->name </td>";
-                    echo "<td> $driver->email </td>";
-                    echo "<td> $driver->tp </td>";
-                    echo "<td> $driver->bus_no </td>";
+                    echo "<td>$driverContact[name]</td>";
+                    echo "<td> $driverContact[email] </td>";
+                    echo "<td>$driverContact[address]</td>";
+                    echo "<td> $driverContact[phone] </td>";
+                    echo "<td> $driverContact[assigned_bus] </td>";
                     echo "</tr>";
-                } ?> -->
+                } ?>
 
             </table>
         </div>
+        <?php
+        
+        // $testuser = new User();
+        // $testuser->getContactDetails('driver');
+        ?>
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
 

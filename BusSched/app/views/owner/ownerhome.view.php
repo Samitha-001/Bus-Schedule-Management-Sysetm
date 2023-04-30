@@ -103,7 +103,7 @@ include '../app/views/components/ownersidebar.php';
         </div>
 
         <div class="card-container" id="buses-card">
-        <a href="<?= ROOT ?>/registernew">
+        <a href="<?= ROOT ?>/ownerbuses">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">

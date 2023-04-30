@@ -32,12 +32,12 @@ include '../app/views/components/ownersidebar.php';
     </div>
 
     <div class="column middle">
-   <form method="post" id="register-bus" style="margin-left: 150px;background-color:white;font-size:18px;line-height:3em" >
+   <form method="post" id="register-bus" >
     <?php if (!empty($errors)) : ?>
         <?= implode("<br>", $errors) ?>
     <?php endif; ?>
 
-    <div>
+    <div >
         <table>
             <tr>
             <td><label for="bus_no">Bus Number:</label></td>
@@ -77,7 +77,7 @@ include '../app/views/components/ownersidebar.php';
             <td><input type="text" id="driver" name="driver"></td>
             </tr>
         </table>
-        <input id="submit-btn" type="submit" class="button-green" style="margin-left:250px;font-size:18px;" value="Submit">    
+        <input id="submit-btn" type="submit" class="button-green" value="Submit">    
     </div>
 </form>
   </div>
@@ -87,7 +87,6 @@ include '../app/views/components/ownersidebar.php';
 
 </html>
 
-<!-- addition of two numbers -->
 
 
 

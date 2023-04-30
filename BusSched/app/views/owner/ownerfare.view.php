@@ -14,7 +14,8 @@ if (!isset($_SESSION['USER'])) {
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
     <title>OwnerFares</title>
-    <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
+    <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
     <script src="<?= ROOT ?>/assets/js/landing.js"></script>
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
 </head>
@@ -37,15 +38,15 @@ include '../app/views/components/ownersidebar.php';?>
 <div class="row" style="margin-left:220px;"> 
     <h1 style="margin-top:40px;margin-bottom:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
     <div class="fare-from-to-grid">
-        <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" style="width:350px;font-size:18px;height:45px;text-align:center" required>
-        <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" style="width:350px;font-size:18px;height:45px;text-align:center" required>
+        <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" style="width:200px;font-size:15px;height:35px;text-align:center" required>
+        <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" style="width:200px;font-size:15px;height:35px;margin-left:5px;text-align:center" required>
 
-        <button id="calculate-fare" class="button-orange" style="width:350px;font-size:20px;height:55px;text-align:center">Find fare</button>
-        <div id="fare-result" class='span-3'></div>
+        <button id="calculate-fare" class="button-orange" style="width:200px;font-size:15px;height:42px;padding-bottom:3px;padding-top:3px;text-align:center">Find fare</button>
+        <div id="fare-result" class='span-3' style="font-size:20px;margin:30px 0px 5px 30px;color:orangered"></div>
     </div>
-    <section id="busfare"  style="font-size:75px">
+    <section id="busfare" >
         <div style="width:100%">
-            <table id="busfare-table" style="font-size:15px;">
+            <table id="busfare-table">
                 <?php
 
                 $len = count($halts);
