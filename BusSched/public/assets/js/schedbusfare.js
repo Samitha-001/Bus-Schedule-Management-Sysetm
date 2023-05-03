@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const table = document.querySelectorAll("table")[1];
+    const table = document.querySelector("table");
     let inputrow = document.querySelector(".dummy-input");
   let dummyrow = document.querySelector(".dummy-row");
   const addfarebtn = document.querySelector(".add-btn");
@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     addfarebtn.addEventListener("click", (e) => {
         // disable add button
+        console.log("H");
         addfarebtn.disabled = true;
     
         let irow = inputrow.cloneNode(true);
@@ -28,10 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }else if (e.target.classList.contains("add-row-btn")) {
         addfarebtn.disabled = false;
         addRow(e);
-    }else if (e.target.classList.contains("cancel-add-btn")) {
+    }else if (e.target.classList.contains("cancel-btn")) {
         addfarebtn.disabled = false;
         cancelAdd(e);
-    }
+    }else if (e.target.classList.contains("save-btn")) {
+        addbusbtn.disabled = false;
+        saveRow(e);
+      }
   });
 
   function cancelAdd(e) {

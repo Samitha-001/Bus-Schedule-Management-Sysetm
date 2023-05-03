@@ -18,7 +18,8 @@ if (!isset($_SESSION['USER'])) {
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
     <link href="<?= ROOT ?>/assets/css/schedfare.css" rel="stylesheet">
-    <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script>
+    <!-- <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script> -->
+    <script src="<?= ROOT ?>/assets/js/schedbusfare.js">console.log("Hey")</script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Bus Fares</h3>
             </div>
-            <div><button id="add-btn" class="button-grey">Add New</button></div>
+            <div><button class="button-grey add-btn">Add New</button></div>
         </div>
 
         <!-- <form method="post" id="view_fare" style="display:none">
@@ -156,7 +157,7 @@ if (!isset($_SESSION['USER'])) {
               <input type="text" value="" placeholder="dest">
             </td>
             <td data-fieldname="bus_route">
-              <input type="number" value="" placeholder="Seats">
+              <input type="text" value="" placeholder="Route">
             </td>
             <td data-fieldname="amount">
               <input type="text" value="" placeholder="amount">
@@ -180,10 +181,10 @@ if (!isset($_SESSION['USER'])) {
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon save-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-btn" width='20px' height='20px'>
             </td>
-            <td class='add-options'>
+            <!-- <td class='add-options'>
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
-            </td>
+            </td> -->
           </tr>
           <tr class='dummy-row'>
             <td></td>
