@@ -14,10 +14,8 @@ class Schedules
         // $scheds = $schedule->generateSchedule();
         // $schedules = $schedule->generateSchedule1($scheds);
 
-        $numBusesFromA = 7;
-        $numBusesFromB = 5;
-        $constantBuses = 3;
-        $schedules = $schedule->assignBusesToTimeSlots($buses);
+        $bus = json_decode(json_encode($buses), true);
+        $schedules = $schedule->assignBusesToTimeSlots($bus, "Piliyandala", "Pettah");
         
 
         $data = [];
