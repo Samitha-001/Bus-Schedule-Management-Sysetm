@@ -125,44 +125,7 @@ class Schedule extends Bus
     return $schedule;
 }
 
-function generateSchedule1($numBusesFromA, $numBusesFromB, $constantBuses = 3) {
-    $schedule = array();
-    $time = 0;
-    $constantBusesCount = 0;
-    $busAtA = 1;
-    $busAtB = 1;
-    while ($busAtA <= $numBusesFromA && $busAtB <= $numBusesFromB) {
-        if ($constantBusesCount < $constantBuses) {
-            $schedule[] = array("bus" => "A".$busAtA, "start" => $time);
-            $schedule[] = array("bus" => "B".$busAtB, "start" => $time);
-            $busAtA++;
-            $busAtB++;
-            $constantBusesCount++;
-        } else {
-            $nextBusFromA = "A".$busAtA;
-            $nextBusFromB = "B".$busAtB;
-            foreach ($schedule as $trip) {
-                if ($trip["bus"] == $nextBusFromA) {
-                    if ($trip["start"] + 60 <= $time) {
-                        $schedule[] = array("bus" => "B".$busAtB, "start" => $time);
-                        $busAtA++;
-                        $busAtB++;
-                        break;
-                    }
-                } elseif ($trip["bus"] == $nextBusFromB) {
-                    if ($trip["start"] + 60 <= $time) {
-                        $schedule[] = array("bus" => "A".$busAtA, "start" => $time);
-                        $busAtA++;
-                        $busAtB++;
-                        break;
-                    }
-                }
-            }
-        }
-        $time += 60;
-    }
-    return $schedule;
-}
+
     
 function assignBusesToTimeSlots($busesArray) {
     // Calculate the number of buses needed for each time slot

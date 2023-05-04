@@ -17,7 +17,7 @@ class Schedules
         $numBusesFromA = 7;
         $numBusesFromB = 5;
         $constantBuses = 3;
-        $schedules = $schedule->assignBusesToTimeSlots($numBusesFromA, $numBusesFromB, $constantBuses);
+        $schedules = $schedule->assignBusesToTimeSlots($buses);
         
 
         $data = [];
