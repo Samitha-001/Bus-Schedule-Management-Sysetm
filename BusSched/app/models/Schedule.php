@@ -164,6 +164,68 @@ function generateSchedule1($numBusesFromA, $numBusesFromB, $constantBuses = 3) {
     return $schedule;
 }
     
+function assignBusesToTimeSlots($busesArray) {
+    // Calculate the number of buses needed for each time slot
+    $numBusesSlot1 = ceil(count($busesArray) * 0.3);
+    $numBusesSlot2 = ceil(count($busesArray) * 0.2);
+    $numBusesSlot3 = ceil(count($busesArray) * 0.1);
+    $numBusesSlot4 = ceil(count($busesArray) * 0.3);
+    $numBusesSlot5 = ceil(count($busesArray) * 0.1);
+
+    // Assign the constant buses that run from 6.00 a.m. to 8.00 a.m. from A to B
+    $schedule[] = array('bus' => "Constant Bus 1", 'from' => 'A', 'to' => 'B', 'arrival_time' => date_create('6:00 am'), 'departure_time' => date_create('7:00 am'));
+    $schedule[] = array('bus' => "Constant Bus 2", 'from' => 'A', 'to' => 'B', 'arrival_time' => date_create('6:15 am'), 'departure_time' => date_create('7:15 am'));
+    $schedule[] = array('bus' => "Constant Bus 3", 'from' => 'A', 'to' => 'B', 'arrival_time' => date_create('6:30 am'), 'departure_time' => date_create('7:30 am'));
+
+    // Assign buses for slot 1 (6.00 a.m. to 8.00 a.m.)
+    $nextDepartureTime = date_create('7:45 am');
+    for ($i = 0; $i < $numBusesSlot1; $i++) {
+        $arrivalTime = clone $nextDepartureTime;
+        $departureTime = date_create_from_format('Y-m-d H:i:s', $nextDepartureTime->format('Y-m-d H:i:s'))->modify('+1 hour');
+        $schedule[] = array('bus' => "Slot 1 Bus $i", 'from' => 'A', 'to' => 'B', 'arrival_time' => $arrivalTime, 'departure_time' => $departureTime);
+        $returnDepartureTime = date_create_from_format('Y-m-d H:i:s', $departureTime->format('Y-m-d H:i:s'))->modify('+20 minutes');
+        $schedule[] = array('bus' => "Slot 1 Bus $i", 'from' => 'B', 'to' => 'A', 'arrival_time' => $departureTime, 'departure_time' => $returnDepartureTime);
+        $nextDepartureTime = date_create_from_format('Y-m-d H:i:s', $departureTime->format('Y-m-d H:i:s'))->modify('+15 minutes');
+    }
+
+    // Assign buses for slot 2 (8.00 a.m. to 1.00 p.m.)
+    $nextDepartureTime = date_create('1:45 pm');
+    for ($i = 0; $i < $numBusesSlot2; $i++) {
+        $arrivalTime = clone $nextDepartureTime;
+        $departureTime = date_create_from_format('Y-m-d H:i:s', $nextDepartureTime->format('Y-m-d H:i:s'))->modify('+1 hour');
+        $schedule[] = array('bus' => "Slot 2 Bus $i", 'from' => 'A', 'to' => 'B',        'arrival_time' => $arrivalTime, 'departure_time' => $departureTime);
+        $returnDepartureTime = date_create_from_format('Y-m-d H:i:s', $departureTime->format('Y-m-d H:i:s'))->modify('+20 minutes');
+        $schedule[] = array('bus' => "Slot 3 Bus $i", 'from' => 'B', 'to' => 'A', 'arrival_time' => $departureTime, 'departure_time' => $returnDepartureTime);
+        $nextDepartureTime = date_create_from_format('Y-m-d H:i:s', $returnDepartureTime->format('Y-m-d H:i:s'))->modify('+15 minutes');
+    }
+
+    // Assign buses for slot 4 (3.30 p.m. to 6.30 p.m.)
+    $nextDepartureTime = date_create('7:15 pm');
+    for ($i = 0; $i < $numBusesSlot4; $i++) {
+        $arrivalTime = clone $nextDepartureTime;
+        $departureTime = date_create_from_format('Y-m-d H:i:s', $nextDepartureTime->format('Y-m-d H:i:s'))->modify('+1 hour');
+        $schedule[] = array('bus' => "Slot 4 Bus $i", 'from' => 'A', 'to' => 'B', 'arrival_time' => $arrivalTime, 'departure_time' => $departureTime);
+        $returnDepartureTime = date_create_from_format('Y-m-d H:i:s', $departureTime->format('Y-m-d H:i:s'))->modify('+20 minutes');
+        $schedule[] = array('bus' => "Slot 4 Bus $i", 'from' => 'B', 'to' => 'A', 'arrival_time' => $departureTime, 'departure_time' => $returnDepartureTime);
+        $nextDepartureTime = date_create_from_format('Y-m-d H:i:s', $departureTime->format('Y-m-d H:i:s'))->modify('+15 minutes');
+    }
+
+    // Assign buses for slot 5 (6.30 p.m. to 8.30 p.m.)
+    $nextDepartureTime = date_create('9:15 pm');
+    for ($i = 0; $i < $numBusesSlot5; $i++) {
+        $arrivalTime = clone $nextDepartureTime;
+        $departureTime = date_create_from_format('Y-m-d H:i:s', $nextDepartureTime->format('Y-m-d H:i:s'))->modify('+1 hour');
+        $schedule[] = array('bus' => "Slot 5 Bus $i", 'from' => 'A', 'to' => 'B', 'arrival_time' => $arrivalTime, 'departure_time' => $departureTime);
+        $returnDepartureTime = date_create_from_format('Y-m-d H:i:s', $departureTime->format('Y-m-d H:i:s'))->modify('+20 minutes');
+        $schedule[] = array('bus' => "Slot 5 Bus $i", 'from' => 'B', 'to' => 'A', 'arrival_time' => $departureTime, 'departure_time' => $returnDepartureTime);
+        $nextDepartureTime = date_create_from_format('Y-m-d H:i:s', $departureTime->format('Y-m-d H:i:s'))->modify('+15 minutes');
+    }
+
+    // Return the final schedule
+    return $schedule;
+}
+
+
     
     
     
