@@ -24,8 +24,13 @@ class Passengerticket
             $data['passenger'] = $_SESSION['USER']->username;
             // booking time is current time
             $data['booking_time'] = date('Y-m-d H:i:s');
-            // $halt = new Halt();
             $ticket->addTicket($data);
+
+            // if payment is points, deduct points from passenger
+            if ($data['payment_method'] == 'points') {
+                $point = new Point();
+                $point->deductPoints($data['price']);
+            }
 
             // Send a response
             $response = array('status' => 'success', 'data' => $data);

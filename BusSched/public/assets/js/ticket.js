@@ -16,13 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let points = pointsBalanceSpan.innerHTML;
   let reservedSeatsSpan = document.getElementById("reserved-seats");
 
-  // if (points < fare) { // TODO
-  // }
-  // console.log(points);
-
   for (const button of radioButtons) {
     button.addEventListener("change", function () {
       if (button.value === "points") {
+        if (points-5 < totFareSpan.innerHTML) {
+          alert("Insufficient points balance");
+          button.checked = false;
+          return;
+        }
         pointsBalance.style.display = "contents";
       } else {
         pointsBalance.style.display = "none";
@@ -49,11 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // reserved seats
     data["seats_reserved"] = document.getElementById("reserved-seats").innerHTML.split(": ")[1];
-
     // trip id
     tdtrip = document.getElementById("trip-id");
     data["trip_id"] = tdtrip.getAttribute("data-tripid");
-    data["price"] = totFareSpan.innerHTML;
+    data["price"] = Number(totFareSpan.innerHTML);
     insertRow(data);
     window.location.href = `${ROOT}/passengerschedule`;
 
@@ -93,19 +93,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // check if to is an option value in halts
     if (options.includes(to)) {
-      console.log("to is valid");
+      // console.log("to is valid");
       // check if from and to are in the same index
       if (options.indexOf(from) < options.indexOf(to)) {
         data['to'] = to;
-        console.log("to is after from");
+        // console.log("to is after from");
         toInput.disabled = true;
         getFare(data);
       } else {
         alert("Please select a valid destination");
       }
     } else {
-      console.log("to is invalid");
-
+      // console.log("to is invalid");
       // alert("Please select a valid destination");
     }
   });
@@ -137,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   let reservedSeatsTd = document.getElementById("reserved-seats-td");
-  // whenever reserved seats is changed
+  // whenever reserved seats are changed
   // checking if the data attribute is changed
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
@@ -147,12 +146,21 @@ document.addEventListener("DOMContentLoaded", () => {
         reservationChargeSpan.innerHTML = baseFareLi.innerHTML * reservedSeatsCount * 15/100;
 
         reservedSeatsTd.innerHTML = mutation.target.getAttribute('data-seats-no');
-        totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML + baseFareLi.innerHTML * reservedSeatsCount * 15/100;
+        totFareSpan.innerHTML = passengerCount * baseFareLi.innerHTML + baseFareLi.innerHTML * reservedSeatsCount * 15 / 100;
+
+        disablePoints();
       }
     });
   });
   observer.observe(reservedSeatsSpan, { attributes: true });
 
+  // whenever totFare is changed (points)
+  totFareSpan.addEventListener("DOMSubtreeModified", function () {
+    // console.log("totFare changed");
+    disablePoints();
+  });
+
+  
 
   let baseFareLi = document.getElementById("base-fare");
   
@@ -210,5 +218,19 @@ document.addEventListener("DOMContentLoaded", () => {
     fromInput.value = "";
     toInput.value = "";
   });
-  
+
+  // function to disable points radio if points balance is insufficient
+  function disablePoints() {
+    if (points-5 < Number(totFareSpan.innerHTML)) {
+      // make radio unchecked
+      document.getElementById("points").checked = false;
+      // disable radio button
+      document.getElementById("points").disabled = true;
+      
+    }
+    else {
+      // enable radio button
+      document.getElementById("points").disabled = false;
+    }
+  }
 });

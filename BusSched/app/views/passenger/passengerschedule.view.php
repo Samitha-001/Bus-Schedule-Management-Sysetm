@@ -55,7 +55,7 @@
 
     <div class="row">
         <div class="col-10 col-s-10" style="margin: auto;">
-            <table style="width: 100%; font-size: 12px;">
+            <table id="schedule-table" style="width: 100%; font-size: 12px;">
                 <tr>
                     <th>Date</th>
                     <th>Departure Time</th>
@@ -63,18 +63,24 @@
                     <th>From</th>
                     <th>To</th>
                     <th>Bus No</th>
+                    <th>Bus Type</th>
                     <th>Price</th>
                     <th>Seats Available</th>
                     <th>Book</th>
                 </tr>
                 <?php if($trips): foreach ($trips as $trip): ?>
                 <tr data-id = <?= $trip->id ?> class='data-row'>
+                <?php
+                    $tripx = new Trip();
+                    $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
+                ?>
                     <td data-fieldname="trip_date"><?= $trip->trip_date ?></td>
                     <td data-fieldname="departure_time"><?= $trip->departure_time ?></td>
                     <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                     <td>-</td>
                     <td>-</td>
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
+                    <td data-fieldname="bus_type"><?= $bus->type ?></td>
                     <td data-fieldname="price">-</td>
                     <td data-fieldname="seats_available">-</td>
                     <td class="buy-ticket-btn">

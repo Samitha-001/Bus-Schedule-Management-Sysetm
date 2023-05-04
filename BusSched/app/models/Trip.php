@@ -23,4 +23,11 @@ class Trip extends Model
     {
         return $this->first($data);
     }
+
+    // get bus of a trip
+    public function getBus($data)
+    {
+        $bus = new Bus();
+        return $bus->first(['bus_no' => $data['bus_no']]);
+    }
 }

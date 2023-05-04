@@ -59,7 +59,7 @@ td {
 /* freeze first row */
 tr:first-child {
   position: sticky;
-  top: 12px;
+  /* top: 12px; */
   background-color: #fff;
   z-index: 4;
   padding: 10px;
@@ -302,7 +302,7 @@ div.from-to {
 
 .ticket-body {
   display: block;
-  background: #ffffff;
+  background: white;
   border-radius: 5px;
   padding: 15px;
   padding-bottom: 30px;
@@ -409,6 +409,16 @@ ul {
   font-weight: bold;
 }
 
-#total-fare-for-tickets-td, #reservation-charge {
-  font-weight: bold;
+input:disabled+label {
+  color: #BEC2CF;
+}
+
+#schedule-table th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+#schedule-table {
+  overflow-x: scroll;
+  overflow-y: scroll;
 }

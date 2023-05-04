@@ -15,7 +15,7 @@ body {
   justify-content: center;
   padding: 10px;
   position: sticky;
-  top: 70px;
+  top: 69px;
   z-index: 1;
 }
 #profile-header h1 {
@@ -382,4 +382,67 @@ label.star:before {
   color:#f15f22;
   font-size: 13.5px;
   padding: 10px;
+}
+
+.tickets-table {
+  display: block;
+  color: #24315e;
+  white-space: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  border-collapse: separate;
+  background-color: white;
+  margin-left: auto;
+  border-radius: 5px;
+
+  /* height: 70vh; */
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+
+.tickets-table tbody {
+  display: table;
+  width: 100%;
+}
+
+
+.tickets-table th,
+.tickets-table td {
+  padding: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: white;
+  text-align: center;
+  font-size: 11px;
+}
+
+/* freeze first row */
+.tickets-table tr:first-child {
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+  z-index: 4;
+  padding: 10px;
+}
+
+/* not first row when hovered*/
+.tickets-table tr:not(:first-child):hover {
+  background-color: #f15f22;
+  /* color: white; */
+  /* cursor: pointer; */
+}
+
+.tickets-table th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.tickets-table {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  max-height: 490px;
 }
