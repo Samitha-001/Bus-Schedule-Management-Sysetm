@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 04, 2023 at 05:37 AM
+-- Generation Time: May 04, 2023 at 06:04 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -747,19 +747,21 @@ INSERT INTO `halt` (`id`, `route_id`, `name`, `distance_from_source`, `fare_from
 -- --------------------------------------------------------
 
 --
--- Table structure for table `location_updates`
+-- Table structure for table `location_update`
 --
 
-DROP TABLE IF EXISTS `location_updates`;
-CREATE TABLE IF NOT EXISTS `location_updates` (
+DROP TABLE IF EXISTS `location_update`;
+CREATE TABLE IF NOT EXISTS `location_update` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `user_role` enum('conductor','passenger') NOT NULL,
   `ticket` int(11) DEFAULT NULL,
+  `halt` varchar(50) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `update-ticket` (`ticket`),
-  KEY `update-username` (`username`)
+  KEY `update-username` (`username`),
+  KEY `update-halt` (`halt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1188,9 +1190,10 @@ ALTER TABLE `halt`
   ADD CONSTRAINT `halt-route` FOREIGN KEY (`route_id`) REFERENCES `route` (`route_id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `location_updates`
+-- Constraints for table `location_update`
 --
-ALTER TABLE `location_updates`
+ALTER TABLE `location_update`
+  ADD CONSTRAINT `update-halt` FOREIGN KEY (`halt`) REFERENCES `halt` (`name`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `update-ticket` FOREIGN KEY (`ticket`) REFERENCES `e_ticket` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `update-username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE;
 

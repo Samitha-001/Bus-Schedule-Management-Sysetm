@@ -107,22 +107,22 @@ include '../app/views/components/navbar.php';
     <div class="ticket-flex" id="collected-tickets">
         <?php if ($tickets): foreach ($tickets as $ticket):
             if ($ticket->status == 'collected'): ?>
-                            <div class="ticket-card" data-id=<?= $ticket->id ?>>
-                                <h3><?= $ticket->source_halt ?> - <?= $ticket->dest_halt ?></h3>
-                                <p style="text-align:right;"><i><?= $ticket->status ?></i></p>
-                                <p>TicketID:&nbsp&nbsp<?= $ticket->id ?></p>
-                                <!-- <h1>Trip ID</h1> -->
-                                <p>Bus:&nbsp&nbspNC1111</p>
-                                <p>Seats:&nbsp&nbsp<i>unreserved</i></p>
-                                <!-- split date and time -->
-                                <p><?= $ticket->booking_time ?></p>
-                                <br>
-                                <a class="ticket-view-more ticket-button-orange" data-ticket-id="<?= $ticket->id ?>">View more</a>
-                            </div>
-                    <?php endif; endforeach; else: ?>
-                    <div class="ticket-card">
-                        <h1>No tickets found</h1>
-                    </div>
+            <div class="ticket-card" data-id=<?= $ticket->id ?>>
+                <h3><?= $ticket->source_halt ?> - <?= $ticket->dest_halt ?></h3>
+                <p style="text-align:right;"><i><?= $ticket->status ?></i></p>
+                <p>TicketID:&nbsp&nbsp<?= $ticket->id ?></p>
+                <!-- <h1>Trip ID</h1> -->
+                <p>Bus:&nbsp&nbspNC1111</p>
+                <p>Seats:&nbsp&nbsp<i>unreserved</i></p>
+                <!-- split date and time -->
+                <p><?= $ticket->booking_time ?></p>
+                <br>
+                <a class="ticket-view-more ticket-button-orange" data-ticket-id="<?= $ticket->id?>">View more</a>
+            </div>
+            <?php endif; endforeach; else: ?>
+            <div class="ticket-card">
+                <h1>No tickets found</h1>
+            </div>
         <?php endif; ?>
         </div>
     </div>
@@ -204,7 +204,7 @@ include '../app/views/components/navbar.php';
         </table>
     </div>
 
-    <div id="collected-ticket-details" class="ticket-details-card" style="display:none">
+    <div id="collected-ticket-details" class="ticket-details-card" style="display:none"  data-username="<?=$_SESSION['USER']->username ?>">
         <span class="close">
             <img src="<?= ROOT ?>/assets/images/icons/cancel.png" alt="close" width="20px">
         </span>
