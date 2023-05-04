@@ -59,7 +59,7 @@ td {
 /* freeze first row */
 tr:first-child {
   position: sticky;
-  top: 12px;
+  /* top: 12px; */
   background-color: #fff;
   z-index: 4;
   padding: 10px;
@@ -302,7 +302,7 @@ div.from-to {
 
 .ticket-body {
   display: block;
-  background: #ffffff;
+  background: white;
   border-radius: 5px;
   padding: 15px;
   padding-bottom: 30px;
@@ -339,10 +339,6 @@ div.from-to {
 
 .ticket-body table {
   margin-top: 0px;
-}
-
-.ticket-body th {
-  padding-bottom: 10px;
 }
 
 .ticket-body a {
@@ -386,4 +382,43 @@ ul {
   width: 30%;
   height: 40px;
   min-width: fit-content;
+}
+
+#price-breakdown th {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 400;
+  color: #7c839e;
+  /* padding-right: 5px; */
+}
+
+#price-breakdown tr td{
+  width: 15%;
+  text-align: right;
+}
+
+/* first child */
+#price-breakdown tr:first-child {
+  top: 0px;
+}
+
+/* last child */
+#price-breakdown tr:last-child td, #price-breakdown tr:last-child th {
+  color: #24315e;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input:disabled+label {
+  color: #BEC2CF;
+}
+
+#schedule-table th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+#schedule-table {
+  overflow-x: scroll;
+  overflow-y: scroll;
 }

@@ -12,7 +12,9 @@ class Driver extends Model
         'address',
         'licence_no',
         'date_of_birth',
-        'assigned_bus'
+        'assigned_bus',
+        'rating',
+        'no_of_reviews'
     ];
 
     public function driverInfo()

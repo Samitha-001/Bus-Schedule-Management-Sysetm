@@ -32,4 +32,14 @@ class Point extends Model
 
         return $this->insert($data);
     }
+
+    // deduct points
+    public function deductPoints($amount)
+    {
+        $passenger = new Passenger();
+        $username = $_SESSION['USER']->username;
+        $pointsbalance = $passenger->first(['username' => $username])->points;
+        $amount = $pointsbalance - $amount;
+        $passenger->updatePassenger($username, ['points' => $amount]);
+    }
 }

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         td.style.backgroundColor = "#f4511e";
         
-        fareResultDiv.textContent = "Fare from "+farefrom+" to "+fareto+": " + td.textContent;
+        fareResultDiv.textContent = "Fare from "+farefrom+" to "+fareto+": " + td.textContent + " LKR";
     }
 
     // add event listener to busfareTable
@@ -57,7 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let farefrom = tr.dataset.haltfrom;
         let fareto = target.dataset.haltto;
         if (target.className == "fare-td") {
-            fareResultDiv.textContent = "Fare from " + farefrom + " to " + fareto + ": " + target.textContent;
+            fareResultDiv.textContent = "Fare from " + farefrom + " to " + fareto + ": " + target.textContent + " LKR";
+            // change value on farefrom input tp farefrom
+            farefromInput.value = farefrom;
+            faretoInput.value = fareto;
         }
 
     });
@@ -70,14 +73,14 @@ document.addEventListener("DOMContentLoaded", function () {
         var from = document.getElementById("from").value;
         var to = document.getElementById("to").value;
         var date = document.getElementById("date").value;
-        var passengers = document.getElementById("passengers").value;
+        // var passengers = document.getElementById("passengers").value;
         
         // add them to data
         var data = {
             from: from,
             to: to,
             date: date,
-            passengers: passengers
+            // passengers: passengers
         };
 
         // get current url
@@ -101,11 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
             // add date to url
             url += "&date=" + date;
         }
-        // if passengers is not empty
-        if (passengers) {
-            // add passengers to url
-            url += "&passengers=" + passengers;
-        }
+        // // if passengers is not empty
+        // if (passengers) {
+        //     // add passengers to url
+        //     url += "&passengers=" + passengers;
+        // }
         
         // remove last part word after /
         currentUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/"));

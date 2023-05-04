@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let ticketDeets = getTicketDetails(ticketId);
     // TICKET DETAILS FOR RATING
     ticketDeets.then((ticket) => {
-      console.log(ticket);
+      // console.log(ticket);
       // add data attributes to ratepopup
       ratePopup.setAttribute("data-ticket-id", ticket['ticket']["id"]);
       ratePopup.setAttribute("data-rater", ticket['ticket']["passenger"]);
@@ -307,6 +307,33 @@ document.addEventListener("DOMContentLoaded", function () {
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
     ticketDetails.style.display = "none";
+
+    let halt = updateLocationDiv.getElementsByTagName("h1")[0].innerHTML
+    let ticketId = ticketDetails.getAttribute("data-ticket-id");
+    let username = ticketDetails.getAttribute("data-username");
+
+    let data = { id: ticketId, username: username, user_role: 'passenger', halt: halt };
+
+    console.log(data);
+    
+    // send data to server
+    let url = `${ROOT}/passengertickets/api_update_location`;
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
     showCollectedTicketsFunc();
   });
 
@@ -348,11 +375,14 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // passenger got off bus update database function
   function passengerGotOffBus() {
-    // updating database
     // get data attribute from updateLocationDiv
     // get value of element
     let ticketId = ticketDetails.getAttribute("data-ticket-id");
-    let data = { id: ticketId };
+    let dest = document.getElementById("got-off-dest").innerHTML;
+    
+    // get username
+    let username = ticketDetails.getAttribute("data-username");
+    let data = { id: ticketId, username: username, user_role: 'passenger', halt: dest };
 
     // send data to server
     let url = `${ROOT}/passengertickets/api_update_location`;
