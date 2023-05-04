@@ -22,7 +22,8 @@ class Passengertickets
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
-
+            
+            // update ticket status from collected to inactive
             $id = $postData['id'];
             $this->updateTicketStatus($id, 'inactive');
 
