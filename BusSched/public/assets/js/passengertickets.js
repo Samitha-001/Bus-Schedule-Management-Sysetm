@@ -235,7 +235,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let ticketDeets = getTicketDetails(ticketId);
     // TICKET DETAILS FOR RATING
     ticketDeets.then((ticket) => {
-      // console.log(ticket);
       // add data attributes to ratepopup
       ratePopup.setAttribute("data-ticket-id", ticket['ticket']["id"]);
       ratePopup.setAttribute("data-rater", ticket['ticket']["passenger"]);
@@ -313,8 +312,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let username = ticketDetails.getAttribute("data-username");
 
     let data = { id: ticketId, username: username, user_role: 'passenger', halt: halt };
-
-    console.log(data);
     
     // send data to server
     let url = `${ROOT}/passengertickets/api_update_location`;
@@ -468,6 +465,5 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(error);
       });
     
-    console.log(data);
   }
 });

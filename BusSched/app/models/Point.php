@@ -14,7 +14,6 @@ class Point extends Model
     ];
 
     // record point gifting
-    // TODO: add updating points of users
     public function giftPoints($data)
     {
         $amount = $data['amount'];
