@@ -69,4 +69,5 @@ class Bus extends Model
         echo $this->insert($data);
     }
 
+    
 }

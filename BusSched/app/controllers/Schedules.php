@@ -14,8 +14,8 @@ class Schedules
         // $scheds = $schedule->generateSchedule();
         // $schedules = $schedule->generateSchedule1($scheds);
 
-        $bus = json_decode(json_encode($buses), true);
-        $schedules = $schedule->assignBusesToTimeSlots($bus, "Piliyandala", "Pettah");
+        // $bus = json_decode(json_encode($buses), true);
+        $schedules = $schedule->generateSchedule1($buses, '2023-05-05');
         
 
         $data = [];

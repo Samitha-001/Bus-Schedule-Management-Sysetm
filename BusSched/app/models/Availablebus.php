@@ -8,14 +8,8 @@ class Availablebus extends Model
     protected $allowedColumns = [
         'id',
         'bus_no',
-        'type',
-        'seats_no',
-        'route',
-        'start',
-        'dest',
-        'owner',
-        'conductor',
-        'driver'
+        'availability',
+        'date'
     ];
 
     public function validate($data)
@@ -42,31 +36,31 @@ class Availablebus extends Model
         return false;
     }
 
-    public function getBuses()
-    {
-        return $this->findAll();
-    }
+    // public function getBuses()
+    // {
+    //     return $this->findAll();
+    // }
 
-    public function getOwnerBuses($owner)
-    {
-        return $this->where(['owner' => $owner]);
-    }
+    // public function getOwnerBuses($owner)
+    // {
+    //     return $this->where(['owner' => $owner]);
+    // }
 
-    public function deleteBus($id)
-    {
-        return $this->delete($id);
-    }
-    public function updateBus($id, $data)
-    {
-        return $this->update($id, $data);
-    }
+    // public function deleteBus($id)
+    // {
+    //     return $this->delete($id);
+    // }
+    // public function updateBus($id, $data)
+    // {
+    //     return $this->update($id, $data);
+    // }
 
-    // add new bus
-    public function addBus($data)
-    {
-        // uppercase first 2 letters of bus number in data
-        $data['bus_no'] = strtoupper(substr($data['bus_no'], 0, 2)) . substr($data['bus_no'], 2);
-        echo $this->insert($data);
-    }
+    // // add new bus
+    // public function addBus($data)
+    // {
+    //     // uppercase first 2 letters of bus number in data
+    //     $data['bus_no'] = strtoupper(substr($data['bus_no'], 0, 2)) . substr($data['bus_no'], 2);
+    //     echo $this->insert($data);
+    // }
 
 }

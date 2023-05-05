@@ -97,32 +97,33 @@ if (!isset($_SESSION['USER'])) {
                     
                     <th>Starting Halt</th>
                     <th>Bus No</th>
-                    <th>Type</th>
+                    
                     <th>Departure</th>
                     <th>Arrival</th>
+                    <th>Type</th>
                     <!-- <th>Action</th> -->
                 </tr>
 
                 <?php
                 $schedulesObject = json_decode(json_encode($schedules), false);
 
-                // foreach ($schedulesObject as $bus=>$schedule) {
-                //     echo "<tr>";
-                //     //echo "<td> $schedule->id </td>";
-                //     echo "<td> $schedule->start</td>";
-                //     // echo "<td> $schedule->bus_route</td>";
-                //     echo "<td> $schedule->bus_no</td>";
-                //     echo "<td> $schedule->type</td>";
-                //     echo "<td> $schedule->departure_time</td>";
-                //     echo "<td> $schedule->arrival_time</td>";
-                //     echo "</tr>";
+                foreach ($schedulesObject as $schedule) {
+                    echo "<tr>";
+                    //echo "<td> $schedule->id </td>";
+                    echo "<td> $schedule->start</td>";
+                    // echo "<td> $schedule->bus_route</td>";
+                    echo "<td> $schedule->bus_no</td>";
+                    // echo "<td> $schedule->type</td>";
+                    echo "<td> $schedule->departure_time</td>";
+                    echo "<td> $schedule->arrival_time</td>";
+                    echo "</tr>";
                     
                     
-                // }
-                echo "<pre>";
+                }
+                // echo "<pre>";
                
-                print_r($schedules);
-                echo "</pre>";
+                // print_r($schedulesObject);
+                // echo "</pre>";
                  ?>
 
             </table>
