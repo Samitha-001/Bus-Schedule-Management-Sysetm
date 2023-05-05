@@ -243,4 +243,117 @@ function assignBusesToTimeSlots(array $buses, string $start, string $dest): arra
             }  
       
   
+function generate_schedule($date, $buses) {
+    $buses = json_decode(json_encode($buses), true);
+  // Filter available buses for the given date
+  $available_buses = array_filter($buses, function($bus) use ($date) {
+    return in_array($date, $bus->availability);
+  });
+
+  // Sort available buses by availability time
+  usort($available_buses, function($a, $b) {
+    return strtotime($a->availability) - strtotime($b->availability);
+  });
+
+  // Create empty schedule array
+  $schedule = [];
+
+  // Calculate number of buses to assign to each time slot
+  $num_buses = count($available_buses);
+  $num_slot1 = ceil($num_buses * 0.3);
+  $num_slot2 = ceil($num_buses * 0.2);
+  $num_slot3 = ceil($num_buses * 0.1);
+  $num_slot4 = ceil($num_buses * 0.3);
+  $num_slot5 = $num_buses - ($num_slot1 + $num_slot2 + $num_slot3 + $num_slot4);
+
+  // Assign buses to time slots
+  $assigned_buses = [];
+  $time_slots = [
+    ['start' => '6:00', 'end' => '8:00', 'num_buses' => $num_slot1],
+    ['start' => '8:00', 'end' => '13:00', 'num_buses' => $num_slot2],
+    ['start' => '13:00', 'end' => '15:30', 'num_buses' => $num_slot3],
+    ['start' => '15:30', 'end' => '18:30', 'num_buses' => $num_slot4],
+    ['start' => '18:30', 'end' => '20:30', 'num_buses' => $num_slot5],
+    ];
+
+
+
+
+
+
+
+// Filter buses that meet the criteria for start and destination
+$filtered_buses = array_filter($buses, function ($bus) {
+return ($bus->start == 'Piliyandala' && $bus->dest == 'Pettah') || ($bus->start == 'Pettah' && $bus->dest == 'Piliyandala');
+});
+
+// Sort buses by availability
+usort($filtered_buses, function ($a, $b) {
+return $a->availability - $b->availability;
+});
+
+// Assign buses to time slots
+foreach ($time_slots as $slot) {
+$num_buses = $slot['num_buses'];
+$buses_for_slot = array_slice($filtered_buses, 0, $num_buses);
+$filtered_buses = array_slice($filtered_buses, $num_buses);
+
+
+foreach ($buses_for_slot as $i => $bus) {
+  $start_time = strtotime($slot['start']);
+  $departure_time = date('H:i', $start_time + ($i * 20 * 60));
+  $arrival_time = date('H:i', strtotime('+1 hour', strtotime($departure_time)));
+
+  $assigned_buses[] = [
+    'bus_no' => $bus->bus_no,
+    'start' => $bus->start,
+    'type' => $bus->type,
+    'departure_time' => $departure_time,
+    'arrival_time' => $arrival_time,
+  ];
+}
+}
+
+// Generate return trips for assigned buses
+$return_trips = [];
+foreach ($assigned_buses as $bus) {
+$return_start_time = strtotime($bus['arrival_time']);
+$return_departure_time = date('H:i', $return_start_time + 10 * 60);
+$return_arrival_time = date('H:i', strtotime('+1 hour', strtotime($return_departure_time)));
+
+
+$return_trips[] = [
+  'bus_no' => $bus['bus_no'],
+  'start' => $bus['start'] == 'Piliyandala' ? 'Pettah' : 'Piliyandala',
+  'type' => $bus['type'],
+  'departure_time' => $return_departure_time,
+  'arrival_time' => $return_arrival_time,
+];
+}
+
+// Merge assigned buses and return trips into a single schedule
+$schedule = array_merge($assigned_buses, $return_trips);
+
+// Sort schedule by departure time
+usort($schedule, function ($a, $b) {
+return strtotime($a['departure_time']) - strtotime($b['departure_time']);
+});
+
+// Format schedule with date
+$formatted_schedule = [];
+foreach ($schedule as $trip) {
+$formatted_schedule[] = [
+'date' => $date,
+'bus_no' => $trip['bus_no'],
+'start' => $trip['start'],
+'type' => $trip['type'],
+'departure_time' => $trip['departure_time'],
+'arrival_time' => $trip['arrival_time'],
+];
+}
+
+return $formatted_schedule;
+}
+
+
 }
