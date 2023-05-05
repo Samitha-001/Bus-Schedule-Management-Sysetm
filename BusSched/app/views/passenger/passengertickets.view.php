@@ -40,14 +40,15 @@ include '../app/views/components/navbar.php';
     <div class="row main-content">
         <div id="profile-header">
             <div class="wrapper">
-            <a id="show-all-tickets" class="ticket-type-btn selected"><span>All</span></a>
-            <a id="show-booked-tickets" class="ticket-type-btn"><span>Booked</span></a>
-            <a id="show-collected-tickets" class="ticket-type-btn"><span>Collected</span></a>
-            <a id="show-expired-tickets" class="ticket-type-btn"><span>Expired</span></a>
-            <a id="show-inactive-tickets" class="ticket-type-btn"><span>Inactive</span></a>
+                <a id="show-booked-tickets" class="ticket-type-btn selected"><span>Booked</span></a>
+                <a id="show-collected-tickets" class="ticket-type-btn"><span>Collected</span></a>
+                <a id="show-expired-tickets" class="ticket-type-btn"><span>Expired</span></a>
+                <a id="show-inactive-tickets" class="ticket-type-btn"><span>Inactive</span></a>
+                <a id="show-all-tickets" class="ticket-type-btn"><span>All</span></a>
             </div>
         </div>
         
+        <div class=" col-10 col-s-10" style="margin:auto;">
         <div id="all-tickets" class="ticket-flex tickets-table">
         <table>
             <tr>
@@ -83,6 +84,7 @@ include '../app/views/components/navbar.php';
             <?php endif; ?>
         </table>
         </div>
+    <!-- </div> -->
         
         <div class="ticket-flex" id="booked-tickets">
         <?php if ($tickets): foreach ($tickets as $ticket):
@@ -125,8 +127,9 @@ include '../app/views/components/navbar.php';
             </div>
         <?php endif; ?>
         </div>
-    </div>
+    <!-- </div> -->
 
+    <!-- <div class=" col-10 col-s-10" style="margin:auto;"> -->
     <div class="ticket-flex tickets-table" id="expired-tickets">
     <table>
         <tr>
@@ -164,8 +167,10 @@ include '../app/views/components/navbar.php';
         <?php endif; ?>
     </table>
     </div>
+    <!-- </div> -->
 
     <!-- inactive tickets div -->
+    <!-- <div class="col-10 col-s-10" style="margin:auto;"> -->
     <div class="ticket-flex tickets-table" id="inactive-tickets">
     <table>
         <tr>
@@ -202,6 +207,7 @@ include '../app/views/components/navbar.php';
                 </div>
         <?php endif; ?>
         </table>
+    </div>
     </div>
 
     <div id="collected-ticket-details" class="ticket-details-card" style="display:none"  data-username="<?=$_SESSION['USER']->username ?>">

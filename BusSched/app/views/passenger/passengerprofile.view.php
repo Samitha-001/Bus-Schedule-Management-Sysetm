@@ -40,16 +40,14 @@ if (isset($_SESSION['USER'])) {
 ?>
     <datalist id="passenger-list">
         <?php
-        $otherpassenger = new Passenger();
-        //edit passenger info
-        $otherpassengers = $otherpassenger->passengerInfo();
-        foreach ($otherpassengers as $otherpassenger) {
-            if ($otherpassenger->username != $username) {
-                echo "<option value='" . $otherpassenger->username . "'>";
+            $otherpassenger = new Passenger();
+            //edit passenger info
+            $otherpassengers = $otherpassenger->passengerInfo();
+            foreach ($otherpassengers as $otherpassenger) {
+                if ($otherpassenger->username != $username) {
+                    echo "<option value='" . $otherpassenger->username . "'>";
+                }
             }
-        }
-        
-        
         ?>
     </datalist>
 

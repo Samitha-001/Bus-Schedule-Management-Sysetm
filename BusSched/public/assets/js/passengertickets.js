@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let gotOffBusYesBtn = document.getElementById("btn-got-off-yes");
 
   let allTicketsDiv = document.getElementById("all-tickets");
+  allTicketsDiv.style.display = "none";
 
   let bookedTicketsDiv = document.getElementById("booked-tickets");
-  bookedTicketsDiv.style.display = "none";
+  bookedTicketsDiv.style.display = "flex";
 
   let collectedTicketsDiv = document.getElementById("collected-tickets");
   collectedTicketsDiv.style.display = "none";
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showInactiveTickets.classList.remove("selected");
 
     // show all tickets
-    allTicketsDiv.style.display = "flex";
+    allTicketsDiv.style.display = "block";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
-    expiredTicketsDiv.style.display = "flex";
+    expiredTicketsDiv.style.display = "block";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
@@ -116,14 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
     showBookedTickets.classList.remove("selected");
     showCollectedTickets.classList.remove("selected");
     showExpiredTickets.classList.remove("selected");
-    showInactiveTickets.classList.add("selected");
 
     // show inactive tickets
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
-    inactiveTicketsDiv.style.display = "flex";
+    inactiveTicketsDiv.style.display = "block";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
   });

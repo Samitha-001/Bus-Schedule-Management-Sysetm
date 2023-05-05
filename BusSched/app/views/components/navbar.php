@@ -45,8 +45,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 <a href="<?= ROOT ?>/home#about-scroll">About us</a>
                 <a href="<?= ROOT ?>/home#fare-scroll">Bus fare</a>
             <?php } ?>
-            <a href="<?= ROOT ?>/passengerschedule">Schedule</a>
-            <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
+            <a href="<?= ROOT ?>/passengerschedule">Schedule & Tickets</a>
+            <!-- <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a> -->
             <a href="<?= ROOT ?>/passengertickets">My tickets</a>
 
             
@@ -70,8 +70,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <a href="<?= ROOT ?>/home#about-scroll">About us</a>
             <a href="<?= ROOT ?>/home#fare-scroll">Bus fare</a>
         <?php } ?>
-        <a href="<?= ROOT ?>/passengerschedule">Schedule</a>
-        <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
+        <a href="<?= ROOT ?>/passengerschedule">Schedule & Tickets</a>
+        <!-- <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a> -->
 
         <a href="<?= ROOT ?>/login" style="padding-top:5px;">
             <li class="signup-button" style="background-color:black; border: 2px solid #f4511e;">Login</li>
@@ -98,9 +98,9 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         <?php if (isset($_SESSION['USER'])) { ?>
         <a class="li" href="<?= ROOT ?>/passengerprofile">My Profile</a>
 
-        <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
+        <a href="<?= ROOT ?>/passengerschedule">Schedule & Tickets</a>
         <a href="<?= ROOT ?>/passengertickets">My tickets</a>
-        <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
+        <!-- <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a> -->
 
         <?php } else { ?>
         <!-- <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
@@ -114,8 +114,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 <a href="<?= ROOT ?>/home#about-scroll">About us</a>
                 <a href="<?= ROOT ?>/home#fare-scroll">Bus fare</a>
             <?php } ?>
-            <a href="<?= ROOT ?>/passengerschedule">Schedule</a>
-            <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a>
+            <a href="<?= ROOT ?>/passengerschedule">Schedule & Tickets</a>
+            <!-- <a href="<?= ROOT ?>/passengerschedule">Buy tickets</a> -->
 
         <?php } ?>
         <?php
