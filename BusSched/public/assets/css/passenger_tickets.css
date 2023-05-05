@@ -240,8 +240,8 @@ div.ticket-details-card {
   display:flex; 
   overflow-x: scroll; 
   justify-content:space-between; 
-  margin-left:60px; 
-  margin-right:60px;
+  margin: auto;
+  max-width: fit-content;
 }
 
 .location-update-card {

@@ -190,7 +190,48 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // update location cards
-  
+  // GET PROFILE PICTURE from form
+  let profilePicForm = document.getElementById("profile-pic-form");
+  let profilePicEditBtn = document.getElementById("edit-pencil");
+  // let profilePicInput = document.getElementById("profile-pic-input");
+  // value of input with name username
+  let username = profilePicForm.querySelector("input[name='username']").value;
+  let profilePicUploadBtn = document.getElementById("upload-profile-pic-btn");
+
+  profilePicEditBtn.addEventListener("click", function (e) { 
+    document.getElementById("profile-pic-from-div").style.display = "block";
+  });
+
+  profilePicUploadBtn.addEventListener("click", function (e) {
+    // prevent default
+    e.preventDefault();
+
+    // hide form
+    let profilePic = document.getElementById("profile-pic");
+    profilePic.src = `${ROOT}/assets/images/profile-pics/${username}.jpg`;
+    document.getElementById("profile-pic-from-div").style.display = "none";
+
+    // save file in uploads folder
+    let formData = new FormData(profilePicForm);
+    let url = `${ROOT}/passengerprofile/api_upload_profile_pic`;
+    let options = {
+      method: "POST",
+      body: formData,
+    };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // redirect to profile page
+          window.location.href = `${ROOT}/passengerprofile`;
+          
+        } else {
+          alert(data.message);
+        }
+      }
+      )
+
+  });
+
 
 });

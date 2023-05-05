@@ -71,6 +71,14 @@ a:hover {
   cursor: pointer;
 }
 
+#profile-picture {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  /* do not stretch image */
+  object-fit: cover;
+}
+
 /* for tablet & desktop */
 @media only screen and (min-width: 600px) {
   div.passenger-sidenav-mobile {
@@ -84,11 +92,6 @@ a:hover {
     font-size: 20px;
   }
   
-  img#profile-picture {
-    height: 80px;
-    width: 80px;
-    border-radius: 25px;
-  }
 
   div.passenger-profile-card {
     width: max-content;
@@ -121,10 +124,12 @@ h1 {
   padding: 10px;
 }
 
-#profile-picture {
-  height: 50px;
-  width: 50px;
-  border-radius: 25px;
+img#edit-pencil {
+  position: relative;
+  left: -25px;
+  bottom: -35px;
+  width: 24px;
+  cursor: pointer;
 }
 
 .passenger-profile-card {
@@ -225,6 +230,7 @@ td input[disabled] {
   color: inherit;
   cursor: default;
 }
+
 form.info-grid {
   display: none;
 }

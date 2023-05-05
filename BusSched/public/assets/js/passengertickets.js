@@ -204,8 +204,24 @@ document.addEventListener("DOMContentLoaded", function () {
   ticketDetails
     .getElementsByTagName("img")[0]
     .addEventListener("click", function () {
+
       ticketDetails.style.display = "none";
       collectedTicketsDiv.style.display = "flex";
+
+      updateLocationDiv.style.display = "none";
+      gotOffBusBtn.classList.remove("disabled");
+      updateLocationBtn.classList.remove("disabled");
+
+
+      let locationDivs = document.querySelectorAll(".location-update-card");
+
+      // remove class from each location div
+      locationDivs.forEach((div) => {
+      div.classList.remove("selected-halt");
+      div.getElementsByTagName("p")[0].innerHTML = " ";
+    
+      updateLocationDiv.getElementsByTagName("h1")[0].innerHTML = "";
+    });
     });
 
   // got off the bus popup div
@@ -244,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ratePopup.setAttribute("data-driver-id", ticket['bus']["driver"]);
     });
   });
+
   // got off from a different halt
   document.getElementById("btn-got-off-cancel").addEventListener("click", function () {
       // TODO implement no button
@@ -255,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // close button
   gotOffBusPopupCloseBtn.addEventListener("click", function () {
+    updateLocationDiv.style.display = "none";
     gotOffBusPopup.style.display = "none";
   });
 
@@ -279,6 +297,15 @@ document.addEventListener("DOMContentLoaded", function () {
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
 
+    let locationDivs = document.querySelectorAll(".location-update-card");
+    // remove class from each location div
+    locationDivs.forEach((div) => {
+      div.classList.remove("selected-halt");
+      div.getElementsByTagName("p")[0].innerHTML = " ";
+    
+      updateLocationDiv.getElementsByTagName("h1")[0].innerHTML = "";
+    });
+
   });
 
   // add event listeners for each locationDivs
@@ -286,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target.classList.contains("location-update-card")) {
       // if clicked on a div with class location-update-card
       let locationDivs = document.querySelectorAll(".location-update-card");
+
       // remove class from each location div
       locationDivs.forEach((div) => {
         div.classList.remove("selected-halt");

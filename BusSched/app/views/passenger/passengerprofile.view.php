@@ -36,7 +36,6 @@ if (isset($_SESSION['USER'])) {
     include '../app/views/components/navbar.php';
     $passenger = $data[0];
     $username = $passenger->username;
-    $otherpassenger1 = new Passenger();
 ?>
     <datalist id="passenger-list">
         <?php
@@ -52,8 +51,30 @@ if (isset($_SESSION['USER'])) {
     </datalist>
 
     <div class="passenger-profile-card" id="profile-header">
-        <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="profile pic" width="50px" height="50px">
+        <?php
+        // get profile picture if exists, else use default
+        $pics = "assets/images/profile-pics/" . $username . ".*";
+        $profile_pics = glob($pics);
+        if (count($profile_pics) > 0) {
+            $profile_pic = $profile_pics[0];
+        } else {
+            $profile_pic = "assets/images/icons/profile-pic-none.png";
+        }
+        ?>
+
+        <img id="profile-pic" src="<?= $profile_pic ?>" alt="profile pic" style="border-radius: 50px;object-fit: cover;" width="100px" height="100px">
+        <img id="edit-pencil" src="<?= ROOT ?>/assets/images/icons/edit-pencil.png">
         <h1 id="username">Hi <?= $username ?>!</h1>
+    </div>
+
+    <!-- div to add profile picture -->
+    <div class="passenger-profile-card" id="profile-pic-from-div" style="display:none;">
+        <!-- input to get image file as profile picture -->
+        <form id="profile-pic-form">
+            <input type="file" name="profile-pic" id="profile-pic-input" accept="image/*">
+            <input type="hidden" name="username" id="username" value="<?= $username ?>">
+            <button id="upload-profile-pic-btn">Upload</button>
+        </form>
     </div>
 
     <div class="nav-cards">
@@ -138,6 +159,7 @@ if (isset($_SESSION['USER'])) {
             </div>
         </div>
     </div>
+    
 </body>
 
 </html>
