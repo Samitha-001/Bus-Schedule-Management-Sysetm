@@ -114,8 +114,9 @@ if (!isset($_SESSION['USER'])) {
                     // echo "<td> $schedule->bus_route</td>";
                     echo "<td> $schedule->bus_no</td>";
                     // echo "<td> $schedule->type</td>";
-                    echo "<td> $schedule->departure_time</td>";
-                    echo "<td> $schedule->arrival_time</td>";
+                    echo "<td> $schedule->start_time</td>";
+                    echo "<td> $schedule->end_time</td>";
+                    
                     echo "</tr>";
                     
                     

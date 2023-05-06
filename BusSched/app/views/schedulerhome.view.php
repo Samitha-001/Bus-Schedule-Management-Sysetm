@@ -29,7 +29,15 @@ if ($_SESSION['USER']->role == 'passenger') {
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <title>Schedule - Home</title>
 </head>
-
+<style>
+        /* styles for screens smaller than 600px */
+        @media screen and (max-width: 600px) {
+            .card-container {
+                width: 100%;
+                margin: 10px auto;
+            }
+        }
+    </style>
 <body>
 
 <?php 
