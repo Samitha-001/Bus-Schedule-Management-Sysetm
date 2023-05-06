@@ -37,18 +37,6 @@ if (isset($_SESSION['USER'])) {
     $passenger = $data[0];
     $username = $passenger->username;
 ?>
-    <datalist id="passenger-list">
-        <?php
-            $otherpassenger = new Passenger();
-            //edit passenger info
-            $otherpassengers = $otherpassenger->passengerInfo();
-            foreach ($otherpassengers as $otherpassenger) {
-                if ($otherpassenger->username != $username) {
-                    echo "<option value='" . $otherpassenger->username . "'>";
-                }
-            }
-        ?>
-    </datalist>
 
     <div class="passenger-profile-card" id="profile-header">
         <?php
@@ -132,14 +120,12 @@ if (isset($_SESSION['USER'])) {
             <div id='gift-points-div'>
                 <div class="dropdown">
                     <select name="points_to" id="gift-to" required>
-                        <option value="" disabled selected>Select passenger</option>
+                        <option value="" disabled selected>Choose friend</option>
                         <?php
-                        $otherpassenger = new Passenger();
-                        $otherpassengers = $otherpassenger->passengerInfo();
-                        foreach ($otherpassengers as $otherpassenger) {
-                            if ($otherpassenger->username != $username) {
-                                echo "<option value='" . $otherpassenger->username . "'>" . $otherpassenger->username . "</option>";
-                            }
+                        $friend = new Friends();
+                        $friends = $friend->getFriends($username);
+                        foreach ($friends as $friend) {
+                            echo "<option value='" . $friend . "'>" . $friend . "</option>";
                         }
                         ?>
                     </select>
@@ -158,6 +144,35 @@ if (isset($_SESSION['USER'])) {
                 </div>
             </div>
         </div>
+
+        <div class="passenger-profile-card">
+            <div>
+            <h1>Friends</h1>
+            <ul style="padding:0px;">
+            <?php
+            foreach ($friends as $friend) {
+                echo "<li>" . $friend . "</li>";
+            }
+            ?>
+            </ul>
+            <span class="info-grid">
+                <span></span>
+                <button id="add-friend-btn">Add friend</button>
+            </span>
+            </div>
+
+            <div id="add-friend-div" style="display:none;">
+                <div class="dropdown">
+                    <!-- input text -->
+                    <input type="text" name="friend" id="friend" placeholder="Enter username" required>
+                </div>
+                <div class="info-grid">
+                    <button id="confirm-add-friend-btn" style="width:100;">Add</button>
+                    <button id="cancel-add-friend-btn" style="width:100;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
     </div>
     
 </body>

@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let editbtn = document.getElementById("edit-passenger-info");
 
   editbtn.addEventListener("click", function (e) {
+    e.preventDefault();
     editRow(e);
   });
 
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // add event listener to cancel button
   cancelbtn.addEventListener("click", function (e) {
+    e.preventDefault();
     cancelEdit(e);
   });
 
@@ -230,8 +232,34 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
       )
-
   });
+
+  // add friend
+  let addFriendBtn = document.getElementById("add-friend-btn");
+  let addFriendDiv = document.getElementById("add-friend-div");
+  let cancelAddFriendBtn = document.getElementById("cancel-add-friend-btn");
+  let confirmAddFriendBtn = document.getElementById("confirm-add-friend-btn");
+
+  addFriendBtn.addEventListener("click", function (e) {
+    addFriendDiv.style.display = "block";
+    addFriendBtn.style.display = "none";
+  });
+
+  cancelAddFriendBtn.addEventListener("click", function (e) {
+    addFriendDiv.style.display = "none";
+    addFriendBtn.style.display = "block";
+  });
+
+  confirmAddFriendBtn.addEventListener("click", function (e) {
+    let confirm = window.confirm("Are you sure you want to add friend?");
+    if (confirm) {
+      addFriendDiv.style.display = "none";
+      addFriendBtn.style.display = "block";
+      
+      // TODO call function to add friend
+    }
+  });
+
 
 
 });
