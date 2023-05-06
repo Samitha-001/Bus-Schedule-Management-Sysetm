@@ -202,13 +202,17 @@ function generateSchedule1($buses, $date) {
     
 }
 
+// Helper function to add minutes to a given time and return the result in hh:mm format
+function addMinutes($time, $minutes) {
+    $date = strtotime("{$time} +{$minutes} minutes");
+    return date('H:i', $date);
+    }
 
 
 
 
 
-
-function generateBusSchedule4($buses){
+function generateBusSchedule4($buses) {
     $total_buses = count($buses);
     $num_slot1 = ceil($total_buses * 0.25);
     $num_slot2 = floor($total_buses * 0.5);
@@ -233,151 +237,68 @@ function generateBusSchedule4($buses){
 
     $schedule = array();
 
-    foreach ($time_slots as $slot) {
-        $start_time = strtotime($slot['start_time']);
-        $end_time = strtotime($slot['end']);
+    // Schedule first three Piliyandala buses in slot 1
+    $slot_index = 0;
+    $num_buses = 3;
+    $departure_time = '5:30';
+    for ($i = 0; $i < $num_buses; $i++) {
+        if (empty($Piliyandala_Buses)) {
+            break;
+        }
+        $bus = array_shift($Piliyandala_Buses);
+        $arrival_time = addMinutes($departure_time, $slot['trip_time']);
+        $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Piliyandala'];
+        $departure_time = addMinutes($departure_time, 30);
+    }
+
+    // Schedule first three Pettah buses in slot 1
+    $num_buses = 3;
+    for ($i = 0; $i < $num_buses; $i++) {
+        if (empty($Pettah_Buses)) {
+            break;
+        }
+        $bus = array_shift($Pettah_Buses);
+        $arrival_time = addMinutes($departure_time, $slot['trip_time']);
+        $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Pettah'];
+        $departure_time = addMinutes($departure_time, 30);
+    }
+
+    // Schedule remaining buses in slots 2 and 3
+    $slot_index = 1;
+    while (!empty($Piliyandala_Buses) || !empty($Pettah_Buses)) {
+        $slot = $time_slots[$slot_index];
         $num_buses = $slot['num_buses'];
-        $trip_time = $slot['trip_time'];
-    
+        $departure_time = $slot['start_time'];
+
+        // Schedule Piliyandala buses in this slot
         for ($i = 0; $i < $num_buses; $i++) {
-            // Schedule Piliyandala buses
-            for ($j = 0; $j < 3; $j++) {
-                if (count($Piliyandala_Buses) == 0) {
-                    break;
-                }
-    
-                $bus = array_shift($Piliyandala_Buses);
-                $bus_no = $bus['bus_no'];
-                $arrival_time = $start_time + $j * 30 * 60 + $i * $trip_time * 60;
-    
-                if ($arrival_time >= $end_time) {
-                    break;
-                }
-    
-                $departure_time = $arrival_time + $trip_time * 60;
-                
-                // Check if another bus is already scheduled during this time period
-                $is_conflict = false;
-                foreach ($schedule as $s) {
-                    $s_arrival_time = strtotime($s['start_time']);
-                    $s_departure_time = strtotime($s['end_time']);
-                    if (($arrival_time >= $s_arrival_time && $arrival_time <= $s_departure_time) 
-                        || ($departure_time >= $s_arrival_time && $departure_time <= $s_departure_time)) {
-                        $is_conflict = true;
-                        break;
-                    }
-                }
-                
-                if (!$is_conflict) {
-                    $schedule[] = [
-                        'bus_no' => $bus_no,
-                        'start' => 'Piliyandala',
-                        'start_time' => date('H:i', $arrival_time),
-                        'end' => 'Pettah',
-                        'end_time' => date('H:i', $departure_time)
-                    ];
-                
-                                        // Schedule return trip for Piliyandala buses
-                                        $arrival_time_return = $departure_time + 10 * 60; // 10 minute break between trips
-                                        $departure_time_return = $arrival_time_return + $trip_time * 60;
-                                        
-                                        // Check if another bus is already scheduled during this time period
-                                        $is_conflict_return = false;
-                                        foreach ($schedule as $s) {
-                                            $s_arrival_time_return = strtotime($s['start_time']);
-                                            $s_departure_time_return = strtotime($s['end_time']);
-                                            if (($arrival_time_return >= $s_arrival_time_return && $arrival_time_return <= $s_departure_time_return) 
-                                                || ($departure_time_return >= $s_arrival_time_return && $departure_time_return <= $s_departure_time_return)) {
-                                                $is_conflict_return = true;
-                                                break;
-                                            }
-                                        }
-                                        
-                                        if (!$is_conflict_return) {
-                                            $schedule[] = [
-                                                'bus_no' => $bus_no,
-                                                'start' => 'Pettah',
-                                                'start_time' => date('H:i', $arrival_time_return),
-                                                'end' => 'Piliyandala',
-                                                'end_time' => date('H:i', $departure_time_return)
-                                            ];
-                                        }
-                                    } else {
-                                        // Re-add the bus to the Piliyandala buses array if there is a conflict
-                                        array_unshift($Piliyandala_Buses, $bus);
-                                    }
-                                }
-                        
-                        // Schedule Pettah buses
-                                for ($j = 0; $j < 3; $j++) {
-                                    if (count($Pettah_Buses) == 0) {
-                                        break;
-                                    }
-                        
-                                    $bus = array_shift($Pettah_Buses);
-                                    $bus_no = $bus['bus_no'];
-                                    $arrival_time = $start_time + $j * 30 * 60 + $i * $trip_time * 60;
-                        
-                                    if ($arrival_time >= $end_time) {
-                                        break;
-                                    }
-                        
-                                    $departure_time = $arrival_time + $trip_time * 60;
-                                    
-                                    // Check if another bus is already scheduled during this time period
-                                    $is_conflict = false;
-                                    foreach ($schedule as $s) {
-                                        $s_arrival_time = strtotime($s['start_time']);
-                                        $s_departure_time = strtotime($s['end_time']);
-                                        if (($arrival_time >= $s_arrival_time && $arrival_time <= $s_departure_time) 
-                                            || ($departure_time >= $s_arrival_time && $departure_time <= $s_departure_time)) {
-                                            $is_conflict = true;
-                                            break;
-                                        }
-                                    }
-                                    
-                                    if (!$is_conflict) {
-                                        $schedule[] = [
-                                            'bus_no' => $bus_no,
-                                            'start' => 'Pettah',
-                                            'start_time' => date('H:i', $arrival_time),
-                                            'end' => 'Piliyandala',
-                                            'end_time' => date('H:i', $departure_time)
-                                        ];
-                                    
-                                        // Schedule return trip for Pettah buses
-                                        $arrival_time_return = $departure_time + 10 * 60; // 10 minute break between trips
-                                        $departure_time_return = $arrival_time_return + $trip_time * 60;
-                                        
-                                        // Check if another bus is already scheduled during this time period
-                                        $is_conflict_return = false;
-                                        foreach ($schedule as $s) {
-                                            $s_arrival_time_return = strtotime($s['start_time']);
-                                            $s_departure_time_return = strtotime($s['end_time']);
-                                            if (($arrival_time_return >= $s_arrival_time_return && $arrival_time_return <= $s_departure_time_return) 
-                                                || ($departure_time_return >= $s_arrival_time_return && $departure_time_return <= $s_departure_time_return)) {
-                                                $is_conflict_return = true;
-                                                break;
-                                            }
-                                        }
-                                        
-                                        if (!$is_conflict_return) {
-                                            $schedule[] = [
-                                                'bus_no' => $bus_no,
-                                                'start' => 'Pettah',
-                                                'start_time' => date('H:i', $arrival_time_return),
-                                                'end' => 'Piliyandala',
-                                                'end_time' => date('H:i', $departure_time_return)
-                                            ];
-                                        }
-                                    } else {
-                                        // Re-add the bus to the Piliyandala buses array if there is a conflict
-                                        array_unshift($Pettah_Buses, $bus);
-                                    }
-                                }
-                    
-                            }
+            if (empty($Piliyandala_Buses)) {
+                break;
+            }
+            $bus = array_shift($Piliyandala_Buses);
+            $arrival_time = addMinutes($departure_time, $slot['trip_time']);
+            $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Piliyandala'];
+            $departure_time = addMinutes($departure_time, 30);
+            }
+                // Schedule Pettah buses in this slot
+    for ($i = 0; $i < $num_buses; $i++) {
+        if (empty($Pettah_Buses)) {
+            break;
+        }
+        $bus = array_shift($Pettah_Buses);
+        $arrival_time = addMinutes($departure_time, $slot['trip_time']);
+        $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Pettah'];
+        $departure_time = addMinutes($departure_time, 30);
+    }
+
+    $slot_index++;
+    if ($slot_index >= 3) {
+        break;
+    }
 }
-    return $schedule;
+
+return $schedule;
 }
+
+
 }

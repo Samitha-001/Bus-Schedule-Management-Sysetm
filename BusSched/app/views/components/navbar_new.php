@@ -13,13 +13,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         <div class="nav-menu">
             
 
-            <li>
-                <?php if (strpos($current_url, '/home') == true) { ?>
-                    <a href="#about">About</a>
-                <?php } else { ?>
-                    <a href="<?= ROOT ?>/home#about">About</a>
-                <?php } ?>
-            </li>
+            
 
             <li>
                 <!-- checks if current URL is home page -->
@@ -63,11 +57,11 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
     
 
-    <?php if (strpos($current_url, '/home') == true) { ?>
+    <!-- <?php if (strpos($current_url, '/home') == true) { ?>
         <a class="services" href="#about">About</a>
     <?php } else { ?>
-        <a class="li" href="<?= ROOT ?>/home#about">About</a>
-    <?php } ?>
+        
+    <?php } ?> -->
 
     <?php if (strpos($current_url, '/home') == true) { ?>
         <a class="li" href="#contact">Contact</a>

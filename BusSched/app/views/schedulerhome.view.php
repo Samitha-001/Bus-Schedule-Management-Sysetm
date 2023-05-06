@@ -98,23 +98,7 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </div>
         
-        <div class="card-container" id="fare-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Ticket List</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p><a href="<?= ROOT ?>/schedactiveticket">Active</a> </p>
-                    <p><a href="<?= ROOT ?>/schedcollectedticket">Collected</a> </p>
-                    <p><a href="<?= ROOT ?>/schedpendingticket">Pending</a>
-                     </p>
-                    <p><a href="<?= ROOT ?>/schedexpiredticket">Expired</a>
-                     </p>
-                </div>
-            </div>
-        </div>
+        
 
         
     </main>
