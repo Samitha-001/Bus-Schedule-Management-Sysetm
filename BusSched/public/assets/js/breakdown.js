@@ -1,6 +1,6 @@
 const btn = document.getElementById("btn");
 const btn2 = document.getElementById("btn2");
-
+const btn3 = document.getElementById("btn3");
 
 let noBreakdown = document.getElementById("no-breakdowns-td");
 if (noBreakdown) {
@@ -9,8 +9,6 @@ if (noBreakdown) {
 } else {   
   btn.disabled = true; 
 }
-
-
 
 
 btn.addEventListener("click", () => {
@@ -66,6 +64,16 @@ btn.addEventListener("click", () => {
 
 btn2.addEventListener("click", () => {
   const form = document.getElementById("view_my_breakdowns");
+
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+});
+
+btn3.addEventListener("click", () => {
+  const form = document.getElementById("view_history");
 
   if (form.style.display === "none") {
     form.style.display = "block";

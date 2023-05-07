@@ -45,6 +45,11 @@ class Breakdown extends Model
         return $this->where(['bus_no' => $busno]);
     }
 
+    public function getConductorhistoryBreakdowns($busno)
+    {
+        return $this->where(['bus_no' => $busno]);
+    }
+
     public function getConductorBreakdowns($conductor)
     {
         // return $this->findAll();
