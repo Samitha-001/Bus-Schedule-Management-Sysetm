@@ -1,6 +1,7 @@
 @import "navbar.css";
 @import "general.css";
 
+
 body {
   color: #24315e;
   font-family: "Outfit";
@@ -11,6 +12,24 @@ body {
 #logo_blue {
   color: #24315e;
   text-decoration: none;
+}
+
+#edit-breakdown-info{
+  background-color: #20c23a;
+  color: #000;
+  position: relative;
+}
+#cancel-info{
+  background-color: gray;
+  color: #000;
+  position: relative;
+}
+
+#form-save{
+  background-color: #20c23a;
+  color: #000;
+  position: relative;
+  border-radius: 5px;
 }
 
 #logo-white {
@@ -377,6 +396,11 @@ input:checked + .slider:before {
   border-style: none;
   padding-top: 20px;
   font-size: larger;
+}
+
+.breakdown_btn{
+  position:relative;
+  margin-left: 40%;
 }
 
 .span-col-2 {

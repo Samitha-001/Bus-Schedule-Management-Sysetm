@@ -42,39 +42,7 @@ if (!isset($_SESSION['USER'])) {
 <?php include 'components/navbarcon.php'; 
         // include 'components/conductorsidebar.php';
 ?>
-
-
-    <!-- <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/login">Logout</a></li>
-                </a>
-            </div>
-        </ul>
-    </nav> -->
-
-    <!-- <div class="wrapper">
-        <div class="sidebar">
-            <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li> -->
-            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
-            <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li> -->
-            <!-- <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
-            <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
-        </div>
-    </div> -->
-
-    <main class="container1">
+  <main class="container1">
     <div class="col-1">
         <div class="header orange-header">
         <table >
@@ -223,6 +191,15 @@ if (!isset($_SESSION['USER'])) {
         <p><strong>Seat No:</strong> ${seatNo}</p>
         <p><strong>Ticket No:</strong> ${ticketNo}</p>
         <button onclick="closePopup()" id=>Close</button>
+
+        <form id="form1" method="post" >
+          <input type="hidden" display="none" name="ticket_id" value="${ticketNo}"> 
+          <input type="hidden" display="none" name="status" value="collected">
+          <button id="btn3" class="button-green" type="submit" name="repaired">Collect</button>          
+        </form> 
+
+
+
       `;
 
       // Show the popup window

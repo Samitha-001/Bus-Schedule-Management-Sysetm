@@ -128,7 +128,7 @@ include '../app/views/components/navbarcon.php';
                     <!-- TODO -->
                     <div class="info-grid-start-2">
                         <input type="submit" value="Save Changes" id="form-save" >
-                        <button id='cancel-conductor-info'>Cancel</button>
+                        <button id='cancel-conductor-info' >Cancel</button>
                     </div>
                 </form>
             </div>
@@ -160,8 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data['dob'] = $_POST["dob"];
     $conductors->updateConductor($conductor,$data);
 }
-
-
 ?>
 
         <div class="col-4">
