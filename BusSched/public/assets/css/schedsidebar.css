@@ -1,3 +1,7 @@
+body{
+  background: url("../images/backgrounds/bg-passenger-profile.png");
+}
+
 .wrapper-sched {
     display: flex;
     position: relative;

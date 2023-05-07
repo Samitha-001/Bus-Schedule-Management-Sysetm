@@ -1,3 +1,8 @@
+body{
+    background: url("../images/backgrounds/bg-passenger-profile.png");
+    
+}
+
 .edit_delete{
     display: flex;
     align-items: center;

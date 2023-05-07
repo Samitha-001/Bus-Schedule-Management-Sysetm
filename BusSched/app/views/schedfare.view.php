@@ -93,7 +93,7 @@ if (!isset($_SESSION['USER'])) {
 
         <div>
             <br>
-            <table border='1' class="styled-table">
+            <table border='1' class="styled-table" style="border-radius: 40px;">
                 <tr>
                     <th>#</th>
                     <th>From</th>

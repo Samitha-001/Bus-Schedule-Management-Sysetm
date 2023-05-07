@@ -295,7 +295,44 @@ function addMinutes($time, $minutes) {
         return $schedule;
         
 
-     
+     function busSchedule($buses){
+        
+        $total_buses = count($buses);
+        $num_slot1 = ceil($total_buses * 0.25);
+        $num_slot2 = floor($total_buses * 0.5);
+        $num_slot3 = $total_buses - $num_slot1 - $num_slot2;
+    
+        $Piliyandala_Buses = array();
+        $Pettah_Buses = array();
+    
+        foreach ($buses as $bus) {
+            if ($bus['start'] == "Piliyandala") {
+                $Piliyandala_Buses[] = $bus;
+            } elseif($bus['start'] == "Pettah") {
+                $Pettah_Buses[] = $bus;
+            }
+        }
+    
+        $time_slots = [
+            ['start_time' => '5:30', 'end' => '8:30', 'num_buses' => $num_slot1, 'trip_time' => 60],
+            ['start_time' => '8:30', 'end' => '17:30', 'num_buses' => $num_slot2, 'trip_time' => 45],
+            ['start_time' => '17:30', 'end' => '20:30', 'num_buses' => $num_slot3, 'trip_time' => 60]
+        ];
+    
+        $schedule = array();
+
+        foreach($time_slots as $slot){
+            $start_time = $slot['start_time'];
+            $end_time = $slot['end'];
+            $buses = $slot['num_buses'];
+
+
+
+
+        }
+
+
+     }
 
 }
 
