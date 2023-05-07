@@ -15,7 +15,7 @@ class Schedules
         // $schedules = $schedule->generateSchedule1($scheds);
         
         $bus = json_decode(json_encode($buses), true);
-        $add = $schedule->addMinutes();
+        
         $schedules = $schedule->generateBusSchedule4($bus);
         
 

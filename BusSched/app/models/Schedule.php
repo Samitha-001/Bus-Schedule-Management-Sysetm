@@ -212,92 +212,91 @@ function addMinutes($time, $minutes) {
 
 
 
-function generateBusSchedule4($buses) {
-    $total_buses = count($buses);
-    $num_slot1 = ceil($total_buses * 0.25);
-    $num_slot2 = floor($total_buses * 0.5);
-    $num_slot3 = $total_buses - $num_slot1 - $num_slot2;
-
-    $Piliyandala_Buses = array();
-    $Pettah_Buses = array();
-
-    foreach ($buses as $bus) {
-        if ($bus['start'] == "Piliyandala") {
-            $Piliyandala_Buses[] = $bus;
-        } elseif($bus['start'] == "Pettah") {
-            $Pettah_Buses[] = $bus;
-        }
-    }
-
-    $time_slots = [
-        ['start_time' => '5:30', 'end' => '8:30', 'num_buses' => $num_slot1, 'trip_time' => 60],
-        ['start_time' => '8:30', 'end' => '17:30', 'num_buses' => $num_slot2, 'trip_time' => 45],
-        ['start_time' => '17:30', 'end' => '20:30', 'num_buses' => $num_slot3, 'trip_time' => 60]
-    ];
-
-    $schedule = array();
-
-    // Schedule first three Piliyandala buses in slot 1
-    $slot_index = 0;
-    $num_buses = 3;
-    $departure_time = '5:30';
-    for ($i = 0; $i < $num_buses; $i++) {
-        if (empty($Piliyandala_Buses)) {
-            break;
-        }
-        $bus = array_shift($Piliyandala_Buses);
-        $arrival_time = addMinutes($departure_time, $slot['trip_time']);
-        $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Piliyandala'];
-        $departure_time = addMinutes($departure_time, 30);
-    }
-
-    // Schedule first three Pettah buses in slot 1
-    $num_buses = 3;
-    for ($i = 0; $i < $num_buses; $i++) {
-        if (empty($Pettah_Buses)) {
-            break;
-        }
-        $bus = array_shift($Pettah_Buses);
-        $arrival_time = addMinutes($departure_time, $slot['trip_time']);
-        $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Pettah'];
-        $departure_time = addMinutes($departure_time, 30);
-    }
-
-    // Schedule remaining buses in slots 2 and 3
-    $slot_index = 1;
-    while (!empty($Piliyandala_Buses) || !empty($Pettah_Buses)) {
-        $slot = $time_slots[$slot_index];
-        $num_buses = $slot['num_buses'];
-        $departure_time = $slot['start_time'];
-
-        // Schedule Piliyandala buses in this slot
-        for ($i = 0; $i < $num_buses; $i++) {
-            if (empty($Piliyandala_Buses)) {
-                break;
+    function generateBusSchedule4($buses) {
+        $total_buses = count($buses);
+        $num_slot1 = ceil($total_buses * 0.25);
+        $num_slot2 = floor($total_buses * 0.5);
+        $num_slot3 = $total_buses - $num_slot1 - $num_slot2;
+    
+        $Piliyandala_Buses = array();
+        $Pettah_Buses = array();
+    
+        foreach ($buses as $bus) {
+            if ($bus['start'] == "Piliyandala") {
+                $Piliyandala_Buses[] = $bus;
+            } elseif($bus['start'] == "Pettah") {
+                $Pettah_Buses[] = $bus;
             }
-            $bus = array_shift($Piliyandala_Buses);
-            $arrival_time = addMinutes($departure_time, $slot['trip_time']);
-            $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Piliyandala'];
-            $departure_time = addMinutes($departure_time, 30);
-            }
-                // Schedule Pettah buses in this slot
-    for ($i = 0; $i < $num_buses; $i++) {
-        if (empty($Pettah_Buses)) {
-            break;
         }
-        $bus = array_shift($Pettah_Buses);
-        $arrival_time = addMinutes($departure_time, $slot['trip_time']);
-        $schedule[] = ['bus_no' => $bus['bus_no'], 'departure_time' => $departure_time, 'arrival_time' => $arrival_time, 'start_place' => 'Pettah'];
-        $departure_time = addMinutes($departure_time, 30);
-    }
+    
+        $time_slots = [
+            ['start_time' => '5:30', 'end' => '8:30', 'num_buses' => $num_slot1, 'trip_time' => 60],
+            ['start_time' => '8:30', 'end' => '17:30', 'num_buses' => $num_slot2, 'trip_time' => 45],
+            ['start_time' => '17:30', 'end' => '20:30', 'num_buses' => $num_slot3, 'trip_time' => 60]
+        ];
+    
+        $schedule = array();
+    
+        foreach ($time_slots as $slot) {
+            $start_time = strtotime($slot['start_time']);
+            $end_time = strtotime($slot['end']);
+    
+            $buses_remaining = $slot['num_buses'];
+    
+            for ($i = 0; $i < $slot['num_buses']; $i++) {
+                if (count($Piliyandala_Buses) > 0 && count($Pettah_Buses) > 0) {
+                    if ($i % 2 == 0) {
+                        $bus = array_shift($Piliyandala_Buses);
+                    } else {
+                        $bus = array_shift($Pettah_Buses);
+                    }
+                } elseif (count($Piliyandala_Buses) > 0) {
+                    $bus = array_shift($Piliyandala_Buses);
+                } elseif (count($Pettah_Buses) > 0) {
+                    $bus = array_shift($Pettah_Buses);
+                } else {
+                    break; // no more buses remaining
+                }
+    
+                $bus_start_time = date("H:i", $start_time);
+                $bus_end_time = date("H:i", strtotime("+$slot[trip_time] minutes", $start_time));
+                $schedule[] = array('bus_no' => $bus['bus_no'], 'start' => $bus['start'], 'end' => $bus['dest'], 'start_time' => $bus_start_time, 'end_time' => $bus_end_time);
+    
+                $start_time = strtotime($bus_end_time);
+    
+                $buses_remaining--;
+            }
+    
+            // schedule remaining buses in the slot
+            while ($buses_remaining > 0) {
+                if (count($Piliyandala_Buses) > 0 && count($Pettah_Buses) > 0) {
+                    if ($buses_remaining % 2 == 0) {
+                        $bus = array_shift($Piliyandala_Buses);
+                    } else {
+                        $bus = array_shift($Pettah_Buses);
+                    }
+                } elseif (count($Piliyandala_Buses) > 0) {
+                    $bus = array_shift($Piliyandala_Buses);
+                } elseif (count($Pettah_Buses) > 0) {
+                $bus = array_shift($Pettah_Buses);
+                } else {
+                break; // no more buses remaining
+                }
+                $bus_start_time = date("H:i", $start_time);
+                $bus_end_time = date("H:i", strtotime("+$slot[trip_time] minutes", $start_time));
+                $schedule[] = array('bus_no' => $bus['bus_no'], 'start' => $bus['start'], 'end' => $bus['dest'], 'start_time' => $bus_start_time, 'end_time' => $bus_end_time);
+        
+                $start_time = strtotime($bus_end_time);
+        
+                $buses_remaining--;
+            }
+        }
+        
+        return $schedule;
+        
 
-    $slot_index++;
-    if ($slot_index >= 3) {
-        break;
-    }
-}
+     
 
-return $schedule;
 }
 
 

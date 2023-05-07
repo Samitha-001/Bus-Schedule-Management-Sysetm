@@ -148,7 +148,7 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
         <?php endif; ?>
 
-        <tr class='dummy-input'>
+        <tr class='dummy-input' >
             <td></td>
             <td data-fieldname="source">
               <input type="text" value="" placeholder="source">
@@ -186,7 +186,7 @@ if (!isset($_SESSION['USER'])) {
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
             </td> -->
           </tr>
-          <tr class='dummy-row'>
+          <tr class='dummy-row' style="display: none;">
             <td></td>
             <td></td>
             <td></td>
