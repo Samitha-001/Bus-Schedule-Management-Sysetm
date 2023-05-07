@@ -1,5 +1,7 @@
-const btn = document.getElementById("btn");
-const btn2 = document.getElementById("btn2");
+document.addEventListener("DOMContentLoaded", function () {
+
+  const btn = document.getElementById("btn");
+  const btn2 = document.getElementById("btn2");
 
 
   let noBreakdown = document.getElementById("no-breakdowns-td");
@@ -9,11 +11,8 @@ const btn2 = document.getElementById("btn2");
     btn.disabled = true;
   }
 
-
-
-
-btn.addEventListener("click", () => {
-  const form = document.getElementById("view_bus");
+  btn.addEventListener("click", () => {
+    const form = document.getElementById("view_bus");
 
     if (form.style.display === "none") {
       form.style.display = "block";
@@ -73,10 +72,10 @@ btn.addEventListener("click", () => {
     }
   });
 
-function cancel() {
-  const form = document.getElementById("view_bus");
-  form.style.display = "none";
-}
+  function cancel() {
+    const form = document.getElementById("view_bus");
+    form.style.display = "none";
+  }
 
   function cancel() {
     const form = document.getElementById("view_fare");
