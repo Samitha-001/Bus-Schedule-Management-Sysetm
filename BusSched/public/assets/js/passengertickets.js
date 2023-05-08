@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // arrival time
         document.getElementById("ticket-details-arrival").innerHTML = ticket['ticket']["arrival_time"];
         // departure time
-        document.getElementById("ticket-details-departure").innerHTML = ticket['ticket']["departure_time"];
+        document.getElementById("ticket-details-departure").innerHTML = ticket['trip']["departure_time"];
 
         // trip ID
         document.getElementById("ticket-details-trip").innerHTML = ticket['ticket']["trip_id"];
@@ -213,6 +213,15 @@ document.addEventListener("DOMContentLoaded", function () {
           document.getElementById("ticket-details-last-updated-at").innerHTML = ticket['trip']["location_updated_time"];
         }
 
+        if (ticket['trip']['status'] == 'started') {
+          gotOffBusBtn.style.display = "none";
+          updateLocationBtn.style.display = "none";
+        }
+        else {
+          gotOffBusBtn.style.display = "block";
+          updateLocationBtn.style.display = "block";
+        }
+
         // update destination of got off popup
         document.getElementById("got-off-dest").innerHTML = ticket['ticket']["dest_halt"];
 
@@ -235,7 +244,6 @@ document.addEventListener("DOMContentLoaded", function () {
             haltDiv.innerHTML = halt;
             let haltP = document.createElement("p");
             haltDiv.appendChild(haltP);
-
 
             // check if the halt was passed
             // if yes, add class passed
@@ -443,7 +451,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let conductorId = ratePopup.getAttribute("data-conductor-id");
     let driverId = ratePopup.getAttribute("data-driver-id");
 
-    // TODO
     // let data = { trip_id: tripId, bus_rating: busRating, conductor_rating: conductorRating, driver_rating: driverRating };
     let data = { 'ticket_id': ticketId, 'rater': rater, 'trip_id': tripId, 'driver': driverId, 'driver_rating': driverRating, 'conductor': conductorId, 'conductor_rating': conductorRating, 'bus_no': busNo, 'bus_rating': busRating };
 

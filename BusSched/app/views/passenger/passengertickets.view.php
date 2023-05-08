@@ -218,10 +218,10 @@ include '../app/views/components/navbar.php';
                     <h3><span id="ticket-details-from" name="source_halt"></span> - <span id="ticket-details-to" name="dest_halt"></span></h3>
                 </th>
                 <td>
-                    Arrival<span id="ticket-details-arrival" name="arrival_time"></span>
+                    Estimated time of arrival<span id="ticket-details-arrival" name="arrival_time"></span>
                 </td>
                 <td>
-                    Departure<span id="ticket-details-departure" name="departure_time"></span>
+                    Trip starts at <span id="ticket-details-departure" name="departure_time"></span>
                 </td>
             </tr>
             <tr>
