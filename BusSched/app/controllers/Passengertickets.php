@@ -42,7 +42,6 @@ class Passengertickets
                 'timestamp' => date('Y-m-d H:i:s')
             ];
 
-
             $location_update->addLocationUpdate($data);
 
             // Send a response

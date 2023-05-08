@@ -259,6 +259,22 @@ div.ticket-details-card {
   cursor: pointer;
 }
 
+.location-update-card.halt-passed {
+  display: inline-block;
+  background-color:#7c839e;
+  min-width: 140px;
+  height: 90px;
+  padding: 10px;
+  margin: 5px;
+  margin-top: 45px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  align-content: center;
+  cursor: default;
+  opacity: 0.8;
+}
+
 .selected-halt {
   scale: 1.05;
   background-color: #f15f22;
@@ -407,4 +423,16 @@ div#rate-popup p {
 
 .col-10, .col-s-10 {
   max-width: fit-content;
+}
+
+#a-update-location, #a-got-off {
+  color: white;
+}
+
+.ticket-button-orange.disabled {
+  /* cursor: default;
+  color: white;
+  background-color: #f9f9f9; */
+  /* reduce opacity */
+  opacity: 0.5;
 }
