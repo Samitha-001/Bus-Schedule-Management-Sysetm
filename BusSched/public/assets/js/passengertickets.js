@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let gotOffBusYesBtn = document.getElementById("btn-got-off-yes");
 
   let allTicketsDiv = document.getElementById("all-tickets");
+  allTicketsDiv.style.display = "none";
 
   let bookedTicketsDiv = document.getElementById("booked-tickets");
-  bookedTicketsDiv.style.display = "none";
+  bookedTicketsDiv.style.display = "flex";
 
   let collectedTicketsDiv = document.getElementById("collected-tickets");
   collectedTicketsDiv.style.display = "none";
@@ -38,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showInactiveTickets.classList.remove("selected");
 
     // show all tickets
-    allTicketsDiv.style.display = "flex";
+    allTicketsDiv.style.display = "block";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
-    expiredTicketsDiv.style.display = "flex";
+    expiredTicketsDiv.style.display = "block";
     inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
@@ -116,14 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
     showBookedTickets.classList.remove("selected");
     showCollectedTickets.classList.remove("selected");
     showExpiredTickets.classList.remove("selected");
-    showInactiveTickets.classList.add("selected");
 
     // show inactive tickets
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
-    inactiveTicketsDiv.style.display = "flex";
+    inactiveTicketsDiv.style.display = "block";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
   });
@@ -204,8 +204,24 @@ document.addEventListener("DOMContentLoaded", function () {
   ticketDetails
     .getElementsByTagName("img")[0]
     .addEventListener("click", function () {
+
       ticketDetails.style.display = "none";
       collectedTicketsDiv.style.display = "flex";
+
+      updateLocationDiv.style.display = "none";
+      gotOffBusBtn.classList.remove("disabled");
+      updateLocationBtn.classList.remove("disabled");
+
+
+      let locationDivs = document.querySelectorAll(".location-update-card");
+
+      // remove class from each location div
+      locationDivs.forEach((div) => {
+      div.classList.remove("selected-halt");
+      div.getElementsByTagName("p")[0].innerHTML = " ";
+    
+      updateLocationDiv.getElementsByTagName("h1")[0].innerHTML = "";
+    });
     });
 
   // got off the bus popup div
@@ -235,7 +251,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let ticketDeets = getTicketDetails(ticketId);
     // TICKET DETAILS FOR RATING
     ticketDeets.then((ticket) => {
-      // console.log(ticket);
       // add data attributes to ratepopup
       ratePopup.setAttribute("data-ticket-id", ticket['ticket']["id"]);
       ratePopup.setAttribute("data-rater", ticket['ticket']["passenger"]);
@@ -245,6 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ratePopup.setAttribute("data-driver-id", ticket['bus']["driver"]);
     });
   });
+
   // got off from a different halt
   document.getElementById("btn-got-off-cancel").addEventListener("click", function () {
       // TODO implement no button
@@ -256,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // close button
   gotOffBusPopupCloseBtn.addEventListener("click", function () {
+    updateLocationDiv.style.display = "none";
     gotOffBusPopup.style.display = "none";
   });
 
@@ -280,6 +297,15 @@ document.addEventListener("DOMContentLoaded", function () {
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
 
+    let locationDivs = document.querySelectorAll(".location-update-card");
+    // remove class from each location div
+    locationDivs.forEach((div) => {
+      div.classList.remove("selected-halt");
+      div.getElementsByTagName("p")[0].innerHTML = " ";
+    
+      updateLocationDiv.getElementsByTagName("h1")[0].innerHTML = "";
+    });
+
   });
 
   // add event listeners for each locationDivs
@@ -287,6 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.target.classList.contains("location-update-card")) {
       // if clicked on a div with class location-update-card
       let locationDivs = document.querySelectorAll(".location-update-card");
+
       // remove class from each location div
       locationDivs.forEach((div) => {
         div.classList.remove("selected-halt");
@@ -313,8 +340,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let username = ticketDetails.getAttribute("data-username");
 
     let data = { id: ticketId, username: username, user_role: 'passenger', halt: halt };
-
-    console.log(data);
     
     // send data to server
     let url = `${ROOT}/passengertickets/api_update_location`;
@@ -468,6 +493,5 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(error);
       });
     
-    console.log(data);
   }
 });

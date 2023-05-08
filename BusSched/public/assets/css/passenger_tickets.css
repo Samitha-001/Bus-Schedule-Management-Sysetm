@@ -240,8 +240,8 @@ div.ticket-details-card {
   display:flex; 
   overflow-x: scroll; 
   justify-content:space-between; 
-  margin-left:60px; 
-  margin-right:60px;
+  margin: auto;
+  max-width: fit-content;
 }
 
 .location-update-card {
@@ -417,7 +417,7 @@ label.star:before {
   padding-right: 15px;
   background-color: white;
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /* freeze first row */
@@ -427,6 +427,7 @@ label.star:before {
   background-color: #fff;
   z-index: 4;
   padding: 10px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* not first row when hovered*/
@@ -444,5 +445,9 @@ label.star:before {
 .tickets-table {
   overflow-x: scroll;
   overflow-y: scroll;
-  max-height: 490px;
+  max-height: 470px;
+}
+
+.col-10, .col-s-10 {
+  max-width: fit-content;
 }

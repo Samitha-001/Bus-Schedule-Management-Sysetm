@@ -36,26 +36,33 @@ if (isset($_SESSION['USER'])) {
     include '../app/views/components/navbar.php';
     $passenger = $data[0];
     $username = $passenger->username;
-    $otherpassenger1 = new Passenger();
 ?>
-    <datalist id="passenger-list">
-        <?php
-        $otherpassenger = new Passenger();
-        //edit passenger info
-        $otherpassengers = $otherpassenger->passengerInfo();
-        foreach ($otherpassengers as $otherpassenger) {
-            if ($otherpassenger->username != $username) {
-                echo "<option value='" . $otherpassenger->username . "'>";
-            }
-        }
-        
-        
-        ?>
-    </datalist>
 
     <div class="passenger-profile-card" id="profile-header">
-        <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="profile pic" width="50px" height="50px">
+        <?php
+        // get profile picture if exists, else use default
+        $pics = "assets/images/profile-pics/" . $username . ".*";
+        $profile_pics = glob($pics);
+        if (count($profile_pics) > 0) {
+            $profile_pic = $profile_pics[0];
+        } else {
+            $profile_pic = "assets/images/icons/profile-pic-none.png";
+        }
+        ?>
+
+        <img id="profile-pic" src="<?= $profile_pic ?>" alt="profile pic" style="border-radius: 50px;object-fit: cover;" width="100px" height="100px">
+        <img id="edit-pencil" src="<?= ROOT ?>/assets/images/icons/edit-pencil.png">
         <h1 id="username">Hi <?= $username ?>!</h1>
+    </div>
+
+    <!-- div to add profile picture -->
+    <div class="passenger-profile-card" id="profile-pic-from-div" style="display:none;">
+        <!-- input to get image file as profile picture -->
+        <form id="profile-pic-form">
+            <input type="file" name="profile-pic" id="profile-pic-input" accept="image/*">
+            <input type="hidden" name="username" id="username" value="<?= $username ?>">
+            <button id="upload-profile-pic-btn">Upload</button>
+        </form>
     </div>
 
     <div class="nav-cards">
@@ -113,14 +120,12 @@ if (isset($_SESSION['USER'])) {
             <div id='gift-points-div'>
                 <div class="dropdown">
                     <select name="points_to" id="gift-to" required>
-                        <option value="" disabled selected>Select passenger</option>
+                        <option value="" disabled selected>Choose friend</option>
                         <?php
-                        $otherpassenger = new Passenger();
-                        $otherpassengers = $otherpassenger->passengerInfo();
-                        foreach ($otherpassengers as $otherpassenger) {
-                            if ($otherpassenger->username != $username) {
-                                echo "<option value='" . $otherpassenger->username . "'>" . $otherpassenger->username . "</option>";
-                            }
+                        $friend = new Friends();
+                        $friends = $friend->getFriends($username);
+                        foreach ($friends as $friend) {
+                            echo "<option value='" . $friend . "'>" . $friend . "</option>";
                         }
                         ?>
                     </select>
@@ -139,7 +144,37 @@ if (isset($_SESSION['USER'])) {
                 </div>
             </div>
         </div>
+
+        <div class="passenger-profile-card">
+            <div>
+            <h1>Friends</h1>
+            <ul style="padding:0px;">
+            <?php
+            foreach ($friends as $friend) {
+                echo "<li>" . $friend . "</li>";
+            }
+            ?>
+            </ul>
+            <span class="info-grid">
+                <span></span>
+                <button id="add-friend-btn">Add friend</button>
+            </span>
+            </div>
+
+            <div id="add-friend-div" style="display:none;">
+                <div class="dropdown">
+                    <!-- input text -->
+                    <input type="text" name="friend" id="friend" placeholder="Enter username" required>
+                </div>
+                <div class="info-grid">
+                    <button id="confirm-add-friend-btn" style="width:100;">Add</button>
+                    <button id="cancel-add-friend-btn" style="width:100;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
     </div>
+    
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 04, 2023 at 06:04 AM
+-- Generation Time: May 06, 2023 at 05:03 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -97,9 +97,9 @@ CREATE TABLE IF NOT EXISTS `bus` (
 
 INSERT INTO `bus` (`id`, `bus_no`, `type`, `seats_no`, `route`, `rating`, `no_of_reviews`, `start`, `dest`, `owner`, `conductor`, `driver`) VALUES
 (1, 'NC1111', 'S', 44, '120', 3.8571, 7, 'Piliyandala', 'Pettah', 'owner2', 'conductor1', 'driver1'),
-(2, 'NC1112', 'S', 40, '120', 3, 4, 'Pettah', 'Piliyandala', 'owner2', 'conductor2', 'driver2'),
-(3, 'NC1113', 'L', 50, '120', 5, 2, 'Piliyandala', 'Pettah', 'owner1', 'conductor3', 'driver3'),
-(4, 'NC1114', 'S', 40, '120', 5, 1, 'Pettah', 'Piliyandala', 'owner1', 'conductor4', 'driver4'),
+(2, 'NC1112', 'S', 40, '120', 2.8, 5, 'Pettah', 'Piliyandala', 'owner2', 'conductor2', 'driver2'),
+(3, 'NC1113', 'L', 50, '120', 5, 3, 'Piliyandala', 'Pettah', 'owner1', 'conductor3', 'driver3'),
+(4, 'NC1114', 'S', 40, '120', 4, 2, 'Pettah', 'Piliyandala', 'owner1', 'conductor4', 'driver4'),
 (5, 'NC1115', 'L', 50, '120', 5, 1, 'Piliyandala', 'Pettah', 'owner1', 'conductor5', 'driver5'),
 (6, 'NC1116', 'S', 40, '120', 5, 1, 'Pettah', 'Piliyandala', 'owner1', 'conductor6', 'driver6'),
 (7, 'NC1117', 'L', 50, '120', 0, 0, 'Piliyandala', 'Pettah', 'owner1', 'conductor7', 'driver7'),
@@ -148,8 +148,8 @@ CREATE TABLE IF NOT EXISTS `conductor` (
 
 INSERT INTO `conductor` (`username`, `name`, `phone`, `address`, `licence_no`, `assigned_bus`, `date_of_birth`, `rating`, `no_of_reviews`) VALUES
 ('conductor1', 'Nalin Silva', '0761234567', 'Colombo, Sri Lanka', 'B1234568', 'NC1111', '1960-05-05', 3.1667, 6),
-('conductor2', 'Kevin Ronalds', '0777111222', 'Piliyandala, Sri Lanka', 'B1234569', NULL, NULL, 3.6667, 3),
-('conductor3', '', '', '', '', NULL, NULL, 5, 1);
+('conductor2', 'Kevin Ronalds', '0777111222', 'Piliyandala, Sri Lanka', 'B1234569', NULL, NULL, 3.50002, 4),
+('conductor3', '', '', '', '', NULL, NULL, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -200,9 +200,9 @@ CREATE TABLE IF NOT EXISTS `driver` (
 
 INSERT INTO `driver` (`username`, `name`, `phone`, `address`, `licence_no`, `assigned_bus`, `date_of_birth`, `rating`, `no_of_reviews`) VALUES
 ('driver1', 'Saman Perera', '0771234567', 'Colombo, Sri Lanka', NULL, NULL, NULL, 3, 6),
-('driver2', NULL, NULL, NULL, NULL, NULL, NULL, 3.3333, 3),
-('driver3', NULL, NULL, NULL, NULL, NULL, NULL, 5, 1),
-('driver4', NULL, NULL, NULL, NULL, NULL, NULL, 5, 1),
+('driver2', NULL, NULL, NULL, NULL, NULL, NULL, 2.99998, 4),
+('driver3', NULL, NULL, NULL, NULL, NULL, NULL, 4, 2),
+('driver4', NULL, NULL, NULL, NULL, NULL, NULL, 4, 2),
 ('driver5', NULL, NULL, NULL, NULL, NULL, NULL, 5, 1),
 ('driver6', NULL, NULL, NULL, NULL, NULL, NULL, 5, 1),
 ('driver7', NULL, NULL, NULL, NULL, NULL, NULL, 5, 1),
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `e_ticket` (
   `passenger_count` int(11) NOT NULL DEFAULT '1',
   `price` int(11) DEFAULT NULL,
   `payment_method` enum('cash','points') NOT NULL DEFAULT 'points',
-  `status` enum('booked','cancelled','collected','expired','inactive') NOT NULL DEFAULT 'booked',
+  `status` enum('booked','collected','expired','inactive') NOT NULL DEFAULT 'booked',
   `collected_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ticket-passenger` (`passenger`),
@@ -245,51 +245,50 @@ CREATE TABLE IF NOT EXISTS `e_ticket` (
 --
 
 INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `departure_time`, `arrival_time`, `seat_number`, `seats_reserved`, `ticket_number`, `source_halt`, `dest_halt`, `booking_time`, `passenger_count`, `price`, `payment_method`, `status`, `collected_time`) VALUES
-(0, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 01:28:15', 1, 0, 'points', 'collected', NULL),
+(0, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 01:28:15', 1, 0, 'points', 'inactive', NULL),
 (17, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Kohuwala', '2023-03-19 01:31:40', 1, 0, 'points', 'inactive', NULL),
 (32, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 01:50:19', 1, 0, 'points', 'inactive', NULL),
 (33, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Dutugemunu St.', 'Werahera', '2023-03-19 02:02:37', 1, 0, 'points', 'inactive', NULL),
-(34, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 08:37:15', 1, 0, 'points', 'collected', NULL),
-(35, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-04-17 22:05:15', 1, 0, 'points', 'collected', NULL),
+(34, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 08:37:15', 1, 0, 'points', 'inactive', NULL),
+(35, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-04-17 22:05:15', 1, 0, 'points', 'inactive', NULL),
 (36, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 16:44:52', 1, 0, 'points', 'inactive', NULL),
 (37, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-17 16:44:56', 1, 0, 'points', 'inactive', NULL),
 (38, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Public Library', '2023-04-25 05:48:10', 1, 0, 'points', 'inactive', NULL),
-(39, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Thummulla', '2023-04-25 05:48:10', 1, 0, 'points', 'collected', NULL),
+(39, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Thummulla', '2023-04-25 05:48:10', 1, 0, 'points', 'inactive', NULL),
 (40, 'passenger1', 6, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-26 01:19:19', 5, 0, 'points', 'booked', NULL),
-(41, 'passenger1', 6, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Werahera', '2023-04-26 03:03:14', 1, 0, 'points', 'booked', NULL),
-(42, 'passenger1', 8, NULL, NULL, NULL, NULL, NULL, 'Werahera', 'Pamankada', '2023-04-26 03:05:06', 5, 170, 'points', 'booked', NULL),
+(41, 'passenger1', 6, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Werahera', '2023-04-26 03:03:14', 1, 0, 'points', 'inactive', NULL),
 (43, 'passenger1', 12, NULL, NULL, NULL, NULL, NULL, 'D.r. Wijewardena Rd.', 'Pettah', '2023-04-26 03:09:21', 5, 100, 'points', 'expired', NULL),
-(44, 'passenger1', 3, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-04-26 05:59:37', 2, 75, 'points', 'booked', NULL),
-(46, 'passenger1', 3, NULL, NULL, NULL, NULL, NULL, 'Rattanapitiya', 'Pepiliyana', '2023-04-26 05:59:51', 1, 60, 'points', 'booked', NULL),
+(44, 'passenger1', 3, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-04-26 05:59:37', 2, 75, 'points', 'inactive', NULL),
+(46, 'passenger1', 3, NULL, NULL, NULL, NULL, NULL, 'Rattanapitiya', 'Pepiliyana', '2023-04-26 05:59:51', 1, 60, 'points', 'inactive', NULL),
 (51, 'passenger1', 12, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-04-26 06:01:15', 1, 125, 'points', 'expired', NULL),
-(52, 'passenger1', 10, NULL, NULL, NULL, 'D6, D5', NULL, 'Piliyandala', 'Kohuwala', '2023-04-27 00:25:24', 2, 290, 'cash', 'booked', NULL),
-(53, 'passenger1', 2, NULL, NULL, NULL, 'D4, D5, E5, E7, D6', NULL, 'Piliyandala', 'Dutugemunu St.', '2023-04-27 00:47:08', 5, 850, 'points', 'booked', NULL),
-(54, 'passenger1', 11, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-27 01:10:45', 1, 100, 'cash', 'booked', NULL),
-(55, 'passenger1', 4, NULL, NULL, NULL, NULL, NULL, 'Lake House', 'Werahera', '2023-04-27 02:19:29', 1, 355, 'cash', 'booked', NULL),
-(56, 'passenger1', 3, NULL, NULL, NULL, 'D4, E4', NULL, 'Piliyandala', 'Werahera', '2023-04-28 02:50:25', 2, 120, 'cash', 'booked', NULL),
-(57, 'passenger1', 3, NULL, NULL, NULL, 'E5, D5', NULL, 'Piliyandala', 'Boralesgamuwa', '2023-04-28 03:20:25', 2, 150, 'cash', 'booked', NULL),
-(58, 'passenger1', 1, NULL, NULL, NULL, 'A1, C2', NULL, 'Piliyandala', 'Pepiliyana', '2023-04-29 07:44:19', 5, 625, 'cash', 'booked', NULL),
-(59, 'passenger1', 3, NULL, NULL, NULL, 'D4', NULL, 'Werahera', 'Kohuwala', '2023-04-30 02:03:29', 2, 250, 'cash', 'booked', NULL),
+(52, 'passenger1', 10, NULL, NULL, NULL, 'D6, D5', NULL, 'Piliyandala', 'Kohuwala', '2023-04-27 00:25:24', 2, 290, 'cash', 'inactive', NULL),
+(53, 'passenger1', 2, NULL, NULL, NULL, 'D4, D5, E5, E7, D6', NULL, 'Piliyandala', 'Dutugemunu St.', '2023-04-27 00:47:08', 5, 850, 'points', 'inactive', NULL),
+(54, 'passenger1', 11, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-27 01:10:45', 1, 100, 'cash', 'collected', NULL),
+(55, 'passenger1', 4, NULL, NULL, NULL, NULL, NULL, 'Lake House', 'Werahera', '2023-04-27 02:19:29', 1, 355, 'cash', 'inactive', NULL),
+(56, 'passenger1', 3, NULL, NULL, NULL, 'D4, E4', NULL, 'Piliyandala', 'Werahera', '2023-04-28 02:50:25', 2, 120, 'cash', 'inactive', NULL),
+(57, 'passenger1', 3, NULL, NULL, NULL, 'E5, D5', NULL, 'Piliyandala', 'Boralesgamuwa', '2023-04-28 03:20:25', 2, 150, 'cash', 'inactive', NULL),
+(58, 'passenger1', 1, NULL, NULL, NULL, 'A1, C2', NULL, 'Piliyandala', 'Pepiliyana', '2023-04-29 07:44:19', 5, 625, 'cash', 'inactive', NULL),
+(59, 'passenger1', 3, NULL, NULL, NULL, 'D4', NULL, 'Werahera', 'Kohuwala', '2023-04-30 02:03:29', 2, 250, 'cash', 'inactive', NULL),
 (60, 'passenger1', 3, NULL, NULL, NULL, 'B3', NULL, 'Piliyandala', 'Kohuwala', '2023-04-30 02:08:53', 2, NULL, 'cash', 'booked', NULL),
-(61, 'passenger1', 3, NULL, NULL, NULL, 'A1', NULL, 'Piliyandala', 'Werahera', '2023-04-30 02:12:47', 1, 69, 'points', 'booked', NULL),
-(62, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 04:53:26', 1, 125, 'points', 'booked', NULL),
-(63, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 04:56:00', 1, 75, 'points', 'booked', NULL),
+(61, 'passenger1', 3, NULL, NULL, NULL, 'A1', NULL, 'Piliyandala', 'Werahera', '2023-04-30 02:12:47', 1, 69, 'points', 'inactive', NULL),
+(62, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 04:53:26', 1, 125, 'points', 'inactive', NULL),
+(63, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 04:56:00', 1, 75, 'points', 'inactive', NULL),
 (64, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:00:42', 1, 125, 'points', 'booked', NULL),
 (65, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:01:22', 1, 125, 'points', 'booked', NULL),
 (66, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:02:18', 1, 125, 'points', 'booked', NULL),
-(67, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 05:06:35', 1, 75, 'points', 'booked', NULL),
+(67, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 05:06:35', 1, 75, 'points', 'inactive', NULL),
 (68, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 05:06:37', 1, 75, 'points', 'booked', NULL),
 (69, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 05:07:02', 1, 75, 'points', 'booked', NULL),
 (70, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 05:07:13', 1, 75, 'points', 'booked', NULL),
-(71, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:08:12', 2, 250, 'points', 'booked', NULL),
-(72, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-05-03 05:09:54', 1, 100, 'points', 'booked', NULL),
+(71, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:08:12', 2, 250, 'points', 'collected', NULL),
+(72, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-05-03 05:09:54', 1, 100, 'points', 'collected', NULL),
 (73, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 05:10:01', 1, 75, 'points', 'booked', NULL),
 (74, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 05:10:26', 1, 75, 'points', 'booked', NULL),
 (75, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:52', 1, 125, 'points', 'booked', NULL),
 (76, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:54', 1, 125, 'points', 'booked', NULL),
 (77, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:54', 1, 125, 'points', 'booked', NULL),
 (78, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:55', 1, 125, 'points', 'booked', NULL),
-(79, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:55', 1, 125, 'points', 'booked', NULL),
+(79, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:55', 1, 125, 'points', 'collected', NULL),
 (80, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:55', 1, 125, 'points', 'booked', NULL),
 (81, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:55', 1, 125, 'points', 'booked', NULL),
 (82, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 05:11:55', 1, 125, 'points', 'booked', NULL),
@@ -700,6 +699,30 @@ INSERT INTO `fare_instances` (`instance`, `fare`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `friends`
+--
+
+DROP TABLE IF EXISTS `friends`;
+CREATE TABLE IF NOT EXISTS `friends` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `passenger` varchar(50) NOT NULL,
+  `friend` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `friends-user` (`passenger`),
+  KEY `friends-friend` (`friend`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `friends`
+--
+
+INSERT INTO `friends` (`id`, `passenger`, `friend`) VALUES
+(1, 'passenger1', 'passenger3'),
+(2, 'passenger1', 'passenger4');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `halt`
 --
 
@@ -752,7 +775,7 @@ INSERT INTO `halt` (`id`, `route_id`, `name`, `distance_from_source`, `fare_from
 
 DROP TABLE IF EXISTS `location_update`;
 CREATE TABLE IF NOT EXISTS `location_update` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `user_role` enum('conductor','passenger') NOT NULL,
   `ticket` int(11) DEFAULT NULL,
@@ -762,7 +785,25 @@ CREATE TABLE IF NOT EXISTS `location_update` (
   KEY `update-ticket` (`ticket`),
   KEY `update-username` (`username`),
   KEY `update-halt` (`halt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `location_update`
+--
+
+INSERT INTO `location_update` (`id`, `username`, `user_role`, `ticket`, `halt`, `timestamp`) VALUES
+(1, 'passenger1', 'passenger', 17, 'Piliyandala', '2023-05-04 02:58:39'),
+(2, 'passenger1', 'passenger', 17, 'Piliyandala', '2023-05-04 02:58:40'),
+(3, 'passenger1', 'passenger', 57, 'Boralesgamuwa', '2023-05-04 03:12:13'),
+(4, 'passenger1', 'passenger', 58, 'Pepiliyana', '2023-05-04 03:14:00'),
+(5, 'passenger1', 'passenger', 59, 'Boralesgamuwa', '2023-05-04 03:39:09'),
+(6, 'passenger1', 'passenger', 46, 'Rattanapitiya', '2023-05-04 03:49:42'),
+(7, 'passenger1', 'passenger', 52, 'Piliyandala', '2023-05-04 04:08:35'),
+(8, 'passenger1', 'passenger', 63, 'Werahera', '2023-05-04 04:30:35'),
+(9, 'passenger1', 'passenger', 67, 'Rattanapitiya', '2023-05-05 03:09:18'),
+(10, 'passenger1', 'passenger', 61, 'Werahera', '2023-05-05 03:47:31'),
+(11, 'passenger1', 'passenger', 62, 'Boralesgamuwa', '2023-05-05 08:23:44'),
+(12, 'passenger1', 'passenger', 62, 'Pepiliyana', '2023-05-05 08:23:59');
 
 -- --------------------------------------------------------
 
@@ -811,7 +852,7 @@ CREATE TABLE IF NOT EXISTS `passenger` (
 --
 
 INSERT INTO `passenger` (`username`, `name`, `phone`, `address`, `dob`, `profile_pic`, `points`, `points_expiry`) VALUES
-('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-02-13', NULL, 310, '2023-03-15'),
+('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-02-13', NULL, 315, '2023-03-15'),
 ('passenger2', 'Jane Doe', '0771234567', 'Colombo, Sri Lanka', '0000-00-00', NULL, 170, '2023-06-22'),
 ('passenger3', 'Kamal Fernando', '', '', '2018-02-27', NULL, 104, '2022-02-02'),
 ('passenger4', NULL, NULL, NULL, NULL, NULL, 4, NULL);
@@ -883,7 +924,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   KEY `rating-driver` (`driver`),
   KEY `rating-conductor` (`conductor`),
   KEY `rating-trip` (`trip_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ratings`
@@ -906,7 +947,10 @@ INSERT INTO `ratings` (`id`, `ticket_id`, `rater`, `trip_id`, `bus_no`, `bus_rat
 (15, 35, 'passenger1', 1, 'NC1111', 4, 'conductor1', 3, 'driver1', 3, '2023-04-26 09:14:58'),
 (16, 39, 'passenger1', 2, 'NC1112', 1, 'conductor2', 3, 'driver2', 5, '2023-04-27 09:10:09'),
 (17, 36, 'passenger1', 1, 'NC1111', 3, 'conductor1', 2, 'driver1', 3, '2023-04-28 10:05:26'),
-(18, 51, 'passenger1', 13, 'NC1119', 5, 'conductor9', 5, 'conductor9', 5, '2023-05-01 11:26:41');
+(18, 51, 'passenger1', 13, 'NC1119', 5, 'conductor9', 5, 'conductor9', 5, '2023-05-01 11:26:41'),
+(19, 55, 'passenger1', 4, 'NC1114', 3, 'conductor4', 2, 'driver4', 3, '2023-05-04 06:50:33'),
+(20, 61, 'passenger1', 3, 'NC1113', 5, 'conductor3', 3, 'driver3', 3, '2023-05-05 09:17:36'),
+(21, 62, 'passenger1', 2, 'NC1112', 2, 'conductor2', 3, 'driver2', 2, '2023-05-05 13:54:11');
 
 --
 -- Triggers `ratings`
@@ -1182,6 +1226,13 @@ ALTER TABLE `e_ticket`
 ALTER TABLE `fare`
   ADD CONSTRAINT `fare-dest` FOREIGN KEY (`dest`) REFERENCES `halt` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fare-source` FOREIGN KEY (`source`) REFERENCES `halt` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `friends`
+--
+ALTER TABLE `friends`
+  ADD CONSTRAINT `friends-friend` FOREIGN KEY (`friend`) REFERENCES `passenger` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `friends-user` FOREIGN KEY (`passenger`) REFERENCES `passenger` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `halt`
