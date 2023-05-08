@@ -50,6 +50,30 @@ class E_ticket extends Model
         return $this->findAll();
     }
 
+    public function getBusTickets($trip)
+    {
+        return $this->where(['trip_id' => $trip]);
+    }
+
+    public function getTicket($ticket_no)
+    {
+        return $this->where(['ticket_no' => $ticket_no]);
+    }
+
+
+    public function getBusActiveTickets($status,$trip_id)
+    {
+        return $this->where(['status' => $status,'trip_id'=>$trip_id]);
+    }
+
+    public function getBusCollectedTickets($status,$trip_id)
+    {
+        return $this->where(['status' => $status,'trip_id'=>$trip_id]);
+    }
+
+   
+
+
     // add ticket
     public function addTicket($data)
     {

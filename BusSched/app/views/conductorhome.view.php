@@ -80,15 +80,15 @@ if ($_SESSION['USER']->role == 'passenger') {
 </div>
 </div>
 
-        <div class="col-3">
+        <!-- <div class="col-3">
         <div class="card-container span-col-2">
         </div>
-        </div>
+        </div> -->
 
-<main class="container"> 
+<main class="container1"> 
 <div class="col-4">  
         <div class="card-container" id="location-card">
-            <a href="#">
+            <a href="<?= ROOT ?>/conductors" >
                 <div class="overlay">
                     <div class="items"></div>
                     <div class="items head">
@@ -96,15 +96,17 @@ if ($_SESSION['USER']->role == 'passenger') {
                         <hr>
                     </div>
                     <div class="items users">
+                    
                         <!-- <p>Bus details</p> -->
                     </div>
                 </div>
             </a>
     </div>  
-    </div>
+    <!-- </div> -->
 
-<div class="col-5"> 
+<!-- <div class="col-5">  -->
         <div class="card-container" id="ratings-card">
+        <a href="<?= ROOT ?>/conductorratings">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -115,12 +117,14 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <p>User ratings</p>
                 </div>
             </div>
+            </a>
         </div>
-</div> 
+<!-- </div> 
 
-<div class="col-6"> 
+<div class="col-6">  -->
 
         <div class="card-container" id="schedules-card">
+        <a href="<?= ROOT ?>/conductorschedules" >
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -131,25 +135,13 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <p>Bus schedules</p>
                 </div>
             </div>
+            </a>
  </div> 
-        </div>
- <div class="col-7"> 
-        <div class="card-container" id="buses-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Buses</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p>Bus details</p>
-                </div>
-            </div>
         </div>
 </div> 
 <div class="col-5">  
         <div class="card-container" id="breakdowns-card">
-            <a href="#">
+            <a href="<?= ROOT ?>/breakdowns">
                 <div class="overlay">
                     <div class="items"></div>
                     <div class="items head">
@@ -162,10 +154,11 @@ if ($_SESSION['USER']->role == 'passenger') {
                 </div>
             </a>
         </div>
-</div>
+<!-- </div>
 
- <div class="col-9"> 
+ <div class="col-9">  -->
         <div class="card-container" id="fare-card">
+        <a href="<?= ROOT ?>/conductorfares">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -176,10 +169,12 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <!-- <p>User ratings</p> -->
                 </div>
             </div>
+            </a>
         </div>
-    </div>
-    <div class="col-10"> 
+    <!-- </div>
+    <div class="col-10">  -->
         <div class="card-container" id="contacts-card">
+        <a href="<?= ROOT ?>/contactowners">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -190,11 +185,15 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <p>Contact details of drivers, conductors</p>
                 </div>
             </div>
+            </a>
         </div>
-    </div> 
+
+        </div>
+     
     <div class="col-7"> 
 
         <div class="card-container" id="tickets-card">
+        <a href="<?= ROOT ?>/activetickets" >
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
@@ -205,6 +204,7 @@ if ($_SESSION['USER']->role == 'passenger') {
                     <p><a href="#">Tickets sold</a><br></p>
                 </div>
             </div>
+            </a>
         </div>
     </div>  
 </main> 

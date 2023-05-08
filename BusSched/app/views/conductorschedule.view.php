@@ -138,6 +138,7 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
 
                 <?php
+                if(!empty($conductorschedules)):
                 foreach ($conductorschedules as $schedule) {
                     echo "<tr>";
                     echo "<td> $schedule->id </td>";
@@ -146,7 +147,10 @@ if (!isset($_SESSION['USER'])) {
                     echo "<td> $schedule->time </td>";
                     echo "<td> $schedule->bus_no</td>";
                     echo "</tr>";
-                } ?>
+                    }
+                else:
+                    echo "<tr><td colspan='5'>No schedules found</td></tr>";
+                endif; ?>
 
             </table>
         </div>
