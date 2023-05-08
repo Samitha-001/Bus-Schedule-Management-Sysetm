@@ -167,10 +167,7 @@ include '../app/views/components/navbar.php';
         <?php endif; ?>
     </table>
     </div>
-    <!-- </div> -->
-
-    <!-- inactive tickets div -->
-    <!-- <div class="col-10 col-s-10" style="margin:auto;"> -->
+    
     <div class="ticket-flex tickets-table" id="inactive-tickets">
     <table>
         <tr>
@@ -253,14 +250,20 @@ include '../app/views/components/navbar.php';
             </tr>
             <tr>
                 <th>Last updated: </th>
-                <td id="ticket-details-last-updated" name="last_updated"></td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align:center">
-                    <a id="a-update-location">Update location and earn points</a>
+                <td>
+                    <span id="ticket-details-last-updated" name="last_updated"></span><br> at 
+                    <span id="ticket-details-last-updated-at"></span>
                 </td>
-                <td colspan="2" style="text-align:center">
-                    <a id="a-got-off">Got off the bus</a>
+            </tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr>
+                <td colspan="2" style="text-align:center; padding:15px;">
+                    <a id="a-update-location" class="ticket-button-orange">Update location and earn points</a>
+                </td>
+                <td colspan="2" style="text-align:center; padding:15px;">
+                    <a id="a-got-off" class="ticket-button-orange">Got off the bus</a>
                 </td>
             </tr>
         </table>

@@ -38,4 +38,11 @@ class Trip extends Model
         $bus = new Bus();
         return $bus->first(['bus_no' => $data['bus_no']]);
     }
+
+    // update last_updated_halt and location_updated_time
+    public function updateTripLocation($tripID, $location)
+    {
+        $data = ['last_updated_halt' => $location, 'location_updated_time' => date('Y-m-d H:i:s')];
+        $this->update($tripID, $data);
+    }
 }

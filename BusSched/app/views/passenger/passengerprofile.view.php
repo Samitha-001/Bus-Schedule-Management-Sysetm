@@ -17,18 +17,17 @@ if (isset($_SESSION['USER'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/passenger_profile.css">
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <script src="<?= ROOT ?>/assets/js/passengerprofile.js"></script>
-    <title>Profile</title>
-    <style>
-    </style>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet" href="<?= ROOT ?>/assets/css/passenger_profile.css">
+        <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+        <script src="<?= ROOT ?>/assets/js/passengerprofile.js"></script>
+        <title>Profile</title>
 </head>
 
 <body>
@@ -174,6 +173,50 @@ if (isset($_SESSION['USER'])) {
         </div>
 
     </div>
+
+        <div class="passenger-profile-card">
+            <h1>My ratings</h1>
+            <table id="my-ratings">
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Bus No.</th>
+                    <th>Bus rating</th>
+                    <th>Driver rating</th>
+                    <th>Conductor rating</th>
+                    <th>Time</th>
+                </tr>
+            <tr>
+            <?php
+            $passenger = new Passenger();
+            $ratings = $passenger->getRatings();
+            foreach ($ratings as $rating) {
+                echo "<td>" . $rating->ticket_id . "</td>";
+                echo "<td>" . $rating->bus_no . "</td><td>";
+
+                for($i = 0; $i < $rating->bus_rating; $i++) {
+                    echo "<i class='fas fa-star fa-xs'></i>";
+                }
+                echo "&nbsp(" . $rating->bus_rating . "/5)</><td>";
+
+                for($i = 0; $i < $rating->driver_rating; $i++) {
+                    echo "<i class='fas fa-star fa-xs'></i>";
+                }
+                echo "&nbsp(" . $rating->driver_rating . "/5)</><td>";
+
+                for($i = 0; $i < $rating->conductor_rating; $i++) {
+                    echo "<i class='fas fa-star fa-xs'></i>";
+                }
+                echo "&nbsp(" . $rating->conductor_rating . "/5)</td>";
+                
+                echo "<td>" . $rating->time_updated . "</td></tr><tr>";
+            }
+            ?>
+            </tr>
+            </table>
+        </div>
+        </div>
+
+
     
 </body>
 
