@@ -72,4 +72,65 @@ a {
   color: #ffffff;
 }
 
+#submit-btn{
+  display:none;
+  background-color:rgb(90, 221, 96);
+  height:30px;
+  width:180px;
+  border: none; outline: none;
+  border-radius: 7px;
+  color:white;
+  font-size:18px;
+  margin-right:5px;
+ 
+}
 
+#cancel{
+  display:none;
+  color:black;
+  border-radius: 7px;
+  border-color:rgb(21, 20, 20);
+  height:30px;
+  width:80px;
+  font-size:18px;
+  margin-left:50px;
+  background-color:white;
+  outline: none;
+
+}
+
+#edit{
+  background-color:rgb(90, 221, 96);
+  height:30px;
+  width:80px;
+  color: white;
+  margin-left:80px;
+  margin-right:20px;
+  font-size:18px;
+  border-radius: 7px;
+  border: none; outline: none;
+}
+
+#delete{
+  color:white;
+  height:30px;
+  width:80px;
+  font-size:18px;
+  background-color:red;
+  border-radius: 7px;
+  border: none; outline: none;
+}
+
+
+.my-input {
+  border: none;
+  outline: none;
+  background-color:aliceblue;
+  padding-left: 50px;
+}
+
+.my-input:focus {
+  border:  rgb(86, 86, 93);
+  background-color:white;
+  padding-left: 20px;
+}

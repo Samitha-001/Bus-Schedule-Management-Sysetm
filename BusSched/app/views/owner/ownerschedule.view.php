@@ -10,9 +10,13 @@
     <title>Schedule</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner_view.css" rel="stylesheet">
+   
+    
 </head>
 
 <body>
+  
 <?php
 include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
