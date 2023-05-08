@@ -71,6 +71,14 @@ a:hover {
   cursor: pointer;
 }
 
+#profile-picture {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  /* do not stretch image */
+  object-fit: cover;
+}
+
 /* for tablet & desktop */
 @media only screen and (min-width: 600px) {
   div.passenger-sidenav-mobile {
@@ -84,11 +92,6 @@ a:hover {
     font-size: 20px;
   }
   
-  img#profile-picture {
-    height: 80px;
-    width: 80px;
-    border-radius: 25px;
-  }
 
   div.passenger-profile-card {
     width: max-content;
@@ -121,10 +124,12 @@ h1 {
   padding: 10px;
 }
 
-#profile-picture {
-  height: 50px;
-  width: 50px;
-  border-radius: 25px;
+img#edit-pencil {
+  position: relative;
+  left: -25px;
+  bottom: -35px;
+  width: 24px;
+  cursor: pointer;
 }
 
 .passenger-profile-card {
@@ -136,6 +141,15 @@ h1 {
   border-radius: 15px;
   margin: 5px;
   color: #7c839e;
+}
+
+.info-grid button, .passenger-profile-card button{
+  background-color: #FD6002;
+  color: white;
+  font-family: 'Outfit';
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
 }
 
 .nav-cards {
@@ -162,18 +176,40 @@ h1 {
   grid-gap: 5px;
 }
 
-input {
+input, select {
   font-family: Outfit;
+  font-size: 13px;
+  color:#24315e
+}
+
+select {
+  padding: 5px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
   font-size: 13px;
 }
 
 input[type="text"], input[type="number"], input[type="text"]::placeholder, input[type="number"]::placeholder {
   font-size: 13px;
+  padding: 5px;
+}
+
+#points {
+  width: 100%;
+  background-color: #f9f9f9;
+  border: none;
+  border-radius: 5px;
 }
 
 #gift-points-div {
   display:none;
 }
+
+/* #gift-points-amount {
+  background-color: #24315e;
+} */
 
 a#edit-passenger-info {
   text-align: right;
@@ -182,4 +218,19 @@ a#edit-passenger-info {
 /* align span to right */
 span.close{
   float: right;
+}
+
+td input[disabled] {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  cursor: default;
+}
+
+form.info-grid {
+  display: none;
 }

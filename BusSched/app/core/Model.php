@@ -90,7 +90,6 @@ class Model
         
         $keys = array_keys($data);
         $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES (:".implode(',:', $keys).")";        // implode returns a string from an array
-        // print_r($query);
         $this->query($query, $data);
         return false;
     }

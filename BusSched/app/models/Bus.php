@@ -11,6 +11,8 @@ class Bus extends Model
         'type',
         'seats_no',
         'route',
+        'rating',
+        'no_of_reviews',
         'start',
         'dest',
         'owner',

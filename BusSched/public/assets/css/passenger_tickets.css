@@ -15,7 +15,7 @@ body {
   justify-content: center;
   padding: 10px;
   position: sticky;
-  top: 70px;
+  top: 69px;
   z-index: 1;
 }
 #profile-header h1 {
@@ -236,13 +236,22 @@ div.ticket-details-card {
   width: 100%;
 }
 
+#inside-update-location-div {
+  display:flex; 
+  overflow-x: scroll; 
+  justify-content:space-between; 
+  margin: auto;
+  max-width: fit-content;
+}
+
 .location-update-card {
   display: inline-block;
   background-color: white;
   min-width: 140px;
-  height: 140px;
+  height: 90px;
   padding: 10px;
   margin: 5px;
+  margin-top: 45px;
   border-radius: 5px;
   text-align: center;
   color: #24315e;
@@ -257,6 +266,7 @@ div.ticket-details-card {
   font-weight: 400;
   border-radius: 10px;
   margin: 5px;
+  margin-top: 40px;
   text-align: center;
   transition: all 0.35s;
 }
@@ -274,7 +284,7 @@ div.ticket-details-card {
 
 ::-webkit-scrollbar {
   padding-top: 5px;
-  width: 50%;
+  width: 500%;
   height: 5px;
 }
 ::-webkit-scrollbar-thumb {
@@ -372,4 +382,72 @@ label.star:before {
   color:#f15f22;
   font-size: 13.5px;
   padding: 10px;
+}
+
+.tickets-table {
+  display: block;
+  color: #24315e;
+  white-space: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  border-collapse: separate;
+  background-color: white;
+  margin-left: auto;
+  border-radius: 5px;
+
+  /* height: 70vh; */
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+
+.tickets-table tbody {
+  display: table;
+  width: 100%;
+}
+
+
+.tickets-table th,
+.tickets-table td {
+  padding: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* freeze first row */
+.tickets-table tr:first-child {
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+  z-index: 4;
+  padding: 10px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* not first row when hovered*/
+.tickets-table tr:not(:first-child):hover {
+  background-color: #f15f22;
+  /* color: white; */
+  /* cursor: pointer; */
+}
+
+.tickets-table th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.tickets-table {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  max-height: 470px;
+}
+
+.col-10, .col-s-10 {
+  max-width: fit-content;
 }

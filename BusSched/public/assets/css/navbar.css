@@ -11,7 +11,7 @@
   color: #fff;
   height: 70px;
   position: sticky;
-  top: 0;
+  top: -1px;
   width: 100%;
   z-index: 4;
 }
@@ -19,11 +19,36 @@
 .nav-links a {
   color: #fff;
   text-decoration: none;
+  padding-top: 10px;
+
+  /* slowly change colour when hovered */
+  -webkit-transition: color 0.3s ease-out;
+  -moz-transition: color 0.3s ease-out;
+  -o-transition: color 0.3s ease-out;
+  -ms-transition: color 0.3s ease-out;
+  transition: color 0.3s ease-out;
 }
 
+.nav-links a:hover {
+  color: #FD6002;
+}
+
+.nav-links a li {
+  /* slowly change scale when hovered */
+  -webkit-transition: transform 0.2s ease-out;
+  -moz-transition: transform 0.2s ease-out;
+  -o-transition: transform 0.2s ease-out;
+  -ms-transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+}
+
+.nav-links a li:hover {
+  transform: scale(1.05);
+}
 .nav-links {
   height: 30;
 }
+
 .nav-menu {
   display: none;
   gap: 1em;
@@ -127,9 +152,8 @@
 }
 
 .sidenav a {
-  color: #7c839e;
+  color: white;
   display: block;
-  transition: 0.3s;
 }
 
 a.li {
@@ -137,7 +161,7 @@ a.li {
 }
 
 .sidenav a:hover {
-  color: white;
+  color: #FD6002;
 }
 
 .sidenav .closebtn {
@@ -154,6 +178,10 @@ a.li {
   top: 21px;
   left: 40px;
   margin-right: 50px;
+}
+
+#sidenav-links-div {
+  padding-top: 30px;
 }
 
 ul.sidenav-links {
@@ -190,6 +218,7 @@ ul.sidenav-links {
 .login-buttons a {
   color: white;
 }
+
 .sidenav-signup-button, .sidenav-login-button {
   background-color: #f15f22;
   border: none;
@@ -214,7 +243,7 @@ ul.sidenav-links {
 
 .sidenav-login-button {
   border: 2px solid #f4511e;
-  background-color: #111;
+  background-color: black;
 }
 
 .sidenav-signup-button a, .sidenav-login-button a {

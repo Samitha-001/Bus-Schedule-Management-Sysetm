@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let passengerCount = 1;
   passengerCountInput.addEventListener("change", function () {
     passengerCount = passengerCountInput.value;
-    // console.log(passengerCount);
   });
 
   seats.forEach((seat) => {
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
           alert('You can only book 5 seats per ticket');
         }
       }
-      // console.log(seatsSelected);
     });
   });
 
@@ -50,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let busType = document.querySelector("#reserve-seats-div").getAttribute("data-bus-type");
     if (busType == 'L') {
       // bus layout 1 for large buses
-      console.log("busType == 'L'");
-      console.log(busType);
       document.querySelector("#bus-layout-l").style.display = "block";
       document.querySelector("#bus-layout-s").style.display = "none";
     } else {
@@ -64,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
   let seatsSpan = document.getElementById("reserved-seats")
-  // confirm seat reservation
+  // confirm seat reservation layout Large
   document.querySelector("#reserve-seats-done").addEventListener("click", () => {
     document.querySelector("#reserve-seats-div").style.display = "none";
     document.querySelector("#book-ticket").style.display = "block";
@@ -84,6 +80,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   
+  // confirm seat reservation layout Small
+  document.querySelector("#reserve-seats-s-done").addEventListener("click", () => {
+    document.querySelector("#reserve-seats-div").style.display = "none";
+    document.querySelector("#book-ticket").style.display = "block";
+    document.getElementById("buy-tickets-title").innerHTML = "Buy Tickets";
+    seatsList = seatsSelected.join(", ");
+    // if seatsSelected is empty
+    if (seatsList == "") {
+      document.getElementById("reserved-seats").innerHTML = "";
+      document.getElementById("reserve-seats-q").innerHTML = "Reserve seats?";
+      seatsSpan.setAttribute("data-seats-no", 0);
+    } else {
+      seatsSpan.innerHTML = "Reserved seats: " + seatsList;
+      // set data attribute to seatsSpan
+      seatsSpan.setAttribute("data-seats-no", seatsSelected.length);
+      
+      document.getElementById("reserve-seats-q").innerHTML = "&nbsp&nbsp&nbsp Change";
+    }
+  });
 
   // cancel seat reservation layout Large
   document.querySelector("#reserve-seats-cancel").addEventListener("click", () => {
