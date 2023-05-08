@@ -5,7 +5,10 @@
 /* @media only screen and (min-width: 600px) { */
   body {
     color: white;
-    background: url("../images/backgrounds/bg-passenger-profile.png");
+    /* white bg */
+    /* background: url("../images/backgrounds/bg-passenger-profile.png"); */
+    /* blue bg */
+    background: url("../images/backgrounds/bg-location.png");
     font-family: "Outfit";
   }
 /* } */
@@ -125,9 +128,9 @@ h1 {
 }
 
 img#edit-pencil {
-  position: relative;
-  left: -25px;
-  bottom: -35px;
+  position: absolute;
+  left: 100px;
+  top: 167px;
   width: 24px;
   cursor: pointer;
 }
@@ -233,4 +236,76 @@ td input[disabled] {
 
 form.info-grid {
   display: none;
+}
+
+/* rating stars */
+
+div.stars {
+  width: 270px;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+span.star {
+  content: '\f005';
+  font-family: FontAwesome;
+  color: #7a819c;
+  float: right;
+  font-size: 20px;
+}
+
+table#my-ratings {
+  display: block;
+  white-space: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow-x: scroll;
+  overflow-y: scroll;
+  max-height: 210px;
+
+  background-color: white;
+  margin-left: auto;
+  border-radius: 5px;
+
+  /* height: 70vh; */
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+table tbody {
+  display: table;
+  width: 100%;
+  /* padding: 10px; */
+}
+
+#my-ratings th, #my-ratings td {
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+#my-ratings th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+/* freeze first row */
+#my-ratings tr:first-child {
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+  z-index: 4;
+  padding: 10px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+  color: #24315e;
+}
+
+#my-ratings td {
+  height: 25px;
+  color:#7a819c;
+  text-align: left;
 }

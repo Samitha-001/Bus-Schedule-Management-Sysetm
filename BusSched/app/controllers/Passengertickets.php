@@ -26,7 +26,9 @@ class Passengertickets
 
             // update ticket status from collected to inactive
             $id = $postData['id'];
-            $this->updateTicketStatus($id, 'inactive');
+            if($postData['gotoff']) {
+                $this->updateTicketStatus($id, 'inactive');
+            }
 
             // add, location update record
             $location_update = new Location_update();
@@ -35,9 +37,11 @@ class Passengertickets
                 'username' => $postData['username'],
                 'user_role' => $postData['user_role'],
                 'ticket' => $postData['id'],
+                'tripID' => $postData['tripID'],
                 'halt' => $postData['halt'],
                 'timestamp' => date('Y-m-d H:i:s')
             ];
+
 
             $location_update->addLocationUpdate($data);
 

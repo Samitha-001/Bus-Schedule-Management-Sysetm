@@ -333,13 +333,15 @@ document.addEventListener("DOMContentLoaded", function () {
     updateLocationDiv.style.display = "none";
     gotOffBusBtn.classList.remove("disabled");
     updateLocationBtn.classList.remove("disabled");
-    ticketDetails.style.display = "none";
+    // ticketDetails.style.display = "none";
 
     let halt = updateLocationDiv.getElementsByTagName("h1")[0].innerHTML
     let ticketId = ticketDetails.getAttribute("data-ticket-id");
     let username = ticketDetails.getAttribute("data-username");
+    // trip ID
+    let tripID = document.getElementById("ticket-details-trip").innerHTML;
 
-    let data = { id: ticketId, username: username, user_role: 'passenger', halt: halt };
+    let data = { id: ticketId, username: username, user_role: 'passenger', tripID: tripID, halt: halt, gotoff: false };
     
     // send data to server
     let url = `${ROOT}/passengertickets/api_update_location`;
@@ -359,7 +361,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(error);
       });
     
-    showCollectedTicketsFunc();
+    // showCollectedTicketsFunc();
   });
 
 
@@ -407,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // get username
     let username = ticketDetails.getAttribute("data-username");
-    let data = { id: ticketId, username: username, user_role: 'passenger', halt: dest };
+    let data = { id: ticketId, username: username, user_role: 'passenger', halt: dest, gotoff: true };
 
     // send data to server
     let url = `${ROOT}/passengertickets/api_update_location`;

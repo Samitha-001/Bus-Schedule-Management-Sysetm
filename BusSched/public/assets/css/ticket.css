@@ -421,4 +421,12 @@ input:disabled+label {
 #schedule-table {
   overflow-x: scroll;
   overflow-y: scroll;
+  max-height: 490px;
+  padding: 0px;
+}
+
+/* freeze first row */
+#schedule-table tr:first-child {
+  position: sticky;
+  top: 0px;
 }

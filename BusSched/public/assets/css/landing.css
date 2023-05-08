@@ -113,8 +113,8 @@ button:hover {
 .menu {
   /* background-color: white; */
   padding: 90px;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 50px;
+  padding-bottom: 40px;
 
   /* margin: 10px; */
 }
@@ -213,7 +213,7 @@ div.white-box input:focus {
   }
 
   .landing-top {
-    padding-top: 75px;
+    padding-top: 50px;
     padding-bottom: 10px;
     text-align: center;
   }
