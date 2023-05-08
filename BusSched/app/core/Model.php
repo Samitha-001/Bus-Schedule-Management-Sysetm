@@ -158,4 +158,5 @@ class Model
         $data = array_merge($data, $data_not);
         return $this->query($query, $data);
     }
+
 }

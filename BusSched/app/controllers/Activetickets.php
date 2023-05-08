@@ -6,8 +6,8 @@ class Activetickets
 
     public function index()
     {
-        $activeticket = new Activeticket();
-        $activetickets = $activeticket->getActivetickets();
+        $activeticket = new E_ticket();
+        $activetickets = $activeticket->getTickets();
 
         // $data = [];
      
