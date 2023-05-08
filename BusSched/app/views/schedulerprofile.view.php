@@ -28,6 +28,21 @@ if (isset($_SESSION['USER'])) {
     <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <script src="<?= ROOT ?>/assets/js/schedulerprofile.js"></script>
     <title>Profile</title>
+    <style>
+      td input[disabled] {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        font-size: inherit;
+        font-family: inherit;
+        color: inherit;
+        cursor: default;
+      }
+      form.info-grid {
+        display: none;
+      }
+    </style>
 </head>
 
 <body>
@@ -37,9 +52,28 @@ if (isset($_SESSION['USER'])) {
 
         $scheduler = $data[0];
         $username = $scheduler->username;
-
+        $schednew1 = new Scheduler();
     ?>
 
+<datalist id="passenger-list">
+        <?php
+        $schednew = new Scheduler();
+        //edit passenger info
+        $schedsnew = $schednew->schedulerInfo();
+        foreach ($schedsnew as $schednew) {
+            if ($schednew->username != $username) {
+                echo "<option value='" . $schednew->username . "'>";
+            }
+        }
+        
+        
+        ?>
+    </datalist>
+
+        <div class="passenger-profile-card" id="profile-header">
+        <img id="profile-picture" src="<?= ROOT ?>/assets/images/icons/profile-pic-none.png" alt="profile pic" width="50px" height="50px">
+        <h1 id="username">Hi <?= $username ?>!</h1>
+    </div>
     
 
         <div class="row">
@@ -82,7 +116,7 @@ if (isset($_SESSION['USER'])) {
                 
                 <!-- TODO -->
                 <div class="info-grid-start-2">
-                    <button id='save-passenger-info'>Save</button>
+                    <button id='save-passenger-info' ">Save</button>
                     <button id='cancel-passenger-info'>Cancel</button>
                 </div>
             </form>

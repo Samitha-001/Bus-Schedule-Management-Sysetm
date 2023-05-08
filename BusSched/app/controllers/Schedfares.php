@@ -8,14 +8,11 @@ class Schedfares
 
     public function index()
     {
-        $schedfare = new fare();
-        $schedfares = $schedfare->getFares();
+        $schedfare = new Fareinstance();
+        $schedfares = $schedfare->getFareInstances();
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            if ($schedfare->validate($_POST)) {
-                $schedfare->insert($_POST);
-                redirect('schedfares');
-            }
+            
 
             $data['errors'] = $schedfare->errors;
         }

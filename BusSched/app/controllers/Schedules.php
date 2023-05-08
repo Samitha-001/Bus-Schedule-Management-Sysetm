@@ -16,7 +16,7 @@ class Schedules
         
         $bus = json_decode(json_encode($buses), true);
         
-        $schedules = $schedule->generateBusSchedule4($bus);
+        $schedules = $schedule->busSchedule($bus);
         
 
         $data = [];

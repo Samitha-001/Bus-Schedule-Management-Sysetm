@@ -14,4 +14,17 @@ class Fareinstance extends Model
         if($limit == 0) return $this->findAll();
         else return $this->findN($limit, 'instance');
     }
+    public function addFare($data)
+    {
+        // validate and add
+        // if ($this->validate($data)) {
+            return $this->insert($data);
+        // }
+        // return false;
+    }
+
+    public function deleteFares($id)
+    {
+        return $this->delete($id);
+    }
 }

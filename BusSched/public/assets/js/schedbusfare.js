@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // del.addEventListener("click", function(e){
     //     console.log("Hey");
     // });
-
+    
     addfarebtn.addEventListener("click", (e) => {
         // disable add button
         console.log("H");
-        addfarebtn.disabled = true;
+        addfarebtn.disabled = false;
     
         let irow = inputrow.cloneNode(true);
         irow.classList.remove("dummy-input");

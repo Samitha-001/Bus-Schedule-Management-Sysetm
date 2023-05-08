@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // check if data is not empty
       if (Object.keys(data).length !== 0) {
         // send data to server
+        let ROOT = 'https://www.yourwebsite.com';
         let url = `${ROOT}/schedulerprofile/api_edit`;
         let options = {
           method: "POST",

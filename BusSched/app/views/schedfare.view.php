@@ -20,6 +20,9 @@ if (!isset($_SESSION['USER'])) {
     <link href="<?= ROOT ?>/assets/css/schedfare.css" rel="stylesheet">
     <!-- <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script> -->
     <script src="<?= ROOT ?>/assets/js/schedbusfare.js">console.log("Hey")</script>
+
+    
+
 </head>
 
 <body>
@@ -89,7 +92,7 @@ if (!isset($_SESSION['USER'])) {
 
                 </table>
             </div>
-        </form> -->
+        </form>
 
         <div>
             <br>
@@ -100,21 +103,23 @@ if (!isset($_SESSION['USER'])) {
                     <th>To</th>
                     <th>Route</th>
                     <!-- <th>Type</th> -->
+                    <th>Instance</th>
                     <th>Amount</th>
                     <th>Last Updated</th>
                     <th>Action</th>
                     <!-- <th>Action</th> -->
                 </tr>
-
+                <?php
+                  print_r($schedfares);
+                ?>
                 <!-- <?php
                 
                 foreach ($schedfares as $fare): ?> 
-                    <tr data-id=<?= $fare->id ?>>
+                    <tr>
                     <td> <?php echo $fare->id ?></td>
-                    <td> <?php echo $fare->source ?></td>
-                    <td> <?php echo $fare->dest ?></td>
-                    <td> <?php echo $fare->bus_route ?></td>
-                    <td> <?php echo $fare->amount ?></td>
+                    <td> <?php echo $fare->instance ?></td>
+                    <td> <?php echo $fare->fare ?></td>
+                    
                     <td> <?php echo $fare->last_updated ?></td>
                     <td>
                         <div class='edit_delete'> 
@@ -123,9 +128,9 @@ if (!isset($_SESSION['USER'])) {
                         </div>      
                     </td>
                     </tr>
-                <?php endforeach ?>; -->
+                <?php endforeach ?>; 
 
-                <?php static $i = 1; ?>
+                <!-- <?php static $i = 1; ?>
                 <?php if ($schedfares):
                foreach ($schedfares as $schedfare): ?>
                 <tr data-id=<?= $schedfare->id ?>>
@@ -177,14 +182,14 @@ if (!isset($_SESSION['USER'])) {
             <td data-fieldname="driver">
               <input type="text" value="" placeholder="Driver">
             </td> -->
-            <td class='edit-options'>
+            <!-- <td class='edit-options'>
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon save-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-btn" width='20px' height='20px'>
             </td>
-            <!-- <td class='add-options'>
+            <td class='add-options'>
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
-            </td> -->
+            </td>
           </tr>
           <tr class='dummy-row' style="display: none;">
             <td></td>
@@ -201,10 +206,12 @@ if (!isset($_SESSION['USER'])) {
               <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
             </td>
-          </tr>
+          </tr> --> 
 
             </table>
         </div>
+       
+
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
     </main>
