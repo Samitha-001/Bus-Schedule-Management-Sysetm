@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+  
+  
+  // GET PROFILE PICTURE from form
+  let profilePicForm = document.getElementById("profile-pic-form");
+  let profilePicEditBtn = document.getElementById("edit-pencil");
+  
   let editbtn = document.getElementById("edit-passenger-info");
 
   editbtn.addEventListener("click", function (e) {
@@ -36,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let infoform = ticketdiv.querySelector("form");
 
     // get element by class
-    let profileinfo = ticketdiv.querySelector("div.info-grid");
+    let profileinfo = ticketdiv.querySelector("div#passenger-info-div");
 
     // inputs
     let inputs = infoform.querySelectorAll("input");
@@ -47,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     inputs[3].value = dob;
 
     profileinfo.style.display = "none";
-    infoform.style.display = "grid";
+    infoform.style.display = "block";
+    profilePicEditBtn.style.display = "block";
   }
 
   // cancel edit
@@ -56,8 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
     infoform.style.display = "none";
 
     let ticketdiv = e.target.parentElement.parentElement.parentElement;
-    let profileinfo = ticketdiv.querySelector(".info-grid");
-    profileinfo.style.display = "grid";
+    let profileinfo = ticketdiv.querySelector("#passenger-info-div");
+    profileinfo.style.display = "block";
+    profilePicEditBtn.style.display = "none";
   }
 
   // save edited info
@@ -66,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let ticketdiv = e.target.parentElement.parentElement.parentElement;
     let prevValues = ticketdiv.querySelectorAll("p");
     let id = document.querySelector("#username").innerHTML;
-    // Hi passenger1!
-    //get username from above
+  
+    // get username from above
     id = id.substring(3, id.length - 1);
     let data = { id: id };
     let inputs = ticketdiv.querySelectorAll("input");
@@ -100,8 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // hide form and show info
           let infoform = ticketdiv.querySelector("form");
           infoform.style.display = "none";
-          let profileinfo = ticketdiv.querySelector(".info-grid");
-          profileinfo.style.display = "grid";
+          let profileinfo = ticketdiv.querySelector("#passenger-info-div");
+          profileinfo.style.display = "block";
+          profilePicEditBtn.style.display = "none";
           // if (data.success) {
           //     // this doesn't get called
           //     // update the values
@@ -192,9 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // GET PROFILE PICTURE from form
-  let profilePicForm = document.getElementById("profile-pic-form");
-  let profilePicEditBtn = document.getElementById("edit-pencil");
+  
   // let profilePicInput = document.getElementById("profile-pic-input");
   // value of input with name username
   let username = profilePicForm.querySelector("input[name='username']").value;
@@ -256,10 +263,102 @@ document.addEventListener("DOMContentLoaded", function () {
       addFriendDiv.style.display = "none";
       addFriendBtn.style.display = "block";
       
-      // TODO call function to add friend
+      addFriend();
+      // display data in friend list
+      // create div
+      let div = document.createElement("div");
+      // add i tag inside div
+      let i = document.createElement("i");
+      i.innerHTML = "Remove friend";
+      i.classList.add("remove-friend-i");
+      // add attribute
+      let input = document.getElementById("friend");
+
+      i.setAttribute("data-friend", input.value);
+      div.appendChild(i);
+      let p = document.createElement("p");
+      p.innerHTML = "@"+input.value;
+      div.appendChild(p);
+      div.appendChild(document.createElement("hr"));
+
+      // add div to friend list
+      friendListDiv.appendChild(div);
     }
   });
 
+  function addFriend() {
+    let data = {};
+    let input = document.getElementById("friend");
+    if (!input.value) {
+      alert("Please enter a username");
+      return;
+    };
+      data['friend'] = input.value;
+
+    // send data to server
+    let url = `${ROOT}/passengerprofile/api_add_friend`;
+    let options = {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .catch((err) => {
+        console.log(err);
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  // remove friend
+  let friendListDiv = document.getElementById("friend-list-div");
+
+  // add event listeners to all i tags in it
+  let friendList = friendListDiv.querySelectorAll("i");
+  friendList.forEach((friend) => {
+    friend.addEventListener("click", function (e) {
+      // get data attribute
+      let confirm = window.confirm("Are you sure you want to remove "+friend.getAttribute('data-friend')+" as a friend?");
+      if (confirm) {
+        removeFriend(friend.getAttribute('data-friend'));
+        // hide friend 
+        friend.parentElement.remove();
+      }
+    });
+  });
 
 
+  // function to remove a friend
+  function removeFriend(friend) {
+    let data = {};
+    data['friend'] = friend;
+
+    // send data to server
+    let url = `${ROOT}/passengerprofile/api_remove_friend`;
+    let options = {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .catch((err) => {
+        console.log(err);
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
 });

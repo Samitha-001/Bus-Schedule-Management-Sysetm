@@ -96,8 +96,9 @@ include '../app/views/components/navbar.php';
                 <!-- <h1>Trip ID</h1> -->
                 <p>Bus:&nbsp&nbspNC1111</p>
                 <p>Seats:&nbsp&nbsp<i>unreserved</i></p>
-                <!-- split date and time -->
+                <p>Passengers:&nbsp&nbsp<?= $ticket->passenger_count ?></p>
                 <p><?= $ticket->booking_time ?></p>
+                <h4 style="text-align:right; margin-bottom:0px;"><?= $ticket->price ?> LKR</h4>
             </div>
                         <?php endif; endforeach; else: ?>
                     <div class="ticket-card">
