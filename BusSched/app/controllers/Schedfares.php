@@ -9,8 +9,8 @@ class Schedfares
     public function index()
     {   
 
-        $fareinstance = new Fare();
-        $fares = $fareinstance->getFares();
+        $fareinstance = new Fareinstance();
+        $fares = $fareinstance->getFareInstances();
 
 
         $halt = new Halt();
@@ -18,6 +18,18 @@ class Schedfares
         $data['halts'] = $halts;
         $data['fares'] = $fares;
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Get the instance and fare values from the form
+            $instance = $_POST['instance'];
+            $fare = $_POST['fare'];
+            
+            // Insert the new data into the database
+            
+            $fareinstance->addFare($_POST);
+            
+            // Redirect back to the same page to prevent form resubmission
+            redirect('schedfares');
+        }
         
 
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
@@ -27,6 +39,7 @@ class Schedfares
         
     }
 
+   
     // public function api_delete()
     // {
     //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

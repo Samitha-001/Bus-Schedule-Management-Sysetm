@@ -22,55 +22,28 @@ if (!isset($_SESSION['USER'])) {
     <script src="<?= ROOT ?>/assets/js/schedbusfare.js">console.log("Hey")</script>
     
     <style>
-        .card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
-    width: 100%; /* Set width to 100% */
-  /* Set max-width to 200px */
-  height: 100px;
-  position: relative;
-  }
-  
-  .card h4 {
-    margin: 0;
-    font-size: 18px;
-  }
-  
-  .card p {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-  }
+        .cardfare {
+  border: 1px solid black;
+  padding: 10px;
+  background-color: #24315e;
+  color: #fff;
+}
 
-  .card .edit-btn,
-  .card .delete-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .card .edit-btn:hover,
-  .card .delete-btn:hover {
-    background-color: #ccc;
-  }
-  
-  .card .edit-icon,
-  .card .delete-icon {
-    color: #24315e;
-    font-size: 20px;
-  }
+.edit-btn, .delete-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.edit-icon:before {
+  content: "\f040";
+}
+
+.delete-icon:before {
+  content: "\f1f8";
+}
+
   
   .fareinstance {
     width: auto;
@@ -139,7 +112,15 @@ if (!isset($_SESSION['USER'])) {
         include "components/navbar_new.php";
         include "components/schedulersidebar.php";
     ?>
-
+    <datalist id="halt-list">
+        <?php
+        $len = count($halts);
+        for ($i = 0; $i < $len; $i++) {
+            $halt = $halts[$i];
+            echo "<option value='" . $halt->name . "'>";
+        }
+        ?>
+    </datalist>
     <main class="container1">
 
         <div class="header orange-header">
@@ -159,18 +140,18 @@ if (!isset($_SESSION['USER'])) {
         <div>
             <table class="styled-table">
                 <tr>
-                    <td style="color:#24315e;"><label for="instacne">Instance </label></td>
-                    <td><input name="instance" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
+                    <td style="color:#24315e;"><label for="instance">Instance </label></td>
+                    <td><input name="instance" type="text" class="form-control" id="bus_no" placeholder="Instance" required></td>
                 </tr>
                 <tr>
                     <td style="color:#24315e;"><label for="fare">Fare </label></td>
-                    <td><input name="fare" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
+                    <td><input name="fare" type="text" class="form-control" id="bus_no" placeholder="Fare" required></td>
                 </tr>
 
                 <tr>
                     <td></td>
                     <td align="right">
-                        <button class="button-green" type="submit">Save</button>
+                        <button class="button-green" type="submit" id="save-button">Save</button>
                         <button class="button-cancel" onclick="cancel()">Cancel</button>
                     </td>
                 </tr>
@@ -180,28 +161,35 @@ if (!isset($_SESSION['USER'])) {
 </div>
 
 
-        <div class="fareinstance" style="width: auto; height: 250px; background-color: #fff;">
+        <div class="fareinstance" style="width: auto; height: 250px; background-color: transparent; overflow-x: auto; overflow-y: hidden;">
   
-  <table>
-    <tr>
-      <?php
-        $len = count($halts);
-        $fareinstance = new Fareinstance;
-        $instance = $fareinstance->getFareInstances($len);
-        foreach ($instance as $i) {
-          echo "<td>";
-          echo "<div class='card'>";
-          echo "<button class='edit-btn'><i class='fa fa-pencil edit-icon'></i></button>";
-          echo "<button class='delete-btn'><i class='fa fa-trash delete-icon'></i></button>";
-          echo "<h4>$i->instance</h4>";
-          echo "<p>$i->fare</p>";
-          echo "</div>";
-          echo "</td>";
-        }
-      ?>
-    </tr>
-    
-  </table>
+        <table>
+            <tr>
+  <?php
+    $len = count($halts);
+    $fareinstance = new Fareinstance;
+    $instance = $fareinstance->getFareInstances($len);
+    foreach ($instance as $i) {
+      
+        echo "<td>";
+        echo "<div class='cardfare'>";
+        echo "<h4>$i->instance</h4>";
+        echo "<p class='fare-text'>$i->fare</p>";
+        echo "<button class='edit-btn'><i class='fa fa-pencil edit-icon'></i></button>";
+        echo "</div>";
+        echo "</td>";
+    }
+  ?>
+            </tr>
+</table>
+<div style="display: flex; justify-content: space-between;">
+    <div id="left-arrow" style="width: 20px; height: 100%; background-color: transparent; position: sticky; left: 0;">
+      <i class="fa fa-angle-left" style="font-size: 20px;"></i>
+    </div>
+    <div id="right-arrow" style="width: 20px; height: 100%; background-color: transparent; position: sticky; right: 0;">
+      <i class="fa fa-angle-right" style="font-size: 20px;"></i>
+    </div>
+  </div>
 </div>
 
         <div class="row">
@@ -258,6 +246,147 @@ if (!isset($_SESSION['USER'])) {
     function cancel() {
         popupFormContainer.style.display = "none";
     }
+
+    var tableContainer = document.querySelector(".fareinstance");
+  var table = tableContainer.querySelector("table");
+  var leftArrow = document.querySelector("#left-arrow");
+  var rightArrow = document.querySelector("#right-arrow");
+
+  var scrollStep = 150; // adjust as desired
+  var scrollInterval = 100; // adjust as desired
+
+  var tableWidth = table.offsetWidth;
+  var containerWidth = tableContainer.offsetWidth;
+
+  // hide left arrow initially
+  leftArrow.style.visibility = "hidden";
+
+  // add click listener to left arrow
+  leftArrow.addEventListener("click", function () {
+    tableContainer.scrollBy({
+      left: -scrollStep,
+      behavior: "smooth"
+    });
+  });
+
+  // add click listener to right arrow
+  rightArrow.addEventListener("click", function () {
+    tableContainer.scrollBy({
+      left: scrollStep,
+      behavior: "smooth"
+    });
+  });
+
+  // add scroll listener to hide/show arrows
+  tableContainer.addEventListener("scroll", function () {
+    var scrollLeft = tableContainer.scrollLeft;
+    var maxScroll = tableWidth - containerWidth;
+    if (scrollLeft == 0) {
+      // scrolled all the way left
+      leftArrow.style.visibility = "hidden";
+    } else {
+      leftArrow.style.visibility = "visible";
+    }
+    if (scrollLeft == maxScroll) {
+      // scrolled all the way right
+      rightArrow.style.visibility = "hidden";
+    } else {rightArrow.style.visibility = "visible";
+}});
+
+// add resize listener to adjust table and container widths
+window.addEventListener("resize", function () {
+tableWidth = table.offsetWidth;
+containerWidth = tableContainer.offsetWidth;
+if (tableWidth <= containerWidth) {
+// hide arrows if table fits in container
+leftArrow.style.visibility = "hidden";
+rightArrow.style.visibility = "hidden";
+} else {
+// show arrows if table overflows container
+leftArrow.style.visibility = "visible";
+rightArrow.style.visibility = "visible";
+}
+});
+
+//editing
+const cards = document.querySelectorAll(".cardfare");
+
+cards.forEach(function (card) {
+  const editBtn = card.querySelector(".edit-btn");
+  const fareText = card.querySelector(".fare-text");
+
+  editBtn.addEventListener("click", function () {
+    cards.forEach(function (c) {
+      if (c !== card) {
+        c.classList.remove("editing");
+        c.querySelector(".tick-btn")?.removeEventListener("click", handleTick);
+        c.querySelector(".cross-btn")?.removeEventListener("click", handleCross);
+        c.querySelector(".tick-btn")?.remove();
+        c.querySelector(".cross-btn")?.remove();
+        c.querySelector(".edit-btn").style.display = "block";
+      }
+    });
+
+    card.classList.add("editing");
+    fareText.contentEditable = true;
+    fareText.focus();
+
+    const tickBtn = document.createElement("button");
+    tickBtn.classList.add("tick-btn");
+    tickBtn.innerHTML = '<i class="fa fa-check"></i>';
+
+    const crossBtn = document.createElement("button");
+    crossBtn.classList.add("cross-btn");
+    crossBtn.innerHTML = '<i class="fa fa-times"></i>';
+
+    card.appendChild(tickBtn);
+    card.appendChild(crossBtn);
+
+    const handleTick = function () {
+      const newFare = fareText.textContent.trim();
+      if (newFare !== "") {
+        // update the database and the data shown here
+        fareText.textContent = newFare;
+      }
+      tickBtn.removeEventListener("click", handleTick);
+      crossBtn.removeEventListener("click", handleCross);
+      tickBtn.remove();
+      crossBtn.remove();
+      editBtn.style.display = "block";
+      card.classList.remove("editing");
+      fareText.contentEditable = false;
+    };
+
+    const handleCross = function () {
+      tickBtn.removeEventListener("click", handleTick);
+      crossBtn.removeEventListener("click", handleCross);
+      tickBtn.remove();
+      crossBtn.remove();
+      editBtn.style.display = "block";
+      card.classList.remove("editing");
+      fareText.contentEditable = false;
+    };
+
+    tickBtn.addEventListener("click", handleTick);
+    crossBtn.addEventListener("click", handleCross);
+
+    editBtn.style.display = "none";
+  });
+
+  fareText.addEventListener("blur", function () {
+    card.classList.remove("editing");
+    fareText.contentEditable = false;
+    card.querySelector(".tick-btn")?.removeEventListener("click", handleTick);
+    card.querySelector(".cross-btn")?.removeEventListener("click", handleCross);
+    card.querySelector(".tick-btn")?.remove();
+    card.querySelector(".cross-btn")?.remove();
+    editBtn.style.display = "block";
+  });
+});
+
+  const saveButton = document.getElementById('save-button');
+saveButton.addEventListener('click', addFareInstance);
+    
 </script>
 
     </main>
