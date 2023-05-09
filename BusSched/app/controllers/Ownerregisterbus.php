@@ -19,6 +19,7 @@ class Ownerregisterbus
             if ($bus->validate($_POST)) {
                 // add session user id to the POST
                 $_POST['owner'] = $owner;
+                
                 $bus->addBus($_POST);
                 redirect('ownerbuses');
             }

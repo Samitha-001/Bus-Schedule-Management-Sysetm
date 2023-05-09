@@ -97,4 +97,28 @@ class User extends Model
 		$userinfo = $this->join($tablename, 'users.username', $tablename.".username");
 		return $userinfo;
 	}
+
+	public function getContactDetails($role)
+	{
+		$userinfo = $this->getUsersDetails($role);
+		$contactDetails = [];
+		$i = 0;
+		// show($userinfo);
+		foreach ($userinfo as $user) {
+			if($user->role == $role) {
+				$contactDetails[$i]['name'] = $user->name;
+				$contactDetails[$i]['email'] = $user->email;
+				$contactDetails[$i]['phone'] = $user->phone;
+				$contactDetails[$i]['address'] = $user->address;
+				if($role == 'driver' || $role == 'conductor') {
+					$contactDetails[$i]['assigned_bus'] = $user->assigned_bus;
+				}
+				$i++;
+
+			}
+			
+		}
+		
+		return $contactDetails;	
+	}
 }

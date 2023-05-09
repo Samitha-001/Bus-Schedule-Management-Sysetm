@@ -6,8 +6,8 @@ class Ownercontactowners
 
     public function index()
     {
-        $contactowner = new Ownercontactowner();
-        $contactowners = $contactowner->getContactowners();
+        $contactowner = new user();
+        $contactowners = $contactowner->getContactDetails('owner');
 
         // $data = [];
      

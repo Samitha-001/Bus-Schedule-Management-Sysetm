@@ -14,19 +14,20 @@ class Ownereditbusprofile
         $owner = $_SESSION['USER']->username;
         $buses = $bus->getBuses();
         
-        $data = [];
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            if ($bus->validate($_POST)) {
-                // add session user id to the POST
-                $_POST['owner'] = $owner;
-                $bus->addBus($_POST);
-                redirect('ownerbuses');
-            }
-            
-            $data['errors'] = $bus->errors;
-        }
-
+  
         $this->userview('owner', 'ownereditbusprofile', ['buses' => $buses]);
     }
+
+    public function updateOwnerBus()
+    {
+        $bus = new Bus();
+        // $data = $_POST['']
+        $bus->updateBus($_POST['id'], $_POST);
+
+        $redirectto = "ownereditbusprofile?bus_id=".$_POST['id'];
+        redirect($redirectto);
+    }
+
+    
 }
 

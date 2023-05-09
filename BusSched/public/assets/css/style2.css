@@ -103,7 +103,7 @@ input {
   padding: 12px 15px;
   border-color: #ffffff;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   color: #24315e;
 }
 
@@ -112,7 +112,7 @@ input {
   /* border-color: #f9f9f9;
     background-color: #f9f9f9; */
   border-color: #ffffff;
-  font-size: 15px;
+  font-size: 13px;
   color: #7c839e;
   vertical-align: middle;
 }
@@ -144,7 +144,11 @@ input {
 form {
   box-sizing: border-box;
   position: relative;
-
+  margin-left: 90px;
+  background-color:white;
+  font-size:15px;
+  line-height:3em;
+  margin-top: 50px;
   padding: 2rem;
   border-radius: 1rem;
   background-color: hsl(0, 0%, 100%);
@@ -207,7 +211,7 @@ button:hover {
   text-decoration: none;
 }
 
-.button-green {
+/* .button-green {
   font-family: "Outfit";
   background: #20c23a;
   font-size: 16px;
@@ -224,7 +228,7 @@ button:hover {
   transition: 0.3s;
   display: inline-block;
   text-decoration: none;
-}
+} */
 
 .button-cancel {
   font-family: "Outfit";
@@ -358,11 +362,11 @@ input:checked + .slider:before {
   margin-left: 230px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 4fr 4fr;
+  /* grid-template-rows: 1fr 4fr 4fr; */
 }
 
 .container1 {
-  margin-left: 230px;
+  margin-left: 200px;
 }
 
 .card-container {
@@ -510,15 +514,15 @@ input:checked + .slider:before {
 }
 
 .items {
-  padding-left: 30px;
-  letter-spacing: 3px;
+  padding-left: 20px;
+  letter-spacing: 2px;
 }
 
 .head {
-  font-size: 30px;
+  font-size: 25px;
   line-height: 40px;
 
-  transform: translateY(40px);
+  transform: translateY(35px);
   transition: all 0.7s;
 }
 
@@ -555,7 +559,7 @@ hr {
 }
 
 .card-container:hover .overlay hr {
-  width: 75px;
+  width: 70px;
   transition-delay: 0.3s;
 }
 
@@ -584,7 +588,7 @@ hr {
   background: #24315e;
   padding: 30px 0 0 30px;
   color: white;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .wrapper .sidebar li {

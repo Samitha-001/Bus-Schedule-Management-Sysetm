@@ -10,6 +10,7 @@
     <title>Buses Owned</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner_view.css" rel="stylesheet">
 
     <Style>
          table tr:not(:first-child){
@@ -57,7 +58,7 @@ include '../app/views/components/ownersidebar.php';
         if ($buses):
         foreach ($buses as $bus): ?>
        
-            <tr data-href="<?= ROOT ?>/ownereditbusprofile">
+            <tr data-href="<?= ROOT ?>/ownereditbusprofile?bus_id=<?=$bus->id?>">
                 <td><?= $bus->id ?></td>
                 <td><?= $bus->bus_no ?></td>
                 <td><?= $bus->type ?></td>
