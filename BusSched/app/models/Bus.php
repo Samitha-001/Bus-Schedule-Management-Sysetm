@@ -96,11 +96,18 @@ class Bus extends Model
         $ticket = new E_ticket();
         $tripsForBus = $this->getTripsForBus($busno, $date);
 
-        // $data = [];
-        // foreach ($tripsForBus as $trip) {
-
-        // }
-        // $tickets = $ticket->where(['bus'])
+        $income = 0;
+        foreach ($tripsForBus as $trip) {
+            $tickets = $ticket->where(['trip_id' => $trip->id]);
+            
+            if (!$tickets) {
+                continue;
+            }
+            foreach ($tickets as $tick) {
+            $income += $tick->price;
+        }
+        }
+        return $income;
     }
 
 
