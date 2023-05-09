@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const btn = document.getElementById("btn");
   const btn2 = document.getElementById("btn2");
-
-
   let noBreakdown = document.getElementById("no-breakdowns-td");
   if (noBreakdown) {
     btn.disabled = false;
@@ -11,15 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.disabled = true;
   }
 
-  btn.addEventListener("click", () => {
-    const form = document.getElementById("view_bus");
-
-    if (form.style.display === "none") {
-      form.style.display = "block";
-    } else {
-      form.style.display = "none";
-    }
-  });
 
   btn.addEventListener("click", () => {
     const form = document.getElementById("view_route");
@@ -54,23 +43,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   btn.addEventListener("click", () => {
     const form = document.getElementById("view_breakdown");
-
     if (form.style.display === "none") {
       form.style.display = "block";
     } else {
       form.style.display = "none";
     }
   });
+
 
   btn2.addEventListener("click", () => {
     const form = document.getElementById("view_my_breakdowns");
-
     if (form.style.display === "none") {
       form.style.display = "block";
     } else {
       form.style.display = "none";
     }
   });
+
+  const btn_history = document.getElementById("btn_history");                                            
+  btn_history.addEventListener("click", () => {
+    const table = document.getElementById("view_history_breakdowns");
+  
+    if (table.style.display === "none") {
+      table.style.display = "block";
+    } else {
+      table.style.display = "none";
+    }
+  });
+  
 
   function cancel() {
     const form = document.getElementById("view_bus");

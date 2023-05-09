@@ -37,6 +37,14 @@ body {
   text-decoration: none;
 }
 
+#view_breakdown {
+  display: block;
+}
+
+#view_ticket {
+  display: block;
+}
+
 h1 {
   margin-top: 0;
 }

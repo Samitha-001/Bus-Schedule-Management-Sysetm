@@ -65,6 +65,15 @@ class E_ticket extends Model
         return $this->where(['status' => $status,'trip_id'=>$trip_id]);
     }
 
+    public function getTripBusTickets($busno)
+    {
+        $data['bus_no'] = $busno;
+        // show($data);
+        $trip = new Trip();
+        $tickets = $trip->join('e_ticket', 'trip.id','e_ticket.trip_id', $data);
+        return $tickets;
+    }
+
     public function getBusCollectedTickets($status,$trip_id)
     {
         return $this->where(['status' => $status,'trip_id'=>$trip_id]);

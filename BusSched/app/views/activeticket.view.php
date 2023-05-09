@@ -4,7 +4,7 @@ if (!isset($_SESSION['USER'])) {
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,7 +17,7 @@ if (!isset($_SESSION['USER'])) {
 
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
     <!-- <script src="<?= ROOT ?>/assets/js/collecttickets.js"></script> -->
-    <style>
+    <!-- <style>
     td input[disabled] {
       border: none;
       background-color: transparent;
@@ -31,8 +31,20 @@ if (!isset($_SESSION['USER'])) {
       color: inherit;
       cursor: default;
     }
+
+  
+      table tr:not(:first-child){
+        cursor:pointer;transition: all.25s ease-in-out;
+      }
+  
+
+      table tr:not(:first-child){
+        cursor:pointer;transition: all.25s ease-in-out;
+      }
+     
+  
    
-  </style>
+  </style> -->
 
 
 
@@ -56,10 +68,25 @@ if (!isset($_SESSION['USER'])) {
         </div>
         </div>
 
-        <div class="data-table">
+        <div class="data-table"></div>
         <div class="selection">
                  
         </div>
+
+        <?php
+     $conductor = $_SESSION['USER']->username;
+
+     $bus = new Bus();
+     $businfo = $bus->getConductorBuses($conductor)[0];
+     $busno = $businfo->bus_no;
+
+    // $trip = new Trip();
+    // $trips = $trip->getBusTrips($busno);
+
+    $ticket = new E_ticket();
+    $tickets=$ticket->getTripBusTickets($busno);
+
+?>
         <div class="col-2">
             <table border='1' class="styled-table" id="tickets">
                 <tr>
@@ -67,155 +94,39 @@ if (!isset($_SESSION['USER'])) {
                     <th>Trip_id</th>
                     <th>seat_no</th>
                     <th>ticket_no</th>
-                     
-                    
+                     <th></th>
+            </tr> 
 
+            <?php 
+            if (!empty($tickets)):
+                foreach ($tickets as $ticket):
+                    if ($ticket->status == 'booked'): ?>
+                        <tr>
+                        <td data-fieldname="passenger"><?= $ticket->passenger ?></td>
+                        <td data-fieldname="trip_id"><?= $ticket->trip_id ?></td>
+                        <td data-fieldname="seat_no"><?= $ticket->seat_number ?></td>
+                        <td data-fieldname="ticket_number"><?= $ticket->ticket_number ?></td>
+                        <?php ?>
+                        <td class="collect-ticket-btn">
+                            <button class="button-green">Collect</button>
+                        </td>
+                        </tr>
+                    <?php endif;
+                endforeach;
+            else: ?>
+                <tr>
+                    <td id="no-active-tickets" colspan="4">No Active Tickets Found</td>
                 </tr>
+            <?php endif; ?>
 
 
+  </table>
+  
+  </div>   
+  
+ 
 
-    <?php
-    $conductor = $_SESSION['USER']->username;
-
-    $bus = new Bus();
-    $businfo = $bus->getConductorBuses($conductor)[0];
-    $busno = $businfo->bus_no;
-
-    $trip = new Trip();
-    $trips = $trip->getBusTrips($busno);
-
-    $ticket = new E_ticket();
-    $status = 'booked';
-
-    foreach ($trips as $trip) {
-        $tripid = $trip->id;
-        $activeTickets = $ticket->getBusActiveTickets($status, $tripid);
-
-        foreach ($activeTickets as $ticketstatus) {
-            echo "<tr>";
-            echo "<td> $ticketstatus->passenger </td>";
-            echo "<td> $ticketstatus->trip_id </td>";
-
-            if ($ticketstatus->seat_number === NULL) {
-                $ticketstatus->seat_number = "No";
-                echo "<td> $ticketstatus->seat_number </td>";
-            } else {
-                echo "<td> $ticketstatus->seat_number</td>";
-            }
-            
-            echo "<td> $ticketstatus->ticket_number</td>";
-            echo '<td id="Collect"> Collect </td>';
-           
-            echo "</tr>";
-           
-        }
-    }
-
-?>
-
-            </table>
-        </div>
-        </div>
-
-        <div id="popupWindow" style="display:none;">
-  <!-- Popup window content goes here -->
-</div>
-
-<!-- <script>
-  const table = document.getElementById("tickets");
-  const popupWindow = document.getElementById("popupWindow");
-
-  // Add event listener to each row in the table
-  table.querySelectorAll("tr").forEach(row => {
-    row.addEventListener("click", () => {
-      // Extract data from the clicked row
-      const ticketNo = row.querySelector("td:nth-child(4)").textContent;
-
-      //<?php
-        //$ticket = new E_ticket();
-       // $arr['ticketdetails'] = $ticket->getTicket($ticketNo);
-      ?>
-
-      // Show popup window
-      popupWindow.style.display = "block";
-
-      // Fill in the data
-      popupWindow.querySelector("#passenger").textContent = "<?php echo $arr['ticketdetails'][0]->passenger; ?>";
-      popupWindow.querySelector("#trip-id").textContent = "<?php echo $arr['ticketdetails'][0]->trip_id; ?>";
-      popupWindow.querySelector("#seat-no").textContent = "<?php echo $arr['ticketdetails'][0]->seat_no; ?>";
-      popupWindow.querySelector("#ticket-no").textContent = "<?php echo $arr['ticketdetails'][0]->ticket_no; ?>";
-    });
-  });
-
-  function closePopup() {
-    // Hide popup window
-    popupWindow.style.display = "none";
-  }
-</script> -->
-
-<div id="popupWindow"></div>
-
-<script>
-  const table = document.getElementById("tickets");
-  const popupWindow = document.getElementById("popupWindow");
-
-  // Define the closePopup function
-  function closePopup() {
-    popupWindow.style.display = "none";
-  }
-
-  // Add event listener to each row in the table
-  table.querySelectorAll("tr").forEach(row => {
-    row.addEventListener("click", () => {
-      // Extract data from the clicked row
-      const passenger = row.querySelector("td:nth-child(1)").textContent;
-      const tripId = row.querySelector("td:nth-child(2)").textContent;
-      const seatNo = row.querySelector("td:nth-child(3)").textContent;
-      const ticketNo = row.querySelector("td:nth-child(4)").textContent;
-
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          // Log the response from the PHP script
-          console.log(this.responseText);
-        }
-      };
-      xhr.open("POST", "activeticket.view.php");
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.send("ticketNo=" +ticketNo );
-      // Display data in the popup window
-      popupWindow.innerHTML = `
-        <h2>Ticket Details</h2>
-        <p><strong>Passenger:</strong> ${passenger}</p>
-        <p><strong>Trip ID:</strong> ${tripId}</p>
-        <p><strong>Seat No:</strong> ${seatNo}</p>
-        <p><strong>Ticket No:</strong> ${ticketNo}</p>
-        <button onclick="closePopup()" id=>Close</button>
-
-        <form id="form1" method="post" >
-          <input type="hidden" display="none" name="ticket_id" value="${ticketNo}"> 
-          <input type="hidden" display="none" name="status" value="collected">
-          <button id="btn3" class="button-green" type="submit" name="repaired">Collect</button>          
-        </form> 
-
-
-
-      `;
-
-      // Show the popup window
-      popupWindow.style.display = "block";
-    });
-  });
-</script>
-
-<?php
-      // Retrieve the value of the myVariable parameter from the AJAX request
-      if (isset($_POST["ticketNo"])) {
-        $ticketNo = $_POST["ticketNo"];
-        echo "<p>ticketNo = $ticketNo</p>";
-      }
-    ?>
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <script src="<?= ROOT ?>/assets/js/activetickets.js"></script>
 
     </main>
 
