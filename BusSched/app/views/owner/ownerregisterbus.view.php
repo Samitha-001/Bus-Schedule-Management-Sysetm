@@ -10,6 +10,7 @@
 
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
     <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
 
     <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script>
 
@@ -30,6 +31,7 @@ include '../app/views/components/ownersidebar.php';
     <div class="column left">
         <img src="<?= ROOT ?>/assets/images/buses/bus6.png" class="image">
     </div>
+
 
     <div class="column middle">
    <form method="post" id="register-bus" >
@@ -76,8 +78,10 @@ include '../app/views/components/ownersidebar.php';
             <td><label for="driver">Driver:</label></td>
             <td><input type="text" id="driver" name="driver"></td>
             </tr>
+            
         </table>
-        <input id="submit-btn" type="submit" class="button-green" value="Submit">    
+        <input id="add-bus-btn" type="submit" class="button-green" value="Submit">
+         
     </div>
 </form>
   </div>

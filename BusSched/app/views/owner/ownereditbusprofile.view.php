@@ -91,7 +91,7 @@ $businfo = $bus->first(['id' => $busno]);
 
            <tr>
             <td>  <input id="submit-btn" type="submit" value="Save Changes" class="" ></td>
-            <td> <input id="cancel" value="Cancel"></td>
+            <td> <input id="cancel" type="submit" value="Cancel"></td>
             </tr>
         
         </table>
