@@ -9,6 +9,24 @@ class Fareinstance extends Model
         'fare'
     ];
 
+    public function validate($data)
+    {
+        $this->errors = [];
+
+        if (empty($data['instance'])) {
+            $this->errors['instance'] = "Instance is required";
+        }
+        if (empty($data['fare'])) {
+            $this->errors['fare'] = "Fare is required";
+        }
+        
+        if (empty($this->errors)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function getFareInstances($limit=0)
     {
         if($limit == 0) return $this->findAll();

@@ -20,6 +20,117 @@ if (!isset($_SESSION['USER'])) {
     <link href="<?= ROOT ?>/assets/css/schedfare.css" rel="stylesheet">
     <!-- <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script> -->
     <script src="<?= ROOT ?>/assets/js/schedbusfare.js">console.log("Hey")</script>
+    
+    <style>
+        .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    width: 100%; /* Set width to 100% */
+  /* Set max-width to 200px */
+  height: 100px;
+  position: relative;
+  }
+  
+  .card h4 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .card p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .card .edit-btn,
+  .card .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .card .edit-btn:hover,
+  .card .delete-btn:hover {
+    background-color: #ccc;
+  }
+  
+  .card .edit-icon,
+  .card .delete-icon {
+    color: #24315e;
+    font-size: 20px;
+  }
+  
+  .fareinstance {
+    width: auto;
+    height: 500px;
+    background-color: #fff;
+    overflow-x: auto;
+  }
+  
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 200px;
+    width: 100%;
+    table-layout: fixed;
+  }
+  #popup_form_container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
+#popup_form_container form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#popup_form_container form table {
+    width: 100%;
+}
+
+#popup_form_container form td {
+    padding: 5px;
+}
+
+#popup_form_container form .button-green {
+    background-color: green;
+    color: #fff;
+}
+
+#popup_form_container form .button-cancel {
+    background-color: red;
+    color: #fff;
+}
+
+
+  
+    </style>
+
 </head>
 
 <body>
@@ -35,8 +146,63 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Bus Fares</h3>
             </div>
-            <div><button class="button-grey add-btn">Add New</button></div>
+            <div><button class="button-grey add-btn" id="add_new_button">Add New</button></div>
         </div>
+
+        
+<div id="popup_form_container">
+    <form method="post" id="view_bus">
+        <?php if (!empty($errors)) : ?>
+            <?= implode("<br>", $errors) ?>
+        <?php endif; ?>
+
+        <div>
+            <table class="styled-table">
+                <tr>
+                    <td style="color:#24315e;"><label for="instacne">Instance </label></td>
+                    <td><input name="instance" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
+                </tr>
+                <tr>
+                    <td style="color:#24315e;"><label for="fare">Fare </label></td>
+                    <td><input name="fare" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td align="right">
+                        <button class="button-green" type="submit">Save</button>
+                        <button class="button-cancel" onclick="cancel()">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+
+
+        <div class="fareinstance" style="width: auto; height: 250px; background-color: #fff;">
+  
+  <table>
+    <tr>
+      <?php
+        $len = count($halts);
+        $fareinstance = new Fareinstance;
+        $instance = $fareinstance->getFareInstances($len);
+        foreach ($instance as $i) {
+          echo "<td>";
+          echo "<div class='card'>";
+          echo "<button class='edit-btn'><i class='fa fa-pencil edit-icon'></i></button>";
+          echo "<button class='delete-btn'><i class='fa fa-trash delete-icon'></i></button>";
+          echo "<h4>$i->instance</h4>";
+          echo "<p>$i->fare</p>";
+          echo "</div>";
+          echo "</td>";
+        }
+      ?>
+    </tr>
+    
+  </table>
+</div>
 
         <div class="row">
         <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
@@ -78,6 +244,22 @@ if (!isset($_SESSION['USER'])) {
 
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <script>
+    // Get the button and the popup form container
+    var addNewButton = document.getElementById("add_new_button");
+    var popupFormContainer = document.getElementById("popup_form_container");
+
+    // When the button is clicked, show the popup form
+    addNewButton.onclick = function() {
+        popupFormContainer.style.display = "block";
+    }
+
+    // When the "Cancel" button is clicked, hide the popup form
+    function cancel() {
+        popupFormContainer.style.display = "none";
+    }
+</script>
+
     </main>
 
 </body>

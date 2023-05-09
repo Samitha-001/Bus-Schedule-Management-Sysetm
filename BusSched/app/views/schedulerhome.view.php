@@ -56,23 +56,25 @@ if ($_SESSION['USER']->role == 'passenger') {
         </div>
 
         <div class="card-container" id="schedules-card">
-            <div class="overlay">
+        <a href="<?= ROOT ?>/schedules">
+        <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Schedules</p>
+                    <p style="color: #E8DACC;">Schedules</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p><a href="<?= ROOT ?>/schedules">Schedule</a></p>
+                    <p style="color: #fff;">Schedule</p>
                 </div>
             </div>
+        </a></p>
         </div>
 
         <div class="card-container" id="buses-card">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Buses & Breakdowns</p>
+                    <p style="color: #E8DACC;">Buses & Breakdowns</p>
                     <hr>
                 </div>
                 <div class="items users">
@@ -86,16 +88,18 @@ if ($_SESSION['USER']->role == 'passenger') {
        
 
         <div class="card-container" id="tickets-card">
-            <div class="overlay">
+        <a href="<?= ROOT ?>/schedfares">
+        <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Bus Fares</p>
+                    <p style="color: #E8DACC;">Bus Fares</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p><a href="<?= ROOT ?>/schedfares">Bus Fare</a></p>
-                </div>
+                    <p style="color: #fff;">Fares</p>
+                </div> 
             </div>
+        </a>
         </div>
         
         

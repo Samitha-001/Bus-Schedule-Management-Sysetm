@@ -246,8 +246,8 @@ table#busfare-table {
 
 table#busfare-table tbody {
   display: table;
-  width: 600px;
-  overflow-x: auto;
+  width: 100px;
+  overflow-x: hidden;
   /* center align */
   margin: 0 auto;
 }

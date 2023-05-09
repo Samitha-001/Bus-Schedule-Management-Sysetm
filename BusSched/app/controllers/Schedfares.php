@@ -9,14 +9,16 @@ class Schedfares
     public function index()
     {   
 
-        $fareinstance = new Fareinstance();
-        $fares = $fareinstance->getFareInstances();
+        $fareinstance = new Fare();
+        $fares = $fareinstance->getFares();
 
 
         $halt = new Halt();
         $halts = $halt->getHalts();
         $data['halts'] = $halts;
         $data['fares'] = $fares;
+
+        
 
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
         $this->view('schedfare', $data);
