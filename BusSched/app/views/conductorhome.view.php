@@ -21,12 +21,8 @@ if ($_SESSION['USER']->role == 'passenger') {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <?php include 'components/head.php';?>
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <title>Conductor - Home</title>
 </head>
 

@@ -8,10 +8,8 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Tickets</title>
+    <?php include '../app/views/components/head.php';?>
     <link href="<?= ROOT ?>/assets/css/ticket.css" rel="stylesheet">
 </head>
 

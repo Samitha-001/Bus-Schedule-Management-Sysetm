@@ -3,10 +3,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Bus Schedule</title>
+    <?php include '../app/views/components/head.php';?>
 
     <link href="<?= ROOT ?>/assets/css/ticket.css" rel="stylesheet">
     <script src="<?= ROOT ?>/assets/js/schedule.js"></script>
@@ -16,11 +15,10 @@
     <?php
     include '../app/views/components/navbar.php';
     // get from and to from link if they exist
-    $from = isset($_GET['from']) ? $_GET['from'] : '';
-    $to = isset($_GET['to']) ? $_GET['to'] : '';
-    $date = isset($_GET['date']) ? $_GET['date'] : '';
-    
-    $passengercount = isset($_GET['passengercount']) ? $_GET['passengercount'] : '';
+    $from = $_GET['from'] ?? '';
+    $to = $_GET['to'] ?? '';
+    $date = $_GET['date'] ?? '';
+    $passengercount = $_GET['passengercount'] ?? '';
     ?>
 
     <!-- get halt list to suggest halt list -->
