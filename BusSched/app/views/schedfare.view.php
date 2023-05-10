@@ -140,11 +140,11 @@ if (!isset($_SESSION['USER'])) {
         <div>
             <table class="styled-table">
                 <tr>
-                    <td style="color:#24315e;"><label for="instance">Instance </label></td>
+                    
                     <td><input name="instance" type="text" class="form-control" id="bus_no" placeholder="Instance" required></td>
                 </tr>
                 <tr>
-                    <td style="color:#24315e;"><label for="fare">Fare </label></td>
+                    
                     <td><input name="fare" type="text" class="form-control" id="bus_no" placeholder="Fare" required></td>
                 </tr>
 
@@ -334,10 +334,12 @@ cards.forEach(function (card) {
     const tickBtn = document.createElement("button");
     tickBtn.classList.add("tick-btn");
     tickBtn.innerHTML = '<i class="fa fa-check"></i>';
+    tickBtn.style.backgroundColor = 'red';
 
     const crossBtn = document.createElement("button");
     crossBtn.classList.add("cross-btn");
     crossBtn.innerHTML = '<i class="fa fa-times"></i>';
+    crossBtn.style.backgroundColor = 'green';
 
     card.appendChild(tickBtn);
     card.appendChild(crossBtn);
@@ -386,6 +388,20 @@ cards.forEach(function (card) {
 
   const saveButton = document.getElementById('save-button');
 saveButton.addEventListener('click', addFareInstance);
+
+tickBtn.addEventListener("click", function () {
+    const updatedFare = fareText.innerText;
+    const data = {
+      instance: i.instance,
+      fare: updatedFare,
+    };
+    update(data);
+    card.classList.remove("editing");
+    fareText.contentEditable = false;
+    tickBtn.remove();
+    crossBtn.remove();
+    editBtn.style.display = "block";
+  });
     
 </script>
 

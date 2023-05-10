@@ -45,4 +45,9 @@ class Fareinstance extends Model
     {
         return $this->delete($id);
     }
+
+    public function updateFareinstance($id, $data)
+    {
+        return $this->update($id, $data);
+    }
 }

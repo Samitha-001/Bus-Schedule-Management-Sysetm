@@ -236,7 +236,7 @@ while (date('H:i', $departure_time_day) <= '20:30') {
                 
                 
                 
-                return $schedule;
+                
                
             }
         
@@ -252,8 +252,52 @@ while (date('H:i', $departure_time_day) <= '20:30') {
     
 }
 
-
+return $schedule;
     }
 
     
 }
+// $departure_times[] = array();
+// $arrival_times[] = array();
+        // Time slot 1: 5:30 a.m. - 8:30 a.m.
+// $departure_time = strtotime('5:30');
+// $arrival_time = strtotime('+60 minutes', $departure_time);
+// while($departure_time<strtotime('8:30')) {
+//     $departure_times[] = date('H:i', $departure_time);
+//     $departure_time = strtotime('+'.$time_between_buses1.' minutes', $departure_time);
+//     $arrival_time = strtotime('+'.$time_slots[0]['trip_time'].' minutes', $departure_time);
+//     $arrival_times[] = date('H:i', $arrival_time);
+
+//     $schedule[] = array(
+//         'departure_time' => $departure_times,
+//         'arrival_time' => $arrival_times
+//     );
+// }
+
+// // Time slot 2: 8:30 a.m. - 5:30 p.m.
+// $departure_time = strtotime('8:30');
+// $arrival_time = strtotime('+45 minutes', $departure_time);
+// for ($i = 0; $i < $time_slots[1]['num_buses']; $i++) {
+//     $departure_times[] = date('H:i', $departure_time);
+//     $departure_time = strtotime('+'.$time_between_buses2.' minutes', $departure_time);
+//     $arrival_time = strtotime('+'.$time_slots[1]['trip_time'].' minutes', $departure_time);
+//     $arrival_times[] = date('H:i', $arrival_time);
+//     $schedule[] = array(
+//         'departure_time' => $departure_times,
+//         'arrival_time' => $arrival_times
+//     );
+// }
+
+// // Time slot 3: 5:30 p.m. - 8:30 p.m.
+// $departure_time = strtotime('17:30');
+// $arrival_time = strtotime('+60 minutes', $departure_time);
+// for ($i = 0; $i < $time_slots[2]['num_buses']; $i++) {
+//     $departure_times[] = date('H:i', $departure_time);
+//     $departure_time = strtotime('+'.$time_between_buses3.' minutes', $departure_time);
+//     $arrival_time = strtotime('+'.$time_slots[2]['trip_time'].' minutes', $departure_time);
+//     $arrival_times[] = date('H:i', $arrival_time);
+//     $schedule[] = array(
+//         'departure_time' => $departure_times,
+//         'arrival_time' => $arrival_times
+//     );
+// }
