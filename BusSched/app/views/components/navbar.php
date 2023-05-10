@@ -2,9 +2,6 @@
 //   gets current URL
 $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
-<script>
-    const ROOT = "<?= ROOT ?>"
-</script>
 <nav class="navbar">
     <div>
         <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
