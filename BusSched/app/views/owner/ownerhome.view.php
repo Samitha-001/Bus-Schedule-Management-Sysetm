@@ -38,54 +38,17 @@ include '../app/views/components/ownersidebar.php';
 
     <main class="container">
 
-        <div class="card-container" id="greeting-card">
-            <h2>
-                <?php
-                echo "Welcome " . $_SESSION['USER']->username . "!";
-                ?>
-            </h2>
+        <!-- <div class="card-container" id="greeting-card">
+           
         </div>
 
         <div class="card-container" id="info-card">
-            <ul>
-                <p style="font-size: 32px;">Personal Info</p>
-                <table class="styled-table">
-                    <tr>
-                        <th>Username: </th>
-                        <td>
-                            <?= $_SESSION['USER']->username ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Name: </th>
-                        <td>
-                            <?= $data[0]->name ?>
-                        </td>
-                    <tr>
-                        <th>Email: </th>
-                        <td>
-                            <?= $_SESSION['USER']->email ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Phone: </th>
-                        <td>
-                            <?= $data[0]->phone ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Address: </th>
-                        <td>
-                            <?= $data[0]->address ?>
-                        </td>
-                    </tr>
-                </table>
-            </ul>
+           
         </div>
 
         <div class="card-container span-col-2">
 
-        </div>
+        </div> -->
 
         <div class="card-container" id="schedules-card">
             <a href="<?= ROOT ?>/ownerschedule">
@@ -103,7 +66,7 @@ include '../app/views/components/ownersidebar.php';
         </div>
 
         <div class="card-container" id="buses-card">
-        <a href="<?= ROOT ?>/registernew">
+        <a href="<?= ROOT ?>/ownerbuses">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">

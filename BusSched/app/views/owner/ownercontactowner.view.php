@@ -47,19 +47,25 @@ include '../app/views/components/ownersidebar.php';
             <table border='1' class="styled-table">
                 <tr>
                     <th>Name</th>
-                    <th>EmailAddress</th>
+                    <th>Email</th>
+                    <th>Address</th>
                     <th>Contact No</th>
                 </tr>
 
-                <!-- <?php
-                foreach ($contactowners as $owner) {
-                    echo "<tr>";
-                    echo "<td> $owner->name </td>";
-                    echo "<td> $owner->email </td>";
-                    echo "<td> $owner->tp </td>";
-                    echo "<td> $owner->bus_no </td>";
-                    echo "</tr>";
-                } ?> -->
+                 <?php
+                    $testuser = new User();
+                    $ownerContacts = $testuser->getContactDetails('owner');
+                    // show($driverContacts);
+                    // $i = 0;
+                    foreach ($ownerContacts as $ownerContact) {
+                        echo "<tr>";
+                        echo "<td>$ownerContact[name]</td>";
+                        echo "<td> $ownerContact[email] </td>";
+                        echo "<td>$ownerContact[address]</td>";
+                        echo "<td> $ownerContact[phone] </td>";
+                        
+                        echo "</tr>";
+                } ?> 
 
             </table>
         </div>

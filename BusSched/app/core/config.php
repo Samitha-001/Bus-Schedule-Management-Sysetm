@@ -7,9 +7,11 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBHOST', 'localhost');
     define('DBUSER', 'root');
     define('DBPWD', '');
+    define('SOCKET_HOST', 'localhost');
     
     define('ROOT', 'http://localhost/Bus-Schedule-Management-System/bussched/public');
-    define('ASSETS', '<?ROOT?>/assets');
+    define('ASSETS', ROOT.'/assets');
+    define('VIEWS', ROOT.'/../app/views');
 } else {
     // database configuration
     define('DBNAME', 'bussched');

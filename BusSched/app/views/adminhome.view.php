@@ -19,14 +19,9 @@ if ($_SESSION['USER']->role == 'passenger') {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
-    
+    <?php include 'components/head.php';?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
     <script src="<?= ROOT ?>/assets/js/adminhome.js"></script>
     <title>Admin Dashboard</title>
 </head>
