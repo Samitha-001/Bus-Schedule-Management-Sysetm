@@ -46,7 +46,7 @@ class Schedfares
             $postData = json_decode(file_get_contents('php://input'), true);
             
             // Process the request data and perform the update
-            $bus = new Fareinstance();
+            $fare = new Fareinstance();
             // remove field availability from the array
             $id = $postData['instance'];
             unset($postData['instance']);
@@ -54,7 +54,7 @@ class Schedfares
             foreach($postData as $key => $value){
                     $data[$key] = $value;
             }
-            $bus->updateFareinstance($id, $data);
+            $fare->updateFareinstance($id, $data);
         
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
@@ -88,4 +88,16 @@ class Schedfares
     //         echo json_encode($response);
     //     }
     // }
+    public function updateFareInstance()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            // Retrieve the POST data
+            $p = $_POST['percentage'];
+            $l = $_POST['limit'];
+            $instance = new Fareinstance();
+            $instance->updateInstanceByPercentage($p,$l);
+        }
+    }
+
+
 }

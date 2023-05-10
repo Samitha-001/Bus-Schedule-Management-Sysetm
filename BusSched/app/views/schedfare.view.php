@@ -44,14 +44,53 @@ if (!isset($_SESSION['USER'])) {
   content: "\f1f8";
 }
 
-  
-  .fareinstance {
-    width: auto;
-    height: 500px;
-    background-color: #fff;
-    overflow-x: auto;
+.fareinstance {
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
   }
-  
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {background-color: #f5f5f5;}
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .update-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .update-btn:hover {
+    background-color: #3e8e41;
+  }
+
+
   .styled-table {
     border-collapse: collapse;
     margin: 25px 0;
@@ -100,7 +139,57 @@ if (!isset($_SESSION['USER'])) {
     color: #fff;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+.update-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
+  .update-btn:hover {
+    background-color: #3e8e41;
+  }
+
+  #update-form {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  #update-form input {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #update-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #update-form input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
   
     </style>
 
@@ -139,7 +228,9 @@ if (!isset($_SESSION['USER'])) {
 
         <div>
             <table class="styled-table">
-                <tr>
+               
+            
+            <tr>
                     
                     <td><input name="instance" type="text" class="form-control" id="bus_no" placeholder="Instance" required></td>
                 </tr>
@@ -160,36 +251,40 @@ if (!isset($_SESSION['USER'])) {
     </form>
 </div>
 
+<div id="update-form">
+  
+        <form method='post' action="<?=ROOT?>/schedfares/updateFareInstance">
+        <input type="number" name='percentage'>
+        <input type="number" name='limit' value='<?= $len?>' hidden>
+        <input type="submit">
+        <button class="button-cancel" onclick="cancel()">Cancel</button>
+        </form>
+  </div>
 
-        <div class="fareinstance" style="width: auto; height: 250px; background-color: transparent; overflow-x: auto; overflow-y: hidden;">
+        <div class="fareinstance" >
   
         <table>
-            <tr>
+          <tbody>
+          <tr>
+              <th>Instance</th>
+              <th>Fare</th>
+            </tr> 
   <?php
     $len = count($halts);
     $fareinstance = new Fareinstance;
     $instance = $fareinstance->getFareInstances($len);
     foreach ($instance as $i) {
-      
+        echo "<tr>";
         echo "<td>";
-        echo "<div class='cardfare'>";
-        echo "<h4>$i->instance</h4>";
-        echo "<p class='fare-text'>$i->fare</p>";
-        echo "<button class='edit-btn'><i class='fa fa-pencil edit-icon'></i></button>";
-        echo "</div>";
+        echo "$i->instance";
         echo "</td>";
-    }
+        echo "<td class='fare-text'>$i->fare</td>";
+        echo "</tr>";
+      }
   ?>
-            </tr>
+          </tbody>     
 </table>
-<div style="display: flex; justify-content: space-between;">
-    <div id="left-arrow" style="width: 20px; height: 100%; background-color: transparent; position: sticky; left: 0;">
-      <i class="fa fa-angle-left" style="font-size: 20px;"></i>
-    </div>
-    <div id="right-arrow" style="width: 20px; height: 100%; background-color: transparent; position: sticky; right: 0;">
-      <i class="fa fa-angle-right" style="font-size: 20px;"></i>
-    </div>
-  </div>
+<button class="update-btn" onclick="showForm()">Update</button>
 </div>
 
         <div class="row">
@@ -225,8 +320,8 @@ if (!isset($_SESSION['USER'])) {
                             <td class='fare-td' data-haltto='<?=$halts[$j]->name?>'><?=$instance[$i-$j]->fare?></td>
 
                         <?php }}}?>
-                </table>
-            </div>
+                      </table>
+                    </div>
         </section>
         </div>
 
@@ -403,6 +498,10 @@ tickBtn.addEventListener("click", function () {
     editBtn.style.display = "block";
   });
     
+
+  function showForm() {
+    document.getElementById("update-form").style.display = "block";
+  }
 </script>
 
     </main>

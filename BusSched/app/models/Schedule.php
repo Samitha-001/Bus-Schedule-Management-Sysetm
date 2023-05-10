@@ -94,6 +94,8 @@ class Schedule extends Bus
         
         
         $departure_time_day = strtotime($time_slots[0]['start_time']);
+        $departure_time_from_Piliyandala = $departure_time_day;
+        $departure_time_from_Pettah = $departure_time_day;
         $arrival_time = strtotime('+1 hour', $departure_time_day);
 
         $time_between_buses1 = round((strtotime($time_slots[0]['end']) - strtotime($time_slots[0]['start_time'])) / 60 / $time_slots[0]['num_buses']);
@@ -102,12 +104,12 @@ class Schedule extends Bus
         
         
         $schedule = array();
-       
+        
         $day_start_time = strtotime($time_slots[0]['start_time']);
         $day_end_time = strtotime($time_slots[2]['end']);
     
                 // assign first three buses of Piliyandala_Buses to time slot 1
-                for ($i = 0; $i < count($Piliyandala_Buses); $i++) {
+                for ($i = 0; $i < 3; $i++) {
                     $bus = array_shift($Piliyandala_Buses);
                     $bus_no = $bus['bus_no'];
                     $starting_place = $bus['start'];
@@ -125,7 +127,7 @@ class Schedule extends Bus
                     );
                     
                     // calculate next departure time
-                    $departure_time_day = strtotime("+{$time_between_buses1} minutes", $departure_time_day);
+                    $departure_time_day = strtotime("+30 minutes", $departure_time_day);
                     $bus['start'] = 'Pettah';
                     $bus['dest'] = 'Piliyandala';
                     array_push($Pettah_Buses, $bus);
@@ -134,7 +136,7 @@ class Schedule extends Bus
         $departure_time_day = strtotime($time_slots[0]['start_time']);
         $arrival_time = strtotime('+1 hour', $departure_time_day);
 
-                for ($i = 0; $i < count($Pettah_Buses); $i++) {
+                for ($i = 0; $i < 3; $i++) {
                     $bus = array_shift($Pettah_Buses);
                     $bus_no = $bus['bus_no'];
                     $starting_place = $bus['start'];
@@ -152,7 +154,7 @@ class Schedule extends Bus
                     );
                     
                     // calculate next departure time
-                    $departure_time_day = strtotime("+{$time_between_buses1} minutes", $departure_time_day);
+                    $departure_time_day = strtotime("+30 minutes", $departure_time_day);
                     $bus['start'] = 'Piliyandala';
                     $bus['dest'] = 'Pettah';
                     array_push($Piliyandala_Buses, $bus);

@@ -96,24 +96,30 @@ include 'components/schedulersidebar.php';
             <br>
             <table border='1' class="styled-table">
                 <tr>
-                    <th>#</th>
-                    <th>Bus No.</th>
-                    <th>Bus Type</th>
-                    <th>No. of Seats</th>
-                    <!-- <th>Bus Available?</th> -->
-                    <th>Bus Route</th>
-                    <th>Start</th>
+                <th>Bus No.</th>
+            <th>Bus Type</th>
+            <th>Seats</th>
+            <th>Bus Route</th>
+            <th>Start</th>
+            <th>Destination</th>
+            <th>Owner</th>
+            <th>Conductor</th>
+            <th>Driver</th>
                 </tr>
 
                 <?php
                 foreach ($buses as $bus) :?>
                     <tr>
-                    <td> <?php echo $bus->id ?> </td>
+                    
                     <td> <?php echo $bus->bus_no ?> </td>
                     <td> <?php echo $bus->type ?></td>
                     <td> <?php echo $bus->seats_no ?></td>
                     <td> <?php echo $bus->route ?></td>
                     <td> <?php echo $bus->start ?></td>
+                    <td data-fieldname="dest"><?= $bus->dest; ?></td>
+                  <td data-fieldname="owner"><?= $bus->owner ?></td>
+                  <td data-fieldname="conductor"><?= $bus->conductor ?></td>
+                  <td data-fieldname="driver"><?= $bus->driver ?></td>
                     </tr>
                     <?php endforeach; ?>
                 

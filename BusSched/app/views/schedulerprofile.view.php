@@ -99,7 +99,7 @@ if (isset($_SESSION['USER'])) {
                     <?= $scheduler->address ?>
                 </p>
                 
-                <button href=# id='edit-passenger-info'>Edit</button>
+                <button href=# id='edit-passenger-info' style="background-color: #24315e;">Edit</button>
             </div>
 
             <!-- edit form for passenger info -->
@@ -116,8 +116,8 @@ if (isset($_SESSION['USER'])) {
                 
                 <!-- TODO -->
                 <div class="info-grid-start-2">
-                    <button id='save-passenger-info' ">Save</button>
-                    <button id='cancel-passenger-info'>Cancel</button>
+                    <button id='save-passenger-info' style="background-color: #24315e;">Save</button>
+                    <button id='cancel-passenger-info' style="background-color: #24315e;">Cancel</button>
                 </div>
             </form>
 

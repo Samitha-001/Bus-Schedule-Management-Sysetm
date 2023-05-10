@@ -50,4 +50,16 @@ class Fareinstance extends Model
     {
         return $this->update($id, $data);
     }
+
+    public function updateInstanceByPercentage($percentage, $len)
+    {
+        $data = $this->getFareInstances($len);
+        // return ($data);
+        // if(!$data) {
+        foreach($data as $instance) {
+            $this->update($instance->instance, ['fare'=> ($instance->fare + ($instance->fare)*$percentage/100)], 'instance');
+        }
+        redirect('schedfares');
+        // }
+    }
 }
