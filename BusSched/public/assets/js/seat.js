@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   var count = 0; // number of seats chosen
   // array of chosen seats
   var seatsSelected = [];
+  // store seatsSelected in session storage
+  sessionStorage.setItem("seatsSelected", JSON.stringify(seatsSelected));
+
   let passengerCountInput = document.getElementById("no-of-passengers");
   let passengerCount = 1;
   passengerCountInput.addEventListener("change", function () {
@@ -27,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
             count++;
             // get data-seat attribute
             seatsSelected.push(e.target.getAttribute("data-seat"));
+            // store seatsSelected in session storage
+            sessionStorage.setItem("seatsSelected", JSON.stringify(seatsSelected));
           } 
           else {
             alert('Increase the number of passengers to reserve more seats');

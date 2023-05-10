@@ -36,7 +36,7 @@ if (isset($_SESSION['USER'])) {
     $passenger = $data[0];
     $username = $passenger->username;
 ?>
-
+    <div class="container">
     <div class="passenger-profile-card" id="profile-header">
         <?php
         // get profile picture if exists, else use default
@@ -49,63 +49,73 @@ if (isset($_SESSION['USER'])) {
         }
         ?>
 
-        <img id="profile-pic" src="<?= $profile_pic ?>" alt="profile pic" style="border-radius: 50px;object-fit: cover;" width="100px" height="100px">
+        <img id="profile-pic" src="<?= $profile_pic ?>" alt="profile pic" width="200px" height="200px">
         <img id="edit-pencil" src="<?= ROOT ?>/assets/images/icons/edit-pencil.png">
+        
         <h1 id="username">Hi <?= $username ?>!</h1>
-    </div>
 
-    <!-- div to add profile picture -->
-    <div class="passenger-profile-card" id="profile-pic-from-div" style="display:none;">
-        <!-- input to get image file as profile picture -->
-        <form id="profile-pic-form">
-            <input type="file" name="profile-pic" id="profile-pic-input" accept="image/*">
-            <input type="hidden" name="username" id="username" value="<?= $username ?>">
-            <button id="upload-profile-pic-btn">Upload</button>
-        </form>
-    </div>
-
-    <div class="nav-cards">
-        <div class="passenger-profile-card">
-            <div class="info-grid" style="padding-left:5px;">
-                <h1>Name:</h1>
-                <p data-username="<?= $username ?>">
-                    <?= $passenger->name ?>
-                </p>
-                <h1>Phone:</h1>
-                <p>
-                    <?= $passenger->phone ?>
-                </p>
-                <h1>Address:</h1>
-                <p>
-                    <?= $passenger->address ?>
-                </p>
-                <h1>DOB:</h1>
-                <p>
-                    <?= $passenger->dob ?>
-                </p>
-                <i></i>
-                <button href=# id='edit-passenger-info'>Edit</button>
-            </div>
-
-            <!-- edit form for passenger info -->
-            <form style="padding-left:5px;" class='edit-info-form info-grid'>
-                <h1>Name:</h1>
-                <input type="text" name="name" id="name" value="<?= $passenger->name ?>">
-                <h1>Phone:</h1>
-                <input type="text" name="phone" id="phone" value="<?= $passenger->phone ?>">
-                <h1>Address:</h1>
-                <input type="text" name="address" id="address" value="<?= $passenger->address ?>">
-                <h1>DOB:</h1>
-                <input type="date" name="dob" id="dob" value="<?= $passenger->dob ?>">
-                
-                <!-- TODO -->
-                <div class="info-grid-start-2">
-                    <button id='save-passenger-info'>Save</button>
-                    <button id='cancel-passenger-info'>Cancel</button>
-                </div>
-            </form>
-
+        <div id="passenger-info-div">
+        <h5>Name</h5>
+        <hr>
+        <p data-username="<?= $username ?>">
+            <?= $passenger->name ?>
+        </p>
+        <h5>Phone</h5>
+        <hr>
+        <p>
+            <?= $passenger->phone ?>
+        </p>
+        <h5>Address</h5>
+        <hr>
+        <p>
+            <?= $passenger->address ?>
+        </p>
+        <h5>Birthday</h5>
+        <hr>
+        <p>
+            <?= $passenger->dob ?>
+        </p>
+        <br>
+        <button href=# id='edit-passenger-info'>Edit profile</button>
         </div>
+
+        <!-- edit form for passenger info -->
+        <form class='edit-info-form'>
+            <h5>Name</h5>
+            <hr>
+            <input type="text" name="name" id="name" value="<?= $passenger->name ?>">
+            <h5>Phone</h5>
+            <hr>
+            <input type="text" name="phone" id="phone" value="<?= $passenger->phone ?>">
+            <h5>Address</h5>
+            <hr>
+            <input type="text" name="address" id="address" value="<?= $passenger->address ?>">
+            <h5>Birthday</h5>
+            <hr>
+            <input type="date" name="dob" id="dob" value="<?= $passenger->dob ?>" style="margin-bottom:17px;">
+            
+            <br>
+            
+            <div class="info-grid-start-2">
+            <span></span>
+            <span></span>
+                <button id='cancel-passenger-info'>Cancel</button>
+                <button id='save-passenger-info'>Save</button>
+            </div>
+        </form>
+        <!-- div to add profile picture -->
+        <div class="passenger-profile-card" id="profile-pic-from-div" style="display:none;">
+            <form id="profile-pic-form">
+                <input type="file" name="profile-pic" id="profile-pic-input" accept="image/*">
+                <input type="hidden" name="username" id="username" value="<?= $username ?>">
+                <button id="upload-profile-pic-btn">Upload</button>
+            </form>
+        </div>
+
+        <!-- input to get image file as profile picture -->
+    </div>
+
+    <!-- <div class="nav-cards"> -->
         <div class="passenger-profile-card">
             <h1 style="margin-bottom: 0px;">My points</h1>
             <div id="point-balance-div" class="info-grid" style="padding-left:5px;">
@@ -147,15 +157,17 @@ if (isset($_SESSION['USER'])) {
         <div class="passenger-profile-card">
             <div>
             <h1>Friends</h1>
-            <ul style="padding:0px;">
+            <div id="friend-list-div" >
             <?php
             foreach ($friends as $friend) {
-                echo "<li>" . $friend . "</li>";
+                echo "<div>";
+                echo "<i class='remove-friend-i' data-friend='".$friend."'>Remove friend</i>";
+                echo "<p>@" . $friend . "</p>";                
+                echo "<hr></div>";
             }
             ?>
-            </ul>
+            </div>
             <span class="info-grid">
-                <span></span>
                 <button id="add-friend-btn">Add friend</button>
             </span>
             </div>
@@ -172,52 +184,49 @@ if (isset($_SESSION['USER'])) {
             </div>
         </div>
 
-    </div>
-
-        <div class="passenger-profile-card">
-            <h1>My ratings</h1>
-            <table id="my-ratings">
-                <tr>
-                    <th>Ticket ID</th>
-                    <th>Bus No.</th>
-                    <th>Bus rating</th>
-                    <th>Driver rating</th>
-                    <th>Conductor rating</th>
-                    <th>Time</th>
-                </tr>
+    <!-- </div> -->
+    <div id="my-ratings-div" class="passenger-profile-card">
+        <h1>My ratings</h1>
+        <table id="my-ratings">
             <tr>
-            <?php
-            $passenger = new Passenger();
-            $ratings = $passenger->getRatings();
-            foreach ($ratings as $rating) {
-                echo "<td>" . $rating->ticket_id . "</td>";
-                echo "<td>" . $rating->bus_no . "</td><td>";
-
-                for($i = 0; $i < $rating->bus_rating; $i++) {
-                    echo "<i class='fas fa-star fa-xs'></i>";
-                }
-                echo "&nbsp(" . $rating->bus_rating . "/5)</><td>";
-
-                for($i = 0; $i < $rating->driver_rating; $i++) {
-                    echo "<i class='fas fa-star fa-xs'></i>";
-                }
-                echo "&nbsp(" . $rating->driver_rating . "/5)</><td>";
-
-                for($i = 0; $i < $rating->conductor_rating; $i++) {
-                    echo "<i class='fas fa-star fa-xs'></i>";
-                }
-                echo "&nbsp(" . $rating->conductor_rating . "/5)</td>";
-                
-                echo "<td>" . $rating->time_updated . "</td></tr><tr>";
-            }
-            ?>
+                <th>Ticket ID</th>
+                <th>Bus No.</th>
+                <th>Bus rating</th>
+                <th>Driver rating</th>
+                <th>Conductor rating</th>
+                <th>Time</th>
             </tr>
-            </table>
-        </div>
-        </div>
+        <tr>
+        <?php
+        $passenger = new Passenger();
+        $ratings = $passenger->getRatings();
+        foreach ($ratings as $rating) {
+            echo "<td>" . $rating->ticket_id . "</td>";
+            echo "<td>" . $rating->bus_no . "</td><td>";
 
+            for($i = 0; $i < $rating->bus_rating; $i++) {
+                echo "<i class='fas fa-star fa-xs'></i>";
+            }
+            echo "&nbsp(" . $rating->bus_rating . "/5)</><td>";
 
-    
+            for($i = 0; $i < $rating->driver_rating; $i++) {
+                echo "<i class='fas fa-star fa-xs'></i>";
+            }
+            echo "&nbsp(" . $rating->driver_rating . "/5)</><td>";
+
+            for($i = 0; $i < $rating->conductor_rating; $i++) {
+                echo "<i class='fas fa-star fa-xs'></i>";
+            }
+            echo "&nbsp(" . $rating->conductor_rating . "/5)</td>";
+            
+            echo "<td>" . $rating->time_updated . "</td></tr><tr>";
+        }
+        ?>
+        </tr>
+        </table>
+    </div>
+    </div>
+    </div>    
 </body>
 
 </html>

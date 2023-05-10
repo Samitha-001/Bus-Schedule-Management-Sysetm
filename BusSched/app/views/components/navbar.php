@@ -54,8 +54,10 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
-            <a href="<?= ROOT ?>/passengerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="30" ></a>
-            <a href="<?= ROOT ?>/logout" style="padding-top:5px;"><li class="signup-button" style="border: 2px solid #f4511e;">Logout</li></a>
+            <a id="bell-icon"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="25" ></a>
+            <a href="<?= ROOT ?>/passengerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="25" ></a>
+            <!-- change logout style -->
+            <a href="<?= ROOT ?>/logout" style="padding-top:5px;"><li class="signup-button" style="border: 2px solid #f4511e;background-color:black; border: 2px solid #f4511e;">Logout</li></a>
             </div>
         </ul>
 

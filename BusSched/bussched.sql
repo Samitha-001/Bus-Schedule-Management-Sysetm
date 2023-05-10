@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 08, 2023 at 07:02 AM
+-- Generation Time: May 10, 2023 at 03:20 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `e_ticket` (
   `dest_halt` varchar(50) NOT NULL,
   `booking_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `passenger_count` int(11) NOT NULL DEFAULT '1',
-  `price` int(11) DEFAULT NULL,
+  `price` int(11) NOT NULL DEFAULT '0',
   `payment_method` enum('cash','points') NOT NULL DEFAULT 'points',
   `status` enum('booked','collected','expired','inactive') NOT NULL DEFAULT 'booked',
   `collected_time` timestamp NULL DEFAULT NULL,
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `e_ticket` (
 INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `departure_time`, `arrival_time`, `seat_number`, `seats_reserved`, `ticket_number`, `source_halt`, `dest_halt`, `booking_time`, `passenger_count`, `price`, `payment_method`, `status`, `collected_time`) VALUES
 (0, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-03-19 01:28:15', 1, 0, 'points', 'inactive', NULL),
 (17, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Kohuwala', '2023-03-19 01:31:40', 1, 0, 'points', 'inactive', NULL),
-(32, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 01:50:19', 1, 0, 'points', 'inactive', NULL),
+(32, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Werahera', 'Boralesgamuwa', '2023-03-19 01:50:19', 1, 250, 'points', 'inactive', NULL),
 (33, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Dutugemunu St.', 'Werahera', '2023-03-19 02:02:37', 1, 0, 'points', 'inactive', NULL),
 (34, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Rattanapitiya', '2023-04-15 08:37:15', 1, 0, 'points', 'inactive', NULL),
 (35, 'passenger1', 1, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Fort', '2023-04-17 22:05:15', 1, 0, 'points', 'inactive', NULL),
@@ -270,7 +270,7 @@ INSERT INTO `e_ticket` (`id`, `passenger`, `trip_id`, `departure_time`, `arrival
 (57, 'passenger1', 3, NULL, NULL, NULL, 'E5, D5', NULL, 'Piliyandala', 'Boralesgamuwa', '2023-04-28 03:20:25', 2, 150, 'cash', 'collected', NULL),
 (58, 'passenger1', 1, NULL, NULL, NULL, 'A1, C2', NULL, 'Piliyandala', 'Pepiliyana', '2023-04-29 07:44:19', 5, 625, 'cash', 'collected', NULL),
 (59, 'passenger1', 3, NULL, NULL, NULL, 'D4', NULL, 'Werahera', 'Kohuwala', '2023-04-30 02:03:29', 2, 250, 'cash', 'collected', NULL),
-(60, 'passenger1', 3, NULL, NULL, NULL, 'B3', NULL, 'Piliyandala', 'Kohuwala', '2023-04-30 02:08:53', 2, NULL, 'cash', 'booked', NULL),
+(60, 'passenger1', 3, NULL, NULL, NULL, 'B3', NULL, 'Piliyandala', 'Kohuwala', '2023-04-30 02:08:53', 2, 0, 'cash', 'booked', NULL),
 (61, 'passenger1', 3, NULL, NULL, NULL, 'A1', NULL, 'Piliyandala', 'Werahera', '2023-04-30 02:12:47', 1, 69, 'points', 'inactive', NULL),
 (62, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Pepiliyana', '2023-05-03 04:53:26', 1, 125, 'points', 'inactive', NULL),
 (63, 'passenger1', 2, NULL, NULL, NULL, NULL, NULL, 'Piliyandala', 'Boralesgamuwa', '2023-05-03 04:56:00', 1, 75, 'points', 'inactive', NULL),
@@ -711,7 +711,7 @@ CREATE TABLE IF NOT EXISTS `friends` (
   PRIMARY KEY (`id`),
   KEY `friends-user` (`passenger`),
   KEY `friends-friend` (`friend`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `friends`
@@ -719,7 +719,9 @@ CREATE TABLE IF NOT EXISTS `friends` (
 
 INSERT INTO `friends` (`id`, `passenger`, `friend`) VALUES
 (1, 'passenger1', 'passenger3'),
-(2, 'passenger1', 'passenger4');
+(2, 'passenger1', 'passenger4'),
+(6, 'passenger1', 'passenger2'),
+(12, 'passenger1', 'passenger5');
 
 -- --------------------------------------------------------
 
@@ -787,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `location_update` (
   KEY `update-ticket` (`ticket`),
   KEY `update-username` (`username`),
   KEY `update-halt` (`halt`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `location_update`
@@ -801,7 +803,36 @@ INSERT INTO `location_update` (`id`, `username`, `user_role`, `ticket`, `tripID`
 (35, 'passenger1', 'passenger', 54, 11, 'Piliyandala', '2023-05-08 00:12:30'),
 (36, 'passenger1', 'passenger', 54, 11, 'Piliyandala', '2023-05-08 00:19:18'),
 (37, 'passenger1', 'passenger', 54, 11, 'Piliyandala', '2023-05-08 00:20:04'),
-(38, 'passenger1', 'passenger', 54, 11, 'Piliyandala', '2023-05-08 00:20:41');
+(38, 'passenger1', 'passenger', 54, 11, 'Piliyandala', '2023-05-08 00:20:41'),
+(39, 'passenger1', 'passenger', 54, 11, 'Piliyandala', '2023-05-08 02:55:54'),
+(40, 'conductor4', 'conductor', 55, 4, 'Lake House', '2023-05-08 02:58:39'),
+(41, 'passenger1', 'passenger', 55, 4, 'Lake House', '2023-05-08 02:58:42'),
+(42, 'passenger1', 'passenger', 55, 4, 'Lake House', '2023-05-08 02:59:35'),
+(43, 'passenger1', 'passenger', 55, 4, 'Lake House', '2023-05-08 03:00:03'),
+(44, 'passenger1', 'passenger', 55, 4, 'Lake House', '2023-05-08 03:00:56'),
+(45, 'passenger1', 'passenger', 54, 11, 'Boralesgamuwa', '2023-05-08 04:57:49'),
+(46, 'passenger1', 'passenger', 54, 11, 'Werahera', '2023-05-08 05:00:15'),
+(47, 'passenger1', 'passenger', 54, 11, 'Werahera', '2023-05-08 05:00:36'),
+(48, 'passenger1', 'passenger', 54, 11, 'Werahera', '2023-05-08 05:00:54'),
+(49, 'passenger1', 'passenger', 54, 11, 'Boralesgamuwa', '2023-05-08 05:01:04'),
+(50, 'passenger1', 'passenger', 54, 11, 'Werahera', '2023-05-08 05:08:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(50) NOT NULL,
+  `status` enum('read','unread') NOT NULL DEFAULT 'unread',
+  `notification` text NOT NULL,
+  `type` enum('point','ticket','location','other') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `noti-user` (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -840,7 +871,7 @@ CREATE TABLE IF NOT EXISTS `passenger` (
   `address` text,
   `dob` date DEFAULT NULL,
   `profile_pic` varchar(200) DEFAULT NULL,
-  `points` int(11) DEFAULT '0',
+  `points` int(11) DEFAULT '50',
   `points_expiry` date DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -850,10 +881,11 @@ CREATE TABLE IF NOT EXISTS `passenger` (
 --
 
 INSERT INTO `passenger` (`username`, `name`, `phone`, `address`, `dob`, `profile_pic`, `points`, `points_expiry`) VALUES
-('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-02-13', NULL, 346, '2023-03-15'),
+('passenger1', 'John Doe', '0771234568', 'Colombo 02, Sri Lanka', '1998-02-13', NULL, 303, '2023-03-15'),
 ('passenger2', 'Jane Doe', '0771234567', 'Colombo, Sri Lanka', '0000-00-00', NULL, 170, '2023-06-22'),
 ('passenger3', 'Kamal Fernando', '', '', '2018-02-27', NULL, 104, '2022-02-02'),
-('passenger4', NULL, NULL, NULL, NULL, NULL, 4, NULL);
+('passenger4', NULL, NULL, NULL, NULL, NULL, 59, NULL),
+('passenger5', NULL, NULL, NULL, NULL, NULL, 50, NULL);
 
 -- --------------------------------------------------------
 
@@ -870,7 +902,7 @@ CREATE TABLE IF NOT EXISTS `points` (
   PRIMARY KEY (`id`),
   KEY `points-from` (`points_from`),
   KEY `points-to` (`points_to`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `points`
@@ -895,7 +927,9 @@ INSERT INTO `points` (`id`, `points_from`, `points_to`, `amount`) VALUES
 (16, 'passenger1', 'passenger2', 5),
 (17, 'passenger1', 'passenger3', 1),
 (18, 'passenger1', 'passenger2', 5),
-(19, 'passenger1', 'passenger4', 4);
+(19, 'passenger1', 'passenger4', 4),
+(20, 'passenger1', 'passenger4', 5),
+(21, 'passenger1', 'passenger4', 50);
 
 -- --------------------------------------------------------
 
@@ -1056,6 +1090,21 @@ INSERT INTO `seats_availability` (`id`, `trip_id`, `seat_no`, `availability`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ticket_seats`
+--
+
+DROP TABLE IF EXISTS `ticket_seats`;
+CREATE TABLE IF NOT EXISTS `ticket_seats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ticket_id` int(11) NOT NULL,
+  `seat` char(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `seat-ticket` (`ticket_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trip`
 --
 
@@ -1082,15 +1131,15 @@ CREATE TABLE IF NOT EXISTS `trip` (
 INSERT INTO `trip` (`id`, `trip_date`, `departure_time`, `starting_halt`, `bus_no`, `status`, `last_updated_halt`, `location_updated_time`) VALUES
 (1, '2023-01-01', '08:00:00', 'Piliyandala', 'NC1111', 'ended', 'Pettah', '2023-05-07 12:50:11'),
 (2, '2023-01-01', '08:00:00', 'Pettah', 'NC1112', 'ended', 'Piliyandala', NULL),
-(3, '2023-01-01', '09:00:00', 'Piliyandala', 'NC1113', 'started', 'Kumaratunga M. Rd.', NULL),
-(4, '2023-01-01', '09:00:00', 'Pettah', 'NC1114', 'scheduled', NULL, NULL),
+(3, '2023-01-01', '09:00:00', 'Piliyandala', 'NC1113', 'started', 'Piliyandala', '2023-05-08 08:26:28'),
+(4, '2023-01-01', '09:00:00', 'Pettah', 'NC1114', 'started', 'Lake House', '2023-05-08 03:00:56'),
 (5, '2023-01-01', '10:00:00', 'Piliyandala', 'NC1115', 'scheduled', NULL, NULL),
 (6, '2023-01-01', '10:00:00', 'Pettah', 'NC1116', 'scheduled', NULL, NULL),
 (7, '2023-01-01', '11:00:00', 'Piliyandala', 'NC1111', 'scheduled', NULL, NULL),
 (8, '2023-01-01', '11:00:00', 'Pettah', 'NC1112', 'scheduled', NULL, NULL),
 (9, '2023-01-01', '12:00:00', 'Piliyandala', 'NC1113', 'scheduled', NULL, NULL),
 (10, '2023-01-01', '12:00:00', 'Pettah', 'NC1114', 'scheduled', NULL, NULL),
-(11, '2023-01-01', '13:00:00', 'Piliyandala', 'NC1115', 'started', 'Piliyandala', '2023-05-08 00:20:41'),
+(11, '2023-01-01', '13:00:00', 'Piliyandala', 'NC1115', 'started', 'Werahera', '2023-05-08 05:08:57'),
 (12, '2023-01-01', '13:00:00', 'Pettah', 'NC1116', 'scheduled', NULL, NULL),
 (13, '2023-05-16', '16:30:00', 'Pettah', 'NC1119', 'scheduled', NULL, NULL);
 
@@ -1110,7 +1159,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -1144,7 +1193,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 (46, 'driver8', 'driver8@gmail.com', '$2y$10$cSaXo68g.R5XLDVQMPl3gOs8REUAm2wKgG9XwopuC2BA9/GQWkFqC', 'driver'),
 (47, 'driver9', 'driver9@gmail.com', '$2y$10$q1JInzLERtoBejZH5VAa8eYT1DooS8rRo2C5uDzyn6ZXsod0o.jSG', 'driver'),
 (48, 'driver3', 'driver3@gmail.com', '$2y$10$JBzdpP3aPOuYQWFqm7EfK.ao0KgP7.c5oD2Ztm9uoLDlGr3WGZrvS', 'driver'),
-(50, 'passenger4', 'passenger4@gmail.com', '$2y$10$rAA5/R4ySTvx.IgLc2GTxO.0KQ3XcSQIC25aVPx1po6rI8NuEkVQC', 'passenger');
+(50, 'passenger4', 'passenger4@gmail.com', '$2y$10$rAA5/R4ySTvx.IgLc2GTxO.0KQ3XcSQIC25aVPx1po6rI8NuEkVQC', 'passenger'),
+(51, 'passenger5', 'passenger5@gmail.com', '$2y$10$Mj3di.ieghn0a3e/M0nQeeDh/mRHv74ijzO1owhLH4ZSpgFVd0TVq', 'passenger');
 
 --
 -- Triggers `users`
@@ -1247,6 +1297,12 @@ ALTER TABLE `location_update`
   ADD CONSTRAINT `update-username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `noti-user` FOREIGN KEY (`user`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `owner`
 --
 ALTER TABLE `owner`
@@ -1286,6 +1342,12 @@ ALTER TABLE `scheduler`
 --
 ALTER TABLE `seats_availability`
   ADD CONSTRAINT `seat-trip` FOREIGN KEY (`trip_id`) REFERENCES `trip` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ticket_seats`
+--
+ALTER TABLE `ticket_seats`
+  ADD CONSTRAINT `seat-ticket` FOREIGN KEY (`ticket_id`) REFERENCES `e_ticket` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trip`
