@@ -214,12 +214,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (ticket['trip']['status'] == 'started') {
-          gotOffBusBtn.style.display = "none";
-          updateLocationBtn.style.display = "none";
-        }
-        else {
           gotOffBusBtn.style.display = "block";
           updateLocationBtn.style.display = "block";
+        }
+        else {
+          gotOffBusBtn.style.display = "none";
+          updateLocationBtn.style.display = "none";
         }
 
         // update destination of got off popup
@@ -505,7 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         return data.data;
       })
       .catch((error) => {

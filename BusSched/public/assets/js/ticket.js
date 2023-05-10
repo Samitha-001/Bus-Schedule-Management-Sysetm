@@ -48,8 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // payment method
     data["payment_method"] = document.querySelector("input[name='payment']:checked").value;
 
+    // retrieve seatsSelected from session storage
+    let seatsSelected = JSON.parse(sessionStorage.getItem("seatsSelected"));
+    data["seats"] = seatsSelected;
+
     // reserved seats
     data["seats_reserved"] = document.getElementById("reserved-seats").innerHTML.split(": ")[1];
+
+    // 
     // trip id
     tdtrip = document.getElementById("trip-id");
     data["trip_id"] = tdtrip.getAttribute("data-tripid");

@@ -252,7 +252,7 @@ include '../app/views/components/navbar.php';
             <tr>
                 <th>Last updated: </th>
                 <td>
-                    <span id="ticket-details-last-updated" name="last_updated"></span><br> at 
+                    <span id="ticket-details-last-updated" name="last_updated"></span><br> | 
                     <span id="ticket-details-last-updated-at"></span>
                 </td>
             </tr>
