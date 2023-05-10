@@ -71,9 +71,6 @@ class E_ticket extends Model
         return $this->where(['status' => $status,'trip_id'=>$trip_id]);
     }
 
-   
-
-
     // add ticket
     public function addTicket($data)
     {
