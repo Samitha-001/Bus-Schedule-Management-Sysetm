@@ -18,6 +18,54 @@ if (!isset($_SESSION['USER'])) {
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
 
+    <style>
+
+.date-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.date {
+  margin-right: 20px;
+}
+
+.fa-arrow-right {
+  font-size: 24px;
+  color: #333;
+}
+        .schedule-cards {
+    display: flex;
+    justify-content: space-around;
+    padding: 80px 20px 10px;
+  }
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 24px;
+    width: 40%;
+  }
+  .card h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .table-container {
+    overflow: auto;
+  }
+  .piliyandala {
+    border: 2px solid #FF9800;
+  }
+  .pettah {
+    border: 2px solid #2196F3;
+  }
+    </style>
+
 </head>
 
 <body>
@@ -34,6 +82,7 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Schedule</h3>
             </div>
+            <div><button id="btn" class="button-grey">Generate</button></div>
             <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
@@ -90,47 +139,92 @@ if (!isset($_SESSION['USER'])) {
             </div>
         </form>
 
-        <div>
-            <br>
-            <table border='1' class="styled-table">
+       
+        
+        <div class="date-container">
+  <div class="date">date</div>
+  <i class="fa fa-arrow-right"></i>
+</div>
+        <div class="schedule-cards">
+           
+  <div class="card piliyandala">
+    <h2>From Piliyandala</h2>
+    <div class="table-container">
+    <table border='1' class="styled-table">
                 <tr>
-                    
                     <th>Starting Halt</th>
                     <th>Bus No</th>
-                    
                     <th>Departure</th>
                     <th>Arrival</th>
-                    
                     <!-- <th>Action</th> -->
                 </tr>
-
                 <?php
                 $schedulesObject = json_decode(json_encode($schedules), false);
 
-                // foreach ($schedulesObject as $schedule) {
-                //     echo "<tr>";
-                //     //echo "<td> $schedule->id </td>";
-                //     echo "<td> $schedule->starting_place</td>";
-                //     // echo "<td> $schedule->bus_route</td>";
-                //     echo "<td> $schedule->bus_no</td>";
-                //     // echo "<td> $schedule->type</td>";
-                //     echo "<td> $schedule->departure_time</td>";
-                //     echo "<td> $schedule->arrival_time</td>";
-                    
-                //     echo "</tr>";
-                    
-                    
-                // }
-                echo "<pre>";
+                foreach ($schedulesObject as $schedule) {
+                    if($schedule->starting_place === "Piliyandala"){
+                    echo "<tr>";
+                    echo "<td> $schedule->starting_place</td>";
+                    echo "<td> $schedule->bus_no</td>";
+                    echo "<td> $schedule->departure_time</td>";
+                    echo "<td> $schedule->arrival_time</td>";
+                    echo "</tr>";
+                }
+            }
+                // echo "<pre>";
                
-                print_r($schedulesObject);
-                echo "</pre>";
+                // print_r($schedulesObject);
+                // echo "</pre>";
                  ?>
 
             </table>
-        </div>
+    </div>
+  </div>
+  <div class="card pettah">
+    <h2>From Pettah</h2>
+    <div class="table-container">
+    <table border='1' class="styled-table">
+                <tr>
+                    <th>Starting Halt</th>
+                    <th>Bus No</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <!-- <th>Action</th> -->
+                </tr>
+                <?php
+                $schedulesObject = json_decode(json_encode($schedules), false);
+
+                foreach ($schedulesObject as $schedule) {
+                    if($schedule->starting_place === "Pettah"){
+                    echo "<tr>";
+                    echo "<td> $schedule->starting_place</td>";
+                    echo "<td> $schedule->bus_no</td>";
+                    echo "<td> $schedule->departure_time</td>";
+                    echo "<td> $schedule->arrival_time</td>";
+                    echo "</tr>";
+                }
+            }
+                // echo "<pre>";
+               
+                // print_r($schedulesObject);
+                // echo "</pre>";
+                 ?>
+
+            </table>
+    </div>
+  </div>
+</div>
+
+
 
         <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
+        <script>
+
+        var today = new Date();
+        var date = today.toLocaleDateString();
+        document.querySelector(".date").innerHTML = date;
+        
+        </script>
     </main>
 
 </body>

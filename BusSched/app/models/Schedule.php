@@ -158,15 +158,16 @@ class Schedule extends Bus
                     $bus['start'] = 'Piliyandala';
                     $bus['dest'] = 'Pettah';
                     array_push($Piliyandala_Buses, $bus);
-                    
                 }
                 
                 // Set the initial departure time based on the start time of the first time slot
-$departure_time_day = strtotime($time_slots[0]['start_time']);
+
 
 // Keep track of the last departed bus from both sides
 $last_departed_piliyandala_bus = null;
 $last_departed_pettah_bus = null;
+
+
 
 // Schedule buses until the departure time reaches 8:30 p.m.
 while (date('H:i', $departure_time_day) <= '20:30') {
