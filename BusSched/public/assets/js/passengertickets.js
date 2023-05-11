@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // collected ticket view more
   let collectedTicketViewMoreBtns = document.querySelectorAll(".ticket-view-more");
 
-  
   // function to check if the halt was passed
   async function haltPassedFunc(halt, haltToCompareWith, sourceHalt, destHalt) {
     // get halts
@@ -160,6 +159,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
+  // tranfer ticket a
+  let transferTicketA = document.querySelectorAll(".ticket-transfer-a");
+
+  // add event listeners to each transfer ticket a
+  transferTicketA.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      // console.log("transfer ticket a clicked");
+      let ticketId = button.getAttribute("data-ticket-id");
+      let seatsReserved = button.getAttribute("data-seats");
+      let seatsNo = 0;
+      if (seatsReserved != "") {
+        // split seats reserved by comma and get the number of seats
+        seatsNo = seatsReserved.split(",").length;
+      }
+      
+      console.log("ticket: ", ticketId);
+      console.log("seats: ", seatsReserved);
+      console.log("seat no: ", seatsNo);
+
+      // zoom the target with animation
+      let target = e.target.parentElement;
+
+      // add class to parent div
+      // target.classList.add("zoom-target");
+      // create duplicate of target
+      let targetDuplicate = target.cloneNode(true);
+      // add class to duplicate
+      targetDuplicate.classList.add("pop-up-content");
+      // append duplicate to body
+      document.body.appendChild(targetDuplicate);
+      // get the position of target
+
+      // setTimeout(() => {
+      //   target.classList.remove("zoom-target");
+      // }
+      //   , 500);
+      
+    });
+  });
 
   // add event listeners to each button
   collectedTicketViewMoreBtns.forEach((button) => {

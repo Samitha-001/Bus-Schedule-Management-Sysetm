@@ -51,4 +51,16 @@ class Ticket_seats extends Model
             $this->insert(['seat' => $seat, 'ticket_id' => $ticket_id]);
         }
     }
+
+    // function to get number of unreserved seats in bus
+    public function getUnreservedSeats($trip_id) {
+        $trip = new Trip();
+        $busno = $trip->getTrip(['id' => $trip_id])->bus_no;
+        $bus = new Bus();
+        $bus = $bus->getBus($busno);
+        $seats = $bus->seats_no;
+        $reserved = $this->getSeatsReserved($trip_id);
+        $unreserved = $seats - count($reserved);
+        return $unreserved;
+    }
 }

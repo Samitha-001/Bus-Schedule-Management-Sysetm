@@ -436,3 +436,13 @@ div#rate-popup p {
   /* reduce opacity */
   opacity: 0.5;
 }
+
+.zoom-target-duplicate {
+  display: block;
+  transform: scale(1.05);
+  transition: all 0.35s;
+  position: absolute;
+  bottom: 25%;
+  left: 37%;
+  margin: auto;
+}
