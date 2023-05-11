@@ -70,6 +70,8 @@ class Schedule extends Bus
 
 
     function busSchedule($buses) {
+        
+
         $total_buses = count($buses);
         $num_slot1 = ceil($total_buses * 0.25);
         $num_slot2 = floor($total_buses * 0.5);
@@ -158,93 +160,199 @@ class Schedule extends Bus
                     $bus['start'] = 'Piliyandala';
                     $bus['dest'] = 'Pettah';
                     array_push($Piliyandala_Buses, $bus);
+                    
                 }
                 
-                // Set the initial departure time based on the start time of the first time slot
+                $last_departed_piliyandala_bus = $departure_time_day;
+                $last_departed_pettah_bus = $departure_time_day;
 
+                while ($last_departed_piliyandala_bus <= (strtotime('20:30'))) {
+                    // check which time slot we are in
+                    if (date('H:i', $last_departed_piliyandala_bus) >= $time_slots[0]['start_time'] && date('H:i', $last_departed_piliyandala_bus) <= $time_slots[0]['end']) {
+                        $num_buses = $time_slots[0]['num_buses'];
+                        $time_between_buses = $time_between_buses1;
+                    } elseif (date('H:i', $last_departed_piliyandala_bus) >= $time_slots[1]['start_time'] && date('H:i', $last_departed_piliyandala_bus) <= $time_slots[1]['end']) {
+                        $num_buses = $time_slots[1]['num_buses'];
+                        $time_between_buses = $time_between_buses2;
+                    } else {
+                        $num_buses = $time_slots[2]['num_buses'];
+                        $time_between_buses = $time_between_buses3;
+                    }
+                
+                    // check if there are any buses left to schedule
+                    if (count($Piliyandala_Buses) == 0) {
+                        break;
+                    }
+                
+                    // schedule buses for this time slot
+                    for ($i = 0; $i < $num_buses; $i++) {
+                        // check if there are any buses left to schedule
+                        if (count($Piliyandala_Buses) == 0) {
+                            break 2;
+                        }
+                
+                        $bus = array_shift($Piliyandala_Buses);
+                        $bus_no = $bus['bus_no'];
+                        $starting_place = $bus['start'];
+                
+                        // calculate departure and arrival time
+                        $departure_time = date('H:i', $last_departed_piliyandala_bus);
+                        $arrival_time = date('H:i', strtotime('+' . 60 . ' minutes', $last_departed_piliyandala_bus));
+                
+                        // add to schedule array
+                        $schedule[] = array(
+                            'bus_no' => $bus_no,
+                            'departure_time' => $departure_time,
+                            'arrival_time' => $arrival_time,
+                            'starting_place' => $starting_place
+                        );
+                
+                        // calculate next departure time
+                        $last_departed_piliyandala_bus = strtotime('+' . $time_between_buses . ' minutes', $last_departed_piliyandala_bus);
+
+                        $bus['start'] = 'Pettah';
+                        $bus['dest'] = 'Piliyandala';
+                        array_push($Pettah_Buses, $bus);
+                    }
+                }
+                
+                while ($last_departed_pettah_bus <= strtotime('20:30')) {
+                    // check which time slot we are in
+                    if (date('H:i', $last_departed_pettah_bus) >= $time_slots[0]['start_time'] && date('H:i', $last_departed_pettah_bus) <= $time_slots[0]['end']) {
+                        $num_buses = $time_slots[0]['num_buses'];
+                        $time_between_buses = $time_between_buses1;
+                    } elseif (date('H:i', $last_departed_pettah_bus) >= $time_slots[1]['start_time'] && date('H:i', $last_departed_pettah_bus) <= $time_slots[1]['end']) {
+                        $num_buses = $time_slots[1]['num_buses'];
+                        $time_between_buses = $time_between_buses2;
+                    } else {
+                        $num_buses = $time_slots[2]['num_buses'];
+                        $time_between_buses = $time_between_buses3;
+                    }
+                
+                    // check if there are any buses left to schedule
+                    if (count($Pettah_Buses) == 0) {
+                        break;
+                    }
+                
+                    // schedule buses for this time slot
+                    for ($i = 0; $i < $num_buses; $i++) {
+                        // check if there are any buses left to schedule
+                        if (count($Pettah_Buses) == 0) {
+                            break 2;
+                        }
+                
+                        $bus = array_shift($Pettah_Buses);
+                        $bus_no = $bus['bus_no'];
+                        $starting_place = $bus['start'];
+                
+                        // calculate departure and arrival time
+                        $departure_time = date('H:i', $last_departed_pettah_bus);
+                        $arrival_time = date('H:i', strtotime('+' . 60 . ' minutes', $last_departed_pettah_bus));
+                
+                        // add to schedule array
+                        $schedule[] = array(
+                            'bus_no' => $bus_no,
+                            'departure_time' => $departure_time,
+                            'arrival_time' => $arrival_time,
+                            'starting_place' => $starting_place
+                        );
+                
+                        // calculate next departure time
+                        $last_departed_pettah_bus = strtotime('+' . $time_between_buses . ' minutes', $last_departed_pettah_bus);
+
+                        $bus['start'] = 'Piliyandala';
+                        $bus['dest'] = 'Pettah';
+                        array_push($Piliyandala_Buses, $bus);
+                    }
+                }
+                
+                
+                
+                        
+
+                // Set the initial departure time based on the start time of the first time slot
+// $departure_time_day = strtotime($time_slots[0]['start_time']);
 
 // Keep track of the last departed bus from both sides
-$last_departed_piliyandala_bus = null;
-$last_departed_pettah_bus = null;
+// $last_departed_piliyandala_bus = $departure_time_day;
+// $last_departed_pettah_bus = $departure_time_day;
 
+// // Schedule buses until the departure time reaches 8:30 p.m.
+// while (date('H:i', $departure_time_day) <= '20:30') {
+//     // Schedule Piliyandala buses
+//     if ($last_departed_piliyandala_bus === null || $departure_time_day >= $last_departed_piliyandala_bus) {
+//         // Check if there are any Piliyandala buses available to schedule
+//         if (!empty($Piliyandala_Buses)) {
+//             $bus = array_shift($Piliyandala_Buses);
+//             $bus_no = $bus['bus_no'];
+//             $starting_place = $bus['start'];
 
+//             // Calculate departure and arrival time
+//             $departure_time = date('H:i', $departure_time_day);
+//             $arrival_time = date('H:i', strtotime('+1 hour', $departure_time_day));
 
-// Schedule buses until the departure time reaches 8:30 p.m.
-while (date('H:i', $departure_time_day) <= '20:30') {
-    // Schedule Piliyandala buses
-    if ($last_departed_piliyandala_bus === null || $departure_time_day >= $last_departed_piliyandala_bus) {
-        // Check if there are any Piliyandala buses available to schedule
-        if (!empty($Piliyandala_Buses)) {
-            $bus = array_shift($Piliyandala_Buses);
-            $bus_no = $bus['bus_no'];
-            $starting_place = $bus['start'];
+//             // Add to schedule array
+//             $schedule[] = array(
+//                 'bus_no' => $bus_no,
+//                 'departure_time' => $departure_time,
+//                 'arrival_time' => $arrival_time,
+//                 'starting_place' => $starting_place
+//             );
 
-            // Calculate departure and arrival time
-            $departure_time = date('H:i', $departure_time_day);
-            $arrival_time = date('H:i', strtotime('+1 hour', $departure_time_day));
+//             // Calculate next departure time
+//             $departure_time_day = strtotime("+{$time_between_buses1} minutes", $departure_time_day);
 
-            // Add to schedule array
-            $schedule[] = array(
-                'bus_no' => $bus_no,
-                'departure_time' => $departure_time,
-                'arrival_time' => $arrival_time,
-                'starting_place' => $starting_place
-            );
+//             // Update bus start and destination places
+//             $bus['start'] = 'Pettah';
+//             $bus['dest'] = 'Piliyandala';
 
-            // Calculate next departure time
-            $departure_time_day = strtotime("+{$time_between_buses1} minutes", $departure_time_day);
+//             // Add bus to the Pettah_Buses array
+//             array_push($Pettah_Buses, $bus);
 
-            // Update bus start and destination places
-            $bus['start'] = 'Pettah';
-            $bus['dest'] = 'Piliyandala';
+//             // Update last departed Piliyandala bus time
+//             $last_departed_piliyandala_bus = $departure_time_day;
+//         }
+//     }
 
-            // Add bus to the Pettah_Buses array
-            array_push($Pettah_Buses, $bus);
+//     // Schedule Pettah buses
+//     if ($last_departed_pettah_bus === null || $departure_time_day >= $last_departed_pettah_bus) {
+//         // Check if there are any Pettah buses available to schedule
+//         if (!empty($Pettah_Buses)) {
+//             $bus = array_shift($Pettah_Buses);
+//             $bus_no = $bus['bus_no'];
+//             $starting_place = $bus['start'];
 
-            // Update last departed Piliyandala bus time
-            $last_departed_piliyandala_bus = $departure_time_day;
-        }
-    }
+//             // Calculate departure and arrival time
+//             $departure_time = date('H:i', $departure_time_day);
+//             $arrival_time = date('H:i', strtotime('+1 hour', $departure_time_day));
 
-    // Schedule Pettah buses
-    if ($last_departed_pettah_bus === null || $departure_time_day >= $last_departed_pettah_bus) {
-        // Check if there are any Pettah buses available to schedule
-        if (!empty($Pettah_Buses)) {
-            $bus = array_shift($Pettah_Buses);
-            $bus_no = $bus['bus_no'];
-            $starting_place = $bus['start'];
+//             // Add to schedule array
+//             $schedule[] = array(
+//                 'bus_no' => $bus_no,
+//                 'departure_time' => $departure_time,
+//                 'arrival_time' => $arrival_time,
+//                 'starting_place' => $starting_place
+//             );
 
-            // Calculate departure and arrival time
-            $departure_time = date('H:i', $departure_time_day);
-            $arrival_time = date('H:i', strtotime('+1 hour', $departure_time_day));
+//             // Calculate next departure time
+//             $departure_time_day = strtotime("+{$time_between_buses1} minutes", $departure_time_day);
 
-            // Add to schedule array
-            $schedule[] = array(
-                'bus_no' => $bus_no,
-                'departure_time' => $departure_time,
-                'arrival_time' => $arrival_time,
-                'starting_place' => $starting_place
-            );
+//             // Update bus start and destination places
+//             $bus['start'] = 'Piliyandala';
+//             $bus['dest'] = 'Pettah';
 
-            // Calculate next departure time
-            $departure_time_day = strtotime("+{$time_between_buses1} minutes", $departure_time_day);
-
-            // Update bus start and destination places
-            $bus['start'] = 'Piliyandala';
-            $bus['dest'] = 'Pettah';
-
-            // Add bus to the Piliyandala_Buses array
-            array_push($Piliyandala_Buses, $bus);
+//             // Add bus to the Piliyandala_Buses array
+//             array_push($Piliyandala_Buses, $bus);
 
                 
                 
                 
                 
                
-            }
+//             }
         
         
-    }
+//     }
     
     
     
@@ -253,54 +361,10 @@ while (date('H:i', $departure_time_day) <= '20:30') {
     
     
     
-}
+// }
 
 return $schedule;
     }
 
     
 }
-// $departure_times[] = array();
-// $arrival_times[] = array();
-        // Time slot 1: 5:30 a.m. - 8:30 a.m.
-// $departure_time = strtotime('5:30');
-// $arrival_time = strtotime('+60 minutes', $departure_time);
-// while($departure_time<strtotime('8:30')) {
-//     $departure_times[] = date('H:i', $departure_time);
-//     $departure_time = strtotime('+'.$time_between_buses1.' minutes', $departure_time);
-//     $arrival_time = strtotime('+'.$time_slots[0]['trip_time'].' minutes', $departure_time);
-//     $arrival_times[] = date('H:i', $arrival_time);
-
-//     $schedule[] = array(
-//         'departure_time' => $departure_times,
-//         'arrival_time' => $arrival_times
-//     );
-// }
-
-// // Time slot 2: 8:30 a.m. - 5:30 p.m.
-// $departure_time = strtotime('8:30');
-// $arrival_time = strtotime('+45 minutes', $departure_time);
-// for ($i = 0; $i < $time_slots[1]['num_buses']; $i++) {
-//     $departure_times[] = date('H:i', $departure_time);
-//     $departure_time = strtotime('+'.$time_between_buses2.' minutes', $departure_time);
-//     $arrival_time = strtotime('+'.$time_slots[1]['trip_time'].' minutes', $departure_time);
-//     $arrival_times[] = date('H:i', $arrival_time);
-//     $schedule[] = array(
-//         'departure_time' => $departure_times,
-//         'arrival_time' => $arrival_times
-//     );
-// }
-
-// // Time slot 3: 5:30 p.m. - 8:30 p.m.
-// $departure_time = strtotime('17:30');
-// $arrival_time = strtotime('+60 minutes', $departure_time);
-// for ($i = 0; $i < $time_slots[2]['num_buses']; $i++) {
-//     $departure_times[] = date('H:i', $departure_time);
-//     $departure_time = strtotime('+'.$time_between_buses3.' minutes', $departure_time);
-//     $arrival_time = strtotime('+'.$time_slots[2]['trip_time'].' minutes', $departure_time);
-//     $arrival_times[] = date('H:i', $arrival_time);
-//     $schedule[] = array(
-//         'departure_time' => $departure_times,
-//         'arrival_time' => $arrival_times
-//     );
-// }

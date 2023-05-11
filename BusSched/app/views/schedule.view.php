@@ -171,7 +171,7 @@ if (!isset($_SESSION['USER'])) {
                     echo "</tr>";
                 }
             }
-                // echo "<pre>";
+                echo "<pre>";
                
                 // print_r($schedulesObject);
                 // echo "</pre>";
