@@ -13,26 +13,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         <?php
         if (isset($_SESSION['USER'])) {
             if ($_SESSION['USER']->role == 'passenger') {
-                ?>
-            <!-- <li>
-                <div class="dropdown">
-                    <button class="dropbtn">Services
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
-                        <a href="<?= ROOT ?>/passengertickets">My Tickets</a>
-                        <a href="<?= ROOT ?>/passengerschedule">Buy Tickets</a>
-
-                        <?php
-                        if (strpos($current_url, '/home') == true) { // checks if current URL is home page
-                            ?>
-                            <a href="#fare-scroll">Bus fares</a>
-                        <?php } else { ?>
-                            <a href="<?= ROOT ?>/home#fare-scroll">Bus fares</a>
-                        <?php } ?>
-                    </div>
-                </div>
-            </li> -->
+        ?>
             <?php
                 if (strpos($current_url, '/home') == true) { // checks if current URL is home page
             ?>

@@ -171,13 +171,16 @@ if (!isset($_SESSION['USER'])) {
     <?php
     $bus = new Bus();
     $busType = ($bus->getBus($trip->bus_no))->type;
-
-    // getting available and booked seats of the bus
-    $seats =  new Seats();
-    $seatsAvailable = $seats->getAvailableSeats($trip->id);
-    $seatsBooked = $seats->getBookedSeats($trip->id);
     ?>
     <div id="reserve-seats-div" class="ticket-body" style="width:fit-content; display:none;" data-bus-type="<?=$busType?>">
+        <?php
+        // get reserved seats for the trip
+        $ticketSeats = new Ticket_seats();
+        $reservedSeats = $ticketSeats->getSeatsReserved($trip->id);
+        ?>
+        
+
+        <!-- Bus layout for large buses -->
         <div id="bus-layout-l" class="card-content" style="padding:0 20px;">
             <table class="seating-grid">
                 <tr>
@@ -266,6 +269,8 @@ if (!isset($_SESSION['USER'])) {
             <button id="reserve-seats-cancel" class="button-orange ticket-button-2">Cancel</button></div>
         </div>
 
+
+        <!-- Bus layout for small buses -->
         <div id="bus-layout-s" class="card-content" style="padding:0 20px; display:none">
             <!-- <div class="bus-container"> -->
             <table class="seating-grid">
@@ -327,8 +332,29 @@ if (!isset($_SESSION['USER'])) {
         </div>
 
     </div>
-        <!-- </div> -->
+    
         <script src="<?= ROOT ?>/assets/js/seat.js"></script>
+        <script>
+            var reservedSeats = <?= json_encode($reservedSeats) ?>;
+
+            var seatElements = document.querySelectorAll(`[data-seat='C2']`);
+            // for each seat in seatElements
+            seatElements.forEach(seat => {
+                seat.classList.add("booked");
+            });
+
+            // for each seat add class "reserved" to the seat
+            // if reserved seats is not empty
+            if (reservedSeats.length > 0) {
+                reservedSeats.forEach(seat => {
+                    var seatElements = document.querySelectorAll(`[data-seat='${seat}']`);
+                    seatElements.forEach(seat => {
+                        seat.classList.add("booked");
+                    });
+                    // seatElement.classList.add("booked");
+                });
+            }
+        </script>
 </body>
 
 </html>

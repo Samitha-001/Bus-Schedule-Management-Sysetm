@@ -53,6 +53,7 @@
         <div class="col-10 col-s-10" style="margin: auto; padding:0px;">
             <table id="schedule-table" style="width: 100%; font-size: 12px;">
                 <tr>
+                    <th>Trip ID</th> <!-- comment later -->
                     <th>Trip starts</th>
                     <!-- <th>Departure Time</th> -->
                     <th>Start</th>
@@ -75,6 +76,7 @@
                 $tripx = new Trip();
                 $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
                 ?>
+                <td><?= $trip->id ?></td>
                     <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<?= $trip->departure_time ?></td>
                     <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                     <td>-</td>
