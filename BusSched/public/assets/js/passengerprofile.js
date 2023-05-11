@@ -142,6 +142,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   confirmGiftbtn.addEventListener("click", function (e) {
+    //check if gifting points > current value
+    let g = document.querySelector('#points').value
+    let c = parseFloat(pointBalanceDiv.querySelector('p').innerHTML)
+    if (g>c){
+      new Toast('fa fa fa-exclamation-triangle', '#ff0000','Invalid','You cannot gift more points than you have',true,3000)
+      return
+    }
     let confirm = window.confirm("Are you sure you want to gift points?");
     if (confirm) {
       giftPointsDiv.style.display = "none";
