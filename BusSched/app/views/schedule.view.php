@@ -29,6 +29,15 @@ if (!isset($_SESSION['USER'])) {
   font-weight: bold;
   color: #333;
 }
+.button-container{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-top: 30px;
+    font-weight: bold;
+    position: relative;
+
+}
 
 .date {
   margin-right: 20px;
@@ -48,7 +57,7 @@ if (!isset($_SESSION['USER'])) {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 24px;
-    width: 40%;
+    width: 47%;
   }
   .card h2 {
     font-size: 24px;
@@ -64,6 +73,24 @@ if (!isset($_SESSION['USER'])) {
   .pettah {
     border: 2px solid #2196F3;
   }
+
+  .styled-table input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.styled-table td:last-child {
+  text-align: center;
+}
+
+
+#delete-button{
+    cursor: pointer;
+    background-color: red;
+
+}
+
     </style>
 
 </head>
@@ -145,6 +172,11 @@ if (!isset($_SESSION['USER'])) {
   <div class="date">date</div>
   <i class="fa fa-arrow-right"></i>
 </div>
+<div class="button-container">
+    <button id="delete-button" style="display:none"><i class="fa fa-trash"></i> Delete
+    </button>
+</div>
+
         <div class="schedule-cards">
            
   <div class="card piliyandala">
@@ -152,30 +184,40 @@ if (!isset($_SESSION['USER'])) {
     <div class="table-container">
     <table border='1' class="styled-table">
                 <tr>
+                    <th></th>
                     <th>Starting Halt</th>
                     <th>Bus No</th>
                     <th>Departure</th>
                     <th>Arrival</th>
                     <!-- <th>Action</th> -->
                 </tr>
-                <?php
-                $schedulesObject = json_decode(json_encode($schedules), false);
 
-                foreach ($schedulesObject as $schedule) {
-                    if($schedule->starting_place === "Piliyandala"){
-                    echo "<tr>";
-                    echo "<td> $schedule->starting_place</td>";
-                    echo "<td> $schedule->bus_no</td>";
-                    echo "<td> $schedule->departure_time</td>";
-                    echo "<td> $schedule->arrival_time</td>";
-                    echo "</tr>";
-                }
-            }
-                echo "<pre>";
-               
-                // print_r($schedulesObject);
-                // echo "</pre>";
-                 ?>
+                <?php static $i = 1; 
+                    $schedulesObject = json_decode(json_encode($schedules), false);
+                ?>
+             <?php if ($schedulesObject):
+               foreach ($schedulesObject as $schedule): ?>
+                <tr data-id=<?= $schedule->id ?>>
+                    
+                    <?php $i++; 
+                        if($schedule->starting_place === "Piliyandala"):
+                    ?>
+                    <td data-fieldname="checking">
+                    <?= "<input type='checkbox' class='delete-checkbox'"?>
+                    </td>
+                    <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td>
+                    <td data-fieldname="bus_no"> <?= $schedule->bus_no ?> </td>
+                    <td data-fieldname="departure"> <?= $schedule->departure_time ?> </td>
+                    <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
+                    <?php endif;?>
+               </tr>
+               <?php endforeach; else: ?>
+                <tr>
+                  <td colspan="9" style="text-align:center;color:#999999;"><i>No schedule found.</i></td>
+                </tr>
+                <?php endif;?>
+
+                
 
             </table>
     </div>
@@ -185,6 +227,7 @@ if (!isset($_SESSION['USER'])) {
     <div class="table-container">
     <table border='1' class="styled-table">
                 <tr>
+                    <th></th>
                     <th>Starting Halt</th>
                     <th>Bus No</th>
                     <th>Departure</th>
@@ -197,6 +240,7 @@ if (!isset($_SESSION['USER'])) {
                 foreach ($schedulesObject as $schedule) {
                     if($schedule->starting_place === "Pettah"){
                     echo "<tr>";
+                    echo "<td><input type='checkbox' class='delete-checkbox'></td>";
                     echo "<td> $schedule->starting_place</td>";
                     echo "<td> $schedule->bus_no</td>";
                     echo "<td> $schedule->departure_time</td>";
@@ -224,6 +268,35 @@ if (!isset($_SESSION['USER'])) {
         var date = today.toLocaleDateString();
         document.querySelector(".date").innerHTML = date;
         
+
+ // Get all the checkboxes with class 'delete-checkbox'
+const deleteCheckboxes = document.querySelectorAll(".delete-checkbox");
+
+// Get the delete button
+const deleteButton = document.getElementById("delete-button");
+
+// Loop through each checkbox and add an event listener to detect when it is clicked
+deleteCheckboxes.forEach(function(deleteCheckbox) {
+  deleteCheckbox.addEventListener("click", function() {
+    // Count the number of checked checkboxes
+    const numChecked = document.querySelectorAll(".delete-checkbox:checked").length;
+
+    // If at least one checkbox is checked, show the delete button, otherwise hide it
+    if (numChecked > 0) {
+      deleteButton.style.display = "inline";
+      
+    } else {
+      deleteButton.style.display = "none";
+    }
+
+    // Remove and re-add the event listener to ensure it is always active
+    deleteCheckbox.removeEventListener("click", arguments.callee);
+    deleteCheckbox.addEventListener("click", arguments.callee);
+  });
+});
+
+
+
         </script>
     </main>
 

@@ -86,3 +86,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     );
 });
+
+//deleting
+document.addEventListener(
+    "DOMContentLoaded", function(){
+        const deleteBtn = document.getElementById("delete-button");
+        deleteBtn.addEventListener("click", function(e){
+            deleteRow(e);
+        });
+
+        function deleteRow(e){
+            let row = e.
+        }
+
+
+    }
+);
