@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // reserved seats
     data["seats_reserved"] = document.getElementById("reserved-seats").innerHTML.split(": ")[1];
 
-    // 
     // trip id
     tdtrip = document.getElementById("trip-id");
     data["trip_id"] = tdtrip.getAttribute("data-tripid");
