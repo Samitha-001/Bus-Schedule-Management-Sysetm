@@ -699,7 +699,7 @@ hr {
  
       .styled-table th {
         padding: 3px 5px;
-        font-size: 90%;
+        font-size: 200%;
       
       }
       
@@ -775,6 +775,14 @@ hr {
         width: 25%;
         margin-right: 2px;
       }
+      
+      .styled-table td {
+        padding: 12px 15px;
+        font-size: 200%;
+        color: #7c839e;
+        vertical-align: middle;
+      }
+
 
       
   div.fare-from-to-grid {

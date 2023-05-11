@@ -33,6 +33,13 @@ class Trip extends Model
     {
         
         return $this->update($id, ['status' => $data['status']]);
+
     }
+
+    // public function getTripdetails($id)
+    // {
+        
+    //     return $this->where(['id' => $id]);
+    // }
    
-}
+ }
