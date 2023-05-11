@@ -89,8 +89,6 @@ if (!isset($_SESSION['USER'])) {
 </div> 
 
 <form id="form1" method="post" action="<?=ROOT?>/collecttickets/collectTicket/<?=$activeTickets->id?>">
-<?php
-?>
   <input type="hidden" display="none" name="ticket_id" value="<?php echo($activeTickets->id) ; ?>">
   <button id="btn3" class="button-green" type="submit" name="Collect">Collect</button>
 </form>    

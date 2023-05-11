@@ -17,7 +17,6 @@ class Collecttickets
               
     }
 
-
     public function collectTicket($id) {
         $ticket = new E_ticket();
         $ticket->updateTicket($id, ['status' => "collected"]);

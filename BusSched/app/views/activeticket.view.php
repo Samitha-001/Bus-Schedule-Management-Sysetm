@@ -54,6 +54,36 @@ if (!isset($_SESSION['USER'])) {
 <?php include 'components/navbarcon.php'; 
         // include 'components/conductorsidebar.php';
 ?>
+
+<?php 
+        $conductor = $_SESSION['USER']->username;
+        $bus = new Bus();
+        $businfo = $bus->getConductorBuses($conductor)[0];
+        $busno = $businfo->bus_no;
+        $trip = new Trip();
+        $trips = $trip->getBusTrips($busno);
+        
+        $starting_trip = null;
+        foreach ($trips as $trip) {
+            if ($trip->Status == "notstarted") {
+                $starting_trip = $trip;
+                break;
+            }
+        }
+        
+        if ($starting_trip) {
+            $trip_id = $starting_trip->id;
+            // rest of your code
+        } else {
+            // handle the case where no starting trip is found
+        }
+        
+                 // $trip_id=$starting_trip->id;
+            
+            // show($trip_id);
+        ?>
+
+
   <main class="container1">
     <div class="col-1">
         <div class="header orange-header">
@@ -72,9 +102,12 @@ if (!isset($_SESSION['USER'])) {
         <div class="selection">
                  
         </div>
+      
+
+     
 
         <?php
-     $conductor = $_SESSION['USER']->username;
+     
 
      $bus = new Bus();
      $businfo = $bus->getConductorBuses($conductor)[0];

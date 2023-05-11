@@ -21,17 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       window.location.href = currentUrl + `/collecttickets?ticketID=${ticketID}`;
     
-      function cancel() {
-        const form = document.getElementById("view_ticket");
-        form.style.display = "none";
-      }
-      });
+      // function cancel() {
+      //   const form = document.getElementById("view_ticket");
+      //   form.style.display = "none";
+      // }
+      // });
 
-      const viewticket = document.getElementById('view_ticket');
-      const cancelButton = document.getElementById('cancel-button');
-      cancelButton.addEventListener('click', () => {
-           viewticket.style.display = 'none';
-      });
+      // const viewticket = document.getElementById('view_ticket');
+      // const cancelButton = document.getElementById('cancel-button');
+      // cancelButton.addEventListener('click', () => {
+      //      viewticket.style.display = 'none';
+     });
 
   });
 

@@ -84,7 +84,7 @@ class Breakdown extends Model
     {
         // validate and add
         // if ($this->validate($data)) {
-        return $this->insert(['bus_no' => $data['bus_no'],'description' => $data['description'],'time_to_repair' => $data['time_to_repair']]);
+        return $this->insert(['bus_no' => $data['bus_no'],'description' => $data['description'],'time_to_repair' => $data['time_to_repair'],'status' => 'repairing']);
         // }
         // return false;
     }

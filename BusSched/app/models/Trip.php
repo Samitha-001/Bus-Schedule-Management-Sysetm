@@ -10,7 +10,8 @@ class Trip extends Model
         'trip_date',
         'departure_time',
         'starting_halt',
-        'bus_id'
+        'bus_id',
+        'Status'
     ];
 
     public function getTrips()
@@ -28,4 +29,10 @@ class Trip extends Model
     {
         return $this->first($data);
     }
+    public function updateTrip($id, $data)
+    {
+        
+        return $this->update($id, ['status' => $data['status']]);
+    }
+   
 }
