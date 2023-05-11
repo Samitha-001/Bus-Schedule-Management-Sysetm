@@ -14,6 +14,7 @@ if (!isset($_SESSION['USER'])) {
     <title>Breakdowns</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    
 </head>
 
 <body>
