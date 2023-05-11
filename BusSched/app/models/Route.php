@@ -18,7 +18,7 @@ class Route extends Model
     public function getSpeed($route_id, $hour)
     {
         $route = $this->first(['route_id' => $route_id]);
-        if($hour == 'busy') {
+        if($hour == 'rush') {
             return $route->busy_speed;
         }
         else {

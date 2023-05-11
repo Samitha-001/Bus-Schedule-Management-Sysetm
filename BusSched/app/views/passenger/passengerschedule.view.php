@@ -39,18 +39,18 @@
                 <input type="text" name="from" id="from" placeholder="From" <?php if ($from) echo "value=".$from; ?> list="halt-list" required>
                 <input type="text" name="to" id="to" placeholder="To" <?php if ($to) echo "value=".$to; ?> list="halt-list" required>
                 <input type="date" name="date" id="date" placeholder="Date" <?php if ($date) echo "value=".$date; ?> min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>" required>
-            <button id="find-trip-btn">Find</button>
+            <button class="button-orange" style="width:55.5%; margin-top:4.5px; font-size:13px;" id="find-trip-btn">Find</button>
             <?php if ($passengercount) echo "value=".$passengercount; ?>
         </div>
     </div>
 
+    <div><h4 class="white-h" style="text-align:center; margin-bottom:0px;">Ticket fare: <span id="bus-fare-span"></span></h4></div>
     <div class="row">
         <div class="col-10 col-s-10" style="margin: auto; padding:0px;">
             <table id="schedule-table" style="width: 100%; font-size: 12px;">
                 <tr>
                     <th>Trip ID</th> <!-- comment later -->
                     <th>Trip starts</th>
-                    <!-- <th>Departure Time</th> -->
                     <th>Start</th>
                     <th>From</th>
                     <th>Estimated time</th>

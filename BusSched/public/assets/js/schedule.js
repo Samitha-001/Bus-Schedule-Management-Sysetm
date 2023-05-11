@@ -1,13 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     // remove earlier inputs from URL when refreshed
     let urlParams = new URLSearchParams(window.location.search);
+
     let fromParam = urlParams.get('from');
-    if(fromParam) fromParam = fromParam.toLowerCase();
+    if (fromParam) fromParam = fromParam.toLowerCase();
+    
+    console.log(fromParam);
     
     let toParam = urlParams.get('to');
     if (toParam) toParam = toParam.toLowerCase();
     
     let dateParam = urlParams.get('date');
+
 
     // If the ?from parameter is present, remove it from the URL
     if (fromParam) {
@@ -15,18 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
         history.replaceState(null, null, newUrl);
     }
     
-    // Get the input elements
-    let fromInput = document.getElementById('from');
-    let toInput = document.getElementById('to');
-    let dateInput = document.getElementById('date');
-
     // Get the data rows
     let rows = document.querySelectorAll('.data-row');
-
-    // // Add an event listener to the input fields
-    // fromInput.addEventListener('input', filterRows);
-    // toInput.addEventListener('input', filterRows);
-    // dateInput.addEventListener('input', filterRows);
 
     function filterRows(from, to, date) {
         // Get the input values
@@ -34,36 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let toValue = to.charAt(0).toUpperCase() + to.slice(1);
         let dateValue = date;
 
-        // console.log(dateValue);
         
         // Filter the rows
         let filteredRows = [];
         for (let i = 0; i < rows.length; i++) {
-            // let row = rows[i];
-            // // [data-fieldname="starting_halt"] and [data-fieldname="destination_halt"] and [data-fieldname="date"] are the data-fieldnames of the columns in the table
-            // let value = row.querySelector('[data-fieldname="starting_halt"]').textContent.toLowerCase();
-
-            // // check is from is after to in the halt list
-            // let valuefrom = row.querySelector('[data-fieldname="from"]').textContent.toLowerCase();
-            // let valueto = row.querySelector('[data-fieldname="to"]').textContent.toLowerCase();
-
-            // // let value1 = row.querySelector('[data-fieldname="destination_halt"]').textContent.toLowerCase();
-            // let value2 = row.querySelector('[data-fieldname="trip_date"]').textContent;
-
-            // // console.log(value2);
-
-            // // let value = row.querySelector('[data-fieldname="starting_halt"]').textContent.toLowerCase();
-            // // console.log(value);
-            // if (value.includes(fromValue)) {
-            //     // if (value1.includes(toValue)) {
-            //     // if value2 is null or value 2 is equal to dateValue
-            //         if (value2.includes(dateValue) || value2 == "") {
-            //             filteredRows.push(row);
-            //         }
-            //         // filteredRows.push(row);
-            //     // }
-            // }
-
             let row = rows[i];
             // get starting halt from row
             let startingHaltValue = row.querySelector('[data-fieldname="starting_halt"]').textContent.toLowerCase();
@@ -77,13 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             getEstimatedTime(row, startingHaltValue, fromValue, toValue, startingTimeValue);
         }
-
-
-        // Update the view to show only the filtered rows
-        // rows.forEach(row => row.style.display = 'none');
-        // filteredRows.forEach(row => row.style.display = 'table-row');
-
-        
     }
 
     // if url has from, to and date parameters    
@@ -124,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // filter based on from, to and date
         filterRows(from, to, date);
-
     });
 
     // function to get estimated time from server, send to api
