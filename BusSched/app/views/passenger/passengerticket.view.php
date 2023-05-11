@@ -55,7 +55,7 @@ if (!isset($_SESSION['USER'])) {
                         </th>
                     </tr>
                     <tr>
-                        <td colspan='3' style='text-align:center' data-tripid=<?=$tripid?> data-busno=<?=$trip->bus_no?> id='trip-id'>
+                        <td colspan='3' style='text-align:center' data-tripid=<?=$tripid?> data-busno=<?=$trip->bus_no?> id='trip-id' data-departuretime=<?=$trip->departure_time?> data-tripdate=<?=$trip->trip_date?>>
                             Ticket for trip starting at <?php if ($trip->departure_time) echo $trip->departure_time; ?>
                             from <?php if ($trip->starting_halt) echo $trip->starting_halt; ?>
                         </td>

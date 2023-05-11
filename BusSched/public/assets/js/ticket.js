@@ -4,17 +4,40 @@ document.addEventListener("DOMContentLoaded", () => {
   let passengerCountInput = document.getElementById("no-of-passengers");
   let reservationChargeSpan = document.getElementById("reservation-charge");
   let totFareSpan = document.getElementById("total-fare");
+  let tdtrip = document.getElementById("trip-id");
   let passengerCount = 1;
   let reservationCharge = 0;
   let reservedSeatsCount = 0;
 
-
-  // is points balance is insufficient
+  
   const radioButtons = document.querySelectorAll("input[name='payment']");
   const pointsBalance = document.getElementById("pointsBalance");
   const pointsBalanceSpan = document.getElementById("pointsBalanceSpan");
   let points = pointsBalanceSpan.innerHTML;
   let reservedSeatsSpan = document.getElementById("reserved-seats");
+  let reservedSeatsQ = document.getElementById("reserve-seats-q");
+
+  // check if current date and time is 10 minutes before departure time
+  // get attribute of tdtrip
+  let departureTime = tdtrip.getAttribute("data-departuretime");
+
+
+  let departureDate = tdtrip.getAttribute("data-tripdate");
+
+  // get current date
+  let today = new Date();
+  // get current time + 10 minutes
+  let time = new Date(today.getTime() + 10 * 60000).toLocaleTimeString();
+
+  // check if current date is departure date
+  if (today.toISOString().slice(0, 10) === departureDate) {
+    // check if time is 10 minutes before departure time
+    if (time > departureTime) {
+      reservedSeatsQ.style.display = "none";
+    }
+  }
+
+  // is points balance is insufficient
 
   for (const button of radioButtons) {
     button.addEventListener("change", function () {
@@ -56,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
     data["seats_reserved"] = document.getElementById("reserved-seats").innerHTML.split(": ")[1];
 
     // trip id
-    tdtrip = document.getElementById("trip-id");
     data["trip_id"] = tdtrip.getAttribute("data-tripid");
     data["price"] = Number(totFareSpan.innerHTML);
     insertRow(data);
