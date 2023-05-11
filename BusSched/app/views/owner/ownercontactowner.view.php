@@ -16,6 +16,7 @@ if (!isset($_SESSION['USER'])) {
     <title>Contacts</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +30,7 @@ include '../app/views/components/ownersidebar.php';
             <div>
             <table class="header-links">
                 <tr>
-                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactowners" ><h3>Bus Owner</h3></a></th>
+                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactowners" ><h3>Bus Owners</h3></a></th>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactdrivers" ><h3>Drivers</h3></a></th>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactconductors" ><h3>Conductors</h3></a></th>
                 </tr>
@@ -37,11 +38,6 @@ include '../app/views/components/ownersidebar.php';
             </table> 
             </div>
             
-        </div>
-
-        <div class="data-table">
-        <div class="selection">
-              
         </div>
 
             <table border='1' class="styled-table">

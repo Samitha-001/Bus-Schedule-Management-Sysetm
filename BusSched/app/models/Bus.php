@@ -97,15 +97,18 @@ class Bus extends Model
         $tripsForBus = $this->getTripsForBus($busno, $date);
 
         $income = 0;
-        foreach ($tripsForBus as $trip) {
-            $tickets = $ticket->where(['trip_id' => $trip->id]);
-            
-            if (!$tickets) {
-                continue;
+        if($tripsForBus != null) {
+            foreach ($tripsForBus as $trip) {
+                $tickets = $ticket->where(['trip_id' => $trip->id]);
+                
+                if (!$tickets) {
+                    continue;
+                }
+                foreach ($tickets as $tick) {
+                $income += $tick->price;
+                
             }
-            foreach ($tickets as $tick) {
-            $income += $tick->price;
-        }
+            }
         }
         return $income;
     }
