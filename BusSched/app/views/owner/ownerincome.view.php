@@ -32,9 +32,9 @@ foreach($buses as $busx)
 ?>
     <div class="header orange-header">
           
-    <button style="background-color: #f4511e;"><h3 type="button">Today Income <?php echo '(',"$date",')'?> </h3></a></button>
-                    <h3>weekly Income</h3></a>
-                    <h3>Monthly Income</h3></a>
+    <button style="background-color: #f4511e;"><h3 type="button">Today E-Ticket Income <?php echo '(',"$date",')'?> </h3></a></button>
+                    <!-- <h3>weekly Income</h3></a>
+                    <h3>Monthly Income</h3></a> -->
      </div>
 
 

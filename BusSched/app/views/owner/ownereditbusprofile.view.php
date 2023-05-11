@@ -91,7 +91,7 @@ $businfo = $bus->first(['id' => $busno]);
 
            <tr>
             <td>  <input id="submit-btn" type="submit" value="Save Changes" class="" ></td>
-            <td> <input id="cancel" type="submit" value="Cancel"></td>
+            <td> <input id="cancel" type="button" value="Cancel"></td>
             </tr>
         
         </table>
@@ -128,18 +128,10 @@ $businfo = $bus->first(['id' => $busno]);
             input.focus();
         });
     });
-    
-    // editButton.addEventListener('click', () => {
-    //     editFormContainer.style.display = 'block';
-    // });
-    
-    // cancelButton.addEventListener('click', () => {
-    //     editFormContainer.style.display = 'none';
-    // });
 
-    //     deleteButton.addEventListener('click', () => {
-    //     editFormContainer.style.display = 'none';
-    // });       
+    cancelButton.addEventListener("click",function(){
+        window.history.back();
+    });    
     </script>
 </main>
 </body>
