@@ -42,7 +42,7 @@ class Passengertickets
                 'timestamp' => date('Y-m-d H:i:s')
             ];
 
-            $location_update->addLocationUpdate($data);
+            $location_update->addLocationUpdate($data, $postData['user_role']);
 
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
