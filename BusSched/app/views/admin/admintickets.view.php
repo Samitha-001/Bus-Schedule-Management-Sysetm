@@ -22,7 +22,7 @@ if ($_SESSION['USER']->role == 'passenger') {
   <?php include '../app/views/components/head.php';?>
 
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
-  <script src="<?= ROOT ?>/assets/js/adminhalts.js"></script>
+  <!-- <script src="<?= ROOT ?>/assets/js/adminhalts.js"></script> -->
   <title>Halts</title>
   <style>
     td input[disabled] {
@@ -50,33 +50,50 @@ include '../app/views/components/navbar.php';
 include '../app/views/components/adminsidebar.php';
 ?>
 
-<div class="section-header"><p>Bus Halts</p></div>
+<div class="section-header"><p>Bus Tickets</p></div>
   <section>
     <div class="tbl-content">
       <table cellpadding="0" cellspacing="0" border="0">
       <thead>
           <tr>
             <th>#</th>
-            <th>Route ID</th>
-            <th>Name</th>
-            <th>Distance from Source</th>
-            <th>Fare from Source</th>
-            <th><button class="add-halt button-green">Add Halt</button></th>
+            <th>Passenger</th>
+            <th>Trip ID</th>
+            <th>Seats Reserved</th>
+            <th>Ticket Number</th>
+            <th>Source Halt</th>
+            <th>Destination Halt</th>
+            <th>Booking Time</th>
+            <th>Status</th>
+            <th>Passenger Count</th>
+            <th>Arrival Time</th>
+            <th>Departure Time</th>
+            <th>Collected Time</th>
+            <th>Price</th>
+            <th>Payment Method</th>
+            <th><button class="add-halt button-green">Add ticket</button></th>
           </tr>
         </thead>
-      <!-- </table> -->
-    <!-- </div> -->
-    <!-- <table cellpadding="0" cellspacing="0" border="0"> -->
-        <!-- <div class="tbl-content"> -->
         <tbody>
           <?php static $i = 1;?>
-          <?php if ($halts): foreach ($halts as $halt): ?>
-            <tr data-id=<?=$halt->id?>>
+          <?php if ($tickets): foreach ($tickets as $ticket): ?>
+            <tr data-id=<?=$ticket->id?>>
               <td><?= $i++ ?></td>
-              <td data-fieldname="route"><?= $halt->route_id ?></td>
-              <td data-fieldname="name"><?= $halt->name ?></td>
-              <td data-fieldname="distance_from_source"><?= $halt->distance_from_source ?></td>
-              <td data-fieldname="fare_from_source"><?= $halt->fare_from_source ?></td>
+              <td data-fieldname="passenger"><?= $ticket->passenger ?></td>
+                <td data-fieldname="trip_id"><?= $ticket->trip_id ?></td>
+                <td data-fieldname="seats_reserved"><?= $ticket->seats_reserved ?></td>
+                <td data-fieldname="ticket_number"><?= $ticket->ticket_number ?></td>
+                <td data-fieldname="source_halt"><?= $ticket->source_halt ?></td>
+                <td data-fieldname="dest_halt"><?= $ticket->dest_halt ?></td>
+                <td data-fieldname="booking_time"><?= $ticket->booking_time ?></td>
+                <td data-fieldname="status"><?= $ticket->status ?></td>
+                <td data-fieldname="passenger_count"><?= $ticket->passenger_count ?></td>
+                <td data-fieldname="arrival_time"><?= $ticket->arrival_time ?></td>
+                <td data-fieldname="departure_time"><?= $ticket->departure_time ?></td>
+                <td data-fieldname="collected_time"><?= $ticket->collected_time ?></td>
+                <td data-fieldname="price"><?= $ticket->price ?></td>
+                <td data-fieldname="payment_method"><?= $ticket->payment_method ?></td>
+
               <td id="edit-delete">
                 <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
                 <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
@@ -84,12 +101,12 @@ include '../app/views/components/adminsidebar.php';
             </tr>
           <?php endforeach; else: ?>
             <tr>
-              <td colspan="9" style="text-align:center;color:#999999;"><i>No halts found.</i></td>
+              <td colspan="9" style="text-align:center;color:#999999;"><i>No tickets found.</i></td>
             </tr>
           <?php endif; ?>
 
           <!-- this row is cloned to collect input for editing and adding rows -->
-          <tr class='dummy-input'>
+          <!-- <tr class='dummy-input'>
             <td></td>
             <td data-fieldname="route_id">
               <input type="text" value="" placeholder="Route ID">
@@ -111,10 +128,10 @@ include '../app/views/components/adminsidebar.php';
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
             </td>
-          </tr>
+          </tr> -->
 
           <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
-          <tr class='dummy-row'>
+          <!-- <tr class='dummy-row'>
             <td></td>
             <td></td>
             <td></td>
@@ -125,7 +142,7 @@ include '../app/views/components/adminsidebar.php';
               <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
             </td>
 
-          </tr>
+          </tr> -->
 
         </tbody>
       </div>

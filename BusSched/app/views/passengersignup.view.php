@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -91,3 +90,18 @@
 </body>
 
 </html>
+
+<script>
+    //when clicking the submit button  of each form check the password of the form and validate length
+    //if the password is not valid then show an error message
+    document.querySelectorAll('button[type="submit"]').forEach(function (button) {
+        button.addEventListener('click', function (e) {
+            let password = e.target.parentElement.querySelector('#password').value
+            if (password.length < 8) {
+                e.preventDefault()
+                new Toast('fa fa-exclamation-circle', 'rgba(255,212,0,0.88)', 'Invalid password', 'Password must be at least 8 characters long', true, 3000)
+            }
+        })
+    })
+
+</script>

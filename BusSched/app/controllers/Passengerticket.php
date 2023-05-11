@@ -38,6 +38,11 @@ class Passengerticket
                 $point = new Point();
                 $point->deductPoints($data['price']);
             }
+            
+            // add points to user if ticket is purchased (proportional to fare)
+            $point = new Point();
+            $point->addPoints(ceil(((float)$data['price'])*0.01));
+            $data['addedPoints'] = ceil(((float)$data['price'])*0.01);
 
             // Send a response
             $response = array('status' => 'success', 'data' => $data);

@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   seats.forEach((seat) => {
     seat.addEventListener("click", (e) => {
+      if (e.target.classList.contains("booked")) {
+        return;
+      }
       if (e.target.classList.contains("selected")) {
         e.target.classList.toggle("selected");
         count--;

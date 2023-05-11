@@ -22,7 +22,7 @@ if ($_SESSION['USER']->role == 'passenger') {
   <?php include '../app/views/components/head.php';?>
 
   <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
-  <script src="<?= ROOT ?>/assets/js/adminhalts.js"></script>
+  <!-- <script src="<?= ROOT ?>/assets/js/adminhalts.js"></script> -->
   <title>Halts</title>
   <style>
     td input[disabled] {
@@ -50,33 +50,39 @@ include '../app/views/components/navbar.php';
 include '../app/views/components/adminsidebar.php';
 ?>
 
-<div class="section-header"><p>Bus Halts</p></div>
+<div class="section-header"><p>Bus Schedules</p></div>
   <section>
     <div class="tbl-content">
       <table cellpadding="0" cellspacing="0" border="0">
       <thead>
           <tr>
-            <th>#</th>
-            <th>Route ID</th>
-            <th>Name</th>
-            <th>Distance from Source</th>
-            <th>Fare from Source</th>
-            <th><button class="add-halt button-green">Add Halt</button></th>
+            <!-- <th>#</th> -->
+            <th>Trip ID</th>
+            <th>Date</th>
+            <th>Departure time</th>
+            <th>Source halt</th>
+            <th>Bus no</th>
+            <th>Status</th>
+            <th>Last updated halt</th>
+            <th>Time updated</th>
+            <th></th>
           </tr>
         </thead>
-      <!-- </table> -->
-    <!-- </div> -->
-    <!-- <table cellpadding="0" cellspacing="0" border="0"> -->
-        <!-- <div class="tbl-content"> -->
         <tbody>
           <?php static $i = 1;?>
-          <?php if ($halts): foreach ($halts as $halt): ?>
-            <tr data-id=<?=$halt->id?>>
-              <td><?= $i++ ?></td>
-              <td data-fieldname="route"><?= $halt->route_id ?></td>
-              <td data-fieldname="name"><?= $halt->name ?></td>
-              <td data-fieldname="distance_from_source"><?= $halt->distance_from_source ?></td>
-              <td data-fieldname="fare_from_source"><?= $halt->fare_from_source ?></td>
+          <?php if ($schedules): foreach ($schedules as $schedule): ?>
+            <tr data-id=<?=$schedule->id?>>
+              <!-- <td><?= $i++ ?></td> -->
+              <td data-fieldname="id"><?= $schedule->id ?></td>
+                <td data-fieldname="trip_date"><?= $schedule->trip_date ?></td>
+                <td data-fieldname="departure_time"><?= $schedule->departure_time ?></td>
+                <td data-fieldname="starting_halt"><?= $schedule->starting_halt ?></td>
+                <td data-fieldname="bus_no"><?= $schedule->bus_no ?></td>
+                <td data-fieldname="status"><?= $schedule->status ?></td>
+                <td data-fieldname="last_updated_halt"><?= $schedule->last_updated_halt ?></td>
+                <td data-fieldname="location_updated_time"><?= $schedule->location_updated_time ?></td>
+
+
               <td id="edit-delete">
                 <img src='<?= ROOT ?>/assets/images/icons/edit.png' alt='edit' class="icon edit-btn" width='20px' height='20px'>
                 <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
@@ -84,12 +90,12 @@ include '../app/views/components/adminsidebar.php';
             </tr>
           <?php endforeach; else: ?>
             <tr>
-              <td colspan="9" style="text-align:center;color:#999999;"><i>No halts found.</i></td>
+              <td colspan="9" style="text-align:center;color:#999999;"><i>No schedules found.</i></td>
             </tr>
           <?php endif; ?>
 
           <!-- this row is cloned to collect input for editing and adding rows -->
-          <tr class='dummy-input'>
+          <!-- <tr class='dummy-input'>
             <td></td>
             <td data-fieldname="route_id">
               <input type="text" value="" placeholder="Route ID">
@@ -111,10 +117,10 @@ include '../app/views/components/adminsidebar.php';
               <img src='<?= ROOT ?>/assets/images/icons/save.png' alt='save' class="icon add-row-btn" width='20px' height='20px'>
               <img src='<?= ROOT ?>/assets/images/icons/cancel.png' alt='cancel' class="icon cancel-add-btn" width='20px' height='20px'>
             </td>
-          </tr>
+          </tr> -->
 
           <!-- this row  is cloned and is the actual row that's gonna be added to the table -->
-          <tr class='dummy-row'>
+          <!-- <tr class='dummy-row'>
             <td></td>
             <td></td>
             <td></td>
@@ -125,7 +131,7 @@ include '../app/views/components/adminsidebar.php';
               <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
             </td>
 
-          </tr>
+          </tr> -->
 
         </tbody>
       </div>
