@@ -19,15 +19,10 @@ if (isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/landing.css">
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <!-- add js script -->
     <script src="<?= ROOT ?>/assets/js/landing.js"></script>
     <title>Home Page</title>
+    <?php include 'components/head.php';?>
 </head>
 
 <body>
@@ -66,15 +61,16 @@ if (isset($_SESSION['USER'])) {
                     <input type="date" name="date" id="date" min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>">
                 </div>
             </div>
-            <div class="white-box">
+            <!-- <div class="white-box">
                 <div class="landing-header-li">
                     <label for="passengers">PASSENGERS</label>
                     <input type="number" name="passengers" id="passengers" placeholder="No. of passengers" min=0 max=5>
                 </div>
-            </div>
+            </div> -->
             <div class="find-button-div">
                 <button id="find-bus" class="find-button-orange" style="margin:0px;">Find</button>
             </div>
+            <span id="fare-scroll"></span>
         </div>
     </div>
     <div class="row">
@@ -84,7 +80,7 @@ if (isset($_SESSION['USER'])) {
             <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" required>
 
             <button id="calculate-fare" class="button-orange">Find fare</button>
-            <div id="fare-result" class='span-3'></div>
+            <h3 id="fare-result" class='span-3'></h3>
         </div>
         <section id="busfare">
             <div style="width:100%">
@@ -111,6 +107,7 @@ if (isset($_SESSION['USER'])) {
 
                         <?php }}}?>
                 </table>
+                <span id="about-scroll"></span>
             </div>
         </section>
         

@@ -14,7 +14,6 @@ class Point extends Model
     ];
 
     // record point gifting
-    // TODO: add updating points of users
     public function giftPoints($data)
     {
         $amount = $data['amount'];
@@ -31,5 +30,15 @@ class Point extends Model
         $passenger->updatePassenger($giftee->username, ['points' => $gifteePoints]);
 
         return $this->insert($data);
+    }
+
+    // deduct points
+    public function deductPoints($amount)
+    {
+        $passenger = new Passenger();
+        $username = $_SESSION['USER']->username;
+        $pointsbalance = $passenger->first(['username' => $username])->points;
+        $amount = $pointsbalance - $amount;
+        $passenger->updatePassenger($username, ['points' => $amount]);
     }
 }

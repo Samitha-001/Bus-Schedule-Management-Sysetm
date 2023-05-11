@@ -3,10 +3,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Bus Schedule</title>
+    <?php include '../app/views/components/head.php';?>
 
     <link href="<?= ROOT ?>/assets/css/ticket.css" rel="stylesheet">
     <script src="<?= ROOT ?>/assets/js/schedule.js"></script>
@@ -15,12 +14,11 @@
 <body>
     <?php
     include '../app/views/components/navbar.php';
-    // include '../app/views/components/passengernavbar.php';
     // get from and to from link if they exist
-    $from = isset($_GET['from']) ? $_GET['from'] : '';
-    $to = isset($_GET['to']) ? $_GET['to'] : '';
-    $date = isset($_GET['date']) ? $_GET['to'] : '';
-    $passengercount = isset($_GET['passengercount']) ? $_GET['passengercount'] : '';
+    $from = $_GET['from'] ?? '';
+    $to = $_GET['to'] ?? '';
+    $date = $_GET['date'] ?? '';
+    $passengercount = $_GET['passengercount'] ?? '';
     ?>
 
     <!-- get halt list to suggest halt list -->
@@ -47,45 +45,61 @@
             <div>
                 <input type="date" name="date" id="date" placeholder="Date" <?php if ($date) echo "value=".$date; ?> min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>">
             </div>
-            <div>
-                <input type="number" name="passengercount" id="passengercount" placeholder="Passengers" min="0"<?php if ($passengercount) echo "value=".$passengercount; ?>>
-            </div>
+            <?php if ($passengercount) echo "value=".$passengercount; ?>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-10 col-s-10" style="margin: auto;">
-            <table style="width: 100%; font-size: 12px;">
+        <div class="col-10 col-s-10" style="margin: auto; padding:0px;">
+            <table id="schedule-table" style="width: 100%; font-size: 12px;">
                 <tr>
-                    <th>Date</th>
-                    <th>Departure Time</th>
-                    <th>Starting Halt</th>
+                    <th>Trip starts</th>
+                    <!-- <th>Departure Time</th> -->
+                    <th>Start</th>
                     <th>From</th>
                     <th>To</th>
                     <th>Bus No</th>
+                    <th>Bus Type</th>
                     <th>Price</th>
                     <th>Seats Available</th>
+                    <th>Last Passed</th>
                     <th>Book</th>
                 </tr>
-                <?php if($trips): foreach ($trips as $trip): ?>
+                <?php if ($trips):
+                foreach ($trips as $trip):
+                // shows only trips that are not ended
+                if ($trip->status != "ended") { ?>
+
                 <tr data-id = <?= $trip->id ?> class='data-row'>
-                    <td data-fieldname="trip_date"><?= $trip->trip_date ?></td>
-                    <td data-fieldname="departure_time"><?= $trip->departure_time ?></td>
+                <?php
+                $tripx = new Trip();
+                $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
+                ?>
+                    <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<?= $trip->departure_time ?></td>
                     <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                     <td>-</td>
                     <td>-</td>
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
+                    <td data-fieldname="bus_type"><?= $bus->type ?></td>
                     <td data-fieldname="price">-</td>
                     <td data-fieldname="seats_available">-</td>
+                    <td data-fieldname="last_updated">
+                        <?php if ($trip->last_updated_halt)
+                            echo "$trip->last_updated_halt";
+                        else
+                            echo "Trip hasn't started yet" ?>
+                    </td>
                     <td class="buy-ticket-btn">
-                        <?php if (isset($_SESSION['USER'])) { ?>
+                        <?php if (isset($_SESSION['USER'])) {?>
                             <a><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:30px"></a>
-                        <?php } else { ?>
+                        <?php
+                        } else { ?>
                             <a href="<?= ROOT ?>/login"><img src="<?= ROOT ?>/assets/images/icons/buyticket-icon.png" alt="Buy Ticket" style="height:30px"></a>
-                        <?php } ?>
+                        <?php }
+                        ?>
                     </td>
                 </tr>
-                <?php endforeach; else:?>
+                <?php } endforeach; else:?>
                 <tr>
                     <td colspan="9" style="text-align:center;color:#999999;"><i>Sorry! No matches found.</i></td>
             </tr>

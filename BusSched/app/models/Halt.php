@@ -50,6 +50,14 @@ class Halt extends Model
         $src = $this->first(['name' => $src])->id;
         $dest = $this->first(['name' => $dest])->id;
         $haltRange = [];
+        if($src > $dest) {
+            // reverse $halts list
+            $halts = array_reverse($halts);
+            // swap src and dest
+            $temp = $src;
+            $src = $dest;
+            $dest = $temp;
+        }
         foreach ($halts as $halt) {
             if ($halt->id >= $src && $halt->id <= $dest) {
                 $haltRange[] = $halt->name;
@@ -73,5 +81,13 @@ class Halt extends Model
     public function updateHalt($id, $data)
     {
         return $this->update($id, $data);
+    }
+
+    public function calculateFare($src, $dest)
+    {
+        $fi = new Fareinstance();
+        $src = $this->first(['name' => $src]);
+        $dest = $this->first(['name' => $dest]);
+        return ($fi->first(['instance' => abs($src->distance_from_source - $dest->distance_from_source)])->fare);
     }
 }
