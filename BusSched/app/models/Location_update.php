@@ -16,11 +16,14 @@ class Location_update extends Model
     ];
 
     // function to add new location update record
-    public function addLocationUpdate($data)
+    public function addLocationUpdate($data, $user)
     {
-        // win loyalty point for updating location
-        $point = new Point();
-        $point->deductPoints(-1);
+        // if the location was updated by a passenger
+        if ($user == 'passenger') {
+            // win loyalty point for updating location
+            $point = new Point();
+            $point->addPoints(1);
+        }
 
         // calls update trip location function, conditions are checked there
         $this->updateTripLocation($data['tripID'], $data['halt']);
