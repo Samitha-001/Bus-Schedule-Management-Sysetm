@@ -36,15 +36,10 @@
 
     <div class="search-bar" style="padding: 10px;">
         <div id="from-to" class="from-to">
-            <div>
-                <input type="text" name="from" id="from" placeholder="From" <?php if ($from) echo "value=".$from; ?> list="halt-list">
-            </div>
-            <div>
-                <input type="text" name="to" id="to" placeholder="To" <?php if ($to) echo "value=".$to; ?> list="halt-list">
-            </div>
-            <div>
-                <input type="date" name="date" id="date" placeholder="Date" <?php if ($date) echo "value=".$date; ?> min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>">
-            </div>
+                <input type="text" name="from" id="from" placeholder="From" <?php if ($from) echo "value=".$from; ?> list="halt-list" required>
+                <input type="text" name="to" id="to" placeholder="To" <?php if ($to) echo "value=".$to; ?> list="halt-list" required>
+                <input type="date" name="date" id="date" placeholder="Date" <?php if ($date) echo "value=".$date; ?> min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>" required>
+            <button id="find-trip-btn">Find</button>
             <?php if ($passengercount) echo "value=".$passengercount; ?>
         </div>
     </div>
@@ -58,7 +53,9 @@
                     <!-- <th>Departure Time</th> -->
                     <th>Start</th>
                     <th>From</th>
+                    <th>Estimated time</th>
                     <th>To</th>
+                    <th>Estimated time</th>
                     <th>Bus No</th>
                     <th>Bus Type</th>
                     <th>Price</th>
@@ -77,10 +74,12 @@
                 $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
                 ?>
                 <td><?= $trip->id ?></td>
-                    <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<?= $trip->departure_time ?></td>
+                    <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<span data-fieldname="departure_time"><?= $trip->departure_time ?></span></td>
                     <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td data-fieldname="from">Pettah</td>
+                    <td data-fieldname="estimated_time_from"></td>
+                    <td data-fieldname="to">-</td>
+                    <td data-fieldname="estimated_time_to"></td>
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
                     <td data-fieldname="bus_type"><?= $bus->type ?></td>
                     <td data-fieldname="price">-</td>
