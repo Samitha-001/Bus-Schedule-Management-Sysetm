@@ -41,4 +41,14 @@ class Point extends Model
         $amount = $pointsbalance - $amount;
         $passenger->updatePassenger($username, ['points' => $amount]);
     }
+
+    // add points
+    public function addPoints($amount)
+    {
+        $passenger = new Passenger();
+        $username = $_SESSION['USER']->username;
+        $pointsbalance = $passenger->first(['username' => $username])->points;
+        $amount = $pointsbalance + $amount;
+        $passenger->updatePassenger($username, ['points' => $amount]);
+    }
 }
