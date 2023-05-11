@@ -78,6 +78,10 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
             <hr>
             </div>
+            <div style="margin-bottom:5%">
+            <li><a href="<?= ROOT ?>/conductortrips" style="color:#9298AF;">Trips</a></li>
+            <hr>
+            </div>
            
             <div style="margin-bottom:5%">
             <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
