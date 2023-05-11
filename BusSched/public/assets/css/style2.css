@@ -12,6 +12,23 @@ body {
   color: #24315e;
   text-decoration: none;
 }
+#edit-conductor-info{
+  background-color: #20c23a;
+  color: #000;
+  position: relative;
+}
+#cancel-conductor-info{
+  background-color: gray;
+  color: #000;
+  position: relative;
+}
+
+#form-save{
+  background-color: #20c23a;
+  color: #000;
+  position: relative;
+  border-radius: 5px;
+}
 
 #logo-white {
   color: #ffffff;

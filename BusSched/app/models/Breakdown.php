@@ -9,7 +9,7 @@ class Breakdown extends Model
         'id',
         'bus_no',
         'description',
-        // 'date',
+        'status',
         // 'time',
         'time_to_repair'
     ];
@@ -37,18 +37,40 @@ class Breakdown extends Model
 
     public function getBreakdowns()
     {
-        return $this->findAll();
+        return $this->where(['status' => "repairing"]);
+    }
+
+    public function getmyBreakdowns($busno)
+    {
+        return $this->where(['bus_no' => $busno]);
+    }
+
+    public function getConductorhistoryBreakdowns($busno)
+    {
+        return $this->where(['bus_no' => $busno]);
     }
 
     public function getConductorBreakdowns($conductor)
     {
         // return $this->findAll();
         $data['conductor'] = $conductor;
-        // show($data);
-        $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        // // show($data);
+        $bus = new Bus();
+        $breakdowns = $bus->join('breakdown', 'bus.bus_no','breakdown.bus_no', $data);
         return $breakdowns;
+        // ->where(['Status' => "repairing"]);
+
+        // return $this->where(['Status' => "repairing"],['conductor' => $conductor]);
     }
 
+    // public function getConductorBreakdowns($conductor)
+    // {
+    //     $data['conductor'] = $conductor;
+    //     return $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data)
+    //                 ->where(['Status' => 'repairing', 'conductor' => $conductor])
+    //                 ->findAll();
+    // }
+    
     public function getOwnerBreakdowns($owner)
     {
         // return $this->findAll();
@@ -58,13 +80,11 @@ class Breakdown extends Model
         return $breakdowns;
     }
 
-
-
     public function addBreakdown($data)
     {
         // validate and add
         // if ($this->validate($data)) {
-        return $this->insert($data);
+        return $this->insert(['bus_no' => $data['bus_no'],'description' => $data['description'],'time_to_repair' => $data['time_to_repair'],'status' => 'repairing']);
         // }
         // return false;
     }
@@ -74,14 +94,14 @@ class Breakdown extends Model
         return $this->delete($id);
     }
 
+    
     public function updateBreakdown($id, $data)
     {
-        // validate and update
-        // if ($this->validate($data)) {
-        return $this->update($id, $data);
-        // }
-        // return false;
+        return $this->update($id, ['status' => $data['status']]);
     }
 
-
+    public function updatemyBreakdown($id, $data)
+    {
+        return $this->update($id, ['description' => $data['description'],'time_to_repair' => $data['time']]);
+    }
 }

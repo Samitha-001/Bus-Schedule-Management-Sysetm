@@ -1,0 +1,41 @@
+/**
+  * Toast
+ */
+#toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    z-index: 9999;
+}
+#toast-container .toast {
+    width: fit-content;
+    position: relative;
+    margin-top: 1rem;
+    background-color: white;
+    color: #1F1C1C;
+    animation: toast 0.5s ease-in-out;
+}
+#toast-container .toast .toast-icon {
+    font-size: 2rem;
+    text-align: center;
+    min-width: 2rem;
+}
+#toast-container .toast .toast-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+.toast-title{
+    font-size: 1.5rem !important;
+    font-weight: 300 !important;
+    color: #3A3131;
+}
+@keyframes toast {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

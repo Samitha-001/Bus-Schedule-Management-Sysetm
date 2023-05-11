@@ -48,4 +48,11 @@ class Passenger extends Model
             redirect('login');
         }
     }
+
+    // get ratings by passenger
+    public function getRatings()
+    {
+        $ratings = $this->join('ratings', 'passenger.username', 'ratings.rater', ['rater' => $_SESSION['USER']->username], 'ratings.ticket_id, ratings.bus_no, ratings.bus_rating, ratings.driver_rating, ratings.conductor_rating, ratings.time_updated');
+        return $ratings;
+    }
 }

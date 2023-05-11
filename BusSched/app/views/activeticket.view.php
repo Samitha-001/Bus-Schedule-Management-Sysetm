@@ -4,18 +4,47 @@ if (!isset($_SESSION['USER'])) {
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include 'components/head.php';?>
 
     <title>Bus Tickets</title>
 
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
+    <!-- <script src="<?= ROOT ?>/assets/js/collecttickets.js"></script> -->
+    <!-- <style>
+    td input[disabled] {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      text-align: inherit;
+      font-size: inherit;
+      font-family: inherit;
+      color: inherit;
+      cursor: default;
+    }
+
+  
+      table tr:not(:first-child){
+        cursor:pointer;transition: all.25s ease-in-out;
+      }
+  
+
+      table tr:not(:first-child){
+        cursor:pointer;transition: all.25s ease-in-out;
+      }
+     
+  
+   
+  </style> -->
+
+
+
 </head>
 
 <body>
@@ -23,37 +52,36 @@ if (!isset($_SESSION['USER'])) {
         // include 'components/conductorsidebar.php';
 ?>
 
-    <!-- <nav class="navbar">
-        <div>
-            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
-        </div>
-        <ul class="nav-links">
-            <div class="menu">
-                <a href="<?= ROOT ?>/admins">
-                    <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
-                </a>
-                <a href="<?= ROOT ?>/logout">
-                <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/login">Logout</a></li>
-                </a>
-            </div>
-        </ul>
-    </nav> -->
+<?php 
+        $conductor = $_SESSION['USER']->username;
+        $bus = new Bus();
+        $businfo = $bus->getConductorBuses($conductor)[0];
+        $busno = $businfo->bus_no;
+        $trip = new Trip();
+        $trips = $trip->getBusTrips($busno);
+        
+        $starting_trip = null;
+        foreach ($trips as $trip) {
+            if ($trip->Status == "notstarted") {
+                $starting_trip = $trip;
+                break;
+            }
+        }
+        
+        if ($starting_trip) {
+            $trip_id = $starting_trip->id;
+            // rest of your code
+        } else {
+            // handle the case where no starting trip is found
+        }
+        
+                 // $trip_id=$starting_trip->id;
+            
+            // show($trip_id);
+        ?>
 
-    <!-- <div class="wrapper">
-        <div class="sidebar">
-            <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li> -->
-            <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
-            <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
-            <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li> -->
-            <!-- <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>
-            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
-            <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
-            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
-        </div>
-    </div> -->
 
-    <main class="container1">
+  <main class="container1">
     <div class="col-1">
         <div class="header orange-header">
         <table >
@@ -67,40 +95,68 @@ if (!isset($_SESSION['USER'])) {
         </div>
         </div>
 
-        <div class="data-table">
+        <div class="data-table"></div>
         <div class="selection">
                  
         </div>
+      
+
+     
+
+        <?php
+     
+
+     $bus = new Bus();
+     $businfo = $bus->getConductorBuses($conductor)[0];
+     $busno = $businfo->bus_no;
+
+    // $trip = new Trip();
+    // $trips = $trip->getBusTrips($busno);
+
+    $ticket = new E_ticket();
+    $tickets=$ticket->getTripBusTickets($busno);
+
+?>
         <div class="col-2">
-            <table border='1' class="styled-table">
+            <table border='1' class="styled-table" id="tickets">
                 <tr>
-                    <th>ticketID</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>BusNo</th>
-                    <th>Passengers</th>
-                    <th>Departure_time</th>   
-                    <th>Date</th>
+                    <th>Passenger</th>
+                    <th>Trip_id</th>
+                    <th>seat_no</th>
+                    <th>ticket_no</th>
+                     <th></th>
+            </tr> 
+
+            <?php 
+            if (!empty($tickets)):
+                foreach ($tickets as $ticket):
+                    if ($ticket->status == 'booked'): ?>
+                        <tr>
+                        <td data-fieldname="passenger"><?= $ticket->passenger ?></td>
+                        <td data-fieldname="trip_id"><?= $ticket->trip_id ?></td>
+                        <td data-fieldname="seat_no"><?= $ticket->seat_number ?></td>
+                        <td data-fieldname="ticket_number"><?= $ticket->ticket_number ?></td>
+                        <?php ?>
+                        <td class="collect-ticket-btn">
+                            <button class="button-green">Collect</button>
+                        </td>
+                        </tr>
+                    <?php endif;
+                endforeach;
+            else: ?>
+                <tr>
+                    <td id="no-active-tickets" colspan="4">No Active Tickets Found</td>
                 </tr>
+            <?php endif; ?>
 
-                <?php
-                foreach ($activetickets as $ticket) {
-                    echo "<tr>";
-                    echo "<td> $ticket->id </td>";
-                    echo "<td> $ticket->from </td>";
-                    echo "<td> $ticket->to </td>";
-                    echo "<td> $ticket->bus_no </td>";
-                    echo "<td> $ticket->passengers</td>";
-                    echo "<td> $ticket->departure_time </td>";
-                    echo "<td> $ticket->date </td>";
-                    echo "</tr>";
-                } ?>
 
-            </table>
-        </div>
-        </div>
+  </table>
+  
+  </div>   
+  
+ 
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <script src="<?= ROOT ?>/assets/js/activetickets.js"></script>
 
     </main>
 

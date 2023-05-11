@@ -96,8 +96,9 @@ include '../app/views/components/navbar.php';
                 <!-- <h1>Trip ID</h1> -->
                 <p>Bus:&nbsp&nbspNC1111</p>
                 <p>Seats:&nbsp&nbsp<i>unreserved</i></p>
-                <!-- split date and time -->
+                <p>Passengers:&nbsp&nbsp<?= $ticket->passenger_count ?></p>
                 <p><?= $ticket->booking_time ?></p>
+                <h4 style="text-align:right; margin-bottom:0px;"><?= $ticket->price ?> LKR</h4>
             </div>
                         <?php endif; endforeach; else: ?>
                     <div class="ticket-card">
@@ -167,10 +168,7 @@ include '../app/views/components/navbar.php';
         <?php endif; ?>
     </table>
     </div>
-    <!-- </div> -->
-
-    <!-- inactive tickets div -->
-    <!-- <div class="col-10 col-s-10" style="margin:auto;"> -->
+    
     <div class="ticket-flex tickets-table" id="inactive-tickets">
     <table>
         <tr>
@@ -221,10 +219,10 @@ include '../app/views/components/navbar.php';
                     <h3><span id="ticket-details-from" name="source_halt"></span> - <span id="ticket-details-to" name="dest_halt"></span></h3>
                 </th>
                 <td>
-                    Arrival<span id="ticket-details-arrival" name="arrival_time"></span>
+                    Estimated time of arrival<span id="ticket-details-arrival" name="arrival_time"></span>
                 </td>
                 <td>
-                    Departure<span id="ticket-details-departure" name="departure_time"></span>
+                    Trip starts at <span id="ticket-details-departure" name="departure_time"></span>
                 </td>
             </tr>
             <tr>
@@ -253,14 +251,20 @@ include '../app/views/components/navbar.php';
             </tr>
             <tr>
                 <th>Last updated: </th>
-                <td id="ticket-details-last-updated" name="last_updated"></td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align:center">
-                    <a id="a-update-location">Update location and earn points</a>
+                <td>
+                    <span id="ticket-details-last-updated" name="last_updated"></span><br> | 
+                    <span id="ticket-details-last-updated-at"></span>
                 </td>
-                <td colspan="2" style="text-align:center">
-                    <a id="a-got-off">Got off the bus</a>
+            </tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr>
+                <td colspan="2" style="text-align:center; padding:15px;">
+                    <a id="a-update-location" class="ticket-button-orange">Update location and earn points</a>
+                </td>
+                <td colspan="2" style="text-align:center; padding:15px;">
+                    <a id="a-got-off" class="ticket-button-orange">Got off the bus</a>
                 </td>
             </tr>
         </table>

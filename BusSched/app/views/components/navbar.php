@@ -2,9 +2,6 @@
 //   gets current URL
 $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
-<script>
-    const ROOT = "<?= ROOT ?>"
-</script>
 <nav class="navbar">
     <div>
         <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
@@ -16,26 +13,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         <?php
         if (isset($_SESSION['USER'])) {
             if ($_SESSION['USER']->role == 'passenger') {
-                ?>
-            <!-- <li>
-                <div class="dropdown">
-                    <button class="dropbtn">Services
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="<?= ROOT ?>/passengerschedule">Bus schedule</a>
-                        <a href="<?= ROOT ?>/passengertickets">My Tickets</a>
-                        <a href="<?= ROOT ?>/passengerschedule">Buy Tickets</a>
-
-                        <?php
-                        if (strpos($current_url, '/home') == true) { // checks if current URL is home page
-                            ?>
-                            <a href="#fare-scroll">Bus fares</a>
-                        <?php } else { ?>
-                            <a href="<?= ROOT ?>/home#fare-scroll">Bus fares</a>
-                        <?php } ?>
-                    </div>
-                </div>
-            </li> -->
+        ?>
             <?php
                 if (strpos($current_url, '/home') == true) { // checks if current URL is home page
             ?>
@@ -54,8 +32,10 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
-            <a href="<?= ROOT ?>/passengerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="30" ></a>
-            <a href="<?= ROOT ?>/logout" style="padding-top:5px;"><li class="signup-button" style="border: 2px solid #f4511e;">Logout</li></a>
+            <a id="bell-icon"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="25" ></a>
+            <a href="<?= ROOT ?>/passengerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="25" ></a>
+            <!-- change logout style -->
+            <a href="<?= ROOT ?>/logout" style="padding-top:5px;"><li class="signup-button" style="border: 2px solid #f4511e;background-color:black; border: 2px solid #f4511e;">Logout</li></a>
             </div>
         </ul>
 

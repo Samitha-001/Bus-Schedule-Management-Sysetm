@@ -9,10 +9,8 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include 'components/head.php';?>
+
     <title>Schedule</title>
 
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
@@ -138,6 +136,7 @@ if (!isset($_SESSION['USER'])) {
                 </tr>
 
                 <?php
+                if(!empty($conductorschedules)):
                 foreach ($conductorschedules as $schedule) {
                     echo "<tr>";
                     echo "<td> $schedule->id </td>";
@@ -146,7 +145,10 @@ if (!isset($_SESSION['USER'])) {
                     echo "<td> $schedule->time </td>";
                     echo "<td> $schedule->bus_no</td>";
                     echo "</tr>";
-                } ?>
+                    }
+                else:
+                    echo "<tr><td colspan='5'>No schedules found</td></tr>";
+                endif; ?>
 
             </table>
         </div>

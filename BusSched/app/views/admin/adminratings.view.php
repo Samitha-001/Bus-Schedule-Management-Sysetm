@@ -44,7 +44,7 @@ include '../app/views/components/adminsidebar.php';
             <th>#</th>
             <th>Rater ID</th>
             <th>Trip ID</th>
-            <th>Bus ID</th>
+            <th>Bus No</th>
             <th>Bus Rating</th>
             <th>Conductor ID</th>
             <th>Conductor Rating</th>
@@ -53,10 +53,10 @@ include '../app/views/components/adminsidebar.php';
             <th></th>
           </tr>
         </thead>
-      </table>
-    </div>
-    <div class="tbl-content">
-      <table cellpadding="0" cellspacing="0" border="0">
+      <!-- </table> -->
+    <!-- </div> -->
+    <!-- <div class="tbl-content"> -->
+      <!-- <table cellpadding="0" cellspacing="0" border="0"> -->
         <tbody>
           <?php static $i = 1; ?>
           <?php if ($ratings): foreach ($ratings as $rating): ?>
@@ -64,11 +64,11 @@ include '../app/views/components/adminsidebar.php';
               <td><?= $i++ ?></td>
               <td><?= $rating->rater ?></td>
               <td><?= $rating->trip_id ?></td>
-              <td><?= $rating->bus_id ?></td>
+              <td><?= $rating->bus_no ?></td>
               <td><?= $rating->bus_rating ?></td>
-              <td><?= $rating->conductor_id ?></td>
+              <td><?= $rating->conductor ?></td>
               <td><?= $rating->conductor_rating ?></td>
-              <td><?= $rating->driver_id ?></td>
+              <td><?= $rating->driver ?></td>
               <td><?= $rating->driver_rating ?></td>
               <td>
                 <a href='<?= ROOT ?>/adminratings?delete=<?= $rating->id ?>'>

@@ -5,7 +5,10 @@
 /* @media only screen and (min-width: 600px) { */
   body {
     color: white;
-    background: url("../images/backgrounds/bg-passenger-profile.png");
+    /* white bg */
+    /* background: url("../images/backgrounds/bg-passenger-profile.png"); */
+    /* blue bg */
+    background: url("../images/backgrounds/bg-location.png");
     font-family: "Outfit";
   }
 /* } */
@@ -71,10 +74,8 @@ a:hover {
   cursor: pointer;
 }
 
-#profile-picture {
-  height: 100px;
-  width: 100px;
-  border-radius: 50px;
+#profile-pic {
+  border-radius: 100px;
   /* do not stretch image */
   object-fit: cover;
 }
@@ -95,11 +96,36 @@ a:hover {
 
   div.passenger-profile-card {
     width: max-content;
-    height: fit-content;
+    /* height: fit-content; */
   }
 
   div.nav-cards {
-    display: flex;
+    display: grid;
+  }
+
+  .container {
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-rows: auto auto;
+  }
+
+  .container .passenger-profile-card {
+    width: 100%;
+    min-height: 230px;
+    min-width: 250px;
+    /* height: fit-content; */
+    overflow-y: scroll;
+  }
+
+  #my-ratings-div {
+    grid-column-start: 2;
+    grid-column-end: 4;
+  }
+
+  #profile-header {
+    grid-row-start: 1;
+    grid-row-end: 3;
   }
 }
 
@@ -113,22 +139,45 @@ h1 {
 }
 
 #profile-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  /* padding-bottom: 25px; */
+  padding: 25px;
+}
+
+#profile-header h1 {
+  display: block;
+}
+
+#profile-header h5 {
+  margin-bottom: 0px;
+  margin-top: 15px;
+}
+
+#profile-header p {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#profile-header hr {
+  margin-top: 0px;
 }
 
 #username {
-  float: right;
+  /* float: right; */
+  text-align: center;
   margin-right: 10px;
   padding: 10px;
 }
 
+.edit-info-form {
+  display: none;
+}
+
 img#edit-pencil {
-  position: relative;
-  left: -25px;
-  bottom: -35px;
-  width: 24px;
+  display: none;
+  position: absolute;
+  left: 181px;
+  top: 259px;
+  width: 34px;
   cursor: pointer;
 }
 
@@ -193,7 +242,9 @@ select {
 
 input[type="text"], input[type="number"], input[type="text"]::placeholder, input[type="number"]::placeholder {
   font-size: 13px;
-  padding: 5px;
+  /* padding: 5px; */
+  padding: 0px;
+  padding-left: 3px;
 }
 
 #points {
@@ -213,6 +264,7 @@ input[type="text"], input[type="number"], input[type="text"]::placeholder, input
 
 a#edit-passenger-info {
   text-align: right;
+  color: #FD6002;
 }
 
 /* align span to right */
@@ -233,4 +285,130 @@ td input[disabled] {
 
 form.info-grid {
   display: none;
+}
+
+/* rating stars */
+
+div.stars {
+  width: 270px;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+span.star {
+  content: '\f005';
+  font-family: FontAwesome;
+  color: #7a819c;
+  float: right;
+  font-size: 20px;
+}
+
+table#my-ratings {
+  display: block;
+  white-space: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow-x: scroll;
+  overflow-y: scroll;
+  max-height: 210px;
+
+  background-color: white;
+  margin-left: auto;
+  border-radius: 5px;
+
+  /* height: 70vh; */
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+table tbody {
+  display: table;
+  width: 100%;
+  /* padding: 10px; */
+}
+
+#my-ratings th, #my-ratings td {
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+#my-ratings th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+/* freeze first row */
+#my-ratings tr:first-child {
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+  z-index: 4;
+  padding: 10px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  color: #24315e;
+}
+
+#my-ratings td {
+  height: 25px;
+  color:#7a819c;
+  text-align: left;
+}
+
+#cancel-passenger-info, #edit-passenger-info, .white-btn {
+  background-color: white;
+  color:#FD6002;
+  font-family: 'Outfit';
+  /* padding: 6px; */
+  border: solid 1px #FD6002;
+  border-radius: 5px;
+}
+
+#add-friend-btn, .green-btn, #confirm-add-friend-btn {
+  background-color: #20C23A;
+}
+
+#cancel-add-friend-btn, .grey-btn {
+  background-color: #7a819c;
+}
+
+#add-friend-btn {
+  /* grid column start */
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.fa-gift:before {
+  color: #FD6002;
+}
+
+.remove-friend-i {
+  float: right; 
+  color: red; 
+  font-size: 11px;
+  cursor: pointer;
+}
+
+#friend-list-div p {
+  color: #24315e;
+}
+
+#friend-list-div {
+  overflow-y: scroll;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#friend-list-div hr {
+  opacity: 0.5;
+  margin-bottom: 0px;
+}
+
+#friend {
+  padding: 5px;
+  width:100%;
 }

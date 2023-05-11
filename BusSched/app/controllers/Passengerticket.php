@@ -26,11 +26,23 @@ class Passengerticket
             $data['booking_time'] = date('Y-m-d H:i:s');
             $ticket->addTicket($data);
 
+            // get ticket id of the ticket just added
+            $ticket_id = $ticket->first(['passenger'=>$data['passenger'], 'booking_time'=>$data['booking_time']])->id;
+
+            // reserve seats
+            $ticket_seat = new Ticket_seats();
+            $ticket_seat->reserveSeats($data['seats'], $ticket_id);
+
             // if payment is points, deduct points from passenger
             if ($data['payment_method'] == 'points') {
                 $point = new Point();
                 $point->deductPoints($data['price']);
             }
+            
+            // add points to user if ticket is purchased (proportional to fare)
+            $point = new Point();
+            $point->addPoints(ceil(((float)$data['price'])*0.01));
+            $data['addedPoints'] = ceil(((float)$data['price'])*0.01);
 
             // Send a response
             $response = array('status' => 'success', 'data' => $data);
