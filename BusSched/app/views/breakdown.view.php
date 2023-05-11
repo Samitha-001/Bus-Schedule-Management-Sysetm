@@ -32,6 +32,7 @@ if (!isset($_SESSION['USER'])) {
             
                 <div>
                     <button id="btn" class="button-grey">Add New</button>
+                    <span id="error-msg" style="color: red;"></span>
                 </div>
             </div>
         </div>
@@ -70,14 +71,33 @@ if (!isset($_SESSION['USER'])) {
                             <td></td>
 
                             <td align="right">
-                                <button class="button-green" type="submit">Save</button>
+                                <button class="button-green" type="submit" id="form-save">Save</button>
                                 <button class="button-cancel" onclick="cancel()">Cancel</button>
                             </td>
                         </tr>
                     </table>
                 </div>
+                </form>
             </div>
-        </form>
+
+
+            <?php  
+
+$my_breakdown = new Breakdown();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $data['bus_no'] = strtoupper($_POST["bus_no"]);
+    $data['description'] = $_POST["description"];
+    $data['time_to_repair'] = $_POST["time_to_repair"];
+    if ($my_breakdown->validate($data)) {
+        $my_breakdown->addBreakdown($data);
+
+    
+    }
+}
+            ?>
+            
+        
 
         <div class="data-table">
             <div class="col-3">
@@ -99,9 +119,11 @@ if (!isset($_SESSION['USER'])) {
                         echo "<td> $breakdown->time_to_repair </td>";
                         echo "</tr>";
                     }
-                    else:
-                    echo "<tr><td colspan='4'>No breakdowns found</td></tr>";
-                    endif; ?>
+                else: ?>
+                    <tr>
+                        <td id="" colspan="4">No breakdowns found</td>
+                    </tr>
+                <?php endif; ?>
                     <tr></tr> 
                     <tr></tr> 
                     <tr></tr> 
@@ -123,34 +145,35 @@ if (!isset($_SESSION['USER'])) {
 
         <div class="data-table" style="display: none;" id="view_my_breakdowns">
             <div class="col-4">
-                <table border='1' class="styled-table">
-                    <tr>
-                        <th>#</th>
-                        <th>Bus No.</th>
-                        <th>Description</th>
-                        <th>Time to repair</th> 
-                        <th></th> 
-                    </tr>
-                    <?php 
-                    if(!empty($my_breakdown)):
-                    if($my_breakdown->status == 'repairing') :
-                        ?>
-                    <tr>
-                        <td><?php echo $my_breakdown->id ?></td>
-                        <td><?php echo $my_breakdown->bus_no ?></td>
-                        <td><?php echo $my_breakdown->description ?></td>
-                        <td><?php echo $my_breakdown->time_to_repair ?></td>
-                        <td><button href=# class="button-green" id='edit-breakdown-info'>Edit</button></td>
-                    </tr>
-                    
-                    <?php endif; else: ?>
-                    <tr>
-                        <td id="no-breakdowns-td" colspan="4">No breakdowns found</td>
-                    </tr>
-                    <?php
-                    endif;
-                    ?>
-                </table>
+
+
+            <table border='1' class="styled-table">
+    <tr>
+        <th>#</th>
+        <th>Bus No.</th>
+        <th>Description</th>
+        <th>Time to repair</th> 
+        <th></th> 
+    </tr>
+    <?php 
+    if (!empty($my_breakdown) && $my_breakdown->status == 'repairing') :
+        ?>
+        <tr>
+            <td><?php echo $my_breakdown->id ?></td>
+            <td><?php echo $my_breakdown->bus_no ?></td>
+            <td><?php echo $my_breakdown->description ?></td>
+            <td><?php echo $my_breakdown->time_to_repair ?></td>
+            <td><button href=# class="button-green" id='edit-breakdown-info'>Edit</button></td>
+        </tr>
+    <?php else: ?>
+        <tr>
+            <td id="no-breakdowns-td" colspan="5">No breakdowns found</td>
+        </tr>
+    <?php endif; ?>
+</table>
+
+
+               
 
                 <form id="form1" method="post" action="<?=ROOT?>/conductorbreakdowns/repairBreakdown/<?=$my_breakdown->id?>">
                     <input type="hidden" display="none" name="breakdown_id" value="<?php echo($my_breakdown->id) ; ?>"> 
@@ -176,6 +199,51 @@ if (!isset($_SESSION['USER'])) {
                     </div>
             </div>
         </div>
+        
+
+        <div>
+    <button id="btn_history" class="button-grey">History</button>
+</div>
+
+<?php
+$conductor = $_SESSION['USER']->username;
+$history_breakdowns = new Breakdown();
+$history_breakdown = $history_breakdowns->getConductorBreakdowns($conductor);
+?>
+
+<div class="data-table" style="display: none;" id="view_history_breakdowns">
+    <div class="col-5">
+        <table border='1' class="styled-table">
+            <tr>
+                <th>#</th>
+                <th>Bus No.</th>
+                <th>Description</th>
+                <th>Time to repair</th> 
+                <th>Date and Time</th>
+                <th></th> 
+            </tr>
+            <?php 
+            if (!empty($history_breakdown)):
+                foreach ($history_breakdown as $breakdown):
+                    if ($breakdown->status == 'repaired'): ?>
+                        <tr>
+                            <td><?php echo $breakdown->id ?></td>
+                            <td><?php echo $breakdown->bus_no ?></td>
+                            <td><?php echo $breakdown->description ?></td>
+                            <td><?php echo $breakdown->time_to_repair ?></td>
+                            <td><?php echo $breakdown->Date_time ?></td>
+                        </tr>
+                    <?php endif;
+                endforeach;
+            else: ?>
+                <tr>
+                    <td id="no-breakdowns" colspan="4">No breakdowns found</td>
+                </tr>
+            <?php endif; ?>
+        </table>
+    </div>
+</div>
+
 
     </main>
 

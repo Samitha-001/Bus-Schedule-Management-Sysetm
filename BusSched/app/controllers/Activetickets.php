@@ -4,7 +4,7 @@ class Activetickets
 
     use Controller;
 
-    public function index()
+     public function index()
     {
         $activeticket = new E_ticket();
         $activetickets = $activeticket->getTickets();
@@ -12,6 +12,9 @@ class Activetickets
         // $data = [];
      
         $this->view('activeticket', ['activetickets' => $activetickets]);
+    
+              
     }
 
+    
 }
