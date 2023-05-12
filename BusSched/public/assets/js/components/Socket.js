@@ -45,7 +45,7 @@ class Socket {
             let message = JSON.parse(event.data);
             if (message.event_type === event_type) {
                 if(message.role==null || message.role.includes(role)){
-                    if(message.username==null || message.username.includes(username)){
+                    if(message.usernames==null || message.usernames.includes(username)){
                         callback(message.data);
                     }
                 }
