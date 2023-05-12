@@ -183,7 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   }
-
   
 
   // add event listeners to each transfer ticket a
