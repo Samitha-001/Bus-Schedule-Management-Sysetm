@@ -228,6 +228,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let transferTicketA = targetDuplicate.querySelector(".transfer-ticket-a");
       // add event listener to transfer ticket a
       transferTicketA.addEventListener("click", function () {
+        // hide transferTicketA
+        transferTicketA.style.display = "none";
 
         // create dropdown of transferrable trips on the same day
         let transferTicketSelect = document.createElement("select");
@@ -239,70 +241,131 @@ document.addEventListener("DOMContentLoaded", function () {
         option.setAttribute("value", "");
         // set innerHTML of option to trip name
         option.innerHTML = "Select trip";
+        option.disabled = true;
+        option.selected = true;
         // append option to select
         transferTicketSelect.appendChild(option);
         transferTicketA.parentElement.appendChild(transferTicketSelect);
 
+        // create button cancel
+        let cancelTransferBtn = document.createElement("button");
+        cancelTransferBtn.classList.add("button-orange-s");
+        cancelTransferBtn.innerHTML = "Cancel";
+        transferTicketA.parentElement.appendChild(cancelTransferBtn);
+
+        // create confirm transfer button
+        let confirmTransferBtn = document.createElement("button");
+        confirmTransferBtn.classList.add("button-orange-s");
+        confirmTransferBtn.innerHTML = "Confirm transfer";
+        transferTicketA.parentElement.appendChild(confirmTransferBtn);
+
+        // add event listener to cancel transfer button
+        cancelTransferBtn.addEventListener("click", function () {
+          // remove transferTicketSelect
+          transferTicketSelect.remove();
+          // remove cancelTransferBtn
+          cancelTransferBtn.remove();
+          // remove confirmTransferBtn
+          confirmTransferBtn.remove();
+          // show transferTicketA
+          transferTicketA.style.display = "block";
+        });
+
+        // add event listener to confirm transfer button
+        confirmTransferBtn.addEventListener("click", function () {
+          // alert are you sure you want to transfer ticket
+          let confirmTransfer = confirm("Are you sure you want to transfer ticket?");
+          if (confirmTransfer) {
+            // get trip id
+            let tripId = transferTicketSelect.value;
+            // get ticket id
+            let ticketId = targetDuplicate.getAttribute("data-id");
+            // get seats
+            let seats = targetDuplicate.querySelector(".booked-ticket-seats");
+            if (seats) {
+              seats = seats.innerHTML;
+              if (seats.indexOf("unreserved") >= 0) {
+                seats = null;
+              }
+            }
+          
+            console.log("trip id: ", tripId);
+            console.log("ticket id: ", ticketId);
+            console.log("seats: ", seats);
+          }
+        });
+
 
         // get number of seats
-        let seats = targetDuplicate.querySelector(".booked-ticket-seats").innerHTML;
+        let seats = targetDuplicate.querySelector(".booked-ticket-seats")
+        if (seats) {
+          seats = seats.innerHTML;
+          if (seats.indexOf("unreserved") >= 0) {
+            seats = null;
+          }
+        }
         // get ticket id
         let ticketId = targetDuplicate.getAttribute("data-id");
         // get trip of ticket
         let tripID = targetDuplicate.getAttribute("data-trip-id");
 
         // if seats are not reserved, get trips after current trip
-        if (seats == "") {
+        // if seats include "unreserved"
+        if (!seats) {
           // TODO
           // call api server to get trips
           let trips = getTransferableTrips(tripID);
-          // for each element in trips
-          trip.forEach((trip) => {
-            // create option element
-            let option = document.createElement("option");
-            // set value of option to trip id
-            option.setAttribute("value", trip.id);
-            // set innerHTML of option to trip name
-            option.innerHTML = "trip.name";
-            // append option to select
-            transferTicketSelect.appendChild(option);
-          });
-          
-          
+
           trips.then((trips) => {
-            let tripsList = [];
+            console.log("trips: ", trips);
+            
+            // for each element in trips
             trips.forEach((trip) => {
-              tripsList.push(trip);
+              // create option element
+              let option = document.createElement("option");
+              // set value of option to trip id
+              option.setAttribute("value", trip.id);
+              // set innerHTML of option to trip name
+              option.innerHTML = "Trip leaving "+trip.starting_halt+" at "+ trip.departure_time;
+              // append option to select
+              transferTicketSelect.appendChild(option);
             });
-            // get current trip
-            let currentTrip = tripsList.find((trip) => trip.id == ticket.trip_id);
-            // get current trip index
-            let currentTripIndex = tripsList.indexOf(currentTrip);
-            // get trips after current trip
-            let tripsAfterCurrentTrip = tripsList.slice(currentTripIndex + 1);
-            // get trips after current trip with available seats
-            let tripsAfterCurrentTripWithAvailableSeats = [];
-            tripsAfterCurrentTrip.forEach((trip) => {
-              // get available seats
-              let availableSeats = getAvailableSeats(trip.id);
-              availableSeats.then((seats) => {
-                // if seats are available, push trip to array
-                if (seats.length > 0) {
-                  tripsAfterCurrentTripWithAvailableSeats.push(trip);
-                }
-              });
-            });
-            // if trips after current trip with available seats are found
-            if (tripsAfterCurrentTripWithAvailableSeats.length > 0) {
-              // show trips after current trip with available seats
-              // TODO
-            }
-            // if trips after current trip with available seats are not found
-            else {
-              // show trips after current trip
-              // TODO
-            }
           });
+          
+          // trips.then((trips) => {
+          //   let tripsList = [];
+          //   trips.forEach((trip) => {
+          //     tripsList.push(trip);
+          //   });
+          //   // get current trip
+          //   let currentTrip = tripsList.find((trip) => trip.id == ticket.trip_id);
+          //   // get current trip index
+          //   let currentTripIndex = tripsList.indexOf(currentTrip);
+          //   // get trips after current trip
+          //   let tripsAfterCurrentTrip = tripsList.slice(currentTripIndex + 1);
+          //   // get trips after current trip with available seats
+          //   let tripsAfterCurrentTripWithAvailableSeats = [];
+          //   tripsAfterCurrentTrip.forEach((trip) => {
+          //     // get available seats
+          //     let availableSeats = getAvailableSeats(trip.id);
+          //     availableSeats.then((seats) => {
+          //       // if seats are available, push trip to array
+          //       if (seats.length > 0) {
+          //         tripsAfterCurrentTripWithAvailableSeats.push(trip);
+          //       }
+          //     });
+          //   });
+          //   // if trips after current trip with available seats are found
+          //   if (tripsAfterCurrentTripWithAvailableSeats.length > 0) {
+          //     // show trips after current trip with available seats
+          //     // TODO
+          //   }
+          //   // if trips after current trip with available seats are not found
+          //   else {
+          //     // show trips after current trip
+          //     // TODO
+          //   }
+          // });
         }
 
         // if seats are reserved, get trips after current trip with available seats
@@ -720,7 +783,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // get transferable trips function
   function getTransferableTrips(data) {
-    let url = `${ROOT}/passengertickets/api_read_trips`;
+    let url = `${ROOT}/passengertickets/api_get_transferable_trips`;
     
     let options = {
       method: "POST",
@@ -729,10 +792,11 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       body: JSON.stringify(data),
     };
-    fetch(url, options)
+    return fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        return data.data;
       })
       .catch((error) => {
         console.log(error);

@@ -70,8 +70,8 @@
 
                 <tr data-id = <?= $trip->id ?> class='data-row'>
                 <?php
-                $tripx = new Trip();
-                $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
+                $tripx = new Bus();
+                $bus = $tripx->getBus($trip->bus_no);
                 ?>
                 <td><?= $trip->id ?></td>
                     <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<span data-fieldname="departure_time"><?= $trip->departure_time ?></span></td>

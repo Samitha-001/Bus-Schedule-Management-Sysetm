@@ -70,10 +70,11 @@ class Trip extends Model
         $trip = $this->getTrip(['id' => $tripID]);
         // get date and time of trip
         $date = $trip->trip_date;
-        $time = $trip->departure_time;
+        $src = $trip->starting_halt;
+        // $time = $trip->departure_time;
 
         // get trips on same date
-        $trips = $this->where(['trip_date' => $date, 'status' => 'scheduled']);
+        $trips = $this->where(['trip_date' => $date, 'status' => 'scheduled', 'starting_halt' => $src]);
         $transferableTrips = [];
         
         foreach ($trips as $t) {
