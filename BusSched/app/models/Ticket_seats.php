@@ -27,8 +27,10 @@ class Ticket_seats extends Model
         $tickets = $ticket->where(['trip_id' => $trip_id]);
         $data = [];
         // tickets relevant to the trip
-        foreach ($tickets as $t) {
-            array_push($data, $t->id);
+        if($tickets) {
+            foreach ($tickets as $t) {
+                array_push($data, $t->id);
+            }
         }
 
         $seats = [];

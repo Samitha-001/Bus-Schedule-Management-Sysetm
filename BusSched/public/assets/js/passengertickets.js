@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var showAllTickets = document.getElementById("show-all-tickets");
   var showBookedTickets = document.getElementById("show-booked-tickets");
   var showCollectedTickets = document.getElementById("show-collected-tickets");
-  var showExpiredTickets = document.getElementById("show-expired-tickets");
-  var showInactiveTickets = document.getElementById("show-inactive-tickets");
+  var showUsedTickets = document.getElementById("show-used-tickets");
+  var showexpiredTickets = document.getElementById("show-expired-tickets");
   let ticketDetails = document.getElementById("collected-ticket-details");
   let ratePopup = document.getElementById("rate-popup");
   let gotOffBusYesBtn = document.getElementById("btn-got-off-yes");
@@ -17,16 +17,20 @@ document.addEventListener("DOMContentLoaded", function () {
   let collectedTicketsDiv = document.getElementById("collected-tickets");
   collectedTicketsDiv.style.display = "none";
 
+  let usedTicketsDiv = document.getElementById("used-tickets");
+  usedTicketsDiv.style.display = "none";
+
   let expiredTicketsDiv = document.getElementById("expired-tickets");
   expiredTicketsDiv.style.display = "none";
-
-  let inactiveTicketsDiv = document.getElementById("inactive-tickets");
-  inactiveTicketsDiv.style.display = "none";
 
   // update location and earn points
   let updateLocationBtn = document.getElementById("a-update-location");
   let updateLocationDiv = document.getElementById("update-location-div");
   let insideLocationDiv = document.getElementById("inside-update-location-div");
+
+  // tranfer ticket a
+  let bookedTicketViewMore = document.querySelectorAll(".booked-ticket-view-more-a");
+  let transferTicketCard = document.getElementById("transfer-ticket-card");
 
   // add event listener to showAllTickets
   showAllTickets.addEventListener("click", function () {
@@ -35,17 +39,21 @@ document.addEventListener("DOMContentLoaded", function () {
     // remove class selected from other buttons
     showBookedTickets.classList.remove("selected");
     showCollectedTickets.classList.remove("selected");
-    showExpiredTickets.classList.remove("selected");
-    showInactiveTickets.classList.remove("selected");
+    showUsedTickets.classList.remove("selected");
+    showexpiredTickets.classList.remove("selected");
 
     // show all tickets
     allTicketsDiv.style.display = "block";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
+    usedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
-    inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
+
+    if (transferTicketCard) {
+      transferTicketCard.remove();
+    }
   });
 
   // add event listener to showBookedTickets
@@ -55,17 +63,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // remove class selected from other buttons
     showAllTickets.classList.remove("selected");
     showCollectedTickets.classList.remove("selected");
-    showExpiredTickets.classList.remove("selected");
-    showInactiveTickets.classList.remove("selected");
+    showUsedTickets.classList.remove("selected");
+    showexpiredTickets.classList.remove("selected");
 
     // show booked tickets
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "flex";
     collectedTicketsDiv.style.display = "none";
+    usedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
-    inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
+
+    if (transferTicketCard) {
+      console.log(transferTicketCard);
+      transferTicketCard.remove();
+    }
   });
 
   // Function to show collected tickets
@@ -75,57 +88,69 @@ document.addEventListener("DOMContentLoaded", function () {
     // remove class selected from other buttons
     showAllTickets.classList.remove("selected");
     showBookedTickets.classList.remove("selected");
-    showExpiredTickets.classList.remove("selected");
-    showInactiveTickets.classList.remove("selected");
+    showUsedTickets.classList.remove("selected");
+    showexpiredTickets.classList.remove("selected");
 
     // show collected tickets
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "flex";
+    usedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "none";
-    inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
+
+    if (transferTicketCard) {
+      transferTicketCard.remove();
+    }
   }
 
-  // add event listener to showExpiredTickets
-  showExpiredTickets.addEventListener("click", function () {
+  // add event listener to showUsedTickets
+  showUsedTickets.addEventListener("click", function () {
     // add class selected
-    showExpiredTickets.classList.add("selected");
+    showUsedTickets.classList.add("selected");
     // remove class selected from other buttons
     showAllTickets.classList.remove("selected");
     showBookedTickets.classList.remove("selected");
     showCollectedTickets.classList.remove("selected");
-    showInactiveTickets.classList.remove("selected");
+    showexpiredTickets.classList.remove("selected");
+
+    // show used tickets
+    allTicketsDiv.style.display = "none";
+    bookedTicketsDiv.style.display = "none";
+    collectedTicketsDiv.style.display = "none";
+    usedTicketsDiv.style.display = "block";
+    expiredTicketsDiv.style.display = "none";
+    ticketDetails.style.display = "none";
+    updateLocationDiv.style.display = "none";
+
+    if (transferTicketCard) {
+      transferTicketCard.remove();
+    }
+  });
+
+  // add event listener to showexpiredTickets
+  showexpiredTickets.addEventListener("click", function () {
+    // add class selected
+    showexpiredTickets.classList.add("selected");
+    // remove class selected from other buttons
+    showAllTickets.classList.remove("selected");
+    showBookedTickets.classList.remove("selected");
+    showCollectedTickets.classList.remove("selected");
+    showUsedTickets.classList.remove("selected");
 
     // show expired tickets
     allTicketsDiv.style.display = "none";
     bookedTicketsDiv.style.display = "none";
     collectedTicketsDiv.style.display = "none";
+    usedTicketsDiv.style.display = "none";
     expiredTicketsDiv.style.display = "block";
-    inactiveTicketsDiv.style.display = "none";
     ticketDetails.style.display = "none";
     updateLocationDiv.style.display = "none";
-  });
 
-  // add event listener to showInactiveTickets
-  showInactiveTickets.addEventListener("click", function () {
-    // add class selected
-    showInactiveTickets.classList.add("selected");
-    // remove class selected from other buttons
-    showAllTickets.classList.remove("selected");
-    showBookedTickets.classList.remove("selected");
-    showCollectedTickets.classList.remove("selected");
-    showExpiredTickets.classList.remove("selected");
-
-    // show inactive tickets
-    allTicketsDiv.style.display = "none";
-    bookedTicketsDiv.style.display = "none";
-    collectedTicketsDiv.style.display = "none";
-    expiredTicketsDiv.style.display = "none";
-    inactiveTicketsDiv.style.display = "block";
-    ticketDetails.style.display = "none";
-    updateLocationDiv.style.display = "none";
+    if (transferTicketCard) {
+      transferTicketCard.remove();
+    }
   });
 
   // collected ticket view more
@@ -159,12 +184,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
-  // tranfer ticket a
-  let transferTicketA = document.querySelectorAll(".ticket-transfer-a");
+  
 
   // add event listeners to each transfer ticket a
-  transferTicketA.forEach((button) => {
+  bookedTicketViewMore.forEach((button) => {
     button.addEventListener("click", function (e) {
+      // if transferTicketCard is visible, remove it
+      if (transferTicketCard) {
+        transferTicketCard.remove();
+      }
+
       // console.log("transfer ticket a clicked");
       let ticketId = button.getAttribute("data-ticket-id");
       let seatsReserved = button.getAttribute("data-seats");
@@ -185,16 +214,110 @@ document.addEventListener("DOMContentLoaded", function () {
       // target.classList.add("zoom-target");
       // create duplicate of target
       let targetDuplicate = target.cloneNode(true);
-      // add class to duplicate
-      targetDuplicate.classList.add("pop-up-content");
+      // add classes to duplicate
+      targetDuplicate.classList.add("ticket-details-card");
+      targetDuplicate.classList.remove("ticket-card");
+      targetDuplicate.setAttribute("id", "transfer-ticket-card");
+      // remove class view more from duplicate
+      targetDuplicate.querySelector(".booked-ticket-view-more-a").innerHTML = "Transfer ticket";
+      targetDuplicate.querySelector(".booked-ticket-view-more-a").classList.add("transfer-ticket-a");
+      targetDuplicate.querySelector(".booked-ticket-view-more-a").classList.remove("booked-ticket-view-more-a");
+
+      
+      
+      let transferTicketA = targetDuplicate.querySelector(".transfer-ticket-a");
+      // add event listener to transfer ticket a
+      transferTicketA.addEventListener("click", function () {
+
+        // create dropdown of transferrable trips on the same day
+        let transferTicketSelect = document.createElement("select");
+        transferTicketSelect.classList.add("transfer-ticket-select");
+        // select trip
+        // create option element
+        let option = document.createElement("option");
+        // set value of option to trip id
+        option.setAttribute("value", "");
+        // set innerHTML of option to trip name
+        option.innerHTML = "Select trip";
+        // append option to select
+        transferTicketSelect.appendChild(option);
+        transferTicketA.parentElement.appendChild(transferTicketSelect);
+
+
+        // get number of seats
+        let seats = targetDuplicate.querySelector(".booked-ticket-seats").innerHTML;
+        // get ticket id
+        let ticketId = targetDuplicate.getAttribute("data-id");
+        // get trip of ticket
+        let tripID = targetDuplicate.getAttribute("data-trip-id");
+
+        // if seats are not reserved, get trips after current trip
+        if (seats == "") {
+          // TODO
+          // call api server to get trips
+          let trips = getTransferableTrips(tripID);
+          // for each element in trips
+          trip.forEach((trip) => {
+            // create option element
+            let option = document.createElement("option");
+            // set value of option to trip id
+            option.setAttribute("value", trip.id);
+            // set innerHTML of option to trip name
+            option.innerHTML = "trip.name";
+            // append option to select
+            transferTicketSelect.appendChild(option);
+          });
+          
+          
+          trips.then((trips) => {
+            let tripsList = [];
+            trips.forEach((trip) => {
+              tripsList.push(trip);
+            });
+            // get current trip
+            let currentTrip = tripsList.find((trip) => trip.id == ticket.trip_id);
+            // get current trip index
+            let currentTripIndex = tripsList.indexOf(currentTrip);
+            // get trips after current trip
+            let tripsAfterCurrentTrip = tripsList.slice(currentTripIndex + 1);
+            // get trips after current trip with available seats
+            let tripsAfterCurrentTripWithAvailableSeats = [];
+            tripsAfterCurrentTrip.forEach((trip) => {
+              // get available seats
+              let availableSeats = getAvailableSeats(trip.id);
+              availableSeats.then((seats) => {
+                // if seats are available, push trip to array
+                if (seats.length > 0) {
+                  tripsAfterCurrentTripWithAvailableSeats.push(trip);
+                }
+              });
+            });
+            // if trips after current trip with available seats are found
+            if (tripsAfterCurrentTripWithAvailableSeats.length > 0) {
+              // show trips after current trip with available seats
+              // TODO
+            }
+            // if trips after current trip with available seats are not found
+            else {
+              // show trips after current trip
+              // TODO
+            }
+          });
+        }
+
+        // if seats are reserved, get trips after current trip with available seats
+        else {
+          // TODO
+        }
+      });
+
+      transferTicketCard = targetDuplicate;
+
       // append duplicate to body
       document.body.appendChild(targetDuplicate);
-      // get the position of target
 
-      // setTimeout(() => {
-      //   target.classList.remove("zoom-target");
-      // }
-      //   , 500);
+      // hide the original target
+      bookedTicketsDiv.style.display = "none";
       
     });
   });
@@ -293,6 +416,7 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         });
         collectedTicketsDiv.style.display = "none";
+
       });
     });
   });
@@ -592,6 +716,27 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  // get transferable trips function
+  function getTransferableTrips(data) {
+    let url = `${ROOT}/passengertickets/api_read_trips`;
+    
+    let options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      }); 
   }
 
 });

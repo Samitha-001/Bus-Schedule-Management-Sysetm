@@ -446,3 +446,11 @@ div#rate-popup p {
   left: 37%;
   margin: auto;
 }
+
+.h1-l {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #24315e;
+  margin: 0;
+  margin-bottom: 10px;
+}
