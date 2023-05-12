@@ -3,12 +3,18 @@
 
 
 body {
-  color: #24315e;
+  /* color: #24315e; */
+  color: white;
+  background: #24315e;
   font-family: "Outfit";
   margin: 0px;
   line-height: normal;
 }
 
+h2 {
+  text-align: center;
+  font-size: 22px;
+}
 #logo_blue {
   color: #24315e;
   text-decoration: none;
@@ -306,7 +312,7 @@ button:hover {
   align-items: center; 
   justify-content: space-between;
   /* padding-left: 20px; */
-  padding-right: 20px;
+  /* padding-right: 20px; */
   /* padding-top: 5px; */
   padding-bottom: 5px;
   background-color: #f4511e;
@@ -637,6 +643,7 @@ hr {
 .orange-header {
   grid-column: span 4;
   width: auto;
+  justify-content: center;
 }
 
 .data-table {
@@ -711,7 +718,7 @@ hr {
       
       .card-container {
         right: 2px; 
-        width: 100px;
+        width: 151px;
         height: 100px; 
         margin: 10px;
         
