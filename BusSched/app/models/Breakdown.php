@@ -1,5 +1,9 @@
 <?php
 
+use WebSocket\Client;
+
+require __DIR__ . '/../../vendor/autoload.php';
+
 class Breakdown extends Model
 {
     protected $table = 'breakdown';
@@ -56,7 +60,7 @@ class Breakdown extends Model
         $data['conductor'] = $conductor;
         // // show($data);
         $bus = new Bus();
-        $breakdowns = $bus->join('breakdown', 'bus.bus_no','breakdown.bus_no', $data);
+        $breakdowns = $bus->join('breakdown', 'bus.bus_no', 'breakdown.bus_no', $data);
         return $breakdowns;
         // ->where(['Status' => "repairing"]);
 
@@ -70,7 +74,7 @@ class Breakdown extends Model
     //                 ->where(['Status' => 'repairing', 'conductor' => $conductor])
     //                 ->findAll();
     // }
-    
+
     public function getOwnerBreakdowns($owner)
     {
         // return $this->findAll();
@@ -84,7 +88,7 @@ class Breakdown extends Model
     {
         // validate and add
         // if ($this->validate($data)) {
-        return $this->insert(['bus_no' => $data['bus_no'],'description' => $data['description'],'time_to_repair' => $data['time_to_repair'],'status' => 'repairing']);
+        return $this->insert(['bus_no' => $data['bus_no'], 'description' => $data['description'], 'time_to_repair' => $data['time_to_repair'], 'status' => 'repairing']);
         // }
         // return false;
     }
@@ -94,7 +98,7 @@ class Breakdown extends Model
         return $this->delete($id);
     }
 
-    
+
     public function updateBreakdown($id, $data)
     {
         return $this->update($id, ['status' => $data['status']]);
@@ -102,6 +106,77 @@ class Breakdown extends Model
 
     public function updatemyBreakdown($id, $data)
     {
-        return $this->update($id, ['description' => $data['description'],'time_to_repair' => $data['time']]);
+        return $this->update($id, ['description' => $data['description'], 'time_to_repair' => $data['time']]);
+    }
+
+    /**
+     *Send notification to (all passengers of a trip if a trip exists), bus owner, conductor and all schedulers in the event of a breakdown
+     * @param string $bus_no
+     * @param numeric $trip_no
+     */
+    public function sendBreakdownNotification($bus_no, $trip_no = 0): void
+    {
+        $bus = (new Bus())->getBus($bus_no);
+        if (!$bus) return;
+        $owner = $bus->owner;
+        $driver = $bus->driver;
+        $conductor = $bus->conductor;
+
+        if ($trip_no != 0) {
+            //Send notification to all passengers
+            $uNameList = (new Trip())->getPassengers($trip_no);
+            if ($uNameList) {
+                $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                $ws->text(json_encode([
+                    "event_type" => "breakdown",
+                    "data" => [
+                        "message" => "Bus " . $bus_no . " has broken down",
+                    ],
+                    "role" => ["passenger"],
+                    "usernames" => $uNameList
+                ]));
+            }
+        }
+        //send notification to owner driver schedulers and conductor
+        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+        $ws->text(json_encode([
+            "event_type" => "breakdown",
+            "data" => [
+                "message" => "Bus " . $bus_no . " has broken down",
+            ],
+            "role" => ["scheduler"],
+        ]));
+
+        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+        $ws->text(json_encode([
+            "event_type" => "breakdown",
+            "data" => [
+                "message" => "Bus " . $bus_no . " has broken down",
+            ],
+            "role" => ["driver"],
+            "usernames" => [$driver]
+        ]));
+
+        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+        $ws->text(json_encode([
+            "event_type" => "breakdown",
+            "data" => [
+                "message" => "Bus " . $bus_no . " has broken down",
+            ],
+            "role" => ["owner"],
+            "usernames" => [$owner]
+        ]));
+
+        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+        $ws->text(json_encode([
+            "event_type" => "breakdown",
+            "data" => [
+                "message" => "Bus " . $bus_no . " has broken down",
+            ],
+            "role" => ["conductor"],
+            "usernames" => [$conductor]
+        ]));
+
+
     }
 }
