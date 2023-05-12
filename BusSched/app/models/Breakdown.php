@@ -88,10 +88,15 @@ class Breakdown extends Model
         $data['owner'] = $owner;
         // show($data);
         if (!$status) {
-            $breakdowns =$this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
         }
         else if($status = 'repairing') {
-            
+            $data['status'] = $status;
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        }
+        else {
+            $data['status'] = $status;
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
         }
         return $breakdowns;
     }
