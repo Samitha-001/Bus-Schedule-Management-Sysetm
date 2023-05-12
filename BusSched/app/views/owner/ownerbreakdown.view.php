@@ -15,6 +15,8 @@ if (!isset($_SESSION['USER'])) {
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     
+    <script src="<?= ROOT ?>/assets/js/ownerbus.js"></script>
+    
 </head>
 
 <body>
@@ -30,8 +32,52 @@ $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
             <div>
                 <h3>Breakdowns</h3>
             </div>
+            <div><button id="my_history"  class="button-grey">Breakdown History</button></div>
             <div><button id="btn" class="button-grey">Add New</button></div>
         </div>
+
+<!--owner breakdown history -->
+
+<?php
+$owner = $_SESSION['USER']->username;
+$history_breakdowns = new Breakdown();
+$history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
+?>
+
+<div class="data-table" style="display: none;margin-bottom:200px" id="view_history_breakdowns">
+        <table border='1' class="styled-table">
+            <tr>
+                <th>#</th>
+                <th>Bus No.</th>
+                <th>Description</th>
+                <th>Time to repair</th> 
+                <th>Time</th>
+                <th></th> 
+            </tr>
+            <?php 
+            if (!empty($history_breakdown)):
+                foreach ($history_breakdown as $breakdown):
+                    if ($breakdown->status == 'repaired'): ?>
+                        <tr>
+                            <td><?php echo $breakdown->id ?></td>
+                            <td><?php echo $breakdown->bus_no ?></td>
+                            <td><?php echo $breakdown->description ?></td>
+                            <td><?php echo $breakdown->time_to_repair ?></td>
+                            <td><?php echo $breakdown->Date_time ?></td>
+                        </tr>
+                    <?php endif;
+                endforeach;
+            else: ?>
+                <tr>
+                    <td id="no-breakdowns" colspan="4">No breakdowns found</td>
+                </tr>
+            <?php endif; ?>
+        </table>
+</div>
+
+<!-- add breakdown -->
+
+
 
         <form method="post" id="view_breakdown" style="display:none">
 
@@ -40,7 +86,8 @@ $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
                 <?php endif; ?>
 
                 <div>
-                    <table class="styled-table">
+                   
+                <table class="styled-table">
                         <tr>
                             <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
                             <td>
@@ -58,7 +105,6 @@ $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
                             </select>
                             </td>
                         </tr>
-            
             
 
                         <tr>
@@ -93,6 +139,7 @@ $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
                     <th>Description</th>
                     <th>Time to repair</th>
                 </tr>
+
                 
                 <?php
                 foreach ($breakdowns as $breakdown) {
@@ -103,12 +150,63 @@ $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
                     // echo "<td> $breakdown->date </td>";
                     // echo "<td> $breakdown->time </td>";
                     echo "<td> $breakdown->time_to_repair </td>";
+                    echo "<td><button id='edit-breakdown-info'>Edit</button></td>";
+                    echo "<td><button id='repaired-btn'>Repaired</button></td>";
                     echo "</tr>";
                 } ?>
             </table>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+
+
+             <!-- edit form for breakdown info -->
+             <div id="edit-form-container" style="display: none;">
+                        <form id="edit-form" method="post" action="<?=ROOT?>/ownerbreakdowns/modifyOwnerBreakdown/<?=$breakdown->id?>">
+                
+                            <table class="styled-table">
+                        <tr>
+                            <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
+                            <td>
+                            <select id="bus_no" name="bus_no"   class="form-control"  value="<?= $breakdown->bus_no ?>" required>
+                              
+                               
+                               <?php 
+                                 foreach ($buses as $bus) {
+                                 ?>
+                                   <option><?php echo $bus->bus_no; ?> </option>
+                                   <?php 
+                                   }
+                                  ?>
+                               
+                            </select>
+                            </td>
+                        </tr>
+            
+
+                        <tr>
+                            <td style="color:#24315e;"><label for="description">Description </label></td>
+                            <td><input name="description" type="text" class="form-control" id="description"  value="<?= $breakdown->description ?>" required></td>
+                        </tr>
+                        <tr>
+                            <td style="color:#24315e;"><label for="time_to_repair">Time to Repair </label></td>
+                            <td><input name="time_to_repair" type="text" class="form-control" id="time_to_repair" value="<?= $breakdown->time_to_repair ?>" required></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td align="right">
+                                <button class="button-green" type="submit" id="form-save" >Save Changes</button>
+                                <button class="button-cancel" onclick="cancel()">Cancel</button>
+                            </td>
+                        </tr>
+
+                    </table>
+                        </form>
+
+
+
+
+            </div>
 
     </main>
 
