@@ -96,6 +96,7 @@ if (!isset($_SESSION['USER'])) {
             <?php endif; ?>
         </table>
     </div>
+
     <div class="col-3">
         <h1>Ended Trips</h1>
         <table border='1' class="styled-table" id="ended_trips">
@@ -122,6 +123,9 @@ if (!isset($_SESSION['USER'])) {
             <?php endif; ?>
         </table>
     </div>
+
+    
+   
     <script src="<?= ROOT ?>/assets/js/trips.js"></script>
 </main>
 

@@ -6,12 +6,12 @@ class Conductorschedules
 
     public function index()
     {
-        $conductorschedule = new Conductorschedule();
-        $conductorschedules = $conductorschedule->getConductorschedules();
+        $trip = new Trip();
+        $trips = $trip->getTrips();
 
         // $data = [];
      
-        $this->view('conductorschedule', ['conductorschedules' => $conductorschedules]);
+        $this->view('conductorschedule', ['trips' => $trips]);
     }
 
 }
