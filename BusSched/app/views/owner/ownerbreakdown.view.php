@@ -132,7 +132,7 @@ $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
 
         <div class="data-table">
 
-            <table border='1' class="styled-table">
+            <table border='1' class="styled-table" id="breakdown_table">
                 <tr>
                     <th>#</th>
                     <th>Bus No.</th>

@@ -1,6 +1,7 @@
  document.addEventListener("DOMContentLoaded", function () {
   
     const btn = document.getElementById("btn");
+    const breakdownTable=document.getElementById("breakdown_table")
 
 
 
@@ -47,6 +48,7 @@
     
       editButton.addEventListener('click', () => {
         editFormContainer.style.display = 'block';
+        breakdownTable.style.display="none";
       });
       
    

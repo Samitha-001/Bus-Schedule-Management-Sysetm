@@ -10,7 +10,7 @@ class OwnerBreakdowns
         $breakdown = new Breakdown();
           // get username from session
          $owner = $_SESSION['USER']->username;
-        $breakdowns = $breakdown->getOwnerBreakdowns($owner);
+        $breakdowns = $breakdown->getOwnerBreakdowns($owner,'repairing');
 
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
