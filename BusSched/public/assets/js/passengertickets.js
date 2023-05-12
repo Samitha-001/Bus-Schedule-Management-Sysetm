@@ -288,7 +288,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 seats = null;
               }
             }
+
+            // let data = { ticket_id: ticketId, trip_id: tripId, seats: seats };
+            let data = { ticket_id: ticketId, trip_id: tripId };
+
+            // send data to server
+            let url = `${ROOT}/passengertickets/api_transfer_ticket`;
+            let options = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            };
+            fetch(url, options)
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           
+            // send data to transfer ticket api
             console.log("trip id: ", tripId);
             console.log("ticket id: ", ticketId);
             console.log("seats: ", seats);
