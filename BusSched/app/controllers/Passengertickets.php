@@ -168,7 +168,7 @@ class Passengertickets
             $postData = json_decode(file_get_contents('php://input'), true);
 
             $ticket = new E_ticket();
-            $ticket->transferTicket($postData['ticket_id'], $postData['trip_id']);
+            $ticket->transferTicket($postData['ticket_id'], $postData['trip_id'], $postData['seats_reserved']);
 
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);

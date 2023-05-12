@@ -289,8 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             }
 
-            // let data = { ticket_id: ticketId, trip_id: tripId, seats: seats };
-            let data = { ticket_id: ticketId, trip_id: tripId };
+            let  data = { ticket_id: ticketId, trip_id: tripId, seats_reserved: seats };
 
             // send data to server
             let url = `${ROOT}/passengertickets/api_transfer_ticket`;
