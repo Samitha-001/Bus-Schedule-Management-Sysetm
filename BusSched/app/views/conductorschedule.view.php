@@ -46,6 +46,7 @@ if (!isset($_SESSION['USER'])) {
                 $tripx = new Trip();
                 $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
                 ?>
+                
                 <td><?= $trip->id ?></td>
                     <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<span data-fieldname="departure_time"><?= $trip->departure_time ?></span></td>
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
