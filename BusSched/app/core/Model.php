@@ -18,7 +18,7 @@ class Model
         return $this->query($query);
     }
 
-    public function where($data, $data_not = []) {
+    public function where($data, $order_column="id", $data_not = []) {
         $keys = array_keys($data);
         $keys_not = array_keys($data_not);
         $query = "SELECT * FROM $this->table WHERE ";

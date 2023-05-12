@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <div><h4 class="white-h" style="text-align:center; margin-bottom:0px;">Ticket fare: <span id="bus-fare-span"></span></h4></div>
+    <!-- <div><h4 class="white-h" style="text-align:center; margin-bottom:0px;">Ticket fare: <span id="bus-fare-span"></span></h4></div> -->
     <div class="row">
         <div class="col-10 col-s-10" style="margin: auto; padding:0px;">
             <table id="schedule-table" style="width: 100%; font-size: 12px;">
@@ -58,7 +58,7 @@
                     <th>Estimated time</th>
                     <th>Bus No</th>
                     <th>Bus Type</th>
-                    <th>Price</th>
+                    <!-- <th>Price</th> -->
                     <th>Seats Available</th>
                     <th>Last Passed</th>
                     <th>Book</th>
@@ -82,7 +82,7 @@
                     <td data-fieldname="estimated_time_to"></td>
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
                     <td data-fieldname="bus_type"><?= $bus->type ?></td>
-                    <td data-fieldname="price">-</td>
+                    <!-- <td data-fieldname="price">-</td> -->
                     <td data-fieldname="seats_available">-</td>
                     <td data-fieldname="last_updated">
                         <?php if ($trip->last_updated_halt)
