@@ -112,7 +112,7 @@ class Passengertickets
             header('Content-Type: application/json');
             echo json_encode($response);
         } else {
-            $response = array('status' => 'error', 'data' => 'Invalid requestss');
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
             header('Content-Type: application/json');
             echo json_encode($response);
         }
@@ -140,7 +140,7 @@ class Passengertickets
     }
 
     // get trips
-    public function api_read_trips()
+    public function api_get_transferable_trips()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Retrieve the POST data
@@ -154,7 +154,28 @@ class Passengertickets
             header('Content-Type: application/json');
             echo json_encode($response);
         } else {
-            $response = array('status' => 'error', 'data' => 'Invalid requestss');
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    // transfer ticket
+    public function api_transfer_ticket()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+
+            $ticket = new E_ticket();
+            $ticket->transferTicket($postData['ticket_id'], $postData['trip_id'], $postData['seats_reserved']);
+
+            // Send a response
+            $response = array('status' => 'success', 'data' => $postData);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
             header('Content-Type: application/json');
             echo json_encode($response);
         }

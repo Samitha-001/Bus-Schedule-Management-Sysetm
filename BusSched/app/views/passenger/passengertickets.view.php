@@ -93,13 +93,9 @@ include '../app/views/components/navbar.php';
                 <!-- <h1>Trip ID</h1> -->
                 <p>Bus:&nbsp&nbspNC1111</p>
                 <p>Seats:&nbsp&nbsp
-                <?php if(!$ticket->seats_reserved):?>
-                            <i>unreserved</i>
-                        <?php else: ?>
-                            <?= $ticket->seats_reserved ?>
-                        <?php endif; ?></p>
+                    <span class="booked-ticket-seats"><?php if(!$ticket->seats_reserved):?><i>unreserved</i><?php else: ?><?= $ticket->seats_reserved ?><?php endif; ?></span></p>
                 <p>Passengers:&nbsp&nbsp<?= $ticket->passenger_count ?></p>
-                <p><?= $ticket->booking_time ?></p>
+                <!-- <p><?= $ticket->booking_time ?></p> -->
                 <h4 style="text-align:right; margin-bottom:0px;"><?= $ticket->price ?> LKR</h4>
                 <a class="booked-ticket-view-more-a" data-ticket-id="<?= $ticket->id?>" data-seats="<?= $ticket->seats_reserved?>">View more details</a>
             </div>
