@@ -106,8 +106,11 @@ $username = $owner->username;
                         </td>
                     </tr>
 
-                    <i></i>
-                   <button href=# id='edit-passenger-info'>Edit</button>
+                   
+                  <tr> 
+                  <th></th>
+                   <td><button style="margin-left:50px;background-color:brown" href=# id='edit-passenger-info'>Edit</button></td> 
+                 </tr>
                 </table>
             </ul>
     </div>
