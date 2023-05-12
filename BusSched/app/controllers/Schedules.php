@@ -16,13 +16,14 @@ class Schedules
         
         $bus = json_decode(json_encode($buses), true);
         
-        $schedules = $schedule->busSchedule($bus);
+        $schedules = $schedule->busSchedule($bus, date("Y-m-d"));
+        
         
 
         $data = [];
 
             if ($schedule->validate($schedules)) {
-                $schedule->insert($schedules);
+                $schedule->insertMany($schedules);
                 redirect('schedules');
             }
 
@@ -31,6 +32,25 @@ class Schedules
 
         $this->view('schedule', ['schedules' => $schedules]);
     }
+
+    // public function scheduleGenerate(){
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         // Retrieve the POST data
+    //         $postData = json_decode(file_get_contents('php://input'), true);
+
+    //         $schedule = new Schedule();
+    //         $bus = new Bus();
+    //         $buses = $bus->getBuses();
+    //     // $scheds = $schedule->generateSchedule();
+    //     // $schedules = $schedule->generateSchedule1($scheds);
+        
+    //     $bus = json_decode(json_encode($buses), true);
+        
+    //     $schedules = $schedule->busSchedule($bus, date("Y-m-d"));
+    //     }
+    //     return $sche
+    
+// }
 
     public function api_delete()
     {

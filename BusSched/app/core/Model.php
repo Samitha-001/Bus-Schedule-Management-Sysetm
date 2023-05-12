@@ -95,6 +95,29 @@ class Model
         return false;
     }
 
+    public function insertMany($dataArray) {
+        // construct a multi-row insert query
+        $keys = array_keys(reset($dataArray));
+        $values = array();
+        foreach ($dataArray as $data) {
+            // removes unwanted data
+            if (!empty($this->allowedColumns)) {
+                foreach ($data as $key => $value) {
+                    if (!in_array($key, $this->allowedColumns) || $value == '') {
+                        unset($data[$key]);
+                    }
+                }
+                unset($data['id']);
+            }
+            $values[] = "('" . implode("', '", $data) . "')";
+        }
+        $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES " . implode(",", $values);
+        $this->query($query);
+        return false;
+    }
+    
+    
+
     public function update($id, $data, $id_column = 'id') {
         // removes unwanted data
         if(!empty($this->allowedColumns)) {

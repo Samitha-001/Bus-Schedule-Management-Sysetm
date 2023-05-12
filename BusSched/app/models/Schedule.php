@@ -66,7 +66,7 @@ class Schedule extends Bus
     }
 
 
-    function busSchedule($buses) {
+    function busSchedule($buses , $date) {
         
 
         $total_buses = count($buses);
@@ -267,12 +267,6 @@ class Schedule extends Bus
                     }
                 }
                 
-                
-                
-                        
-
-               
-
 return $schedule;
     }
 

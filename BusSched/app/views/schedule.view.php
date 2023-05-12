@@ -90,6 +90,15 @@ if (!isset($_SESSION['USER'])) {
     background-color: red;
 
 }
+.card {
+  /* Your card styles here */
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
 
     </style>
 
@@ -109,7 +118,7 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Schedule</h3>
             </div>
-            <div><button id="btn" class="button-grey">Generate</button></div>
+            <div><button id="btn-generate" class="button-grey">Generate</button></div>
             <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
@@ -177,91 +186,103 @@ if (!isset($_SESSION['USER'])) {
     </button>
 </div>
 
-        <div class="schedule-cards">
-           
+<div class="schedule-cards">
   <div class="card piliyandala">
-    <h2>From Piliyandala</h2>
-    <div class="table-container">
-    <table border='1' class="styled-table">
-                <tr>
-                    <th></th>
-                    <th>Starting Halt</th>
-                    <th>Bus No</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
-                    <!-- <th>Action</th> -->
-                </tr>
-
-                <?php static $i = 1; 
-                    $schedulesObject = json_decode(json_encode($schedules), false);
-                ?>
-             <?php if ($schedulesObject):
-               foreach ($schedulesObject as $schedule): ?>
-                <tr data-id=<?= $schedule->id ?>>
-                    
-                    <?php $i++; 
-                        if($schedule->starting_place === "Piliyandala"):
-                    ?>
-                    <td data-fieldname="checking">
-                    <?= "<input type='checkbox' class='delete-checkbox'"?>
-                    </td>
-                    <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td>
-                    <td data-fieldname="bus_no"> <?= $schedule->bus_no ?> </td>
-                    <td data-fieldname="departure"> <?= $schedule->departure_time ?> </td>
-                    <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
-                    <?php endif;?>
-               </tr>
-               <?php endforeach; else: ?>
-                <tr>
-                  <td colspan="9" style="text-align:center;color:#999999;"><i>No schedule found.</i></td>
-                </tr>
-                <?php endif;?>
-
-                
-
-            </table>
+    <div class="card-content">
+      <h2>From Piliyandala</h2>
+      <div class="table-container">
+        <table border='1' class="styled-table">
+          <tr>
+            <th></th>
+            <th>Starting Halt</th>
+            <th>Bus No</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+          </tr>
+          <?php static $i = 1; 
+          $schedulesObject = json_decode(json_encode($schedules), false);
+          ?>
+          <?php if ($schedulesObject):
+          foreach ($schedulesObject as $schedule): ?>
+          <tr data-id=<?= $schedule->id ?>>
+            <?php $i++; 
+            if($schedule->starting_place === "Piliyandala"):
+            ?>
+            <td data-fieldname="checking">
+              <?= "<input type='checkbox' class='delete-checkbox'"?>
+            </td>
+            <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td>
+            <td data-fieldname="bus_no"> <?= $schedule->bus_no ?> </td>
+            <td data-fieldname="departure"> <?= $schedule->departure_time ?> </td>
+            <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
+            <?php endif;?>
+          </tr>
+          <?php 
+            print_r($schedules);
+          ?>
+          <?php endforeach; else: ?>
+          <tr>
+            <td colspan="9" style="text-align:center;color:#999999;"><i>No schedule found.</i></td>
+          </tr>
+          <?php endif;?>
+        </table>
+      </div>
+    </div>
+    <button class="card-toggle"></button>
+    <div class="card-details">
+      <!-- Additional content to be displayed -->
     </div>
   </div>
-  <div class="card pettah">
-    <h2>From Pettah</h2>
-    <div class="table-container">
-    <table border='1' class="styled-table">
-                <tr>
-                    <th></th>
-                    <th>Starting Halt</th>
-                    <th>Bus No</th>
-                    <th>Departure</th>
-                    <th>Arrival</th>
-                    <!-- <th>Action</th> -->
-                </tr>
-                <?php
-                $schedulesObject = json_decode(json_encode($schedules), false);
+ 
 
-                foreach ($schedulesObject as $schedule) {
-                    if($schedule->starting_place === "Pettah"){
-                    echo "<tr>";
-                    echo "<td><input type='checkbox' class='delete-checkbox'></td>";
-                    echo "<td> $schedule->starting_place</td>";
-                    echo "<td> $schedule->bus_no</td>";
-                    echo "<td> $schedule->departure_time</td>";
-                    echo "<td> $schedule->arrival_time</td>";
-                    echo "</tr>";
-                }
-            }
-                // echo "<pre>";
-               
-                // print_r($schedulesObject);
-                // echo "</pre>";
-                 ?>
-
-            </table>
+  <div class="card piliyandala">
+    <div class="card-content">
+      <h2>From Pettah</h2>
+      <div class="table-container">
+        <table border='1' class="styled-table">
+          <tr>
+            <th></th>
+            <th>Starting Halt</th>
+            <th>Bus No</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+          </tr>
+          <?php static $i = 1; 
+          $schedulesObject = json_decode(json_encode($schedules), false);
+          ?>
+          <?php if ($schedulesObject):
+          foreach ($schedulesObject as $schedule): ?>
+          <tr data-id=<?= $schedule->id ?>>
+            <?php $i++; 
+            if($schedule->starting_place === "Pettah"):
+            ?>
+            <td data-fieldname="checking">
+              <?= "<input type='checkbox' class='delete-checkbox'"?>
+            </td>
+            <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td>
+            <td data-fieldname="bus_no"> <?= $schedule->bus_no ?> </td>
+            <td data-fieldname="departure"> <?= $schedule->departure_time ?> </td>
+            <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
+            <?php endif;?>
+          </tr>
+          <?php endforeach; else: ?>
+          <tr>
+            <td colspan="9" style="text-align:center;color:#999999;"><i>No schedule found.</i></td>
+          </tr>
+          <?php endif;?>
+        </table>
+      </div>
+    </div>
+    <button class="card-toggle"></button>
+    <div class="card-details">
+      <!-- Additional content to be displayed -->
     </div>
   </div>
 </div>
 
 
 
-        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
+        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
         <script>
 
         var today = new Date();
@@ -295,6 +316,55 @@ deleteCheckboxes.forEach(function(deleteCheckbox) {
   });
 });
 
+function generateNewDiv() {
+  const card = document.querySelector('.card');
+  const newDiv = document.createElement('div');
+  newDiv.classList.add('new-div');
+  card.appendChild(newDiv);
+  
+  card.classList.toggle('rotate');
+  card.addEventListener('transitionend', () => {
+    card.classList.toggle('rotate');
+  }, { once: true });
+}
+
+document.addEventListener(
+    "DOMContentLoaded", function(){
+
+        const genBtn = document.getElementById("btn-generate");
+
+        genBtn.addEventListener("click", ()=>{
+          
+            generating();
+            alert("H");
+        });
+
+       function generating(){
+        const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
+        fetch(`${ROOT}/schedules/scheduleGenerate`, {
+          method: "POST",
+          credentials: "same-origin",
+          mode: "same-origin",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({ id: id }),
+        })
+          .then((res) => res.json())
+          .catch((error) => console.log(error))
+          .then((data) => {
+            console.log(data);
+          });
+          
+       }
+      
+    
+    }
+
+
+  
+
+    );
 
 
         </script>

@@ -107,7 +107,7 @@ document.addEventListener(
 
         function deleteRecord(id) {
             const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
-          fetch(`${ROOT}/schedules/api_delete`, {
+          fetch(`${ROOT}/schedules/scheduleGenerate`, {
             method: "POST",
             credentials: "same-origin",
             mode: "same-origin",
@@ -126,3 +126,41 @@ document.addEventListener(
 
     }
 );
+
+//generating
+document.addEventListener(
+    "DOMContentLoaded", function(){
+
+        const genBtn = document.getElementById("gen-button");
+
+        genBtn.addEventListener("click", ()=>{
+            alert("Hey");
+            generating();
+        });
+
+       function generating(id){
+        const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
+        fetch(`${ROOT}/schedules/scheduleGenerate`, {
+          method: "POST",
+          credentials: "same-origin",
+          mode: "same-origin",
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+          body: JSON.stringify({ id: id }),
+        })
+          .then((res) => res.json())
+          .catch((error) => console.log(error))
+          .then((data) => {
+            console.log(data);
+          });
+       }
+      
+    
+    }
+
+
+  
+
+    );
+
