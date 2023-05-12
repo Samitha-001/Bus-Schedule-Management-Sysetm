@@ -117,6 +117,7 @@ class Model
     }
     
     
+    
 
     public function update($id, $data, $id_column = 'id') {
         // removes unwanted data
