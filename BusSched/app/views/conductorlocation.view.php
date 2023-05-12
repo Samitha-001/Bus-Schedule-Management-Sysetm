@@ -38,14 +38,24 @@ if (!isset($_SESSION['USER'])) {
         </div>  
       <?php
 
-$id=$_GET['tripID'];
+// $id=$_GET['tripID'];
+// // $id=substr($ids, 1);
+// if ($id[0]=='/'):
+//     $id=substr($id, 1);
+// endif;    
+// show($id);
+$id=11;
 $trip = new Trip();
 $tripx=$trip->first(['id'=>$id]);
-    //   $trip=new Trip(); 
-    //   $trips=$trip->getTripdetails($id);
-//  show($tripx);
+if (!$tripx) {
+    echo "Invalid trip id: $id";
+    exit;
+}
 
-$source=$tripx->starting_halt;
+$source=$tripx->starting_halt; 
+
+$halts=array("Werahera","Boralesgamuwa","Rattanapitiya","Pepiliyana","Kohuwala","Dutugemunu St.","Pamankada","Havelock City","Thimbirigasyaya","Thummulla","Kumaratunga M. Rd","Cambridge Place","Public Library","Dharmapala Mw.","Town Hall","Ibbanwala Junction","T.B. Jayah Rd.","Gamani Hall Jct.","D.r. Wijewardena Rd","Lake House","Pettah");
+
 ?>
 <div class="col-2">
             <table border='1' class="styled-table" id="tickets">
@@ -56,327 +66,28 @@ $source=$tripx->starting_halt;
     <?php
 if (!empty($tripx)):
         if ($source == 'Piliyandala'): ?>
-            <tr>
-            <td data-fieldname="Werahera">Werahera</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-            <tr>
-            <td data-fieldname="Boralesgamuwa">Boralesgamuwa</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-            <tr>
-            <td data-fieldname="Rattanapitiya">Rattanapitiya</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Pepiliyana">Pepiliyana</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
+            <?php foreach ($halts as $halt) { ?>
+                <tr>
+                <td><?= $halt?></td>
+                <td>
+                    <form method="post" action="<?= ROOT ?>/conductorlocations">
+                    <input type="hidden" name="trip_id" value="<?= $tripx->id ?>">
+                    <input type="hidden" name="location" value="<?= $halt ?>">
+                    <button type="submit" >Update</button>
+                    </form>
+                </td>
+                </tr>
+            <?php } ?>
 
-<tr>
-            <td data-fieldname="Kohuwala">Kohuwala</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Dutugemunu St.">Dutugemunu St.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Pamankada">Pamankada</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Havelock City">Havelock City</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Thimbirigasyaya">Thimbirigasyaya</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Thummulla">Thummulla</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Kumaratunga M. Rd">Kumaratunga M. Rd</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Cambridge Place">Cambridge Place</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Public Library">Public Library</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Dharmapala Mw.">Dharmapala Mw.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Town Hall">Town Hall</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Ibbanwala Junction">Ibbanwala Junction</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="T.B. Jayah Rd.">T.B. Jayah Rd.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Gamani Hall Jct.">Gamani Hall Jct.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="D.r. Wijewardena Rd">D.r. Wijewardena Rd</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Lake House">Lake House</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-
-<tr>
-            <td data-fieldname="Fort">Fort</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-
-<tr>
-            <td data-fieldname="Pettah">Pettah</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
 <?php endif;
             else: ?>
-             <tr>
-            <td data-fieldname="Pettah">Pettah</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Fort">Fort</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Lake House">Lake House</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="D.r. Wijewardena Rd">D.r. Wijewardena Rd</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Gamani Hall Jct.">Gamani Hall Jct.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="T.B. Jayah Rd.">T.B. Jayah Rd.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Ibbanwala Junction">Ibbanwala Junction</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Town Hall">Town Hall</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Dharmapala Mw.">Dharmapala Mw.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Public Library">Public Library</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Cambridge Place">Cambridge Place</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Kumaratunga M. Rd">Kumaratunga M. Rd</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Thummulla">Thummulla</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Thimbirigasyaya">Thimbirigasyaya</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Havelock City">Havelock City</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-
-<tr>
-            <td data-fieldname="Pamankada">Pamankada</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Dutugemunu St.">Dutugemunu St.</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Kohuwala">Kohuwala</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-<tr>
-            <td data-fieldname="Pepiliyana">Pepiliyana</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-
-            <tr>
-            <td data-fieldname="Rattanapitiya">Rattanapitiya</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-<tr></tr>
-
-            <tr>
-            <td data-fieldname="Boralesgamuwa">Boralesgamuwa</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr> <tr>
-            <td data-fieldname="Werahera">Werahera</td>   
-            <td class="update-location-btn">
-                <button class="button-green">Upadate</button>
-            </td>
-            </tr>
-
+           
+ 
 
             <?php endif; ?>
-<?php 
-$tripx->updateTripLocation($id, "Werahera");
-?>
-      
 
+      
+            <script src="<?= ROOT ?>/assets/js/trips.js"></script>
     </main>
 
 </body>
