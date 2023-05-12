@@ -57,7 +57,6 @@ if (!isset($_SESSION['USER'])) {
             <div class="col-1">
             <table class="header-links">
                 <tr>
-                    <th style="padding-left:60px"><a href="<?= ROOT ?>/contactowners" ><h3>Bus Owner</h3></a></th>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/contactdrivers" ><h3>Drivers</h3></a></th>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/contactconductors" ><h3>Conductors</h3></a></th>
                 </tr>
@@ -72,22 +71,55 @@ if (!isset($_SESSION['USER'])) {
             
         </div>
         <div class="col-2">
-            <table border='1' class="styled-table">
-                <tr>
-                    <th>Name</th>
-                    <th>EmailAddress</th>
-                    <th>Contact No</th>
-                    <th>Assinged Bus</th>
-                </tr>
-
+            <h1>Drivers</h1>
+        <table border='1' class="styled-table">
+                
+        
                 <?php
-                foreach ($contactdrivers as $driver) {
+                
+                $testuser = new User();
+                $driverContacts = $testuser->getContactDetails('driver');
+                // show($driverContacts);
+                // $i = 0;
+                foreach ($driverContacts as $driverContact) {
                     echo "<tr>";
-                    echo "<td> $driver->name </td>";
-                    echo "<td> $driver->email </td>";
-                    echo "<td> $driver->tp </td>";
-                    echo "<td> $driver->bus_no </td>";
+                    echo "<th>Assinged Bus</th>";
+                    echo "<td> $driverContact[assigned_bus] </td>";
+                    echo "<tr>";
+
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<th>Name</th>";
+                    echo "<td>$driverContact[name]</td>";
                     echo "</tr>";
+                    
+
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<td>Email</td>";
+                    echo "<td> $driverContact[email]</td>";
+                    echo "</tr>";
+
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<td>Address</td>";
+                    echo "<td>$driverContact[address]</td>";
+                    echo "</tr>";
+                    
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<td>Contact No</td>";
+                    echo "<td> $driverContact[phone] </td>";
+                    echo "</tr>";
+
+                                 
+
+
+
+
+
+
+                   
                 } ?>
 
             </table>

@@ -53,6 +53,7 @@ h3 {
   color: white;
   margin-bottom: 0;
   text-align: center;
+  font-size: 150%;
 }
 
 a {
@@ -699,7 +700,7 @@ hr {
  
       .styled-table th {
         padding: 3px 5px;
-        font-size: 200%;
+        font-size: 130%;
       
       }
       
@@ -778,7 +779,7 @@ hr {
       
       .styled-table td {
         padding: 12px 15px;
-        font-size: 200%;
+        font-size: 130%;
         color: #7c839e;
         vertical-align: middle;
       }

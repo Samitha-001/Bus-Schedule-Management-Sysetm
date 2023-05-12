@@ -56,7 +56,7 @@ if (!isset($_SESSION['USER'])) {
             
             <table>
                 <tr>
-                    <th style="padding-left:30px"><a href="<?= ROOT ?>/contactowners" ><h3>Bus Owner</h3></a></th>
+                    
                     <th style="padding-left:30px"><a href="<?= ROOT ?>/contactdrivers" ><h3>Drivers</h3></a></th>
                     <th style="padding-left:30px"><a href="<?= ROOT ?>/contactconductors" ><h3>Conductors</h3></a></th>
                 </tr>
@@ -77,29 +77,58 @@ if (!isset($_SESSION['USER'])) {
             </table>   
         </div>
     <div class="col-2">
-            <table border='1' class="styled-table">
-                <tr>
-                    <th>Name</th>
-                    <th>EmailAddress</th>
-                    <th>Contact No</th>
-                    <th>Assinged Bus</th>
-                </tr>
+        <h1>Conductors</h1>
+    <table border='1' class="styled-table">
+               
 
-                <?php
-                foreach ($contactconductors as $conductor) {
+<?php
+                
+                $testuser = new User();
+                $conductorContacts = $testuser->getContactDetails('conductor');
+                // show($driverContacts);
+                // $i = 0;
+                foreach ($conductorContacts as $conductorContact) {
+
                     echo "<tr>";
-                    echo "<td> $conductor->name </td>";
-                    echo "<td> $conductor->email </td>";
-                    echo "<td> $conductor->tp </td>";
-                    echo "<td> $conductor->bus_no </td>";
-                    echo "</tr>";
-                } ?>
+                    echo "<th>Assinged Bus</th>";
+                    echo "<td> $conductorContact[assigned_bus] </td>";
+                    echo "<tr>";
 
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<th>Name</th>";
+                    echo "<td>$conductorContact[name]</td>";
+                    echo "</tr>";
+                    
+
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<td>Email</td>";
+                    echo "<td> $conductorContact[email] </td>";
+                    echo "</tr>";
+
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<td>Address</td>";
+                    echo "<td>$conductorContact[address]</td>";
+                    echo "</tr>";
+                    
+                    echo "<tr>";
+                    echo "<th></th>";
+                    echo "<td>Contact No</td>";
+                    echo "<td> $conductorContact[phone] </td>";
+                    echo "</tr>";
+
+                   
+
+                
+                } ?>
             </table>
+    
         </div>
     </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        
 
     </main>
 
