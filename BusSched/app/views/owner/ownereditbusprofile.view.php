@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
-    <title>Edit Bus Profile</title>
+    <?php include '../app/views/components/head.php';?>
+
+    <title>Bus Profile</title>
 
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
     <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
     <link href="<?= ROOT ?>/ownerbuses">
+   
+    <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script>
+    
 
     <!-- <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script> -->
 
@@ -21,80 +22,123 @@
 include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
 ?>
+
+<?php
+$busno=$_GET['bus_id'];
+// print id
+// show($busno);
+$bus = new Bus();
+$businfo = $bus->first(['id' => $busno]);
+// show($businfo);
+
+    ?>
+
 <main class="container1">
 
     <div class="header orange-header">
-            <h3 class="header-title">Register New Bus</h3>            
+            <h3 class="header-title">Bus Profile</h3>            
     </div>
 
-<div class="row">
+<div class="row" style="margin-left:50px">
     <div class="column left">
         <img src="<?= ROOT ?>/assets/images/buses/bus6.png" class="image">
     </div>
 
     <div class="column middle">
-   <form method="post" id="register-bus" style="margin-left: 150px;background-color:white;font-size:18px;line-height:3em" >
-    <?php if (!empty($errors)) : ?>
+   <form method="post" style="background-color:aliceblue;padding-right:10px" id="bus-form" action="<?= ROOT ?>/ownereditbusprofile/updateOwnerBus">
+   <?php if (!empty($errors)) : ?>
         <?= implode("<br>", $errors) ?>
     <?php endif; ?>
-
-    <div>
+   
+   <div>
         <table>
             <tr>
-            <td><label for="bus_no">Bus Number:</label></td>
-            <td><input type="text" id="bus_no" name="bus_no"></td>
+                <input id="id" name="id" value="<?php echo $businfo->id?>" hidden >
+            <td><label for="bus_no" >Bus Number:</label></td>
+            <td><input type="" id="bus_no" name="bus_no" value="<?php echo $businfo->bus_no?>" class="my-input" readonly ></td>
             </tr>
             <tr>
             <td><label for="type">Type:</label></td>
-            <td>
-                <select id="type" name="type" required>
-                <option value="S">Small</option>
-                <option value="L">Large</option>
-                </select>
-            </td>
+            <td><input id="type" name="type" value="<?php echo $businfo->type?>" class="my-input"  readonly ></td>
             </tr>
             <tr>
             <td><label for="seats_no">Number of Seats:</label></td>
-            <td><input type="number" id="seats_no" name="seats_no" required></td>
+            <td><input type="number" id="seats_no" name="seats_no" value="<?php echo $businfo->seats_no?>" class="my-input"  readonly ></td>
             </tr>
             <tr>
             <td><label for="route">Route:</label></td>
-            <td><input type="text" id="route" name="route" required></td>
+            <td><input type="text" id="route" name="route"value="<?php echo $businfo->route?>" class="my-input"  readonly ></td>
             </tr>
             <tr>
             <td><label for="start">Starting Halt:</label></td>
-            <td><input type="text" id="start" name="start" default></td>
+            <td><input type="text" id="start" name="start" default value="<?php echo $businfo->start?>" class="my-input" style="  border: none; outline: none;padding-left: 50px;background-color:aliceblue" readonly  ></td>
             </tr>
             <tr>
             <td><label for="dest">Destination:</label></td>
-            <td><input type="text" id="dest" name="dest"></td>
+            <td><input type="text" id="dest" name="dest" value="<?php echo $businfo->dest?>" class="my-input" readonly ></td>
             </tr>
             <tr>
             <td><label for="conductor">Conductor:</label></td>
-            <td><input type="text" id="conductor" name="conductor"></td>
+            <td><input type="text" id="conductor" name="conductor" value="<?php echo $businfo->conductor?>" class="my-input" readonly ></td>
             </tr>
             <tr>
             <td><label for="driver">Driver:</label></td>
-            <td><input type="text" id="driver" name="driver"></td>
+            <td><input type="text" id="driver" name="driver" value="<?php echo $businfo->driver?>" class="my-input" readonly  ></td>
             </tr>
+         
+
+           <tr>
+            <td>  <input id="submit-btn" type="submit" value="Save Changes" class="" ></td>
+            <td> <input id="cancel" type="submit" value="Cancel"></td>
+            </tr>
+        
         </table>
 
-
-        <script>
-            var table=document.getElementById('table');
-            for(var i=1; i<table.rows.length; i++){
-               table.rows[i].onclick=function(){
-                document.getElementById("bus_no").value=this.cells[0].innerHTML;
-                console.log(this.cells[0].innerHTML);
-               } 
-            }
-        </script>
-
-        <input id="submit-btn" type="submit" value="Edit" class="button-green" style="padding-left:10px;margin-left:250px;font-size:18px;">    
+        <input id="edit" type="button" value="Edit" class="" >
+        <input id="delete" type="button" value="Delete">
+            
     </div>
-</form>
+    </form>
   </div>
-</div> 
+</div>
+
+
+
+
+<script>
+    //   var table=document.getElementsByTagName('table')[0];
+    const deleteButton = document.getElementById('delete');
+    const editButton = document.getElementById('edit');
+    const saveButton = document.getElementById('submit-btn');
+    const cancelButton = document.getElementById('cancel');
+    const form = document.getElementById("bus-form");
+    const input = document.querySelector(".my-input");
+
+
+    editButton.addEventListener("click", function() {
+        const formFields = form.querySelectorAll("input");
+        formFields.forEach(function(field) {
+            field.removeAttribute("readonly");
+            editButton.style.display = "none";
+            deleteButton.style.display = "none";
+            saveButton.style.display = "block";
+            cancelButton.style.display = "block";
+            input.focus();
+        });
+    });
+    
+    // editButton.addEventListener('click', () => {
+    //     editFormContainer.style.display = 'block';
+    // });
+    
+    // cancelButton.addEventListener('click', () => {
+    //     editFormContainer.style.display = 'none';
+    // });
+
+    //     deleteButton.addEventListener('click', () => {
+    //     editFormContainer.style.display = 'none';
+    // });       
+    </script>
 </main>
 </body>
 

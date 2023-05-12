@@ -31,13 +31,13 @@ table {
 
   margin-top: 20px;
   border-collapse: separate;
-  border-spacing: 0px 10px;
+  /* border-spacing: 0px 10px; */
   background-color: white;
   /* center align table */
   margin-left: auto;
   border-radius: 5px;
 
-  height: 70vh;
+  /* height: 70vh; */
   overflow-x: auto;
   overflow-y: auto;
 }
@@ -59,7 +59,7 @@ td {
 /* freeze first row */
 tr:first-child {
   position: sticky;
-  top: 12px;
+  /* top: 12px; */
   background-color: #fff;
   z-index: 4;
   padding: 10px;
@@ -98,6 +98,10 @@ td:last-child {
   border-radius: 5px 0 0 5px;
 }
 
+#reserve-seats-div td {
+  text-align: center;
+}
+
 .card {
   background-color: white;
   width: 40%;
@@ -134,11 +138,15 @@ td:last-child {
 }
 
 h3 {
-  /* color: #f4511e; */
+  /* color: #FD6002; */
   text-align: center;
   font-size: 25px;
   padding: 0;
   margin: 0;
+}
+
+.white-h {
+  color: white;
 }
 
 h1 {
@@ -160,13 +168,13 @@ h1 {
   align-items: center;
 }
 
-.seat,
-.unavailable,
-.booked {
+.seating-grid .seat,
+.seating-grid .unavailable,
+.seating-grid .booked {
   /* width: 40px;
   height: 40px; */
   border: 3px solid white;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 0px;
   cursor: pointer;
   /* align-items: center;
@@ -177,20 +185,20 @@ h1 {
   color: black;
 }
 
-.unavailable {
-  background-color: #bec2cf;
+.seating-grid .unavailable {
+  background-color: #BEC2CF;
   color: white;
   border: 3px solid white;
   cursor: not-allowed;
 }
 
-.selected {
-  background-color: #f4511e;
+.seating-grid .selected {
+  background-color: #FD6002;
   color: white;
   font-weight: bold;
 }
 
-.booked {
+.seating-grid .booked {
   background-color: #fd0202;
   color: white;
   cursor: not-allowed;
@@ -203,16 +211,21 @@ h1 {
   margin: 0 auto;
 }
 
-.seating-grid td {
-  width: 60px;
-  padding: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.seating-grid tr:first-child {
+  position: inherit;
 }
 
-.no-seat {
+.seating-grid td {
+  width: 46px;
+  padding: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.seating-grid .no-seat {
   background-color: white;
-  border: white;
+  border: red;
 }
 
 /* search bar */
@@ -223,7 +236,7 @@ h1 {
 
 #reserve-seats-q {
   text-decoration: none;
-  color: #f15f22;
+  color: #FD6002;
   cursor: pointer;
   font-size: 15px;
   text-align: center;
@@ -235,13 +248,6 @@ h1 {
   padding-top: 25px;
   /* center align elements inside the div */
   text-align: center;
-}
-
-/* for desktop */
-/* @media only screen and (min-width: 768px) {
-} */
-div.ticket {
-  width: 60%;
 }
 
 div.search-bar {
@@ -300,12 +306,12 @@ div.from-to {
 
 .ticket-body {
   display: block;
-  background: #ffffff;
+  background: white;
   border-radius: 5px;
   padding: 15px;
   padding-bottom: 30px;
   margin: 0 auto;
-  margin-top: 0px;
+  margin-top: 20px;
   line-height: 2.5;
   text-align: center;
   font-size: 14px;
@@ -332,15 +338,22 @@ div.from-to {
 }
 
 .ticket-body table tr td:last-child {
-  text-align: left;
+  text-align: center;
 }
 
+.ticket-body table {
+  margin-top: 0px;
+}
+
+.ticket-body a {
+  color: #FD6002;
+}
 ul {
   padding-left: 0px;
 }
 
 .ticket-button {
-  background-color: #f4511e;
+  background-color: #FD6002;
   border: none;
   border-radius: 5px;
   color: white;
@@ -354,13 +367,14 @@ ul {
   text-decoration: none;
   width: 30%;
   height: 40px;
+  min-width: fit-content;
 }
 
 .ticket-button-2 {
   background-color: white;
-  border: solid 1px #f4511e;
+  border: solid 1px #FD6002;
   border-radius: 5px;
-  color: #f4511e;
+  color: #FD6002;
   text-align: center;
   font-family: "Outfit";
   font-size: 14px;
@@ -371,4 +385,52 @@ ul {
   text-decoration: none;
   width: 30%;
   height: 40px;
+  min-width: fit-content;
+}
+
+#price-breakdown th {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 400;
+  color: #7c839e;
+  /* padding-right: 5px; */
+}
+
+#price-breakdown tr td{
+  width: 15%;
+  text-align: right;
+}
+
+/* first child */
+#price-breakdown tr:first-child {
+  top: 0px;
+}
+
+/* last child */
+#price-breakdown tr:last-child td, #price-breakdown tr:last-child th {
+  color: #24315e;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input:disabled+label {
+  color: #BEC2CF;
+}
+
+#schedule-table th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+#schedule-table {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  max-height: 490px;
+  padding: 0px;
+}
+
+/* freeze first row */
+#schedule-table tr:first-child {
+  position: sticky;
+  top: 0px;
 }

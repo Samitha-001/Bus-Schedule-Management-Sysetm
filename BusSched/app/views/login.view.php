@@ -3,10 +3,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.88.1">
+  <?php include 'components/head.php';?>
+
   <title>Login</title>
 
   <link href="<?= ROOT ?>/assets/css/style.css" rel="stylesheet">

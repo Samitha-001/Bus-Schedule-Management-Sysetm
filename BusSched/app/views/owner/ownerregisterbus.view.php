@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include '../app/views/components/head.php';?>
+
     <title>Register New Bus</title>
 
     <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
     <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
 
     <script src="<?= ROOT ?>/assets/js/ownerregisterbus.js"></script>
 
@@ -31,13 +30,14 @@ include '../app/views/components/ownersidebar.php';
         <img src="<?= ROOT ?>/assets/images/buses/bus6.png" class="image">
     </div>
 
+
     <div class="column middle">
-   <form method="post" id="register-bus" style="margin-left: 150px;background-color:white;font-size:18px;line-height:3em" >
+   <form method="post" id="register-bus" >
     <?php if (!empty($errors)) : ?>
         <?= implode("<br>", $errors) ?>
     <?php endif; ?>
 
-    <div>
+    <div >
         <table>
             <tr>
             <td><label for="bus_no">Bus Number:</label></td>
@@ -76,8 +76,10 @@ include '../app/views/components/ownersidebar.php';
             <td><label for="driver">Driver:</label></td>
             <td><input type="text" id="driver" name="driver"></td>
             </tr>
+            
         </table>
-        <input id="submit-btn" type="submit" class="button-green" style="margin-left:250px;font-size:18px;" value="Submit">    
+        <input id="add-bus-btn" type="submit" class="button-green" value="Submit">
+         
     </div>
 </form>
   </div>
@@ -86,5 +88,8 @@ include '../app/views/components/ownersidebar.php';
 </body>
 
 </html>
+
+
+
 
 

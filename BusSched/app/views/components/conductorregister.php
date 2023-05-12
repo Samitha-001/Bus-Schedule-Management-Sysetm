@@ -4,6 +4,8 @@
     <br>
     <input class="signup-input" type="text" id="username" name="username" placeholder="Username..." required>
     <br>
+    <input class="signup-input" type="text" id="licence_no" name="licence_no" placeholder="Licence number..." required>
+    <br>
     <input class="signup-input" type="password" id="password" name="password" placeholder="Password..." required>
     <br>
     <input class="signup-input" type="password" id="pwdRepeat" name="pwdRepeat" placeholder="Confirm password..." required><br>

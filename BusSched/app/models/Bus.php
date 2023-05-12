@@ -11,6 +11,8 @@ class Bus extends Model
         'type',
         'seats_no',
         'route',
+        'rating',
+        'no_of_reviews',
         'start',
         'dest',
         'owner',
@@ -74,5 +76,32 @@ class Bus extends Model
         $data['bus_no'] = strtoupper(substr($data['bus_no'], 0, 2)) . substr($data['bus_no'], 2);
         echo $this->insert($data);
     }
+
+    public function getBus($busno)
+    {
+        return $this->where(['bus_no' => $busno])[0];
+    }
+
+    // function to get trips for a bus
+    public function getTripsForBus($busno, $date)
+    {
+        $trip = new Trip();
+        $trips = $trip->where(['bus_no' => $busno, 'trip_date' => $date]);
+        return $trips;
+    }
+
+    // add function to get income of a bus on a day
+    public function calculateDailyIncome($busno, $date)
+    {
+        $ticket = new E_ticket();
+        $tripsForBus = $this->getTripsForBus($busno, $date);
+
+        // $data = [];
+        // foreach ($tripsForBus as $trip) {
+
+        // }
+        // $tickets = $ticket->where(['bus'])
+    }
+
 
 }

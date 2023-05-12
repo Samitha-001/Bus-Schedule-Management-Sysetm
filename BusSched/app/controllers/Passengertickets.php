@@ -22,9 +22,27 @@ class Passengertickets
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
+            // postData has the ticketID as id, username, user_role
 
+            // update ticket status from collected to inactive
             $id = $postData['id'];
-            $this->updateTicketStatus($id, 'inactive');
+            if($postData['gotoff']) {
+                $this->updateTicketStatus($id, 'inactive');
+            }
+
+            // add, location update record
+            $location_update = new Location_update();
+            
+            $data = [
+                'username' => $postData['username'],
+                'user_role' => $postData['user_role'],
+                'ticket' => $postData['id'],
+                'tripID' => $postData['tripID'],
+                'halt' => $postData['halt'],
+                'timestamp' => date('Y-m-d H:i:s')
+            ];
+
+            $location_update->addLocationUpdate($data, $postData['user_role']);
 
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);

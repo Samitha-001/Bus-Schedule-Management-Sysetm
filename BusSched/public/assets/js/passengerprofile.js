@@ -1,7 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
+  
+  
+  // GET PROFILE PICTURE from form
+  let profilePicForm = document.getElementById("profile-pic-form");
+  let profilePicEditBtn = document.getElementById("edit-pencil");
+  
   let editbtn = document.getElementById("edit-passenger-info");
 
   editbtn.addEventListener("click", function (e) {
+    e.preventDefault();
     editRow(e);
   });
 
@@ -18,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // add event listener to cancel button
   cancelbtn.addEventListener("click", function (e) {
+    e.preventDefault();
     cancelEdit(e);
   });
 
@@ -34,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let infoform = ticketdiv.querySelector("form");
 
     // get element by class
-    let profileinfo = ticketdiv.querySelector("div.info-grid");
+    let profileinfo = ticketdiv.querySelector("div#passenger-info-div");
 
     // inputs
     let inputs = infoform.querySelectorAll("input");
@@ -45,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     inputs[3].value = dob;
 
     profileinfo.style.display = "none";
-    infoform.style.display = "grid";
+    infoform.style.display = "block";
+    profilePicEditBtn.style.display = "block";
   }
 
   // cancel edit
@@ -54,8 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
     infoform.style.display = "none";
 
     let ticketdiv = e.target.parentElement.parentElement.parentElement;
-    let profileinfo = ticketdiv.querySelector(".info-grid");
-    profileinfo.style.display = "grid";
+    let profileinfo = ticketdiv.querySelector("#passenger-info-div");
+    profileinfo.style.display = "block";
+    profilePicEditBtn.style.display = "none";
   }
 
   // save edited info
@@ -64,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let ticketdiv = e.target.parentElement.parentElement.parentElement;
     let prevValues = ticketdiv.querySelectorAll("p");
     let id = document.querySelector("#username").innerHTML;
-    // Hi passenger1!
-    //get username from above
+  
+    // get username from above
     id = id.substring(3, id.length - 1);
     let data = { id: id };
     let inputs = ticketdiv.querySelectorAll("input");
@@ -98,8 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
           // hide form and show info
           let infoform = ticketdiv.querySelector("form");
           infoform.style.display = "none";
-          let profileinfo = ticketdiv.querySelector(".info-grid");
-          profileinfo.style.display = "grid";
+          let profileinfo = ticketdiv.querySelector("#passenger-info-div");
+          profileinfo.style.display = "block";
+          profilePicEditBtn.style.display = "none";
           // if (data.success) {
           //     // this doesn't get called
           //     // update the values
@@ -131,6 +142,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   confirmGiftbtn.addEventListener("click", function (e) {
+    //check if gifting points > current value
+    let g = document.querySelector('#points').value
+    let c = parseFloat(pointBalanceDiv.querySelector('p').innerHTML)
+    if (g>c){
+      new Toast('fa fa fa-exclamation-triangle', '#ff0000','Invalid','You cannot gift more points than you have',true,3000)
+      return
+    }
     let confirm = window.confirm("Are you sure you want to gift points?");
     if (confirm) {
       giftPointsDiv.style.display = "none";
@@ -190,7 +208,164 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // update location cards
   
+  // let profilePicInput = document.getElementById("profile-pic-input");
+  // value of input with name username
+  let username = profilePicForm.querySelector("input[name='username']").value;
+  let profilePicUploadBtn = document.getElementById("upload-profile-pic-btn");
 
+  profilePicEditBtn.addEventListener("click", function (e) { 
+    document.getElementById("profile-pic-from-div").style.display = "block";
+  });
+
+  profilePicUploadBtn.addEventListener("click", function (e) {
+    // prevent default
+    e.preventDefault();
+
+    // hide form
+    let profilePic = document.getElementById("profile-pic");
+    profilePic.src = `${ROOT}/assets/images/profile-pics/${username}.jpg`;
+    document.getElementById("profile-pic-from-div").style.display = "none";
+
+    // save file in uploads folder
+    let formData = new FormData(profilePicForm);
+    let url = `${ROOT}/passengerprofile/api_upload_profile_pic`;
+    let options = {
+      method: "POST",
+      body: formData,
+    };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // redirect to profile page
+          window.location.href = `${ROOT}/passengerprofile`;
+          
+        } else {
+          alert(data.message);
+        }
+      }
+      )
+  });
+
+  // add friend
+  let addFriendBtn = document.getElementById("add-friend-btn");
+  let addFriendDiv = document.getElementById("add-friend-div");
+  let cancelAddFriendBtn = document.getElementById("cancel-add-friend-btn");
+  let confirmAddFriendBtn = document.getElementById("confirm-add-friend-btn");
+
+  addFriendBtn.addEventListener("click", function (e) {
+    addFriendDiv.style.display = "block";
+    addFriendBtn.style.display = "none";
+  });
+
+  cancelAddFriendBtn.addEventListener("click", function (e) {
+    addFriendDiv.style.display = "none";
+    addFriendBtn.style.display = "block";
+  });
+
+  confirmAddFriendBtn.addEventListener("click", function (e) {
+    let confirm = window.confirm("Are you sure you want to add friend?");
+    if (confirm) {
+      addFriendDiv.style.display = "none";
+      addFriendBtn.style.display = "block";
+      
+      addFriend();
+      // display data in friend list
+      // create div
+      let div = document.createElement("div");
+      // add i tag inside div
+      let i = document.createElement("i");
+      i.innerHTML = "Remove friend";
+      i.classList.add("remove-friend-i");
+      // add attribute
+      let input = document.getElementById("friend");
+
+      i.setAttribute("data-friend", input.value);
+      div.appendChild(i);
+      let p = document.createElement("p");
+      p.innerHTML = "@"+input.value;
+      div.appendChild(p);
+      div.appendChild(document.createElement("hr"));
+
+      // add div to friend list
+      friendListDiv.appendChild(div);
+    }
+  });
+
+  function addFriend() {
+    let data = {};
+    let input = document.getElementById("friend");
+    if (!input.value) {
+      alert("Please enter a username");
+      return;
+    };
+      data['friend'] = input.value;
+
+    // send data to server
+    let url = `${ROOT}/passengerprofile/api_add_friend`;
+    let options = {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .catch((err) => {
+        console.log(err);
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  // remove friend
+  let friendListDiv = document.getElementById("friend-list-div");
+
+  // add event listeners to all i tags in it
+  let friendList = friendListDiv.querySelectorAll("i");
+  friendList.forEach((friend) => {
+    friend.addEventListener("click", function (e) {
+      // get data attribute
+      let confirm = window.confirm("Are you sure you want to remove "+friend.getAttribute('data-friend')+" as a friend?");
+      if (confirm) {
+        removeFriend(friend.getAttribute('data-friend'));
+        // hide friend 
+        friend.parentElement.remove();
+      }
+    });
+  });
+
+
+  // function to remove a friend
+  function removeFriend(friend) {
+    let data = {};
+    data['friend'] = friend;
+
+    // send data to server
+    let url = `${ROOT}/passengerprofile/api_remove_friend`;
+    let options = {
+      method: "POST",
+      credentials: "same-origin",
+      mode: "same-origin",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(data),
+    };
+
+    fetch(url, options)
+      .then((response) => response.json())
+      .catch((err) => {
+        console.log(err);
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
 });
