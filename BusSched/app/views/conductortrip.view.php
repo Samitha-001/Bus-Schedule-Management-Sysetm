@@ -78,9 +78,15 @@ if (!isset($_SESSION['USER'])) {
                         <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                        
                         <?php ?>
+                
                         <td class="start-trip-btn">
-                            <button class="button-green">Start</button>
-                        </td>
+    <form method="post" action="<?= ROOT ?>/conductortrips/updateTripStatus">
+        <input type="hidden" name="tripID" value="<?= $trip->id ?>">
+        <input type="hidden" name="status" value="started">
+        <button type="submit" >Start</button>
+    </form>
+</td>
+                        
                         </tr>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -90,6 +96,7 @@ if (!isset($_SESSION['USER'])) {
             <?php endif; ?>
         </table>
     </div>
+
     <div class="col-3">
         <h1>Ended Trips</h1>
         <table border='1' class="styled-table" id="ended_trips">
@@ -116,6 +123,9 @@ if (!isset($_SESSION['USER'])) {
             <?php endif; ?>
         </table>
     </div>
+
+    
+   
     <script src="<?= ROOT ?>/assets/js/trips.js"></script>
 </main>
 
