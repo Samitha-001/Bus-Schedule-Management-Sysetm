@@ -125,3 +125,30 @@ function closeNav() {
     document.getElementById("Sidenav").style.width = "0";
 }
 </script>
+
+<?php if(isset($_SESSION['USER']) && $_SESSION['USER']->role == 'conductor') { ?>
+    <script>
+        const ROLE = 'conductor'
+        const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+        //Breakdown notifications
+        let funcBreakdown = (d) => {
+            new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+        }
+        new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+    </script>
+<?php } ?>
+
+
+<?php if(isset($_SESSION['USER']) && $_SESSION['USER']->role == 'driver') { ?>
+    <script>
+        const ROLE = 'driver'
+        const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+        //Breakdown notifications
+        let funcBreakdown = (d) => {
+            new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+        }
+        new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+    </script>
+<?php } ?>

@@ -9,3 +9,16 @@
             
         </div>
     </div>
+
+
+<script>
+    const ROLE = 'scheduler'
+    const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+    //Breakdown notifications
+    let funcBreakdown = (d) => {
+        new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+    }
+    new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+
+</script>
