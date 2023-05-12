@@ -77,9 +77,9 @@ class Bus extends Model
         echo $this->insert($data);
     }
 
-    public function getBus($busno)
+    public function getBus($busno): object|false
     {
-        return $this->where(['bus_no' => $busno])[0];
+        return $this->first(['bus_no' => $busno]);
     }
 
     // function to get trips for a bus

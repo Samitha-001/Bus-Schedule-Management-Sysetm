@@ -1,5 +1,7 @@
 <?php
+use WebSocket\Client;
 
+require __DIR__ . '/../../vendor/autoload.php';
 class Trip extends Model
 {
     protected $table = 'trip';
@@ -10,14 +12,11 @@ class Trip extends Model
         'trip_date',
         'departure_time',
         'starting_halt',
-
         'bus_no',
         'status',
         'last_updated_halt',
-        'location_updated_time'
-
-        'bus_id',
-        'Status'
+        'location_updated_time',
+        'status'
 
     ];
 
@@ -39,10 +38,10 @@ class Trip extends Model
 
 
     // get bus of a trip
-    public function getBus($data)
+    public function getBus($trip_no)
     {
-        $bus = new Bus();
-        return $bus->first(['bus_no' => $data['bus_no']]);
+        $b = $this->getTrip(['id' => $trip_no])->bus_no;
+        return (new Bus())->first(['bus_no' => $b]);
     }
 
     // update last_updated_halt and location_updated_time
@@ -56,6 +55,53 @@ class Trip extends Model
     {
         
         return $this->update($id, ['status' => $data['status']]);
+    }
+
+    /**
+     * @param number $tripID
+     * @return array
+     * Description: get passengers of a trip
+     */
+    public function getPassengers($tripID): array
+    {
+        //get trip data
+        $tripdata = $this->getTrip(['id' => $tripID]);
+        if (!$tripdata) {
+            return [];
+        }
+        $bus = $tripdata->bus_no;
+        $eTickets = (new E_ticket())->getTripBusTickets($bus);
+        $userIDs = [];
+        $pm = new Passenger();
+        foreach ($eTickets as $eTicket) {
+            $userIDs[] = $eTicket->passenger;
+        }
+        return $userIDs;
+    }
+
+    /**
+     * @param number $tripID
+     * Description: Send notification to passengers of a trip that it started
+     */
+    public function sendTripStartNotification($tripID):void{
+
+        $tripdata = $this->getTrip(['id' => $tripID]);
+        if (!$tripdata) {
+            return;
+        }
+        $h=$tripdata->starting_halt;
+        $passengers = $this->getPassengers($tripID);
+        if ($passengers) {
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "trip-start",
+                "data" => [
+                    "message" => 'Your bus just left '.$h,
+                ],
+                "role" => ["passenger"],
+                "usernames" => $passengers
+            ]));
+        }
     }
 
 }
