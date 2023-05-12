@@ -16,7 +16,7 @@ class Schedules
         
         $bus = json_decode(json_encode($buses), true);
         
-        $schedules = $schedule->busSchedule($bus, date("Y-m-d"));
+        $schedules = $schedule->busSchedule($bus, date('Y:m:d'));
         
         
 

@@ -269,6 +269,151 @@ class Schedule extends Bus
                 
 return $schedule;
     }
+    function sched(){
+        $a_name = 'Piliyandala';
+$b_name = 'Pettah';
+$start_time = new DateTime('2023-05-12 05:30:00'); // 5:30 AM
+$end_time = new DateTime('2023-05-12 20:30:00'); // 8:30 PM
+$interval = new DateInterval('PT10M');
+$travel_time = new DateInterval('PT1H');
+$buses_of_a = array('A1', 'A2', 'A3');
+$buses_of_b = array('B1', 'B2', 'B3', 'B4', 'B5');
 
+$success_schedule = '';
+for ($i = 60; $i > 0; $i--) {
+    $interval = new DateInterval('PT' . $i . 'M');
+    $possible = true;
+    $current_schedule = '';
+    $current_time = $start_time;
+    $buses_in_a = $buses_of_a;
+    $buses_in_b = $buses_of_b;
+    $in_transit_a_b = array();
+    $in_transit_b_a = array();
+    while ($current_time <= $end_time) {
+        $current_schedule .= 'Current time: ' . $current_time->format('H:i') . "\n";
+        $removable_buses_a = array();
+        $removable_buses_b = array();
+        foreach ($in_transit_a_b as $bus => $arrival_time) {
+            if ($arrival_time <= $current_time) {
+                $removable_buses_a[] = $bus;
+            }
+        }
+        foreach ($removable_buses_a as $bus) {
+            unset($in_transit_a_b[$bus]);
+            $buses_in_b[] = $bus;
+        }
+        foreach ($in_transit_b_a as $bus => $arrival_time) {
+            if ($arrival_time <= $current_time) {
+                $removable_buses_b[] = $bus;
+            }
+        }
+        foreach ($removable_buses_b as $bus) {
+            unset($in_transit_b_a[$bus]);
+            $buses_in_a[] = $bus;
+        }
+        if (count($buses_in_a) != 0) {
+            $depart_a = $buses_in_a[array_rand($buses_in_a)];
+            $current_schedule .= $depart_a . ' departs ' . $a_name . ' at ' . $current_time->format('H:i') . "\n";
+            unset($buses_in_a[array_search($depart_a, $buses_in_a)]);
+            $in_transit_a_b[$depart_a] = $current_time->add($travel_time);
+        } else {
+            $possible = false;
+            break;
+        }
+        if (count($buses_in_b) != 0) {
+            $depart_b = $buses_in_b[array_rand($buses_in_b)];
+            $current_schedule .= $depart_b . ' departs ' . $b_name . ' at ' . $current_time->format('H:i') . "\n";
+            unset($buses_in_b[array_search($depart_b, $buses_in_b)]);
+            $in_transit_b_a[$depart_b] = $current_time->add($travel_time);
+        } else {
+            $possible = false;
+            break;
+        }
+        $current_time = $current_time->add($interval);
+    }
+    if (!$possible) {
+        $interval = new DateInterval('PT' . ($i + 1) . 'M');
+        break;
+    }
+    $success_schedule = $current_schedule;
+    }
+    return $interval->format('%i');
+    }
+
+    function findIntervalTime($a_name, $b_name, $start_time_str, $end_time_str, $interval_min, $buses_of_a, $buses_of_b) {
+        $start_time = new DateTime($start_time_str);
+        $end_time = new DateTime($end_time_str);
+        $interval = new DateInterval("PT{$interval_min}M");
+    
+        $success_schedule = '';
+        for ($i = 60; $i > 0; $i--) {
+            $interval = new DateInterval("PT{$i}M");
+            $possible = true;
+            $current_schedule = '';
+            $current_time = clone $start_time;
+            $buses_in_a = $buses_of_a;
+            $buses_in_b = $buses_of_b;
+            $in_transit_a_b = [];
+            $in_transit_b_a = [];
+            
+            while ($current_time <= $end_time) {
+                $current_schedule .= 'Current time: ' . $current_time->format('H:i') . PHP_EOL;
+                
+                $removable_buses_a = [];
+                $removable_buses_b = [];
+                foreach ($in_transit_a_b as $bus => $arrival_time) {
+                    if ($arrival_time <= $current_time) {
+                        $removable_buses_a[] = $bus;
+                    }
+                }
+                foreach ($removable_buses_a as $bus) {
+                    unset($in_transit_a_b[$bus]);
+                    $buses_in_b[] = $bus;
+                }
+                foreach ($in_transit_b_a as $bus => $arrival_time) {
+                    if ($arrival_time <= $current_time) {
+                        $removable_buses_b[] = $bus;
+                    }
+                }
+                foreach ($removable_buses_b as $bus) {
+                    unset($in_transit_b_a[$bus]);
+                    $buses_in_a[] = $bus;
+                }
+                
+                if (count($buses_in_a) > 0) {
+                    $depart_a = $buses_in_a[array_rand($buses_in_a)];
+                    $current_schedule .= "$depart_a departs $a_name at " . $current_time->format('H:i') . PHP_EOL;
+                    unset($buses_in_a[array_search($depart_a, $buses_in_a)]);
+                    $in_transit_a_b[$depart_a] = clone $current_time;
+                    $in_transit_a_b[$depart_a]->add(new DateInterval("PT{$interval_min}M"));
+                } else {
+                    $possible = false;
+                    break;
+                }
+                
+                if (count($buses_in_b) > 0) {
+                    $depart_b = $buses_in_b[array_rand($buses_in_b)];
+                    $current_schedule .= "$depart_b departs $b_name at " . $current_time->format('H:i') . PHP_EOL;
+                    unset($buses_in_b[array_search($depart_b, $buses_in_b)]);
+                    $in_transit_b_a[$depart_b] = clone $current_time;
+                    $in_transit_b_a[$depart_b]->add(new DateInterval("PT{$interval_min}M"));
+                } else {
+                    $possible = false;
+                    break;
+                }
+                
+                $current_time->add($interval);
+            }
+            
+            if ($possible) {
+                $success_schedule = $current_schedule;
+                break;
+            }
+        }
+        
+        return $interval->i;
+    }
+    
+    
     
 }

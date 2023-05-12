@@ -131,14 +131,14 @@ document.addEventListener(
 document.addEventListener(
     "DOMContentLoaded", function(){
 
-        const genBtn = document.getElementById("gen-button");
+        const genBtn = document.getElementById("btn-generate");
 
         genBtn.addEventListener("click", ()=>{
             alert("Hey");
             generating();
         });
 
-       function generating(id){
+       function generating(){
         const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
         fetch(`${ROOT}/schedules/scheduleGenerate`, {
           method: "POST",
@@ -155,7 +155,6 @@ document.addEventListener(
             console.log(data);
           });
        }
-      
     
     }
 
@@ -164,3 +163,4 @@ document.addEventListener(
 
     );
 
+    
