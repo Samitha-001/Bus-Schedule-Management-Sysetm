@@ -25,36 +25,45 @@ if (!isset($_SESSION['USER'])) {
 
     <main class="container1">
 
-        <div>
-            <br>
-            <div class="col-2">
-            <table border='1' class="styled-table">
+    <div class="col-10 col-s-10" style="padding:0px;">
+            <table id="schedule-table" style="width: 100%; font-size: 12px;">
                 <tr>
                     <th>Trip ID</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Time</th>
-                    <th>Bus No</th>
+                    <th>Trip start</th>
+                    <th>Bus no</th>
+                    <th>Start</th>
+                    <th>Bus type</th>
+                    <th>Seats available</th>
+                    <th>Last passed</th>
                 </tr>
+                <?php if ($trips):
+                foreach ($trips as $trip):
+                // shows only trips that are not ended
+                if ($trip->status != "ended") { ?>
 
+                <tr data-id = <?= $trip->id ?> class='data-row'>
                 <?php
-                if(!empty($conductorschedules)):
-                foreach ($conductorschedules as $schedule) {
-                    echo "<tr>";
-                    echo "<td> $schedule->id </td>";
-                    echo "<td> $schedule->from </td>";
-                    echo "<td> $schedule->to </td>";
-                    echo "<td> $schedule->time </td>";
-                    echo "<td> $schedule->bus_no</td>";
-                    echo "</tr>";
-                    }
-                else:
-                    echo "<tr><td colspan='5'>No schedules found</td></tr>";
+                $tripx = new Trip();
+                $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
+                ?>
+                <td><?= $trip->id ?></td>
+                    <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<span data-fieldname="departure_time"><?= $trip->departure_time ?></span></td>
+                    <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
+                    <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
+                    <td data-fieldname="bus_type"><?= $bus->type ?></td>
+                    <td data-fieldname="seats_available">-</td>
+                    <td data-fieldname="last_updated">
+                        <?php if ($trip->last_updated_halt)
+                            echo "$trip->last_updated_halt";
+                        else
+                            echo "Trip hasn't started yet";
+                        }
+                    endforeach;
                 endif; ?>
-
+                    </td>
             </table>
         </div>
-        </div>
+        
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
     </main>
