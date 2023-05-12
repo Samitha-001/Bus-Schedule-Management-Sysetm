@@ -122,12 +122,13 @@ class Bus extends Model
      
            
                 $tickets = $ticket->where(['trip_id' => $tripno]);
-                
+                if (!empty($tickets) && is_array($tickets) || is_object($tickets)) {
                 foreach ($tickets as $tick) {
                 $income += $tick->price;
                 
             }
-            
+
+            }
         
         return $income;
     }
