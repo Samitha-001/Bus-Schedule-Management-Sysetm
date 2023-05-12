@@ -44,11 +44,6 @@
         </div>
     </div>
 
-    <?php
-    $temp = new Breakdown();
-    show($temp->getOwnerBreakdowns('owner1', 'repairing'));
-    ?>
-
     <div><h4 class="white-h" style="text-align:center; margin-bottom:0px;">Ticket fare: <span id="bus-fare-span"></span></h4></div>
     <div class="row">
         <div class="col-10 col-s-10" style="margin: auto; padding:0px;">
