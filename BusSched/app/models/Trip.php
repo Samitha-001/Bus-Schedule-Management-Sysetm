@@ -62,7 +62,6 @@ class Trip extends Model
     {
         
         return $this->update($id, ['status' => $data['status']]);
-    }
 
     // get tranferable trips
     public function getTransferableTrips($tripID, $seats=0)
@@ -144,5 +143,6 @@ class Trip extends Model
 
         return $gap;
     }
+
 
 }

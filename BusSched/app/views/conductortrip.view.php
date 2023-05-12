@@ -78,9 +78,15 @@ if (!isset($_SESSION['USER'])) {
                         <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                        
                         <?php ?>
+                
                         <td class="start-trip-btn">
-                            <button class="button-green">Start</button>
-                        </td>
+    <form method="post" action="<?= ROOT ?>/conductortrips/updateTripStatus">
+        <input type="hidden" name="tripID" value="<?= $trip->id ?>">
+        <input type="hidden" name="status" value="started">
+        <button type="submit" >Start</button>
+    </form>
+</td>
+                        
                         </tr>
                 <?php endforeach; ?>
             <?php else: ?>
