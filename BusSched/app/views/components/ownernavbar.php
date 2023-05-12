@@ -41,3 +41,14 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 </nav>
 
+<script>
+    const ROLE = 'owner'
+    const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+    //Breakdown notifications
+    let funcBreakdown = (d) => {
+        new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+    }
+    new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+
+</script>
