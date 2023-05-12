@@ -7,7 +7,8 @@
     <title>Income</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
-    <link href="<?= ROOT ?>/assets/css/owner_view.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
+    <!-- <link href="<?= ROOT ?>/assets/css/owner_view.css" rel="stylesheet"> -->
 </head>
 
 <body>

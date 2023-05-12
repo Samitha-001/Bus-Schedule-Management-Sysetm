@@ -113,20 +113,6 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
         </div>
-  
-
-    <div class="login-buttons">
-        <!-- if user is logged in -->
-        <?php if (isset($_SESSION['USER'])) { ?>
-            <!-- <a class="sidenav-signup-button" href="<?= ROOT ?>/logout">Logout</a> -->
-
-            <!-- if user is logged out -->
-        <?php } else { ?>
-            <a class="sidenav-login-button" href="<?= ROOT ?>/login">Login</a>
-            <a class="sidenav-signup-button" href="<?= ROOT ?>/signup">Sign up</a>
-            <!-- </div> -->
-        <?php } ?>
-    </div>
 
 </div>
 
