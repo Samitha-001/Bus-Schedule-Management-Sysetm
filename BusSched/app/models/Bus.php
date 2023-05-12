@@ -113,5 +113,25 @@ class Bus extends Model
         return $income;
     }
 
+    public function calculateTripIncome($tripno)
+    {
+        $ticket = new E_ticket();
+        
+
+        $income = 0;
+     
+           
+                $tickets = $ticket->where(['trip_id' => $tripno]);
+                if (!empty($tickets) && is_array($tickets) || is_object($tickets)) {
+                foreach ($tickets as $tick) {
+                $income += $tick->price;
+                
+            }
+
+            }
+        
+        return $income;
+    }
+
 
 }

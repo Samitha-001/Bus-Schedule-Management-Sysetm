@@ -125,7 +125,7 @@ if(is_array($trips) || is_object($trips)) {
         </div>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <script src="<?= ROOT ?>/assets/js/conductorbus.js"></script>
 
     </main>
 

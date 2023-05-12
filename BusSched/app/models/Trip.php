@@ -60,7 +60,6 @@ class Trip extends Model
     // update trip
     public function updateTrip($id, $data)
     {
-        
         return $this->update($id, ['status' => $data['status']]);
     }
 
@@ -145,5 +144,6 @@ class Trip extends Model
 
         return $gap;
     }
+
 
 }

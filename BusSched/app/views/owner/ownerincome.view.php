@@ -21,6 +21,7 @@ include '../app/views/components/ownersidebar.php';
 <?php
 $bus=new Bus();
 $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
+
 $date = '2023-01-1';
 // show($date);
 foreach($buses as $busx)
