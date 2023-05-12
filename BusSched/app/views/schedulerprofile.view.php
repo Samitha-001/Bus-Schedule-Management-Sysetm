@@ -116,8 +116,8 @@ if (isset($_SESSION['USER'])) {
                 
                 <!-- TODO -->
                 <div class="info-grid-start-2">
-                    <button id='save-passenger-info' style="background-color: #24315e;">Save</button>
-                    <button id='cancel-passenger-info' style="background-color: #24315e;">Cancel</button>
+                    <button id='save-scheduler-info' style="background-color: #24315e;">Save</button>
+                    <button id='cancel-scheduler-info' style="background-color: #24315e;">Cancel</button>
                 </div>
             </form>
 

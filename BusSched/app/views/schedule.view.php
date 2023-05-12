@@ -187,7 +187,7 @@ if (!isset($_SESSION['USER'])) {
 </div>
 
 <div class="schedule-cards">
-  <div class="card piliyandala">
+  <!-- <div class="card piliyandala">
     <div class="card-content">
       <h2>From Piliyandala</h2>
       <div class="table-container">
@@ -217,9 +217,7 @@ if (!isset($_SESSION['USER'])) {
             <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
             <?php endif;?>
           </tr>
-          <?php 
-            print_r($schedules);
-          ?>
+          <?php echo $schedules?>
           <?php endforeach; else: ?>
           <tr>
             <td colspan="9" style="text-align:center;color:#999999;"><i>No schedule found.</i></td>
@@ -232,10 +230,13 @@ if (!isset($_SESSION['USER'])) {
     <div class="card-details">
       <!-- Additional content to be displayed -->
     </div>
-  </div>
+    <?php 
+       print_r($schedules);
+    ?>
+  </div> 
  
 
-  <div class="card piliyandala">
+  <!-- <div class="card piliyandala">
     <div class="card-content">
       <h2>From Pettah</h2>
       <div class="table-container">
@@ -272,7 +273,7 @@ if (!isset($_SESSION['USER'])) {
           <?php endif;?>
         </table>
       </div>
-    </div>
+    </div> -->
     <button class="card-toggle"></button>
     <div class="card-details">
       <!-- Additional content to be displayed -->

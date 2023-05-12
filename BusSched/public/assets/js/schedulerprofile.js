@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     // save passenger info edit
-    let savebtn = document.getElementById("save-passenger-info");
+    let savebtn = document.getElementById("save-scheduler-info");
     // event listener to save button
     savebtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     // cancel passenger info edit
-    let cancelbtn = document.getElementById("cancel-passenger-info");
+    let cancelbtn = document.getElementById("cancel-scheduler-info");
   
     // add event listener to cancel button
     cancelbtn.addEventListener("click", function (e) {
@@ -25,10 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function editRow(e) {
       let ticketdiv = e.target.parentElement.parentElement;
       let userdetails = ticketdiv.querySelectorAll("p");
-      let name = userdetails[0].textContent.trim();
-      let phone = userdetails[1].textContent.trim();
-      let address = userdetails[2].textContent.trim();
-      let dob = userdetails[3].textContent.trim();
+      let username = userdetails[0].textContent.trim();
+      let name = userdetails[1].textContent.trim();
+      let phone = userdetails[2].textContent.trim();
+      let address = userdetails[3].textContent.trim();
+      
   
       // get the form inside ticketdiv
       let infoform = ticketdiv.querySelector("form");
@@ -38,11 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
   
       // inputs
       let inputs = infoform.querySelectorAll("input");
-  
-      inputs[0].value = name;
-      inputs[1].value = phone;
-      inputs[2].value = address;
-      inputs[3].value = dob;
+      inputs[0].value = username;
+      inputs[1].value = name;
+      inputs[2].value = phone;
+      inputs[3].value = address;
+      
   
       profileinfo.style.display = "none";
       infoform.style.display = "grid";
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let ticketdiv = e.target.parentElement.parentElement.parentElement;
       let prevValues = ticketdiv.querySelectorAll("p");
       let id = document.querySelector("#username").innerHTML;
-      // Hi passenger1!
+      // Hi scheduler1!
       //get username from above
       id = id.substring(3, id.length - 1);
       let data = { id: id };
