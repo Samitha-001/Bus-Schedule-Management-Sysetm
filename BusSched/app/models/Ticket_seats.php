@@ -20,31 +20,25 @@ class Ticket_seats extends Model
         $tripinfo = $trip->getTrip(['id' => $tripid]);
         return $tripinfo;
     }
-
-    // function to get seats reserved for a given trip
-    public function getSeatsReserved($trip_id) {
-        $ticket = new E_ticket();
-        $tickets = $ticket->where(['trip_id' => $trip_id]);
-        $data = [];
-        // tickets relevant to the trip
-        if($tickets) {
-            foreach ($tickets as $t) {
-                array_push($data, $t->id);
+    /**
+     * @param $trip_id
+     * @param $src
+     * @param $halt
+     * @return array
+     * Description: function to get seats reserved for a given trip
+     */
+    public function getSeatsReserved($trip_id,$src,$halt) {
+        $sql = "Select e_ticket.trip_id,e_ticket.source_halt,e_ticket.dest_halt,ticket_seats.seat from ticket_seats inner join e_ticket on ticket_seats.ticket_id = e_ticket.id where e_ticket.trip_id = ?";
+        $data = [$trip_id];
+        $reserved =  $this->query($sql, $data);
+        $rseats = [];
+        $h = new Halt();
+        foreach ($reserved as $r) {
+            if ($h->isOverlapping($src, $halt, $r->source_halt, $r->dest_halt)) {
+                $rseats[] = $r->seat;
             }
         }
-
-        $seats = [];
-        // for each ticket, get seats
-        foreach ($data as $d) {
-            $seats_reserved = $this->where(['ticket_id' => $d]);
-            if(!$seats_reserved) {
-                continue;
-            }
-            foreach ($seats_reserved as $s) {
-                array_push($seats, $s->seat);
-            }
-        }
-        return $seats;
+        return $rseats;
     }
 
     // function to reserve seats/add record
