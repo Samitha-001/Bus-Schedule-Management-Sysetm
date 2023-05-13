@@ -32,7 +32,7 @@ class Model
         }
         $query = trim($query, " && ");
 
-        $query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";       // :id is a placeholder in PDO
+        $query .= " order by $order_column $this->order_type limit $this->limit offset $this->offset";       // :id is a placeholder in PDO
         $data = array_merge($data, $data_not);
 
         return $this->query($query, $data);

@@ -337,11 +337,11 @@ if (!isset($_SESSION['USER'])) {
         <script>
             var reservedSeats = <?= json_encode($reservedSeats) ?>;
 
-            var seatElements = document.querySelectorAll(`[data-seat='C2']`);
-            // for each seat in seatElements
-            seatElements.forEach(seat => {
-                seat.classList.add("booked");
-            });
+            // var seatElements = document.querySelectorAll(`[data-seat='C2']`);
+            // // for each seat in seatElements
+            // seatElements.forEach(seat => {
+            //     seat.classList.add("booked");
+            // });
 
             // for each seat add class "reserved" to the seat
             // if reserved seats is not empty

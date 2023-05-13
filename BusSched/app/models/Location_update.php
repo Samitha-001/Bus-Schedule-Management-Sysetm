@@ -53,9 +53,11 @@ class Location_update extends Model
         // get trip status
 
         // if there are 3 passenger updates and 1 conductor update
-        if (count($passengerUpdates) >= 3 && count($conductorUpdates) >= 1) {
-            $trips = new Trip();
-            $trips->updateTripLocation($tripID, $location);
+        if($passengerUpdates && $conductorUpdates) {
+            if (count($passengerUpdates) >= 3 && count($conductorUpdates) >= 1) {
+                $trips = new Trip();
+                $trips->updateTripLocation($tripID, $location);
+            }
         }
     }
 

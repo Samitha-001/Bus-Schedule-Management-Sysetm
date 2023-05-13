@@ -8,8 +8,6 @@ class Conductorschedules
     {
         $trip = new Trip();
         $trips = $trip->getTrips();
-
-        // $data = [];
      
         $this->view('conductorschedule', ['trips' => $trips]);
     }
