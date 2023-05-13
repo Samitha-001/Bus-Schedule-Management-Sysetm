@@ -11,7 +11,7 @@ class Conductorschedules
 
         // $data = [];
      
-        $this->view('conductorschedule', ['trips' => $trips]);
+        $this->userview('conductor', 'conductorschedule', ['trips' => $trips]);
     }
 
 }

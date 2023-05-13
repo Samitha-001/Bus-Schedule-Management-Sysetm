@@ -205,10 +205,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.6;
-}
-
 .button-orange {
   background-color: #f4511e;
   border: none;
@@ -852,7 +848,7 @@ hr {
     overflow-y: auto;
     margin: 50px;
     margin-top: 10px;
-    /* height: 100%; */
+    margin-bottom: 0px;
   }
 
   div.fare-from-to-grid input {
