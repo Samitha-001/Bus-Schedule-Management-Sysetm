@@ -63,9 +63,15 @@ class Trip extends Model
     }
 
     // update trip
-    public function updateTrip($id, $data)
+    /**
+     * Updates trip status
+     * @param int $id
+     * @param string $status
+     * @return bool
+     */
+    public function updateTrip($id, $status)
     {
-        return $this->update($id, ['status' => $data['status']]);
+        return $this->update($id, ['status' => $status]);
     }
 
     /**
