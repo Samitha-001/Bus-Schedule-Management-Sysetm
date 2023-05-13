@@ -64,8 +64,8 @@ if (!isset($_SESSION['USER'])) {
                 <?= implode("<br>", $errors) ?>
             <?php endif; ?>
 
-            <div>
-                <table class="styled-table">
+            <div style="background-color: red;">
+                <table class="styled-table" style="border-radius: 20px;">
                     <tr>
                         <td><label for="source">From</label></td>
                         <td><input type="text" class="form-control" name="source" id="source" placeholder="Starting halt..."></td>

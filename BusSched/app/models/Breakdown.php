@@ -120,8 +120,7 @@ class Breakdown extends Model
         return $this->update($id, ['description' => $data['description'], 'time_to_repair' => $data['time']]);
     }
 
-
-    public function updateOwnerBreakdown($id, $data)
+}    public function updateOwnerBreakdown($id, $data)
     {
         return $this->update($id, ['description' => $data['description'],'time_to_repair' => $data['time']]);
     }
