@@ -11,10 +11,11 @@ class Breakdown extends Model
     // editable columns
     protected $allowedColumns = [
         'id',
+        'breakdown_time',
         'bus_no',
         'description',
         'status',
-        // 'time',
+        'repaired_time',
         'time_to_repair'
     ];
 
@@ -74,13 +75,23 @@ class Breakdown extends Model
     //                 ->where(['Status' => 'repairing', 'conductor' => $conductor])
     //                 ->findAll();
     // }
-
-    public function getOwnerBreakdowns($owner)
+    
+    public function getOwnerBreakdowns($owner, $status=null)
     {
         // return $this->findAll();
         $data['owner'] = $owner;
         // show($data);
-        $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        if (!$status) {
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        }
+        else if($status = 'repairing') {
+            $data['status'] = $status;
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        }
+        else {
+            $data['status'] = $status;
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        }
         return $breakdowns;
     }
 
@@ -107,6 +118,12 @@ class Breakdown extends Model
     public function updatemyBreakdown($id, $data)
     {
         return $this->update($id, ['description' => $data['description'], 'time_to_repair' => $data['time']]);
+    }
+
+
+    public function updateOwnerBreakdown($id, $data)
+    {
+        return $this->update($id, ['description' => $data['description'],'time_to_repair' => $data['time']]);
     }
 
     /**
@@ -254,4 +271,5 @@ class Breakdown extends Model
             $this->sendRefundNotification($trip_no);
         }
     }
+
 }

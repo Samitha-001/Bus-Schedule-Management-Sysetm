@@ -36,7 +36,6 @@ include '../app/views/components/ownersidebar.php';
     <?php if (!empty($errors)) : ?>
         <?= implode("<br>", $errors) ?>
     <?php endif; ?>
-
     <div >
         <table>
             <tr>
