@@ -11,10 +11,11 @@ class Breakdown extends Model
     // editable columns
     protected $allowedColumns = [
         'id',
+        'breakdown_time',
         'bus_no',
         'description',
         'status',
-        // 'time',
+        'repaired_time',
         'time_to_repair'
     ];
 
@@ -74,13 +75,23 @@ class Breakdown extends Model
     //                 ->where(['Status' => 'repairing', 'conductor' => $conductor])
     //                 ->findAll();
     // }
-
-    public function getOwnerBreakdowns($owner)
+    
+    public function getOwnerBreakdowns($owner, $status=null)
     {
         // return $this->findAll();
         $data['owner'] = $owner;
         // show($data);
-        $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        if (!$status) {
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        }
+        else if($status = 'repairing') {
+            $data['status'] = $status;
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        }
+        else {
+            $data['status'] = $status;
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+        }
         return $breakdowns;
     }
 
@@ -108,6 +119,12 @@ class Breakdown extends Model
     {
         return $this->update($id, ['description' => $data['description'], 'time_to_repair' => $data['time']]);
     }
+    
+    public function updateOwnerBreakdown($id, $data)
+    {
+        return $this->update($id, ['description' => $data['description'],'time_to_repair' => $data['time']]);
+    }
+
 
     /**
      *Send notification to (all passengers of a trip if a trip exists), bus owner, conductor and all schedulers in the event of a breakdown
@@ -126,57 +143,133 @@ class Breakdown extends Model
             //Send notification to all passengers
             $uNameList = (new Trip())->getPassengers($trip_no);
             if ($uNameList) {
+                try {
+                    $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                    $ws->text(json_encode([
+                        "event_type" => "breakdown",
+                        "data" => [
+                            "message" => "Bus " . $bus_no . " has broken down",
+                        ],
+                        "role" => ["passenger"],
+                        "usernames" => $uNameList
+                    ]));
+                }catch (Exception $e){
+                    //do nothing
+                }
+            }
+        }
+        try {//send notification to owner driver schedulers and conductor
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["scheduler"],
+            ]));
+
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["driver"],
+                "usernames" => [$driver]
+            ]));
+
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["owner"],
+                "usernames" => [$owner]
+            ]));
+
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["conductor"],
+                "usernames" => [$conductor]
+            ]));
+        } catch (Exception $e) {
+            //do nothing
+        }
+
+
+    }
+
+    /**
+     *Send notification to (all passengers of a trip if a trip exists) in the event of a delay
+     * @param numeric $trip_no
+     * @param numeric $delay
+     */
+    public function sendDelayNotification($trip_no, $delay): void
+    {
+        $uNameList = (new Trip())->getPassengers($trip_no);
+        if ($uNameList) {
+            try {
                 $ws = new Client("ws://" . SOCKET_HOST . ":8080");
                 $ws->text(json_encode([
-                    "event_type" => "breakdown",
+                    "event_type" => "delay",
                     "data" => [
-                        "message" => "Bus " . $bus_no . " has broken down",
+                        "message" => "Trip " . $trip_no . " has been delayed by " . $delay . " minutes",
                     ],
                     "role" => ["passenger"],
                     "usernames" => $uNameList
                 ]));
+            }catch (Exception $e){
+                //do nothing
             }
         }
-        //send notification to owner driver schedulers and conductor
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["scheduler"],
-        ]));
-
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["driver"],
-            "usernames" => [$driver]
-        ]));
-
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["owner"],
-            "usernames" => [$owner]
-        ]));
-
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["conductor"],
-            "usernames" => [$conductor]
-        ]));
-
-
     }
+
+    /**
+     *Send notification to passengers in the event of a refund
+     * @param numeric $trip_no
+     */
+    public function sendRefundNotification($trip_no): void
+    {
+        $uNameList = (new Trip())->getPassengers($trip_no);
+        if ($uNameList) {
+            try {
+                $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                $ws->text(json_encode([
+                    "event_type" => "refund",
+                    "data" => [
+                        "message" => "Your ticket for trip " . $trip_no . " has been refunded with points",
+                    ],
+                    "role" => ["passenger"],
+                    "usernames" => $uNameList
+                ]));
+            }catch (Exception $e){
+                //do nothing
+            }
+        }
+    }
+
+    /**
+     *Decide whether to send a delay notification or a refund notification
+     * @param numeric $trip_no
+     * @param numeric $repairTime in minutes
+     */
+    public function breakdownDecision($trip_no,$repairTime):void{
+        $gap = (new Trip())->findGapWithNextTrip($trip_no);
+        if($gap/2 > 15){
+            $factor = 15;
+        }else{
+            $factor = $gap/2;
+        }
+        if($repairTime < $factor){
+            $this->sendDelayNotification($trip_no,$repairTime);
+        }else{
+            $this->sendRefundNotification($trip_no);
+        }
+    }
+
 }

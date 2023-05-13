@@ -146,12 +146,40 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         let funcBreakdown = (d) => {
             new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
         }
-        new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        try {
+            new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        } catch (e) {
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
 
         //Trip notifications
         let funcTrip = (d) => {
             new Toast('fa fa-bus', '#a0ff00', "Trip Started", d.message, true, 3000)
         }
-        new Socket().receive_data("trip-start", funcTrip, ROLE, USERNAME)
+        try {
+            new Socket().receive_data("trip-start", funcTrip, ROLE, USERNAME)
+        } catch (e) {
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
+
+        //Bus delayed notifications
+        let funcDelayed = (d) => {
+            new Toast('fa fa-clock-o', 'rgba(255,0,0,0.78)', 'Bus Delayed', d.message, true, 3000)
+        }
+        try {
+            new Socket().receive_data("delay", funcDelayed, ROLE, USERNAME)
+        } catch (e) {
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
+
+        //Points refund notifications
+        let funcRefund = (d) => {
+            new Toast('fa fa-money', '#a0ff00', 'Points Refunded', d.message, true, 3000)
+        }
+        try {
+            new Socket().receive_data("refund", funcRefund, ROLE, USERNAME)
+        } catch (e) {
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
     </script>
 <?php } ?>

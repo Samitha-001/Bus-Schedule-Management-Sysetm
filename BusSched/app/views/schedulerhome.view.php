@@ -26,7 +26,15 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <title>Schedule - Home</title>
 </head>
-
+<style>
+        /* styles for screens smaller than 600px */
+        @media screen and (max-width: 600px) {
+            .card-container {
+                width: 100%;
+                margin: 10px auto;
+            }
+        }
+    </style>
 <body>
 
 <?php 
@@ -45,23 +53,25 @@ if ($_SESSION['USER']->role == 'passenger') {
         </div>
 
         <div class="card-container" id="schedules-card">
-            <div class="overlay">
+        <a href="<?= ROOT ?>/schedules">
+        <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Schedules</p>
+                    <p style="color: #E8DACC;">Schedules</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p><a href="<?= ROOT ?>/schedules">Schedule</a></p>
+                    <p style="color: #fff;">Schedule</p>
                 </div>
             </div>
+        </a></p>
         </div>
 
         <div class="card-container" id="buses-card">
             <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Buses & Breakdowns</p>
+                    <p style="color: #E8DACC;">Buses & Breakdowns</p>
                     <hr>
                 </div>
                 <div class="items users">
@@ -75,35 +85,21 @@ if ($_SESSION['USER']->role == 'passenger') {
        
 
         <div class="card-container" id="tickets-card">
-            <div class="overlay">
+        <a href="<?= ROOT ?>/schedfares">
+        <div class="overlay">
                 <div class="items"></div>
                 <div class="items head">
-                    <p>Bus Fares</p>
+                    <p style="color: #E8DACC;">Bus Fares</p>
                     <hr>
                 </div>
                 <div class="items users">
-                    <p><a href="<?= ROOT ?>/schedfares">Bus Fare</a></p>
-                </div>
+                    <p style="color: #fff;">Fares</p>
+                </div> 
             </div>
+        </a>
         </div>
         
-        <div class="card-container" id="fare-card">
-            <div class="overlay">
-                <div class="items"></div>
-                <div class="items head">
-                    <p>Ticket List</p>
-                    <hr>
-                </div>
-                <div class="items users">
-                    <p><a href="<?= ROOT ?>/schedactiveticket">Active</a> </p>
-                    <p><a href="<?= ROOT ?>/schedcollectedticket">Collected</a> </p>
-                    <p><a href="<?= ROOT ?>/schedpendingticket">Pending</a>
-                     </p>
-                    <p><a href="<?= ROOT ?>/schedexpiredticket">Expired</a>
-                     </p>
-                </div>
-            </div>
-        </div>
+        
 
         
     </main>

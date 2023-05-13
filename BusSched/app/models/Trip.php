@@ -103,15 +103,19 @@ class Trip extends Model
         $h=$tripdata->starting_halt;
         $passengers = $this->getPassengers($tripID);
         if ($passengers) {
-            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-            $ws->text(json_encode([
-                "event_type" => "trip-start",
-                "data" => [
-                    "message" => 'Your bus just left '.$h,
-                ],
-                "role" => ["passenger"],
-                "usernames" => $passengers
-            ]));
+            try {
+                $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                $ws->text(json_encode([
+                    "event_type" => "trip-start",
+                    "data" => [
+                        "message" => 'Your bus just left ' . $h,
+                    ],
+                    "role" => ["passenger"],
+                    "usernames" => $passengers
+                ]));
+            }catch (Exception $e){
+                // show($e->getMessage());
+            }
         }
     }
 
