@@ -135,7 +135,11 @@ function closeNav() {
         let funcBreakdown = (d) => {
             new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
         }
-        new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        try {
+            new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        }catch (e){
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
     </script>
 <?php } ?>
 
@@ -149,6 +153,10 @@ function closeNav() {
         let funcBreakdown = (d) => {
             new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
         }
-        new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        try {
+            new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        }catch (e){
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
     </script>
 <?php } ?>

@@ -126,56 +126,63 @@ class Breakdown extends Model
             //Send notification to all passengers
             $uNameList = (new Trip())->getPassengers($trip_no);
             if ($uNameList) {
-                $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-                $ws->text(json_encode([
-                    "event_type" => "breakdown",
-                    "data" => [
-                        "message" => "Bus " . $bus_no . " has broken down",
-                    ],
-                    "role" => ["passenger"],
-                    "usernames" => $uNameList
-                ]));
+                try {
+                    $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                    $ws->text(json_encode([
+                        "event_type" => "breakdown",
+                        "data" => [
+                            "message" => "Bus " . $bus_no . " has broken down",
+                        ],
+                        "role" => ["passenger"],
+                        "usernames" => $uNameList
+                    ]));
+                }catch (Exception $e){
+                    //do nothing
+                }
             }
         }
-        //send notification to owner driver schedulers and conductor
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["scheduler"],
-        ]));
+        try {//send notification to owner driver schedulers and conductor
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["scheduler"],
+            ]));
 
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["driver"],
-            "usernames" => [$driver]
-        ]));
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["driver"],
+                "usernames" => [$driver]
+            ]));
 
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["owner"],
-            "usernames" => [$owner]
-        ]));
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["owner"],
+                "usernames" => [$owner]
+            ]));
 
-        $ws = new Client("ws://" . SOCKET_HOST . ":8080");
-        $ws->text(json_encode([
-            "event_type" => "breakdown",
-            "data" => [
-                "message" => "Bus " . $bus_no . " has broken down",
-            ],
-            "role" => ["conductor"],
-            "usernames" => [$conductor]
-        ]));
+            $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+            $ws->text(json_encode([
+                "event_type" => "breakdown",
+                "data" => [
+                    "message" => "Bus " . $bus_no . " has broken down",
+                ],
+                "role" => ["conductor"],
+                "usernames" => [$conductor]
+            ]));
+        } catch (Exception $e) {
+            //do nothing
+        }
 
 
     }
