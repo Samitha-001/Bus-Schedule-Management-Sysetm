@@ -9,7 +9,7 @@ class Conductorschedules
         $trip = new Trip();
         $trips = $trip->getTrips();
      
-        $this->view('conductorschedule', ['trips' => $trips]);
+        $this->userview('conductor', 'conductorschedule', ['trips' => $trips]);
     }
 
 }
