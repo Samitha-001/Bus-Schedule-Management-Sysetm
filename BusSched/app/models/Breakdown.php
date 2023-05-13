@@ -186,4 +186,72 @@ class Breakdown extends Model
 
 
     }
+
+    /**
+     *Send notification to (all passengers of a trip if a trip exists) in the event of a delay
+     * @param numeric $trip_no
+     * @param numeric $delay
+     */
+    public function sendDelayNotification($trip_no, $delay): void
+    {
+        $uNameList = (new Trip())->getPassengers($trip_no);
+        if ($uNameList) {
+            try {
+                $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                $ws->text(json_encode([
+                    "event_type" => "delay",
+                    "data" => [
+                        "message" => "Trip " . $trip_no . " has been delayed by " . $delay . " minutes",
+                    ],
+                    "role" => ["passenger"],
+                    "usernames" => $uNameList
+                ]));
+            }catch (Exception $e){
+                //do nothing
+            }
+        }
+    }
+
+    /**
+     *Send notification to passengers in the event of a refund
+     * @param numeric $trip_no
+     */
+    public function sendRefundNotification($trip_no): void
+    {
+        $uNameList = (new Trip())->getPassengers($trip_no);
+        if ($uNameList) {
+            try {
+                $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                $ws->text(json_encode([
+                    "event_type" => "refund",
+                    "data" => [
+                        "message" => "Your ticket for trip " . $trip_no . " has been refunded with points",
+                    ],
+                    "role" => ["passenger"],
+                    "usernames" => $uNameList
+                ]));
+            }catch (Exception $e){
+                //do nothing
+            }
+        }
+    }
+
+    /**
+     *Decide whether to send a delay notification or a refund notification
+     * @param numeric $trip_no
+     * @param numeric $repairTime in minutes
+     */
+    public function breakdownDecision($trip_no,$repairTime):void{
+        $gap = (new Trip())->findGapWithNextTrip($trip_no);
+        if($gap/2 > 15){
+            $factor = 15;
+        }else{
+            $factor = $gap/2;
+        }
+        if($repairTime < $factor){
+            $this->sendDelayNotification($trip_no,$repairTime);
+        }else{
+            $this->sendRefundNotification($trip_no);
+        }
+    }
 }
