@@ -44,7 +44,7 @@ if (!isset($_SESSION['USER'])) {
                 <tr data-id = <?= $trip->id ?> class='data-row'>
                 <?php
                 $tripx = new Trip();
-                $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
+                $bus = $tripx->getBus($trip->id);
                 ?>
                 
                 <td><?= $trip->id ?></td>
@@ -65,10 +65,11 @@ if (!isset($_SESSION['USER'])) {
             </table>
         </div>
         
-
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
     </main>
-
+    <script>
+        // get trip relevant to conductor
+        var trips = <?= json_encode($trips) ?>;
+    </script>
 </body>
 
 </html>
