@@ -177,7 +177,7 @@ function schedule($buses){
     }
 
     $optimal_time =  (floor($interval / 60));
-    echo $optimal_time;
+    return $optimal_time;
 }
 
     function busSchedule($buses , $date) {
