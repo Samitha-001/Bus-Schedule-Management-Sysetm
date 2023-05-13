@@ -71,11 +71,11 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
             <div style="margin-bottom:5%">
-            <li><a href="" style="color:#9298AF;">Location</a></li> 
+            <li><a href="<?= ROOT ?>/conductorlocations" style="color:#9298AF;">Location</a></li> 
             <hr>
             </div>
             <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
+            <li><a href="<?= ROOT ?>/conductorincome" style="color:#9298AF;">Schedules</a></li>
             <hr>
             </div>
             <div style="margin-bottom:5%">
@@ -99,8 +99,13 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <li><a href="<?= ROOT ?>/conductorratings" style="color:#9298AF;">Ratings</a></li>
             <hr>
             </div>
+
             <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">Contacts</a></li>
+            <li><a href="<?= ROOT ?>/conductorincome" style="color:#9298AF;">Income</a></li>
+            <hr>
+            </div>
+            <div style="margin-bottom:5%">
+            <li><a href="<?= ROOT ?>/contactdrivers" style="color:#9298AF;">Contacts</a></li>
             <hr>
             </div>
             <div style="margin-bottom:5%">
@@ -108,20 +113,6 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
         </div>
-  
-
-    <div class="login-buttons">
-        <!-- if user is logged in -->
-        <?php if (isset($_SESSION['USER'])) { ?>
-            <!-- <a class="sidenav-signup-button" href="<?= ROOT ?>/logout">Logout</a> -->
-
-            <!-- if user is logged out -->
-        <?php } else { ?>
-            <a class="sidenav-login-button" href="<?= ROOT ?>/login">Login</a>
-            <a class="sidenav-signup-button" href="<?= ROOT ?>/signup">Sign up</a>
-            <!-- </div> -->
-        <?php } ?>
-    </div>
 
 </div>
 
@@ -134,3 +125,38 @@ function closeNav() {
     document.getElementById("Sidenav").style.width = "0";
 }
 </script>
+
+<?php if(isset($_SESSION['USER']) && $_SESSION['USER']->role == 'conductor') { ?>
+    <script>
+        const ROLE = 'conductor'
+        const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+        //Breakdown notifications
+        let funcBreakdown = (d) => {
+            new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+        }
+        try {
+            new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        }catch (e){
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
+    </script>
+<?php } ?>
+
+
+<?php if(isset($_SESSION['USER']) && $_SESSION['USER']->role == 'driver') { ?>
+    <script>
+        const ROLE = 'driver'
+        const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+        //Breakdown notifications
+        let funcBreakdown = (d) => {
+            new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+        }
+        try {
+            new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+        }catch (e){
+            new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+        }
+    </script>
+<?php } ?>

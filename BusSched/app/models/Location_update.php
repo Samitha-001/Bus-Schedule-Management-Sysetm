@@ -27,6 +27,7 @@ class Location_update extends Model
 
         // calls update trip location function, conditions are checked there
         $this->updateTripLocation($data['tripID'], $data['halt']);
+        show($data);
 
         return $this->insert($data);
     }

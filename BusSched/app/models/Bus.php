@@ -77,9 +77,9 @@ class Bus extends Model
         echo $this->insert($data);
     }
 
-    public function getBus($busno)
+    public function getBus($busno): object|false
     {
-        return $this->where(['bus_no' => $busno])[0];
+        return $this->first(['bus_no' => $busno]);
     }
 
     // function to get trips for a bus
@@ -110,6 +110,26 @@ class Bus extends Model
             }
             }
         }
+        return $income;
+    }
+
+    public function calculateTripIncome($tripno)
+    {
+        $ticket = new E_ticket();
+        
+
+        $income = 0;
+     
+           
+                $tickets = $ticket->where(['trip_id' => $tripno]);
+                if (!empty($tickets) && is_array($tickets) || is_object($tickets)) {
+                foreach ($tickets as $tick) {
+                $income += $tick->price;
+                
+            }
+
+            }
+        
         return $income;
     }
 
