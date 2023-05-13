@@ -8,32 +8,27 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include '../app/views/components/head.php';?>
 
     <title>Bus Tickets</title>
 
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
-    <!-- <script src="<?= ROOT ?>/assets/js/collecttickets.js"></script> -->
-
 </head>
 
 <body>
-<?php include 'components/navbarcon.php'; 
-        // include 'components/conductorsidebar.php';
-?>
+
+<?php include '../app/views/components/navbarcon.php'; ?>
+
+
+    <div class="header orange-header">
+        <h2>Trips</h2>
+    </div>
 
 <main class="container1">
-    <div class="col-1">
-        <div class="header orange-header">
-            <h1>Trips</h1>     
-        </div>
-    </div>
-    <div class="data-table"></div>
-    <div class="selection"></div> <!-- Added closing tag -->
+    
     <?php 
+    $ongoing = false;
+  
     $conductor = $_SESSION['USER']->username;
     $bus = new Bus();
     $businfo = $bus->getConductorBuses($conductor)[0];
@@ -44,13 +39,13 @@ if (!isset($_SESSION['USER'])) {
     $starting_trip = array();
     $ended_trip=array();
     foreach ($trips as $trip) {
-        if ($trip->Status == "notstarted") {
+        if ($trip->status == "scheduled") {
             array_push($starting_trip,$trip);
         }
     }
 
     foreach ($trips as $trip) {
-        if ($trip->Status == "ended") {
+        if ($trip->status == "ended") {
             array_push($ended_trip,$trip);
         }
     }
@@ -68,24 +63,16 @@ if (!isset($_SESSION['USER'])) {
              
                 <th></th>
             </tr> 
-            <?php if(!empty($starting_trip)): ?>
-                <?php foreach ($starting_trip as $trip): ?>
-       
-                    <tr>
+
+            <?php if(!empty($scheduled_trips)): ?>
+                <?php foreach ($scheduled_trips as $trip): ?>
+                    <tr class="trip-row" data-trip-id="<?= $trip->id ?>" data-starting-halt="<?= $trip->starting_halt ?>">
                         <td data-fieldname="trip_id"><?= $trip->id ?></td>
                         <td data-fieldname="trip_date"><?= $trip->trip_date ?></td>
                         <td data-fieldname="departure_time"><?= $trip->departure_time ?></td>
                         <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                        
                         <?php ?>
-                
-                        <td class="start-trip-btn">
-    <form method="post" action="<?= ROOT ?>/conductortrips/updateTripStatus">
-        <input type="hidden" name="tripID" value="<?= $trip->id ?>">
-        <input type="hidden" name="status" value="started">
-        <button type="submit" >Start</button>
-    </form>
-</td>
                         
                         </tr>
                 <?php endforeach; ?>
@@ -97,23 +84,23 @@ if (!isset($_SESSION['USER'])) {
         </table>
     </div>
 
-    <div class="col-3">
+    <div class="col-2">
         <h1>Ended Trips</h1>
         <table border='1' class="styled-table" id="ended_trips">
             <tr>
+                <th>ID</th>
                 <th>Date</th>
-                <th>Departure Time</th>
+                <th>Departure</th>
                 <th>Starting halt</th>
-                <th>Status</th>
                 <th></th>
             </tr> 
-            <?php if(!empty($ended_trip)): ?>
-                <?php foreach ($ended_trip as $tripx): ?>
+            <?php if(!empty($ended_trips)): ?>
+                <?php foreach ($ended_trips as $tripx): ?>
                     <tr>
+                        <td data-fieldname="trip_id"><?= $trip->id ?></td>
                         <td><?= $tripx->trip_date ?></td>
                         <td><?= $tripx->departure_time ?></td>
                         <td><?= $tripx->starting_halt ?></td>
-                        <td><?= $tripx->Status ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -124,9 +111,7 @@ if (!isset($_SESSION['USER'])) {
         </table>
     </div>
 
-    
-   
-    <script src="<?= ROOT ?>/assets/js/trips.js"></script>
+    <script src="<?= ROOT ?>/assets/js/conductortrips.js"></script>
 </main>
 
 </body>

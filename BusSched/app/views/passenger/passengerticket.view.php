@@ -376,6 +376,11 @@ $busType = ($bus->getBus($trip->bus_no))->type;
         return fetch(url, options)
     }
 
+            // var seatElements = document.querySelectorAll(`[data-seat='C2']`);
+            // // for each seat in seatElements
+            // seatElements.forEach(seat => {
+            //     seat.classList.add("booked");
+            // });
     let confirmButton = document.getElementById("confirm-ticket");
     let reserveSeatsButton = document.getElementById("reserve-seats-q");
     reserveSeatsButton.style.display='none';

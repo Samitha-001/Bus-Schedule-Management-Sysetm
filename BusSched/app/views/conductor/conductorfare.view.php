@@ -9,7 +9,7 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <?php include 'components/head.php';?>
+    <?php include '../app/views/components/head.php';?>
 
     <title>Fares</title>
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
@@ -17,7 +17,7 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
-<?php include 'components/navbarcon.php'; ?>
+    <?php include '../app/views/components/navbarcon.php'; ?>
 
     <datalist id="halt-list">
     <?php
