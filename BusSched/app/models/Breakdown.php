@@ -119,11 +119,12 @@ class Breakdown extends Model
     {
         return $this->update($id, ['description' => $data['description'], 'time_to_repair' => $data['time']]);
     }
-
-}    public function updateOwnerBreakdown($id, $data)
+    
+    public function updateOwnerBreakdown($id, $data)
     {
         return $this->update($id, ['description' => $data['description'],'time_to_repair' => $data['time']]);
     }
+
 
     /**
      *Send notification to (all passengers of a trip if a trip exists), bus owner, conductor and all schedulers in the event of a breakdown
