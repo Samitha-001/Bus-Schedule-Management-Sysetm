@@ -11,7 +11,7 @@ class Conductortrips
 
         // $data = [];
      
-        $this->view('conductortrip', ['conductortrips' => $conductortrips]);
+        $this->userview('conductor', 'conductortrip', ['conductortrips' => $conductortrips]);
     
               
     }
