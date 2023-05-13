@@ -32,7 +32,7 @@ class Passenger extends Model
     // get passenger
     public function getPassenger($username)
     {
-        $data = $this->where(['username'=>$username]);
+        $data = $this->where(['username'=>$username], 'username');
         return $data;
     }
 
