@@ -1,0 +1,139 @@
+@import "navbar.css";
+@import "general.css";
+
+/* for tablet and desktop */
+/* @media only screen and (min-width: 600px) { */
+  body {
+    
+    background: url("../images/backgrounds/bg-passenger-profile.png");
+    font-family: "Outfit";
+  }
+/* } */
+
+
+
+
+img:hover {
+  opacity: 1;
+}
+
+/* change cursor when hovered over a */
+a:hover {
+  cursor: pointer;
+}
+
+form.info-grid{
+    display: none;
+}
+
+/* for tablet & desktop */
+@media only screen and (min-width: 600px) {
+  div.passenger-sidenav-mobile {
+    display: none;
+  }
+
+  div.passenger-sidenav {
+    display: block;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  
+  img#profile-picture {
+    height: 80px;
+    width: 80px;
+    border-radius: 25px;
+  }
+
+  div.passenger-profile-card {
+    width: max-content;
+    height: fit-content;
+  }
+
+  div.nav-cards {
+    display: flex;
+  }
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #24315e;
+  display: inline-block;
+  /* vertical alignment center */
+  vertical-align: middle;
+}
+
+#profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#username {
+  float: right;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+#profile-picture {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}
+
+.passenger-profile-card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  padding: 50px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin: 50px 400px;
+  color: #7c839e;
+}
+
+.nav-cards {
+  display: fixed;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
+  grid-gap: 5px;
+  margin: 10px;
+}
+
+.info-grid p, .info-grid h1 {
+  margin: 0px;
+  line-height: 20px;
+}
+
+.info-grid-start-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-start: 2;
+  grid-gap: 5px;
+}
+
+input {
+  font-family: Outfit;
+  font-size: 13px;
+}
+
+input[type="text"], input[type="number"], input[type="text"]::placeholder, input[type="number"]::placeholder {
+  font-size: 13px;
+}
+
+
+
+a#edit-passenger-info {
+  text-align: right;
+  background-color: #FD6002;
+}
+
+/* align span to right */
+span.close{
+  float: right;
+}

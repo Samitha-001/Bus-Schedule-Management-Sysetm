@@ -8,13 +8,14 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <?php include 'components/head.php';?>
-
-
+<?php include 'components/head.php';?>
+<script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script>
     <title>Breakdowns</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
+    
+
 
 </head>
 
@@ -35,7 +36,7 @@ if (!isset($_SESSION['USER'])) {
             <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
-        <form method="post" id="view_breakdown" style="display:none">
+        <!-- <form method="post" id="view_breakdown" style="display:none">
 
             <?php if (!empty($errors)): ?>
             <?= implode("<br>", $errors) ?>
@@ -70,7 +71,7 @@ if (!isset($_SESSION['USER'])) {
 
                     </table>
                 </div>
-        </form>
+        </form> -->
 
         <div class="data-table">
 
@@ -85,18 +86,27 @@ if (!isset($_SESSION['USER'])) {
                     <th></th>
                 </tr>
 
-                <?php
-                foreach ($breakdowns as $breakdown) {
-                    echo "<tr>";
-                    echo "<td> $breakdown->id </td>";
-                    echo "<td> $breakdown->bus_no </td>";
-                    echo "<td> $breakdown->description </td>";
-                    // echo "<td> $breakdown->date </td>";
-                    // echo "<td> $breakdown->time </td>";
-                    echo "<td> $breakdown->time_to_repair </td>";
-                    echo "<td><img src='ROOT/assests/images/Delete.png'></td>";
-                    echo "</tr>";
-                } ?>
+                <?php static $i = 1; ?>
+             <?php if ($breakdowns):
+               foreach ($breakdowns as $breakdown): ?>
+                <tr data-id=<?= $breakdown->id ?>>
+                    <td> <?= $i ?> </td>
+                    <?php $i++; ?>
+                    <td data-fieldname="bus_no"> <?= $breakdown->bus_no ?> </td>
+                    <td data-fieldname="description"> <?= $breakdown->description ?> </td>
+                    <td data-fieldname="time_to_repair"> <?= $breakdown->time_to_repair ?> </td>
+
+                    <td id="edit-delete"> 
+                      
+                      <img src='<?= ROOT ?>/assets/images/icons/delete.png' alt='delete' class="icon delete-btn" width='20px' height='20px'>
+                    </td>
+                  </tr>
+              <?php endforeach; else: ?>
+                <tr>
+                  <td colspan="9" style="text-align:center;color:#999999;"><i>No breakdowns found.</i></td>
+                </tr>
+        <?php endif; ?>
+        
 
             </table>
         </div>

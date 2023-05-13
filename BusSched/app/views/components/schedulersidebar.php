@@ -9,3 +9,20 @@
             
         </div>
     </div>
+
+
+<script>
+    const ROLE = 'scheduler'
+    const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+    //Breakdown notifications
+    let funcBreakdown = (d) => {
+        new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+    }
+    try {
+        new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+    } catch (e) {
+        new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+    }
+
+</script>

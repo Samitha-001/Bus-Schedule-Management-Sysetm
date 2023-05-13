@@ -24,7 +24,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/passenger_profile.css">
-    <script src="<?= ROOT ?>/assets/js/passengerprofile.js"></script>
+    <script src="<?= ROOT ?>/assets/js/ownereditprofile.js"></script>
     <title>Bus Owner - Home</title>
 </head>
 

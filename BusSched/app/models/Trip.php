@@ -1,5 +1,7 @@
 <?php
+use WebSocket\Client;
 
+require __DIR__ . '/../../vendor/autoload.php';
 class Trip extends Model
 {
     protected $table = 'trip';
@@ -14,6 +16,7 @@ class Trip extends Model
         'status',
         'last_updated_halt',
         'location_updated_time'
+
     ];
 
     // function to get all trips
@@ -38,16 +41,18 @@ class Trip extends Model
         return $this->first($data);
     }
 
-    // get bus of a trip
     /**
-     * Get the bus relevant to a given trip
-     * @param mixed $data
-     * @return mixed
+     * @param number $trip_no
+     * @return Object|false
+     * Description: get Bus of a trip
      */
-    public function getBus($data)
+    public function getBus($trip_no): object|bool
     {
-        $bus = new Bus();
-        return $bus->first(['bus_no' => $data['bus_no']]);
+        $b = $this->getTrip(['id' => $trip_no]);
+        if(!$b){
+            return false;
+        }
+        return (new Bus())->first(['bus_no' => $b->bus_no]);
     }
 
     // update last_updated_halt and location_updated_time
@@ -63,16 +68,68 @@ class Trip extends Model
         return $this->update($id, ['status' => $data['status']]);
     }
 
+    /**
+     * @param number $tripID
+     * @return array
+     * Description: get passengers of a trip
+     */
+    public function getPassengers($tripID): array
+    {
+        //get trip data
+        $tripdata = $this->getTrip(['id' => $tripID]);
+        if (!$tripdata) {
+            return [];
+        }
+        $bus = $tripdata->bus_no;
+        $eTickets = (new E_ticket())->getTripBusTickets($bus);
+        $userIDs = [];
+        $pm = new Passenger();
+        foreach ($eTickets as $eTicket) {
+            $userIDs[] = $eTicket->passenger;
+        }
+        return $userIDs;
+    }
+
+    /**
+     * @param number $tripID
+     * Description: Send notification to passengers of a trip that it started
+     */
+    public function sendTripStartNotification($tripID):void{
+
+        $tripdata = $this->getTrip(['id' => $tripID]);
+        if (!$tripdata) {
+            return;
+        }
+        $h=$tripdata->starting_halt;
+        $passengers = $this->getPassengers($tripID);
+        if ($passengers) {
+            try {
+                $ws = new Client("ws://" . SOCKET_HOST . ":8080");
+                $ws->text(json_encode([
+                    "event_type" => "trip-start",
+                    "data" => [
+                        "message" => 'Your bus just left ' . $h,
+                    ],
+                    "role" => ["passenger"],
+                    "usernames" => $passengers
+                ]));
+            }catch (Exception $e){
+                // show($e->getMessage());
+            }
+        }
+    }
+
     // get tranferable trips
     public function getTransferableTrips($tripID, $seats=0)
     {
         $trip = $this->getTrip(['id' => $tripID]);
         // get date and time of trip
         $date = $trip->trip_date;
-        $time = $trip->departure_time;
+        $src = $trip->starting_halt;
+        // $time = $trip->departure_time;
 
         // get trips on same date
-        $trips = $this->where(['trip_date' => $date, 'status' => 'scheduled']);
+        $trips = $this->where(['trip_date' => $date, 'status' => 'scheduled', 'starting_halt' => $src]);
         $transferableTrips = [];
         
         foreach ($trips as $t) {
@@ -143,6 +200,4 @@ class Trip extends Model
 
         return $gap;
     }
-
-
 }

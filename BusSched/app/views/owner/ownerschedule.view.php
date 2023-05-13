@@ -29,11 +29,7 @@ include '../app/views/components/ownersidebar.php';
             <div><button id="btn" class="button-grey">Download</button></div>
         </div>
         <body>
-<?php
-$bus = new Bus();
-$buses = $bus->getOwnerBuses($_SESSION['USER']->username);
-// show($buses);
-?>
+
         
         <div>
             <br>
@@ -48,27 +44,7 @@ $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
                     <th>Arrival Time</th>
                 </tr>
 
-                <?php
-        // if not empty, then display the buses
-        if ($buses):
-        foreach ($buses as $bus): ?>
-       
-            <tr >
-                
-                 <td><?= $bus->start ?></td>
-                 <td><?= $bus->dest ?></td>
-                 <td><?= $bus->route ?></td>
-                 <td><?= $bus->bus_no ?></td>
-                 <td><?= $bus->type ?></td>
-                
-            </tr>
-           
-        <?php endforeach;
-            else : ?>
-            <tr>
-                <td colspan="10">No buses found</td>
-            </tr>
-        <?php endif;?>
+    
 
             </table>
 

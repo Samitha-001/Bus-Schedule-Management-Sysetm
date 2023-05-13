@@ -106,14 +106,14 @@ a {
   height:30px;
   width:80px;
   color: white;
-  margin-left:80px;
+  margin-left:180px;
   margin-right:20px;
   font-size:18px;
   border-radius: 7px;
   border: none; outline: none;
 }
 
-#delete{
+/* #delete{
   color:white;
   height:30px;
   width:80px;
@@ -121,7 +121,7 @@ a {
   background-color:red;
   border-radius: 7px;
   border: none; outline: none;
-}
+} */
 
 
 .my-input {

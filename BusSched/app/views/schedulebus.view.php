@@ -13,6 +13,7 @@ include 'components/schedulersidebar.php';
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedbus.css">
 
 </head>
 
@@ -26,7 +27,7 @@ include 'components/schedulersidebar.php';
             <div>
                 <h3>Buses</h3>
             </div>
-            <div><button id="btn" class="button-grey">Download</button></div>
+            <div><button id="downloadBtn" class="button-grey">Download</button></div>
         </div>
 
         <form method="post" id="view_bus" style="display:none">
@@ -36,7 +37,7 @@ include 'components/schedulersidebar.php';
             <?php endif; ?>
 
             <div>
-                <table class="styled-table">
+                <table class="styled-table" id="tableData">
                     <tr>
                         <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
                         <td><input name="bus_no" type="text" class="form-control" id="bus_no" placeholder="Bus No..." required></td>
@@ -59,12 +60,12 @@ include 'components/schedulersidebar.php';
                     </tr>
 
                     <tr>
-                        <td style="color:#24315e;"><label for="availability">Bus Available? </label></td>
+                        <td style="color:#24315e;"><label for="availability">Bus Available</label></td>
                         <td>
-                            <label class="switch">
-                                <input type="checkbox" id="availability" name="availability" value="1">
-                                <span class="slider round"></span>
-                            </label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="toggle" class="toggle-input">
+                            <label for="toggle" class="toggle-label"></label>
+                        </div>
                         </td>
                     </tr>
 
@@ -93,32 +94,42 @@ include 'components/schedulersidebar.php';
             <br>
             <table border='1' class="styled-table">
                 <tr>
-                    <th>#</th>
-                    <th>Bus No.</th>
-                    <th>Bus Type</th>
-                    <th>No. of Seats</th>
-                    <th>Bus Available?</th>
-                    <th>Bus Route</th>
-                    <th>Start</th>
+                <th>Bus No.</th>
+            <th>Bus Type</th>
+            <th>Seats</th>
+            <th>Bus Route</th>
+            <th>Start</th>
+            <th>Destination</th>
+            <th>Owner</th>
+            <th>Conductor</th>
+            <th>Driver</th>
                 </tr>
 
                 <?php
-                foreach ($buses as $bus) {
-                    echo "<tr>";
-                    echo "<td> $bus->id </td>";
-                    echo "<td> $bus->bus_no </td>";
-                    echo "<td> $bus->type </td>";
-                    echo "<td> $bus->seats_no </td>";
-                    echo "<td> $bus->availability </td>";
-                    echo "<td> $bus->route </td>";
-                    echo "<td> $bus->start </td>";
-                    echo "</tr>";
-                } ?>
+                foreach ($buses as $bus) :?>
+                    <tr>
+                    
+                    <td> <?php echo $bus->bus_no ?> </td>
+                    <td> <?php echo $bus->type ?></td>
+                    <td> <?php echo $bus->seats_no ?></td>
+                    <td> <?php echo $bus->route ?></td>
+                    <td> <?php echo $bus->start ?></td>
+                    <td data-fieldname="dest"><?= $bus->dest; ?></td>
+                  <td data-fieldname="owner"><?= $bus->owner ?></td>
+                  <td data-fieldname="conductor"><?= $bus->conductor ?></td>
+                  <td data-fieldname="driver"><?= $bus->driver ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                
+                
+               
 
             </table>
         </div>
 
         <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
+        <script src="<?= ROOT ?>/assets/js/downloadbus.js"></script>
+
     </main>
 
 </body>

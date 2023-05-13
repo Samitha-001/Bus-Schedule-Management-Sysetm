@@ -99,11 +99,11 @@ class E_ticket extends Model
     }
 
     // function to change trip of ticket, transfer ticket
-    public function transferTicket($ticket_id, $trip_id)
+    public function transferTicket($ticket_id, $trip_id, $seats_reserved=null)
     {
         // TODO
         // update trip id of ticket
-        $this->updateTicket($ticket_id, ['trip_id' => $trip_id]);
+        $this->updateTicket($ticket_id, ['trip_id' => $trip_id, 'seats_reserved' => $seats_reserved]);
         // update seats of earlier bus and new bus (book seats)
       // add id to duplicate
 

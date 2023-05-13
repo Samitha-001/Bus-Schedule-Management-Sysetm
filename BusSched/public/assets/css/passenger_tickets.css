@@ -454,3 +454,12 @@ div#rate-popup p {
   margin: 0;
   margin-bottom: 10px;
 }
+
+.button-orange-s {
+  border-radius: 5px;
+  color: white;
+  background: #f15f22;
+  border: none;
+  padding: 5px;
+  margin: 3px;
+}

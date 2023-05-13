@@ -1,6 +1,6 @@
 <?php
 
-class Fare extends Model
+class Schedfare extends Model
 {
     protected $table = 'fare';
 
@@ -9,8 +9,8 @@ class Fare extends Model
         'id',
         'source',
         'dest',
-        'route_bus',
-        'type_bus',
+        'route',
+        'type',
         'amount',
         'last_updated'
     ];
@@ -25,11 +25,11 @@ class Fare extends Model
         if (empty($data['dest'])) {
             $this->errors['dest'] = "Destination is required";
         } else
-        if (empty($data['route_bus'])) {
-            $this->errors['route_bus'] = "Bus route is required";
+        if (empty($data['route'])) {
+            $this->errors['route'] = "Bus route is required";
         } else
-        if (empty($data['type_bus'])) {
-            $this->errors['type_bus'] = "Bus type is required";
+        if (empty($data['type'])) {
+            $this->errors['type'] = "Bus type is required";
         } else
         if (empty($data['amount'])) {
             $this->errors['amount'] = "Amount is required";
@@ -47,19 +47,4 @@ class Fare extends Model
     {
         return $this->findAll();
     }
-
-    public function addFare($data)
-    {
-        // validate and add
-        // if ($this->validate($data)) {
-            return $this->insert($data);
-        // }
-        // return false;
-    }
-
-    public function deleteFares($id)
-    {
-        return $this->delete($id);
-    }
-
 }

@@ -94,8 +94,8 @@ $businfo = $bus->first(['id' => $busno]);
         
         </table>
 
-        <input id="edit" type="button" value="Edit" class="" >
-        <input id="delete" type="button" value="Delete">
+        <input id="edit" type="button" value="Edit" >
+        
             
     </div>
     </form>
@@ -107,7 +107,7 @@ $businfo = $bus->first(['id' => $busno]);
 
 <script>
     //   var table=document.getElementsByTagName('table')[0];
-    const deleteButton = document.getElementById('delete');
+   
     const editButton = document.getElementById('edit');
     const saveButton = document.getElementById('submit-btn');
     const cancelButton = document.getElementById('cancel');
@@ -120,7 +120,6 @@ $businfo = $bus->first(['id' => $busno]);
         formFields.forEach(function(field) {
             field.removeAttribute("readonly");
             editButton.style.display = "none";
-            deleteButton.style.display = "none";
             saveButton.style.display = "block";
             cancelButton.style.display = "block";
             input.focus();
