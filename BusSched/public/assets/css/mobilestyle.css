@@ -224,7 +224,6 @@ button {
   font-family: "Outfit";
   background: #20c23a;
   font-size: 16px;
-  width: 15%;
   border: 1px solid #20c23a;
   border-radius: 5px;
   color: white;
@@ -765,7 +764,6 @@ hr {
 
       .button-green {
         font-size: 12px;
-        width: 25%;
         margin-right: 2px;
       }
 
@@ -951,5 +949,120 @@ td {
   position: sticky;
   right: 0;
   background-color: #fff;
-  z-index: 2;
+  z-index: 3;
+}
+
+
+#update-location-div {
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  align-content: center;
+}
+
+#update-location-div h1 {
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+#inside-update-location-div {
+  display:flex; 
+  overflow-x: scroll; 
+  justify-content:space-between; 
+  margin: auto;
+  max-width: fit-content;
+}
+
+.location-update-card {
+  display: inline-block;
+  background-color: white;
+  min-width: 140px;
+  height: 90px;
+  padding: 10px;
+  margin: 5px;
+  margin-top: 45px;
+  border-radius: 5px;
+  text-align: center;
+  color: #24315e;
+  align-content: center;
+  cursor: pointer;
+}
+
+.location-update-card.halt-passed {
+  display: inline-block;
+  background-color:#7c839e;
+  min-width: 140px;
+  height: 90px;
+  padding: 10px;
+  margin: 5px;
+  margin-top: 45px;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+  align-content: center;
+  cursor: default;
+  opacity: 0.8;
+}
+
+.selected-halt {
+  scale: 1.05;
+  background-color: #f15f22;
+  color: white;
+  font-weight: 400;
+  border-radius: 10px;
+  margin: 5px;
+  margin-top: 40px;
+  text-align: center;
+  transition: all 0.35s;
+}
+
+.selected-halt p {
+  color: white;
+}
+
+.passed-halt {
+  border: solid 1px white;
+  background-color: #7c839e;
+  color: white;
+  cursor: default;
+}
+
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+#update-location-div ::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  height: 3px;
+}
+
+#update-location-div ::-webkit-scrollbar {
+  height: 7px;
+}
+
+#update-location-div ::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.ticket-button-orange {
+  background-color: #f15f22;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  padding: 10px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.ticket-button-orange.disabled {
+  /* cursor: default;
+  color: white;
+  background-color: #f9f9f9; */
+  /* reduce opacity */
+  opacity: 0.5;
 }
