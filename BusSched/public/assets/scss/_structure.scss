@@ -1,0 +1,159 @@
+/**
+  Structure
+ */
+
+
+.rowb {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+$columns: (1: 8.333333%, 2: 16.666667%, 3: 25%, 4: 33.333333%, 5: 41.666667%, 6: 50%, 7: 58.333333%, 8: 66.666667%, 9: 75%, 10: 83.333333%, 11: 91.666667%, 12: 100%);
+@each $column, $width in $columns {
+  .colb-#{$column} {
+    flex: 0 0 $width;
+    max-width: $width;
+  }
+  .colb-offset-#{$column} {
+    margin-left: $width;
+  }
+}
+
+$viewport-types: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px);
+@each $type, $vp-width in $viewport-types {
+  @each $column, $width in $columns {
+    @media (min-width: $vp-width) {
+      .colb-#{$type}-#{$column} {
+        flex: 0 0 $width;
+        max-width: $width;
+      }
+      .colb-offset-#{$type}-#{$column} {
+        margin-left: $width;
+      }
+    }
+  }
+}
+
+$sizes: (0: 0, 1: 0.25rem, 2: 0.5rem, 3: 1rem, 4: 1.5rem, 5: 3rem);
+@each $key, $value in $sizes {
+  // Padding
+  .p-#{$key} {
+    padding: $value !important;
+  }
+  .pt-#{$key} {
+    padding-top: $value !important;
+  }
+  .pr-#{$key} {
+    padding-right: $value !important;
+  }
+  .pb-#{$key} {
+    padding-bottom: $value !important;
+  }
+  .pl-#{$key} {
+    padding-left: $value !important;
+  }
+  .px-#{$key} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-#{$key} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+
+  // Margins
+  .m-#{$key} {
+    margin: $value !important;
+  }
+  .mt-#{$key} {
+    margin-top: $value !important;
+  }
+  .mr-#{$key} {
+    margin-right: $value !important;
+  }
+  .mb-#{$key} {
+    margin-bottom: $value !important;
+  }
+  .ml-#{$key} {
+    margin-left: $value !important;
+  }
+  .mx-#{$key} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-#{$key} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+}
+
+$display-types: (block, inline-block, inline, flex, inline-flex, grid, inline-grid, none);
+@each $type in $display-types {
+  .d-#{$type} {
+    display: $type !important;
+  }
+}
+
+$visibility-types: (visible, hidden, collapse);
+@each $type in $visibility-types {
+  .visible-#{$type} {
+    visibility: $type !important;
+  }
+}
+
+
+$relative-sizes: (0: 0, 25: 25%, 50: 50%, 75: 75%, 100: 100%);
+@each $key, $value in $relative-sizes {
+  .w-#{$key} {
+    width: $value !important;
+  }
+  .h-#{$key} {
+    height: $value !important;
+  }
+}
+
+$viewport-sizes: (0: 0vh, 25: 25vh, 50: 50vh, 75: 75vh, 100: 100vh);
+@each $key, $value in $viewport-sizes {
+  .vh-#{$key} {
+    height: $value;
+  }
+  .vw-#{$key} {
+    width: $value;
+  }
+}
+
+$position-types: (static, relative, absolute, fixed, sticky);
+@each $type in $position-types {
+  .position-#{$type} {
+    position: $type;
+  }
+}
+
+$position-sides: (top, right, bottom, left);
+@each $side in $position-sides {
+  .#{$side}-0 {
+    #{$side}: 0;
+  }
+  .#{$side}-auto {
+    #{$side}: auto;
+  }
+}
+
+.rounded {
+  border-radius: 1rem;
+}
+
+.rounded-sm {
+  border-radius: 0.5rem;
+}
+
+.shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

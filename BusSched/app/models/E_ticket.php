@@ -10,11 +10,18 @@ class E_ticket extends Model
         'passenger',
         'trip_id',
         'seat_number',
+        'seats_reserved',
         'ticket_number',
         'source_halt',
         'dest_halt',
         'booking_time',
-        'status'
+        'status',
+        'passenger_count',
+        'arrival_time',
+        'departure_time',
+        'collected_time',
+        'price',
+        'payment_method'
     ];
 
     public function validate($data)
@@ -31,7 +38,6 @@ class E_ticket extends Model
         //     $this->errors['time_to_repair'] = "Enter estimate time to repair";
         // }
 
-
         // if (empty($this->errors)) {
         //     return true;
         // }
@@ -44,10 +50,63 @@ class E_ticket extends Model
         return $this->findAll();
     }
 
+    public function getBusTickets($trip)
+    {
+        return $this->where(['trip_id' => $trip]);
+    }
+
+    public function getTicket($ticket_no)
+    {
+        return $this->where(['ticket_no' => $ticket_no]);
+    }
+
+
+    public function getBusActiveTickets($status,$trip_id)
+    {
+        return $this->where(['status' => $status,'trip_id'=>$trip_id]);
+    }
+
+    public function getTripBusTickets($busno)
+    {
+        $data['bus_no'] = $busno;
+        // show($data);
+        $trip = new Trip();
+        $tickets = $trip->join('e_ticket', 'trip.id','e_ticket.trip_id', $data);
+        return $tickets;
+    }
+
+    public function getBusCollectedTickets($status,$trip_id)
+    {
+        return $this->where(['status' => $status,'trip_id'=>$trip_id]);
+    }
+
     // add ticket
     public function addTicket($data)
     {
-        // show($data);
         return $this->insert($data);
     }
+
+    // find ticket
+    public function findTicket($id)
+    {
+        return $this->first(['id'=>$id]);
+    }
+
+    // update ticket
+    public function updateTicket($id, $data)
+    {
+        return $this->update($id, $data);
+    }
+
+    // function to change trip of ticket, transfer ticket
+    public function transferTicket($ticket_id, $trip_id, $seats_reserved=null)
+    {
+        // TODO
+        // update trip id of ticket
+        $this->updateTicket($ticket_id, ['trip_id' => $trip_id, 'seats_reserved' => $seats_reserved]);
+        // update seats of earlier bus and new bus (book seats)
+      // add id to duplicate
+
+    }
+
 }

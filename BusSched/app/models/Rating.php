@@ -7,13 +7,16 @@ class Rating extends Model
     // editable columns
     protected $allowedColumns = [
         'id',
+        'ticket_id',
+        'rater',
         'trip_id',
-        'bus_id',
+        'bus_no',
         'bus_rating',
-        'conductor_id',
+        'conductor',
         'conductor_rating',
-        'driver_id',
-        'driver_rating'
+        'driver',
+        'driver_rating',
+        'time_updated'
     ];
 
     public function validate($data)
@@ -33,8 +36,18 @@ class Rating extends Model
         return $this->findAll();
     }
 
+    public function getConductorRatings($conductor)
+    {
+        return $this->where(['conductor' => $conductor]);
+    }
+
     public function deleteRating($id)
     {
         $this->delete($id);
+    }
+
+    public function addRating($data)
+    {
+        $this->insert($data);
     }
 }

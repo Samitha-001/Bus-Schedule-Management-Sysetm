@@ -1,7 +1,19 @@
 const btn = document.getElementById("btn");
+const btn2 = document.getElementById("btn2");
+const btn3=document.getElementsByClassName("collect_ticket");
 
 btn.addEventListener("click", () => {
   const form = document.getElementById("view_bus");
+
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+});
+
+btn3.addEventListener("click", () => {
+  const form = document.getElementById("view_ticket");
 
   if (form.style.display === "none") {
     form.style.display = "block";
@@ -40,8 +52,19 @@ btn.addEventListener("click", () => {
   }
 });
 
+
 btn.addEventListener("click", () => {
   const form = document.getElementById("view_breakdown");
+
+  if (form.style.display === "none") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
+});
+
+btn2.addEventListener("click", () => {
+  const form = document.getElementById("view_my_breakdowns");
 
   if (form.style.display === "none") {
     form.style.display = "block";
@@ -71,12 +94,3 @@ function cancel() {
 }
 
 
-btn.addEventListener("click", () => {
-  const form = document.getElementById("delete_breakdown");
-
-  if (form.style.display === "none") {
-    form.style.display = "block";
-  } else {
-    form.style.display = "none";
-  }
-});

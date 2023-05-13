@@ -6,8 +6,8 @@ class Collectedtickets
 
     public function index()
     {
-        $collectedticket = new Collectedticket();
-        $collectedtickets = $collectedticket->getCollectedtickets();
+        $collectedticket = new E_ticket();
+        $collectedtickets = $collectedticket->getTickets();
 
         // $data = [];
      

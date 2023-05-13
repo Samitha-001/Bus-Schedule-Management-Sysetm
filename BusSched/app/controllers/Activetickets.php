@@ -4,14 +4,17 @@ class Activetickets
 
     use Controller;
 
-    public function index()
+     public function index()
     {
-        $activeticket = new Activeticket();
-        $activetickets = $activeticket->getActivetickets();
+        $activeticket = new E_ticket();
+        $activetickets = $activeticket->getTickets();
 
         // $data = [];
      
         $this->view('activeticket', ['activetickets' => $activetickets]);
+    
+              
     }
 
+    
 }

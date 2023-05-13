@@ -8,14 +8,13 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include '../app/views/components/head.php';?>
+
 
     <title>Contacts</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +28,7 @@ include '../app/views/components/ownersidebar.php';
             <div>
             <table class="header-links">
                 <tr>
-                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactowners" ><h3>Bus Owner</h3></a></th>
+                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactowners" ><h3>Bus Owners</h3></a></th>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactdrivers" ><h3>Drivers</h3></a></th>
                     <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactconductors" ><h3>Conductors</h3></a></th>
                 </tr>
@@ -39,27 +38,28 @@ include '../app/views/components/ownersidebar.php';
             
         </div>
 
-        <div class="data-table">
-        <div class="selection">
-              
-        </div>
-
             <table border='1' class="styled-table">
                 <tr>
                     <th>Name</th>
-                    <th>EmailAddress</th>
+                    <th>Email</th>
+                    <th>Address</th>
                     <th>Contact No</th>
                 </tr>
 
-                <!-- <?php
-                foreach ($contactowners as $owner) {
-                    echo "<tr>";
-                    echo "<td> $owner->name </td>";
-                    echo "<td> $owner->email </td>";
-                    echo "<td> $owner->tp </td>";
-                    echo "<td> $owner->bus_no </td>";
-                    echo "</tr>";
-                } ?> -->
+                 <?php
+                    $testuser = new User();
+                    $ownerContacts = $testuser->getContactDetails('owner');
+                    // show($driverContacts);
+                    // $i = 0;
+                    foreach ($ownerContacts as $ownerContact) {
+                        echo "<tr>";
+                        echo "<td>$ownerContact[name]</td>";
+                        echo "<td> $ownerContact[email] </td>";
+                        echo "<td>$ownerContact[address]</td>";
+                        echo "<td> $ownerContact[phone] </td>";
+                        
+                        echo "</tr>";
+                } ?> 
 
             </table>
         </div>

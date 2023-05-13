@@ -12,12 +12,19 @@ class Conductor extends Model
         'address',
         'licence_no',
         'assigned_bus',
-        'date_of_birth'
+        'date_of_birth',
+        'rating',
+        'no_of_reviews'
     ];
 
     public function conductorInfo()
     {
         return $this->findAll();
+    }
+
+    public function getConductorInfo($conductor)
+    {
+        return $this->where(['username' => $conductor]);
     }
 
     public function updateConductor($id, $data)

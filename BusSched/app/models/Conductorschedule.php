@@ -2,7 +2,7 @@
 
 class Conductorschedule extends Model
 {
-    protected $table = 'schedule_conductor';
+    protected $table = 'schedule';
 
     // editable columns
     protected $allowedColumns = [

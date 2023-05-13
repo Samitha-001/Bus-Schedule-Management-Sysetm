@@ -3,16 +3,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include '../app/views/components/head.php';?>
+
     <title>Schedule</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
+   
+    
 </head>
 
 <body>
+  
 <?php
 include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
@@ -26,6 +28,7 @@ include '../app/views/components/ownersidebar.php';
             </div>
             <div><button id="btn" class="button-grey">Download</button></div>
         </div>
+        <body>
 
         
         <div>
@@ -40,10 +43,10 @@ include '../app/views/components/ownersidebar.php';
                     <th>Departure Time</th>
                     <th>Arrival Time</th>
                 </tr>
-<div class="styled-tablerow" color="red">
-     
 
-</table>
+    
+
+            </table>
 
         </div>
 

@@ -8,10 +8,7 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include 'components/head.php';?>
 
     <title>Bus Tickets</title>
 
@@ -22,13 +19,15 @@ if (!isset($_SESSION['USER'])) {
 <?php include 'components/navbarcon.php'; 
         // include 'components/conductorsidebar.php';
 ?>
+
+
     <!-- <nav class="navbar">
-    <div>
-        <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
-    </div>
+        <div>
+            <h2><a href="<?= ROOT ?>/admins" id="logo-white">BusSched</a></h2>
+        </div>
         <ul class="nav-links">
             <div class="menu">
-           <a href="<?= ROOT ?>/admins">
+                <a href="<?= ROOT ?>/admins">
                     <li><img src="<?= ROOT ?>/assets/images/profile-icon.png" class="nav-bar-img"></li>
                 </a>
                 <a href="<?= ROOT ?>/logout">
@@ -36,70 +35,97 @@ if (!isset($_SESSION['USER'])) {
                 </a>
             </div>
         </ul>
-    </nav>
+    </nav> -->
 
-    <div class="wrapper">
+    <!-- <div class="wrapper">
         <div class="sidebar">
-            <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li>
+            <li><a href="<?= ROOT ?>/conductors" style="color:#9298AF;">Dashboard</a></li> -->
             <!--<li><a href="" style="color:#9298AF;">Location</a></li>-->
             <!-- <li><a href="<?= ROOT ?>/conductorschedules" style="color:#9298AF;">Schedules</a></li>
             <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Buses</a></li> -->
-            <!--<li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>-->
-            <!-- <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
+            <!-- <li><a href="<?= ROOT ?>/busprofileconductors" style="color:#9298AF;">Ratings</a></li>
+            <li><a href="<?= ROOT ?>/activetickets" style="color:#9298AF;">Bus Tickets</a></li>
             <li><a href="<?= ROOT ?>/conductorfares" style="color:#9298AF;">Bus Fares</a></li>
             <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
             <li><a href="<?= ROOT ?>/contactowners" style="color:#9298AF;">contacts</a></li>
         </div>
-    </div> --> 
+    </div> -->
 
     <main class="container1">
-        <div class="col-1">
-        <div class="header orange-header" style="width:100%">
+    <div class="col-1">
+        <div class="header orange-header">
         <table >
                 <tr>
-                    <th style="padding-left:60px;"><a href="<?= ROOT ?>/activetickets" >Active Tickets</a></th>
-                    <th style="padding-left:60px;"><a href="<?= ROOT ?>/collectedtickets" >Collected Tickets</a></th>
+                    <th style="padding-left:60px"><a href="<?= ROOT ?>/activetickets" id="view_activetickets">Active Tickets</a></th>
+                    <th style="padding-left:60px"><a href="<?= ROOT ?>/collectedtickets" id="vuew_collectedtickets">Collected Tickets</a></th>
                 </tr>
                 
-            </table> 
+            </table>  
+            
         </div>
-
         </div>
 
         <div class="data-table">
         <div class="selection">
-                  
+                 
         </div>
-<div class="col-2">
+        <div class="col-2">
             <table border='1' class="styled-table">
                 <tr>
-                    <th>TicketID</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>BusNo</th>
-                    <th>Passengers</th>
-                    <th>Departure_time</th>   
-                    <th>Date</th>
+                    <th>Passenger</th>
+                    <th>Trip_id</th>
+                    <th>seat_no</th>
+                    <th>ticket_no</th>   
+                    
+
                 </tr>
 
                 <?php
-                foreach ($collectedtickets as $ticket) {
-                    echo "<tr>";
-                    echo "<td> $ticket->id </td>";
-                    echo "<td> $ticket->from </td>";
-                    echo "<td> $ticket->to </td>";
-                    echo "<td> $ticket->bus_no </td>";
-                    echo "<td> $ticket->passengers</td>";
-                    echo "<td> $ticket->departure_time </td>";
-                    echo "<td> $ticket->date </td>";
-                    echo "</tr>";
-                } ?>
+
+                $conductor = $_SESSION['USER']->username;
+
+$bus = new Bus();
+$businfo = $bus->getConductorBuses($conductor)[0];
+$busno = $businfo->bus_no;
+
+$trip = new Trip();
+$trips = $trip->getBusTrips($busno);
+
+$ticket = new E_ticket();
+$status = 'collected';
+
+if(is_array($trips) || is_object($trips)) {
+    foreach ($trips as $trip) {
+        $tripid = $trip->id;
+        $collectedTickets = $ticket->getBusCollectedTickets($status, $tripid);
+
+        if(is_array($collectedTickets) || is_object($collectedTickets)) {
+            foreach ($collectedTickets as $ticketstatus) {
+                echo "<tr>";
+                echo "<td> $ticketstatus->passenger </td>";
+                echo "<td> $ticketstatus->trip_id </td>";
+
+                if ($ticketstatus->seat_number === NULL) {
+                    $ticketstatus->seat_number = "No";
+                    echo "<td> $ticketstatus->seat_number </td>";
+                } else {
+                    echo "<td> $ticketstatus->seat_number</td>";
+                }
+
+                echo "<td> $ticketstatus->ticket_number</td>";
+                echo "</tr>";
+            }
+        }
+    }
+}
+?>
+
 
             </table>
         </div>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <script src="<?= ROOT ?>/assets/js/conductorbus.js"></script>
 
     </main>
 

@@ -5,28 +5,21 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 <nav class="navbar">
     <div>
-        <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="120"></a>
+        <a href="<?= ROOT ?>/home"><img src="<?= ROOT ?>/assets/images/logo.png" width="120" ></a>
     </div>
 
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
         <div class="nav-menu">
-            <li>
-                <?php if (strpos($current_url, '/home') == true) { ?>
-                    <a href="#about">About</a>
-                <?php } else { ?>
-                    <a href="<?= ROOT ?>/home#about">About</a>
-                <?php } ?>
-            </li>
 
             <li>
             
 
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
-            <a href="<?= ROOT ?>/owners"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" size="15" width="35"></a>
-            <a href="<?= ROOT ?>/ownernotifications"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="30"  style="padding-bottom:5px"></a>
-                <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/logout">Logout</a></li>
+            <a href="<?= ROOT ?>/ownerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" size="15" width="35" style="margin-bottom:0.01%;margin-right:17px"></a>
+            <a href="<?= ROOT ?>/ownernotifications"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="30"  style="padding-bottom:4px;margin-right:0.01px"></a>
+                <li class="signup-button" style="margin-left:7px;height:40px;margin-top:7px;padding-top:7px"><a href="<?= ROOT ?>/logout">Logout</a></li>
             </div>
         </ul>
 
@@ -48,3 +41,18 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 </nav>
 
+<script>
+    const ROLE = 'owner'
+    const USERNAME = '<?= $_SESSION['USER']->username ?>'
+
+    //Breakdown notifications
+    let funcBreakdown = (d) => {
+        new Toast('fa fa-bus', 'rgba(255,0,0,0.78)', 'Bus Breakdown', d.message, true, 3000)
+    }
+    try {
+        new Socket().receive_data("breakdown", funcBreakdown, ROLE, USERNAME)
+    } catch (e) {
+        new Toast('fa fa-wifi', 'rgba(255,0,0,0.78)', 'Bad Connection', 'Please check your internet connection', true, 3000)
+    }
+
+</script>

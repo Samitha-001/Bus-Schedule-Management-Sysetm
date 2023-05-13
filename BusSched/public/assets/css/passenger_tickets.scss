@@ -197,6 +197,7 @@ div.ticket-details-card {
   color: #7c839e;
 }
 
+
 // FOR THE UPDATE LOCATION RADIO BUTTONS
 $number-of-options: var(--number-of-options);
 
@@ -231,29 +232,32 @@ $number-of-options: var(--number-of-options);
 			height: 100%;
 			user-select: none;
 			&::before {
-				content: attr(data-debt-amount);
+				content: attr(location-value);
 				position: absolute;
-				left: 50%;
-				padding-top: 10px;
+				left: 70%;
+				padding: 10px;
 				transform: translate(-50%, 45px);
-				font-size: 14px;
+				font-size: 12px;
 				letter-spacing: 0.4px;
 				font-weight: 400;
+        color: #24315e;
 				white-space: nowrap;
 				opacity: 0.85;
 				transition: all 0.15s ease-in-out;
+        z-index: 2;
 			}
 			&::after {
-				content: " ";
+				content: attr(location-value);
 				position: absolute;
 				left: 50%;
 				top: 50%;
 				transform: translate(-50%, -50%);
-				width: 30px;
-				height: 30px;
-				border: 2px solid #000;
-				background: #fff;
-				border-radius: 50%;
+				width: 100px;
+				height: 100px;
+				border: 0px solid white;
+        margin: 20px;
+				background: white;
+				border-radius: 5px;
 				pointer-events: none;
 				user-select: none;
 				z-index: 1;
@@ -262,6 +266,8 @@ $number-of-options: var(--number-of-options);
 			}
 			&:hover::after {
 				transform: translate(-50%, -50%) scale(1.25);
+        background-color: #f15f22;
+        z-index: 3;
 			}
 		}
 		input {
@@ -269,28 +275,18 @@ $number-of-options: var(--number-of-options);
 			&:checked {
 				+ label::before {
 					font-weight: 800;
+          color: white;
 					opacity: 1;
 				}
 				+ label::after {
 					border-width: 4px;
-					transform: translate(-50%, -50%) scale(0.75);
+          border-radius: 5px;
+					transform: translate(-50%, -50%) scale(1.25);
+          background-color: #f15f22;
+          z-index: 2;
 				}
 			}
 		}
-		// #debt-amount-pos {
-		// 	display: block;
-		// 	position: absolute;
-		// 	top: 50%;
-		// 	width: 12px;
-		// 	height: 12px;
-		// 	background: #000;
-		// 	border-radius: 50%;
-		// 	transition: all 0.15s ease-in-out;
-		// 	transform: translate(-50%, -50%);
-		// 	border: 2px solid #fff;
-		// 	opacity: 0;
-		// 	z-index: 2;
-		// }
 	}
 	&:valid {
 		#debt-amount-slider {
@@ -307,17 +303,20 @@ $number-of-options: var(--number-of-options);
 		}
 	}
 }
+
 @keyframes spin {
 	from {
 		transform: rotate(0deg);
 		width: 24px;
 		opacity: 1;
 		margin-right: 12px;
+		margin-left: 12px;
 	}
 	to {
 		transform: rotate(360deg);
 		width: 24px;
 		opacity: 1;
 		margin-right: 12px;
+		margin-left: 12px;
 	}
 }

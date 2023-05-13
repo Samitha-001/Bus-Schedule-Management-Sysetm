@@ -8,12 +8,8 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
-    <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script>
+<?php include 'components/head.php';?>
+<script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script>
     <title>Breakdowns</title>
 
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">

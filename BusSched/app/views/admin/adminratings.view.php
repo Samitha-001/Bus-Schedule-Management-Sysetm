@@ -19,12 +19,9 @@ if ($_SESSION['USER']->role == 'passenger') {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include '../app/views/components/head.php';?>
 
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/admin.css">
-    <script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
     <!-- <script src="<?= ROOT ?>/assets/js/adminratings.js"></script> -->
     <title>Ratings</title>
 </head>
@@ -44,7 +41,7 @@ include '../app/views/components/adminsidebar.php';
             <th>#</th>
             <th>Rater ID</th>
             <th>Trip ID</th>
-            <th>Bus ID</th>
+            <th>Bus No</th>
             <th>Bus Rating</th>
             <th>Conductor ID</th>
             <th>Conductor Rating</th>
@@ -53,10 +50,10 @@ include '../app/views/components/adminsidebar.php';
             <th></th>
           </tr>
         </thead>
-      </table>
-    </div>
-    <div class="tbl-content">
-      <table cellpadding="0" cellspacing="0" border="0">
+      <!-- </table> -->
+    <!-- </div> -->
+    <!-- <div class="tbl-content"> -->
+      <!-- <table cellpadding="0" cellspacing="0" border="0"> -->
         <tbody>
           <?php static $i = 1; ?>
           <?php if ($ratings): foreach ($ratings as $rating): ?>
@@ -64,11 +61,11 @@ include '../app/views/components/adminsidebar.php';
               <td><?= $i++ ?></td>
               <td><?= $rating->rater ?></td>
               <td><?= $rating->trip_id ?></td>
-              <td><?= $rating->bus_id ?></td>
+              <td><?= $rating->bus_no ?></td>
               <td><?= $rating->bus_rating ?></td>
-              <td><?= $rating->conductor_id ?></td>
+              <td><?= $rating->conductor ?></td>
               <td><?= $rating->conductor_rating ?></td>
-              <td><?= $rating->driver_id ?></td>
+              <td><?= $rating->driver ?></td>
               <td><?= $rating->driver_rating ?></td>
               <td>
                 <a href='<?= ROOT ?>/adminratings?delete=<?= $rating->id ?>'>

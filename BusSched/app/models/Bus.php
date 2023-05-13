@@ -11,6 +11,8 @@ class Bus extends Model
         'type',
         'seats_no',
         'route',
+        'rating',
+        'no_of_reviews',
         'start',
         'dest',
         'owner',
@@ -52,10 +54,16 @@ class Bus extends Model
         return $this->where(['owner' => $owner]);
     }
 
+    public function getConductorBuses($conductor)
+    {
+        return $this->where(['conductor' => $conductor]);
+    }
+
     public function deleteBus($id)
     {
         return $this->delete($id);
     }
+
     public function updateBus($id, $data)
     {
         return $this->update($id, $data);
@@ -69,5 +77,61 @@ class Bus extends Model
         echo $this->insert($data);
     }
 
-    
+    public function getBus($busno): object|false
+    {
+        return $this->first(['bus_no' => $busno]);
+    }
+
+    // function to get trips for a bus
+    public function getTripsForBus($busno, $date)
+    {
+        $trip = new Trip();
+        $trips = $trip->where(['bus_no' => $busno, 'trip_date' => $date]);
+        return $trips;
+    }
+
+    // add function to get income of a bus on a day
+    public function calculateDailyIncome($busno, $date)
+    {
+        $ticket = new E_ticket();
+        $tripsForBus = $this->getTripsForBus($busno, $date);
+
+        $income = 0;
+        if($tripsForBus != null) {
+            foreach ($tripsForBus as $trip) {
+                $tickets = $ticket->where(['trip_id' => $trip->id]);
+                
+                if (!$tickets) {
+                    continue;
+                }
+                foreach ($tickets as $tick) {
+                $income += $tick->price;
+                
+            }
+            }
+        }
+        return $income;
+    }
+
+    public function calculateTripIncome($tripno)
+    {
+        $ticket = new E_ticket();
+        
+
+        $income = 0;
+     
+           
+                $tickets = $ticket->where(['trip_id' => $tripno]);
+                if (!empty($tickets) && is_array($tickets) || is_object($tickets)) {
+                foreach ($tickets as $tick) {
+                $income += $tick->price;
+                
+            }
+
+            }
+        
+        return $income;
+    }
+
+
 }

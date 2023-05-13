@@ -18,7 +18,7 @@ class Model
         return $this->query($query);
     }
 
-    public function where($data, $data_not = []) {
+    public function where($data, $order_column="id", $data_not = []) {
         $keys = array_keys($data);
         $keys_not = array_keys($data_not);
         $query = "SELECT * FROM $this->table WHERE ";
@@ -90,7 +90,6 @@ class Model
         
         $keys = array_keys($data);
         $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES (:".implode(',:', $keys).")";        // implode returns a string from an array
-        // print_r($query);
         $this->query($query, $data);
         return false;
     }
@@ -162,8 +161,9 @@ class Model
     }
 
     // function to join tables
-    public function join($table2, $c1, $c2, $data = [], $data_not = []) {
-        $query = "SELECT * FROM $this->table JOIN $table2 ON $c1 = $c2 WHERE ";
+    public function join($table2, $c1, $c2, $data = [], $cols = "*", $data_not = []) {
+        // $query = "SELECT * FROM $this->table JOIN $table2 ON $c1 = $c2 WHERE ";
+        $query = "SELECT $cols FROM $this->table JOIN $table2 ON $c1 = $c2 WHERE ";
         $keys = array_keys($data);
         $keys_not = array_keys($data_not);
         if (!$data && !$data_not)
@@ -183,4 +183,5 @@ class Model
         $data = array_merge($data, $data_not);
         return $this->query($query, $data);
     }
+
 }

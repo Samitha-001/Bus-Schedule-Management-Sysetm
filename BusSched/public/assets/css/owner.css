@@ -1,7 +1,11 @@
 /* @import "navbar.css"; */
 @import "general.css";
+@import "style2.css";
 
-/* Create three unequal columns that floats next to each other */
+
+
+
+
 .column {
   float: left;
  
@@ -14,11 +18,12 @@
 }
 .image
 {
-  width: 700px;
+  width: 400px;
   height: 30%;
   padding-top: 130px;
   background-color: rgb(81, 88, 88);
   padding-bottom: 120px;
+  margin-left: 70px;
   margin-top: 60px;
 }
 
@@ -58,23 +63,7 @@
   color: white;
 }
 
-.wrapper .sidebar {
-  position: fixed;
-  width: 200px;
-  height: 100%;
-  background: #24315e;
-  padding: 30px 0 0 30px;
-  color: white;
-  font-size: 15px;
-}
 
-.wrapper .sidebar li {
-  padding-bottom: 15px;
-}
-
-.wrapper .sidebar li:hover {
-  color: white;
-}
 
 .orange-header {
   grid-column: span 4;
@@ -84,4 +73,72 @@
 a {
   text-decoration: none;
   color: #ffffff;
+}
+
+#submit-btn{
+  display:none;
+  background-color:rgb(90, 221, 96);
+  height:30px;
+  width:180px;
+  border: none; outline: none;
+  border-radius: 7px;
+  color:white;
+  font-size:18px;
+  margin-right:5px;
+}
+
+#cancel{
+  display:none;
+  color:black;
+  border-radius: 7px;
+  border-color:rgb(21, 20, 20);
+  height:30px;
+  width:80px;
+  font-size:18px;
+  margin-left:50px;
+  background-color:white;
+  outline: none;
+
+}
+
+#edit{
+  background-color:rgb(90, 221, 96);
+  height:30px;
+  width:80px;
+  color: white;
+  margin-left:180px;
+  margin-right:20px;
+  font-size:18px;
+  border-radius: 7px;
+  border: none; outline: none;
+}
+
+/* #delete{
+  color:white;
+  height:30px;
+  width:80px;
+  font-size:18px;
+  background-color:red;
+  border-radius: 7px;
+  border: none; outline: none;
+} */
+
+
+.my-input {
+  border: none;
+  outline: none;
+  background-color:aliceblue;
+  padding-left: 50px;
+}
+
+.my-input:focus {
+  border:  rgb(86, 86, 93);
+  background-color:white;
+  padding-left: 20px;
+}
+
+#error_message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
