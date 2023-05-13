@@ -37,8 +37,8 @@ include '../app/views/components/navbar.php';
             <div class="wrapper">
                 <a id="show-booked-tickets" class="ticket-type-btn selected"><span>Booked</span></a>
                 <a id="show-collected-tickets" class="ticket-type-btn"><span>Collected</span></a>
+                <a id="show-used-tickets" class="ticket-type-btn"><span>Used</span></a>
                 <a id="show-expired-tickets" class="ticket-type-btn"><span>Expired</span></a>
-                <a id="show-inactive-tickets" class="ticket-type-btn"><span>Inactive</span></a>
                 <a id="show-all-tickets" class="ticket-type-btn"><span>All</span></a>
             </div>
         </div>
@@ -84,16 +84,20 @@ include '../app/views/components/navbar.php';
         <div class="ticket-flex" id="booked-tickets">
         <?php if ($tickets): foreach ($tickets as $ticket):
             if ($ticket->status == 'booked'): ?>
-            <div class="ticket-card" data-id=<?= $ticket->id ?>>
+            <div class="ticket-card" data-id=<?= $ticket->id ?> data-trip-id=<?=$ticket->trip_id?>>
+
+                <h1 class="h1-l">TicketID: <?=$ticket->id?></h1>
                 <h3><?= $ticket->source_halt ?> - <?= $ticket->dest_halt ?></h3>
                 <p style="text-align:right;"><i><?= $ticket->status ?></i></p>
-                <p>TicketID:&nbsp&nbsp<?= $ticket->id ?></p>
+                <!-- <p>TicketID:&nbsp&nbsp<?= $ticket->id ?></p> -->
                 <!-- <h1>Trip ID</h1> -->
                 <p>Bus:&nbsp&nbspNC1111</p>
-                <p>Seats:&nbsp&nbsp<i>unreserved</i></p>
+                <p>Seats:&nbsp&nbsp
+                    <span class="booked-ticket-seats"><?php if(!$ticket->seats_reserved):?><i>unreserved</i><?php else: ?><?= $ticket->seats_reserved ?><?php endif; ?></span></p>
                 <p>Passengers:&nbsp&nbsp<?= $ticket->passenger_count ?></p>
-                <p><?= $ticket->booking_time ?></p>
+                <!-- <p><?= $ticket->booking_time ?></p> -->
                 <h4 style="text-align:right; margin-bottom:0px;"><?= $ticket->price ?> LKR</h4>
+                <a class="booked-ticket-view-more-a" data-ticket-id="<?= $ticket->id?>" data-seats="<?= $ticket->seats_reserved?>">View more details</a>
             </div>
                         <?php endif; endforeach; else: ?>
                     <div class="ticket-card">
@@ -106,6 +110,7 @@ include '../app/views/components/navbar.php';
         <?php if ($tickets): foreach ($tickets as $ticket):
             if ($ticket->status == 'collected'): ?>
             <div class="ticket-card" data-id=<?= $ticket->id ?>>
+                <h1 class="h1-l">TicketID: <?=$ticket->id?></h1>
                 <h3><?= $ticket->source_halt ?> - <?= $ticket->dest_halt ?></h3>
                 <p style="text-align:right;"><i><?= $ticket->status ?></i></p>
                 <p>TicketID:&nbsp&nbsp<?= $ticket->id ?></p>
@@ -126,7 +131,7 @@ include '../app/views/components/navbar.php';
     <!-- </div> -->
 
     <!-- <div class=" col-10 col-s-10" style="margin:auto;"> -->
-    <div class="ticket-flex tickets-table" id="expired-tickets">
+    <div class="ticket-flex tickets-table" id="used-tickets">
     <table>
         <tr>
             <th>TicketID</th>
@@ -139,7 +144,7 @@ include '../app/views/components/navbar.php';
             <th>Status</th>
         </tr>
         <?php if ($tickets): foreach ($tickets as $ticket):
-            if ($ticket->status == 'expired'): ?>
+            if ($ticket->status == 'used'): ?>
                 <tr>
                     <td><?= $ticket->id ?></td>
                     <td><?= $ticket->source_halt ?></td>
@@ -164,7 +169,7 @@ include '../app/views/components/navbar.php';
     </table>
     </div>
     
-    <div class="ticket-flex tickets-table" id="inactive-tickets">
+    <div class="ticket-flex tickets-table" id="expired-tickets">
     <table>
         <tr>
             <th>TicketID</th>
@@ -177,7 +182,7 @@ include '../app/views/components/navbar.php';
             <th>Status</th>
         </tr>
         <?php if ($tickets): foreach ($tickets as $ticket):
-            if ($ticket->status == 'inactive'): ?>
+            if ($ticket->status == 'expired'): ?>
                 <tr>
                     <td><?= $ticket->id ?></td>
                     <td><?= $ticket->source_halt ?></td>

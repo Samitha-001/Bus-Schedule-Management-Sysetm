@@ -2,7 +2,10 @@
 @import "general.css";
 @import "style2.css";
 
-/* Create three unequal columns that floats next to each other */
+
+
+
+
 .column {
   float: left;
  
@@ -132,4 +135,10 @@ a {
   border:  rgb(86, 86, 93);
   background-color:white;
   padding-left: 20px;
+}
+
+#error_message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }

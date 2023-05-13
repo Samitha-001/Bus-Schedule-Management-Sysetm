@@ -145,6 +145,10 @@ h3 {
   margin: 0;
 }
 
+.white-h {
+  color: white;
+}
+
 h1 {
   color: white;
   text-align: center;
@@ -228,6 +232,8 @@ h1 {
 .search-bar {
   background-color: #24315e;
   color: #fff;
+  display: flex;
+  justify-content: center;
 }
 
 #reserve-seats-q {

@@ -3,12 +3,18 @@
 
 
 body {
-  color: #24315e;
+  /* color: #24315e; */
+  color: white;
+  background: #24315e;
   font-family: "Outfit";
   margin: 0px;
   line-height: normal;
 }
 
+h2 {
+  text-align: center;
+  font-size: 22px;
+}
 #logo_blue {
   color: #24315e;
   text-decoration: none;
@@ -53,6 +59,7 @@ h3 {
   color: white;
   margin-bottom: 0;
   text-align: center;
+  font-size: 150%;
 }
 
 a {
@@ -207,7 +214,7 @@ button:hover {
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 16px 32px;
+  /* padding: 16px 32px; */
   text-align: center;
   font-size: 16px;
   font-weight: bold;
@@ -306,7 +313,7 @@ button:hover {
   align-items: center; 
   justify-content: space-between;
   /* padding-left: 20px; */
-  padding-right: 20px;
+  /* padding-right: 20px; */
   /* padding-top: 5px; */
   padding-bottom: 5px;
   background-color: #f4511e;
@@ -637,6 +644,7 @@ hr {
 .orange-header {
   grid-column: span 4;
   width: auto;
+  justify-content: center;
 }
 
 .data-table {
@@ -699,7 +707,7 @@ hr {
  
       .styled-table th {
         padding: 3px 5px;
-        font-size: 90%;
+        font-size: 130%;
       
       }
       
@@ -711,7 +719,7 @@ hr {
       
       .card-container {
         right: 2px; 
-        width: 100px;
+        width: 151px;
         height: 100px; 
         margin: 10px;
         
@@ -775,20 +783,20 @@ hr {
         width: 25%;
         margin-right: 2px;
       }
-
       
-  div.fare-from-to-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    /* gap */
-    grid-gap: 10px;  
-    margin: 20px;
-    margin-bottom: 0px;
-    margin-top: 10px;
-  }
+      .styled-table td {
+        padding: 12px 15px;
+        font-size: 130%;
+        color: #7c839e;
+        vertical-align: middle;
+      }
 
-  }table#busfare-table {
+  }
+  
+  table#busfare-table {
     overflow-x: auto;
+    overflow-y: scroll;
+    height: 400px;
   }
   
   table#busfare-table tbody {
@@ -797,12 +805,13 @@ hr {
     overflow-x: auto;
     /* center align */
     margin: 0 auto;
+    background: #24315e;
   }
   
   table#busfare-table td {
-    background-color: #24315e;
-    border-color: white;
-    color: white;
+    background-color: white;
+    border-color: #24315e;
+    color: #24315e;
     border-spacing: 5px;
     border-radius: 5px;
     text-align: center;
@@ -822,15 +831,15 @@ hr {
   }
   
   table#busfare-table td.halt-name {
-    color: #7c839e;
-    background-color: white;
+    color: white;
+    background-color: #24315e;
     text-align: right;
     width: max-content;
     font-size: 8px;
   }
   
   table#busfare-table td.halt-name-top {
-    color: #7c839e;
+    color: white;
     background-color: transparent;
     text-align: left;
     max-width: 20px;
@@ -846,4 +855,105 @@ hr {
     /* height: 100%; */
   }
 
+  div.fare-from-to-grid input {
+    justify-self: center;
+    height: auto;
+    padding: 5px;
+  }
 
+  div.fare-from-to-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* gap */
+    grid-gap: 10px;  
+    margin: 20px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    position: sticky;
+    top: 70px;
+    background-color: #24315e;
+  }
+
+  #fare-result {
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 0px;
+  }
+
+  .fare-td {
+    background-color: white;
+    color: #24315e;
+  }
+
+  
+#schedule-table th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+#schedule-table {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  max-height: 490px;
+  padding: 0px;
+}
+
+/* freeze first row */
+#schedule-table tr:first-child {
+  position: sticky;
+  top: 0px;
+}
+
+table {
+  display: block;
+  white-space: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  border-collapse: separate;
+  background-color: white;
+  margin-left: auto;
+  border-radius: 5px;
+
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+table tbody {
+  display: table;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  color: #24315e;
+  text-align: center;
+}
+
+td {
+  background-color: #f9f9f9;
+  height: 20px;
+}
+
+/* to freeze last column */
+#schedule-table th:not(:first-child),
+#schedule-table td:not(:first-child) {
+  position: sticky;
+  left: 0;
+  background-color: #fff;
+  z-index: 2;
+}
+
+#schedule-table th:first-child,
+#schedule-table td:first-child {
+  position: sticky;
+  right: 0;
+  background-color: #fff;
+  z-index: 2;
+}

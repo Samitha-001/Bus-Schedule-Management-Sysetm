@@ -16,11 +16,12 @@ class Conductortrips
               
     }
 
-    public function updateTripStatus($id)
-    {
-        $trip=new Trip();
-        $trip->updateTrip($id,['status' => "started"]);
-        redirect('conductortrip');
-    }
+    public function updateTripStatus()
+{
+    $trip = new Trip();
+    $trip->updateTrip($_POST['tripID'], ['status' => "started"]);
+    // $id=$_POST['tripID'];
+    // header("Location: conductorlocations.php?trip_id={$id}");
+}
     
 }

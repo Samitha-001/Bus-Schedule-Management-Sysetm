@@ -13,34 +13,35 @@ if (!isset($_SESSION['USER'])) {
 
     <title>Fares</title>
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
-    <script src="<?= ROOT ?>/assets/js/landing.js"></script>
-    <!-- <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet"> -->
+    <script src="<?= ROOT ?>/assets/js/conductorfare.js"></script>
 </head>
 
 <body>
-<?php include 'components/navbarcon.php'; 
-        // include 'components/conductorsidebar.php';?>
+<?php include 'components/navbarcon.php'; ?>
 
-<datalist id="halt-list">
- <?php
-    $len = count($halts);
-    for ($i = 0; $i < $len; $i++) {
-        $halt = $halts[$i];
-        echo "<option value='" . $halt->name . "'>";
-    }
-    ?> 
+    <datalist id="halt-list">
+    <?php
+        $len = count($halts);
+        for ($i = 0; $i < $len; $i++) {
+            $halt = $halts[$i];
+            echo "<option value='" . $halt->name . "'>";
+        }
+        ?> 
 
-</datalist> 
+    </datalist> 
 
-<!-- <div class="row">  -->
-    <h1 style="margin-top:40px; color:#24315e; text-align:center;">A/C bus fares</h1>
+    <div class="header orange-header">
+        <h2>A/C bus fares</h2>
+    </div>
+
     <div class="fare-from-to-grid">
         <input type="text" name="from" id="fare-from" placeholder="From" list="halt-list" required>
         <input type="text" name="to" id="fare-to" placeholder="To" list="halt-list" required>
 
         <button id="calculate-fare" class="button-orange">Find fare</button>
-        <div id="fare-result" class='span-3'></div>
     </div>
+    <div id="fare-result" class='span-3'></div>
+
     <section id="busfare">
         <div style="width:100%">
             <table id="busfare-table">
