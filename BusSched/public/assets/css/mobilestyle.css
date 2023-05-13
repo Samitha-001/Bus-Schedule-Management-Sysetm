@@ -1066,3 +1066,7 @@ td {
   /* reduce opacity */
   opacity: 0.5;
 }
+
+.hidden {
+  display: none;
+}
