@@ -65,6 +65,120 @@ class Schedule extends Bus
         return $buses;
     }
 
+    function divideBusesforA($buses){
+        $Piliyandala_Buses = array();
+        $Pettah_Buses = array();
+        
+        foreach ($buses as $bus) {
+            if ($bus['start'] == "Piliyandala") {
+                $Piliyandala_Buses[] = $bus['bus_no'];
+            } 
+        }
+    return $Piliyandala_Buses;
+}
+    function divideBusesforB($buses){
+        $Pettah_Buses = array();
+        
+        foreach ($buses as $bus) {
+            if ($bus['start'] == "Pettah") {
+                $Pettah_Buses[] = $bus['bus_no'];
+            } 
+        }
+    return $Pettah_Buses;
+}
+    
+
+function schedule($buses){
+    $startTime = strtotime('2023-05-12 05:30:00');
+    $endTime = strtotime('2023-05-12 20:30:00');
+    $interval = 600;
+    $travelTime = 3600;
+    $aName = 'Piliyandala';
+    $bName = 'Pettah';
+    $busesOfA = [];
+    $busesOfB = [];
+
+    // Divide buses based on start key value
+    foreach ($buses as $bus) {
+        if ($bus['start'] === $aName) {
+            $busesOfA[] = $bus['bus_no'];
+        } else {
+            $busesOfB[] = $bus['bus_no'];
+        }
+    }
+
+    $successSchedule = '';
+    for ($i = 60; $i > 0; $i--) {
+        $interval = $i * 60;
+        $possible = true;
+        $currentSchedule = '';
+        $currentTime = $startTime;
+        $busesInA = $busesOfA;
+        $busesInB = $busesOfB;
+        $inTransitAB = [];
+        $inTransitBA = [];
+
+        while ($currentTime <= $endTime) {
+            $currentSchedule .= 'Current time: '. date('H:i', $currentTime) . PHP_EOL;
+            $removableBusesA = [];
+            $removableBusesB = [];
+
+            foreach ($inTransitAB as $bus => $arrivalTime) {
+                if ($arrivalTime <= $currentTime) {
+                    $removableBusesA[] = $bus;
+                }
+            }
+
+            foreach ($removableBusesA as $bus) {
+                unset($inTransitAB[$bus]);
+                $busesInB[] = $bus;
+            }
+
+            foreach ($inTransitBA as $bus => $arrivalTime) {
+                if ($arrivalTime <= $currentTime) {
+                    $removableBusesB[] = $bus;
+                }
+            }
+
+            foreach ($removableBusesB as $bus) {
+                unset($inTransitBA[$bus]);
+                $busesInA[] = $bus;
+            }
+
+            if (count($busesInA) != 0) {
+                $departA = $busesInA[array_rand($busesInA)];
+                $currentSchedule .= $departA .' departs '. $aName .' at '. date('H:i', $currentTime) . PHP_EOL;
+                $busesInA = array_values(array_diff($busesInA, [$departA]));
+                $inTransitAB[$departA] = $currentTime + $travelTime;
+            } else {
+                $possible = false;
+                break;
+            }
+
+            if (count($busesInB) != 0) {
+                $departB = $busesInB[array_rand($busesInB)];
+                $currentSchedule .= $departB .' departs '. $bName .' at '. date('H:i', $currentTime) . PHP_EOL;
+                $busesInB = array_values(array_diff($busesInB, [$departB]));
+                $inTransitBA[$departB] = $currentTime + $travelTime;
+            } else {
+                $possible = false;
+                break;
+            }
+
+            $currentTime += $interval;
+        }
+
+        if (!$possible) {
+            $interval = ($i + 1) * 60;
+            break;
+        }
+
+        $successSchedule = $currentSchedule;
+    }
+
+    $optimal_time =  (floor($interval / 60));
+    echo $optimal_time;
+}
 
     function busSchedule($buses , $date) {
         
@@ -273,80 +387,7 @@ return $schedule;
 
    
     
-    function schedule(){
-        $startTime = strtotime('2023-05-12 05:30:00');
-$endTime = strtotime('2023-05-12 20:30:00');
-$interval = 600;
-$travelTime = 3600;
-$aName = 'Piliyandala';
-$bName = 'Pettah';
-$busesOfA = ['A1', 'A2','A3'];
-$busesOfB = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7'];
-$successSchedule = '';
-for ($i = 60; $i > 0; $i--) {
-    $interval = $i * 60;
-    $possible = true;
-    $currentSchedule = '';
-    $currentTime = $startTime;
-    $busesInA = $busesOfA;
-    $busesInB = $busesOfB;
-    $inTransitAB = [];
-    $inTransitBA = [];
-    while ($currentTime <= $endTime) {
-        $currentSchedule .= 'Current time: '. date('H:i', $currentTime) . PHP_EOL;
-        $removableBusesA = [];
-        $removableBusesB = [];
-        foreach ($inTransitAB as $bus => $arrivalTime) {
-            if ($arrivalTime <= $currentTime) {
-                $removableBusesA[] = $bus;
-            }
-        }
-        foreach ($removableBusesA as $bus) {
-            unset($inTransitAB[$bus]);
-            $busesInB[] = $bus;
-        }
-        foreach ($inTransitBA as $bus => $arrivalTime) {
-            if ($arrivalTime <= $currentTime) {
-                $removableBusesB[] = $bus;
-            }
-        }
-        foreach ($removableBusesB as $bus) {
-            unset($inTransitBA[$bus]);
-            $busesInA[] = $bus;
-        }
-        if (count($busesInA) != 0) {
-            $departA = $busesInA[array_rand($busesInA)];
-            $currentSchedule .= $departA .' departs '. $aName .' at '. date('H:i', $currentTime) . PHP_EOL;
-            $busesInA = array_values(array_diff($busesInA, [$departA]));
-            $inTransitAB[$departA] = $currentTime + $travelTime;
-        } else {
-            $possible = false;
-            break;
-        }
-        if (count($busesInB) != 0) {
-            $departB = $busesInB[array_rand($busesInB)];
-            $currentSchedule .= $departB .' departs '. $bName .' at '. date('H:i', $currentTime) . PHP_EOL;
-            $busesInB = array_values(array_diff($busesInB, [$departB]));
-            $inTransitBA[$departB] = $currentTime + $travelTime;
-        } else {
-            $possible = false;
-            break;
-        }
-        $currentTime += $interval;
-    }
-    if (!$possible) {
-        $interval = ($i + 1) * 60;
-        break;
-    }
-    $successSchedule = $currentSchedule;
-}
-
-// echo ($successSchedule . PHP_EOL);
-$optimal_time =  (floor($interval / 60));
-$optimal_time_string =  $optimal_time . ':' . ($interval % 60);
-    return $optimal_time;
     
-    }
 
    
 }

@@ -13,19 +13,19 @@ class Schedules
         $buses = $bus->getBuses();
         // $scheds = $schedule->generateSchedule();
         // $schedules = $schedule->generateSchedule1($scheds);
-        
+        $busesOfA = [];
+        $busesOfB = [];
         $bus = json_decode(json_encode($buses), true);
         
-        $schedules = $schedule->schedule();
-        
+        $schedules = $schedule->schedule($bus);
         
 
         $data = [];
 
-            if ($schedule->validate($schedules)) {
-                $schedule->insertMany($schedules);
-                redirect('schedules');
-            }
+            // if ($schedule->validate($schedules)) {
+            //     $schedule->insertMany($schedules);
+            //     redirect('schedules');
+            // }
 
             $data['errors'] = $schedule->errors;
     

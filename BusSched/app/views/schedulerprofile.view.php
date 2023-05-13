@@ -103,7 +103,7 @@ if (isset($_SESSION['USER'])) {
             </div>
 
             <!-- edit form for passenger info -->
-            <form style="padding-left:5px;" class='edit-info-form info-grid'>
+            <form method="post" action="<?ROOT ?>/schedulerprofile/api_edit" style="padding-left:5px;" class='edit-info-form info-grid'>
             <h1>Username:</h1>
                 <input type="text" name="username" id="username" value="<?= $scheduler->username ?>">
                 <h1>Name:</h1>
@@ -116,8 +116,8 @@ if (isset($_SESSION['USER'])) {
                 
                 <!-- TODO -->
                 <div class="info-grid-start-2">
-                    <button id='save-scheduler-info' style="background-color: #24315e;">Save</button>
-                    <button id='cancel-scheduler-info' style="background-color: #24315e;">Cancel</button>
+                    <button id='save-scheduler-info' style="background-color: #24315e;" type="submit">Save</button>
+                    <button id='cancel-passenger-info' style="background-color: #24315e;">Cancel</button>
                 </div>
             </form>
 

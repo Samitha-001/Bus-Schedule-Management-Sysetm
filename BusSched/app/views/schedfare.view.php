@@ -18,7 +18,7 @@ if (!isset($_SESSION['USER'])) {
     <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
     <link href="<?= ROOT ?>/assets/css/schedfare.css" rel="stylesheet">
-    <!-- <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script> -->
+    <script src="<?= ROOT ?>/assets/js/schedulebreakdown.js">console.log("Hey")</script> 
     <script src="<?= ROOT ?>/assets/js/schedbusfare.js">console.log("Hey")</script>
     
     <style>
@@ -47,13 +47,13 @@ if (!isset($_SESSION['USER'])) {
 .fareinstance {
     display: flex;
     justify-content: center;
-    background-color: #f0f0f0;
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
     position: relative;
   }
 
-  table {
+   div.fareinstance {
     border-collapse: collapse;
     width: 100%;
     font-size: 16px;
@@ -92,15 +92,42 @@ if (!isset($_SESSION['USER'])) {
 
 
   .styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 200px;
-    width: 100%;
-    table-layout: fixed;
-  }
-  #popup_form_container {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 200px;
+  width: 100%;
+  table-layout: fixed;
+  background-color: #f0f0f0; /* add a background color */
+  color: #333; /* change the text color */
+}
+
+.styled-table th {
+  background-color: #24315e; /* change the background color of header cells */
+  color: #fff; /* change the text color of header cells */
+}
+
+.styled-table td,
+.styled-table th {
+  padding: 12px 15px; /* change the padding of cells */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.styled-table tr:nth-of-type(even) {
+  background-color: #fafafa; /* change the background color of even rows */
+}
+
+.styled-table tr:hover {
+  background-color: #f5f5f5; /* change the background color of hovered rows */
+}
+
+.styled-table caption {
+  font-size: 1.5em;
+  margin: 0.5em 0;
+}
+   #popup_form_container {
     display: none;
     position: fixed;
     top: 0;
@@ -135,16 +162,19 @@ if (!isset($_SESSION['USER'])) {
 }
 
 #popup_form_container form .button-cancel {
-    background-color: red;
-    color: #fff;
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
+
 .update-btn {
     position: absolute;
-    top: 10px;
+    top: 10px; 
     right: 10px;
     background-color: #4CAF50;
     color: white;
@@ -243,7 +273,7 @@ if (!isset($_SESSION['USER'])) {
                     <td></td>
                     <td align="right">
                         <button class="button-green" type="submit" id="save-button">Save</button>
-                        <button class="button-cancel" onclick="cancel()">Cancel</button>
+                        <button class="button-cancel button-green" onclick="cancel()">Cancel</button>
                     </td>
                 </tr>
             </table>
@@ -255,9 +285,10 @@ if (!isset($_SESSION['USER'])) {
   
         <form method='post' action="<?=ROOT?>/schedfares/updateFareInstance">
         <input type="number" name='percentage'>
-        <input type="number" name='limit' value='<?= $len?>' hidden>
+        <input type="hidden" name='limit' value='<?= $len?>'>
         <input type="submit">
-        <button class="button-cancel" onclick="cancel()">Cancel</button>
+        <input type="button" class="button-cancel  button-green" onclick="cancelBtn()" style="background-color: red;
+    color: #fff;">Cancel</button>
         </form>
   </div>
 
@@ -340,6 +371,9 @@ if (!isset($_SESSION['USER'])) {
     // When the "Cancel" button is clicked, hide the popup form
     function cancel() {
         popupFormContainer.style.display = "none";
+    }
+    function cancelBtn() {
+      document.getElementById("update-form").style.display = "none";
     }
 
     var tableContainer = document.querySelector(".fareinstance");

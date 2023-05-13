@@ -240,14 +240,14 @@ div.white-box input:focus {
   }
 }
 
-table#busfare-table {
+#busfare-table {
   overflow-x: auto;
 }
 
 table#busfare-table tbody {
   display: table;
   width: 100px;
-  overflow-x: hidden;
+  overflow-x: auto;
   /* center align */
   margin: 0 auto;
 }
