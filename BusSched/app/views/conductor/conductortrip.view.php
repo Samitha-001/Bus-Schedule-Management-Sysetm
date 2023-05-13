@@ -8,22 +8,16 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.88.1">
+    <?php include '../app/views/components/head.php';?>
 
     <title>Bus Tickets</title>
 
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
-    <!-- <script src="<?= ROOT ?>/assets/js/collecttickets.js"></script> -->
-
 </head>
 
 <body>
-<?php include 'components/navbarcon.php'; 
-        // include 'components/conductorsidebar.php';
-?>
+
+<?php include '../app/views/components/navbarcon.php'; ?>
 
 <main class="container1">
     <div class="col-1">
@@ -44,13 +38,13 @@ if (!isset($_SESSION['USER'])) {
     $starting_trip = array();
     $ended_trip=array();
     foreach ($trips as $trip) {
-        if ($trip->Status == "notstarted") {
+        if ($trip->status == "scheduled") {
             array_push($starting_trip,$trip);
         }
     }
 
     foreach ($trips as $trip) {
-        if ($trip->Status == "ended") {
+        if ($trip->status == "ended") {
             array_push($ended_trip,$trip);
         }
     }
@@ -78,14 +72,6 @@ if (!isset($_SESSION['USER'])) {
                         <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                        
                         <?php ?>
-                
-                        <td class="start-trip-btn">
-    <form method="post" action="<?= ROOT ?>/conductortrips/updateTripStatus">
-        <input type="hidden" name="tripID" value="<?= $trip->id ?>">
-        <input type="hidden" name="status" value="started">
-        <button type="submit" >Start</button>
-    </form>
-</td>
                         
                         </tr>
                 <?php endforeach; ?>
@@ -113,7 +99,7 @@ if (!isset($_SESSION['USER'])) {
                         <td><?= $tripx->trip_date ?></td>
                         <td><?= $tripx->departure_time ?></td>
                         <td><?= $tripx->starting_halt ?></td>
-                        <td><?= $tripx->Status ?></td>
+                        <td><?= $tripx->status ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
