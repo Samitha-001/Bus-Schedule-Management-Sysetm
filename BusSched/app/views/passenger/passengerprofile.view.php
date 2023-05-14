@@ -30,6 +30,9 @@ if (isset($_SESSION['USER'])) {
 include '../app/views/components/navbar.php';
 $passenger = $data[0];
 $username = $passenger->username;
+
+$temp = new Friends();
+$temp->addFriend('kasun123', 'passenger2');
 ?>
 <div class="container">
     <div class="passenger-profile-card" id="profile-header">
