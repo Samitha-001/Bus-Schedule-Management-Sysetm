@@ -229,7 +229,7 @@ if (!isset($_SESSION['USER'])) {
         </table>
       </div>
     </div>
-    <button class="card-toggle"></button>
+    
     <div class="card-details back">
       <!-- Additional content to be displayed -->
     </div>
@@ -275,8 +275,11 @@ if (!isset($_SESSION['USER'])) {
           <?php endif;?>
         </table>
       </div>
+      <?php 
+      print_r($schedules);
+      ?>
     </div>
-    <button class="card-toggle"></button>
+    
     <div class="card-details">
       
     </div>
