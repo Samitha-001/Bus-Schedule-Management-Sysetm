@@ -8,7 +8,7 @@ class Schedules
 
     public function index()
     {
-        $schedule = new Schedule();
+        $sched = new Schedule();
         $bus = new Bus();
         $buses = $bus->getBuses();
         // $scheds = $schedule->generateSchedule();
@@ -17,8 +17,15 @@ class Schedules
         $busesOfB = [];
         $bus = json_decode(json_encode($buses), true);
         
-        $schedules = $schedule->schedule($bus);
-        
+        $schedules = $sched->busSchedule($bus, date('Y/m/d'));
+        $schedNext = null;
+        // if(isset($_POST['gen'])){
+        //     $schedNext = $sched->nextDaySchedule();
+        // }
+            if(isset($_POST['action']) && $_POST['action'] == 'get_data'){
+                $schedNext = $sched->nextDaySchedule();
+                echo $schedNext;
+            }
 
         $data = [];
 
@@ -27,10 +34,10 @@ class Schedules
             //     redirect('schedules');
             // }
 
-            $data['errors'] = $schedule->errors;
+            $data['errors'] = $sched->errors;
     
 
-        $this->view('schedule', ['schedules' => $schedules]);
+        $this->view('schedule', ['schedules' => $schedules, 'schedNext' => $schedNext]);
     }
 
     // public function scheduleGenerate(){
@@ -51,6 +58,18 @@ class Schedules
     //     return $sche
     
 // }
+
+    public function generate(){
+        $trip = new Schedule();
+        $bus = new Bus();
+        $buses = $bus->getBuses();
+
+        $currentDate = date('Y/m/d');
+        $nextDate = date('Y/m/d', strtotime($currentDate.'1 day'));
+        $bus = json_decode(json_encode($buses), true);
+        $sched = $trip->busSchedule($bus, $nextDate);
+        echo json_encode(array($sched, $nextDate));
+    }
 
     public function api_delete()
     {

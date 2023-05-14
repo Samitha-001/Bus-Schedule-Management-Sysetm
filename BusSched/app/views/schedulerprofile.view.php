@@ -46,7 +46,7 @@ if (isset($_SESSION['USER'])) {
             justify-content: center;
             align-items: center;
             height: 100vh;
-            width: 100%;
+            width: 60%;
         }
 
         .passenger-profile-card {
@@ -71,8 +71,8 @@ if (isset($_SESSION['USER'])) {
             border-radius: 50%;
             margin-right: 30px;
             object-fit: cover;
-            width: 200px;
-            height: 200px;
+            width: 110px;
+            height: 110px;
         }
 
         #username {

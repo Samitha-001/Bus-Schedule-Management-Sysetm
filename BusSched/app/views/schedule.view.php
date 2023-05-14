@@ -98,6 +98,8 @@ if (!isset($_SESSION['USER'])) {
   transform: rotateY(180deg);
 }
 
+
+
     </style>
 
 </head>
@@ -116,7 +118,8 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Schedule</h3>
             </div>
-            <div><button id="btn-generate" class="button-grey">Generate</button></div>
+            <div><input type="submit" id="btn-generate" class="button-grey" name="gen" value="Generate" onclick="generating()"></div>
+            <!-- <button type="button" id="data_button">Get Data</button> -->
             <div><button id="btn" class="button-grey">Download</button></div>
         </div>
 
@@ -177,7 +180,7 @@ if (!isset($_SESSION['USER'])) {
         
         <div class="date-container">
   <div class="date">date</div>
-  <i class="fa fa-arrow-right"></i>
+  
 </div>
 <div class="button-container">
     <button id="delete-button" style="display:none"><i class="fa fa-trash"></i> Delete
@@ -185,9 +188,10 @@ if (!isset($_SESSION['USER'])) {
 </div>
 
 <div class="schedule-cards">
-  <!-- <div class="card piliyandala">
+   <div class="card piliyandala">
     <div class="card-content">
       <h2>From Piliyandala</h2>
+      <div id="data_display"></div>
       <div class="table-container">
         <table border='1' class="styled-table">
           <tr>
@@ -215,7 +219,7 @@ if (!isset($_SESSION['USER'])) {
             <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
             <?php endif;?>
           </tr>
-          <?php echo $schedules?>
+       
           <?php endforeach; else: ?>
           <tr>
             <td colspan="9" style="text-align:center;color:#999999;"><i>No schedule found.</i></td>
@@ -225,16 +229,14 @@ if (!isset($_SESSION['USER'])) {
       </div>
     </div>
     <button class="card-toggle"></button>
-    <div class="card-details">
+    <div class="card-details back">
       <!-- Additional content to be displayed -->
     </div>
-    <?php 
-       print_r($schedules);
-    ?>
+    
   </div> 
  
 
-  <!-- <div class="card piliyandala">
+  <div class="card piliyandala">
     <div class="card-content">
       <h2>From Pettah</h2>
       <div class="table-container">
@@ -271,14 +273,21 @@ if (!isset($_SESSION['USER'])) {
           <?php endif;?>
         </table>
       </div>
-    </div> -->
+    </div>
     <button class="card-toggle"></button>
     <div class="card-details">
-      <!-- Additional content to be displayed -->
+      
     </div>
   </div>
 </div>
-
+<div id="sched">
+<div id="A">
+  <table id="trip-table"></table>
+</div>
+<div id="B">
+  <table id="trip-table"></table>
+</div>
+</div>
 
 
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
@@ -287,83 +296,171 @@ if (!isset($_SESSION['USER'])) {
         var today = new Date();
         var date = today.toLocaleDateString();
         document.querySelector(".date").innerHTML = date;
-        
 
- // Get all the checkboxes with class 'delete-checkbox'
-const deleteCheckboxes = document.querySelectorAll(".delete-checkbox");
+        // const btnGen = document.getElementById("btn-generate");
+// const cards = document.querySelectorAll('.card');
 
-// Get the delete button
-const deleteButton = document.getElementById("delete-button");
+// cards.forEach(card => {
+//   btnGen.addEventListener('click', () => {
+//     card.classList.toggle('flipped');
+//   });
+// });
 
-// Loop through each checkbox and add an event listener to detect when it is clicked
-deleteCheckboxes.forEach(function(deleteCheckbox) {
-  deleteCheckbox.addEventListener("click", function() {
-    // Count the number of checked checkboxes
-    const numChecked = document.querySelectorAll(".delete-checkbox:checked").length;
+function generating(){
+  const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
 
-    // If at least one checkbox is checked, show the delete button, otherwise hide it
-    if (numChecked > 0) {
-      deleteButton.style.display = "inline";
-      
-    } else {
-      deleteButton.style.display = "none";
-    }
+  fetch(`${ROOT}/schedules/generate`, {
+        method: "POST",
+        credentials: "same-origin",
+        mode: "same-origin",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(),
+      })
+        .then((res) => res.json())
+        .catch((error) => console.log(error))
+        .then((data) => {
+          console.log(data[0]);
+          console.log(data[1]);
+          // Get a reference to the table where the list will be displayed
+const mainDiv = document.getElementById("sched");
+mainDiv.classList.add("schedule-cards");
+const divA = document.getElementById('A');
+divA.classList.add("card");
+divA.classList.add("piliyandala");
+const table = document.getElementById('trip-table');
+table.classList.add("styled-table");
+// Create a header row for the table
+const headerRow = document.createElement('tr');
 
-    // Remove and re-add the event listener to ensure it is always active
-    deleteCheckbox.removeEventListener("click", arguments.callee);
-    deleteCheckbox.addEventListener("click", arguments.callee);
-  });
-});
+// Create header cells for each column in the table
+const startHeader = document.createElement('th');
+startHeader.textContent = 'Starting';
+headerRow.appendChild(startHeader);
 
-function generateNewDiv() {
-  const card = document.querySelector('.card');
-  const newDiv = document.createElement('div');
-  newDiv.classList.add('new-div');
-  card.appendChild(newDiv);
+const busNoHeader = document.createElement('th');
+busNoHeader.textContent = 'Bus No';
+headerRow.appendChild(busNoHeader);
+
+const DepartureHeader = document.createElement('th');
+DepartureHeader.textContent = 'Departure';
+headerRow.appendChild(DepartureHeader);
+
+const arrivalHeader = document.createElement('th');
+arrivalHeader.textContent = 'Arrival';
+headerRow.appendChild(arrivalHeader);
+
+
+table.appendChild(headerRow);
+
+
+data[0].forEach(bus => {
   
-  card.classList.toggle('rotate');
-  card.addEventListener('transitionend', () => {
-    card.classList.toggle('rotate');
-  }, { once: true });
+  const row = document.createElement('tr');
+  if(bus.starting_place === "Piliyandala"){
+   
+  const startcell = document.createElement('td');
+  startcell.textContent = bus.starting_place;
+  row.appendChild(startcell);
+
+  const busNocell = document.createElement('td');
+  busNocell.textContent = bus.bus_no;
+  row.appendChild(busNocell);
+
+  const departureCell = document.createElement('td');
+  departureCell.textContent = bus.departure_time;
+  row.appendChild(departureCell);
+
+  const arrivalCell = document.createElement('td');
+  arrivalCell.textContent = bus.arrival_time;
+  row.appendChild(arrivalCell);
+
+  // Add the row to the table
+  table.appendChild(row);
+  }
+});
+  divA.appendChild(table);
+  mainDiv.appendChild(divA);
+
+const divB = document.getElementById('B');
+divB.classList.add("card");
+divB.classList.add("pettah");
+const table2 = document.getElementById('trip-table');
+table2.classList.add("styled-table");
+// Create a header row for the table
+const headerRow2 = document.createElement('tr');
+
+// Create header cells for each column in the table
+const startHeader2 = document.createElement('th');
+startHeader2.textContent = 'Starting';
+headerRow2.appendChild(startHeader2);
+
+const busNoHeader2 = document.createElement('th');
+busNoHeader2.textContent = 'Bus No';
+headerRow2.appendChild(busNoHeader2);
+
+const DepartureHeader2 = document.createElement('th');
+DepartureHeader2.textContent = 'Departure';
+headerRow2.appendChild(DepartureHeader2);
+
+const arrivalHeader2 = document.createElement('th');
+arrivalHeader2.textContent = 'Arrival';
+headerRow2.appendChild(arrivalHeader2);
+
+
+table2.appendChild(headerRow2);
+
+
+data[0].forEach(bus => {
+  
+  const row = document.createElement('tr');
+  if(bus.starting_place === "Pettah"){
+   
+  const startcell = document.createElement('td');
+  startcell.textContent = bus.starting_place;
+  row.appendChild(startcell);
+
+  const busNocell = document.createElement('td');
+  busNocell.textContent = bus.bus_no;
+  row.appendChild(busNocell);
+
+  const departureCell = document.createElement('td');
+  departureCell.textContent = bus.departure_time;
+  row.appendChild(departureCell);
+
+  const arrivalCell = document.createElement('td');
+  arrivalCell.textContent = bus.arrival_time;
+  row.appendChild(arrivalCell);
+
+  // Add the row to the table
+  table2.appendChild(row);
+  }
+});
+  divB.appendChild(table2);
+  
+  mainDiv.appendChild(divB);
+
+  alert("Successfully generated");
+        });
 }
 
-document.addEventListener(
-    "DOMContentLoaded", function(){
-
-        const genBtn = document.getElementById("btn-generate");
-
-        genBtn.addEventListener("click", ()=>{
-          
-            generating();
-            alert("H");
-        });
-
-       function generating(){
-        const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
-        fetch(`${ROOT}/schedules/scheduleGenerate`, {
-          method: "POST",
-          credentials: "same-origin",
-          mode: "same-origin",
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-          body: JSON.stringify({ id: id }),
-        })
-          .then((res) => res.json())
-          .catch((error) => console.log(error))
-          .then((data) => {
-            console.log(data);
-          });
-          
-       }
-      
-    
-    }
+//             // using jQuery
+// $(document).ready(function() {
+//   const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
+//   let path = ROOT+'Schedules.php';  
+//   $('#data_button').click(function() {
+//             $($data_display).load(path);        
+//         });
+//     });
 
 
-  
 
-    );
+// function nextDaySchedule(){
+//   alert("Hey");
+// }
+ // Get all the checkboxes with class 'delete-checkbox'
+
 
 
         </script>
