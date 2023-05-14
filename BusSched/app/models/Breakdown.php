@@ -12,6 +12,7 @@ class Breakdown extends Model
     protected $allowedColumns = [
         'id',
         'breakdown_time',
+        'trip_no',
         'bus_no',
         'description',
         'status',
@@ -95,11 +96,22 @@ class Breakdown extends Model
         return $breakdowns;
     }
 
-    public function addBreakdown($data)
+
+    /**
+     * Summary of addBreakdown
+     * @param array<array> $data
+     * @param int $tripno
+     * @return bool
+     */
+    public function addBreakdown($data, $tripno=null)
     {
         // validate and add
         // if ($this->validate($data)) {
-        return $this->insert(['bus_no' => $data['bus_no'], 'description' => $data['description'], 'time_to_repair' => $data['time_to_repair'], 'status' => 'repairing']);
+        if (!$tripno) {
+            return $this->insert(['bus_no' => $data['bus_no'], 'description' => $data['description'], 'time_to_repair' => $data['time_to_repair'], 'status' => 'repairing']);
+        } else {
+            return $this->insert(['bus_no' => $data['bus_no'], 'description' => $data['description'], 'time_to_repair' => $data['time_to_repair'], 'status' => 'repairing', 'trip_no' => $tripno]);
+        }
         // }
         // return false;
     }

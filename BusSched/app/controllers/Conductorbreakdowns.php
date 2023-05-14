@@ -5,8 +5,9 @@ class Conductorbreakdowns
 
     public function index()
     {
+        $username = $_SESSION['USER']->username;
         $breakdown = new Breakdown();
-        $breakdowns = $breakdown->getBreakdowns();
+        $breakdowns = $breakdown->getConductorBreakdowns($username);
         
         $this->userview('conductor', 'breakdown', ['breakdowns' => $breakdowns]);
     }
