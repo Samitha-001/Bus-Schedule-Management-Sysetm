@@ -48,6 +48,8 @@ class Conductortrips
             // updated last updated halt as source
             $trip->update($data['trip_id'], ['last_updated_halt' => $data['starting_halt']]);
 
+            $trip->sendTripStartNotification($data['trip_id']);
+
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
             header('Content-Type: application/json');
