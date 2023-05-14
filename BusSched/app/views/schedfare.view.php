@@ -246,7 +246,7 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Bus Fares</h3>
             </div>
-            <div><button class="button-grey add-btn" id="add_new_button">Add New</button></div>
+            <div><button class="button-grey add-btn" id="add_new_button"></button></div>
         </div>
 
         

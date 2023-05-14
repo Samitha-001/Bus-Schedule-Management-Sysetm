@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   savebtn.addEventListener("click", function (e) {
     e.preventDefault();
     saveRow(e);
+    document.getElementById('edit-info-form').style.display = "none";
   });
 
   // cancel passenger info edit
@@ -74,11 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let ticketdiv = e.target.parentElement.parentElement.parentElement;
     // console.log(ticketdiv);
     let prevValues = ticketdiv.querySelectorAll("p");
-    console.log(preValues[0]);
-    console.log(preValues[1]);
-    console.log(preValues[2]);
-    console.log(preValues[3]);
-    console.log(preValues[4]);
+    
     let id = document.querySelector("#username").innerHTML;
     console.log(id);
     // get username from above
@@ -87,18 +84,15 @@ document.addEventListener("DOMContentLoaded", function () {
     let data = { id: id };
     
     let inputs = ticketdiv.querySelectorAll("input");
-    console.log(inputs[0]);
-    console.log(inputs[1]);
-    console.log(inputs[2]);
-    console.log(inputs[3]);
-    console.log(inputs[4]);
+    
     // check values of inputs against previous values
     for (let i = 0; i < inputs.length; i++) {
-      if (inputs[i].value !== prevValues[i].textContent.trim()) {
+      if (inputs[i].value !== prevValues[i]) {
         data[inputs[i].name] = inputs[i].value;
+        
       }
     }
-
+    
     // check if data is not empty
     if (Object.keys(data).length !== 0) {
       // send data to server
@@ -113,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fetch(url, options)
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
+          console.log(data);
           for (let i = 0; i < inputs.length; i++) {
             prevValues[i].textContent = inputs[i].value;
           }
@@ -136,90 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // GIFT POINTS
-  let giftPointsDiv = document.getElementById("gift-points-div");
-  let giftPointsBtn = document.getElementById("gift-points-btn");
-  let cancelGiftbtn = document.getElementById("cancel-gift-btn");
-  let confirmGiftbtn = document.getElementById("confirm-gift-btn");
-  let pointBalanceDiv = document.getElementById("point-balance-div");
-
-  cancelGiftbtn.addEventListener("click", function (e) {
-    giftPointsDiv.style.display = "none";
-    giftPointsBtn.style.display = "block";
-  });
-
-  giftPointsBtn.addEventListener("click", function (e) {
-    giftPointsDiv.style.display = "block";
-    giftPointsBtn.style.display = "none";
-  });
-
-  confirmGiftbtn.addEventListener("click", function (e) {
-    //check if gifting points > current value
-    let g = document.querySelector('#points').value
-    let c = parseFloat(pointBalanceDiv.querySelector('p').innerHTML)
-    if (g>c){
-      new Toast('fa fa fa-exclamation-triangle', '#ff0000','Invalid','You cannot gift more points than you have',true,3000)
-      return
-    }
-    let confirm = window.confirm("Are you sure you want to gift points?");
-    if (confirm) {
-      giftPointsDiv.style.display = "none";
-      giftPointsBtn.style.display = "block";
-      // change points
-      // call function to gift points
-      giftPoints();
-    }
-  });
-
-  function giftPoints(e) {
-    let inputs = giftPointsDiv.querySelectorAll("input");
-    // option selected from select
-    let select = giftPointsDiv.querySelector("select").value;
-    let data = {};
-
-    // if empty
-    if (select === "") {
-      alert("Please select a passenger to gift points to");
-      return;
-    }
-
-    for (let i = 0; i < inputs.length; i++) {
-      if (!inputs[i].value) {
-        alert("Please enter points to gift");
-        return;
-      }
-      data[inputs[i].name] = inputs[i].value;
-    }
-    data["points_to"] = select;
-    
-    // update point balance
-    let vals = pointBalanceDiv.querySelectorAll("p");
-    
-    vals[0].textContent = parseInt(vals[0].textContent) - parseInt(data["amount"]);
-    vals[1].textContent = parseInt(vals[1].textContent) - parseInt(data["amount"]) + " LKR";
-
-    // send data to server
-    let url = `${ROOT}/passengerprofile/api_gift_points`;
-    let options = {
-      method: "POST",
-      credentials: "same-origin",
-      mode: "same-origin",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(data),
-    };
-
-    fetch(url, options)
-      .then((response) => response.json())
-      .catch((err) => {
-        console.log(err);
-      })
-      .then((data) => {
-        // console.log(data);
-      });
-  }
-
+  
   
   // let profilePicInput = document.getElementById("profile-pic-input");
   // value of input with name username
@@ -251,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         if (data.success) {
           // redirect to profile page
-          window.location.href = `${ROOT}/passengerprofile`;
+          window.location.href = `${ROOT}/schedulerprofile`;
           
         } else {
           alert(data.message);
@@ -260,50 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
       )
   });
 
-  // add friend
-  let addFriendBtn = document.getElementById("add-friend-btn");
-  let addFriendDiv = document.getElementById("add-friend-div");
-  let cancelAddFriendBtn = document.getElementById("cancel-add-friend-btn");
-  let confirmAddFriendBtn = document.getElementById("confirm-add-friend-btn");
+  
 
-  addFriendBtn.addEventListener("click", function (e) {
-    addFriendDiv.style.display = "block";
-    addFriendBtn.style.display = "none";
-  });
-
-  cancelAddFriendBtn.addEventListener("click", function (e) {
-    addFriendDiv.style.display = "none";
-    addFriendBtn.style.display = "block";
-  });
-
-  confirmAddFriendBtn.addEventListener("click", function (e) {
-    let confirm = window.confirm("Are you sure you want to add friend?");
-    if (confirm) {
-      addFriendDiv.style.display = "none";
-      addFriendBtn.style.display = "block";
-      
-      addFriend();
-      // display data in friend list
-      // create div
-      let div = document.createElement("div");
-      // add i tag inside div
-      let i = document.createElement("i");
-      i.innerHTML = "Remove friend";
-      i.classList.add("remove-friend-i");
-      // add attribute
-      let input = document.getElementById("friend");
-
-      i.setAttribute("data-friend", input.value);
-      div.appendChild(i);
-      let p = document.createElement("p");
-      p.innerHTML = "@"+input.value;
-      div.appendChild(p);
-      div.appendChild(document.createElement("hr"));
-
-      // add div to friend list
-      friendListDiv.appendChild(div);
-    }
-  });
+  
 
   
 
