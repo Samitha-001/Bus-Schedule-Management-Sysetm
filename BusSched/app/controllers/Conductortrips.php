@@ -64,7 +64,7 @@ class Conductortrips
 
             // updates trip status as ended
             (new Trip())->updateTrip($trip_id, "ended");
-            (new Trip())->updateTripLocation($trip_id, $post['ending_halt']);
+            (new Trip())->updateTripLocation($trip_id, $post['halt']);
 
             // Send a response
             $response = array('status' => 'success', 'data' => $post);
@@ -125,7 +125,8 @@ class Conductortrips
             // $postData has trip_id: trip_id, location: location,
             $data = [
                 'tripID' => $postData['trip_id'],
-                'halt' => $postData['location']
+                'halt' => $postData['location'],
+                'username'=> $_SESSION['USER']->username
             ];
 
             $location_update->addLocationUpdate($data, 'conductor');
