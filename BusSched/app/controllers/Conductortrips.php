@@ -16,17 +16,8 @@ class Conductortrips
               
     }
 
-    // public function updateTripStatus()
-    // {
-    //     $trip = new Trip();
-    //     $trip->updateTrip($_POST['tripID'], ['status' => "started"]);
-    //     // $id=$_POST['tripID'];
-    //     // header("Location: conductorlocations.php?trip_id={$id}");
-    // }
-
-    // function to start trip
     /**
-     * updates trip status as started
+     * Description- updates trip status as started
      * @return void
      */
     public function api_start_trip()
@@ -59,6 +50,37 @@ class Conductortrips
             header('Content-Type: application/json');
             echo json_encode($response);
         }
+    }
+
+    /**
+     * Description- updates trip status as ended
+     * @return void
+     */
+    public function api_end_trip(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $post = json_decode(file_get_contents('php://input'), true);
+            $trip_id = $post['trip_id'];
+
+            // updates trip status as ended
+            (new Trip())->updateTrip($trip_id, "ended");
+            (new Trip())->updateTripLocation($trip_id, $post['ending_halt']);
+
+            // Send a response
+            $response = array('status' => 'success', 'data' => $post);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
+    public function trips($id): void
+    {
+        //check get parameter
+        $tm = new Trip();
+        $trips = $tm->getTrip(['id' => $id]);
+        $this->userview('conductor','conductortripdetail', ['trips' => $trips]);
     }
     
 }
