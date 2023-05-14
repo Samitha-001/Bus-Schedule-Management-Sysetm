@@ -30,6 +30,9 @@ if (isset($_SESSION['USER'])) {
 include '../app/views/components/navbar.php';
 $passenger = $data[0];
 $username = $passenger->username;
+
+$temp = new Friends();
+$temp->addFriend('kasun123', 'passenger2');
 ?>
 <div class="container">
     <div class="passenger-profile-card" id="profile-header">
@@ -199,26 +202,30 @@ $username = $passenger->username;
                 <?php
                 $passenger = new Passenger();
                 $ratings = $passenger->getRatings();
-                foreach ($ratings as $rating) {
-                    echo "<td>" . $rating->ticket_id . "</td>";
-                    echo "<td>" . $rating->bus_no . "</td><td>";
-
-                    for ($i = 0; $i < $rating->bus_rating; $i++) {
-                        echo "<i class='fas fa-star fa-xs'></i>";
+                if($ratings != null) {
+                    foreach ($ratings as $rating) {
+                        echo "<td>" . $rating->ticket_id . "</td>";
+                        echo "<td>" . $rating->bus_no . "</td><td>";
+    
+                        for ($i = 0; $i < $rating->bus_rating; $i++) {
+                            echo "<i class='fas fa-star fa-xs'></i>";
+                        }
+                        echo "&nbsp(" . $rating->bus_rating . "/5)</><td>";
+    
+                        for ($i = 0; $i < $rating->driver_rating; $i++) {
+                            echo "<i class='fas fa-star fa-xs'></i>";
+                        }
+                        echo "&nbsp(" . $rating->driver_rating . "/5)</><td>";
+    
+                        for ($i = 0; $i < $rating->conductor_rating; $i++) {
+                            echo "<i class='fas fa-star fa-xs'></i>";
+                        }
+                        echo "&nbsp(" . $rating->conductor_rating . "/5)</td>";
+    
+                        echo "<td>" . $rating->time_updated . "</td></tr><tr>";
                     }
-                    echo "&nbsp(" . $rating->bus_rating . "/5)</><td>";
-
-                    for ($i = 0; $i < $rating->driver_rating; $i++) {
-                        echo "<i class='fas fa-star fa-xs'></i>";
-                    }
-                    echo "&nbsp(" . $rating->driver_rating . "/5)</><td>";
-
-                    for ($i = 0; $i < $rating->conductor_rating; $i++) {
-                        echo "<i class='fas fa-star fa-xs'></i>";
-                    }
-                    echo "&nbsp(" . $rating->conductor_rating . "/5)</td>";
-
-                    echo "<td>" . $rating->time_updated . "</td></tr><tr>";
+                } else {
+                    echo "<td colspan='6' style='text-align:center;'>No ratings yet</td>";
                 }
                 ?>
             </tr>

@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Please enter a username");
       return;
     };
-      data['friend'] = input.value;
+    data['friend'] = input.value;
 
     // send data to server
     let url = `${ROOT}/passengerprofile/api_add_friend`;
