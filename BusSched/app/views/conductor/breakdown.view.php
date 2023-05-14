@@ -18,6 +18,11 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
+
+<?php
+$temp = new Breakdown();
+// $temp->repairBreakdown(5);
+?>
     <?php include '../app/views/components/navbarcon.php'; ?>
 
     <main class="container1">
@@ -26,18 +31,6 @@ if (!isset($_SESSION['USER'])) {
             <h2>Breakdowns</h2>
         </div>
 
-    <?php  
-        $my_breakdown = new Breakdown();
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $data['bus_no'] = strtoupper($_POST["bus_no"]);
-            $data['description'] = $_POST["description"];
-            $data['time_to_repair'] = $_POST["time_to_repair"];
-            if ($my_breakdown->validate($data)) {
-                $my_breakdown->addBreakdown($data);            
-            }
-        }
-    ?>
 
     <!-- current breakdown if any -->
     <div class="col-2">
@@ -73,15 +66,14 @@ if (!isset($_SESSION['USER'])) {
                         <td> <?=$breakdown->description?> </td>
                         <td> <?=$breakdown->time_to_repair?> </td>
                         <td>
-                            <input type="hidden" name="id" value="<?=$breakdown->id?>">
-                            <button class="button-green">repaired</button>
+                            <button id="breakdown-repaired-btn" class="button-green" data-breakdown-id='<?=$breakdown->id?>'>repaired</button>
                             <button class="button-green" style="border:#f15f22;background-color:#f15f22;">edit</button>
                         </td>
                     </tr>
                     <?php
                 }
                 echo "</table>";
-            } else echo "No current breakdowns";
+            } else echo "<p style='width:100%; text-align:center;'>No current breakdowns</p>";
         ?>
     </div>
     
@@ -122,7 +114,6 @@ if (!isset($_SESSION['USER'])) {
                     <tr></tr> 
                     <tr></tr> 
                 </table>
-            <!-- </div> -->
         </div>
 
     </main>

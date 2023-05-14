@@ -51,6 +51,17 @@ class Breakdown extends Model
         return $this->where(['bus_no' => $busno]);
     }
 
+    // repair breakdown
+    /**
+     * Updates breakdown status as repaired given the breakdown id
+     * @param int $id
+     * @return bool
+     */
+    public function repairBreakdown($id)
+    {
+        return $this->updateBreakdown($id, ['status' => "repaired", 'repaired_time' => date("Y-m-d H:i:s")]);
+    }
+
     public function getConductorhistoryBreakdowns($busno)
     {
         return $this->where(['bus_no' => $busno]);
@@ -124,7 +135,7 @@ class Breakdown extends Model
 
     public function updateBreakdown($id, $data)
     {
-        return $this->update($id, ['status' => $data['status']]);
+        return $this->update($id, ['status' => $data['status'], 'repaired_time' => $data['repaired_time']]);
     }
 
     public function updatemyBreakdown($id, $data)

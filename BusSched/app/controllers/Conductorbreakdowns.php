@@ -32,9 +32,8 @@ class Conductorbreakdowns
     // function to call when breakdown is repaired
     public function repairBreakdown($id) {
         $breakdown = new Breakdown();
-        $breakdown->updateBreakdown($id, ['status' => "repaired"]);
-
-        redirect('breakdowns');
+        $breakdown->repairBreakdown($id);
+        redirect('conductorbreakdowns');
     }
 
     // function to modify breakdown
@@ -43,7 +42,28 @@ class Conductorbreakdowns
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $breakdown->updatemyBreakdown($id, $_POST);
-            redirect('breakdowns');
+            redirect('conductorbreakdowns');
+        }
+    }
+
+    // repair breakdown api
+    public function api_repair_breakdown() 
+    {
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+            // retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+
+            $breakdown = new Breakdown();
+            $breakdown->repairBreakdown($postData['breakdownID']);
+
+            // Send a response
+            $response = array('status' => 'success', 'data' => $postData);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }
     }
 
