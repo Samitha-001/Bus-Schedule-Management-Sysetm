@@ -53,8 +53,13 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </a>
 
-        <a href="<?= ROOT ?>/conductors" >
-            <div class="card-container" id="location-card">
+        <a href="<?= ROOT ?>/conductortrips" >
+            <div class="card-container" id="trips-card">
+            </div>
+        </a>
+
+        <a href="<?= ROOT ?>/conductorincome" >
+            <div class="card-container" id="income-card">
             </div>
         </a>
 
@@ -68,11 +73,11 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </a>
 
-     
+<!--      
         <a href="<?= ROOT ?>/activetickets" >
             <div class="card-container" id="tickets-card">
             </div>
-        </a>
+        </a> -->
     </div>  
 </main> 
 
