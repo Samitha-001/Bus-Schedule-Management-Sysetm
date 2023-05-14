@@ -48,7 +48,7 @@ if (!isset($_SESSION['USER'])) {
         .schedule-cards {
     display: flex;
     justify-content: space-around;
-    padding: 80px 20px 10px;
+    padding: 8px 20px 10px;
   }
   .card {
     background-color: #fff;
@@ -299,9 +299,13 @@ if (!isset($_SESSION['USER'])) {
         <script src="<?= ROOT ?>/assets/js/bus.js"></script>
         <script>
 
-        var today = new Date();
-        var date = today.toLocaleDateString();
-        document.querySelector(".date").innerHTML = date;
+var today = new Date();
+var year = today.getFullYear();
+var month = ("0" + (today.getMonth() + 1)).slice(-2);
+var day = ("0" + today.getDate()).slice(-2);
+var date = year + "/" + month + "/" + day;
+document.querySelector(".date").innerHTML = date;
+
 
         
 
