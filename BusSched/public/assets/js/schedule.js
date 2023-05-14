@@ -5,13 +5,15 @@ document.addEventListener("DOMContentLoaded", function () {
     let fromParam = urlParams.get('from');
     if (fromParam) fromParam = fromParam.toLowerCase();
     
-    console.log(fromParam);
     
     let toParam = urlParams.get('to');
     if (toParam) toParam = toParam.toLowerCase();
     
     let dateParam = urlParams.get('date');
 
+    // get today's date
+    let today = new Date().toISOString().substr(0, 10);
+    filterRows(null, null, today);
 
     // If the ?from parameter is present, remove it from the URL
     if (fromParam) {
@@ -27,21 +29,44 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dateParam) {
         let newUrl = window.location.href.replace(`?date=${dateParam}`, '');
         history.replaceState(null, null, newUrl);
-    }
-
-    
+    }    
     // Get the data rows
     let rows = document.querySelectorAll('.data-row');
 
-    function filterRows(from, to, date) {
+    function filterRows(from = null, to = null, date = null) {
+        let fromValue = null;
+        let toValue = null;
         // Get the input values
-        let fromValue = from.charAt(0).toUpperCase() + from.slice(1);
-        let toValue = to.charAt(0).toUpperCase() + to.slice(1);
+        if (from) {
+            fromValue = from.charAt(0).toUpperCase() + from.slice(1);
+        }
+        if (to) {
+            toValue = to.charAt(0).toUpperCase() + to.slice(1);
+        }
+
         let dateValue = date;
+        // get halt list from id halt-list
+        let haltList = document.getElementById('halt-list');
+        let filter_start = 'Piliyandala';
+        
+        // if from and to are present
+        if (from && to) {
+            // get halt list options
+            let options = Array.from(haltList.options).map(option => option.value);
+            // make everything lowercase
+            // options = options.map(option => option.toLowerCase());
+            // get halt list items
+            if (options.indexOf(fromValue) < options.indexOf(toValue)) {
+                filter_start = 'Piliyandala';
+            } else {
+                filter_start = 'Pettah';
+            }
+        }
 
         // Filter the rows
         let filteredRows = [];
-        console.log('first: ', filteredRows);
+        let rows = document.querySelectorAll('.data-row');
+
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i];
             // get starting halt from row
@@ -60,41 +85,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 getEstimatedTime(row, startingHaltValue, fromValue, toValue, startingTimeValue);
             }
 
-            // if date is present
-            if (date) {
-                if (tripDateValue == dateValue) {
-                    console.log('date matches');
+            // if from and to are present
+            if (from && to && date) {                
+                // remove everything filteredRows
+                if (filter_start == startingHaltValue && tripDateValue == dateValue) {
                     filteredRows.push(row);
                 }
+            } else
+            if (date) {
+                if (tripDateValue == dateValue) {
+                    filteredRows.push(row);
+                }
+            } else {
+                return;
             }
-
-            // // if from and to are present
-            // if (from && to) {
-            //     if (startingHaltValue == fromValue && row.querySelector('[data-fieldname="destination_halt"]').textContent.toLowerCase() == toValue) {
-            //         filteredRows.push(row);
-            //     }
-            // }
-            // // if only from is present
-            // else if (from) {
-            //     if (startingHaltValue == fromValue) {
-            //         filteredRows.push(row);
-            //     }
-            // }
-            // // if only to is present
-            // else if (to) {
-            //     if (row.querySelector('[data-fieldname="destination_halt"]').textContent.toLowerCase() == toValue) {
-            //         filteredRows.push(row);
-            //     }
-            // }
-            // // if only date is present
-            // else if (date) {
-            //     if (tripDateValue == dateValue) {
-            //         filteredRows.push(row);
-            //     }
-            // }
-            
-
-        }
+            }
 
         // display only filtered rows
         rows.forEach(row => {
@@ -106,12 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         );
     }
-
-    // if url has from, to and date parameters    
-    if ((fromParam && toParam) || dateParam) {
-        filterRows(fromParam, toParam, dateParam);
-    }
-
     
     // redirect to buy ticket
     let buyTicketBtns = document.querySelectorAll('.buy-ticket-btn');
@@ -143,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let to = document.getElementById("to").value.toLowerCase();
         let date = document.getElementById("date").value;
 
-        // filter based on from, to and date
         filterRows(from, to, date);
     });
 

@@ -17,7 +17,8 @@
     // get from and to from link if they exist
     $from = $_GET['from'] ?? '';
     $to = $_GET['to'] ?? '';
-    $date = $_GET['date'] ?? '';
+    // current date
+    $date = date('Y-m-d');
     $passengercount = $_GET['passengercount'] ?? '';
     ?>
 
@@ -44,7 +45,6 @@
         </div>
     </div>
 
-    <!-- <div><h4 class="white-h" style="text-align:center; margin-bottom:0px;">Ticket fare: <span id="bus-fare-span"></span></h4></div> -->
     <div class="row">
         <div class="col-10 col-s-10" style="margin: auto; padding:0px;">
             <table id="schedule-table" style="width: 100%; font-size: 12px;">
