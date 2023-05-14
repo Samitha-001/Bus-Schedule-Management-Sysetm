@@ -12,7 +12,7 @@ class Schedbreakdowns
         $breakdowns = $breakdown->getBreakdowns();
         
         $un_buses = new UnavailableBus();
-        //print_r($breakdowns);
+        // $un_buses->add(array("",$breakdowns['bus_no'], 0, date('Y-m-d') ));
         foreach($breakdowns as $b){
             $un_buses->add(array("",$b->bus_no, 0, date('Y-m-d') ));
         }

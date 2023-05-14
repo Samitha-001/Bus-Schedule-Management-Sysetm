@@ -118,7 +118,7 @@ if (!isset($_SESSION['USER'])) {
             <div>
                 <h3>Schedule</h3>
             </div>
-            <div><input type="submit" id="btn-generate" class="button-grey" name="gen" value="Generate" onclick="generating()"></div>
+            <div><input type="submit" id="btn-generate" class="button-grey" name="gen" value="Generate" onclick="generating(); buttonClicked();"></div>
             <!-- <button type="button" id="data_button">Get Data</button> -->
             <div><button id="btn" class="button-grey">Download</button></div>
         </div>
@@ -317,6 +317,35 @@ document.querySelector(".date").innerHTML = date;
 //     card.classList.toggle('flipped');
 //   });
 // });
+const myButton = document.getElementById("btn-generate");
+
+
+
+function buttonClicked() {
+  const currentTime = new Date().getTime();
+  myButton.style.display = "none"; // hide the button
+  localStorage.setItem("lastClickTime", currentTime); // store the current click time in local storage
+  setTimeout(function() {
+    myButton.style.display = "block"; // show the button after 24 hours
+    localStorage.removeItem("lastClickTime"); // remove the stored click time from local storage
+  }, 24 * 60 * 60 * 1000);
+}
+
+window.addEventListener("load", function() {
+  const lastClickTime = localStorage.getItem("lastClickTime"); // retrieve last click time from local storage
+  if (lastClickTime) {
+    const elapsedTime = new Date().getTime() - lastClickTime;
+    if (elapsedTime < 24 * 60 * 60 * 1000) {
+      myButton.style.display = "none"; // hide the button if less than 24 hours have passed
+      setTimeout(function() {
+        myButton.style.display = "block"; // show the button after 24 hours have passed
+        localStorage.removeItem("lastClickTime"); // remove the stored click time from local storage
+      }, 24 * 60 * 60 * 1000 - elapsedTime);
+    } else {
+      localStorage.removeItem("lastClickTime"); // remove the stored click time from local storage
+    }
+  }
+});
 
 function generating(){
   const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 

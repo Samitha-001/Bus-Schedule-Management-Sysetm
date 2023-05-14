@@ -38,7 +38,7 @@ class UnavailableBus extends Model
     }
 
     public function add($data){
-        $this->insert($data);
+        return $this->insert($data);
     }
 
     public function getAvailableBuses()
