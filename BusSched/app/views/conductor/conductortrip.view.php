@@ -10,7 +10,7 @@ if (!isset($_SESSION['USER'])) {
 <head>
     <?php include '../app/views/components/head.php';?>
 
-    <title>Bus Tickets</title>
+    <title>Trips</title>
 
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
 </head>
@@ -35,30 +35,67 @@ if (!isset($_SESSION['USER'])) {
     $busno = $businfo->bus_no;
     $trip = new Trip();
     $trips = $trip->getBusTrips($busno);
-    
-    $starting_trip = array();
-    $ended_trip=array();
-    foreach ($trips as $trip) {
-        if ($trip->status == "scheduled") {
-            array_push($starting_trip,$trip);
-        }
-    }
+    $scheduled_trips = array();
+    $ended_trips = array();
 
     foreach ($trips as $trip) {
+        if ($trip->status == "scheduled") {
+            // show($trip->status);
+            array_push($scheduled_trips, $trip);
+        }
         if ($trip->status == "ended") {
-            array_push($ended_trip,$trip);
+            array_push($ended_trips, $trip);
+        }
+        if ($trip->status == "started") {
+            $ongoing_trip = $trip;
         }
     }
-        
-    // $trip_id=$starting_trip->id;
     ?>
+
+
+<?php
+    // $temp = new Trip();
+    // $temp->updateTrip(1, 'scheduled');
+    ?>
+    <!-- ongoing trip -->
+    <div class="col-2">
+        <h1>Ongoing Trip</h1>
+        <table border='1' class="styled-table" data-ongoing-trip="<?php if (!empty($ongoing_trip))
+            echo "yes";
+        else
+            echo "no"; ?>" id="ongoing-trips">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Departure</th>
+                <th>Last passed</th>
+                <th></th>
+            </tr> 
+            <?php if (!empty($ongoing_trip)):
+                $ongoing = true;
+                ?>
+                <tr>
+                    <td data-fieldname="trip_id"><?= $ongoing_trip->id ?></td>
+                    <td><?= $ongoing_trip->trip_date ?></td>
+                    <td><?= $ongoing_trip->departure_time ?></td>
+                    <td><?= $ongoing_trip->last_updated_halt ?></td>
+                </tr>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4">No ongoing trip at the moment</td>
+                </tr>
+            <?php endif; ?>
+        </table>
+    </div>
+
+    <!-- upcoming trips -->
     <div class="col-2">
         <h1>Upcoming Trips</h1>
-        <table border='1' class="styled-table" id="upcoming_trips">
+        <table border='1' class="styled-table" id="upcoming-trips">
             <tr>
-                <th>Trip ID</th>
+                <th>ID</th>
                 <th>Date</th>
-                <th>Departure Time</th>
+                <th>Departure</th>
                 <th>Starting halt</th>
              
                 <th></th>
@@ -97,7 +134,7 @@ if (!isset($_SESSION['USER'])) {
             <?php if(!empty($ended_trips)): ?>
                 <?php foreach ($ended_trips as $tripx): ?>
                     <tr>
-                        <td data-fieldname="trip_id"><?= $trip->id ?></td>
+                        <td data-fieldname="trip_id"><?= $tripx->id ?></td>
                         <td><?= $tripx->trip_date ?></td>
                         <td><?= $tripx->departure_time ?></td>
                         <td><?= $tripx->starting_halt ?></td>

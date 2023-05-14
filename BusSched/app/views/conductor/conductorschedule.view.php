@@ -33,7 +33,7 @@ if (!isset($_SESSION['USER'])) {
                     <th>Bus no</th>
                     <th>Start</th>
                     <th>Bus type</th>
-                    <th>Seats available</th>
+                    <!-- <th>Seats available</th> -->
                     <th>Last passed</th>
                 </tr>
                 <?php if ($trips):
@@ -52,7 +52,7 @@ if (!isset($_SESSION['USER'])) {
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
                     <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                     <td data-fieldname="bus_type"><?= $bus->type ?></td>
-                    <td data-fieldname="seats_available">-</td>
+                    <!-- <td data-fieldname="seats_available">-</td> -->
                     <td data-fieldname="last_updated">
                         <?php if ($trip->last_updated_halt)
                             echo "$trip->last_updated_halt";
@@ -64,6 +64,8 @@ if (!isset($_SESSION['USER'])) {
                     </td>
             </table>
         </div>
+
+        <a href="<?= ROOT ?>/conductortrips" class='button-green' style='margin:auto;'>View my trips</a>
         
     </main>
     <script>
