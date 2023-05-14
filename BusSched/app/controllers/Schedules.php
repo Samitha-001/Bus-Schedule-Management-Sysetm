@@ -9,8 +9,7 @@ class Schedules
     public function index()
     {
         $sched = new Schedule();
-        $bus = new Bus();
-        $buses = $bus->getBuses();
+        $buses = $sched->getavailablebuses();
         // $scheds = $schedule->generateSchedule();
         // $schedules = $schedule->generateSchedule1($scheds);
         $busesOfA = [];
@@ -61,8 +60,7 @@ class Schedules
 
     public function generate(){
         $trip = new Schedule();
-        $bus = new Bus();
-        $buses = $bus->getBuses();
+        $buses = $trip->getavailablebuses();
 
         $currentDate = date('Y/m/d');
         $nextDate = date('Y/m/d', strtotime($currentDate.'1 day'));

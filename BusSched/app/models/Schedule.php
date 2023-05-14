@@ -58,46 +58,51 @@ class Schedule extends Model
 
     public function getavailablebuses()
     {
-        $tablename = 'bus_availability';
-        $buses = $this->join($tablename, 'bus.bus_no', 'bus_availability.bus_no');
-        return $buses;
+        
+        $query = "SELECT bus.*
+        FROM bus
+        LEFT JOIN unavailable_buses ON bus.bus_no = unavailable_buses.bus_no
+        WHERE unavailable_buses.bus_no IS NULL";
+        $buses = $this->query($query);
+        $bs = json_decode(json_encode($buses), true);
+        return $bs;
     }
 
-    function divideBusesforA($buses){
-        $Piliyandala_Buses = array();
-        $Pettah_Buses = array();
+//     function divideBusesforA($buses){
+//         $Piliyandala_Buses = array();
+//         $Pettah_Buses = array();
         
-        foreach ($buses as $bus) {
-            if ($bus['start'] == "Piliyandala") {
-                $Piliyandala_Buses[] = $bus['bus_no'];
-            } 
-        }
-    return $Piliyandala_Buses;
-}
-    function divideBusesforB($buses){
-        $Pettah_Buses = array();
+//         foreach ($buses as $bus) {
+//             if ($bus['start'] == "Piliyandala") {
+//                 $Piliyandala_Buses[] = $bus['bus_no'];
+//             } 
+//         }
+//     return $Piliyandala_Buses;
+// }
+//     function divideBusesforB($buses){
+//         $Pettah_Buses = array();
         
-        foreach ($buses as $bus) {
-            if ($bus['start'] == "Pettah") {
-                $Pettah_Buses[] = $bus['bus_no'];
-            } 
-        }
-    return $Pettah_Buses;
-}
+//         foreach ($buses as $bus) {
+//             if ($bus['start'] == "Pettah") {
+//                 $Pettah_Buses[] = $bus['bus_no'];
+//             } 
+//         }
+//     return $Pettah_Buses;
+// }
 
-function availableBuses(){
-    $b = new Bus();
-    $buses = $b->getBuses();
-    $bs = json_decode(json_encode($buses), true);
-    return $bs;
-}
+// function availableBuses(){
+//     $b = new Bus();
+//     $buses = $b->getBuses();
+//     $bs = json_decode(json_encode($buses), true);
+//     return $bs;
+// }
     
 
 function schedule(){
 
     // $b = new Bus();
     // $buses = $b->getBuses();
-    $bs = $this->availableBuses();
+    $bs = $this->getavailablebuses();
 
     $startTime = strtotime('05:30:00');
     $endTime = strtotime('20:30:00');

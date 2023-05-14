@@ -7,7 +7,6 @@ class UnavailableBus extends Model
     // editable columns
     protected $allowedColumns = [
         'id',
-        'starting_place',
         'bus_no',
         'availability',
         'date'

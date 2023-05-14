@@ -11,11 +11,8 @@ class Schedbreakdowns
         $breakdown = new Breakdown();
         $breakdowns = $breakdown->getBreakdowns();
         
-        $un_buses = new UnavailableBus();
-        // $un_buses->add(array("",$breakdowns['bus_no'], 0, date('Y-m-d') ));
-        foreach($breakdowns as $b){
-            $un_buses->add(array("",$b->bus_no, 0, date('Y-m-d') ));
-        }
+       
+        
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // Check if a delete button was clicked
