@@ -26,3 +26,5 @@ define('APP_NAME', 'BusSched');
 define('APP_DESC', 'Bus Schedule Management System.');
 
 define('DEBUG', true);      // true when in production (shows errors)
+
+date_default_timezone_set('Asia/Kolkata');
