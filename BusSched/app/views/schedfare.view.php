@@ -207,7 +207,9 @@ if (!isset($_SESSION['USER'])) {
     margin-bottom: 10px;
   }
 
-  #update-form input[type="submit"] {
+  
+
+  #update-form input[type="submit"] #update-form input[type="button"] {
     background-color: #4CAF50;
     color: white;
     padding: 8px 12px;
@@ -219,6 +221,10 @@ if (!isset($_SESSION['USER'])) {
 
   #update-form input[type="submit"]:hover {
     background-color: #3e8e41;
+  }
+  
+  #update-form input[type="cancel"]:hover {
+    background-color: 'red';
   }
   
     </style>
@@ -287,8 +293,7 @@ if (!isset($_SESSION['USER'])) {
         <input type="number" name='percentage'>
         <input type="hidden" name='limit' value='<?= $len?>'>
         <input type="submit">
-        <input type="button" class="button-cancel  button-green" onclick="cancelBtn()" style="background-color: red;
-    color: #fff;">Cancel</button>
+        <input type="button" onclick="cancelBtn()" value="Cancel"></button>
         </form>
   </div>
 

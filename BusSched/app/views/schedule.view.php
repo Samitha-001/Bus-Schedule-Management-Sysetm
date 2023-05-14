@@ -275,9 +275,6 @@ if (!isset($_SESSION['USER'])) {
           <?php endif;?>
         </table>
       </div>
-      <?php 
-      print_r($schedules);
-      ?>
     </div>
     
     <div class="card-details">

@@ -15,19 +15,12 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
             
 
-            <li>
-                <!-- checks if current URL is home page -->
-                <?php if (strpos($current_url, '/home') == true) { ?>
-                    <a href="#contact">Contact</a>
-                <?php } else { ?>
-                    <a href="<?= ROOT ?>/home#contact">Contact</a>
-                <?php } ?>
-            </li>
+            
 
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
             <a href="<?= ROOT ?>/schedulerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="30"  style="align:center"></a>
-            <a href="<?= ROOT ?>/schedulersnotification"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="30"  style="align:center"></a>
+            <!-- <a href="<?= ROOT ?>/schedulersnotification"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="30"  style="align:center"></a> -->
                 <li class="signup-button" style="margin-left:7px"><a href="<?= ROOT ?>/logout">Logout</a></li>
             </div>
         </ul>

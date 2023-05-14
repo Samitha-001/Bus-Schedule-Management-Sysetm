@@ -105,9 +105,9 @@ if ($_SESSION['USER']->role == 'passenger') {
             $buses = $bus->getBuses();
            
         ?>
-        <canvas id="myChart"></canvas>
+        <!-- <canvas id="myChart"></canvas>
     
-        </div>
+        </div> -->
 
         
     </main>
