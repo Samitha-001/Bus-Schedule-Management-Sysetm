@@ -1,4 +1,5 @@
 <?php
+use Ratchet\Wamp\TopicManagerTest;
 
 class Passengertickets
 {
@@ -49,7 +50,7 @@ class Passengertickets
             header('Content-Type: application/json');
             echo json_encode($response);
         } else {
-            $response = array('status' => 'error', 'data' => 'Invalid requestss');
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
             header('Content-Type: application/json');
             echo json_encode($response);
         }

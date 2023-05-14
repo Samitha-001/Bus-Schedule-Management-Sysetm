@@ -74,4 +74,20 @@ class Passengerticket
             echo json_encode($response);
         }
     }
+
+    public function api_get_reserved_seats(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $post = json_decode(file_get_contents('php://input'), true);
+
+            // Process the request data and perform the update
+            $ticket_seat = new Ticket_seats();
+            $seats = $ticket_seat->getSeatsReserved($post['trip_id'],$post['src'],$post['halt']);
+            $response = array('status' => 'success', 'data' => $seats);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid request');
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
 }

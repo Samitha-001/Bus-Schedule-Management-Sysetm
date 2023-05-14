@@ -23,6 +23,6 @@ class Conductorfares
             $data['errors'] = $fare->errors;
         }
 
-        $this->view('conductorfare', ['fares' => $fares,'halts'=>$halts]);
+        $this->userview('conductor', 'conductorfare', ['fares' => $fares,'halts'=>$halts]);
     }
 }

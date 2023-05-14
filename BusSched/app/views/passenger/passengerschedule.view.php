@@ -17,7 +17,8 @@
     // get from and to from link if they exist
     $from = $_GET['from'] ?? '';
     $to = $_GET['to'] ?? '';
-    $date = $_GET['date'] ?? '';
+    // current date
+    $date = date('Y-m-d');
     $passengercount = $_GET['passengercount'] ?? '';
     ?>
 
@@ -44,7 +45,6 @@
         </div>
     </div>
 
-    <!-- <div><h4 class="white-h" style="text-align:center; margin-bottom:0px;">Ticket fare: <span id="bus-fare-span"></span></h4></div> -->
     <div class="row">
         <div class="col-10 col-s-10" style="margin: auto; padding:0px;">
             <table id="schedule-table" style="width: 100%; font-size: 12px;">
@@ -52,14 +52,13 @@
                     <th>Trip ID</th> <!-- comment later -->
                     <th>Trip starts</th>
                     <th>Start</th>
-                    <th>From</th>
-                    <th>Estimated time</th>
-                    <th>To</th>
-                    <th>Estimated time</th>
+                    <th>Src</th>
+                    <th>Time to reach (src)</th>
+                    <th>Dest</th>
+                    <th>Time to reach (dest)</th>
                     <th>Bus No</th>
                     <th>Bus Type</th>
                     <!-- <th>Price</th> -->
-                    <th>Seats Available</th>
                     <th>Last Passed</th>
                     <th>Book</th>
                 </tr>
@@ -74,16 +73,15 @@
                 $bus = $tripx->getBus($trip->bus_no);
                 ?>
                 <td><?= $trip->id ?></td>
-                    <td data-fieldname="trip_date"><?= $trip->trip_date ?>&nbsp&nbsp&nbsp|&nbsp&nbsp<span data-fieldname="departure_time"><?= $trip->departure_time ?></span></td>
+                    <td data-fieldname="trip_date"><span data-fieldname="trip_date_val"><?= $trip->trip_date ?></span>&nbsp&nbsp&nbsp|&nbsp&nbsp<span data-fieldname="departure_time"><?= $trip->departure_time ?></span></td>
                     <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
-                    <td data-fieldname="from">Pettah</td>
+                    <td data-fieldname="from">-</td>
                     <td data-fieldname="estimated_time_from"></td>
                     <td data-fieldname="to">-</td>
                     <td data-fieldname="estimated_time_to"></td>
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
                     <td data-fieldname="bus_type"><?= $bus->type ?></td>
                     <!-- <td data-fieldname="price">-</td> -->
-                    <td data-fieldname="seats_available">-</td>
                     <td data-fieldname="last_updated">
                         <?php if ($trip->last_updated_halt)
                             echo "$trip->last_updated_halt";

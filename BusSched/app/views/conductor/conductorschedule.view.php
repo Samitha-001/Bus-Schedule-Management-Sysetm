@@ -9,7 +9,7 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <?php include 'components/head.php';?>
+    <?php include '../app/views/components/head.php';?>
 
     <title>Schedule</title>
 
@@ -17,7 +17,7 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
-<?php include 'components/navbarcon.php'; ?>
+    <?php include '../app/views/components/navbarcon.php'; ?>
 
     <div class="header orange-header">
         <h2>Schedules</h2>
@@ -33,7 +33,7 @@ if (!isset($_SESSION['USER'])) {
                     <th>Bus no</th>
                     <th>Start</th>
                     <th>Bus type</th>
-                    <th>Seats available</th>
+                    <!-- <th>Seats available</th> -->
                     <th>Last passed</th>
                 </tr>
                 <?php if ($trips):
@@ -44,7 +44,7 @@ if (!isset($_SESSION['USER'])) {
                 <tr data-id = <?= $trip->id ?> class='data-row'>
                 <?php
                 $tripx = new Trip();
-                $bus = $tripx->getBus(['bus_no' => $trip->bus_no]);
+                $bus = $tripx->getBus($trip->id);
                 ?>
                 
                 <td><?= $trip->id ?></td>
@@ -52,7 +52,7 @@ if (!isset($_SESSION['USER'])) {
                     <td data-fieldname="bus_no"><?= $trip->bus_no ?></td>
                     <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
                     <td data-fieldname="bus_type"><?= $bus->type ?></td>
-                    <td data-fieldname="seats_available">-</td>
+                    <!-- <td data-fieldname="seats_available">-</td> -->
                     <td data-fieldname="last_updated">
                         <?php if ($trip->last_updated_halt)
                             echo "$trip->last_updated_halt";
@@ -64,11 +64,14 @@ if (!isset($_SESSION['USER'])) {
                     </td>
             </table>
         </div>
+
+        <a href="<?= ROOT ?>/conductortrips" class='button-green' style='margin:auto;'>View my trips</a>
         
-
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
     </main>
-
+    <script>
+        // get trip relevant to conductor
+        var trips = <?= json_encode($trips) ?>;
+    </script>
 </body>
 
 </html>

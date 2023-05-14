@@ -28,7 +28,7 @@ class Friends extends Model
         if($friend != $passenger && !($this->where(['passenger' => $passenger, 'friend' => $friend]))) {
             // check if username is valid
             $passengers = new Passenger();
-            if($passengers->where(['username' => $friend])) {
+            if($passengers->where(['username' => $friend],'username')) {
                 $this->insert([
                     'passenger' => $passenger,
                     'friend' => $friend
