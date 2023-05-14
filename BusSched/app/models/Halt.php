@@ -67,6 +67,30 @@ class Halt extends Model
         return $haltRange;
     }
 
+    /**
+     * @param string $src1
+     * @param string $dest1
+     * @param string $src2
+     * @param string $dest2
+     * @return bool
+     * Description: This function checks if the two halt ranges are overlapping or not
+     */
+    public function isOverlapping($src1, $dest1, $src2, $dest2): bool
+    {
+        $src1 = $this->first(['name' => $src1])->id;
+        $dest1 = $this->first(['name' => $dest1])->id;
+        $src2 = $this->first(['name' => $src2])->id;
+        $dest2 = $this->first(['name' => $dest2])->id;
+        $a = min($src1, $dest1);
+        $b = max($src1, $dest1);
+        $c = min($src2, $dest2);
+        $d = max($src2, $dest2);
+
+        if ($b < $c || $d < $a)
+            return false;
+        return true;
+    }
+
     public function addHalt($data)
     {
         $this->insert($data);
@@ -93,13 +117,12 @@ class Halt extends Model
         return ($fi->first(['instance' => abs($src->distance_from_source - $dest->distance_from_source)])->fare);
     }
     
-    // function to estimate time of arrival
+
     /**
      * Summary of estimateTime
      * @param mixed $src
      * @param mixed $dest
      * @param mixed $start_time {string['H:i:s'] 24 hour format}
-     * @param mixed $hour {string['rush', 'normal']}
      * @return string
      */
     public function estimateTime($src, $dest, $start_time)

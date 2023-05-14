@@ -116,80 +116,76 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-//deleting
-document.addEventListener(
-    "DOMContentLoaded", function(){
-        const deleteBtn = document.getElementById("delete-button");
-        deleteBtn.addEventListener("click", function(e){
-            deleteRow(e);
-        });
-
-        function deleteRow(e){
-            let row = e.target.parentNode.parentNode;
-            let id = row.getAttribute("data-id");
-            let confirm = window.confirm("Are  you sure you want to delete the trip?");
-            if(confirm){
-                deleteRecord(id);
-                row.remove();
-            }
-        }
-
-        function deleteRecord(id) {
-            const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
-          fetch(`${ROOT}/schedules/scheduleGenerate`, {
-            method: "POST",
-            credentials: "same-origin",
-            mode: "same-origin",
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-            },
-            body: JSON.stringify({ id: id }),
-          })
-            .then((res) => res.json())
-            .catch((error) => console.log(error))
-            .then((data) => {
-              console.log(data);
-            });
-        }
-
-
-    }
-);
-
-//generating
-document.addEventListener(
-    "DOMContentLoaded", function(){
-
-        const genBtn = document.getElementById("btn-generate");
-
-        genBtn.addEventListener("click", ()=>{
-            alert("Hey");
-            generating();
-        });
-
-       function generating(){
-        const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public'; 
-        fetch(`${ROOT}/schedules/scheduleGenerate`, {
-          method: "POST",
-          credentials: "same-origin",
-          mode: "same-origin",
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-          body: JSON.stringify({ id: id }),
-        })
-          .then((res) => res.json())
-          .catch((error) => console.log(error))
-          .then((data) => {
-            console.log(data);
-          });
-       }
-    
-    }
-
-
-  
-
-    );
-
-    
+// //deleting
+// document.addEventListener(
+//     "DOMContentLoaded", function(){
+//         const deleteBtn = document.getElementById("delete-button");
+//         deleteBtn.addEventListener("click", function(e){
+//             deleteRow(e);
+//         });
+//
+//         function deleteRow(e){
+//             let row = e.target.parentNode.parentNode;
+//             let id = row.getAttribute("data-id");
+//             let confirm = window.confirm("Are  you sure you want to delete the trip?");
+//             if(confirm){
+//                 deleteRecord(id);
+//                 row.remove();
+//             }
+//         }
+//
+//         function deleteRecord(id) {
+//             const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public';
+//           fetch(`${ROOT}/schedules/scheduleGenerate`, {
+//             method: "POST",
+//             credentials: "same-origin",
+//             mode: "same-origin",
+//             headers: {
+//               "Content-Type": "application/json;charset=utf-8",
+//             },
+//             body: JSON.stringify({ id: id }),
+//           })
+//             .then((res) => res.json())
+//             .catch((error) => console.log(error))
+//             .then((data) => {
+//               console.log(data);
+//             });
+//         }
+//
+//
+//     }
+// );
+//
+// //generating
+// document.addEventListener(
+//     "DOMContentLoaded", function(){
+//
+//         const genBtn = document.getElementById("btn-generate");
+//
+//         genBtn.addEventListener("click", ()=>{
+//             alert("Hey");
+//             generating();
+//         });
+//
+//        function generating(){
+//         const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public';
+//         fetch(`${ROOT}/schedules/scheduleGenerate`, {
+//           method: "POST",
+//           credentials: "same-origin",
+//           mode: "same-origin",
+//           headers: {
+//             "Content-Type": "application/json;charset=utf-8",
+//           },
+//           body: JSON.stringify({ id: id }),
+//         })
+//           .then((res) => res.json())
+//           .catch((error) => console.log(error))
+//           .then((data) => {
+//             console.log(data);
+//           });
+//        }
+//
+//     }
+// );
+//
+//
