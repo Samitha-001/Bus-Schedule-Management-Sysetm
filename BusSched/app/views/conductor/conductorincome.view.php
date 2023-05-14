@@ -8,7 +8,7 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <?php include 'components/head.php';?>
+    <?php include '../app/views/components/head.php';?>
 
     <title>Bus Tickets</title>
 
@@ -17,9 +17,7 @@ if (!isset($_SESSION['USER'])) {
 </head>
 
 <body>
-<?php include 'components/navbarcon.php'; 
-        // include 'components/conductorsidebar.php';
-?>
+    <?php include '../app/views/components/navbarcon.php'; ?>
 <main class="container1">
 
 <?php

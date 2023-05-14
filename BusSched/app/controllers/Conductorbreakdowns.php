@@ -41,7 +41,8 @@ class Conductorbreakdowns
         $breakdown = new Breakdown();
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $breakdown->updatemyBreakdown($id, $_POST);
+            $breakdown->update($id, ['time_to_repair'=>$_POST['time_to_repair']]);
+            // return ($_POST);
             redirect('conductorbreakdowns');
         }
     }

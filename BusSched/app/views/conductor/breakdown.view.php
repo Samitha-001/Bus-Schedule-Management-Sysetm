@@ -25,6 +25,11 @@ $temp = new Breakdown();
 ?>
     <?php include '../app/views/components/navbarcon.php'; ?>
 
+
+    <?php
+    $temp = new Breakdown();
+    // $temp->update(5, ['time_to_repair'=>55]);
+    ?> 
     <main class="container1">
         
         <div class="header orange-header" style="position:sticky; top:69px;">
@@ -64,12 +69,21 @@ $temp = new Breakdown();
                         <td> <?=$breakdown->breakdown_time?> </td>
                         <td> <?=$breakdown->bus_no?> </td>
                         <td> <?=$breakdown->description?> </td>
-                        <td> <?=$breakdown->time_to_repair?> </td>
+                        <td> 
+                            <form method="post" action="<?=ROOT?>/conductorbreakdowns/modifyBreakdown/<?=$breakdown->id?>" style="padding:0px;">
+                                <input id="repair-time" name="time_to_repair" type="number" value="<?=$breakdown->time_to_repair?>" disabled>
+                                <button id="submit-edit-btn" type="submit" style="display:none;"></button>
+                            </form>
+                        </td>
                         <td>
                             <button id="breakdown-repaired-btn" class="button-green" data-breakdown-id='<?=$breakdown->id?>'>repaired</button>
-                            <button class="button-green" style="border:#f15f22;background-color:#f15f22;">edit</button>
+                            <button id="breakdown-edit-btn" class="button-green" style="border:#f15f22;background-color:#f15f22;" data-breakdown-id='<?=$breakdown->id?>'>edit</button>
+
+                            <button id="breakdown-save-btn" class="button-green" style="border:#f15f22;background-color:#f15f22; display:none;">save</button>
+                            <button id="breakdown-cancel-btn" class="button-green" style="border:red;background-color:red; display:none;">cancel</button>
                         </td>
                     </tr>
+
                     <?php
                 }
                 echo "</table>";
