@@ -72,14 +72,26 @@ document.addEventListener("DOMContentLoaded", function () {
   function saveRow(e) {
     // get div
     let ticketdiv = e.target.parentElement.parentElement.parentElement;
+    // console.log(ticketdiv);
     let prevValues = ticketdiv.querySelectorAll("p");
+    console.log(preValues[0]);
+    console.log(preValues[1]);
+    console.log(preValues[2]);
+    console.log(preValues[3]);
+    console.log(preValues[4]);
     let id = document.querySelector("#username").innerHTML;
-  
+    console.log(id);
     // get username from above
     id = id.substring(3, id.length - 1);
+    
     let data = { id: id };
+    
     let inputs = ticketdiv.querySelectorAll("input");
-
+    console.log(inputs[0]);
+    console.log(inputs[1]);
+    console.log(inputs[2]);
+    console.log(inputs[3]);
+    console.log(inputs[4]);
     // check values of inputs against previous values
     for (let i = 0; i < inputs.length; i++) {
       if (inputs[i].value !== prevValues[i].textContent.trim()) {
@@ -90,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // check if data is not empty
     if (Object.keys(data).length !== 0) {
       // send data to server
-      let url = `${ROOT}/passengerprofile/api_edit`;
+      let url = `${ROOT}/schedulerprofile/api_edit`;
       let options = {
         method: "POST",
         headers: {

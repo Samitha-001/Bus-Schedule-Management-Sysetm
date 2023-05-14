@@ -10,45 +10,43 @@ class Schedule extends Model
         'from_start',
         'bus_no',
         'departure',
-        'arrival'
+        'arrival',
+        'date'
     ];
 
     
 
     public function validate($data)
-    {
-        $this->errors = [];
+{
+    $this->errors = [];
 
-        if (empty($data['from'])) {
-            $this->errors['from'] = "Source is required";
-        } else
-        if (empty($data['to'])) {
-            $this->errors['to'] = "Destination is required";
-        } else
-        if (empty($data['bus_route'])) {
-            $this->errors['bus_route'] = "Bus route is required";
-        } else
-        if (empty($data['bus_No'])) {
-            $this->errors['bus_route'] = "Bus route is required";
-        } else
-        if (empty($data['bus_type'])) {
-            $this->errors['bus_type'] = "Bus type is required";
-        } else
-        if (empty($data['departure'])) {
-            $this->errors['departure'] = "departure time is required";
+    foreach ($data as $item) {
+        if (empty($item['bus_no'])) {
+            $this->errors[] = "bus_no is required";
+        } 
+        
+        if (empty($item['starting_place'])) {
+            $this->errors[] = "starting_place is required";
         }
-        else
-        if (empty($data['arrival'])) {
-            $this->errors['arrival'] = "arrival time is required";
+        
+        if (empty($item['departure_time'])) {
+            $this->errors[] = "departure time is required";
         }
-
-
-        if (empty($this->errors)) {
-            return true;
+        
+        if (empty($item['arrival_time'])) {
+            $this->errors[] = "arrival time is required";
         }
+    }
 
+    if (empty($this->errors)) {
+        return true;
+    }else{
         return false;
     }
+
+    
+}
+
 
     public function generateSchedule()
     {
@@ -101,8 +99,8 @@ function schedule(){
     // $buses = $b->getBuses();
     $bs = $this->availableBuses();
 
-    $startTime = strtotime('2023-05-12 05:30:00');
-    $endTime = strtotime('2023-05-12 20:30:00');
+    $startTime = strtotime('05:30:00');
+    $endTime = strtotime('20:30:00');
     $interval = 600;
     $travelTime = 3600;
     $aName = 'Piliyandala';
@@ -275,7 +273,8 @@ function schedule(){
                                 'bus_no' => $bus_no,
                                 'departure_time' => $departure_time,
                                 'arrival_time' => $arrival_time,
-                                'starting_place' => $starting_place
+                                'starting_place' => $starting_place,
+                                'date' => $currentDate
                             );
                     
                             // calculate next departure time
@@ -326,7 +325,8 @@ function schedule(){
                                 'bus_no' => $bus_no,
                                 'departure_time' => $departure_time,
                                 'arrival_time' => $arrival_time,
-                                'starting_place' => $starting_place
+                                'starting_place' => $starting_place,
+                                'date' => $currentDate
                             );
                     
                             // calculate next departure time

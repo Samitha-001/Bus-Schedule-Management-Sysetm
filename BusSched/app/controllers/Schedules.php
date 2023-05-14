@@ -22,22 +22,20 @@ class Schedules
         // if(isset($_POST['gen'])){
         //     $schedNext = $sched->nextDaySchedule();
         // }
-            if(isset($_POST['action']) && $_POST['action'] == 'get_data'){
-                $schedNext = $sched->nextDaySchedule();
-                echo $schedNext;
-            }
+            // if(isset($_POST['action']) && $_POST['action'] == 'get_data'){
+            //     $schedNext = $sched->nextDaySchedule();
+            //     echo $schedNext;
+            // }
 
         $data = [];
 
-            // if ($schedule->validate($schedules)) {
-            //     $schedule->insertMany($schedules);
-            //     redirect('schedules');
-            // }
+                $sched->insertMany($schedules);
+                
 
             $data['errors'] = $sched->errors;
     
 
-        $this->view('schedule', ['schedules' => $schedules, 'schedNext' => $schedNext]);
+        $this->view('schedule', ['schedules' => $schedules]);
     }
 
     // public function scheduleGenerate(){
