@@ -8,7 +8,7 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <?php include '../app/views/components/head.php';?>
+    <?php include '../app/views/components/head.php'; ?>
 
     <title>Trips</title>
 
@@ -20,15 +20,15 @@ if (!isset($_SESSION['USER'])) {
 <?php include '../app/views/components/navbarcon.php'; ?>
 
 
-    <div class="header orange-header">
-        <h2>Trips</h2>
-    </div>
+<div class="header orange-header">
+    <h2>Trips</h2>
+</div>
 
 <main class="container1">
-    
-    <?php 
+
+    <?php
     $ongoing = false;
-  
+
     $conductor = $_SESSION['USER']->username;
     $bus = new Bus();
     $businfo = $bus->getConductorBuses($conductor)[0];
@@ -53,7 +53,7 @@ if (!isset($_SESSION['USER'])) {
     ?>
 
 
-<?php
+    <?php
     // $temp = new Trip();
     // $temp->updateTrip(1, 'scheduled');
     ?>
@@ -70,12 +70,16 @@ if (!isset($_SESSION['USER'])) {
                 <th>Departure</th>
                 <th>Last passed</th>
                 <th></th>
-            </tr> 
+            </tr>
             <?php if (!empty($ongoing_trip)):
                 $ongoing = true;
                 ?>
                 <tr>
-                    <td data-fieldname="trip_id"><?= $ongoing_trip->id ?></td>
+                    <td id="end-trip" style="display: none">
+                        <button data-id="<?= $ongoing_trip->id ?>" class="p-1 end-trip-btn">End Trip</button>
+                    </td>
+
+                    <td data-fieldname="trip_id" id="end-trip-id-cell"><?= $ongoing_trip->id ?></td>
                     <td><?= $ongoing_trip->trip_date ?></td>
                     <td><?= $ongoing_trip->departure_time ?></td>
                     <td><?= $ongoing_trip->last_updated_halt ?></td>
@@ -97,21 +101,22 @@ if (!isset($_SESSION['USER'])) {
                 <th>Date</th>
                 <th>Departure</th>
                 <th>Starting halt</th>
-             
-                <th></th>
-            </tr> 
 
-            <?php if(!empty($scheduled_trips)): ?>
+                <th></th>
+            </tr>
+
+            <?php if (!empty($scheduled_trips)): ?>
                 <?php foreach ($scheduled_trips as $trip): ?>
-                    <tr class="trip-row" data-trip-id="<?= $trip->id ?>" data-starting-halt="<?= $trip->starting_halt ?>">
+                    <tr class="trip-row" data-trip-id="<?= $trip->id ?>"
+                        data-starting-halt="<?= $trip->starting_halt ?>">
                         <td data-fieldname="trip_id"><?= $trip->id ?></td>
                         <td data-fieldname="trip_date"><?= $trip->trip_date ?></td>
                         <td data-fieldname="departure_time"><?= $trip->departure_time ?></td>
                         <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
-                       
+
                         <?php ?>
-                        
-                        </tr>
+
+                    </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
@@ -130,8 +135,8 @@ if (!isset($_SESSION['USER'])) {
                 <th>Departure</th>
                 <th>Starting halt</th>
                 <th></th>
-            </tr> 
-            <?php if(!empty($ended_trips)): ?>
+            </tr>
+            <?php if (!empty($ended_trips)): ?>
                 <?php foreach ($ended_trips as $tripx): ?>
                     <tr>
                         <td data-fieldname="trip_id"><?= $tripx->id ?></td>
@@ -154,3 +159,74 @@ if (!isset($_SESSION['USER'])) {
 </body>
 
 </html>
+<style>
+    .end-trip-btn {
+        width: 50px;
+        background-color: #4CAF50;
+        height: 20px;
+        font-size: smaller;
+    }
+</style>
+<script>
+    let endTd = document.getElementById('end-trip');
+    if (endTd) {
+
+        let idTd = document.querySelector('#end-trip-id-cell')
+        let endrow = endTd.parentNode;
+
+        endrow.addEventListener('click', function () {
+            if (endTd.style.display == 'table-cell') {
+                endTd.style.display = 'none';
+                idTd.style.display = 'table-cell';
+            } else if (endTd.style.display == 'none') {
+                endTd.style.display = 'table-cell';
+                idTd.style.display = 'none';
+            }
+        });
+
+        document.querySelector('.end-trip-btn').addEventListener('click', (e) => {
+            let end_ID = e.target.dataset.id;
+            //redirect to end trip page
+            window.location.href = `${ROOT}/conductortrips/trips/${end_ID}`;
+
+
+
+            // let url = `${ROOT}/conductortrips/api_end_trip`;
+            // let options = {
+            //     method: "POST",
+            //     credentials: "same-origin",
+            //     mode: "same-origin",
+            //     headers: {
+            //         "Content-Type": "application/json;charset=utf-8",
+            //     },
+            //     body: JSON.stringify({
+            //         trip_id: end_ID,
+            //     }),
+            // };
+            //
+            // fetch(url, options)
+            //     .then((response) => response.json())
+            //     .catch((err) => {
+            //         console.log(err);
+            //     })
+            //     .then((data) => {
+            //         console.log(data);
+            //         new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Trip Ended", false, 5000);
+            //         setTimeout(() => {
+            //             endrow.remove();
+            //             //add another row saying No ongoing trip
+            //             let table = document.getElementById('ongoing-trips');
+            //             let row = table.insertRow(1);
+            //             //span row over all columns
+            //             row.setAttribute('colspan', '5');
+            //             row.innerHTML = '<td colspan="5">No ongoing trip at the moment</td>';
+            //         }, 1000);
+            //         setTimeout(() => {
+            //             window.location.reload();
+            //         }, 2000);
+            //     });
+        })
+    }
+
+
+</script>
