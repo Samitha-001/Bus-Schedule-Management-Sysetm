@@ -43,13 +43,7 @@ class Location_update extends Model
 
     // update location on trip
     public function updateTripLocation($tripID, $location)
-    {        
-        // // get updates for the trip by passenger
-        // $passengerUpdates = $this->getUpdates($tripID, $location);
-        
-        // // get updates for the trip by conductor
-        // $conductorUpdates = $this->getUpdates($tripID, $location, 'conductor');
-
+    {
         $trips = new Trip();
         $trips->updateTripLocation($tripID, $location);
     }
