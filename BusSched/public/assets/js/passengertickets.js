@@ -303,15 +303,20 @@ document.addEventListener("DOMContentLoaded", function () {
               .then((response) => response.json())
               .then((data) => {
                 console.log(data);
+                // create toast notification
+                new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Trip changed successfully", true, 5000);
+                // remove transferTicketSelect
+                transferTicketSelect.remove();
+                // remove cancelTransferBtn
+                cancelTransferBtn.remove();
+                // remove confirmTransferBtn
+                confirmTransferBtn.remove();
+                // show transferTicketA
+                transferTicketA.style.display = "block";
               })
               .catch((error) => {
                 console.log(error);
               });
-          
-            // send data to transfer ticket api
-            console.log("trip id: ", tripId);
-            console.log("ticket id: ", ticketId);
-            console.log("seats: ", seats);
           }
         });
 

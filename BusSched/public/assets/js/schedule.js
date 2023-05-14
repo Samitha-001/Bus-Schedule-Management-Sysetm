@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
     // remove earlier inputs from URL when refreshed
     let urlParams = new URLSearchParams(window.location.search);
-
+    
     let fromParam = urlParams.get('from');
     if (fromParam) fromParam = fromParam.toLowerCase();
     
@@ -10,11 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (toParam) toParam = toParam.toLowerCase();
     
     let dateParam = urlParams.get('date');
-
+    
     // get today's date
     let today = new Date().toISOString().substr(0, 10);
     filterRows(null, null, today);
-
+    
     // If the ?from parameter is present, remove it from the URL
     if (fromParam) {
         let newUrl = window.location.href.replace(`?from=${fromParam}`, '');
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }    
     // Get the data rows
     let rows = document.querySelectorAll('.data-row');
-
+    
     function filterRows(from = null, to = null, date = null) {
         let fromValue = null;
         let toValue = null;
@@ -170,6 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 row.querySelector('[data-fieldname="estimated_time_to"]').innerHTML = data.data.arrival_time;
             });
     }
+
+    // click the document.querySelector("#find-trip-btn") button
+    document.querySelector("#find-trip-btn").click();
 });
 
 // //deleting

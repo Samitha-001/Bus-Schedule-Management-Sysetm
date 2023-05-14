@@ -79,7 +79,6 @@ include '../app/views/components/navbar.php';
             <?php endif; ?>
         </table>
         </div>
-    <!-- </div> -->
         
         <div class="ticket-flex" id="booked-tickets">
         <?php if ($tickets): foreach ($tickets as $ticket):
@@ -87,17 +86,18 @@ include '../app/views/components/navbar.php';
             <div class="ticket-card" data-id=<?= $ticket->id ?> data-trip-id=<?=$ticket->trip_id?>>
 
                 <h1 class="h1-l">TicketID: <?=$ticket->id?></h1>
+                <p>Purchased at <?= $ticket->booking_time ?></p>
                 <h3><?= $ticket->source_halt ?> - <?= $ticket->dest_halt ?></h3>
                 <p style="text-align:right;"><i><?= $ticket->status ?></i></p>
-                <!-- <p>TicketID:&nbsp&nbsp<?= $ticket->id ?></p> -->
                 <!-- <h1>Trip ID</h1> -->
                 <p>Bus:&nbsp&nbspNC1111</p>
                 <p>Seats:&nbsp&nbsp
                     <span class="booked-ticket-seats"><?php if(!$ticket->seats_reserved):?><i>unreserved</i><?php else: ?><?= $ticket->seats_reserved ?><?php endif; ?></span></p>
                 <p>Passengers:&nbsp&nbsp<?= $ticket->passenger_count ?></p>
-                <!-- <p><?= $ticket->booking_time ?></p> -->
                 <h4 style="text-align:right; margin-bottom:0px;"><?= $ticket->price ?> LKR</h4>
-                <a class="booked-ticket-view-more-a" data-ticket-id="<?= $ticket->id?>" data-seats="<?= $ticket->seats_reserved?>">View more details</a>
+                <?php if (!($ticket->seats_reserved)){?>
+                    <a class="booked-ticket-view-more-a" data-ticket-id="<?= $ticket->id?>" data-seats="<?= $ticket->seats_reserved?>">Change trip</a>
+                <?php } ?>
             </div>
                         <?php endif; endforeach; else: ?>
                     <div class="ticket-card">
