@@ -280,6 +280,8 @@ if (!isset($_SESSION['USER'])) {
     </div>
   </div>
 </div>
+<div id="nextDate" class="">
+</div>
 <div id="sched">
 <div id="A">
   <table id="trip-table"></table>

@@ -30,7 +30,8 @@ class Schedules
         $data = [];
 
                 $sched->insertMany($schedules);
-                
+
+            
 
             $data['errors'] = $sched->errors;
     
