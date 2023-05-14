@@ -98,6 +98,11 @@ class User extends Model
 		return $userinfo;
 	}
 
+	/**
+	 * Get contact details of users
+	 * @param string $role
+	 * @return array<array>
+	 */
 	public function getContactDetails($role)
 	{
 		$userinfo = $this->getUsersDetails($role);
@@ -114,11 +119,8 @@ class User extends Model
 					$contactDetails[$i]['assigned_bus'] = $user->assigned_bus;
 				}
 				$i++;
-
 			}
-			
 		}
-		
 		return $contactDetails;	
 	}
 }

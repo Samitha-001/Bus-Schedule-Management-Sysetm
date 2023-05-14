@@ -24,10 +24,10 @@ class Location_update extends Model
             $point = new Point();
             $point->addPoints(1);
         }
-
         // calls update trip location function, conditions are checked there
-        $this->updateTripLocation($data['tripID'], $data['halt']);
-        show($data);
+        if ($user == 'conductor') {
+            $this->updateTripLocation($data['tripID'], $data['halt']);
+        }
 
         return $this->insert($data);
     }
@@ -43,20 +43,18 @@ class Location_update extends Model
 
     // update location on trip
     public function updateTripLocation($tripID, $location)
-    {        
-        // get updates for the trip by passenger
-        $passengerUpdates = $this->getUpdates($tripID, $location);
-        
-        // get updates for the trip by conductor
-        $conductorUpdates = $this->getUpdates($tripID, $location, 'conductor');
-        
-        // get trip status
+    {
+        $trips = new Trip();
+        $trips->updateTripLocation($tripID, $location);
+    }
 
-        // if there are 3 passenger updates and 1 conductor update
-        if (count($passengerUpdates) >= 3 && count($conductorUpdates) >= 1) {
-            $trips = new Trip();
-            $trips->updateTripLocation($tripID, $location);
-        }
+    // get passengers for a trip and given halt
+    public function getPassengers($tripID, $halt)
+    {
+        $data['tripID'] = $tripID;
+        $data['halt'] = $halt;
+        $data['user_role'] = 'passenger';
+        return $this->where($data);
     }
 
 

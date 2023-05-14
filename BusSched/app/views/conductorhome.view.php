@@ -43,19 +43,9 @@ if ($_SESSION['USER']->role == 'passenger') {
 
 <main class="container1"> 
     <div class="col-4">  
-        <a href="<?= ROOT ?>/conductors" >
-            <div class="card-container" id="location-card">
-            </div>
-        </a>
-
         <a href="<?= ROOT ?>/conductorschedules" >
             <div class="card-container" id="schedules-card">
             </div> 
-        </a>
-
-        <a href="<?= ROOT ?>/breakdowns">
-            <div class="card-container" id="breakdowns-card">
-            </div>
         </a>
 
         <a href="<?= ROOT ?>/conductorfares">
@@ -63,16 +53,31 @@ if ($_SESSION['USER']->role == 'passenger') {
             </div>
         </a>
 
-        <a href="<?= ROOT ?>/contactowners">
+        <a href="<?= ROOT ?>/conductortrips" >
+            <div class="card-container" id="trips-card">
+            </div>
+        </a>
+
+        <a href="<?= ROOT ?>/conductorincome" >
+            <div class="card-container" id="income-card">
+            </div>
+        </a>
+
+        <a href="<?= ROOT ?>/conductorbreakdowns">
+            <div class="card-container" id="breakdowns-card">
+            </div>
+        </a>
+
+        <a href="<?= ROOT ?>/conductorcontacts">
             <div class="card-container" id="contacts-card">
             </div>
         </a>
 
-     
+<!--      
         <a href="<?= ROOT ?>/activetickets" >
             <div class="card-container" id="tickets-card">
             </div>
-        </a>
+        </a> -->
     </div>  
 </main> 
 

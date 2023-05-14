@@ -32,7 +32,7 @@ class Model
         }
         $query = trim($query, " && ");
 
-        $query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";       // :id is a placeholder in PDO
+        $query .= " order by $order_column $this->order_type limit $this->limit offset $this->offset";       // :id is a placeholder in PDO
         $data = array_merge($data, $data_not);
 
         return $this->query($query, $data);
@@ -98,21 +98,26 @@ class Model
         // construct a multi-row insert query
         $keys = array_keys(reset($dataArray));
         $values = array();
-        foreach ($dataArray as $data) {
-            // removes unwanted data
-            if (!empty($this->allowedColumns)) {
-                foreach ($data as $key => $value) {
-                    if (!in_array($key, $this->allowedColumns) || $value == '') {
-                        unset($data[$key]);
-                    }
-                }
-                unset($data['id']);
-            }
+        foreach($dataArray as $data){
             $values[] = "('" . implode("', '", $data) . "')";
+            
         }
+        // foreach ($dataArray as $data) {
+        //     // removes unwanted data
+        //     if (!empty($this->allowedColumns)) {
+        //         foreach ($data as $key => $value) {
+        //             if (!in_array($key, $this->allowedColumns) || $value == '') {
+        //                 unset($data[$key]);
+        //             }
+        //         }
+        //         unset($data['id']);
+        //     }
+        //     $values[] = "('" . implode("', '", $data) . "')";
+           
+        // }
         $query = "INSERT INTO $this->table (".implode(',', $keys).") VALUES " . implode(",", $values);
         $this->query($query);
-        return false;
+       
     }
     
     

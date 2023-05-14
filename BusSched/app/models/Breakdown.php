@@ -12,6 +12,7 @@ class Breakdown extends Model
     protected $allowedColumns = [
         'id',
         'breakdown_time',
+        'trip_no',
         'bus_no',
         'description',
         'status',
@@ -48,6 +49,17 @@ class Breakdown extends Model
     public function getmyBreakdowns($busno)
     {
         return $this->where(['bus_no' => $busno]);
+    }
+
+    // repair breakdown
+    /**
+     * Updates breakdown status as repaired given the breakdown id
+     * @param int $id
+     * @return bool
+     */
+    public function repairBreakdown($id)
+    {
+        return $this->updateBreakdown($id, ['status' => "repaired", 'repaired_time' => date("Y-m-d H:i:s")]);
     }
 
     public function getConductorhistoryBreakdowns($busno)
@@ -95,11 +107,22 @@ class Breakdown extends Model
         return $breakdowns;
     }
 
-    public function addBreakdown($data)
+
+    /**
+     * Summary of addBreakdown
+     * @param array<array> $data
+     * @param int $tripno
+     * @return bool
+     */
+    public function addBreakdown($data, $tripno=null)
     {
         // validate and add
         // if ($this->validate($data)) {
-        return $this->insert(['bus_no' => $data['bus_no'], 'description' => $data['description'], 'time_to_repair' => $data['time_to_repair'], 'status' => 'repairing']);
+        if (!$tripno) {
+            return $this->insert(['bus_no' => $data['bus_no'], 'description' => $data['description'], 'time_to_repair' => $data['time_to_repair'], 'status' => 'repairing']);
+        } else {
+            return $this->insert(['bus_no' => $data['bus_no'], 'description' => $data['description'], 'time_to_repair' => $data['time_to_repair'], 'status' => 'repairing', 'trip_no' => $tripno]);
+        }
         // }
         // return false;
     }
@@ -112,18 +135,19 @@ class Breakdown extends Model
 
     public function updateBreakdown($id, $data)
     {
-        return $this->update($id, ['status' => $data['status']]);
+        return $this->update($id, ['status' => $data['status'], 'repaired_time' => $data['repaired_time']]);
     }
 
     public function updatemyBreakdown($id, $data)
     {
         return $this->update($id, ['description' => $data['description'], 'time_to_repair' => $data['time']]);
     }
-
-}    public function updateOwnerBreakdown($id, $data)
+    
+    public function updateOwnerBreakdown($id, $data)
     {
         return $this->update($id, ['description' => $data['description'],'time_to_repair' => $data['time']]);
     }
+
 
     /**
      *Send notification to (all passengers of a trip if a trip exists), bus owner, conductor and all schedulers in the event of a breakdown

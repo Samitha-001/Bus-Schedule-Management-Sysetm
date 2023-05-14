@@ -7,6 +7,7 @@ class Availablebus extends Model
     // editable columns
     protected $allowedColumns = [
         'id',
+        'starting_place',
         'bus_no',
         'availability',
         'date'
@@ -36,10 +37,14 @@ class Availablebus extends Model
         return false;
     }
 
-    // public function getBuses()
-    // {
-    //     return $this->findAll();
-    // }
+    public function getAvailableBuses()
+    {
+        return $this->where(['availability' => 1]);
+    }
+
+    public function getBuses(){
+        return $this->findAll();
+    }
 
     // public function getOwnerBuses($owner)
     // {
