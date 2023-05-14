@@ -15,6 +15,7 @@ class Schedules
         // $schedules = $schedule->generateSchedule1($scheds);
         $busesOfA = [];
         $busesOfB = [];
+        
         $bus = json_decode(json_encode($buses), true);
         
         $schedules = $sched->busSchedule($bus, date('Y/m/d'));
@@ -28,7 +29,7 @@ class Schedules
             // }
 
         $data = [];
-
+                
                 $sched->insertMany($schedules);
 
             
