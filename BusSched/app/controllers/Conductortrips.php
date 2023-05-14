@@ -64,7 +64,7 @@ class Conductortrips
 
             // updates trip status as ended
             (new Trip())->updateTrip($trip_id, "ended");
-            (new Trip())->updateTripLocation($trip_id, $post['ending_halt']);
+            (new Trip())->updateTripLocation($trip_id, $post['halt']);
 
             // Send a response
             $response = array('status' => 'success', 'data' => $post);
@@ -80,7 +80,14 @@ class Conductortrips
         //check get parameter
         $tm = new Trip();
         $trips = $tm->getTrip(['id' => $id]);
-        $this->userview('conductor','conductortripdetail', ['trips' => $trips]);
+        $et = new E_ticket();
+        $etickets = $et->getTripTickets($id);
+        $hm = new Halt();
+        $ending_halt = $trips->starting_halt == "Piliyandala"? "Pettah" : "Piliyandala";
+        $h = $hm->getHaltRange($trips->starting_halt, $ending_halt);
+        $bus = (new Bus())->getConductorBuses($_SESSION['USER']->username)[0];
+        $data = ['trips' => $trips, 'tickets' => $etickets, 'halts' => $h, 'bus' => $bus];
+        $this->userview('conductor','conductortripdetail', $data);
     }
 
     // function to add breakdown for a trip
@@ -111,14 +118,15 @@ class Conductortrips
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
-            
+
             // add, location update record
             $location_update = new Location_update();
-            
+
             // $postData has trip_id: trip_id, location: location,
             $data = [
                 'tripID' => $postData['trip_id'],
-                'halt' => $postData['location']
+                'halt' => $postData['location'],
+                'username'=> $_SESSION['USER']->username
             ];
 
             $location_update->addLocationUpdate($data, 'conductor');
@@ -133,7 +141,7 @@ class Conductortrips
             echo json_encode($response);
         }
     }
-    
+
     // let url = ${ROOT}/conductortrips/api_ticket_collected;
     //     data = {
     //         ticket_id: id,
@@ -146,7 +154,7 @@ class Conductortrips
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
-            
+
             // add, location update record
             $ticket = new E_ticket();
 
@@ -166,5 +174,8 @@ class Conductortrips
             echo json_encode($response);
         }
     }
+
+
+
 
 }

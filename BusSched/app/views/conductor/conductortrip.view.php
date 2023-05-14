@@ -76,7 +76,7 @@ if (!isset($_SESSION['USER'])) {
                 ?>
                 <tr>
                     <td id="end-trip" style="display: none">
-                        <button data-id="<?= $ongoing_trip->id ?>" class="p-1 end-trip-btn">End Trip</button>
+                        <button data-id="<?= $ongoing_trip->id ?>" class="p-1 end-trip-btn">View Trip</button>
                     </td>
 
                     <td data-fieldname="trip_id" id="end-trip-id-cell"><?= $ongoing_trip->id ?></td>
@@ -161,7 +161,7 @@ if (!isset($_SESSION['USER'])) {
 </html>
 <style>
     .end-trip-btn {
-        width: 50px;
+        width: 60px;
         background-color: #4CAF50;
         height: 20px;
         font-size: smaller;
@@ -189,42 +189,6 @@ if (!isset($_SESSION['USER'])) {
             //redirect to end trip page
             window.location.href = `${ROOT}/conductortrips/trips/${end_ID}`;
 
-
-
-            // let url = `${ROOT}/conductortrips/api_end_trip`;
-            // let options = {
-            //     method: "POST",
-            //     credentials: "same-origin",
-            //     mode: "same-origin",
-            //     headers: {
-            //         "Content-Type": "application/json;charset=utf-8",
-            //     },
-            //     body: JSON.stringify({
-            //         trip_id: end_ID,
-            //     }),
-            // };
-            //
-            // fetch(url, options)
-            //     .then((response) => response.json())
-            //     .catch((err) => {
-            //         console.log(err);
-            //     })
-            //     .then((data) => {
-            //         console.log(data);
-            //         new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Trip Ended", false, 5000);
-            //         setTimeout(() => {
-            //             endrow.remove();
-            //             //add another row saying No ongoing trip
-            //             let table = document.getElementById('ongoing-trips');
-            //             let row = table.insertRow(1);
-            //             //span row over all columns
-            //             row.setAttribute('colspan', '5');
-            //             row.innerHTML = '<td colspan="5">No ongoing trip at the moment</td>';
-            //         }, 1000);
-            //         setTimeout(() => {
-            //             window.location.reload();
-            //         }, 2000);
-            //     });
         })
     }
 
