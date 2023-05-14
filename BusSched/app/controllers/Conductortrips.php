@@ -82,5 +82,28 @@ class Conductortrips
         $trips = $tm->getTrip(['id' => $id]);
         $this->userview('conductor','conductortripdetail', ['trips' => $trips]);
     }
+
+    // function to add breakdown for a trip
+    /**
+     * Adds breakdown given a trip number
+     * @param int $tripno
+     * @param array $data
+     * @return bool
+     */
+    public function addBreakdownForTrip($tripno, $data)
+    {
+        // get bus of the trip
+        $trip = new Trip();
+        $busno = $trip->getBus($tripno);
+        $trip = new Breakdown();
+
+        $d = [
+            'bus_no' => $busno,
+            'description' => $data['description'],
+            'time_to_repair' => $data['time_to_repair']
+        ];
+        return $trip->addBreakdown($d, $tripno);
+    }
+
     
 }
