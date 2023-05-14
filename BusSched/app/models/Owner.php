@@ -19,17 +19,9 @@ class Owner extends Model
         return $this->findAll();
     }
 
-
-        // updateowner function
-        public function updateOwner($id, $data)
-        {
-            $this->update($id, $data, 'username');
-        }
-    
-//         // get owner
-//         public function getOwner($username)
-//         {
-//             $data = $this->where(['username'=>$username]);
-//             return $data;
-//         }
- }
+    // updateowner function
+    public function updateOwner($id, $data)
+    {
+        $this->update($id, $data, 'username');
+    }
+}

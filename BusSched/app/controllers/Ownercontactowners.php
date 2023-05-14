@@ -6,12 +6,22 @@ class Ownercontactowners
 
     public function index()
     {
-        $contactowner = new user();
-        $contactowners = $contactowner->getContactDetails('owner');
+        $user = new user();
 
-        // $data = [];
+        // ownerContacts
+        $ownerContacts = $user->getContactDetails('owner');
+        // conductorContacts
+        $conductorContacts = $user->getContactDetails('conductor');
+        // driverContacts
+        $driverContacts = $user->getContactDetails('driver');
+
+        $data = [
+            'ownerContacts' => $ownerContacts,
+            'conductorContacts' => $conductorContacts,
+            'driverContacts' => $driverContacts
+        ];
      
-        $this->userview('owner', 'ownercontactowner', ['ownercontactowners' => $contactowners]);
+        $this->userview('owner', 'ownercontactowner', ['data' => $data]);
     }
 
 }
