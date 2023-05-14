@@ -115,15 +115,13 @@ class Conductortrips
             // add, location update record
             $location_update = new Location_update();
             
+            // $postData has trip_id: trip_id, location: location,
             $data = [
-                'username' => $postData['username'],
-                'user_role' => $postData['user_role'],
-                'tripID' => $postData['tripID'],
-                'halt' => $postData['halt'],
-                'timestamp' => date('Y-m-d H:i:s')
+                'tripID' => $postData['trip_id'],
+                'halt' => $postData['location']
             ];
 
-            $location_update->addLocationUpdate($data, $postData['user_role']);
+            $location_update->addLocationUpdate($data, 'conductor');
 
             // Send a response
             $response = array('status' => 'success', 'data' => $postData);
@@ -136,4 +134,37 @@ class Conductortrips
         }
     }
     
+    // let url = ${ROOT}/conductortrips/api_ticket_collected;
+    //     data = {
+    //         ticket_id: id,
+    //         status: status
+    //     }
+
+    // mark ticket as collected or booked, based on the given status
+    public function api_ticket_collected()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+            
+            // add, location update record
+            $ticket = new E_ticket();
+
+            $data = [
+                'status' => $postData['status']
+            ];
+
+            $ticket->updateTicket($postData['ticket_id'], $data);
+
+            // Send a response
+            $response = array('status' => 'success', 'data' => $postData);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
 }
