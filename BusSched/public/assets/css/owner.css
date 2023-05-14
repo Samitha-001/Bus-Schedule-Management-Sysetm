@@ -2,10 +2,6 @@
 @import "general.css";
 @import "style2.css";
 
-
-
-
-
 .column {
   float: left;
  
@@ -16,15 +12,11 @@
   width: 40%;
   
 }
-.image
-{
-  width: 400px;
-  height: 30%;
-  padding-top: 130px;
-  background-color: rgb(81, 88, 88);
-  padding-bottom: 120px;
-  margin-left: 70px;
-  margin-top: 60px;
+
+.image {
+  /* cover */
+  width: 40vh;
+  object-fit: cover;
 }
 
 .right{
@@ -52,7 +44,7 @@
   padding-top: 20px;
 }
 
-.form{
+.form {
   line-height: 3em;
   font-size:18px
 }
@@ -141,4 +133,17 @@ a {
   color: red;
   font-size: 12px;
   margin-top: 5px;
+}
+
+.card-container p {
+  color: white;
+}
+
+.container {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+}
+
+form {
+  margin: 0px;
 }

@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get the data rows
     let rows = document.querySelectorAll('.data-row');
     
+    // function to filter rows of the schedule
     function filterRows(from = null, to = null, date = null) {
         let fromValue = null;
         let toValue = null;
