@@ -34,8 +34,8 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                 <!-- if the user is logged in -->
                 <?php if (isset($_SESSION['USER'])) { ?>
                 <a id="bell-icon"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="25"></a>
-                <a href="<?= ROOT ?>/passengerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png"
-                                                            width="25"></a>
+                
+                <a href="<?= ROOT ?>/passengerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="25"></a>
                 <!-- change logout style -->
                 <a href="<?= ROOT ?>/logout" style="padding-top:5px;">
                     <li class="signup-button"

@@ -7,15 +7,14 @@
 
     <title>Buses Owned</title>
 
-    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
     <link href="<?= ROOT ?>/assets/css/owner_view.css" rel="stylesheet">
 
-    <Style>
+    <style>
          table tr:not(:first-child){
             cursor:pointer;transition: all.25s ease-in-out;
          }
-     
-    </Style>
+    </style>
    
 </head>
 
@@ -24,7 +23,6 @@
 include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
 ?>
-  <main class="container1">
 
 <div class="header orange-header">
     <div>
@@ -34,9 +32,12 @@ include '../app/views/components/ownersidebar.php';
 </div>
 
 
-<div>
+<main class="container">
+<div class='row'>
+<div class="col-10 col-s-10" style="margin: auto; padding:0px;">
+
     <br>
-    <table  border='1' id="table" class="styled-table">
+    <table id="table" class="schedule-table">
         <tr>
             <th>#</th>
             <th>Bus No.</th>
@@ -76,11 +77,14 @@ include '../app/views/components/ownersidebar.php';
             </tr>
         <?php endif;?>
     </table>
+</div>
 
+    
+</div>
     <script>
 
         document.addEventListener("DOMContentLoaded",()=>{
-            const rows =document.querySelectorAll("tr[data-href]");
+            const rows = document.querySelectorAll("tr[data-href]");
 
             rows.forEach(row=>{
                 row.addEventListener("click",()=>{
@@ -90,9 +94,6 @@ include '../app/views/components/ownersidebar.php';
             });
         });
     </script>
-
-    
-</div>
 
 <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
 </main>
