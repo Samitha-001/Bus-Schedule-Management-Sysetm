@@ -1,4 +1,5 @@
 <?php
+use Ratchet\Wamp\TopicManagerTest;
 
 class Passengertickets
 {

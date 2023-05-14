@@ -44,7 +44,7 @@ class Trip extends Model
     /**
      * @param number $trip_no
      * @return Object|false
-     * Description: get Bus of a trip
+     * Description: get bus of a trip
      */
     public function getBus($trip_no): object|bool
     {
@@ -144,16 +144,16 @@ class Trip extends Model
                 if ($t->id != $tripID) {
                     array_push($transferableTrips, $t);
                 }
-            } else {
-                $ticket_seat = new Ticket_seats();
-                $unreserved_seats = $ticket_seat->getUnreservedSeats($t->id);
-                $t->unreserved_seats = $unreserved_seats;
+            // } else {
+            //     $ticket_seat = new Ticket_seats();
+            //     $unreserved_seats = $ticket_seat->getUnreservedSeats($t->id);
+            //     $t->unreserved_seats = $unreserved_seats;
 
-                if($unreserved_seats >= $seats) {
-                    array_push($transferableTrips, $t);
-                } else {
-                    continue;
-                }
+            //     if($unreserved_seats >= $seats) {
+            //         array_push($transferableTrips, $t);
+            //     } else {
+            //         continue;
+            //     }
             }
         }
         return $transferableTrips;

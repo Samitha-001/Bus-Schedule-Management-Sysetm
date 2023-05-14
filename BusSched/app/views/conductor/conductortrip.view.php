@@ -8,9 +8,9 @@ if (!isset($_SESSION['USER'])) {
 <html lang="en">
 
 <head>
-    <?php include '../app/views/components/head.php';?>
+    <?php include '../app/views/components/head.php'; ?>
 
-    <title>Bus Tickets</title>
+    <title>Trips</title>
 
     <link href="<?= ROOT ?>/assets/css/mobilestyle.css" rel="stylesheet">
 </head>
@@ -20,61 +20,103 @@ if (!isset($_SESSION['USER'])) {
 <?php include '../app/views/components/navbarcon.php'; ?>
 
 
-    <div class="header orange-header">
-        <h2>Trips</h2>
-    </div>
+<div class="header orange-header">
+    <h2>Trips</h2>
+</div>
 
 <main class="container1">
-    
-    <?php 
+
+    <?php
     $ongoing = false;
-  
+
     $conductor = $_SESSION['USER']->username;
     $bus = new Bus();
     $businfo = $bus->getConductorBuses($conductor)[0];
     $busno = $businfo->bus_no;
     $trip = new Trip();
     $trips = $trip->getBusTrips($busno);
-    
-    $starting_trip = array();
-    $ended_trip=array();
+    $scheduled_trips = array();
+    $ended_trips = array();
+
     foreach ($trips as $trip) {
         if ($trip->status == "scheduled") {
-            array_push($starting_trip,$trip);
+            // show($trip->status);
+            array_push($scheduled_trips, $trip);
         }
-    }
-
-    foreach ($trips as $trip) {
         if ($trip->status == "ended") {
-            array_push($ended_trip,$trip);
+            array_push($ended_trips, $trip);
+        }
+        if ($trip->status == "started") {
+            $ongoing_trip = $trip;
         }
     }
-        
-    // $trip_id=$starting_trip->id;
     ?>
+
+
+    <?php
+    // $temp = new Trip();
+    // $temp->updateTrip(1, 'scheduled');
+    ?>
+    <!-- ongoing trip -->
+    <div class="col-2">
+        <h1>Ongoing Trip</h1>
+        <table border='1' class="styled-table" data-ongoing-trip="<?php if (!empty($ongoing_trip))
+            echo "yes";
+        else
+            echo "no"; ?>" id="ongoing-trips">
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Departure</th>
+                <th>Last passed</th>
+                <th></th>
+            </tr>
+            <?php if (!empty($ongoing_trip)):
+                $ongoing = true;
+                ?>
+                <tr>
+                    <td id="end-trip" style="display: none">
+                        <button data-id="<?= $ongoing_trip->id ?>" class="p-1 end-trip-btn">View Trip</button>
+                    </td>
+
+                    <td data-fieldname="trip_id" id="end-trip-id-cell"><?= $ongoing_trip->id ?></td>
+                    <td><?= $ongoing_trip->trip_date ?></td>
+                    <td><?= $ongoing_trip->departure_time ?></td>
+                    <td><?= $ongoing_trip->last_updated_halt ?></td>
+                </tr>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4">No ongoing trip at the moment</td>
+                </tr>
+            <?php endif; ?>
+        </table>
+    </div>
+
+    <!-- upcoming trips -->
     <div class="col-2">
         <h1>Upcoming Trips</h1>
-        <table border='1' class="styled-table" id="upcoming_trips">
+        <table border='1' class="styled-table" id="upcoming-trips">
             <tr>
-                <th>Trip ID</th>
+                <th>ID</th>
                 <th>Date</th>
-                <th>Departure Time</th>
+                <th>Departure</th>
                 <th>Starting halt</th>
-             
-                <th></th>
-            </tr> 
 
-            <?php if(!empty($scheduled_trips)): ?>
+                <th></th>
+            </tr>
+
+            <?php if (!empty($scheduled_trips)): ?>
                 <?php foreach ($scheduled_trips as $trip): ?>
-                    <tr class="trip-row" data-trip-id="<?= $trip->id ?>" data-starting-halt="<?= $trip->starting_halt ?>">
+                    <tr class="trip-row" data-trip-id="<?= $trip->id ?>"
+                        data-starting-halt="<?= $trip->starting_halt ?>">
                         <td data-fieldname="trip_id"><?= $trip->id ?></td>
                         <td data-fieldname="trip_date"><?= $trip->trip_date ?></td>
                         <td data-fieldname="departure_time"><?= $trip->departure_time ?></td>
                         <td data-fieldname="starting_halt"><?= $trip->starting_halt ?></td>
-                       
+
                         <?php ?>
-                        
-                        </tr>
+
+                    </tr>
                 <?php endforeach; ?>
             <?php else: ?>
                 <tr>
@@ -93,11 +135,11 @@ if (!isset($_SESSION['USER'])) {
                 <th>Departure</th>
                 <th>Starting halt</th>
                 <th></th>
-            </tr> 
-            <?php if(!empty($ended_trips)): ?>
+            </tr>
+            <?php if (!empty($ended_trips)): ?>
                 <?php foreach ($ended_trips as $tripx): ?>
                     <tr>
-                        <td data-fieldname="trip_id"><?= $trip->id ?></td>
+                        <td data-fieldname="trip_id"><?= $tripx->id ?></td>
                         <td><?= $tripx->trip_date ?></td>
                         <td><?= $tripx->departure_time ?></td>
                         <td><?= $tripx->starting_halt ?></td>
@@ -117,3 +159,38 @@ if (!isset($_SESSION['USER'])) {
 </body>
 
 </html>
+<style>
+    .end-trip-btn {
+        width: 60px;
+        background-color: #4CAF50;
+        height: 20px;
+        font-size: smaller;
+    }
+</style>
+<script>
+    let endTd = document.getElementById('end-trip');
+    if (endTd) {
+
+        let idTd = document.querySelector('#end-trip-id-cell')
+        let endrow = endTd.parentNode;
+
+        endrow.addEventListener('click', function () {
+            if (endTd.style.display == 'table-cell') {
+                endTd.style.display = 'none';
+                idTd.style.display = 'table-cell';
+            } else if (endTd.style.display == 'none') {
+                endTd.style.display = 'table-cell';
+                idTd.style.display = 'none';
+            }
+        });
+
+        document.querySelector('.end-trip-btn').addEventListener('click', (e) => {
+            let end_ID = e.target.dataset.id;
+            //redirect to end trip page
+            window.location.href = `${ROOT}/conductortrips/trips/${end_ID}`;
+
+        })
+    }
+
+
+</script>

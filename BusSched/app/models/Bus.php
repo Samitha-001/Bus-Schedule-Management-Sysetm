@@ -77,7 +77,7 @@ class Bus extends Model
         echo $this->insert($data);
     }
 
-    public function getBus($busno): object|false
+    public function getBus($busno)
     {
         return $this->first(['bus_no' => $busno]);
     }

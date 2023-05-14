@@ -92,7 +92,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
             <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="<?= ROOT ?>/conductorbreakdowns" style="color:#9298AF;">Breakdowns</a></li>
             <hr>
             </div>
             <div style="margin-bottom:5%">

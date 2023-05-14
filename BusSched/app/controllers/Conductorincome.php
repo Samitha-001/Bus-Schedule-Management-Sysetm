@@ -6,6 +6,6 @@ class Conductorincome
 
     public function index()
     {
-        $this->view('conductorincome');
+        $this->userview('conductor', 'conductorincome');
     }
 }
