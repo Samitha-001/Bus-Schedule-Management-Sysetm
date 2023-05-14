@@ -63,9 +63,15 @@ class Trip extends Model
     }
 
     // update trip
-    public function updateTrip($id, $data)
+    /**
+     * Updates trip status
+     * @param int $id
+     * @param string $status
+     * @return bool
+     */
+    public function updateTrip($id, $status)
     {
-        return $this->update($id, ['status' => $data['status']]);
+        return $this->update($id, ['status' => $status]);
     }
 
     /**
@@ -138,16 +144,16 @@ class Trip extends Model
                 if ($t->id != $tripID) {
                     array_push($transferableTrips, $t);
                 }
-            } else {
-                $ticket_seat = new Ticket_seats();
-                $unreserved_seats = $ticket_seat->getUnreservedSeats($t->id);
-                $t->unreserved_seats = $unreserved_seats;
+            // } else {
+            //     $ticket_seat = new Ticket_seats();
+            //     $unreserved_seats = $ticket_seat->getUnreservedSeats($t->id);
+            //     $t->unreserved_seats = $unreserved_seats;
 
-                if($unreserved_seats >= $seats) {
-                    array_push($transferableTrips, $t);
-                } else {
-                    continue;
-                }
+            //     if($unreserved_seats >= $seats) {
+            //         array_push($transferableTrips, $t);
+            //     } else {
+            //         continue;
+            //     }
             }
         }
         return $transferableTrips;

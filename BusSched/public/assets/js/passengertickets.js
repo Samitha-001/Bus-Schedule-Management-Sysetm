@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateLocationDiv.style.display = "none";
 
     if (transferTicketCard) {
-      console.log(transferTicketCard);
       transferTicketCard.remove();
     }
   });
@@ -183,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   }
-
   
 
   // add event listeners to each transfer ticket a
@@ -194,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
         transferTicketCard.remove();
       }
 
-      // console.log("transfer ticket a clicked");
       let ticketId = button.getAttribute("data-ticket-id");
       let seatsReserved = button.getAttribute("data-seats");
       let seatsNo = 0;
@@ -202,10 +199,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // split seats reserved by comma and get the number of seats
         seatsNo = seatsReserved.split(",").length;
       }
-      
-      console.log("ticket: ", ticketId);
-      console.log("seats: ", seatsReserved);
-      console.log("seat no: ", seatsNo);
 
       // zoom the target with animation
       let target = e.target.parentElement;
@@ -220,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
       targetDuplicate.setAttribute("id", "transfer-ticket-card");
       // remove class view more from duplicate
       targetDuplicate.querySelector(".booked-ticket-view-more-a").innerHTML = "Transfer ticket";
+      targetDuplicate.querySelector(".booked-ticket-view-more-a").style.color = "#f15f22";
       targetDuplicate.querySelector(".booked-ticket-view-more-a").classList.add("transfer-ticket-a");
       targetDuplicate.querySelector(".booked-ticket-view-more-a").classList.remove("booked-ticket-view-more-a");
 
@@ -233,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // create dropdown of transferrable trips on the same day
         let transferTicketSelect = document.createElement("select");
-        transferTicketSelect.classList.add("transfer-ticket-select");
+        // transferTicketSelect.classList.add("transfer-ticket-select");
         // select trip
         // create option element
         let option = document.createElement("option");
@@ -304,15 +298,20 @@ document.addEventListener("DOMContentLoaded", function () {
               .then((response) => response.json())
               .then((data) => {
                 console.log(data);
+                // create toast notification
+                new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Trip changed successfully", true, 5000);
+                // remove transferTicketSelect
+                transferTicketSelect.remove();
+                // remove cancelTransferBtn
+                cancelTransferBtn.remove();
+                // remove confirmTransferBtn
+                confirmTransferBtn.remove();
+                // show transferTicketA
+                transferTicketA.style.display = "block";
               })
               .catch((error) => {
                 console.log(error);
               });
-          
-            // send data to transfer ticket api
-            console.log("trip id: ", tripId);
-            console.log("ticket id: ", ticketId);
-            console.log("seats: ", seats);
           }
         });
 
@@ -347,51 +346,11 @@ document.addEventListener("DOMContentLoaded", function () {
               // set value of option to trip id
               option.setAttribute("value", trip.id);
               // set innerHTML of option to trip name
-              option.innerHTML = "Trip leaving "+trip.starting_halt+" at "+ trip.departure_time;
+              option.innerHTML = "Trip no. "+ trip.id+" leaving "+trip.starting_halt+" at "+ trip.departure_time;
               // append option to select
               transferTicketSelect.appendChild(option);
             });
           });
-          
-          // trips.then((trips) => {
-          //   let tripsList = [];
-          //   trips.forEach((trip) => {
-          //     tripsList.push(trip);
-          //   });
-          //   // get current trip
-          //   let currentTrip = tripsList.find((trip) => trip.id == ticket.trip_id);
-          //   // get current trip index
-          //   let currentTripIndex = tripsList.indexOf(currentTrip);
-          //   // get trips after current trip
-          //   let tripsAfterCurrentTrip = tripsList.slice(currentTripIndex + 1);
-          //   // get trips after current trip with available seats
-          //   let tripsAfterCurrentTripWithAvailableSeats = [];
-          //   tripsAfterCurrentTrip.forEach((trip) => {
-          //     // get available seats
-          //     let availableSeats = getAvailableSeats(trip.id);
-          //     availableSeats.then((seats) => {
-          //       // if seats are available, push trip to array
-          //       if (seats.length > 0) {
-          //         tripsAfterCurrentTripWithAvailableSeats.push(trip);
-          //       }
-          //     });
-          //   });
-          //   // if trips after current trip with available seats are found
-          //   if (tripsAfterCurrentTripWithAvailableSeats.length > 0) {
-          //     // show trips after current trip with available seats
-          //     // TODO
-          //   }
-          //   // if trips after current trip with available seats are not found
-          //   else {
-          //     // show trips after current trip
-          //     // TODO
-          //   }
-          // });
-        }
-
-        // if seats are reserved, get trips after current trip with available seats
-        else {
-          // TODO
         }
       });
 

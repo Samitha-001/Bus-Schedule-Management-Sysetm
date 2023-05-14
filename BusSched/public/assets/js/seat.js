@@ -37,10 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
             sessionStorage.setItem("seatsSelected", JSON.stringify(seatsSelected));
           } 
           else {
-            alert('Increase the number of passengers to reserve more seats');
+            new Toast('fa fa-warning','#ffc500','Warning','Increase the number of passengers to reserve more seats',true,5000);
+            // alert('Increase the number of passengers to reserve more seats');
           }
         } else {
-          alert('You can only book 5 seats per ticket');
+            new Toast('fa fa-warning','#ffc500','Warning','You can only book 5 seats per ticket',true,5000);
+          // alert('You can only book 5 seats per ticket');
         }
       }
     });

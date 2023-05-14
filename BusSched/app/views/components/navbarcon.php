@@ -23,7 +23,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                         <a href="<?= ROOT ?>/conductor/conductorfares" style="color:#9298AF;">Bus Fares</a>
                         <a href="<?= ROOT ?>/conductor/conductorbreakdowns" style="color:#9298AF;">Breakdowns</a>
                         <a href="<?= ROOT ?>/conductor/conductorratings" style="color:#9298AF;">Ratings</a>
-                        <a href="<?= ROOT ?>/conductor/contactowners" style="color:#9298AF;">Contacts</a>
+                        <a href="<?= ROOT ?>/conductor/contacts" style="color:#9298AF;">Contacts</a>
                     </div>
                 </div>
             </li>
@@ -92,7 +92,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
             <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/breakdowns" style="color:#9298AF;">Breakdowns</a></li>
+            <li><a href="<?= ROOT ?>/conductorbreakdowns" style="color:#9298AF;">Breakdowns</a></li>
             <hr>
             </div>
             <div style="margin-bottom:5%">
@@ -105,7 +105,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
             <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/contactdrivers" style="color:#9298AF;">Contacts</a></li>
+            <li><a href="<?= ROOT ?>/contacts" style="color:#9298AF;">Contacts</a></li>
             <hr>
             </div>
             <div style="margin-bottom:5%">
