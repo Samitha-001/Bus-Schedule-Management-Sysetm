@@ -195,8 +195,8 @@ if (!isset($_SESSION['USER'])) {
       <div class="table-container">
         <table border='1' class="styled-table">
           <tr>
-            <th></th>
-            <th>Starting Halt</th>
+            <th>Trip ID</th>
+          
             <th>Bus No</th>
             <th>Departure</th>
             <th>Arrival</th>
@@ -210,10 +210,11 @@ if (!isset($_SESSION['USER'])) {
             <?php $i++; 
             if($schedule->starting_place === "Piliyandala"):
             ?>
-            <td data-fieldname="checking">
+            <!-- <td data-fieldname="checking">
               <?= "<input type='checkbox' class='delete-checkbox'"?>
-            </td>
-            <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td>
+            </td> -->
+            <!-- <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td> -->
+            <td data-fieldname="id"> <?= $schedule->id ?> </td>
             <td data-fieldname="bus_no"> <?= $schedule->bus_no ?> </td>
             <td data-fieldname="departure"> <?= $schedule->departure_time ?> </td>
             <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
@@ -242,8 +243,8 @@ if (!isset($_SESSION['USER'])) {
       <div class="table-container">
         <table border='1' class="styled-table">
           <tr>
-            <th></th>
-            <th>Starting Halt</th>
+            <th>Trip ID</th>
+            
             <th>Bus No</th>
             <th>Departure</th>
             <th>Arrival</th>
@@ -257,10 +258,11 @@ if (!isset($_SESSION['USER'])) {
             <?php $i++; 
             if($schedule->starting_place === "Pettah"):
             ?>
-            <td data-fieldname="checking">
+            <!-- <td data-fieldname="checking">
               <?= "<input type='checkbox' class='delete-checkbox'"?>
-            </td>
-            <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td>
+            </td> -->
+            <!-- <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td> -->
+            <td data-fieldname="id"> <?= $schedule->id ?> </td>
             <td data-fieldname="bus_no"> <?= $schedule->bus_no ?> </td>
             <td data-fieldname="departure"> <?= $schedule->departure_time ?> </td>
             <td data-fieldname="arrival"> <?= $schedule->arrival_time ?> </td>
@@ -280,7 +282,9 @@ if (!isset($_SESSION['USER'])) {
     </div>
   </div>
 </div>
-<div id="nextDate" class="">
+<div class="date-container">
+  <div id="nextDate" class="date"></div>
+  
 </div>
 <div id="sched">
 <div id="A">
@@ -298,6 +302,8 @@ if (!isset($_SESSION['USER'])) {
         var today = new Date();
         var date = today.toLocaleDateString();
         document.querySelector(".date").innerHTML = date;
+
+        
 
         // const btnGen = document.getElementById("btn-generate");
 // const cards = document.querySelectorAll('.card');
@@ -326,6 +332,7 @@ function generating(){
           console.log(data[0]);
           console.log(data[1]);
           // Get a reference to the table where the list will be displayed
+          document.querySelector("#nextDate").innerHTML = data[1];
 const mainDiv = document.getElementById("sched");
 mainDiv.classList.add("schedule-cards");
 const divA = document.getElementById('A');
