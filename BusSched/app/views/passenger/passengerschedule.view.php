@@ -19,7 +19,6 @@
     $to = $_GET['to'] ?? '';
     // current date
     $date = date('Y-m-d');
-    $passengercount = $_GET['passengercount'] ?? '';
     ?>
 
     <!-- get halt list to suggest halt list -->
@@ -41,7 +40,6 @@
                 <input type="text" name="to" id="to" placeholder="To" <?php if ($to) echo "value=".$to; ?> list="halt-list" required>
                 <input type="date" name="date" id="date" placeholder="Date" <?php if ($date) echo "value=".$date; ?> min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>" required>
             <button class="button-orange" style="width:55.5%; margin-top:4.5px; font-size:13px;" id="find-trip-btn">Find</button>
-            <?php if ($passengercount) echo "value=".$passengercount; ?>
         </div>
     </div>
 
