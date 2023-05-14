@@ -497,8 +497,8 @@ input:checked + .slider:before {
   background-position: center center;
 }
 
-#location-card {
-  background: url("../images/dashboard-cards/location-card.png");
+#trips-card {
+  background: url("../images/dashboard-cards/trips-card.png");
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;

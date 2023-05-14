@@ -50,6 +50,16 @@ class E_ticket extends Model
         return $this->findAll();
     }
 
+    /**
+     * Description - Get all tickets of a trip
+     * @param $trip_id
+     * @return array|bool
+     */
+    public function getTripTickets($trip_id): array|bool
+    {
+        return $this->where(['trip_id' => $trip_id]);
+    }
+
     public function getBusTickets($trip)
     {
         return $this->where(['trip_id' => $trip]);
@@ -106,12 +116,8 @@ class E_ticket extends Model
     // function to change trip of ticket, transfer ticket
     public function transferTicket($ticket_id, $trip_id, $seats_reserved = null)
     {
-        // TODO
         // update trip id of ticket
         $this->updateTicket($ticket_id, ['trip_id' => $trip_id, 'seats_reserved' => $seats_reserved]);
-        // update seats of earlier bus and new bus (book seats)
-        // add id to duplicate
-
     }
 
 }

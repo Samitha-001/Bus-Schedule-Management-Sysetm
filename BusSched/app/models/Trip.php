@@ -44,7 +44,7 @@ class Trip extends Model
     /**
      * @param number $trip_no
      * @return Object|false
-     * Description: get Bus of a trip
+     * Description: get bus of a trip
      */
     public function getBus($trip_no): object|bool
     {
