@@ -18,6 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
         let newUrl = window.location.href.replace(`?from=${fromParam}`, '');
         history.replaceState(null, null, newUrl);
     }
+    // If the ?to parameter is present, remove it from the URL
+    if (toParam) {
+        let newUrl = window.location.href.replace(`?to=${toParam}`, '');
+        history.replaceState(null, null, newUrl);
+    }
+    // If the ?date parameter is present, remove it from the URL
+    if (dateParam) {
+        let newUrl = window.location.href.replace(`?date=${dateParam}`, '');
+        history.replaceState(null, null, newUrl);
+    }
+
     
     // Get the data rows
     let rows = document.querySelectorAll('.data-row');
@@ -28,27 +39,76 @@ document.addEventListener("DOMContentLoaded", function () {
         let toValue = to.charAt(0).toUpperCase() + to.slice(1);
         let dateValue = date;
 
-        
         // Filter the rows
         let filteredRows = [];
+        console.log('first: ', filteredRows);
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i];
             // get starting halt from row
             let startingHaltValue = row.querySelector('[data-fieldname="starting_halt"]').textContent.toLowerCase();
             startingHaltValue = startingHaltValue.charAt(0).toUpperCase() + startingHaltValue.slice(1);
 
+            let tripDateValue = row.querySelector('[data-fieldname="trip_date_val"]').textContent;
+
             let startingTimeValue = row.querySelector('[data-fieldname="departure_time"]').textContent.toLowerCase();
             startingTimeValue = startingTimeValue.charAt(0).toUpperCase() + startingTimeValue.slice(1);
 
             row.querySelector('[data-fieldname="from"]').innerHTML = fromValue;
             row.querySelector('[data-fieldname="to"]').innerHTML = toValue;
+            // if fromvalue and tovalue are present
+            if (fromValue && toValue) {
+                getEstimatedTime(row, startingHaltValue, fromValue, toValue, startingTimeValue);
+            }
 
-            getEstimatedTime(row, startingHaltValue, fromValue, toValue, startingTimeValue);
+            // if date is present
+            if (date) {
+                if (tripDateValue == dateValue) {
+                    console.log('date matches');
+                    filteredRows.push(row);
+                }
+            }
+
+            // // if from and to are present
+            // if (from && to) {
+            //     if (startingHaltValue == fromValue && row.querySelector('[data-fieldname="destination_halt"]').textContent.toLowerCase() == toValue) {
+            //         filteredRows.push(row);
+            //     }
+            // }
+            // // if only from is present
+            // else if (from) {
+            //     if (startingHaltValue == fromValue) {
+            //         filteredRows.push(row);
+            //     }
+            // }
+            // // if only to is present
+            // else if (to) {
+            //     if (row.querySelector('[data-fieldname="destination_halt"]').textContent.toLowerCase() == toValue) {
+            //         filteredRows.push(row);
+            //     }
+            // }
+            // // if only date is present
+            // else if (date) {
+            //     if (tripDateValue == dateValue) {
+            //         filteredRows.push(row);
+            //     }
+            // }
+            
+
         }
+
+        // display only filtered rows
+        rows.forEach(row => {
+            row.style.display = 'none';
+        }
+        );
+        filteredRows.forEach(row => {
+            row.style.display = 'table-row';
+        }
+        );
     }
 
     // if url has from, to and date parameters    
-    if (fromParam && toParam && dateParam) {
+    if ((fromParam && toParam) || dateParam) {
         filterRows(fromParam, toParam, dateParam);
     }
 
@@ -110,8 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((data) => {
                 row.querySelector('[data-fieldname="estimated_time_from"]').innerHTML = data.data.departure_time;
                 row.querySelector('[data-fieldname="estimated_time_to"]').innerHTML = data.data.arrival_time;
-
-              console.log(data);
             });
     }
 });
