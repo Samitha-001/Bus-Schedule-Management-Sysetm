@@ -30,6 +30,7 @@ if (isset($_SESSION['USER'])) {
 <body>
 <?php
 include '../app/views/components/navbar.php';
+$trips = new Trip();
 ?>
 
     <div class="row main-content">
@@ -81,19 +82,26 @@ include '../app/views/components/navbar.php';
         </div>
         
         <div class="ticket-flex" id="booked-tickets">
-        <?php if ($tickets): foreach ($tickets as $ticket):
-            if ($ticket->status == 'booked'): ?>
+        <?php if ($tickets):
+            foreach ($tickets as $ticket):
+                if ($ticket->status == 'booked'):
+                    $trip = $trips->getTrip(['id' => $ticket->trip_id]);
+            ?>
             <div class="ticket-card" data-id=<?= $ticket->id ?> data-trip-id=<?=$ticket->trip_id?>>
 
                 <h1 class="h1-l">TicketID: <?=$ticket->id?></h1>
-                <p>Purchased at <?= $ticket->booking_time ?></p>
                 <h3><?= $ticket->source_halt ?> - <?= $ticket->dest_halt ?></h3>
-                <p style="text-align:right;"><i><?= $ticket->status ?></i></p>
-                <!-- <h1>Trip ID</h1> -->
-                <p>Bus:&nbsp&nbspNC1111</p>
-                <p>Seats:&nbsp&nbsp
+                <i style="text-align:right;">
+                    <p>Trip ID <?= $ticket->trip_id ?></p>
+                    <p>Trip leaves <?= $trip->starting_halt?> at <?= $trip->departure_time?></p>
+                    <p>Purchased at <?= $ticket->booking_time ?></p>
+                </i>
+                <!-- <p style="text-align:right;"><i><?= $ticket->status ?></i></p> -->
+                <br>
+                <p style="color:#24315e;">Bus:&nbsp&nbspNC1111</p>
+                <p style="color:#24315e;">Seats:&nbsp&nbsp
                     <span class="booked-ticket-seats"><?php if(!$ticket->seats_reserved):?><i>unreserved</i><?php else: ?><?= $ticket->seats_reserved ?><?php endif; ?></span></p>
-                <p>Passengers:&nbsp&nbsp<?= $ticket->passenger_count ?></p>
+                <p style="color:#24315e;">Passengers:&nbsp&nbsp<?= $ticket->passenger_count ?></p>
                 <h4 style="text-align:right; margin-bottom:0px;"><?= $ticket->price ?> LKR</h4>
                 <?php if (!($ticket->seats_reserved)){?>
                     <a class="booked-ticket-view-more-a" data-ticket-id="<?= $ticket->id?>" data-seats="<?= $ticket->seats_reserved?>">Change trip</a>
