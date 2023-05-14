@@ -41,9 +41,9 @@ if (!isset($_SESSION['USER'])) {
     <div class="p-3 mb-0 col">
         Tickets : &nbsp;<i id="uncollected-chevron" class="uncollected fa-solid fa-chevron-up"></i> <br>
         <div id="uncollected-tickets" class="ticket-container w-100 p-1 row">
+            <?php if($tickets &&  count($tickets)): ?>
             <?php foreach ($tickets as $t): ?>
                 <?php if ($t->status !== 'collected'): ?>
-
                     <div class="ticket-card p-1 m-1 mb-2 d-inline-block" data-tid="<?= $t->id ?>" data-src="<?=$t->source_halt?>"">
                         <b><span>Ticket ID: <?= $t->id ?></span></b>
                         <span><?= $t->source_halt ?> To <?= $t->dest_halt ?></span>
@@ -54,10 +54,12 @@ if (!isset($_SESSION['USER'])) {
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <?php endif;?>
         </div>
         <br>
         Collected Tickets &nbsp; <i id="collected-chevron" class="fa-solid fa-chevron-up"></i><br>
         <div id="collected-tickets" class="ticket-container w-100 p-1 row">
+            <?php if($tickets && count($tickets)):?>
             <?php foreach ($tickets as $t): ?>
                 <?php if ($t->status == 'collected'): ?>
                     <div class="ticket-card p-1 m-1 mb-2 d-inline-block" data-tid="<?= $t->id ?>" data-src="<?=$t->source_halt?>"">
@@ -70,6 +72,7 @@ if (!isset($_SESSION['USER'])) {
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <?php endif;?>
         </div>
     </div>
     <div class="p-3 mt-0">
@@ -142,7 +145,9 @@ if (!isset($_SESSION['USER'])) {
 <script>
     let cards = document.querySelectorAll('.card');
     const trip_id = <?=$trips->id?>;
-    cards[20].scrollIntoView({behavior: 'smooth', block: 'center'});
+    let focuscard = document.querySelector('.last-updated-halt')
+    if (focuscard)
+        focuscard.scrollIntoView({behavior: 'smooth', block: 'center'});
 
     let last_updated_halt = "<?=$trips->last_updated_halt?>";
     let i = 0
@@ -198,7 +203,7 @@ if (!isset($_SESSION['USER'])) {
         e.target.classList.remove('not-updated-halt');
         e.target.scrollIntoView({behavior: 'smooth', block: 'center'});
         hideCards();
-        let location = e.target.dataset.halt;
+        let location = e.target.closest('.card').dataset.halt;
         let trip_id = "<?=$trips->id?>";
         let url = `${ROOT}/conductortrips/api_update_location`;
         let options = {
@@ -247,6 +252,7 @@ if (!isset($_SESSION['USER'])) {
             },
             body: JSON.stringify({
                 trip_id: end_ID,
+                halt: document.querySelector('.end-trip-btn').dataset.halt,
             }),
         };
 
@@ -289,8 +295,26 @@ if (!isset($_SESSION['USER'])) {
             ticket_id: id,
             status: status
         }
-        // new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Ticket Collected", true, 1000);
+        fetch(url, {
+            method: "POST",
+            credentials: "same-origin",
+            mode: "same-origin",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(data)
+        })
+            .then((response) => response.json())
+            .catch((err) => {
+                console.log(err);
+            })
+            .then((data) => {
+                console.log(data);
+            });
     }
+
+    // new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Ticket Collected", true, 1000);
+
 
     document.querySelectorAll('.ticket-card').forEach(card => {
         card.addEventListener('click', (e) => {

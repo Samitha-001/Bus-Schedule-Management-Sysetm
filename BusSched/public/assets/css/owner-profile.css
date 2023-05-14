@@ -1,9 +1,128 @@
-
-
-
+@import "owner.css";
 body {
     color: #24315e;
     font-family: "Outfit";
     margin: 0px;
     background-image: url("../images/backgrounds/bg-ticket-2.png");
-  }
+}
+
+.header {
+  margin-left: 200px;
+  height: 60px;
+}
+
+.container {
+  display: block;
+  margin-left: 200px;
+}
+
+/* search bar */
+.search-bar {
+  background-color: #24315e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+table {
+  /* display: flex; */
+  display: block;
+  /* overflow-x: auto; */
+  white-space: nowrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  border-collapse: separate;
+  /* border-spacing: 0px 10px; */
+  background-color: white;
+  /* center align table */
+  margin-left: auto;
+  border-radius: 5px;
+
+  /* height: 70vh; */
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+table tbody {
+  display: table;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+/* freeze first row */
+tr:first-child {
+  position: sticky;
+  /* top: 12px; */
+  background-color: #fff;
+  z-index: 4;
+  padding: 10px;
+}
+
+td {
+  background-color: #f9f9f9;
+  height: 20px;
+}
+
+/* to freeze last column */
+th:not(:last-child),
+td:not(:last-child) {
+  position: sticky;
+  left: 0;
+  background-color: #fff;
+  z-index: 2;
+}
+
+th:last-child,
+td:last-child {
+  position: sticky;
+  right: 0;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.schedule-table th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.schedule-table {
+  overflow-x: visible;
+  overflow-y: none;
+  max-height: 490px;
+  padding: 0px;
+}
+
+/* freeze first row */
+.schedule-table tr:first-child {
+  position: sticky;
+  top: 0px;
+}
+
+.header select {
+  border: none;
+  font-family: 'Outfit';
+  padding: 5px;
+  background: #24315e;
+  color: white;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
