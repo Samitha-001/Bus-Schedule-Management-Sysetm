@@ -1,8 +1,8 @@
 <?php
 
-class Availablebus extends Model
+class UnavailableBus extends Model
 {
-    protected $table = 'bus_availability';
+    protected $table = 'unavailable_buses';
 
     // editable columns
     protected $allowedColumns = [
@@ -35,6 +35,10 @@ class Availablebus extends Model
         }
 
         return false;
+    }
+
+    public function add($data){
+        $this->insert($data);
     }
 
     public function getAvailableBuses()
