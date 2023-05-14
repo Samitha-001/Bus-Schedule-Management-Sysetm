@@ -49,6 +49,15 @@ class E_ticket extends Model
     {
         return $this->findAll();
     }
+    /**
+     * Description - Get all tickets of a trip
+     * @param $trip_id
+     * @return array
+     */
+    public function getTripTickets($trip_id): array
+    {
+        return $this->where(['trip_id' => $trip_id]);
+    }
 
     public function getBusTickets($trip)
     {

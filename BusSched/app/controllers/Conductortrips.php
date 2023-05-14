@@ -80,7 +80,16 @@ class Conductortrips
         //check get parameter
         $tm = new Trip();
         $trips = $tm->getTrip(['id' => $id]);
-        $this->userview('conductor','conductortripdetail', ['trips' => $trips]);
+        $et = new E_ticket();
+        $etickets = $et->getTripTickets($id);
+        $hm = new Halt();
+        $ending_halt = $trips->starting_halt == "Piliyandala"? "Pettah" : "Piliyandala";
+        $h = $hm->getHaltRange($trips->starting_halt, $ending_halt);
+        $bus = (new Bus())->getConductorBuses($_SESSION['USER']->username)[0];
+        $data = ['trips' => $trips, 'tickets' => $etickets, 'halts' => $h, 'bus' => $bus];
+        $this->userview('conductor','conductortripdetail', $data);
     }
+
+
     
 }
