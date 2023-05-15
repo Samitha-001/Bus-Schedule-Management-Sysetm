@@ -135,8 +135,11 @@ $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
             </table>
     </div>
 
+        <div class="w-100 p-5">
+            <h3 style="margin-bottom:10px;">Add Breakdowns</h3>
+
     <!-- add breakdown -->
-        <form method="post" id="view_breakdown" style="display:none">
+        <form method="post" id="view_breakdown">
 
             <?php if (!empty($errors)): ?>
             <?= implode("<br>", $errors) ?>
@@ -187,6 +190,7 @@ $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
                 </div>
         </form>
 
+        </div>
     </main>
 
 </body>

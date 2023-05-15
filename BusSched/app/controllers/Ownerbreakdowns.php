@@ -17,6 +17,8 @@ class OwnerBreakdowns
            
             if ($breakdown->validate($_POST)) {
                 $breakdown->insert($_POST);
+                $breakdown->sendBreakdownNotification($_POST['bus_no'],0);
+
 
                 redirect('ownerbreakdowns');
             }
