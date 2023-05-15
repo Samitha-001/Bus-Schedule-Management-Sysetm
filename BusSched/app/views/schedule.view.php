@@ -275,6 +275,7 @@ if (!isset($_SESSION['USER'])) {
           <?php endif;?>
         </table>
       </div>
+      
     </div>
     
     <div class="card-details">
@@ -282,6 +283,39 @@ if (!isset($_SESSION['USER'])) {
     </div>
   </div>
 </div>
+<table border='1' class="styled-table">
+          <tr>
+            <th> ID</th>
+            
+            <th>Bus No</th>
+            <th>Breakdown Time</th>
+            <th>Status</th>
+          </tr>
+          <?php static $i = 1; 
+          $bObj = json_decode(json_encode($breakdowns), false);
+          ?>
+          <?php if ($bObj):
+          foreach ($bObj as $b): ?>
+          <tr data-id=<?= $b->id ?>>
+            <?php $i++; 
+            if($schedule->starting_place === "Pettah"):
+            ?>
+            <!-- <td data-fieldname="checking">
+              <?= "<input type='checkbox' class='delete-checkbox'"?>
+            </td> -->
+            <!-- <td data-fieldname="starting"> <?= $schedule->starting_place ?> </td> -->
+            <td data-fieldname="id"> <?= $b->id ?> </td>
+            <td data-fieldname="bus_no"> <?= $b->bus_no ?> </td>
+            <td data-fieldname="departure"> <?= $b->breakdown_time ?> </td>
+            <td data-fieldname="arrival"> <?= $b->status ?> </td>
+            <?php endif;?>
+          </tr>
+          <?php endforeach; else: ?>
+          <tr>
+            <td colspan="9" style="text-align:center;color:#999999;"><i>No schedule found.</i></td>
+          </tr>
+          <?php endif;?>
+        </table>
 <div class="date-container">
   <div id="nextDate" class="date"></div>
   

@@ -30,13 +30,14 @@ class Schedules
         $data = [];
                 
                 $sched->insertMany($schedules);
-
+$breakdowns = new Breakdown();
+$b = ($breakdowns->getBreakdowns());
             
 
             $data['errors'] = $sched->errors;
-    
+                
 
-        $this->view('schedule', ['schedules' => $schedules]);
+        $this->view('schedule', ['schedules' => $schedules, 'breakdowns' =>$b ]);
     }
 
     // public function scheduleGenerate(){
