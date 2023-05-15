@@ -73,8 +73,8 @@ class OwnerBreakdowns
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $breakdown->update($id, ['time_to_repair'=>$_POST['time_to_repair']]);
-            show($id);
-            // redirect('ownerbreakdowns');
+//            show($id);
+             redirect('ownerbreakdowns');
         }
     }
 }
