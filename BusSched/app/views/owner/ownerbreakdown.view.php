@@ -62,7 +62,7 @@ $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
                     <th>Breakdown time</th>
                     <th>Bus</th>
                     <th>Description</th>
-                    <th>Estimated repair time</th>
+                    <th>Estimated repair time (mins)</th>
                     <th></th>
                 </tr>
 
@@ -108,7 +108,7 @@ $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
                     <th>Status</th>
                     <th>Description</th>
                     <th>Repaired at</th>
-                    <th>Estimated repair time</th>
+                    <th>Estimated repair time (mins)</th>
                 </tr>
 
                 <?php
