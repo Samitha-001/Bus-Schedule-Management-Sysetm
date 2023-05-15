@@ -20,7 +20,10 @@ class Conductorbreakdowns
             $bus = $post['bus_no'];
             $description = $post['description'];
             $time_to_repair = $post['time_to_repair'];
-            (new Breakdown())->addBreakdown(['bus_no'=>$bus,'description'=>$description,'time_to_repair'=>$time_to_repair],$trip);
+            $breakdown = new Breakdown();
+            $breakdown->addBreakdown(['bus_no'=>$bus,'description'=>$description,'time_to_repair'=>$time_to_repair],$trip);
+            $breakdown->sendBreakdownNotification($bus,$trip);
+            $breakdown->breakdownDecision($trip,$time_to_repair);
             $response = array('status' => 'success', 'data' => $post);
             header('Content-Type: application/json');
             echo json_encode($response);
