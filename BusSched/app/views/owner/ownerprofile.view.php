@@ -40,12 +40,12 @@ $username = $owner->username;
     <main class="container">
 
     <div class="card-container" id="info-card">
-            <h2>
+            <!-- <h2>
                 <?php
-                echo "Welcome " . $_SESSION['USER']->username . "!";
+                // echo "Welcome " . $_SESSION['USER']->username . "!";
                 ?>
-            </h2>
-     <div class="passenger-profile-card" id="profile-header">
+            </h2> -->
+     <!-- <div class="passenger-profile-card" id="profile-header">
         <?php
         // get profile picture if exists, else use default
         $pics = "assets/images/profile-pics/" . $username . ".*";
@@ -60,17 +60,17 @@ $username = $owner->username;
         <img id="profile-pic" src="<?= $profile_pic ?>" alt="profile pic" style="border-radius: 50px;object-fit: cover;" width="100px" height="100px">
         <img id="edit-pencil" src="<?= ROOT ?>/assets/images/icons/edit-pencil.png">
         
-     </div>
+     </div> -->
 
         <!-- div to add profile picture -->
-        <div class="passenger-profile-card" id="profile-pic-from-div" style="display:none;">
+        <!-- <div class="passenger-profile-card" id="profile-pic-from-div" style="display:none;"> -->
         <!-- input to get image file as profile picture -->
-        <form id="profile-pic-form">
+        <!-- <form id="profile-pic-form">
             <input type="file" name="profile-pic" id="profile-pic-input" accept="image/*">
             <input type="hidden" name="username" id="username" value="<?= $username ?>">
             <button id="upload-profile-pic-btn">Upload</button>
         </form>
-        </div>
+        </div> -->
 
         
             <ul>

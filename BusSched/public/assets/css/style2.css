@@ -403,8 +403,10 @@ input:checked + .slider:before {
 #info-card {
   grid-column: span 2;
   grid-row: span 2;
-  width: 90%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  color:#24315e;
 }
 
 #users-card {
@@ -1072,12 +1074,6 @@ input:checked + .slider:before {
   width: 90%;
 }
 
-#info-card {
-  grid-column: span 2;
-  grid-row: span 2;
-  width: 90%;
-  height: 85%;
-}
 
 #users-card {
   background: url("../images/dashboard-cards/users-card.png");
