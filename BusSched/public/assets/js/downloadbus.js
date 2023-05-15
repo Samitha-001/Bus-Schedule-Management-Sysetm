@@ -1,18 +1,20 @@
-        document.getElementById("downloadBtn").addEventListener("click", function() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "schedulebus.view.php", true);
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var link = document.createElement("a");
-                    link.href = "data:text/csv;charset=utf-8," + encodeURIComponent(xhr.responseText);
-                    link.download = "buses.csv";
-                    link.style.display = "none";
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                }
-            };
-            xhr.send("download=true");
-            console.log(xhr);
-        });
+function downloadFile(url, filename) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var blob = new Blob([xhr.response], {type: xhr.getResponseHeader('Content-Type')});
+          var link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = filename;
+          link.click();
+        } else {
+          console.error('Error downloading file: ' + xhr.statusText);
+        }
+      }
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'arraybuffer';
+    xhr.send();
+  }
+  

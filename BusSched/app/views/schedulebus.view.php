@@ -27,7 +27,7 @@ include 'components/schedulersidebar.php';
             <div>
                 <h3>Buses</h3>
             </div>
-            <div><button id="downloadBtn" class="button-grey">Download</button></div>
+            <div><button id="downloadBtn" class="button-grey" onclick="downloadFile()">Download</button></div>
         </div>
 
         <form method="post" id="view_bus" style="display:none">
@@ -127,7 +127,7 @@ include 'components/schedulersidebar.php';
             </table>
         </div>
 
-        <!-- <script src="<?= ROOT ?>/assets/js/bus.js"></script> -->
+        
         <script src="<?= ROOT ?>/assets/js/downloadbus.js"></script>
 
     </main>

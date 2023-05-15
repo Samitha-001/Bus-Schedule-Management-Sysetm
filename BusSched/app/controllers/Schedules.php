@@ -9,12 +9,12 @@ class Schedules
     public function index()
     {
         $sched = new Schedule();
-        $bus = new Bus();
-        $buses = $bus->getBuses();
+        $buses = $sched->getavailablebuses();
         // $scheds = $schedule->generateSchedule();
         // $schedules = $schedule->generateSchedule1($scheds);
         $busesOfA = [];
         $busesOfB = [];
+        
         $bus = json_decode(json_encode($buses), true);
         
         $schedules = $sched->busSchedule($bus, date('Y/m/d'));
@@ -28,15 +28,16 @@ class Schedules
             // }
 
         $data = [];
-
+                
                 $sched->insertMany($schedules);
-
+$breakdowns = new Breakdown();
+$b = ($breakdowns->getBreakdowns());
             
 
             $data['errors'] = $sched->errors;
-    
+                
 
-        $this->view('schedule', ['schedules' => $schedules]);
+        $this->view('schedule', ['schedules' => $schedules, 'breakdowns' =>$b ]);
     }
 
     // public function scheduleGenerate(){
@@ -60,8 +61,7 @@ class Schedules
 
     public function generate(){
         $trip = new Schedule();
-        $bus = new Bus();
-        $buses = $bus->getBuses();
+        $buses = $trip->getavailablebuses();
 
         $currentDate = date('Y/m/d');
         $nextDate = date('Y/m/d', strtotime($currentDate.'1 day'));

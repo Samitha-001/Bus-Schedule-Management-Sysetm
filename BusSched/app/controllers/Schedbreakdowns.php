@@ -10,7 +10,9 @@ class Schedbreakdowns
     {
         $breakdown = new Breakdown();
         $breakdowns = $breakdown->getBreakdowns();
-
+        
+       
+        
         $data = [];
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             // Check if a delete button was clicked

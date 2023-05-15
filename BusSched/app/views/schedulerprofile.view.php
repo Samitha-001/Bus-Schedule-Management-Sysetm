@@ -45,22 +45,17 @@ if (isset($_SESSION['USER'])) {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 92vh;
             width: 60%;
         }
 
         .passenger-profile-card {
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0px 0px 5px grey;
-            width: 80%;
-            height: 80%;
-            padding: 30px;
-            margin: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 30px;
         }
 
         #profile-header {
@@ -90,18 +85,18 @@ if (isset($_SESSION['USER'])) {
 
         #edit-passenger-info {
             align-self: center;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .edit-info-form {
             display: none;
             width: 50%;
-            padding: 10px;
+            padding: 4px;
         }
 
         .edit-info-form input {
-            width: 100%;
-            margin-bottom: 10px;
+            width: 80%;
+            margin-bottom: 5px;
         }
 
         .info-grid-start-2 {
@@ -120,6 +115,8 @@ if (isset($_SESSION['USER'])) {
             display: none;
         }
 
+        
+
         @media (max-width: 768px) {
             .passenger-profile-card {
                 flex-direction: column;
@@ -134,11 +131,11 @@ if (isset($_SESSION['USER'])) {
             }
 
             #passenger-info-div {
-                width: 100%;
+                width: 80%;
             }
 
             .edit-info-form {
-                width: 100%;
+                width: 80%;
             }
         }
     </style>
