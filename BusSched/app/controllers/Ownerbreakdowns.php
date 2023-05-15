@@ -17,6 +17,8 @@ class OwnerBreakdowns
            
             if ($breakdown->validate($_POST)) {
                 $breakdown->insert($_POST);
+                $breakdown->sendBreakdownNotification($_POST['bus_no'],0);
+
 
                 redirect('ownerbreakdowns');
             }
@@ -73,8 +75,8 @@ class OwnerBreakdowns
 
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $breakdown->update($id, ['time_to_repair'=>$_POST['time_to_repair']]);
-            show($id);
-            // redirect('ownerbreakdowns');
+//            show($id);
+             redirect('ownerbreakdowns');
         }
     }
 }

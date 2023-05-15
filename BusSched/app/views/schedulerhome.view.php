@@ -23,7 +23,7 @@ if ($_SESSION['USER']->role == 'passenger') {
     <?php include 'components/head.php';?>
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/schedsidebar.css">
     <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Schedule - Home</title>
 </head>
 <style>
@@ -99,11 +99,46 @@ if ($_SESSION['USER']->role == 'passenger') {
         </a>
         </div>
         
-        
+        <div>
+        <?php 
+            $bus = new Bus();
+            $buses = $bus->getBuses();
+           
+        ?>
+        <!-- <canvas id="myChart"></canvas>
+    
+        </div> -->
 
         
     </main>
-
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'Sales Amount',
+                    data: <?php 
+                    $bus = new Bus();
+                    $buses = $bus->getBuses();
+                    echo json_encode($buses); ?>,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 
 </body>
 
