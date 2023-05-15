@@ -13,9 +13,9 @@ if (!isset($_SESSION['USER'])) {
 
     <title>Breakdowns</title>
 
-    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
     
-    <script src="<?= ROOT ?>/assets/js/ownerbus.js"></script>
+    <script src="<?= ROOT ?>/assets/js/ownerbreakdown.js"></script>
     
 </head>
 
@@ -25,61 +25,121 @@ include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
 $bus = new Bus();
 $buses = $bus->getOwnerBuses($_SESSION['USER']->username);
+
+$temp = new Breakdown();
+$temp->update(1, ['time_to_repair' => 199]);
 ?>
 
-    <main class="container1">
-        <div class="header orange-header">
-            <div>
-                <h3>Breakdowns</h3>
-            </div>
-            <div><button id="my_history"  class="button-grey">Breakdown History</button></div>
-            <div><button id="btn" class="button-grey">Add New</button></div>
+    <div class="header orange-header">
+        <div>
+            <h2>Breakdowns</h2>
         </div>
-
-<!--owner breakdown history -->
-
+    </div>
+    <main class="container">
 <?php
 $owner = $_SESSION['USER']->username;
 $history_breakdowns = new Breakdown();
 $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
 ?>
 
-<div class="data-table" style="display: none;margin-bottom:200px" id="view_history_breakdowns">
-        <table border='1' class="styled-table">
-            <tr>
-                <th>#</th>
-                <th>Bus No.</th>
-                <th>Description</th>
-                <th>Time to repair</th> 
-                <th>Time</th>
-                <th></th> 
-            </tr>
-            <?php 
-            if (!empty($history_breakdown)):
-                foreach ($history_breakdown as $breakdown):
-                    if ($breakdown->status == 'repaired'): ?>
-                        <tr>
-                            <td><?php echo $breakdown->id ?></td>
-                            <td><?php echo $breakdown->bus_no ?></td>
-                            <td><?php echo $breakdown->description ?></td>
-                            <td><?php echo $breakdown->time_to_repair ?></td>
-                            <td><?php echo $breakdown->Date_time ?></td>
-                        </tr>
-                    <?php endif;
-                endforeach;
+<!-- current breakdown if any -->
+    <div>
+        <h3 style="margin-bottom:10px;">Current Breakdowns</h3>
+        <?php
+        // go through $breakdowns and get breakdowns with status = "repairing"
+        $current_breakdowns = array();
+        foreach ($breakdowns as $breakdown) {
+            if ($breakdown->status == "repairing") {
+                array_push($current_breakdowns, $breakdown);
+            }
+        }
+
+        if (count($current_breakdowns) > 0) {
+            ?>
+            <table border='1' class='styled-table'>
+                <tr>
+                    <th>#</th>
+                    <th>Breakdown time</th>
+                    <th>Bus</th>
+                    <th>Description</th>
+                    <th>Estimated repair time</th>
+                    <th></th>
+                </tr>
+
+                <?php
+                // display each current breakdown
+                foreach ($current_breakdowns as $breakdown) {?>
+                    <tr>
+                        <td> <?=$breakdown->id?> </td>
+                        <td> <?=$breakdown->breakdown_time?> </td>
+                        <td> <?=$breakdown->bus_no?> </td>
+                        <td> <?=$breakdown->description?> </td>
+                        <td> 
+                            <form method="post" action="<?=ROOT?>/ownerbreakdowns/modifyBreakdown/<?=$breakdown->id?>" style="padding:0px;">
+                                <input id="repair-time" name="time_to_repair" type="number" value="<?=$breakdown->time_to_repair?>" disabled>
+                                <button id="submit-edit-btn" type="submit" style="display:none;"></button>
+                            </form>
+                        </td>
+                        <td>
+                            <button id="breakdown-repaired-btn" class="button-green" data-breakdown-id='<?=$breakdown->id?>'>repaired</button>
+                            <button id="breakdown-edit-btn" class="button-green" style="border:#f15f22;background-color:#f15f22;" data-breakdown-id='<?=$breakdown->id?>'>edit</button>
+
+                            <button id="breakdown-save-btn" class="button-green" style="border:#f15f22;background-color:#f15f22; display:none;">save</button>
+                            <button id="breakdown-cancel-btn" class="button-green" style="border:red;background-color:red; display:none;">cancel</button>
+                        </td>
+                    </tr>
+
+                    <?php
+                }
+                echo "</table>";
+            } else echo "<p style='width:100%; text-align:center;'>No current breakdowns</p>";
+        ?>
+    </div>
+    
+    <!-- breakdowns history -->
+    <div>
+        <h3 style="margin-bottom:10px;">All breakdowns</h3>
+            <!-- <div class="data-table"> -->
+            <table border='1' class="styled-table" >
+                <tr>
+                    <th>#</th>
+                    <th>Breakdown time</th>
+                    <th>Bus</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <th>Repaired at</th>
+                    <th>Estimated repair time</th>
+                </tr>
+
+                <?php
+                if(!empty($breakdowns)) :
+                foreach ($breakdowns as $breakdown) {
+                    echo "<tr>";
+                    echo "<td> $breakdown->id </td>";
+                    echo "<td> $breakdown->breakdown_time </td>";
+                    echo "<td> $breakdown->bus_no </td>";
+                    echo "<td> $breakdown->status </td>";
+                    echo "<td> $breakdown->description </td>";
+                    echo "<td> $breakdown->repaired_time </td>";
+                    echo "<td> $breakdown->time_to_repair </td>";
+                    echo "</tr>";
+                }
             else: ?>
                 <tr>
-                    <td id="no-breakdowns" colspan="4">No breakdowns found</td>
+                    <td id="" colspan="4">No breakdowns found</td>
                 </tr>
             <?php endif; ?>
-        </table>
-</div>
+                <tr></tr> 
+                <tr></tr> 
+                <tr></tr> 
+            </table>
+    </div>
 
-<!-- add breakdown -->
+        <div class="w-100 p-5">
+            <h3 style="margin-bottom:10px;">Add Breakdowns</h3>
 
-
-
-        <form method="post" id="view_breakdown" style="display:none">
+    <!-- add breakdown -->
+        <form method="post" id="view_breakdown">
 
             <?php if (!empty($errors)): ?>
             <?= implode("<br>", $errors) ?>
@@ -130,84 +190,7 @@ $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
                 </div>
         </form>
 
-        <div class="data-table">
-
-            <table border='1' class="styled-table" id="breakdown_table">
-                <tr>
-                    <th>#</th>
-                    <th>Bus No.</th>
-                    <th>Description</th>
-                    <th>Time to repair</th>
-                </tr>
-
-                
-                <?php
-                foreach ($breakdowns as $breakdown) {
-                    echo "<tr>";
-                    echo "<td> $breakdown->id </td>";
-                    echo "<td> $breakdown->bus_no </td>";
-                    echo "<td> $breakdown->description </td>";
-                    // echo "<td> $breakdown->date </td>";
-                    // echo "<td> $breakdown->time </td>";
-                    echo "<td> $breakdown->time_to_repair </td>";
-                    echo "<td><button id='edit-breakdown-info'>Edit</button></td>";
-                    echo "<td><button id='repaired-btn'>Repaired</button></td>";
-                    echo "</tr>";
-                } ?>
-            </table>
         </div>
-
-
-
-             <!-- edit form for breakdown info -->
-             <div id="edit-form-container" style="display: none;">
-                        <form id="edit-form" method="post" action="<?=ROOT?>/ownerbreakdowns/modifyOwnerBreakdown/<?=$breakdown->id?>">
-                
-                            <table class="styled-table">
-                        <tr>
-                            <td style="color:#24315e;"><label for="bus_no">Bus No. </label></td>
-                            <td>
-                            <select id="bus_no" name="bus_no"   class="form-control"  value="<?= $breakdown->bus_no ?>" required>
-                              
-                               
-                               <?php 
-                                 foreach ($buses as $bus) {
-                                 ?>
-                                   <option><?php echo $bus->bus_no; ?> </option>
-                                   <?php 
-                                   }
-                                  ?>
-                               
-                            </select>
-                            </td>
-                        </tr>
-            
-
-                        <tr>
-                            <td style="color:#24315e;"><label for="description">Description </label></td>
-                            <td><input name="description" type="text" class="form-control" id="description"  value="<?= $breakdown->description ?>" required></td>
-                        </tr>
-                        <tr>
-                            <td style="color:#24315e;"><label for="time_to_repair">Time to Repair </label></td>
-                            <td><input name="time_to_repair" type="text" class="form-control" id="time_to_repair" value="<?= $breakdown->time_to_repair ?>" required></td>
-                        </tr>
-
-                        <tr>
-                            <td></td>
-                            <td align="right">
-                                <button class="button-green" type="submit" id="form-save" >Save Changes</button>
-                                <button class="button-cancel" onclick="cancel()">Cancel</button>
-                            </td>
-                        </tr>
-
-                    </table>
-                        </form>
-
-
-
-
-            </div>
-
     </main>
 
 </body>

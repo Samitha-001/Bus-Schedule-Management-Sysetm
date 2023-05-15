@@ -17,6 +17,8 @@ class OwnerBreakdowns
            
             if ($breakdown->validate($_POST)) {
                 $breakdown->insert($_POST);
+                $breakdown->sendBreakdownNotification($_POST['bus_no'],0);
+
 
                 redirect('ownerbreakdowns');
             }
@@ -45,4 +47,36 @@ class OwnerBreakdowns
         }
     }
 
+    // repair breakdown api
+    public function api_repair_breakdown() 
+    {
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+            // retrieve the POST data
+            $postData = json_decode(file_get_contents('php://input'), true);
+
+            $breakdown = new Breakdown();
+            $breakdown->repairBreakdown($postData['breakdownID']);
+
+            // Send a response
+            $response = array('status' => 'success', 'data' => $postData);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } else {
+            $response = array('status' => 'error', 'data' => 'Invalid requests');
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }
+    }
+
+    
+    // function to modify breakdown
+    public function modifyBreakdown($id) {
+        $breakdown = new Breakdown();
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $breakdown->update($id, ['time_to_repair'=>$_POST['time_to_repair']]);
+//            show($id);
+             redirect('ownerbreakdowns');
+        }
+    }
 }

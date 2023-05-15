@@ -94,15 +94,17 @@ class Breakdown extends Model
         $data['owner'] = $owner;
         // show($data);
         if (!$status) {
-            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data, 'breakdown.id, breakdown.breakdown_time, breakdown.trip_no, breakdown.bus_no, breakdown.description, breakdown.status, breakdown.repaired_time, breakdown.time_to_repair');
         }
         else if($status = 'repairing') {
             $data['status'] = $status;
-            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data, 'breakdown.id, breakdown.breakdown_time, breakdown.trip_no, breakdown.bus_no, breakdown.description, breakdown.status, breakdown.repaired_time, breakdown.time_to_repair');
+//            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
         }
         else {
             $data['status'] = $status;
-            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
+            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data, 'breakdown.id, breakdown.breakdown_time, breakdown.trip_no, breakdown.bus_no, breakdown.description, breakdown.status, breakdown.repaired_time, breakdown.time_to_repair');
+//            $breakdowns = $this->join('bus', 'breakdown.bus_no', 'bus.bus_no', $data);
         }
         return $breakdowns;
     }

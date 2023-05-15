@@ -11,34 +11,28 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     <!-- NAVIGATION MENU -->
     <ul class="nav-links">
         <div class="nav-menu">
-
-            <li>
-            
-
             <!-- if the user is logged in -->
             <?php if (isset($_SESSION['USER'])) { ?>
-            <a href="<?= ROOT ?>/ownerprofile"><img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" size="15" width="35" style="margin-bottom:0.01%;margin-right:17px"></a>
-            <a href="<?= ROOT ?>/ownernotifications"><img src="<?= ROOT ?>/assets/images/icons/Bell_Icon.png" width="30"  style="padding-bottom:4px;margin-right:0.01px"></a>
-                <li class="signup-button" style="margin-left:7px;height:40px;margin-top:7px;padding-top:7px"><a href="<?= ROOT ?>/logout">Logout</a></li>
-            </div>
-        </ul>
-
-        <!-- if user is logged out -->
-    <?php } else { ?>
-        <a href="<?= ROOT ?>/login">
-            <li class="signup-button" style="background-color:black; border: 2px solid #f4511e;">Login</li>
-        </a>
-        <a href="<?= ROOT ?>/passengersignup">
-            <li class="signup-button" style="border: 2px solid #f4511e;">Sign up</li>
-        </a>
+                <a href="<?= ROOT ?>/ownerprofile">
+                    <img src="<?= ROOT ?>/assets/images/icons/profile-icon.png" width="25">
+                </a>
+                <a href="<?= ROOT ?>/logout" style="padding-top:7px;">
+                    <li class="signup-button" style="border: 2px solid #f4511e;background-color:black;">Logout</li>
+            </a>
         </div>
-        </ul>
+    </ul>
+
+            <!-- if user is logged out -->
+    <?php } else { ?>
+            <a href="<?= ROOT ?>/login">
+                <li class="signup-button" style="background-color:black; border: 2px solid #f4511e;">Login</li>
+            </a>
+            <a href="<?= ROOT ?>/passengersignup">
+                <li class="signup-button" style="border: 2px solid #f4511e;">Sign up</li>
+            </a>
+            </div>
+            </ul>
     <?php } ?>
-
-    <!-- <div class="burger" id="hamburger">
-        <div onclick="openNav()"><img src="<?= ROOT ?>/assets/images/hamburger.png" height="15"></div>
-    </div> -->
-
 </nav>
 
 <script>

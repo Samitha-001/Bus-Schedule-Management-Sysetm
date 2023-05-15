@@ -19,23 +19,13 @@ if (!isset($_SESSION['USER'])) {
 
 <body>
 
-<?php
-$temp = new Breakdown();
-// $temp->repairBreakdown(5);
-?>
     <?php include '../app/views/components/navbarcon.php'; ?>
 
-
-    <?php
-    $temp = new Breakdown();
-    // $temp->update(5, ['time_to_repair'=>55]);
-    ?> 
     <main class="container1">
         
         <div class="header orange-header" style="position:sticky; top:69px;">
             <h2>Breakdowns</h2>
         </div>
-
 
     <!-- current breakdown if any -->
     <div class="col-2">

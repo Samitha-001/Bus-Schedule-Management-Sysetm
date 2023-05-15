@@ -57,5 +57,18 @@ class Location_update extends Model
         return $this->where($data);
     }
 
+    /**
+     * Description - Get the last location updates for a given passenger and trip
+     * @param $tripID - trip ID
+     * @param $username -username
+     * @return mixed - last location updates
+     */
+    public function getLastLocationUpdates($tripID, $username){
+        $data['tripID'] = $tripID;
+        $data['username'] = $username;
+        $data['user_role'] = 'passenger';
+        return $this->where($data,'timestamp');
+    }
+
 
 }

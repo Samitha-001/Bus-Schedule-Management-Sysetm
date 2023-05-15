@@ -21,9 +21,7 @@ if ($_SESSION['USER']->role == 'passenger') {
 
 <head>
     <?php include '../app/views/components/head.php';?>
-
-
-    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/style2.css">
+    <link rel="stylesheet" href="<?= ROOT ?>/assets/css/owner.css">
     <title>Bus Owner - Home</title>
 </head>
 
@@ -35,18 +33,6 @@ include '../app/views/components/ownersidebar.php';
 ?>
 
     <main class="container">
-
-        <!-- <div class="card-container" id="greeting-card">
-           
-        </div>
-
-        <div class="card-container" id="info-card">
-           
-        </div>
-
-        <div class="card-container span-col-2">
-
-        </div> -->
 
         <div class="card-container" id="schedules-card">
             <a href="<?= ROOT ?>/ownerschedule">
@@ -87,24 +73,8 @@ include '../app/views/components/ownersidebar.php';
                     <hr>
                 </div>
                 <div class="items users">
-                    <!-- <p>Bus details</p> -->
                 </div>
             </div>
-            </a>
-        </div>
-
-        <div class="card-container" id="ratings-card">
-            <a href="#">
-                <div class="overlay">
-                    <div class="items"></div>
-                    <div class="items head">
-                        <p>Ratings</p>
-                        <hr>
-                    </div>
-                    <div class="items users">
-                        <!-- <p>Bus details</p> -->
-                    </div>
-                </div>
             </a>
         </div>
 
