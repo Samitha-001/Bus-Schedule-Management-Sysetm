@@ -23,50 +23,76 @@ include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
 ?>
 
-    <main class="container1">
-        <div class="header orange-header">
-            <div>
-            <table class="header-links">
-                <tr>
-                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactowners" ><h3>Bus Owners</h3></a></th>
-                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactdrivers" ><h3>Drivers</h3></a></th>
-                    <th style="padding-left:60px"><a href="<?= ROOT ?>/ownercontactconductors" ><h3>Conductors</h3></a></th>
-                </tr>
-                
-            </table> 
-            </div>
-            
+    <div class="header orange-header">
+        <div>
+            <h2>Register New Bus</h2>            
         </div>
-
-            <table border='1' class="styled-table">
+    </div>
+    <div class="row" style="justify-content: center;">        
+    <main class="container">
+        <div id="owner-contacts">
+            <h3 style="margin-bottom:10px;">Owners</h3>
+            <table class="schedule-table">
                 <tr>
-                    <th>Name</th>
                     <th>Email</th>
-                    <th>Address</th>
+                    <th>Name</th>
                     <th>Contact No</th>
                 </tr>
-
-                 <?php
-                    $testuser = new User();
-                    $ownerContacts = $testuser->getContactDetails('owner');
-                    // show($driverContacts);
-                    // $i = 0;
-                    foreach ($ownerContacts as $ownerContact) {
-                        echo "<tr>";
-                        echo "<td>$ownerContact[name]</td>";
-                        echo "<td> $ownerContact[email] </td>";
-                        echo "<td>$ownerContact[address]</td>";
-                        echo "<td> $ownerContact[phone] </td>";
-                        
-                        echo "</tr>";
-                } ?> 
-
+                <?php
+                foreach ($data['ownerContacts'] as $owner) {
+                    echo "<tr>";
+                    echo "<td> $owner[email] </td>";
+                    echo "<td> $owner[name] </td>";
+                    echo "<td> $owner[phone] </td>";
+                    echo "</tr>";
+                } ?>
             </table>
         </div>
 
-        <script src="<?= ROOT ?>/assets/js/bus.js"></script>
+        <!-- driver contacts -->
+        <div id="driver-contacts">
+            <h3 style="margin-bottom:10px;">Drivers</h3>
+            <table class="schedule-table">
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Contact No</th>
+                </tr>
+                <?php
+                foreach ($data['driverContacts'] as $driver) {
+                    echo "<tr>";
+                    echo "<td> $driver[email] </td>";
+                    echo "<td> $driver[name] </td>";
+                    echo "<td> $driver[phone] </td>";
+                    echo "</tr>";
+                } ?>
+            </table>
+        </div>
 
+        <!-- conductor contacts -->
+        <div id="conductor-contacts" style="padding-top:0px;">
+            <h3 style="margin-bottom:10px;">Conductors</h3>
+            <table class="schedule-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact No</th>
+                </tr>
+
+                <?php
+                foreach ($data['conductorContacts'] as $conductor) {
+                    echo "<tr>";
+                    echo "<td> $conductor[name] </td>";
+                    echo "<td> $conductor[email] </td>";
+                    echo "<td> $conductor[phone] </td>";
+                    echo "</tr>";
+                } ?>
+            </table>
+        </div>
+        </div>
+        
     </main>
+</div>
 
 </body>
 

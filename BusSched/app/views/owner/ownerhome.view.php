@@ -73,24 +73,8 @@ include '../app/views/components/ownersidebar.php';
                     <hr>
                 </div>
                 <div class="items users">
-                    <!-- <p>Bus details</p> -->
                 </div>
             </div>
-            </a>
-        </div>
-
-        <div class="card-container" id="ratings-card">
-            <a href="#">
-                <div class="overlay">
-                    <div class="items"></div>
-                    <div class="items head">
-                        <p>Ratings</p>
-                        <hr>
-                    </div>
-                    <div class="items users">
-                        <!-- <p>Bus details</p> -->
-                    </div>
-                </div>
             </a>
         </div>
 

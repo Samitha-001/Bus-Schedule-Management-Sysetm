@@ -23,4 +23,15 @@ class Breakdowns
         }
         $this->view('breakdown', ['breakdowns' => $breakdowns,'status'=>"repairing"]);
     }
+
+    public function addBreakdown(){
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $trip = $_POST['trip_id'];
+            $bus = $_POST['bus_no'];
+            $description = $_POST['description'];
+            $time_to_repair = $_POST['time_to_repair'];
+            (new Breakdown())->addBreakdown(['bus_no'=>$bus,'description'=>$description,'time_to_repair'=>$time_to_repair],$trip);
+            redirect('breakdowns');
+        }
+    }
 }

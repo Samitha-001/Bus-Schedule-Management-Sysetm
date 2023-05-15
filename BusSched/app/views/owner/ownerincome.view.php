@@ -6,10 +6,9 @@
 
     <title>Income</title>
 
-    <link href="<?= ROOT ?>/assets/css/style2.css" rel="stylesheet">
+    <link href="<?= ROOT ?>/assets/css/owner.css" rel="stylesheet">
     <link href="<?= ROOT ?>/assets/css/owner-profile.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <link href="<?= ROOT ?>/assets/css/owner_view.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -17,27 +16,27 @@
 include '../app/views/components/ownernavbar.php';
 include '../app/views/components/ownersidebar.php';
 ?>
-<main class="container1">
 
-    <div class="col">
-        <div class="header orange-header">
-            <button style="background-color: #f4511e;"><h3 type="button"> E-Ticket Income </h3></button>
-            <div class="w-50 row">
-                <label for="start_date" class="col-form-label">Start Date</label>
-                <input type="date" class="form-control w-25" id="start_date" name="start_date"
-                       value="<?= date('Y-m-d', strtotime('last month')) ?>">
-                <label for="end_date" class="col-form-label">End Date</label>
-                <input type="date" class="form-control w-25" id="end_date" name="end_date" value="<?= date('Y-m-d') ?>">
-            </div>
+<div class="col">
+    <div class="header orange-header">
+        <button style="background-color: #f4511e;"><h3 type="button">E-Ticket Income</h3></button>
+        <div class="row">
+            <label for="start_date">Start Date</label>
+            <input type="date" class="form-control" id="start_date" name="start_date"
+            value="<?= date('Y-m-d', strtotime('last month')) ?>">
+            <label for="end_date">End Date</label>
+            <input type="date" class="form-control" id="end_date" name="end_date" value="<?= date('Y-m-d') ?>">
         </div>
+    </div>
+    <main class="container">
 
         <div class="canvas-container w-75 h-50 m-5 p-5 rounded" style="background-color: white">
             <canvas id="myChart"></canvas>
         </div>
-    </div>
+    </main>
+</div>
 
 
-</main>
 </body>
 
 </html>
