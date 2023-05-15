@@ -62,7 +62,7 @@ if (!isset($_SESSION['USER'])) {
         
         $starting_trip = null;
         foreach ($trips as $trip) {
-            if ($trip->Status == "notstarted") {
+            if ($trip->status == "notstarted") {
                 $starting_trip = $trip;
                 break;
             }

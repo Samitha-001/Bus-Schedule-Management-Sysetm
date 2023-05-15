@@ -34,7 +34,7 @@ include '../app/views/components/navbarcon.php';
         // show($bus);
         $conductors = new Conductor();
         $conductorinfo = $conductors->getConductorInfo($conductor)[0];
-        //show($conductorinfo);
+        // show($conductorinfo);
          ?>
 
 <?php
@@ -101,7 +101,7 @@ include '../app/views/components/navbarcon.php';
                 <tr>
                     <th>DOB: </th>
                     <?php
-                        echo "<td> $conductorinfo->date_of_birth </td>";
+                        echo "<td> {$conductorinfo->date_of_birth} </td>";
                     ?>
                 
             </table>
