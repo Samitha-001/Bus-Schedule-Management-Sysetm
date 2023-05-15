@@ -41,43 +41,74 @@ if (!isset($_SESSION['USER'])) {
     <div class="p-3 mb-0 col">
         Tickets : &nbsp;<i id="uncollected-chevron" class="uncollected fa-solid fa-chevron-up"></i> <br>
         <div id="uncollected-tickets" class="ticket-container w-100 p-1 row">
-            <?php foreach ($tickets as $t): ?>
-                <?php if ($t->status !== 'collected'): ?>
+            <?php if ($tickets && count($tickets)): ?>
+            <?php foreach ($tickets
 
-                    <div class="ticket-card p-1 m-1 mb-2 d-inline-block" data-tid="<?= $t->id ?>" data-src="<?=$t->source_halt?>"">
-                        <b><span>Ticket ID: <?= $t->id ?></span></b>
-                        <span><?= $t->source_halt ?> To <?= $t->dest_halt ?></span>
-                        <span><?= $t->passenger ?></span><br>
-                        <?php if ($t->seats_reserved): ?>
-                            <span>Seats: <?= $t->seats_reserved ?></span><br>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
+            as $t): ?>
+            <?php if ($t->status !== 'collected'): ?>
+            <div class="ticket-card p-1 m-1 mb-2 d-inline-block" data-tid="<?= $t->id ?>"
+                 data-src="<?= $t->source_halt ?>"
+            ">
+            <b><span>Ticket ID: <?= $t->id ?></span></b>
+            <span><?= $t->source_halt ?> To <?= $t->dest_halt ?></span>
+            <span><?= $t->passenger ?></span><br>
+            <?php if ($t->seats_reserved): ?>
+                <span>Seats: <?= $t->seats_reserved ?></span><br>
+            <?php endif; ?>
         </div>
-        <br>
-        Collected Tickets &nbsp; <i id="collected-chevron" class="fa-solid fa-chevron-up"></i><br>
-        <div id="collected-tickets" class="ticket-container w-100 p-1 row">
-            <?php foreach ($tickets as $t): ?>
-                <?php if ($t->status == 'collected'): ?>
-                    <div class="ticket-card p-1 m-1 mb-2 d-inline-block" data-tid="<?= $t->id ?>" data-src="<?=$t->source_halt?>"">
-                        <b><span>Ticket ID: <?= $t->id ?></span></b>
-                        <span><?= $t->source_halt ?> To <?= $t->dest_halt ?></span>
-                        <span><?= $t->passenger ?></span><br>
-                        <?php if ($t->seats_reserved): ?>
-                            <span>Seats: <?= $t->seats_reserved ?></span><br>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    <br>
+    Collected Tickets &nbsp; <i id="collected-chevron" class="fa-solid fa-chevron-up"></i><br>
+    <div id="collected-tickets" class="ticket-container w-100 p-1 row">
+        <?php if ($tickets && count($tickets)): ?>
+        <?php foreach ($tickets
+
+        as $t): ?>
+        <?php if ($t->status == 'collected'): ?>
+        <div class="ticket-card p-1 m-1 mb-2 d-inline-block" data-tid="<?= $t->id ?>" data-src="<?= $t->source_halt ?>"
+        ">
+        <b><span>Ticket ID: <?= $t->id ?></span></b>
+        <span><?= $t->source_halt ?> To <?= $t->dest_halt ?></span>
+        <span><?= $t->passenger ?></span><br>
+        <?php if ($t->seats_reserved): ?>
+            <span>Seats: <?= $t->seats_reserved ?></span><br>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
+    <?php endforeach; ?>
+    <?php endif; ?>
+    </div>
     </div>
     <div class="p-3 mt-0">
         Add Breakdown: &nbsp;<i id="breakdown-chevron" class="fa-solid fa-chevron-down"></i><br>
-        <div id="add-breakdown-div" class="d-none">
-            <!--            TODO ADD FORM HERE-->
-            <form>
+        <div id="add-breakdown-div" class="d-none mt-2">
+            <form class="p-0" id="add-breakdown-form">
+                <table class="styled-table">
+                    <tbody>
+                    <tr>
+                        <input type="hidden" value="<?= $trips->id ?>" name="trip_id">
+                        <input type="hidden" value="<?= $bus->bus_no ?>" name="bus_no">
+                        <td style="color:#24315e;"><label for="description">Description </label></td>
+                        <td><input name="description" type="text" class="form-control" id="description"
+                                   placeholder="Description..." r></td>
+                    </tr>
+                    <tr>
+                        <td style="color:#24315e;"><label for="time_to_repair">Time to Repair </label></td>
+                        <td><input name="time_to_repair" type="number" class="form-control" id="time_to_repair" min="0"
+                                   placeholder="Time to repair (minutes)..."></td>
+                    </tr>
 
+                    <tr>
+                        <td colspan="2">
+                            <button class="button-green" type="submit">Save</button>
+                            <button class="button-cancel">Cancel</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </form>
         </div>
     </div>
@@ -142,7 +173,9 @@ if (!isset($_SESSION['USER'])) {
 <script>
     let cards = document.querySelectorAll('.card');
     const trip_id = <?=$trips->id?>;
-    cards[20].scrollIntoView({behavior: 'smooth', block: 'center'});
+    let focuscard = document.querySelector('.last-updated-halt')
+    if (focuscard)
+        focuscard.scrollIntoView({behavior: 'smooth', block: 'center'});
 
     let last_updated_halt = "<?=$trips->last_updated_halt?>";
     let i = 0
@@ -198,7 +231,7 @@ if (!isset($_SESSION['USER'])) {
         e.target.classList.remove('not-updated-halt');
         e.target.scrollIntoView({behavior: 'smooth', block: 'center'});
         hideCards();
-        let location = e.target.dataset.halt;
+        let location = e.target.closest('.card').dataset.halt;
         let trip_id = "<?=$trips->id?>";
         let url = `${ROOT}/conductortrips/api_update_location`;
         let options = {
@@ -247,6 +280,7 @@ if (!isset($_SESSION['USER'])) {
             },
             body: JSON.stringify({
                 trip_id: end_ID,
+                halt: document.querySelector('.end-trip-btn').dataset.halt,
             }),
         };
 
@@ -289,8 +323,26 @@ if (!isset($_SESSION['USER'])) {
             ticket_id: id,
             status: status
         }
-        // new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Ticket Collected", true, 1000);
+        fetch(url, {
+            method: "POST",
+            credentials: "same-origin",
+            mode: "same-origin",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(data)
+        })
+            .then((response) => response.json())
+            .catch((err) => {
+                console.log(err);
+            })
+            .then((data) => {
+                console.log(data);
+            });
     }
+
+    // new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Ticket Collected", true, 1000);
+
 
     document.querySelectorAll('.ticket-card').forEach(card => {
         card.addEventListener('click', (e) => {
@@ -320,20 +372,73 @@ if (!isset($_SESSION['USER'])) {
         });
     });
 
-    function hideCards(){
+    function hideCards() {
         let haltlist = <?=json_encode($halts)?>;
         let currentHalt = document.querySelector('.last-updated-halt').getAttribute('data-halt')
-    //     look through all the cards and their data-src if their halt is not reached yet, hide them
+        //     look through all the cards and their data-src if their halt is not reached yet, hide them
         let cards = document.querySelectorAll('.ticket-card');
         cards.forEach(card => {
             let halt = card.dataset.src;
-            if(haltlist.indexOf(halt) > haltlist.indexOf(currentHalt)){
+            if (haltlist.indexOf(halt) > haltlist.indexOf(currentHalt)) {
                 card.classList.add('d-none');
-            }else{
+            } else {
                 card.classList.remove('d-none');
             }
         })
     }
+
+    function addBreakdown() {
+        let form = document.querySelector('#add-breakdown-form');
+        let trip_id = form.querySelector('input[name="trip_id"]').value;
+        let bus_no = form.querySelector('input[name="bus_no"]').value;
+        let description = form.querySelector('input[name="description"]').value;
+        let time_to_repair = form.querySelector('input[name="time_to_repair"]').value;
+
+        if (description == "" || time_to_repair == "") {
+            new Toast("fa-solid fa-exclamation-circle", "#F44336", "Error", "Please fill all fields", true, 2000);
+            return;
+        }
+        if (time_to_repair < 0) {
+            new Toast("fa-solid fa-exclamation-circle", "#F44336", "Error", "Time to repair cannot be negative", true, 2000);
+            return;
+        }
+
+        let data = {
+            trip_id: trip_id,
+            bus_no: bus_no,
+            description: description,
+            time_to_repair: time_to_repair
+        }
+        let url = `${ROOT}/conductorbreakdowns/api_add_breakdown`;
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(data),
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.status == "success") {
+                    new Toast("fa-solid fa-check-circle", "#4CAF50", "Success", "Breakdown Added", true, 2000);
+                    form.querySelector('.button-cancel').click();
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
+    let form = document.querySelector('#add-breakdown-form');
+    form.querySelector('.button-green').addEventListener('click', (e) => {
+        e.preventDefault();
+        addBreakdown();
+        setTimeout(() => {
+            document.querySelector('#breakdown-chevron').click();
+        }, 2000);
+    })
+    form.querySelector('.button-cancel').addEventListener('click', (e) => {
+        e.preventDefault();
+        e.target.closest('form').reset();
+    })
 
 
 </script>

@@ -1,4 +1,5 @@
 <?php
+
 use Ratchet\Wamp\TopicManagerTest;
 
 class Passengertickets
@@ -27,13 +28,13 @@ class Passengertickets
 
             // update ticket status from collected to inactive
             $id = $postData['id'];
-            if($postData['gotoff']) {
+            if ($postData['gotoff']) {
                 $this->updateTicketStatus($id, 'inactive');
             }
 
             // add, location update record
             $location_update = new Location_update();
-            
+
             $data = [
                 'username' => $postData['username'],
                 'user_role' => $postData['user_role'],
@@ -62,7 +63,7 @@ class Passengertickets
             // Retrieve the POST data
             $postData = json_decode(file_get_contents('php://input'), true);
             $id = $postData['id'];
-            
+
             // method to get ticket info
             $ticket = new E_ticket();
             $dataticket = $ticket->findTicket($id);
@@ -70,7 +71,7 @@ class Passengertickets
             // getting trip details relevant to the ticket
             $trip = new Trip();
             $tripData = $trip->getTrip(['id' => $dataticket->trip_id]);
-            
+
             // getting driver ID and conductor ID relevant to the bus
             $bus = new Bus();
             $busData = $bus->getBus($tripData->bus_no);
@@ -103,7 +104,7 @@ class Passengertickets
 
             $src = $postData['src'];
             $dest = $postData['dest'];
-            
+
             $halt = new Halt();
             // method to get ticket info
             $data = $halt->getHaltRange($src, $dest);
@@ -180,5 +181,16 @@ class Passengertickets
             header('Content-Type: application/json');
             echo json_encode($response);
         }
+    }
+
+    public function api_get_location_updates()
+    {
+        $post = json_decode(file_get_contents('php://input'), true);
+        $tripID = $post['tripID'];
+        $location_update = new Location_update();
+        $data = $location_update->getLastLocationUpdates($tripID, $_SESSION['USER']->username);
+        $response = array('status' => 'success', 'data' => $data);
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 }

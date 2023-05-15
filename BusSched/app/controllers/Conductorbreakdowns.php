@@ -13,21 +13,23 @@ class Conductorbreakdowns
     }
 
     // function to add new breakdown
-    public function addBreakdown() {
-        $breakdown = new Breakdown();
-        $data = [];
-
+    public function api_add_breakdown(){
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $_POST['bus_no'] = strtoupper($_POST['bus_no']);
-            if ($breakdown->validate($_POST)) {
-                $breakdown->addBreakdown($_POST);
-
-                redirect('breakdowns');
-            }
-
-            $data['errors'] = $breakdown->errors;
+            $post = json_decode(file_get_contents('php://input'), true);
+            $trip = $post['trip_id'];
+            $bus = $post['bus_no'];
+            $description = $post['description'];
+            $time_to_repair = $post['time_to_repair'];
+            $breakdown = new Breakdown();
+            $breakdown->addBreakdown(['bus_no'=>$bus,'description'=>$description,'time_to_repair'=>$time_to_repair],$trip);
+            $breakdown->sendBreakdownNotification($bus,$trip);
+            $breakdown->breakdownDecision($trip,$time_to_repair);
+            $response = array('status' => 'success', 'data' => $post);
+            header('Content-Type: application/json');
+            echo json_encode($response);
         }
     }
+
 
     // function to call when breakdown is repaired
     public function repairBreakdown($id) {

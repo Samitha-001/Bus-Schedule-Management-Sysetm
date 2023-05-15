@@ -26,4 +26,30 @@ class Driver extends Model
     {
         $this->update($id, $data, 'username');
     }
+
+    // function to get unassigned drivers
+    public function getUnassignedDrivers()
+    {
+        // all drivers
+        $all_drivers = $this->findAll('username');
+        // all buses
+        $bus = new Bus();
+        $all_buses = $bus->findAll();
+        // unassigned drivers
+        $unassigned_drivers = [];
+        foreach ($all_drivers as $driver) {
+            $assigned = false;
+            foreach ($all_buses as $bus) {
+                if ($driver->username == $bus->driver) {
+                    $assigned = true;
+                    break;
+                }
+            }
+            if (!$assigned) {
+                array_push($unassigned_drivers, $driver);
+            }
+        }
+
+        return $unassigned_drivers;
+    }
 }
