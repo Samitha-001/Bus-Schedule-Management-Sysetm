@@ -397,10 +397,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 // number of passengers
                 document.getElementById("ticket-details-passengers").innerHTML = ticket['ticket']["passenger_count"];
 
-                // seats
-                document.getElementById("ticket-details-seats").innerHTML = ticket['ticket']["seat_number"];
-                // booking time
-                document.getElementById("ticket-details-booking-time").innerHTML = ticket['ticket']["booking_time"];
+        // seats
+        document.getElementById("ticket-details-seats").innerHTML = ticket['ticket']["seats_reserved"];
+        // booking time
+        document.getElementById("ticket-details-booking-time").innerHTML = ticket['ticket']["booking_time"];
 
                 // price
                 document.getElementById("ticket-details-price").innerHTML = ticket['ticket']["price"];
