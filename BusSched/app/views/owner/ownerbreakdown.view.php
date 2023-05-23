@@ -96,45 +96,6 @@ $history_breakdown = $history_breakdowns->getOwnerBreakdowns($owner);
         ?>
     </div>
     
-    <!-- breakdowns history -->
-    <div>
-        <h3 style="margin-bottom:10px;">All breakdowns</h3>
-            <!-- <div class="data-table"> -->
-            <table border='1' class="styled-table" >
-                <tr>
-                    <th>#</th>
-                    <th>Breakdown time</th>
-                    <th>Bus</th>
-                    <th>Status</th>
-                    <th>Description</th>
-                    <th>Repaired at</th>
-                    <th>Estimated repair time (mins)</th>
-                </tr>
-
-                <?php
-                if(!empty($breakdowns)) :
-                foreach ($breakdowns as $breakdown) {
-                    echo "<tr>";
-                    echo "<td> $breakdown->id </td>";
-                    echo "<td> $breakdown->breakdown_time </td>";
-                    echo "<td> $breakdown->bus_no </td>";
-                    echo "<td> $breakdown->status </td>";
-                    echo "<td> $breakdown->description </td>";
-                    echo "<td> $breakdown->repaired_time </td>";
-                    echo "<td> $breakdown->time_to_repair </td>";
-                    echo "</tr>";
-                }
-            else: ?>
-                <tr>
-                    <td id="" colspan="4">No breakdowns found</td>
-                </tr>
-            <?php endif; ?>
-                <tr></tr> 
-                <tr></tr> 
-                <tr></tr> 
-            </table>
-    </div>
-
         <div class="w-100 p-5">
             <h3 style="margin-bottom:10px;">Add Breakdowns</h3>
 

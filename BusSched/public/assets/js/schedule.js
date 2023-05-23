@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener('click', event => {
             // Get the parent row of the clicked button
             let row = event.target.closest('tr');
-            console.log(row);
+            // console.log(row);
         
             // Get ID to send to the ticket page
             let tripId = row.getAttribute('data-id');
@@ -145,6 +145,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let date = document.getElementById("date").value;
 
         filterRows(from, to, date);
+        
+        // reset
+        let busTypeSelect = document.getElementById('bus-type');
+        // select option all of bustype select
+        busTypeSelect.selectedIndex = 0;
+        let haltTypeSelect = document.getElementById('hour');
+        haltTypeSelect.selectedIndex = 0;
+
     });
 
     // function to get estimated time from server, send to api
@@ -175,78 +183,104 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // click the document.querySelector("#find-trip-btn") button
     document.querySelector("#find-trip-btn").click();
+    
+    
+    // CODE CHECK
+    // get hour type select
+    let hourTypeSelect = document.getElementById('hour');
+    // get bus type select
+    let busTypeSelect = document.getElementById('bus-type');
+
+
+    // add event listener
+    busTypeSelect.addEventListener('change', () => {
+        // reset from to date inputs
+        document.getElementById('from').value = '';
+        document.getElementById('to').value = '';
+        document.getElementById('date').value = '';
+        // select option all of bustype select
+        hourTypeSelect.selectedIndex = 0;
+
+        // get selected option
+        let selectedOption = busTypeSelect.options[busTypeSelect.selectedIndex].value;
+
+        // get data rows
+        let rows = document.querySelectorAll('.data-row');
+
+        // if selected option is not all
+        if (selectedOption != 'all') {
+            // loop through rows
+            rows.forEach(row => {
+                // get bus type from row
+                let busType = row.querySelector('[data-fieldname="bus_type"]').textContent;
+                // if bus type is not equal to selected option
+                if (busType != selectedOption) {
+                    // hide row
+                    row.style.display = 'none';
+                } else {
+                    // show row
+                    row.style.display = 'table-row';
+                }
+            });
+        } else {
+            // show all rows
+            rows.forEach(row => {
+                row.style.display = 'table-row';
+            });
+        }
+    });
+    // add event listener to hour type
+    hourTypeSelect.addEventListener('change', () => {
+        // console.log("Hour type changed");
+        // reset bus type select
+        busTypeSelect.selectedIndex = 0;
+        // reset from to date inputs
+        document.getElementById('from').value = '';
+        document.getElementById('to').value = '';
+        document.getElementById('date').value = '';
+
+        // get selected option
+        let selectedOption = hourTypeSelect.options[hourTypeSelect.selectedIndex].value;
+
+        // get data rows
+        let rows = document.querySelectorAll('.data-row');
+
+        // if selected option is not all
+        if (selectedOption != 'all') {
+            // loop through rows
+            rows.forEach(row => {
+                // get start time from row
+                let startTime = row.querySelector('[data-fieldname="departure_time"]').textContent;
+                // console.log(startTime);
+                // get first two characters of start time
+                startTime = startTime.substring(0, 2);
+                // if start time is between 6am and 10am or 4pm and 8pm then rush hour else normal hour
+                let hour = (startTime >= 6 && startTime <= 10) || (startTime >= 16 && startTime <= 20) ? 'rush' : 'normal';
+
+                if (selectedOption == 'rush') {
+                    if (hour == 'rush') {
+                        row.style.display = 'table-row';
+                    } else {
+                        // show row
+                        row.style.display = 'none';
+                    }
+                } else if (selectedOption == 'normal') {
+                    if (hour == 'normal') {
+                        row.style.display = 'table-row';
+                    } else {
+                        // show row
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        } else {
+            // show all rows
+            rows.forEach(row => {
+                row.style.display = 'table-row';
+            });
+        }
+    });
+
 });
 
-// //deleting
-// document.addEventListener(
-//     "DOMContentLoaded", function(){
-//         const deleteBtn = document.getElementById("delete-button");
-//         deleteBtn.addEventListener("click", function(e){
-//             deleteRow(e);
-//         });
-//
-//         function deleteRow(e){
-//             let row = e.target.parentNode.parentNode;
-//             let id = row.getAttribute("data-id");
-//             let confirm = window.confirm("Are  you sure you want to delete the trip?");
-//             if(confirm){
-//                 deleteRecord(id);
-//                 row.remove();
-//             }
-//         }
-//
-//         function deleteRecord(id) {
-//             const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public';
-//           fetch(`${ROOT}/schedules/scheduleGenerate`, {
-//             method: "POST",
-//             credentials: "same-origin",
-//             mode: "same-origin",
-//             headers: {
-//               "Content-Type": "application/json;charset=utf-8",
-//             },
-//             body: JSON.stringify({ id: id }),
-//           })
-//             .then((res) => res.json())
-//             .catch((error) => console.log(error))
-//             .then((data) => {
-//               console.log(data);
-//             });
-//         }
-//
-//
-//     }
-// );
-//
-// //generating
-// document.addEventListener(
-//     "DOMContentLoaded", function(){
-//
-//         const genBtn = document.getElementById("btn-generate");
-//
-//         genBtn.addEventListener("click", ()=>{
-//             alert("Hey");
-//             generating();
-//         });
-//
-//        function generating(){
-//         const ROOT =  'http://localhost/Bus-Schedule-Management-System/bussched/public';
-//         fetch(`${ROOT}/schedules/scheduleGenerate`, {
-//           method: "POST",
-//           credentials: "same-origin",
-//           mode: "same-origin",
-//           headers: {
-//             "Content-Type": "application/json;charset=utf-8",
-//           },
-//           body: JSON.stringify({ id: id }),
-//         })
-//           .then((res) => res.json())
-//           .catch((error) => console.log(error))
-//           .then((data) => {
-//             console.log(data);
-//           });
-//        }
-//
-//     }
-// );
-//
-//
+

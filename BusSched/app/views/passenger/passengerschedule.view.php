@@ -39,8 +39,26 @@
                 <input type="text" name="from" id="from" placeholder="From" <?php if ($from) echo "value=".$from; ?> list="halt-list" required>
                 <input type="text" name="to" id="to" placeholder="To" <?php if ($to) echo "value=".$to; ?> list="halt-list" required>
                 <input type="date" name="date" id="date" placeholder="Date" <?php if ($date) echo "value=".$date; ?> min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+1 day')) ?>" required>
+                
             <button class="button-orange" style="width:55.5%; margin-top:4.5px; font-size:13px;" id="find-trip-btn">Find</button>
         </div>
+    </div>
+    <div class="col-10" style="background:white; width:100%; text-align:center;">
+        <!-- select to enter bus type S or L -->
+        <label for="bus-type">Bus type</label>
+                <select name="bus-type" id="bus-type">
+                    <option value="all">All</option>
+                    <option value="S">Small</option>
+                    <option value="L">Large</option>
+                </select>
+
+                <!-- select to enter rush hour or normal hour -->
+                <label for="hour">Hour</label>
+                <select name="hour" id="hour">
+                    <option value="all">All</option>
+                    <option value="rush">Rush</option>
+                    <option value="normal">Normal</option>
+                </select>
     </div>
 
     <div class="row">

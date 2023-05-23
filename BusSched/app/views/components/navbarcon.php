@@ -18,7 +18,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
                     <!-- </button> -->
                     <div class="dropdown-content">
                         <a href="<?= ROOT ?>/conductor/conductorschedules" style="color:#9298AF;">Schedules</a>
-                        <a href="<?= ROOT ?>/conductor/busprofileconductors" style="color:#9298AF;">Buses</a></li>
+                        <!-- <a href="<?= ROOT ?>/conductor/busprofileconductors" style="color:#9298AF;">Buses</a></li> -->
                         <a href="<?= ROOT ?>/conductor/activetickets" style="color:#9298AF;">Bus Tickets</a>
                         <a href="<?= ROOT ?>/conductor/conductorfares" style="color:#9298AF;">Bus Fares</a>
                         <a href="<?= ROOT ?>/conductor/conductorbreakdowns" style="color:#9298AF;">Breakdowns</a>
@@ -67,7 +67,7 @@ $current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             <hr>
             </div>
             <div style="margin-bottom:5%">
-            <li><a href="<?= ROOT ?>/profileconductors" style="color:#9298AF;">My Profile</a></li>
+            <!-- <li><a href="<?= ROOT ?>/profileconductors" style="color:#9298AF;">My Profile</a></li> -->
             <hr>
             </div>
             <div style="margin-bottom:5%">
